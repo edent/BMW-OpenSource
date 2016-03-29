@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: qtbox.h Example File (demos/boxes/qtbox.h)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">qtbox.h Example File<br /><span class="small-subtitle">demos/boxes/qtbox.h</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the demonstration applications of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+
+ #ifndef QTBOX_H
+ #define QTBOX_H
+
+ #include &lt;QtGui&gt;
+
+ #include &lt;QtGui/qvector3d.h&gt;
+ #include &quot;glbuffers.h&quot;
+
+ class ItemBase : public QGraphicsItem
+ {
+ public:
+     enum { Type = UserType + 1 };
+
+     ItemBase(int size, int x, int y);
+     virtual ~ItemBase();
+     virtual QRectF boundingRect() const;
+     virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+ protected:
+     virtual ItemBase *createNew(int size, int x, int y) = 0;
+     virtual void contextMenuEvent(QGraphicsSceneContextMenuEvent *event);
+     virtual void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
+     virtual void hoverMoveEvent(QGraphicsSceneHoverEvent *event);
+     virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);
+     virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
+     virtual void keyPressEvent(QKeyEvent *event);
+     virtual void wheelEvent(QGraphicsSceneWheelEvent *event);
+     virtual int type() const;
+     bool isInResizeArea(const QPointF &amp;pos);
+
+     static void duplicateSelectedItems(QGraphicsScene *scene);
+     static void deleteSelectedItems(QGraphicsScene *scene);
+     static void growSelectedItems(QGraphicsScene *scene);
+     static void shrinkSelectedItems(QGraphicsScene *scene);
+
+     int m_size;
+     QTime m_startTime;
+     bool m_isResizing;
+ };
+
+ class QtBox : public ItemBase
+ {
+ public:
+     QtBox(int size, int x, int y);
+     virtual ~QtBox();
+     virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+ protected:
+     virtual ItemBase *createNew(int size, int x, int y);
+ private:
+     QVector3D m_vertices[8];
+     QVector3D m_texCoords[4];
+     QVector3D m_normals[6];
+     GLTexture *m_texture;
+ };
+
+ class CircleItem : public ItemBase
+ {
+ public:
+     CircleItem(int size, int x, int y);
+     virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+ protected:
+     virtual ItemBase *createNew(int size, int x, int y);
+
+     QColor m_color;
+ };
+
+ class SquareItem : public ItemBase
+ {
+ public:
+     SquareItem(int size, int x, int y);
+     virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+ protected:
+     virtual ItemBase *createNew(int size, int x, int y);
+
+     QPixmap m_image;
+ };
+
+ #endif</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

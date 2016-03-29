@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- winsystem.qdoc -->
+<head>
+  <title>Qt 4.6: Window System Specific Notes</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">Window System Specific Notes<br /><span class="subtitle"></span>
+</h1>
+<p>Qt is a cross-platform GUI toolkit, so almost the entire API is the same on all platforms and window systems. If you wish to use platform-specific features, and still maintain a platform-independent source tree, you should protect the platform-specific code using the appropriate <tt>#ifdef</tt> directives (see below).</p>
+<p>Qt provides a few low-level global functions for fine-tuning applications on specific platforms. See <a href="exportedfunctions.html">Platform-Specific Functions</a> for details.</p>
+<ul><li><a href="#qt-for-x11">Qt for X11</a></li>
+<li><a href="#qt-for-windows">Qt for Windows</a></li>
+<li><a href="#qt-for-mac-os-x">Qt for Mac OS X</a></li>
+<li><a href="#qt-for-embedded-linux">Qt for Embedded Linux</a></li>
+<li><a href="#qt-for-windows-ce">Qt for Windows CE</a></li>
+<li><a href="#qt-for-the-symbian-platform">Qt for the Symbian platform</a></li>
+</ul>
+<p>For information about which platforms are supported by Qt, see the <a href="platform-notes.html">Platform Notes</a>. For information on distributing Qt applications, see <a href="deployment.html">Deploying Qt Applications</a>.</p>
+<a name="x11"></a><a name="qt-for-x11"></a>
+<h3>Qt for X11</h3>
+<p>When compiling for this platform, the macro <tt>Q_WS_X11</tt> is defined.</p>
+<p><i>Not documented here. Please contact Qt's technical support team if you have queries.</i></p>
+<p>See the <a href="requirements-x11.html">Qt for X11 Requirements</a> page for more information about the libraries required to build Qt with as many features as possible.</p>
+<a name="win"></a><a name="qt-for-windows"></a>
+<h3>Qt for Windows</h3>
+<p>When compiling for this platform, the macro <tt>Q_WS_WIN</tt> is defined.</p>
+<p><i>Not documented here. Please contact Qt's technical support team if you have queries.</i></p>
+<a name="macosx"></a><a name="qt-for-mac-os-x"></a>
+<h3>Qt for Mac OS X</h3>
+<p>When compiling for this platform, the macro <tt>Q_WS_MAC</tt> is defined.</p>
+<ul>
+<li><a href="mac-differences.html">Qt for Mac OS X - Specific Issues</a></li>
+<li><a href="qtmac-as-native.html">Qt is Mac OS X Native</a></li>
+</ul>
+<a name="qws"></a><a name="qt-for-embedded-linux"></a>
+<h3>Qt for Embedded Linux</h3>
+<p>When compiling for this platform, the macro <tt>Q_WS_QWS</tt> is defined (the window system is literally the Qt Window System). See the <a href="qt-embedded-linux.html">Qt for Embedded Linux</a> documentation for more information.</p>
+<a name="qt-for-windows-ce"></a>
+<h3>Qt for Windows CE</h3>
+<p>When compiling for this platform, the macro <tt>Q_WS_WINCE</tt> is defined. See the <a href="qtce.html">Qt for Windows CE</a> documentation for more information.</p>
+<a name="qt-for-the-symbian-platform"></a>
+<h3>Qt for the Symbian platform</h3>
+<p>When compiling for this platform, the macro <tt>Q_WS_S60</tt> is defined. See the <a href="symbian-with-qt-introduction.html">The Symbian platform - Introduction to Qt</a> documentation for more information.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

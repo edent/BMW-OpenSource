@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- richtext.qdoc -->
+<head>
+  <title>Qt 4.6: Document Layouts</title>
+  <link rel="prev" href="richtext-cursor.html" />
+  <link rel="contents" href="richtext.html" />
+  <link rel="next" href="richtext-common-tasks.html" />
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><p>
+[Previous: <a href="richtext-cursor.html">The QTextCursor Interface</a>]
+[<a href="richtext.html">Contents</a>]
+[Next: <a href="richtext-common-tasks.html">Common Rich Text Editing Tasks</a>]
+</p>
+<h1 class="title">Document Layouts<br /><span class="subtitle"></span>
+</h1>
+<ul><li><a href="#overview">Overview</a></li>
+<li><a href="#example-shaped-text-layout">Example - Shaped Text Layout</a></li>
+</ul>
+<p>The layout of a document is only relevant when it is to be displayed on a device, or when some information is requested that requires a visual representation of the document. Until this occurs, the document does not need to be formatted and prepared for a device.</p>
+<a name="overview"></a>
+<h2>Overview</h2>
+<p>Each document's layout is managed by a subclass of the <a href="qabstracttextdocumentlayout.html">QAbstractTextDocumentLayout</a> class. This class provides a common interface for layout and rendering engines. The default rendering behavior is currently implemented in a private class. This approach makes it possible to create custom layouts, and provides the mechanism used when preparing pages for printing or exporting to Portable Document Format (PDF) files.</p>
+<a name="example-shaped-text-layout"></a>
+<h2>Example - Shaped Text Layout</h2>
+<p>Sometimes it is important to be able to format plain text within an irregularly-shaped region, perhaps when rendering a custom widget, for example. Scribe provides generic features, such as those provided by the <a href="qtextlayout.html">QTextLayout</a> class, to help developers perform word-wrapping and layout tasks without the need to create a document first.</p>
+<p align="center"><img src="images/plaintext-layout.png" /></p><p>Formatting and drawing a paragraph of plain text is straightforward. The example below will lay out a paragraph of text, using a single font, around the right hand edge of a circle.</p>
+<pre>     QTextLayout textLayout(text, font);
+     qreal margin = 10;
+     qreal radius = qMin(width()/2.0, height()/2.0) - margin;
+     QFontMetrics fm(font);
+
+     qreal lineHeight = fm.height();
+     qreal y = 0;
+
+     textLayout.beginLayout();
+
+     while (1) {
+         <span class="comment">// create a new line</span>
+         QTextLine line = textLayout.createLine();
+         if (!line.isValid())
+             break;
+
+         qreal x1 = qMax(0.0, pow(pow(radius,2)-pow(radius-y,2), 0.5));
+         qreal x2 = qMax(0.0, pow(pow(radius,2)-pow(radius-(y+lineHeight),2), 0.5));
+         qreal x = qMax(x1, x2) + margin;
+         qreal lineWidth = (width() - margin) - x;
+
+         line.setLineWidth(lineWidth);
+         line.setPosition(QPointF(x, margin+y));
+         y += line.height();
+     }
+
+     textLayout.endLayout();
+
+     QPainter painter;
+     painter.begin(this);
+     painter.setRenderHint(QPainter::Antialiasing);
+     painter.fillRect(rect(), Qt::white);
+     painter.setBrush(QBrush(Qt::black));
+     painter.setPen(QPen(Qt::black));
+     textLayout.draw(&amp;painter, QPoint(0,0));
+
+     painter.setBrush(QBrush(QColor(&quot;#a6ce39&quot;)));
+     painter.setPen(QPen(Qt::black));
+     painter.drawEllipse(QRectF(-radius, margin, 2*radius, 2*radius));
+     painter.end();</pre>
+<p>We create a text layout, specifying the text string we want to display and the font to use. We ensure that the text we supplied is formatted correctly by obtaining text lines from the text format, and wrapping the remaining text using the available space. The lines are positioned as we move down the page.</p>
+<p>The formatted text can be drawn onto a paint device; in the above code, the text is drawn directly onto a widget.</p>
+<p>
+[Previous: <a href="richtext-cursor.html">The QTextCursor Interface</a>]
+[<a href="richtext.html">Contents</a>]
+[Next: <a href="richtext-common-tasks.html">Common Rich Text Editing Tasks</a>]
+</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

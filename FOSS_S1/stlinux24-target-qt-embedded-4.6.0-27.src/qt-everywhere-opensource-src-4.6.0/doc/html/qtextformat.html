@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qtextformat.cpp -->
+<head>
+  <title>Qt 4.6: QTextFormat Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QTextFormat" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QTextFormat Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QTextFormat class provides formatting information for a <a href="qtextdocument.html">QTextDocument</a>. <a href="#details">More...</a></p>
+<pre> #include &lt;QTextFormat&gt;</pre><p>Inherited by <a href="qtextblockformat.html">QTextBlockFormat</a>, <a href="qtextcharformat.html">QTextCharFormat</a>, <a href="qtextframeformat.html">QTextFrameFormat</a>, and <a href="qtextlistformat.html">QTextListFormat</a>.</p>
+<p><b>Note:</b> All functions in this class are <a href="threads-reentrancy.html#reentrant">reentrant</a>.</p>
+<ul>
+<li><a href="qtextformat-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-types"></a>
+<h2>Public Types</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#FormatType-enum">FormatType</a></b> { InvalidFormat, BlockFormat, CharFormat, ListFormat, ..., UserFormat }</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#ObjectTypes-enum">ObjectTypes</a></b> { NoObject, ImageObject, TableObject, TableCellObject, UserObject }</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#PageBreakFlag-enum">PageBreakFlag</a></b> { PageBreak_Auto, PageBreak_AlwaysBefore, PageBreak_AlwaysAfter }</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">flags </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#PageBreakFlag-enum">PageBreakFlags</a></b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#Property-enum">Property</a></b> { ObjectIndex, CssFloat, LayoutDirection, OutlinePen, ..., UserProperty }</td></tr>
+</table>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#QTextFormat">QTextFormat</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#QTextFormat-2">QTextFormat</a></b> ( int <i>type</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#QTextFormat-3">QTextFormat</a></b> ( const QTextFormat &amp; <i>other</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#dtor.QTextFormat">~QTextFormat</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QBrush </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#background">background</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#boolProperty">boolProperty</a></b> ( int <i>propertyId</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QBrush </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#brushProperty">brushProperty</a></b> ( int <i>propertyId</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#clearBackground">clearBackground</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#clearForeground">clearForeground</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#clearProperty">clearProperty</a></b> ( int <i>propertyId</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QColor </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#colorProperty">colorProperty</a></b> ( int <i>propertyId</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">qreal </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#doubleProperty">doubleProperty</a></b> ( int <i>propertyId</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QBrush </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#foreground">foreground</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#hasProperty">hasProperty</a></b> ( int <i>propertyId</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#intProperty">intProperty</a></b> ( int <i>propertyId</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#isBlockFormat">isBlockFormat</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#isCharFormat">isCharFormat</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#isFrameFormat">isFrameFormat</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#isImageFormat">isImageFormat</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#isListFormat">isListFormat</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#isTableCellFormat">isTableCellFormat</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#isTableFormat">isTableFormat</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#isValid">isValid</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Qt::LayoutDirection </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#layoutDirection">layoutDirection</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QTextLength </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#lengthProperty">lengthProperty</a></b> ( int <i>propertyId</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QVector&lt;QTextLength&gt; </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#lengthVectorProperty">lengthVectorProperty</a></b> ( int <i>propertyId</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#merge">merge</a></b> ( const QTextFormat &amp; <i>other</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#objectIndex">objectIndex</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#objectType">objectType</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QPen </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#penProperty">penProperty</a></b> ( int <i>propertyId</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QMap&lt;int, QVariant&gt; </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#properties">properties</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QVariant </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#property">property</a></b> ( int <i>propertyId</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#propertyCount">propertyCount</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#setBackground">setBackground</a></b> ( const QBrush &amp; <i>brush</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#setForeground">setForeground</a></b> ( const QBrush &amp; <i>brush</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#setLayoutDirection">setLayoutDirection</a></b> ( Qt::LayoutDirection <i>direction</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#setObjectIndex">setObjectIndex</a></b> ( int <i>index</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#setObjectType">setObjectType</a></b> ( int <i>type</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#setProperty">setProperty</a></b> ( int <i>propertyId</i>, const QVariant &amp; <i>value</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#setProperty-2">setProperty</a></b> ( int <i>propertyId</i>, const QVector&lt;QTextLength&gt; &amp; <i>value</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#stringProperty">stringProperty</a></b> ( int <i>propertyId</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QTextBlockFormat </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#toBlockFormat">toBlockFormat</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QTextCharFormat </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#toCharFormat">toCharFormat</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QTextFrameFormat </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#toFrameFormat">toFrameFormat</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QTextImageFormat </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#toImageFormat">toImageFormat</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QTextListFormat </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#toListFormat">toListFormat</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QTextTableCellFormat </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#toTableCellFormat">toTableCellFormat</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QTextTableFormat </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#toTableFormat">toTableFormat</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#type">type</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#operator-QVariant">operator QVariant</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#operator-not-eq">operator!=</a></b> ( const QTextFormat &amp; <i>other</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QTextFormat &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#operator-eq">operator=</a></b> ( const QTextFormat &amp; <i>other</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qtextformat.html#operator-eq-eq">operator==</a></b> ( const QTextFormat &amp; <i>other</i> ) const</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QTextFormat class provides formatting information for a <a href="qtextdocument.html">QTextDocument</a>.</p>
+<p>A QTextFormat is a generic class used for describing the format of parts of a <a href="qtextdocument.html">QTextDocument</a>. The derived classes <a href="qtextcharformat.html">QTextCharFormat</a>, <a href="qtextblockformat.html">QTextBlockFormat</a>, <a href="qtextlistformat.html">QTextListFormat</a>, and <a href="qtexttableformat.html">QTextTableFormat</a> are usually more useful, and describe the formatting that is applied to specific parts of the document.</p>
+<p>A format has a <tt>FormatType</tt> which specifies the kinds of text item it can format; e.g&#x2e; a block of text, a list, a table, etc. A format also has various properties (some specific to particular format types), as described by the Property enum. Every property has a corresponding Property.</p>
+<p>The format type is given by <a href="qtextformat.html#type">type</a>(), and the format can be tested with <a href="qtextformat.html#isCharFormat">isCharFormat</a>(), <a href="qtextformat.html#isBlockFormat">isBlockFormat</a>(), <a href="qtextformat.html#isListFormat">isListFormat</a>(), <a href="qtextformat.html#isTableFormat">isTableFormat</a>(), <a href="qtextformat.html#isFrameFormat">isFrameFormat</a>(), and <a href="qtextformat.html#isImageFormat">isImageFormat</a>(). If the type is determined, it can be retrieved with <a href="qtextformat.html#toCharFormat">toCharFormat</a>(), <a href="qtextformat.html#toBlockFormat">toBlockFormat</a>(), <a href="qtextformat.html#toListFormat">toListFormat</a>(), <a href="qtextformat.html#toTableFormat">toTableFormat</a>(), <a href="qtextformat.html#toFrameFormat">toFrameFormat</a>(), and <a href="qtextformat.html#toImageFormat">toImageFormat</a>().</p>
+<p>A format's properties can be set with the <a href="qtextformat.html#setProperty">setProperty</a>() functions, and retrieved with <a href="qtextformat.html#boolProperty">boolProperty</a>(), <a href="qtextformat.html#intProperty">intProperty</a>(), <a href="qtextformat.html#doubleProperty">doubleProperty</a>(), and <a href="qtextformat.html#stringProperty">stringProperty</a>() as appropriate. All the property IDs used in the format can be retrieved with allPropertyIds(). One format can be merged into another using <a href="qtextformat.html#merge">merge</a>().</p>
+<p>A format's object index can be set with <a href="qtextformat.html#setObjectIndex">setObjectIndex</a>(), and retrieved with <a href="qtextformat.html#objectIndex">objectIndex</a>(). These methods can be used to associate the format with a <a href="qtextobject.html">QTextObject</a>. It is used to represent lists, frames, and tables inside the document.</p>
+<p>See also <a href="richtext.html">Rich Text Processing</a>.</p>
+<hr />
+<h2>Member Type Documentation</h2>
+<a name="//apple_ref/cpp/tag/QTextFormat/FormatType" />
+<a name="//apple_ref/cpp/econst/QTextFormat/InvalidFormat" />
+<a name="//apple_ref/cpp/econst/QTextFormat/BlockFormat" />
+<a name="//apple_ref/cpp/econst/QTextFormat/CharFormat" />
+<a name="//apple_ref/cpp/econst/QTextFormat/ListFormat" />
+<a name="//apple_ref/cpp/econst/QTextFormat/TableFormat" />
+<a name="//apple_ref/cpp/econst/QTextFormat/FrameFormat" />
+<a name="//apple_ref/cpp/econst/QTextFormat/UserFormat" />
+<h3 class="fn"><a name="FormatType-enum"></a>enum QTextFormat::FormatType</h3>
+<p>This enum describes the text item a <a href="qtextformat.html">QTextFormat</a> object is formatting.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QTextFormat::InvalidFormat</tt></td><td align="center" valign="top"><tt>-1</tt></td><td valign="top">An invalid format as created by the default constructor</td></tr>
+<tr><td valign="top"><tt>QTextFormat::BlockFormat</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">The object formats a text block</td></tr>
+<tr><td valign="top"><tt>QTextFormat::CharFormat</tt></td><td align="center" valign="top"><tt>2</tt></td><td valign="top">The object formats a single character</td></tr>
+<tr><td valign="top"><tt>QTextFormat::ListFormat</tt></td><td align="center" valign="top"><tt>3</tt></td><td valign="top">The object formats a list</td></tr>
+<tr><td valign="top"><tt>QTextFormat::TableFormat</tt></td><td align="center" valign="top"><tt>4</tt></td><td valign="top">The object formats a table</td></tr>
+<tr><td valign="top"><tt>QTextFormat::FrameFormat</tt></td><td align="center" valign="top"><tt>5</tt></td><td valign="top">The object formats a frame</td></tr>
+<tr><td valign="top"><tt>QTextFormat::UserFormat</tt></td><td align="center" valign="top"><tt>100</tt></td><td valign="top">&nbsp;</td></tr>
+</table></p>
+<p>See also <a href="qtextcharformat.html">QTextCharFormat</a>, <a href="qtextblockformat.html">QTextBlockFormat</a>, <a href="qtextlistformat.html">QTextListFormat</a>, <a href="qtexttableformat.html">QTextTableFormat</a>, and <a href="qtextformat.html#type">type</a>().</p>
+<a name="//apple_ref/cpp/tag/QTextFormat/ObjectTypes" />
+<a name="//apple_ref/cpp/econst/QTextFormat/NoObject" />
+<a name="//apple_ref/cpp/econst/QTextFormat/ImageObject" />
+<a name="//apple_ref/cpp/econst/QTextFormat/TableObject" />
+<a name="//apple_ref/cpp/econst/QTextFormat/TableCellObject" />
+<a name="//apple_ref/cpp/econst/QTextFormat/UserObject" />
+<h3 class="fn"><a name="ObjectTypes-enum"></a>enum QTextFormat::ObjectTypes</h3>
+<p>This enum describes what kind of <a href="qtextobject.html">QTextObject</a> this format is associated with.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QTextFormat::NoObject</tt></td><td align="center" valign="top"><tt>0</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QTextFormat::ImageObject</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QTextFormat::TableObject</tt></td><td align="center" valign="top"><tt>2</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QTextFormat::TableCellObject</tt></td><td align="center" valign="top"><tt>3</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QTextFormat::UserObject</tt></td><td align="center" valign="top"><tt>0x1000</tt></td><td valign="top">The first object that can be used for application-specific purposes.</td></tr>
+</table></p>
+<p>See also <a href="qtextobject.html">QTextObject</a>, <a href="qtexttable.html">QTextTable</a>, and <a href="qtextobject.html#format">QTextObject::format</a>().</p>
+<a name="//apple_ref/cpp/tag/QTextFormat/PageBreakFlag" />
+<a name="//apple_ref/cpp/econst/QTextFormat/PageBreak_Auto" />
+<a name="//apple_ref/cpp/econst/QTextFormat/PageBreak_AlwaysBefore" />
+<a name="//apple_ref/cpp/econst/QTextFormat/PageBreak_AlwaysAfter" />
+<a name="//apple_ref/cpp/tdef/QTextFormat/PageBreakFlags" />
+<h3 class="flags"><a name="PageBreakFlag-enum"></a>enum QTextFormat::PageBreakFlag<br />flags QTextFormat::PageBreakFlags</h3>
+<p>This enum describes how page breaking is performed when printing. It maps to the corresponding css properties.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QTextFormat::PageBreak_Auto</tt></td><td align="center" valign="top"><tt>0</tt></td><td valign="top">The page break is determined automatically depending on the available space on the current page</td></tr>
+<tr><td valign="top"><tt>QTextFormat::PageBreak_AlwaysBefore</tt></td><td align="center" valign="top"><tt>0x001</tt></td><td valign="top">The page is always broken before the paragraph/table</td></tr>
+<tr><td valign="top"><tt>QTextFormat::PageBreak_AlwaysAfter</tt></td><td align="center" valign="top"><tt>0x010</tt></td><td valign="top">A new page is always started after the paragraph/table</td></tr>
+</table></p>
+<p>This enum was introduced in Qt 4.2.</p>
+<p>The PageBreakFlags type is a typedef for <a href="qflags.html">QFlags</a>&lt;PageBreakFlag&gt;. It stores an OR combination of PageBreakFlag values.</p>
+<p>See also <a href="qtextblockformat.html#pageBreakPolicy">QTextBlockFormat::pageBreakPolicy</a>(), <a href="qtextframeformat.html#pageBreakPolicy">QTextFrameFormat::pageBreakPolicy</a>(), and <a href="qtextformat.html#Property-enum">PageBreakPolicy</a>.</p>
+<a name="//apple_ref/cpp/tag/QTextFormat/Property" />
+<a name="//apple_ref/cpp/econst/QTextFormat/ObjectIndex" />
+<a name="//apple_ref/cpp/econst/QTextFormat/CssFloat" />
+<a name="//apple_ref/cpp/econst/QTextFormat/LayoutDirection" />
+<a name="//apple_ref/cpp/econst/QTextFormat/OutlinePen" />
+<a name="//apple_ref/cpp/econst/QTextFormat/ForegroundBrush" />
+<a name="//apple_ref/cpp/econst/QTextFormat/BackgroundBrush" />
+<a name="//apple_ref/cpp/econst/QTextFormat/BackgroundImageUrl" />
+<a name="//apple_ref/cpp/econst/QTextFormat/BlockAlignment" />
+<a name="//apple_ref/cpp/econst/QTextFormat/BlockTopMargin" />
+<a name="//apple_ref/cpp/econst/QTextFormat/BlockBottomMargin" />
+<a name="//apple_ref/cpp/econst/QTextFormat/BlockLeftMargin" />
+<a name="//apple_ref/cpp/econst/QTextFormat/BlockRightMargin" />
+<a name="//apple_ref/cpp/econst/QTextFormat/TextIndent" />
+<a name="//apple_ref/cpp/econst/QTextFormat/TabPositions" />
+<a name="//apple_ref/cpp/econst/QTextFormat/BlockIndent" />
+<a name="//apple_ref/cpp/econst/QTextFormat/BlockNonBreakableLines" />
+<a name="//apple_ref/cpp/econst/QTextFormat/BlockTrailingHorizontalRulerWidth" />
+<a name="//apple_ref/cpp/econst/QTextFormat/FontFamily" />
+<a name="//apple_ref/cpp/econst/QTextFormat/FontPointSize" />
+<a name="//apple_ref/cpp/econst/QTextFormat/FontPixelSize" />
+<a name="//apple_ref/cpp/econst/QTextFormat/FontSizeAdjustment" />
+<a name="//apple_ref/cpp/econst/QTextFormat/FontFixedPitch" />
+<a name="//apple_ref/cpp/econst/QTextFormat/FontSizeIncrement" />
+<a name="//apple_ref/cpp/econst/QTextFormat/FontWeight" />
+<a name="//apple_ref/cpp/econst/QTextFormat/FontItalic" />
+<a name="//apple_ref/cpp/econst/QTextFormat/FontUnderline" />
+<a name="//apple_ref/cpp/econst/QTextFormat/FontOverline" />
+<a name="//apple_ref/cpp/econst/QTextFormat/FontStrikeOut" />
+<a name="//apple_ref/cpp/econst/QTextFormat/FontCapitalization" />
+<a name="//apple_ref/cpp/econst/QTextFormat/FontLetterSpacing" />
+<a name="//apple_ref/cpp/econst/QTextFormat/FontWordSpacing" />
+<a name="//apple_ref/cpp/econst/QTextFormat/FontStyleHint" />
+<a name="//apple_ref/cpp/econst/QTextFormat/FontStyleStrategy" />
+<a name="//apple_ref/cpp/econst/QTextFormat/FontKerning" />
+<a name="//apple_ref/cpp/econst/QTextFormat/FirstFontProperty" />
+<a name="//apple_ref/cpp/econst/QTextFormat/LastFontProperty" />
+<a name="//apple_ref/cpp/econst/QTextFormat/TextUnderlineColor" />
+<a name="//apple_ref/cpp/econst/QTextFormat/TextVerticalAlignment" />
+<a name="//apple_ref/cpp/econst/QTextFormat/TextOutline" />
+<a name="//apple_ref/cpp/econst/QTextFormat/TextUnderlineStyle" />
+<a name="//apple_ref/cpp/econst/QTextFormat/TextToolTip" />
+<a name="//apple_ref/cpp/econst/QTextFormat/IsAnchor" />
+<a name="//apple_ref/cpp/econst/QTextFormat/AnchorHref" />
+<a name="//apple_ref/cpp/econst/QTextFormat/AnchorName" />
+<a name="//apple_ref/cpp/econst/QTextFormat/ObjectType" />
+<a name="//apple_ref/cpp/econst/QTextFormat/ListStyle" />
+<a name="//apple_ref/cpp/econst/QTextFormat/ListIndent" />
+<a name="//apple_ref/cpp/econst/QTextFormat/FrameBorder" />
+<a name="//apple_ref/cpp/econst/QTextFormat/FrameBorderBrush" />
+<a name="//apple_ref/cpp/econst/QTextFormat/FrameBorderStyle" />
+<a name="//apple_ref/cpp/econst/QTextFormat/FrameBottomMargin" />
+<a name="//apple_ref/cpp/econst/QTextFormat/FrameHeight" />
+<a name="//apple_ref/cpp/econst/QTextFormat/FrameLeftMargin" />
+<a name="//apple_ref/cpp/econst/QTextFormat/FrameMargin" />
+<a name="//apple_ref/cpp/econst/QTextFormat/FramePadding" />
+<a name="//apple_ref/cpp/econst/QTextFormat/FrameRightMargin" />
+<a name="//apple_ref/cpp/econst/QTextFormat/FrameTopMargin" />
+<a name="//apple_ref/cpp/econst/QTextFormat/FrameWidth" />
+<a name="//apple_ref/cpp/econst/QTextFormat/TableCellSpacing" />
+<a name="//apple_ref/cpp/econst/QTextFormat/TableCellPadding" />
+<a name="//apple_ref/cpp/econst/QTextFormat/TableColumns" />
+<a name="//apple_ref/cpp/econst/QTextFormat/TableColumnWidthConstraints" />
+<a name="//apple_ref/cpp/econst/QTextFormat/TableHeaderRowCount" />
+<a name="//apple_ref/cpp/econst/QTextFormat/TableCellRowSpan" />
+<a name="//apple_ref/cpp/econst/QTextFormat/TableCellColumnSpan" />
+<a name="//apple_ref/cpp/econst/QTextFormat/TableCellLeftPadding" />
+<a name="//apple_ref/cpp/econst/QTextFormat/TableCellRightPadding" />
+<a name="//apple_ref/cpp/econst/QTextFormat/TableCellTopPadding" />
+<a name="//apple_ref/cpp/econst/QTextFormat/TableCellBottomPadding" />
+<a name="//apple_ref/cpp/econst/QTextFormat/ImageName" />
+<a name="//apple_ref/cpp/econst/QTextFormat/ImageWidth" />
+<a name="//apple_ref/cpp/econst/QTextFormat/ImageHeight" />
+<a name="//apple_ref/cpp/econst/QTextFormat/FullWidthSelection" />
+<a name="//apple_ref/cpp/econst/QTextFormat/PageBreakPolicy" />
+<a name="//apple_ref/cpp/econst/QTextFormat/UserProperty" />
+<h3 class="fn"><a name="Property-enum"></a>enum QTextFormat::Property</h3>
+<p>This enum describes the different properties a format can have.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QTextFormat::ObjectIndex</tt></td><td align="center" valign="top"><tt>0x0</tt></td><td valign="top">The index of the formatted object. See <a href="qtextformat.html#objectIndex">objectIndex</a>().</td></tr>
+</table></p>
+<p>Paragraph and character properties</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QTextFormat::CssFloat</tt></td><td align="center" valign="top"><tt>0x0800</tt></td><td valign="top">How a frame is located relative to the surrounding text</td></tr>
+<tr><td valign="top"><tt>QTextFormat::LayoutDirection</tt></td><td align="center" valign="top"><tt>0x0801</tt></td><td valign="top">The layout direction of the text in the document (<a href="qt.html#LayoutDirection-enum">Qt::LayoutDirection</a>).</td></tr>
+<tr><td valign="top"><tt>QTextFormat::OutlinePen</tt></td><td align="center" valign="top"><tt>0x810</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QTextFormat::ForegroundBrush</tt></td><td align="center" valign="top"><tt>0x821</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QTextFormat::BackgroundBrush</tt></td><td align="center" valign="top"><tt>0x820</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QTextFormat::BackgroundImageUrl</tt></td><td align="center" valign="top"><tt>0x823</tt></td><td valign="top">&nbsp;</td></tr>
+</table></p>
+<p>Paragraph properties</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QTextFormat::BlockAlignment</tt></td><td align="center" valign="top"><tt>0x1010</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QTextFormat::BlockTopMargin</tt></td><td align="center" valign="top"><tt>0x1030</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QTextFormat::BlockBottomMargin</tt></td><td align="center" valign="top"><tt>0x1031</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QTextFormat::BlockLeftMargin</tt></td><td align="center" valign="top"><tt>0x1032</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QTextFormat::BlockRightMargin</tt></td><td align="center" valign="top"><tt>0x1033</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QTextFormat::TextIndent</tt></td><td align="center" valign="top"><tt>0x1034</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QTextFormat::TabPositions</tt></td><td align="center" valign="top"><tt>0x1035</tt></td><td valign="top">Specifies the tab positions. The tab positions are structs of <a href="qtextoption-tab.html">QTextOption::Tab</a> which are stored in a <a href="qlist.html">QList</a> (internally, in a <a href="qlist.html">QList</a>&lt;<a href="qvariant.html">QVariant</a>&gt;).</td></tr>
+<tr><td valign="top"><tt>QTextFormat::BlockIndent</tt></td><td align="center" valign="top"><tt>0x1040</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QTextFormat::BlockNonBreakableLines</tt></td><td align="center" valign="top"><tt>0x1050</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QTextFormat::BlockTrailingHorizontalRulerWidth</tt></td><td align="center" valign="top"><tt>0x1060</tt></td><td valign="top">The width of a horizontal ruler element.</td></tr>
+</table></p>
+<p>Character properties</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QTextFormat::FontFamily</tt></td><td align="center" valign="top"><tt>0x2000</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QTextFormat::FontPointSize</tt></td><td align="center" valign="top"><tt>0x2001</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QTextFormat::FontPixelSize</tt></td><td align="center" valign="top"><tt>0x2009</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QTextFormat::FontSizeAdjustment</tt></td><td align="center" valign="top"><tt>0x2002</tt></td><td valign="top">Specifies the change in size given to the fontsize already set using FontPointSize or FontPixelSize.</td></tr>
+<tr><td valign="top"><tt>QTextFormat::FontFixedPitch</tt></td><td align="center" valign="top"><tt>0x2008</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QTextFormat::FontWeight</tt></td><td align="center" valign="top"><tt>0x2003</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QTextFormat::FontItalic</tt></td><td align="center" valign="top"><tt>0x2004</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QTextFormat::FontUnderline</tt></td><td align="center" valign="top"><tt>0x2005</tt></td><td valign="top"><i>This property has been deprecated.</i> Use QTextFormat::TextUnderlineStyle instead.</td></tr>
+<tr><td valign="top"><tt>QTextFormat::FontOverline</tt></td><td align="center" valign="top"><tt>0x2006</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QTextFormat::FontStrikeOut</tt></td><td align="center" valign="top"><tt>0x2007</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QTextFormat::FontCapitalization</tt></td><td align="center" valign="top"><tt>FirstFontProperty</tt></td><td valign="top">Specifies the capitalization type that is to be applied to the text.</td></tr>
+<tr><td valign="top"><tt>QTextFormat::FontLetterSpacing</tt></td><td align="center" valign="top"><tt>0x1FE1</tt></td><td valign="top">Changes the default spacing between individual letters in the font. The value is specified in percentage, with 100 as the default value.</td></tr>
+<tr><td valign="top"><tt>QTextFormat::FontWordSpacing</tt></td><td align="center" valign="top"><tt>0x1FE2</tt></td><td valign="top">Changes the default spacing between individual words. A positive value increases the word spacing by the corresponding pixels; a negative value decreases the spacing.</td></tr>
+<tr><td valign="top"><tt>QTextFormat::FontStyleHint</tt></td><td align="center" valign="top"><tt>0x1FE3</tt></td><td valign="top">Corresponds to the <a href="qfont.html#StyleHint-enum">QFont::StyleHint</a> property</td></tr>
+<tr><td valign="top"><tt>QTextFormat::FontStyleStrategy</tt></td><td align="center" valign="top"><tt>0x1FE4</tt></td><td valign="top">Corresponds to the <a href="qfont.html#StyleStrategy-enum">QFont::StyleStrategy</a> property</td></tr>
+<tr><td valign="top"><tt>QTextFormat::FontKerning</tt></td><td align="center" valign="top"><tt>0x1FE5</tt></td><td valign="top">Specifies whether the font has kerning turned on.</td></tr>
+<tr><td valign="top"><tt>QTextFormat::TextUnderlineColor</tt></td><td align="center" valign="top"><tt>0x2010</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QTextFormat::TextVerticalAlignment</tt></td><td align="center" valign="top"><tt>0x2021</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QTextFormat::TextOutline</tt></td><td align="center" valign="top"><tt>0x2022</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QTextFormat::TextUnderlineStyle</tt></td><td align="center" valign="top"><tt>0x2023</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QTextFormat::TextToolTip</tt></td><td align="center" valign="top"><tt>0x2024</tt></td><td valign="top">Specifies the (optional) tool tip to be displayed for a fragment of text.</td></tr>
+<tr><td valign="top"><tt>QTextFormat::IsAnchor</tt></td><td align="center" valign="top"><tt>0x2030</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QTextFormat::AnchorHref</tt></td><td align="center" valign="top"><tt>0x2031</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QTextFormat::AnchorName</tt></td><td align="center" valign="top"><tt>0x2032</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QTextFormat::ObjectType</tt></td><td align="center" valign="top"><tt>0x2f00</tt></td><td valign="top">&nbsp;</td></tr>
+</table></p>
+<p>List properties</p>
+<p><table  class="valuelist" border="1" cellpadding="2" cellspacing="1" width="40%">
+<tr><th width="60%">Constant</th><th width="40%">Value</th></tr>
+<tr><td valign="top"><tt>QTextFormat::ListStyle</tt></td><td align="center" valign="top"><tt>0x3000</tt></td></tr>
+<tr><td valign="top"><tt>QTextFormat::ListIndent</tt></td><td align="center" valign="top"><tt>0x3001</tt></td></tr>
+</table></p>
+<p>Table and frame properties</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QTextFormat::FrameBorder</tt></td><td align="center" valign="top"><tt>0x4000</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QTextFormat::FrameBorderBrush</tt></td><td align="center" valign="top"><tt>0x4009</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QTextFormat::FrameBorderStyle</tt></td><td align="center" valign="top"><tt>0x4010</tt></td><td valign="top">See the <a href="qtextframeformat.html#BorderStyle-enum">BorderStyle</a> enum.</td></tr>
+<tr><td valign="top"><tt>QTextFormat::FrameBottomMargin</tt></td><td align="center" valign="top"><tt>0x4006</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QTextFormat::FrameHeight</tt></td><td align="center" valign="top"><tt>0x4004</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QTextFormat::FrameLeftMargin</tt></td><td align="center" valign="top"><tt>0x4007</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QTextFormat::FrameMargin</tt></td><td align="center" valign="top"><tt>0x4001</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QTextFormat::FramePadding</tt></td><td align="center" valign="top"><tt>0x4002</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QTextFormat::FrameRightMargin</tt></td><td align="center" valign="top"><tt>0x4008</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QTextFormat::FrameTopMargin</tt></td><td align="center" valign="top"><tt>0x4005</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QTextFormat::FrameWidth</tt></td><td align="center" valign="top"><tt>0x4003</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QTextFormat::TableCellSpacing</tt></td><td align="center" valign="top"><tt>0x4102</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QTextFormat::TableCellPadding</tt></td><td align="center" valign="top"><tt>0x4103</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QTextFormat::TableColumns</tt></td><td align="center" valign="top"><tt>0x4100</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QTextFormat::TableColumnWidthConstraints</tt></td><td align="center" valign="top"><tt>0x4101</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QTextFormat::TableHeaderRowCount</tt></td><td align="center" valign="top"><tt>0x4104</tt></td><td valign="top">&nbsp;</td></tr>
+</table></p>
+<p>Table cell properties</p>
+<p><table  class="valuelist" border="1" cellpadding="2" cellspacing="1" width="40%">
+<tr><th width="60%">Constant</th><th width="40%">Value</th></tr>
+<tr><td valign="top"><tt>QTextFormat::TableCellRowSpan</tt></td><td align="center" valign="top"><tt>0x4810</tt></td></tr>
+<tr><td valign="top"><tt>QTextFormat::TableCellColumnSpan</tt></td><td align="center" valign="top"><tt>0x4811</tt></td></tr>
+<tr><td valign="top"><tt>QTextFormat::TableCellLeftPadding</tt></td><td align="center" valign="top"><tt>0x4814</tt></td></tr>
+<tr><td valign="top"><tt>QTextFormat::TableCellRightPadding</tt></td><td align="center" valign="top"><tt>0x4815</tt></td></tr>
+<tr><td valign="top"><tt>QTextFormat::TableCellTopPadding</tt></td><td align="center" valign="top"><tt>0x4812</tt></td></tr>
+<tr><td valign="top"><tt>QTextFormat::TableCellBottomPadding</tt></td><td align="center" valign="top"><tt>0x4813</tt></td></tr>
+</table></p>
+<p>Image properties</p>
+<p><table  class="valuelist" border="1" cellpadding="2" cellspacing="1" width="40%">
+<tr><th width="60%">Constant</th><th width="40%">Value</th></tr>
+<tr><td valign="top"><tt>QTextFormat::ImageName</tt></td><td align="center" valign="top"><tt>0x5000</tt></td></tr>
+<tr><td valign="top"><tt>QTextFormat::ImageWidth</tt></td><td align="center" valign="top"><tt>0x5010</tt></td></tr>
+<tr><td valign="top"><tt>QTextFormat::ImageHeight</tt></td><td align="center" valign="top"><tt>0x5011</tt></td></tr>
+</table></p>
+<p>Selection properties</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QTextFormat::FullWidthSelection</tt></td><td align="center" valign="top"><tt>0x06000</tt></td><td valign="top">When set on the characterFormat of a selection, the whole width of the text will be shown selected.</td></tr>
+</table></p>
+<p>Page break properties</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QTextFormat::PageBreakPolicy</tt></td><td align="center" valign="top"><tt>0x7000</tt></td><td valign="top">Specifies how pages are broken. See the <a href="qtextformat.html#PageBreakFlag-enum">PageBreakFlag</a> enum.</td></tr>
+<tr><td valign="top"><tt>QTextFormat::UserProperty</tt></td><td align="center" valign="top"><tt>0x100000</tt></td><td valign="top">&nbsp;</td></tr>
+</table></p>
+<p>See also <a href="qtextformat.html#property">property</a>() and <a href="qtextformat.html#setProperty">setProperty</a>().</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QTextFormat/QTextFormat" />
+<h3 class="fn"><a name="QTextFormat"></a>QTextFormat::QTextFormat ()</h3>
+<p>Creates a new text format with an <tt>InvalidFormat</tt>.</p>
+<p>See also <a href="qtextformat.html#FormatType-enum">FormatType</a>.</p>
+<h3 class="fn"><a name="QTextFormat-2"></a>QTextFormat::QTextFormat ( int <i>type</i> )</h3>
+<p>Creates a new text format of the given <i>type</i>.</p>
+<p>See also <a href="qtextformat.html#FormatType-enum">FormatType</a>.</p>
+<h3 class="fn"><a name="QTextFormat-3"></a>QTextFormat::QTextFormat ( const QTextFormat &amp; <i>other</i> )</h3>
+<p>Creates a new text format with the same attributes as the <i>other</i> text format.</p>
+<a name="//apple_ref/cpp/instm/QTextFormat/~QTextFormat" />
+<h3 class="fn"><a name="dtor.QTextFormat"></a>QTextFormat::~QTextFormat ()</h3>
+<p>Destroys this text format.</p>
+<a name="//apple_ref/cpp/instm/QTextFormat/background" />
+<h3 class="fn"><a name="background"></a><a href="qbrush.html">QBrush</a> QTextFormat::background () const</h3>
+<p>Returns the brush used to paint the document's background.</p>
+<p>See also <a href="qtextformat.html#setBackground">setBackground</a>(), <a href="qtextformat.html#clearBackground">clearBackground</a>(), and <a href="qtextformat.html#foreground">foreground</a>().</p>
+<a name="//apple_ref/cpp/instm/QTextFormat/boolProperty" />
+<h3 class="fn"><a name="boolProperty"></a>bool QTextFormat::boolProperty ( int <i>propertyId</i> ) const</h3>
+<p>Returns the value of the property specified by <i>propertyId</i>. If the property isn't of QTextFormat::Bool type, false is returned instead.</p>
+<p>See also <a href="qtextformat.html#setProperty">setProperty</a>(), <a href="qtextformat.html#intProperty">intProperty</a>(), <a href="qtextformat.html#doubleProperty">doubleProperty</a>(), <a href="qtextformat.html#stringProperty">stringProperty</a>(), <a href="qtextformat.html#colorProperty">colorProperty</a>(), <a href="qtextformat.html#lengthProperty">lengthProperty</a>(), <a href="qtextformat.html#lengthVectorProperty">lengthVectorProperty</a>(), and <a href="qtextformat.html#Property-enum">Property</a>.</p>
+<a name="//apple_ref/cpp/instm/QTextFormat/brushProperty" />
+<h3 class="fn"><a name="brushProperty"></a><a href="qbrush.html">QBrush</a> QTextFormat::brushProperty ( int <i>propertyId</i> ) const</h3>
+<p>Returns the value of the property given by <i>propertyId</i>; if the property isn't of <a href="qvariant.html#Type-enum">QVariant::Brush</a> type, <a href="qt.html#BrushStyle-enum">Qt::NoBrush</a> is returned instead.</p>
+<p>See also <a href="qtextformat.html#setProperty">setProperty</a>(), <a href="qtextformat.html#boolProperty">boolProperty</a>(), <a href="qtextformat.html#intProperty">intProperty</a>(), <a href="qtextformat.html#doubleProperty">doubleProperty</a>(), <a href="qtextformat.html#stringProperty">stringProperty</a>(), <a href="qtextformat.html#lengthProperty">lengthProperty</a>(), <a href="qtextformat.html#lengthVectorProperty">lengthVectorProperty</a>(), and <a href="qtextformat.html#Property-enum">Property</a>.</p>
+<a name="//apple_ref/cpp/instm/QTextFormat/clearBackground" />
+<h3 class="fn"><a name="clearBackground"></a>void QTextFormat::clearBackground ()</h3>
+<p>Clears the brush used to paint the document's background. The default brush will be used.</p>
+<p>See also <a href="qtextformat.html#background">background</a>(), <a href="qtextformat.html#setBackground">setBackground</a>(), and <a href="qtextformat.html#clearForeground">clearForeground</a>().</p>
+<a name="//apple_ref/cpp/instm/QTextFormat/clearForeground" />
+<h3 class="fn"><a name="clearForeground"></a>void QTextFormat::clearForeground ()</h3>
+<p>Clears the brush used to paint the document's foreground. The default brush will be used.</p>
+<p>See also <a href="qtextformat.html#foreground">foreground</a>(), <a href="qtextformat.html#setForeground">setForeground</a>(), and <a href="qtextformat.html#clearBackground">clearBackground</a>().</p>
+<a name="//apple_ref/cpp/instm/QTextFormat/clearProperty" />
+<h3 class="fn"><a name="clearProperty"></a>void QTextFormat::clearProperty ( int <i>propertyId</i> )</h3>
+<p>Clears the value of the property given by <i>propertyId</i></p>
+<p>See also <a href="qtextformat.html#Property-enum">Property</a>.</p>
+<a name="//apple_ref/cpp/instm/QTextFormat/colorProperty" />
+<h3 class="fn"><a name="colorProperty"></a><a href="qcolor.html">QColor</a> QTextFormat::colorProperty ( int <i>propertyId</i> ) const</h3>
+<p>Returns the value of the property given by <i>propertyId</i>; if the property isn't of <a href="qvariant.html#Type-enum">QVariant::Color</a> type, an invalid color is returned instead.</p>
+<p>See also <a href="qtextformat.html#setProperty">setProperty</a>(), <a href="qtextformat.html#boolProperty">boolProperty</a>(), <a href="qtextformat.html#intProperty">intProperty</a>(), <a href="qtextformat.html#doubleProperty">doubleProperty</a>(), <a href="qtextformat.html#stringProperty">stringProperty</a>(), <a href="qtextformat.html#lengthProperty">lengthProperty</a>(), <a href="qtextformat.html#lengthVectorProperty">lengthVectorProperty</a>(), and <a href="qtextformat.html#Property-enum">Property</a>.</p>
+<a name="//apple_ref/cpp/instm/QTextFormat/doubleProperty" />
+<h3 class="fn"><a name="doubleProperty"></a><a href="qtglobal.html#qreal-typedef">qreal</a> QTextFormat::doubleProperty ( int <i>propertyId</i> ) const</h3>
+<p>Returns the value of the property specified by <i>propertyId</i>. If the property isn't of <a href="qvariant.html#Type-enum">QVariant::Double</a> or <a href="qmetatype.html#Type-enum">QMetaType::Float</a> type, 0 is returned instead.</p>
+<p>See also <a href="qtextformat.html#setProperty">setProperty</a>(), <a href="qtextformat.html#boolProperty">boolProperty</a>(), <a href="qtextformat.html#intProperty">intProperty</a>(), <a href="qtextformat.html#stringProperty">stringProperty</a>(), <a href="qtextformat.html#colorProperty">colorProperty</a>(), <a href="qtextformat.html#lengthProperty">lengthProperty</a>(), <a href="qtextformat.html#lengthVectorProperty">lengthVectorProperty</a>(), and <a href="qtextformat.html#Property-enum">Property</a>.</p>
+<a name="//apple_ref/cpp/instm/QTextFormat/foreground" />
+<h3 class="fn"><a name="foreground"></a><a href="qbrush.html">QBrush</a> QTextFormat::foreground () const</h3>
+<p>Returns the brush used to render foreground details, such as text, frame outlines, and table borders.</p>
+<p>See also <a href="qtextformat.html#setForeground">setForeground</a>(), <a href="qtextformat.html#clearForeground">clearForeground</a>(), and <a href="qtextformat.html#background">background</a>().</p>
+<a name="//apple_ref/cpp/instm/QTextFormat/hasProperty" />
+<h3 class="fn"><a name="hasProperty"></a>bool QTextFormat::hasProperty ( int <i>propertyId</i> ) const</h3>
+<p>Returns true if the text format has a property with the given <i>propertyId</i>; otherwise returns false.</p>
+<p>See also <a href="qtextformat.html#properties">properties</a>() and <a href="qtextformat.html#Property-enum">Property</a>.</p>
+<a name="//apple_ref/cpp/instm/QTextFormat/intProperty" />
+<h3 class="fn"><a name="intProperty"></a>int QTextFormat::intProperty ( int <i>propertyId</i> ) const</h3>
+<p>Returns the value of the property specified by <i>propertyId</i>. If the property is not of QTextFormat::Integer type, 0 is returned instead.</p>
+<p>See also <a href="qtextformat.html#setProperty">setProperty</a>(), <a href="qtextformat.html#boolProperty">boolProperty</a>(), <a href="qtextformat.html#doubleProperty">doubleProperty</a>(), <a href="qtextformat.html#stringProperty">stringProperty</a>(), <a href="qtextformat.html#colorProperty">colorProperty</a>(), <a href="qtextformat.html#lengthProperty">lengthProperty</a>(), <a href="qtextformat.html#lengthVectorProperty">lengthVectorProperty</a>(), and <a href="qtextformat.html#Property-enum">Property</a>.</p>
+<a name="//apple_ref/cpp/instm/QTextFormat/isBlockFormat" />
+<h3 class="fn"><a name="isBlockFormat"></a>bool QTextFormat::isBlockFormat () const</h3>
+<p>Returns true if this text format is a <tt>BlockFormat</tt>; otherwise returns false.</p>
+<a name="//apple_ref/cpp/instm/QTextFormat/isCharFormat" />
+<h3 class="fn"><a name="isCharFormat"></a>bool QTextFormat::isCharFormat () const</h3>
+<p>Returns true if this text format is a <tt>CharFormat</tt>; otherwise returns false.</p>
+<a name="//apple_ref/cpp/instm/QTextFormat/isFrameFormat" />
+<h3 class="fn"><a name="isFrameFormat"></a>bool QTextFormat::isFrameFormat () const</h3>
+<p>Returns true if this text format is a <tt>FrameFormat</tt>; otherwise returns false.</p>
+<a name="//apple_ref/cpp/instm/QTextFormat/isImageFormat" />
+<h3 class="fn"><a name="isImageFormat"></a>bool QTextFormat::isImageFormat () const</h3>
+<p>Returns true if this text format is an image format; otherwise returns false.</p>
+<a name="//apple_ref/cpp/instm/QTextFormat/isListFormat" />
+<h3 class="fn"><a name="isListFormat"></a>bool QTextFormat::isListFormat () const</h3>
+<p>Returns true if this text format is a <tt>ListFormat</tt>; otherwise returns false.</p>
+<a name="//apple_ref/cpp/instm/QTextFormat/isTableCellFormat" />
+<h3 class="fn"><a name="isTableCellFormat"></a>bool QTextFormat::isTableCellFormat () const</h3>
+<p>Returns true if this text format is a <tt>TableCellFormat</tt>; otherwise returns false.</p>
+<p>This function was introduced in Qt 4.4.</p>
+<a name="//apple_ref/cpp/instm/QTextFormat/isTableFormat" />
+<h3 class="fn"><a name="isTableFormat"></a>bool QTextFormat::isTableFormat () const</h3>
+<p>Returns true if this text format is a <tt>TableFormat</tt>; otherwise returns false.</p>
+<a name="//apple_ref/cpp/instm/QTextFormat/isValid" />
+<h3 class="fn"><a name="isValid"></a>bool QTextFormat::isValid () const</h3>
+<p>Returns true if the format is valid (i.e&#x2e; is not <a href="qtextformat.html#FormatType-enum">InvalidFormat</a>); otherwise returns false.</p>
+<a name="//apple_ref/cpp/instm/QTextFormat/layoutDirection" />
+<h3 class="fn"><a name="layoutDirection"></a><a href="qt.html#LayoutDirection-enum">Qt::LayoutDirection</a> QTextFormat::layoutDirection () const</h3>
+<p>Returns the document's layout direction.</p>
+<p>See also <a href="qtextformat.html#setLayoutDirection">setLayoutDirection</a>().</p>
+<a name="//apple_ref/cpp/instm/QTextFormat/lengthProperty" />
+<h3 class="fn"><a name="lengthProperty"></a><a href="qtextlength.html">QTextLength</a> QTextFormat::lengthProperty ( int <i>propertyId</i> ) const</h3>
+<p>Returns the value of the property given by <i>propertyId</i>.</p>
+<p>See also <a href="qtextformat.html#setProperty">setProperty</a>(), <a href="qtextformat.html#boolProperty">boolProperty</a>(), <a href="qtextformat.html#intProperty">intProperty</a>(), <a href="qtextformat.html#doubleProperty">doubleProperty</a>(), <a href="qtextformat.html#stringProperty">stringProperty</a>(), <a href="qtextformat.html#colorProperty">colorProperty</a>(), <a href="qtextformat.html#lengthVectorProperty">lengthVectorProperty</a>(), and <a href="qtextformat.html#Property-enum">Property</a>.</p>
+<a name="//apple_ref/cpp/instm/QTextFormat/lengthVectorProperty" />
+<h3 class="fn"><a name="lengthVectorProperty"></a><a href="qvector.html">QVector</a>&lt;<a href="qtextlength.html">QTextLength</a>&gt; QTextFormat::lengthVectorProperty ( int <i>propertyId</i> ) const</h3>
+<p>Returns the value of the property given by <i>propertyId</i>. If the property isn't of QTextFormat::LengthVector type, an empty length vector is returned instead.</p>
+<p>See also <a href="qtextformat.html#setProperty">setProperty</a>(), <a href="qtextformat.html#boolProperty">boolProperty</a>(), <a href="qtextformat.html#intProperty">intProperty</a>(), <a href="qtextformat.html#doubleProperty">doubleProperty</a>(), <a href="qtextformat.html#stringProperty">stringProperty</a>(), <a href="qtextformat.html#colorProperty">colorProperty</a>(), <a href="qtextformat.html#lengthProperty">lengthProperty</a>(), and <a href="qtextformat.html#Property-enum">Property</a>.</p>
+<a name="//apple_ref/cpp/instm/QTextFormat/merge" />
+<h3 class="fn"><a name="merge"></a>void QTextFormat::merge ( const QTextFormat &amp; <i>other</i> )</h3>
+<p>Merges the <i>other</i> format with this format; where there are conflicts the <i>other</i> format takes precedence.</p>
+<a name="//apple_ref/cpp/instm/QTextFormat/objectIndex" />
+<h3 class="fn"><a name="objectIndex"></a>int QTextFormat::objectIndex () const</h3>
+<p>Returns the index of the format object, or -1 if the format object is invalid.</p>
+<p>See also <a href="qtextformat.html#setObjectIndex">setObjectIndex</a>().</p>
+<a name="//apple_ref/cpp/instm/QTextFormat/objectType" />
+<h3 class="fn"><a name="objectType"></a>int QTextFormat::objectType () const</h3>
+<p>Returns the text format's object type.</p>
+<p>See also <a href="qtextformat.html#ObjectTypes-enum">ObjectTypes</a> and <a href="qtextformat.html#setObjectType">setObjectType</a>().</p>
+<a name="//apple_ref/cpp/instm/QTextFormat/penProperty" />
+<h3 class="fn"><a name="penProperty"></a><a href="qpen.html">QPen</a> QTextFormat::penProperty ( int <i>propertyId</i> ) const</h3>
+<p>Returns the value of the property given by <i>propertyId</i>; if the property isn't of <a href="qvariant.html#Type-enum">QVariant::Pen</a> type, <a href="qt.html#PenStyle-enum">Qt::NoPen</a> is returned instead.</p>
+<p>See also <a href="qtextformat.html#setProperty">setProperty</a>(), <a href="qtextformat.html#boolProperty">boolProperty</a>(), <a href="qtextformat.html#intProperty">intProperty</a>(), <a href="qtextformat.html#doubleProperty">doubleProperty</a>(), <a href="qtextformat.html#stringProperty">stringProperty</a>(), <a href="qtextformat.html#lengthProperty">lengthProperty</a>(), <a href="qtextformat.html#lengthVectorProperty">lengthVectorProperty</a>(), and <a href="qtextformat.html#Property-enum">Property</a>.</p>
+<a name="//apple_ref/cpp/instm/QTextFormat/properties" />
+<h3 class="fn"><a name="properties"></a><a href="qmap.html">QMap</a>&lt;int, <a href="qvariant.html">QVariant</a>&gt; QTextFormat::properties () const</h3>
+<p>Returns a map with all properties of this text format.</p>
+<a name="//apple_ref/cpp/instm/QTextFormat/property" />
+<h3 class="fn"><a name="property"></a><a href="qvariant.html">QVariant</a> QTextFormat::property ( int <i>propertyId</i> ) const</h3>
+<p>Returns the property specified by the given <i>propertyId</i>.</p>
+<p>See also <a href="qtextformat.html#setProperty">setProperty</a>() and <a href="qtextformat.html#Property-enum">Property</a>.</p>
+<a name="//apple_ref/cpp/instm/QTextFormat/propertyCount" />
+<h3 class="fn"><a name="propertyCount"></a>int QTextFormat::propertyCount () const</h3>
+<p>Returns the number of properties stored in the format.</p>
+<p>This function was introduced in Qt 4.3.</p>
+<a name="//apple_ref/cpp/instm/QTextFormat/setBackground" />
+<h3 class="fn"><a name="setBackground"></a>void QTextFormat::setBackground ( const <a href="qbrush.html">QBrush</a> &amp; <i>brush</i> )</h3>
+<p>Sets the brush use to paint the document's background to the <i>brush</i> specified.</p>
+<p>See also <a href="qtextformat.html#background">background</a>(), <a href="qtextformat.html#clearBackground">clearBackground</a>(), and <a href="qtextformat.html#setForeground">setForeground</a>().</p>
+<a name="//apple_ref/cpp/instm/QTextFormat/setForeground" />
+<h3 class="fn"><a name="setForeground"></a>void QTextFormat::setForeground ( const <a href="qbrush.html">QBrush</a> &amp; <i>brush</i> )</h3>
+<p>Sets the foreground brush to the specified <i>brush</i>. The foreground brush is mostly used to render text.</p>
+<p>See also <a href="qtextformat.html#foreground">foreground</a>(), <a href="qtextformat.html#clearForeground">clearForeground</a>(), and <a href="qtextformat.html#setBackground">setBackground</a>().</p>
+<a name="//apple_ref/cpp/instm/QTextFormat/setLayoutDirection" />
+<h3 class="fn"><a name="setLayoutDirection"></a>void QTextFormat::setLayoutDirection ( <a href="qt.html#LayoutDirection-enum">Qt::LayoutDirection</a> <i>direction</i> )</h3>
+<p>Sets the document's layout direction to the specified <i>direction</i>.</p>
+<p>See also <a href="qtextformat.html#layoutDirection">layoutDirection</a>().</p>
+<a name="//apple_ref/cpp/instm/QTextFormat/setObjectIndex" />
+<h3 class="fn"><a name="setObjectIndex"></a>void QTextFormat::setObjectIndex ( int <i>index</i> )</h3>
+<p>Sets the format object's object <i>index</i>.</p>
+<p>See also <a href="qtextformat.html#objectIndex">objectIndex</a>().</p>
+<a name="//apple_ref/cpp/instm/QTextFormat/setObjectType" />
+<h3 class="fn"><a name="setObjectType"></a>void QTextFormat::setObjectType ( int <i>type</i> )</h3>
+<p>Sets the text format's object type to <i>type</i>.</p>
+<p>See also <a href="qtextformat.html#ObjectTypes-enum">ObjectTypes</a> and <a href="qtextformat.html#objectType">objectType</a>().</p>
+<a name="//apple_ref/cpp/instm/QTextFormat/setProperty" />
+<h3 class="fn"><a name="setProperty"></a>void QTextFormat::setProperty ( int <i>propertyId</i>, const <a href="qvariant.html">QVariant</a> &amp; <i>value</i> )</h3>
+<p>Sets the property specified by the <i>propertyId</i> to the given <i>value</i>.</p>
+<p>See also <a href="qtextformat.html#property">property</a>() and <a href="qtextformat.html#Property-enum">Property</a>.</p>
+<h3 class="fn"><a name="setProperty-2"></a>void QTextFormat::setProperty ( int <i>propertyId</i>, const <a href="qvector.html">QVector</a>&lt;<a href="qtextlength.html">QTextLength</a>&gt; &amp; <i>value</i> )</h3>
+<p>Sets the value of the property given by <i>propertyId</i> to <i>value</i>.</p>
+<p>See also <a href="qtextformat.html#lengthVectorProperty">lengthVectorProperty</a>() and <a href="qtextformat.html#Property-enum">Property</a>.</p>
+<a name="//apple_ref/cpp/instm/QTextFormat/stringProperty" />
+<h3 class="fn"><a name="stringProperty"></a><a href="qstring.html">QString</a> QTextFormat::stringProperty ( int <i>propertyId</i> ) const</h3>
+<p>Returns the value of the property given by <i>propertyId</i>; if the property isn't of <a href="qvariant.html#Type-enum">QVariant::String</a> type, an empty string is returned instead.</p>
+<p>See also <a href="qtextformat.html#setProperty">setProperty</a>(), <a href="qtextformat.html#boolProperty">boolProperty</a>(), <a href="qtextformat.html#intProperty">intProperty</a>(), <a href="qtextformat.html#doubleProperty">doubleProperty</a>(), <a href="qtextformat.html#colorProperty">colorProperty</a>(), <a href="qtextformat.html#lengthProperty">lengthProperty</a>(), <a href="qtextformat.html#lengthVectorProperty">lengthVectorProperty</a>(), and <a href="qtextformat.html#Property-enum">Property</a>.</p>
+<a name="//apple_ref/cpp/instm/QTextFormat/toBlockFormat" />
+<h3 class="fn"><a name="toBlockFormat"></a><a href="qtextblockformat.html">QTextBlockFormat</a> QTextFormat::toBlockFormat () const</h3>
+<p>Returns this format as a block format.</p>
+<a name="//apple_ref/cpp/instm/QTextFormat/toCharFormat" />
+<h3 class="fn"><a name="toCharFormat"></a><a href="qtextcharformat.html">QTextCharFormat</a> QTextFormat::toCharFormat () const</h3>
+<p>Returns this format as a character format.</p>
+<a name="//apple_ref/cpp/instm/QTextFormat/toFrameFormat" />
+<h3 class="fn"><a name="toFrameFormat"></a><a href="qtextframeformat.html">QTextFrameFormat</a> QTextFormat::toFrameFormat () const</h3>
+<p>Returns this format as a frame format.</p>
+<a name="//apple_ref/cpp/instm/QTextFormat/toImageFormat" />
+<h3 class="fn"><a name="toImageFormat"></a><a href="qtextimageformat.html">QTextImageFormat</a> QTextFormat::toImageFormat () const</h3>
+<p>Returns this format as an image format.</p>
+<a name="//apple_ref/cpp/instm/QTextFormat/toListFormat" />
+<h3 class="fn"><a name="toListFormat"></a><a href="qtextlistformat.html">QTextListFormat</a> QTextFormat::toListFormat () const</h3>
+<p>Returns this format as a list format.</p>
+<a name="//apple_ref/cpp/instm/QTextFormat/toTableCellFormat" />
+<h3 class="fn"><a name="toTableCellFormat"></a><a href="qtexttablecellformat.html">QTextTableCellFormat</a> QTextFormat::toTableCellFormat () const</h3>
+<p>Returns this format as a table cell format.</p>
+<p>This function was introduced in Qt 4.4.</p>
+<a name="//apple_ref/cpp/instm/QTextFormat/toTableFormat" />
+<h3 class="fn"><a name="toTableFormat"></a><a href="qtexttableformat.html">QTextTableFormat</a> QTextFormat::toTableFormat () const</h3>
+<p>Returns this format as a table format.</p>
+<a name="//apple_ref/cpp/instm/QTextFormat/type" />
+<h3 class="fn"><a name="type"></a>int QTextFormat::type () const</h3>
+<p>Returns the type of this format.</p>
+<p>See also <a href="qtextformat.html#FormatType-enum">FormatType</a>.</p>
+<a name="//apple_ref/cpp/instm/QTextFormat/operator QVariant" />
+<h3 class="fn"><a name="operator-QVariant"></a>QTextFormat::operator QVariant () const</h3>
+<p>Returns the text format as a <a href="qvariant.html">QVariant</a></p>
+<a name="//apple_ref/cpp/instm/QTextFormat/operator!=" />
+<h3 class="fn"><a name="operator-not-eq"></a>bool QTextFormat::operator!= ( const QTextFormat &amp; <i>other</i> ) const</h3>
+<p>Returns true if this text format is different from the <i>other</i> text format.</p>
+<a name="//apple_ref/cpp/instm/QTextFormat/operator=" />
+<h3 class="fn"><a name="operator-eq"></a>QTextFormat &amp; QTextFormat::operator= ( const QTextFormat &amp; <i>other</i> )</h3>
+<p>Assigns the <i>other</i> text format to this text format, and returns a reference to this text format.</p>
+<a name="//apple_ref/cpp/instm/QTextFormat/operator==" />
+<h3 class="fn"><a name="operator-eq-eq"></a>bool QTextFormat::operator== ( const QTextFormat &amp; <i>other</i> ) const</h3>
+<p>Returns true if this text format is the same as the <i>other</i> text format.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

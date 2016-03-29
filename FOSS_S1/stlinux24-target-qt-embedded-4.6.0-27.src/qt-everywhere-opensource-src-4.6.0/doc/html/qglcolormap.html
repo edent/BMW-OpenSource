@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qglcolormap.cpp -->
+<head>
+  <title>Qt 4.6: QGLColormap Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QGLColormap" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QGLColormap Class Reference<br /><span class="small-subtitle">[<a href="qtopengl.html">QtOpenGL</a> module]</span>
+</h1>
+<p>The QGLColormap class is used for installing custom colormaps into a <a href="qglwidget.html">QGLWidget</a>. <a href="#details">More...</a></p>
+<pre> #include &lt;QGLColormap&gt;</pre><p><b>This class is not part of the Qt GUI Framework Edition.</b></p>
+<ul>
+<li><a href="qglcolormap-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qglcolormap.html#QGLColormap">QGLColormap</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qglcolormap.html#QGLColormap-2">QGLColormap</a></b> ( const QGLColormap &amp; <i>map</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qglcolormap.html#dtor.QGLColormap">~QGLColormap</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QColor </td><td class="memItemRight" valign="bottom"><b><a href="qglcolormap.html#entryColor">entryColor</a></b> ( int <i>idx</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QRgb </td><td class="memItemRight" valign="bottom"><b><a href="qglcolormap.html#entryRgb">entryRgb</a></b> ( int <i>idx</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qglcolormap.html#find">find</a></b> ( QRgb <i>color</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qglcolormap.html#findNearest">findNearest</a></b> ( QRgb <i>color</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qglcolormap.html#isEmpty">isEmpty</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qglcolormap.html#setEntries">setEntries</a></b> ( int <i>count</i>, const QRgb * <i>colors</i>, int <i>base</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qglcolormap.html#setEntry">setEntry</a></b> ( int <i>idx</i>, QRgb <i>color</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qglcolormap.html#setEntry-2">setEntry</a></b> ( int <i>idx</i>, const QColor &amp; <i>color</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qglcolormap.html#size">size</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QGLColormap &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qglcolormap.html#operator-eq">operator=</a></b> ( const QGLColormap &amp; <i>map</i> )</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QGLColormap class is used for installing custom colormaps into a <a href="qglwidget.html">QGLWidget</a>.</p>
+<p>QGLColormap provides a platform independent way of specifying and installing indexed colormaps for a <a href="qglwidget.html">QGLWidget</a>. QGLColormap is especially useful when using the OpenGL color-index mode.</p>
+<p>Under X11 you must use an X server that supports either a <tt>PseudoColor</tt> or <tt>DirectColor</tt> visual class. If your X server currently only provides a <tt>GrayScale</tt>, <tt>TrueColor</tt>, <tt>StaticColor</tt> or <tt>StaticGray</tt> visual, you will not be able to allocate colorcells for writing. If this is the case, try setting your X server to 8 bit mode. It should then provide you with at least a <tt>PseudoColor</tt> visual. Note that you may experience colormap flashing if your X server is running in 8 bit mode.</p>
+<p>The <a href="qglcolormap.html#size">size</a>() of the colormap is always set to 256 colors. Note that under Windows you can also install colormaps in child widgets.</p>
+<p>This class uses <a href="implicit-sharing.html">implicit sharing</a> as a memory and speed optimization.</p>
+<p>Example of use:</p>
+<pre> #include &lt;QApplication&gt;
+ #include &lt;QGLColormap&gt;
+
+ int main()
+ {
+     QApplication app(argc, argv);
+
+     MySuperGLWidget widget;     <span class="comment">// a QGLWidget in color-index mode</span>
+     QGLColormap colormap;
+
+     <span class="comment">// This will fill the colormap with colors ranging from</span>
+     <span class="comment">// black to white.</span>
+     for (int i = 0; i &lt; colormap.size(); i++)
+         colormap.setEntry(i, qRgb(i, i, i));
+
+     widget.setColormap(colormap);
+     widget.show();
+     return app.exec();
+ }</pre>
+<p>See also <a href="qglwidget.html#setColormap">QGLWidget::setColormap</a>() and <a href="qglwidget.html#colormap">QGLWidget::colormap</a>().</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QGLColormap/QGLColormap" />
+<h3 class="fn"><a name="QGLColormap"></a>QGLColormap::QGLColormap ()</h3>
+<p>Construct a <a href="qglcolormap.html">QGLColormap</a>.</p>
+<h3 class="fn"><a name="QGLColormap-2"></a>QGLColormap::QGLColormap ( const QGLColormap &amp; <i>map</i> )</h3>
+<p>Construct a shallow copy of <i>map</i>.</p>
+<a name="//apple_ref/cpp/instm/QGLColormap/~QGLColormap" />
+<h3 class="fn"><a name="dtor.QGLColormap"></a>QGLColormap::~QGLColormap ()</h3>
+<p>Dereferences the <a href="qglcolormap.html">QGLColormap</a> and deletes it if this was the last reference to it.</p>
+<a name="//apple_ref/cpp/instm/QGLColormap/entryColor" />
+<h3 class="fn"><a name="entryColor"></a><a href="qcolor.html">QColor</a> QGLColormap::entryColor ( int <i>idx</i> ) const</h3>
+<p>Returns the <a href="qcolor.html#QRgb-typedef">QRgb</a> value in the colorcell with index <i>idx</i>.</p>
+<a name="//apple_ref/cpp/instm/QGLColormap/entryRgb" />
+<h3 class="fn"><a name="entryRgb"></a><a href="qcolor.html#QRgb-typedef">QRgb</a> QGLColormap::entryRgb ( int <i>idx</i> ) const</h3>
+<p>Returns the <a href="qcolor.html#QRgb-typedef">QRgb</a> value in the colorcell with index <i>idx</i>.</p>
+<a name="//apple_ref/cpp/instm/QGLColormap/find" />
+<h3 class="fn"><a name="find"></a>int QGLColormap::find ( <a href="qcolor.html#QRgb-typedef">QRgb</a> <i>color</i> ) const</h3>
+<p>Returns the index of the color <i>color</i>. If <i>color</i> is not in the map, -1 is returned.</p>
+<a name="//apple_ref/cpp/instm/QGLColormap/findNearest" />
+<h3 class="fn"><a name="findNearest"></a>int QGLColormap::findNearest ( <a href="qcolor.html#QRgb-typedef">QRgb</a> <i>color</i> ) const</h3>
+<p>Returns the index of the color that is the closest match to color <i>color</i>.</p>
+<a name="//apple_ref/cpp/instm/QGLColormap/isEmpty" />
+<h3 class="fn"><a name="isEmpty"></a>bool QGLColormap::isEmpty () const</h3>
+<p>Returns true if the colormap is empty or it is not in use by a <a href="qglwidget.html">QGLWidget</a>; otherwise returns false.</p>
+<p>A colormap with no color values set is considered to be empty. For historical reasons, a colormap that has color values set but which is not in use by a <a href="qglwidget.html">QGLWidget</a> is also considered empty.</p>
+<p>Compare <a href="qglcolormap.html#size">size</a>() with zero to determine if the colormap is empty regardless of whether it is in use by a <a href="qglwidget.html">QGLWidget</a> or not.</p>
+<p>See also <a href="qglcolormap.html#size">size</a>().</p>
+<a name="//apple_ref/cpp/instm/QGLColormap/setEntries" />
+<h3 class="fn"><a name="setEntries"></a>void QGLColormap::setEntries ( int <i>count</i>, const <a href="qcolor.html#QRgb-typedef">QRgb</a> * <i>colors</i>, int <i>base</i> = 0 )</h3>
+<p>Set an array of cells in this colormap. <i>count</i> is the number of colors that should be set, <i>colors</i> is the array of colors, and <i>base</i> is the starting index. The first element in <i>colors</i> is set at <i>base</i> in the colormap.</p>
+<a name="//apple_ref/cpp/instm/QGLColormap/setEntry" />
+<h3 class="fn"><a name="setEntry"></a>void QGLColormap::setEntry ( int <i>idx</i>, <a href="qcolor.html#QRgb-typedef">QRgb</a> <i>color</i> )</h3>
+<p>Set cell at index <i>idx</i> in the colormap to color <i>color</i>.</p>
+<h3 class="fn"><a name="setEntry-2"></a>void QGLColormap::setEntry ( int <i>idx</i>, const <a href="qcolor.html">QColor</a> &amp; <i>color</i> )</h3>
+<p>This is an overloaded function.</p>
+<p>Set the cell with index <i>idx</i> in the colormap to color <i>color</i>.</p>
+<a name="//apple_ref/cpp/instm/QGLColormap/size" />
+<h3 class="fn"><a name="size"></a>int QGLColormap::size () const</h3>
+<p>Returns the number of colorcells in the colormap.</p>
+<a name="//apple_ref/cpp/instm/QGLColormap/operator=" />
+<h3 class="fn"><a name="operator-eq"></a>QGLColormap &amp; QGLColormap::operator= ( const QGLColormap &amp; <i>map</i> )</h3>
+<p>Assign a shallow copy of <i>map</i> to this <a href="qglcolormap.html">QGLColormap</a>.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

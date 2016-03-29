@@ -1,0 +1,86 @@
+/****************************************************************************
+**
+** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+** All rights reserved.
+** Contact: Nokia Corporation (qt-info@nokia.com)
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:LGPL$
+** Commercial Usage
+** Licensees holding valid Qt Commercial licenses may use this file in
+** accordance with the Qt Commercial License Agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and Nokia.
+**
+** GNU Lesser General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU Lesser
+** General Public License version 2.1 as published by the Free Software
+** Foundation and appearing in the file LICENSE.LGPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU Lesser General Public License version 2.1 requirements
+** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+**
+** In addition, as a special exception, Nokia gives you certain additional
+** rights.  These rights are described in the Nokia Qt LGPL Exception
+** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+**
+** GNU General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU
+** General Public License version 3.0 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU General Public License version 3.0 requirements will be
+** met: http://www.gnu.org/copyleft/gpl.html.
+**
+** If you have questions regarding the use of this file, please contact
+** Nokia at qt-info@nokia.com.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \example xml/xmlstreamlint
+    \title XML Stream Lint Example
+
+    The XML Stream Lint example provides a simple command line utility that
+    accepts a file name as its single argument and writes it to the standard
+    output file.
+
+    The specified file is parsed using an QXmlStreamReader object and written
+    to the standard output file using an QXmlStreamWriter object. If the file
+    does not contain a well-formed XML document or the use of namespaces in
+    the document is incorrect, a description of the error is printed to
+    the standard error file and will appear in the console.
+
+    \section1 Basic Operation
+
+    The main function of the example opens the file specified by the user
+    for input (\c inputFile), and it uses QFile to access the standard output
+    file.
+
+    Reading XML is handled by an instance of the QXmlStreamReader class, which
+    operates on the input file object; writing is handled by an instance of
+    QXmlStreamWriter operating on the output file object:
+
+    \snippet examples/xml/xmlstreamlint/main.cpp 0
+
+    The work of parsing and rewriting the XML is done in a while loop, and is
+    driven by input from the reader:
+
+    \snippet examples/xml/xmlstreamlint/main.cpp 1
+
+    If more input is available, the next token from the input file is read
+    and parsed. If an error occurred, information is written to the standard
+    error file via a stream, and the example exits by returning a non-zero
+    value from the main function.
+
+    \snippet examples/xml/xmlstreamlint/main.cpp 2
+
+    For valid input, the writer is fed the current token from the reader,
+    and this is written to the output file that was specified when it was
+    constructed.
+
+    When there is no more input, the loop terminates, and the example can
+    exit successfully.
+*/

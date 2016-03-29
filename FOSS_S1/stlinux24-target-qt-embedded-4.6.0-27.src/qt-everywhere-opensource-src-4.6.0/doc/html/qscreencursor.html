@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qscreen_qws.cpp -->
+<head>
+  <title>Qt 4.6: QScreenCursor Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QScreenCursor" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QScreenCursor Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QScreenCursor class is a base class for screen cursors in Qt for Embedded Linux. <a href="#details">More...</a></p>
+<pre> #include &lt;QScreenCursor&gt;</pre><p>Inherited by <a href="qproxyscreencursor.html">QProxyScreenCursor</a>.</p>
+<ul>
+<li><a href="qscreencursor-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qscreencursor.html#QScreenCursor">QScreenCursor</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual </td><td class="memItemRight" valign="bottom"><b><a href="qscreencursor.html#dtor.QScreenCursor">~QScreenCursor</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QRect </td><td class="memItemRight" valign="bottom"><b><a href="qscreencursor.html#boundingRect">boundingRect</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qscreencursor.html#hide">hide</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QImage </td><td class="memItemRight" valign="bottom"><b><a href="qscreencursor.html#image">image</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qscreencursor.html#isAccelerated">isAccelerated</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qscreencursor.html#isVisible">isVisible</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qscreencursor.html#move">move</a></b> ( int <i>x</i>, int <i>y</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qscreencursor.html#set">set</a></b> ( const QImage &amp; <i>image</i>, int <i>hotx</i>, int <i>hoty</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qscreencursor.html#show">show</a></b> ()</td></tr>
+</table>
+<hr />
+<a name="static-public-members"></a>
+<h2>Static Public Members</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qscreencursor.html#initSoftwareCursor">initSoftwareCursor</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QScreenCursor * </td><td class="memItemRight" valign="bottom"><b><a href="qscreencursor.html#instance">instance</a></b> ()</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QScreenCursor class is a base class for screen cursors in Qt for Embedded Linux.</p>
+<p>Note that this class is non-portable, and that it is only available in <a href="qt-embedded-linux.html">Qt for Embedded Linux</a>.</p>
+<p>QScreenCursor implements a software cursor, but can be subclassed to support hardware cursors as well. When deriving from the QScreenCursor class it is important to maintain the cursor's image, position, hot spot (the point within the cursor's image that will be the position of the associated mouse events) and visibility as well as informing whether it is hardware accelerated or not.</p>
+<p>Note that there may only be one screen cursor at a time. Use the static <a href="qscreencursor.html#instance">instance</a>() function to retrieve a pointer to the current screen cursor. Typically, the cursor is constructed by the <a href="qscreen.html">QScreen</a> class or one of its descendants when it is initializing the device; the QScreenCursor class should never be instantiated explicitly.</p>
+<p>Use the <a href="qscreencursor.html#move">move</a>() function to change the position of the cursor, and the <a href="qscreencursor.html#set">set</a>() function to alter its image or its hot spot. In addition, you can find out whether the cursor is accelerated or not, using the <a href="qscreencursor.html#isAccelerated">isAccelerated</a>() function, and the <a href="qscreencursor.html#boundingRect">boundingRect</a>() function returns the cursor's bounding rectangle.</p>
+<p>The cursor's appearance can be controlled using the <a href="qscreencursor.html#isVisible">isVisible</a>(), <a href="qscreencursor.html#hide">hide</a>() and <a href="qscreencursor.html#show">show</a>() functions; alternatively the <a href="qwsserver.html">QWSServer</a> class provides some means of controlling the cursor's appearance using the <a href="qwsserver.html#isCursorVisible">QWSServer::isCursorVisible</a>() and <a href="qwsserver.html#setCursorVisible">QWSServer::setCursorVisible</a>() functions.</p>
+<p>See also <a href="qscreen.html">QScreen</a> and <a href="qwsserver.html">QWSServer</a>.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QScreenCursor/QScreenCursor" />
+<h3 class="fn"><a name="QScreenCursor"></a>QScreenCursor::QScreenCursor ()</h3>
+<p>Constructs a screen cursor</p>
+<a name="//apple_ref/cpp/instm/QScreenCursor/~QScreenCursor" />
+<h3 class="fn"><a name="dtor.QScreenCursor"></a>QScreenCursor::~QScreenCursor ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Destroys the screen cursor.</p>
+<a name="//apple_ref/cpp/instm/QScreenCursor/boundingRect" />
+<h3 class="fn"><a name="boundingRect"></a><a href="qrect.html">QRect</a> QScreenCursor::boundingRect () const</h3>
+<p>Returns the cursor's bounding rectangle.</p>
+<a name="//apple_ref/cpp/instm/QScreenCursor/hide" />
+<h3 class="fn"><a name="hide"></a>void QScreenCursor::hide ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Hides the cursor from the screen.</p>
+<p>See also <a href="qscreencursor.html#show">show</a>().</p>
+<a name="//apple_ref/cpp/instm/QScreenCursor/image" />
+<h3 class="fn"><a name="image"></a><a href="qimage.html">QImage</a> QScreenCursor::image () const</h3>
+<p>Returns the cursor's image.</p>
+<a name="//apple_ref/cpp/clm/QScreenCursor/initSoftwareCursor" />
+<h3 class="fn"><a name="initSoftwareCursor"></a>void QScreenCursor::initSoftwareCursor ()&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Initializes the screen cursor.</p>
+<p>This function is typically called from the screen driver when initializing the device. Alternatively, the cursor can be set directly using the pointer returned by the static <a href="qscreencursor.html#instance">instance</a>() function.</p>
+<p>See also <a href="qscreen.html#initDevice">QScreen::initDevice</a>().</p>
+<a name="//apple_ref/cpp/clm/QScreenCursor/instance" />
+<h3 class="fn"><a name="instance"></a>QScreenCursor * QScreenCursor::instance ()&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Returns a pointer to the application's unique screen cursor.</p>
+<p>This function was introduced in Qt 4.2.</p>
+<a name="//apple_ref/cpp/instm/QScreenCursor/isAccelerated" />
+<h3 class="fn"><a name="isAccelerated"></a>bool QScreenCursor::isAccelerated () const</h3>
+<p>Returns true if the cursor is accelerated; otherwise false.</p>
+<a name="//apple_ref/cpp/instm/QScreenCursor/isVisible" />
+<h3 class="fn"><a name="isVisible"></a>bool QScreenCursor::isVisible () const</h3>
+<p>Returns true if the cursor is visible; otherwise false.</p>
+<a name="//apple_ref/cpp/instm/QScreenCursor/move" />
+<h3 class="fn"><a name="move"></a>void QScreenCursor::move ( int <i>x</i>, int <i>y</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Moves the mouse cursor to the given position, i.e&#x2e;, (<i>x</i>, <i>y</i>).</p>
+<p>Note that the given position defines the top-left corner of the cursor's image, i.e&#x2e;, not the cursor's hot spot (the position of the associated mouse events).</p>
+<p>See also <a href="qscreencursor.html#set">set</a>().</p>
+<a name="//apple_ref/cpp/instm/QScreenCursor/set" />
+<h3 class="fn"><a name="set"></a>void QScreenCursor::set ( const <a href="qimage.html">QImage</a> &amp; <i>image</i>, int <i>hotx</i>, int <i>hoty</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Sets the cursor's image to be the given <i>image</i>.</p>
+<p>The <i>hotx</i> and <i>hoty</i> parameters define the cursor's hot spot, i.e&#x2e;, the point within the cursor's image that will be the position of the associated mouse events.</p>
+<p>See also <a href="qscreencursor.html#move">move</a>().</p>
+<a name="//apple_ref/cpp/instm/QScreenCursor/show" />
+<h3 class="fn"><a name="show"></a>void QScreenCursor::show ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Shows the mouse cursor.</p>
+<p>See also <a href="qscreencursor.html#hide">hide</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

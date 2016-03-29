@@ -1,0 +1,1361 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qlocale.cpp -->
+<head>
+  <title>Qt 4.6: QLocale Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QLocale" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QLocale Class Reference<br /><span class="small-subtitle">[<a href="qtcore.html">QtCore</a> module]</span>
+</h1>
+<p>The QLocale class converts between numbers and their string representations in various languages. <a href="#details">More...</a></p>
+<pre> #include &lt;QLocale&gt;</pre><p><b>Note:</b> All functions in this class are <a href="threads-reentrancy.html#reentrant">reentrant</a>, except for <a href="qlocale.html#setDefault">setDefault</a>(), which is nonreentrant.</p>
+<ul>
+<li><a href="qlocale-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-types"></a>
+<h2>Public Types</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">class </td><td class="memItemRight" valign="bottom"><b><a href="qlocale-data.html">Data</a></b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#Country-enum">Country</a></b> { AnyCountry, Afghanistan, Albania, Algeria, ..., Zimbabwe }</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#FormatType-enum">FormatType</a></b> { LongFormat, ShortFormat, NarrowFormat }</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#Language-enum">Language</a></b> { C, Abkhazian, Afan, Afar, ..., Chewa }</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#MeasurementSystem-enum">MeasurementSystem</a></b> { MetricSystem, ImperialSystem }</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#NumberOption-enum">NumberOption</a></b> { OmitGroupSeparator, RejectGroupSeparator }</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">flags </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#NumberOption-enum">NumberOptions</a></b></td></tr>
+</table>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#QLocale">QLocale</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#QLocale-2">QLocale</a></b> ( const QString &amp; <i>name</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#QLocale-3">QLocale</a></b> ( Language <i>language</i>, Country <i>country</i> = AnyCountry )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#QLocale-4">QLocale</a></b> ( const QLocale &amp; <i>other</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#amText">amText</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Country </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#country">country</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#dateFormat">dateFormat</a></b> ( FormatType <i>format</i> = LongFormat ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#dateTimeFormat">dateTimeFormat</a></b> ( FormatType <i>format</i> = LongFormat ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#dayName">dayName</a></b> ( int <i>day</i>, FormatType <i>type</i> = LongFormat ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QChar </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#decimalPoint">decimalPoint</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QChar </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#exponential">exponential</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QChar </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#groupSeparator">groupSeparator</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Language </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#language">language</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">MeasurementSystem </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#measurementSystem">measurementSystem</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#monthName">monthName</a></b> ( int <i>month</i>, FormatType <i>type</i> = LongFormat ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#name">name</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QChar </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#negativeSign">negativeSign</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NumberOptions </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#numberOptions">numberOptions</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QChar </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#percent">percent</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#pmText">pmText</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QChar </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#positiveSign">positiveSign</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#setNumberOptions">setNumberOptions</a></b> ( NumberOptions <i>options</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#standaloneDayName">standaloneDayName</a></b> ( int <i>day</i>, FormatType <i>type</i> = LongFormat ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#standaloneMonthName">standaloneMonthName</a></b> ( int <i>month</i>, FormatType <i>type</i> = LongFormat ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#timeFormat">timeFormat</a></b> ( FormatType <i>format</i> = LongFormat ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QDate </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#toDate">toDate</a></b> ( const QString &amp; <i>string</i>, FormatType <i>format</i> = LongFormat ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QDate </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#toDate-2">toDate</a></b> ( const QString &amp; <i>string</i>, const QString &amp; <i>format</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QDateTime </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#toDateTime">toDateTime</a></b> ( const QString &amp; <i>string</i>, FormatType <i>format</i> = LongFormat ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QDateTime </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#toDateTime-2">toDateTime</a></b> ( const QString &amp; <i>string</i>, const QString &amp; <i>format</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">double </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#toDouble">toDouble</a></b> ( const QString &amp; <i>s</i>, bool * <i>ok</i> = 0 ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">float </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#toFloat">toFloat</a></b> ( const QString &amp; <i>s</i>, bool * <i>ok</i> = 0 ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#toInt">toInt</a></b> ( const QString &amp; <i>s</i>, bool * <i>ok</i> = 0, int <i>base</i> = 0 ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">qlonglong </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#toLongLong">toLongLong</a></b> ( const QString &amp; <i>s</i>, bool * <i>ok</i> = 0, int <i>base</i> = 0 ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">short </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#toShort">toShort</a></b> ( const QString &amp; <i>s</i>, bool * <i>ok</i> = 0, int <i>base</i> = 0 ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#toString">toString</a></b> ( qlonglong <i>i</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#toString-2">toString</a></b> ( const QDate &amp; <i>date</i>, const QString &amp; <i>format</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#toString-3">toString</a></b> ( const QDate &amp; <i>date</i>, FormatType <i>format</i> = LongFormat ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#toString-4">toString</a></b> ( const QTime &amp; <i>time</i>, const QString &amp; <i>format</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#toString-5">toString</a></b> ( const QTime &amp; <i>time</i>, FormatType <i>format</i> = LongFormat ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#toString-6">toString</a></b> ( const QDateTime &amp; <i>dateTime</i>, FormatType <i>format</i> = LongFormat ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#toString-7">toString</a></b> ( const QDateTime &amp; <i>dateTime</i>, const QString &amp; <i>format</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#toString-8">toString</a></b> ( qulonglong <i>i</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#toString-9">toString</a></b> ( double <i>i</i>, char <i>f</i> = 'g', int <i>prec</i> = 6 ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#toString-10">toString</a></b> ( short <i>i</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#toString-11">toString</a></b> ( ushort <i>i</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#toString-12">toString</a></b> ( int <i>i</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#toString-13">toString</a></b> ( uint <i>i</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#toString-14">toString</a></b> ( float <i>i</i>, char <i>f</i> = 'g', int <i>prec</i> = 6 ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QTime </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#toTime">toTime</a></b> ( const QString &amp; <i>string</i>, FormatType <i>format</i> = LongFormat ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QTime </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#toTime-2">toTime</a></b> ( const QString &amp; <i>string</i>, const QString &amp; <i>format</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">uint </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#toUInt">toUInt</a></b> ( const QString &amp; <i>s</i>, bool * <i>ok</i> = 0, int <i>base</i> = 0 ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">qlonglong </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#toULongLong">toULongLong</a></b> ( const QString &amp; <i>s</i>, bool * <i>ok</i> = 0, int <i>base</i> = 0 ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">ushort </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#toUShort">toUShort</a></b> ( const QString &amp; <i>s</i>, bool * <i>ok</i> = 0, int <i>base</i> = 0 ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QChar </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#zeroDigit">zeroDigit</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#operator-not-eq">operator!=</a></b> ( const QLocale &amp; <i>other</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QLocale &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#operator-eq">operator=</a></b> ( const QLocale &amp; <i>other</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#operator-eq-eq">operator==</a></b> ( const QLocale &amp; <i>other</i> ) const</td></tr>
+</table>
+<hr />
+<a name="static-public-members"></a>
+<h2>Static Public Members</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">QLocale </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#c">c</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QList&lt;Country&gt; </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#countriesForLanguage">countriesForLanguage</a></b> ( Language <i>language</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#countryToString">countryToString</a></b> ( Country <i>country</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#languageToString">languageToString</a></b> ( Language <i>language</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#setDefault">setDefault</a></b> ( const QLocale &amp; <i>locale</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QLocale </td><td class="memItemRight" valign="bottom"><b><a href="qlocale.html#system">system</a></b> ()</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QLocale class converts between numbers and their string representations in various languages.</p>
+<p>QLocale is initialized with a language/country pair in its constructor and offers number-to-string and string-to-number conversion functions similar to those in <a href="qstring.html">QString</a>.</p>
+<p>Example:</p>
+<pre> QLocale egyptian(QLocale::Arabic, QLocale::Egypt);
+ QString s1 = egyptian.toString(1.571429E+07, 'e');
+ QString s2 = egyptian.toString(10);
+
+ double d = egyptian.toDouble(s1);
+ int i = egyptian.toInt(s2);</pre>
+<p>QLocale supports the concept of a default locale, which is determined from the system's locale settings at application startup. The default locale can be changed by calling the static member <a href="qlocale.html#setDefault">setDefault</a>(). Setting the default locale has the following effects:</p>
+<ul>
+<li>If a QLocale object is constructed with the default constructor, it will use the default locale's settings.</li>
+<li><a href="qstring.html#toInt">QString::toInt</a>(), <a href="qstring.html#toDouble">QString::toDouble</a>(), etc., interpret the string according to the default locale. If this fails, it falls back on the &quot;C&quot; locale.</li>
+<li><a href="qstring.html#arg">QString::arg</a>() uses the default locale to format a number when its position specifier in the format string contains an 'L', e.g&#x2e; &quot;%L1&quot;.</li>
+</ul>
+<p>The following example illustrates how to use QLocale directly:</p>
+<pre> QLocale::setDefault(QLocale(QLocale::Hebrew, QLocale::Israel));
+ QLocale hebrew; <span class="comment">// Constructs a default QLocale</span>
+ QString s1 = hebrew.toString(15714.3, 'e');
+
+ bool ok;
+ double d;
+
+ QLocale::setDefault(QLocale::C);
+ d = QString(&quot;1234,56&quot;).toDouble(&amp;ok);   <span class="comment">// ok == false</span>
+ d = QString(&quot;1234.56&quot;).toDouble(&amp;ok);   <span class="comment">// ok == true, d == 1234.56</span>
+
+ QLocale::setDefault(QLocale::German);
+ d = QString(&quot;1234,56&quot;).toDouble(&amp;ok);   <span class="comment">// ok == true, d == 1234.56</span>
+ d = QString(&quot;1234.56&quot;).toDouble(&amp;ok);   <span class="comment">// ok == true, d == 1234.56</span>
+
+ QLocale::setDefault(QLocale(QLocale::English, QLocale::UnitedStates));
+ str = QString(&quot;%1 %L2 %L3&quot;)
+       .arg(12345).arg(12345).arg(12345, 0, 16);
+<span class="comment"> // str == &quot;12345 12,345 3039&quot;</span></pre>
+<p>When a language/country pair is specified in the constructor, one of three things can happen:</p>
+<ul>
+<li>If the language/country pair is found in the database, it is used.</li>
+<li>If the language is found but the country is not, or if the country is <tt>AnyCountry</tt>, the language is used with the most appropriate available country (for example, Germany for German),</li>
+<li>If neither the language nor the country are found, QLocale defaults to the default locale (see <a href="qlocale.html#setDefault">setDefault</a>()).</li>
+</ul>
+<p>The &quot;C&quot; locale is identical in behavior to <a href="qlocale.html#Language-enum">English</a>/<a href="qlocale.html#Country-enum">UnitedStates</a>.</p>
+<p>Use <a href="qlocale.html#language">language</a>() and <a href="qlocale.html#country">country</a>() to determine the actual language and country values used.</p>
+<p>An alternative method for constructing a QLocale object is by specifying the locale name.</p>
+<pre> QLocale korean(&quot;ko&quot;);
+ QLocale swiss(&quot;de_CH&quot;);</pre>
+<p>This constructor converts the locale name to a language/country pair; it does not use the system locale database.</p>
+<p>QLocale's data is based on Common Locale Data Repository v1.6&#x2e;1&#x2e;</p>
+<p>The double-to-string and string-to-double conversion functions are covered by the following licenses:</p>
+<div style="padding: 0.5em; background: #e0e0e0; color: black"><p>Copyright (c) 1991 by AT&amp;T.</p>
+<p>Permission to use, copy, modify, and distribute this software for any purpose without fee is hereby granted, provided that this entire notice is included in all copies of any software which is or includes a copy or modification of this software and in all copies of the supporting documentation for such software.</p>
+<p>THIS SOFTWARE IS BEING PROVIDED &quot;AS IS&quot;, WITHOUT ANY EXPRESS OR IMPLIED WARRANTY. IN PARTICULAR, NEITHER THE AUTHOR NOR AT&amp;T MAKES ANY REPRESENTATION OR WARRANTY OF ANY KIND CONCERNING THE MERCHANTABILITY OF THIS SOFTWARE OR ITS FITNESS FOR ANY PARTICULAR PURPOSE.</p>
+<p>This product includes software developed by the University of California, Berkeley and its contributors.</p>
+</div><p>See also <a href="qstring.html#arg">QString::arg</a>(), <a href="qstring.html#toInt">QString::toInt</a>(), and <a href="qstring.html#toDouble">QString::toDouble</a>().</p>
+<hr />
+<h2>Member Type Documentation</h2>
+<a name="//apple_ref/cpp/tag/QLocale/Country" />
+<a name="//apple_ref/cpp/econst/QLocale/AnyCountry" />
+<a name="//apple_ref/cpp/econst/QLocale/Afghanistan" />
+<a name="//apple_ref/cpp/econst/QLocale/Albania" />
+<a name="//apple_ref/cpp/econst/QLocale/Algeria" />
+<a name="//apple_ref/cpp/econst/QLocale/AmericanSamoa" />
+<a name="//apple_ref/cpp/econst/QLocale/Andorra" />
+<a name="//apple_ref/cpp/econst/QLocale/Angola" />
+<a name="//apple_ref/cpp/econst/QLocale/Anguilla" />
+<a name="//apple_ref/cpp/econst/QLocale/Antarctica" />
+<a name="//apple_ref/cpp/econst/QLocale/AntiguaAndBarbuda" />
+<a name="//apple_ref/cpp/econst/QLocale/Argentina" />
+<a name="//apple_ref/cpp/econst/QLocale/Armenia" />
+<a name="//apple_ref/cpp/econst/QLocale/Aruba" />
+<a name="//apple_ref/cpp/econst/QLocale/Australia" />
+<a name="//apple_ref/cpp/econst/QLocale/Austria" />
+<a name="//apple_ref/cpp/econst/QLocale/Azerbaijan" />
+<a name="//apple_ref/cpp/econst/QLocale/Bahamas" />
+<a name="//apple_ref/cpp/econst/QLocale/Bahrain" />
+<a name="//apple_ref/cpp/econst/QLocale/Bangladesh" />
+<a name="//apple_ref/cpp/econst/QLocale/Barbados" />
+<a name="//apple_ref/cpp/econst/QLocale/Belarus" />
+<a name="//apple_ref/cpp/econst/QLocale/Belgium" />
+<a name="//apple_ref/cpp/econst/QLocale/Belize" />
+<a name="//apple_ref/cpp/econst/QLocale/Benin" />
+<a name="//apple_ref/cpp/econst/QLocale/Bermuda" />
+<a name="//apple_ref/cpp/econst/QLocale/Bhutan" />
+<a name="//apple_ref/cpp/econst/QLocale/Bolivia" />
+<a name="//apple_ref/cpp/econst/QLocale/BosniaAndHerzegowina" />
+<a name="//apple_ref/cpp/econst/QLocale/Botswana" />
+<a name="//apple_ref/cpp/econst/QLocale/BouvetIsland" />
+<a name="//apple_ref/cpp/econst/QLocale/Brazil" />
+<a name="//apple_ref/cpp/econst/QLocale/BritishIndianOceanTerritory" />
+<a name="//apple_ref/cpp/econst/QLocale/BruneiDarussalam" />
+<a name="//apple_ref/cpp/econst/QLocale/Bulgaria" />
+<a name="//apple_ref/cpp/econst/QLocale/BurkinaFaso" />
+<a name="//apple_ref/cpp/econst/QLocale/Burundi" />
+<a name="//apple_ref/cpp/econst/QLocale/Cambodia" />
+<a name="//apple_ref/cpp/econst/QLocale/Cameroon" />
+<a name="//apple_ref/cpp/econst/QLocale/Canada" />
+<a name="//apple_ref/cpp/econst/QLocale/CapeVerde" />
+<a name="//apple_ref/cpp/econst/QLocale/CaymanIslands" />
+<a name="//apple_ref/cpp/econst/QLocale/CentralAfricanRepublic" />
+<a name="//apple_ref/cpp/econst/QLocale/Chad" />
+<a name="//apple_ref/cpp/econst/QLocale/Chile" />
+<a name="//apple_ref/cpp/econst/QLocale/China" />
+<a name="//apple_ref/cpp/econst/QLocale/ChristmasIsland" />
+<a name="//apple_ref/cpp/econst/QLocale/CocosIslands" />
+<a name="//apple_ref/cpp/econst/QLocale/Colombia" />
+<a name="//apple_ref/cpp/econst/QLocale/Comoros" />
+<a name="//apple_ref/cpp/econst/QLocale/DemocraticRepublicOfCongo" />
+<a name="//apple_ref/cpp/econst/QLocale/PeoplesRepublicOfCongo" />
+<a name="//apple_ref/cpp/econst/QLocale/CookIslands" />
+<a name="//apple_ref/cpp/econst/QLocale/CostaRica" />
+<a name="//apple_ref/cpp/econst/QLocale/IvoryCoast" />
+<a name="//apple_ref/cpp/econst/QLocale/Croatia" />
+<a name="//apple_ref/cpp/econst/QLocale/Cuba" />
+<a name="//apple_ref/cpp/econst/QLocale/Cyprus" />
+<a name="//apple_ref/cpp/econst/QLocale/CzechRepublic" />
+<a name="//apple_ref/cpp/econst/QLocale/Denmark" />
+<a name="//apple_ref/cpp/econst/QLocale/Djibouti" />
+<a name="//apple_ref/cpp/econst/QLocale/Dominica" />
+<a name="//apple_ref/cpp/econst/QLocale/DominicanRepublic" />
+<a name="//apple_ref/cpp/econst/QLocale/EastTimor" />
+<a name="//apple_ref/cpp/econst/QLocale/Ecuador" />
+<a name="//apple_ref/cpp/econst/QLocale/Egypt" />
+<a name="//apple_ref/cpp/econst/QLocale/ElSalvador" />
+<a name="//apple_ref/cpp/econst/QLocale/EquatorialGuinea" />
+<a name="//apple_ref/cpp/econst/QLocale/Eritrea" />
+<a name="//apple_ref/cpp/econst/QLocale/Estonia" />
+<a name="//apple_ref/cpp/econst/QLocale/Ethiopia" />
+<a name="//apple_ref/cpp/econst/QLocale/FalklandIslands" />
+<a name="//apple_ref/cpp/econst/QLocale/FaroeIslands" />
+<a name="//apple_ref/cpp/econst/QLocale/FijiCountry" />
+<a name="//apple_ref/cpp/econst/QLocale/Finland" />
+<a name="//apple_ref/cpp/econst/QLocale/France" />
+<a name="//apple_ref/cpp/econst/QLocale/MetropolitanFrance" />
+<a name="//apple_ref/cpp/econst/QLocale/FrenchGuiana" />
+<a name="//apple_ref/cpp/econst/QLocale/FrenchPolynesia" />
+<a name="//apple_ref/cpp/econst/QLocale/FrenchSouthernTerritories" />
+<a name="//apple_ref/cpp/econst/QLocale/Gabon" />
+<a name="//apple_ref/cpp/econst/QLocale/Gambia" />
+<a name="//apple_ref/cpp/econst/QLocale/Georgia" />
+<a name="//apple_ref/cpp/econst/QLocale/Germany" />
+<a name="//apple_ref/cpp/econst/QLocale/Ghana" />
+<a name="//apple_ref/cpp/econst/QLocale/Gibraltar" />
+<a name="//apple_ref/cpp/econst/QLocale/Greece" />
+<a name="//apple_ref/cpp/econst/QLocale/Greenland" />
+<a name="//apple_ref/cpp/econst/QLocale/Grenada" />
+<a name="//apple_ref/cpp/econst/QLocale/Guadeloupe" />
+<a name="//apple_ref/cpp/econst/QLocale/Guam" />
+<a name="//apple_ref/cpp/econst/QLocale/Guatemala" />
+<a name="//apple_ref/cpp/econst/QLocale/Guinea" />
+<a name="//apple_ref/cpp/econst/QLocale/GuineaBissau" />
+<a name="//apple_ref/cpp/econst/QLocale/Guyana" />
+<a name="//apple_ref/cpp/econst/QLocale/Haiti" />
+<a name="//apple_ref/cpp/econst/QLocale/HeardAndMcDonaldIslands" />
+<a name="//apple_ref/cpp/econst/QLocale/Honduras" />
+<a name="//apple_ref/cpp/econst/QLocale/HongKong" />
+<a name="//apple_ref/cpp/econst/QLocale/Hungary" />
+<a name="//apple_ref/cpp/econst/QLocale/Iceland" />
+<a name="//apple_ref/cpp/econst/QLocale/India" />
+<a name="//apple_ref/cpp/econst/QLocale/Indonesia" />
+<a name="//apple_ref/cpp/econst/QLocale/Iran" />
+<a name="//apple_ref/cpp/econst/QLocale/Iraq" />
+<a name="//apple_ref/cpp/econst/QLocale/Ireland" />
+<a name="//apple_ref/cpp/econst/QLocale/Israel" />
+<a name="//apple_ref/cpp/econst/QLocale/Italy" />
+<a name="//apple_ref/cpp/econst/QLocale/Jamaica" />
+<a name="//apple_ref/cpp/econst/QLocale/Japan" />
+<a name="//apple_ref/cpp/econst/QLocale/Jordan" />
+<a name="//apple_ref/cpp/econst/QLocale/Kazakhstan" />
+<a name="//apple_ref/cpp/econst/QLocale/Kenya" />
+<a name="//apple_ref/cpp/econst/QLocale/Kiribati" />
+<a name="//apple_ref/cpp/econst/QLocale/DemocraticRepublicOfKorea" />
+<a name="//apple_ref/cpp/econst/QLocale/RepublicOfKorea" />
+<a name="//apple_ref/cpp/econst/QLocale/Kuwait" />
+<a name="//apple_ref/cpp/econst/QLocale/Kyrgyzstan" />
+<a name="//apple_ref/cpp/econst/QLocale/Lao" />
+<a name="//apple_ref/cpp/econst/QLocale/Latvia" />
+<a name="//apple_ref/cpp/econst/QLocale/Lebanon" />
+<a name="//apple_ref/cpp/econst/QLocale/Lesotho" />
+<a name="//apple_ref/cpp/econst/QLocale/Liberia" />
+<a name="//apple_ref/cpp/econst/QLocale/LibyanArabJamahiriya" />
+<a name="//apple_ref/cpp/econst/QLocale/Liechtenstein" />
+<a name="//apple_ref/cpp/econst/QLocale/Lithuania" />
+<a name="//apple_ref/cpp/econst/QLocale/Luxembourg" />
+<a name="//apple_ref/cpp/econst/QLocale/Macau" />
+<a name="//apple_ref/cpp/econst/QLocale/Macedonia" />
+<a name="//apple_ref/cpp/econst/QLocale/Madagascar" />
+<a name="//apple_ref/cpp/econst/QLocale/Malawi" />
+<a name="//apple_ref/cpp/econst/QLocale/Malaysia" />
+<a name="//apple_ref/cpp/econst/QLocale/Maldives" />
+<a name="//apple_ref/cpp/econst/QLocale/Mali" />
+<a name="//apple_ref/cpp/econst/QLocale/Malta" />
+<a name="//apple_ref/cpp/econst/QLocale/MarshallIslands" />
+<a name="//apple_ref/cpp/econst/QLocale/Martinique" />
+<a name="//apple_ref/cpp/econst/QLocale/Mauritania" />
+<a name="//apple_ref/cpp/econst/QLocale/Mauritius" />
+<a name="//apple_ref/cpp/econst/QLocale/Mayotte" />
+<a name="//apple_ref/cpp/econst/QLocale/Mexico" />
+<a name="//apple_ref/cpp/econst/QLocale/Micronesia" />
+<a name="//apple_ref/cpp/econst/QLocale/Moldova" />
+<a name="//apple_ref/cpp/econst/QLocale/Monaco" />
+<a name="//apple_ref/cpp/econst/QLocale/Mongolia" />
+<a name="//apple_ref/cpp/econst/QLocale/Montserrat" />
+<a name="//apple_ref/cpp/econst/QLocale/Morocco" />
+<a name="//apple_ref/cpp/econst/QLocale/Mozambique" />
+<a name="//apple_ref/cpp/econst/QLocale/Myanmar" />
+<a name="//apple_ref/cpp/econst/QLocale/Namibia" />
+<a name="//apple_ref/cpp/econst/QLocale/NauruCountry" />
+<a name="//apple_ref/cpp/econst/QLocale/Nepal" />
+<a name="//apple_ref/cpp/econst/QLocale/Netherlands" />
+<a name="//apple_ref/cpp/econst/QLocale/NetherlandsAntilles" />
+<a name="//apple_ref/cpp/econst/QLocale/NewCaledonia" />
+<a name="//apple_ref/cpp/econst/QLocale/NewZealand" />
+<a name="//apple_ref/cpp/econst/QLocale/Nicaragua" />
+<a name="//apple_ref/cpp/econst/QLocale/Niger" />
+<a name="//apple_ref/cpp/econst/QLocale/Nigeria" />
+<a name="//apple_ref/cpp/econst/QLocale/Niue" />
+<a name="//apple_ref/cpp/econst/QLocale/NorfolkIsland" />
+<a name="//apple_ref/cpp/econst/QLocale/NorthernMarianaIslands" />
+<a name="//apple_ref/cpp/econst/QLocale/Norway" />
+<a name="//apple_ref/cpp/econst/QLocale/Oman" />
+<a name="//apple_ref/cpp/econst/QLocale/Pakistan" />
+<a name="//apple_ref/cpp/econst/QLocale/Palau" />
+<a name="//apple_ref/cpp/econst/QLocale/PalestinianTerritory" />
+<a name="//apple_ref/cpp/econst/QLocale/Panama" />
+<a name="//apple_ref/cpp/econst/QLocale/PapuaNewGuinea" />
+<a name="//apple_ref/cpp/econst/QLocale/Paraguay" />
+<a name="//apple_ref/cpp/econst/QLocale/Peru" />
+<a name="//apple_ref/cpp/econst/QLocale/Philippines" />
+<a name="//apple_ref/cpp/econst/QLocale/Pitcairn" />
+<a name="//apple_ref/cpp/econst/QLocale/Poland" />
+<a name="//apple_ref/cpp/econst/QLocale/Portugal" />
+<a name="//apple_ref/cpp/econst/QLocale/PuertoRico" />
+<a name="//apple_ref/cpp/econst/QLocale/Qatar" />
+<a name="//apple_ref/cpp/econst/QLocale/Reunion" />
+<a name="//apple_ref/cpp/econst/QLocale/Romania" />
+<a name="//apple_ref/cpp/econst/QLocale/RussianFederation" />
+<a name="//apple_ref/cpp/econst/QLocale/Rwanda" />
+<a name="//apple_ref/cpp/econst/QLocale/SaintKittsAndNevis" />
+<a name="//apple_ref/cpp/econst/QLocale/StLucia" />
+<a name="//apple_ref/cpp/econst/QLocale/StVincentAndTheGrenadines" />
+<a name="//apple_ref/cpp/econst/QLocale/Samoa" />
+<a name="//apple_ref/cpp/econst/QLocale/SanMarino" />
+<a name="//apple_ref/cpp/econst/QLocale/SaoTomeAndPrincipe" />
+<a name="//apple_ref/cpp/econst/QLocale/SaudiArabia" />
+<a name="//apple_ref/cpp/econst/QLocale/Senegal" />
+<a name="//apple_ref/cpp/econst/QLocale/SerbiaAndMontenegro" />
+<a name="//apple_ref/cpp/econst/QLocale/Seychelles" />
+<a name="//apple_ref/cpp/econst/QLocale/SierraLeone" />
+<a name="//apple_ref/cpp/econst/QLocale/Singapore" />
+<a name="//apple_ref/cpp/econst/QLocale/Slovakia" />
+<a name="//apple_ref/cpp/econst/QLocale/Slovenia" />
+<a name="//apple_ref/cpp/econst/QLocale/SolomonIslands" />
+<a name="//apple_ref/cpp/econst/QLocale/Somalia" />
+<a name="//apple_ref/cpp/econst/QLocale/SouthAfrica" />
+<a name="//apple_ref/cpp/econst/QLocale/SouthGeorgiaAndTheSouthSandwichIslands" />
+<a name="//apple_ref/cpp/econst/QLocale/Spain" />
+<a name="//apple_ref/cpp/econst/QLocale/SriLanka" />
+<a name="//apple_ref/cpp/econst/QLocale/StHelena" />
+<a name="//apple_ref/cpp/econst/QLocale/StPierreAndMiquelon" />
+<a name="//apple_ref/cpp/econst/QLocale/Sudan" />
+<a name="//apple_ref/cpp/econst/QLocale/Suriname" />
+<a name="//apple_ref/cpp/econst/QLocale/SvalbardAndJanMayenIslands" />
+<a name="//apple_ref/cpp/econst/QLocale/Swaziland" />
+<a name="//apple_ref/cpp/econst/QLocale/Sweden" />
+<a name="//apple_ref/cpp/econst/QLocale/Switzerland" />
+<a name="//apple_ref/cpp/econst/QLocale/SyrianArabRepublic" />
+<a name="//apple_ref/cpp/econst/QLocale/Taiwan" />
+<a name="//apple_ref/cpp/econst/QLocale/Tajikistan" />
+<a name="//apple_ref/cpp/econst/QLocale/Tanzania" />
+<a name="//apple_ref/cpp/econst/QLocale/Thailand" />
+<a name="//apple_ref/cpp/econst/QLocale/Togo" />
+<a name="//apple_ref/cpp/econst/QLocale/Tokelau" />
+<a name="//apple_ref/cpp/econst/QLocale/TongaCountry" />
+<a name="//apple_ref/cpp/econst/QLocale/TrinidadAndTobago" />
+<a name="//apple_ref/cpp/econst/QLocale/Tunisia" />
+<a name="//apple_ref/cpp/econst/QLocale/Turkey" />
+<a name="//apple_ref/cpp/econst/QLocale/Turkmenistan" />
+<a name="//apple_ref/cpp/econst/QLocale/TurksAndCaicosIslands" />
+<a name="//apple_ref/cpp/econst/QLocale/Tuvalu" />
+<a name="//apple_ref/cpp/econst/QLocale/Uganda" />
+<a name="//apple_ref/cpp/econst/QLocale/Ukraine" />
+<a name="//apple_ref/cpp/econst/QLocale/UnitedArabEmirates" />
+<a name="//apple_ref/cpp/econst/QLocale/UnitedKingdom" />
+<a name="//apple_ref/cpp/econst/QLocale/UnitedStates" />
+<a name="//apple_ref/cpp/econst/QLocale/UnitedStatesMinorOutlyingIslands" />
+<a name="//apple_ref/cpp/econst/QLocale/Uruguay" />
+<a name="//apple_ref/cpp/econst/QLocale/Uzbekistan" />
+<a name="//apple_ref/cpp/econst/QLocale/Vanuatu" />
+<a name="//apple_ref/cpp/econst/QLocale/VaticanCityState" />
+<a name="//apple_ref/cpp/econst/QLocale/Venezuela" />
+<a name="//apple_ref/cpp/econst/QLocale/VietNam" />
+<a name="//apple_ref/cpp/econst/QLocale/BritishVirginIslands" />
+<a name="//apple_ref/cpp/econst/QLocale/USVirginIslands" />
+<a name="//apple_ref/cpp/econst/QLocale/WallisAndFutunaIslands" />
+<a name="//apple_ref/cpp/econst/QLocale/WesternSahara" />
+<a name="//apple_ref/cpp/econst/QLocale/Yemen" />
+<a name="//apple_ref/cpp/econst/QLocale/Yugoslavia" />
+<a name="//apple_ref/cpp/econst/QLocale/Zambia" />
+<a name="//apple_ref/cpp/econst/QLocale/Zimbabwe" />
+<a name="//apple_ref/cpp/econst/QLocale/LastCountry" />
+<h3 class="fn"><a name="Country-enum"></a>enum QLocale::Country</h3>
+<p>This enumerated type is used to specify a country.</p>
+<p><table  class="valuelist" border="1" cellpadding="2" cellspacing="1" width="40%">
+<tr><th width="60%">Constant</th><th width="40%">Value</th></tr>
+<tr><td valign="top"><tt>QLocale::AnyCountry</tt></td><td align="center" valign="top"><tt>0</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Afghanistan</tt></td><td align="center" valign="top"><tt>1</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Albania</tt></td><td align="center" valign="top"><tt>2</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Algeria</tt></td><td align="center" valign="top"><tt>3</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::AmericanSamoa</tt></td><td align="center" valign="top"><tt>4</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Andorra</tt></td><td align="center" valign="top"><tt>5</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Angola</tt></td><td align="center" valign="top"><tt>6</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Anguilla</tt></td><td align="center" valign="top"><tt>7</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Antarctica</tt></td><td align="center" valign="top"><tt>8</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::AntiguaAndBarbuda</tt></td><td align="center" valign="top"><tt>9</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Argentina</tt></td><td align="center" valign="top"><tt>10</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Armenia</tt></td><td align="center" valign="top"><tt>11</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Aruba</tt></td><td align="center" valign="top"><tt>12</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Australia</tt></td><td align="center" valign="top"><tt>13</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Austria</tt></td><td align="center" valign="top"><tt>14</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Azerbaijan</tt></td><td align="center" valign="top"><tt>15</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Bahamas</tt></td><td align="center" valign="top"><tt>16</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Bahrain</tt></td><td align="center" valign="top"><tt>17</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Bangladesh</tt></td><td align="center" valign="top"><tt>18</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Barbados</tt></td><td align="center" valign="top"><tt>19</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Belarus</tt></td><td align="center" valign="top"><tt>20</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Belgium</tt></td><td align="center" valign="top"><tt>21</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Belize</tt></td><td align="center" valign="top"><tt>22</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Benin</tt></td><td align="center" valign="top"><tt>23</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Bermuda</tt></td><td align="center" valign="top"><tt>24</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Bhutan</tt></td><td align="center" valign="top"><tt>25</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Bolivia</tt></td><td align="center" valign="top"><tt>26</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::BosniaAndHerzegowina</tt></td><td align="center" valign="top"><tt>27</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Botswana</tt></td><td align="center" valign="top"><tt>28</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::BouvetIsland</tt></td><td align="center" valign="top"><tt>29</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Brazil</tt></td><td align="center" valign="top"><tt>30</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::BritishIndianOceanTerritory</tt></td><td align="center" valign="top"><tt>31</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::BruneiDarussalam</tt></td><td align="center" valign="top"><tt>32</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Bulgaria</tt></td><td align="center" valign="top"><tt>33</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::BurkinaFaso</tt></td><td align="center" valign="top"><tt>34</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Burundi</tt></td><td align="center" valign="top"><tt>35</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Cambodia</tt></td><td align="center" valign="top"><tt>36</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Cameroon</tt></td><td align="center" valign="top"><tt>37</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Canada</tt></td><td align="center" valign="top"><tt>38</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::CapeVerde</tt></td><td align="center" valign="top"><tt>39</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::CaymanIslands</tt></td><td align="center" valign="top"><tt>40</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::CentralAfricanRepublic</tt></td><td align="center" valign="top"><tt>41</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Chad</tt></td><td align="center" valign="top"><tt>42</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Chile</tt></td><td align="center" valign="top"><tt>43</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::China</tt></td><td align="center" valign="top"><tt>44</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::ChristmasIsland</tt></td><td align="center" valign="top"><tt>45</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::CocosIslands</tt></td><td align="center" valign="top"><tt>46</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Colombia</tt></td><td align="center" valign="top"><tt>47</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Comoros</tt></td><td align="center" valign="top"><tt>48</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::DemocraticRepublicOfCongo</tt></td><td align="center" valign="top"><tt>49</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::PeoplesRepublicOfCongo</tt></td><td align="center" valign="top"><tt>50</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::CookIslands</tt></td><td align="center" valign="top"><tt>51</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::CostaRica</tt></td><td align="center" valign="top"><tt>52</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::IvoryCoast</tt></td><td align="center" valign="top"><tt>53</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Croatia</tt></td><td align="center" valign="top"><tt>54</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Cuba</tt></td><td align="center" valign="top"><tt>55</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Cyprus</tt></td><td align="center" valign="top"><tt>56</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::CzechRepublic</tt></td><td align="center" valign="top"><tt>57</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Denmark</tt></td><td align="center" valign="top"><tt>58</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Djibouti</tt></td><td align="center" valign="top"><tt>59</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Dominica</tt></td><td align="center" valign="top"><tt>60</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::DominicanRepublic</tt></td><td align="center" valign="top"><tt>61</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::EastTimor</tt></td><td align="center" valign="top"><tt>62</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Ecuador</tt></td><td align="center" valign="top"><tt>63</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Egypt</tt></td><td align="center" valign="top"><tt>64</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::ElSalvador</tt></td><td align="center" valign="top"><tt>65</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::EquatorialGuinea</tt></td><td align="center" valign="top"><tt>66</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Eritrea</tt></td><td align="center" valign="top"><tt>67</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Estonia</tt></td><td align="center" valign="top"><tt>68</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Ethiopia</tt></td><td align="center" valign="top"><tt>69</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::FalklandIslands</tt></td><td align="center" valign="top"><tt>70</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::FaroeIslands</tt></td><td align="center" valign="top"><tt>71</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::FijiCountry</tt></td><td align="center" valign="top"><tt>72</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Finland</tt></td><td align="center" valign="top"><tt>73</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::France</tt></td><td align="center" valign="top"><tt>74</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::MetropolitanFrance</tt></td><td align="center" valign="top"><tt>75</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::FrenchGuiana</tt></td><td align="center" valign="top"><tt>76</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::FrenchPolynesia</tt></td><td align="center" valign="top"><tt>77</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::FrenchSouthernTerritories</tt></td><td align="center" valign="top"><tt>78</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Gabon</tt></td><td align="center" valign="top"><tt>79</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Gambia</tt></td><td align="center" valign="top"><tt>80</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Georgia</tt></td><td align="center" valign="top"><tt>81</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Germany</tt></td><td align="center" valign="top"><tt>82</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Ghana</tt></td><td align="center" valign="top"><tt>83</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Gibraltar</tt></td><td align="center" valign="top"><tt>84</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Greece</tt></td><td align="center" valign="top"><tt>85</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Greenland</tt></td><td align="center" valign="top"><tt>86</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Grenada</tt></td><td align="center" valign="top"><tt>87</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Guadeloupe</tt></td><td align="center" valign="top"><tt>88</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Guam</tt></td><td align="center" valign="top"><tt>89</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Guatemala</tt></td><td align="center" valign="top"><tt>90</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Guinea</tt></td><td align="center" valign="top"><tt>91</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::GuineaBissau</tt></td><td align="center" valign="top"><tt>92</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Guyana</tt></td><td align="center" valign="top"><tt>93</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Haiti</tt></td><td align="center" valign="top"><tt>94</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::HeardAndMcDonaldIslands</tt></td><td align="center" valign="top"><tt>95</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Honduras</tt></td><td align="center" valign="top"><tt>96</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::HongKong</tt></td><td align="center" valign="top"><tt>97</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Hungary</tt></td><td align="center" valign="top"><tt>98</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Iceland</tt></td><td align="center" valign="top"><tt>99</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::India</tt></td><td align="center" valign="top"><tt>100</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Indonesia</tt></td><td align="center" valign="top"><tt>101</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Iran</tt></td><td align="center" valign="top"><tt>102</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Iraq</tt></td><td align="center" valign="top"><tt>103</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Ireland</tt></td><td align="center" valign="top"><tt>104</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Israel</tt></td><td align="center" valign="top"><tt>105</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Italy</tt></td><td align="center" valign="top"><tt>106</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Jamaica</tt></td><td align="center" valign="top"><tt>107</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Japan</tt></td><td align="center" valign="top"><tt>108</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Jordan</tt></td><td align="center" valign="top"><tt>109</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Kazakhstan</tt></td><td align="center" valign="top"><tt>110</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Kenya</tt></td><td align="center" valign="top"><tt>111</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Kiribati</tt></td><td align="center" valign="top"><tt>112</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::DemocraticRepublicOfKorea</tt></td><td align="center" valign="top"><tt>113</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::RepublicOfKorea</tt></td><td align="center" valign="top"><tt>114</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Kuwait</tt></td><td align="center" valign="top"><tt>115</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Kyrgyzstan</tt></td><td align="center" valign="top"><tt>116</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Lao</tt></td><td align="center" valign="top"><tt>117</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Latvia</tt></td><td align="center" valign="top"><tt>118</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Lebanon</tt></td><td align="center" valign="top"><tt>119</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Lesotho</tt></td><td align="center" valign="top"><tt>120</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Liberia</tt></td><td align="center" valign="top"><tt>121</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::LibyanArabJamahiriya</tt></td><td align="center" valign="top"><tt>122</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Liechtenstein</tt></td><td align="center" valign="top"><tt>123</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Lithuania</tt></td><td align="center" valign="top"><tt>124</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Luxembourg</tt></td><td align="center" valign="top"><tt>125</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Macau</tt></td><td align="center" valign="top"><tt>126</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Macedonia</tt></td><td align="center" valign="top"><tt>127</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Madagascar</tt></td><td align="center" valign="top"><tt>128</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Malawi</tt></td><td align="center" valign="top"><tt>129</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Malaysia</tt></td><td align="center" valign="top"><tt>130</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Maldives</tt></td><td align="center" valign="top"><tt>131</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Mali</tt></td><td align="center" valign="top"><tt>132</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Malta</tt></td><td align="center" valign="top"><tt>133</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::MarshallIslands</tt></td><td align="center" valign="top"><tt>134</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Martinique</tt></td><td align="center" valign="top"><tt>135</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Mauritania</tt></td><td align="center" valign="top"><tt>136</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Mauritius</tt></td><td align="center" valign="top"><tt>137</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Mayotte</tt></td><td align="center" valign="top"><tt>138</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Mexico</tt></td><td align="center" valign="top"><tt>139</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Micronesia</tt></td><td align="center" valign="top"><tt>140</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Moldova</tt></td><td align="center" valign="top"><tt>141</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Monaco</tt></td><td align="center" valign="top"><tt>142</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Mongolia</tt></td><td align="center" valign="top"><tt>143</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Montserrat</tt></td><td align="center" valign="top"><tt>144</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Morocco</tt></td><td align="center" valign="top"><tt>145</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Mozambique</tt></td><td align="center" valign="top"><tt>146</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Myanmar</tt></td><td align="center" valign="top"><tt>147</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Namibia</tt></td><td align="center" valign="top"><tt>148</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::NauruCountry</tt></td><td align="center" valign="top"><tt>149</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Nepal</tt></td><td align="center" valign="top"><tt>150</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Netherlands</tt></td><td align="center" valign="top"><tt>151</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::NetherlandsAntilles</tt></td><td align="center" valign="top"><tt>152</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::NewCaledonia</tt></td><td align="center" valign="top"><tt>153</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::NewZealand</tt></td><td align="center" valign="top"><tt>154</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Nicaragua</tt></td><td align="center" valign="top"><tt>155</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Niger</tt></td><td align="center" valign="top"><tt>156</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Nigeria</tt></td><td align="center" valign="top"><tt>157</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Niue</tt></td><td align="center" valign="top"><tt>158</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::NorfolkIsland</tt></td><td align="center" valign="top"><tt>159</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::NorthernMarianaIslands</tt></td><td align="center" valign="top"><tt>160</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Norway</tt></td><td align="center" valign="top"><tt>161</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Oman</tt></td><td align="center" valign="top"><tt>162</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Pakistan</tt></td><td align="center" valign="top"><tt>163</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Palau</tt></td><td align="center" valign="top"><tt>164</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::PalestinianTerritory</tt></td><td align="center" valign="top"><tt>165</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Panama</tt></td><td align="center" valign="top"><tt>166</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::PapuaNewGuinea</tt></td><td align="center" valign="top"><tt>167</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Paraguay</tt></td><td align="center" valign="top"><tt>168</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Peru</tt></td><td align="center" valign="top"><tt>169</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Philippines</tt></td><td align="center" valign="top"><tt>170</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Pitcairn</tt></td><td align="center" valign="top"><tt>171</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Poland</tt></td><td align="center" valign="top"><tt>172</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Portugal</tt></td><td align="center" valign="top"><tt>173</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::PuertoRico</tt></td><td align="center" valign="top"><tt>174</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Qatar</tt></td><td align="center" valign="top"><tt>175</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Reunion</tt></td><td align="center" valign="top"><tt>176</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Romania</tt></td><td align="center" valign="top"><tt>177</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::RussianFederation</tt></td><td align="center" valign="top"><tt>178</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Rwanda</tt></td><td align="center" valign="top"><tt>179</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::SaintKittsAndNevis</tt></td><td align="center" valign="top"><tt>180</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::StLucia</tt></td><td align="center" valign="top"><tt>181</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::StVincentAndTheGrenadines</tt></td><td align="center" valign="top"><tt>182</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Samoa</tt></td><td align="center" valign="top"><tt>183</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::SanMarino</tt></td><td align="center" valign="top"><tt>184</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::SaoTomeAndPrincipe</tt></td><td align="center" valign="top"><tt>185</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::SaudiArabia</tt></td><td align="center" valign="top"><tt>186</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Senegal</tt></td><td align="center" valign="top"><tt>187</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::SerbiaAndMontenegro</tt></td><td align="center" valign="top"><tt>241</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Seychelles</tt></td><td align="center" valign="top"><tt>188</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::SierraLeone</tt></td><td align="center" valign="top"><tt>189</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Singapore</tt></td><td align="center" valign="top"><tt>190</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Slovakia</tt></td><td align="center" valign="top"><tt>191</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Slovenia</tt></td><td align="center" valign="top"><tt>192</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::SolomonIslands</tt></td><td align="center" valign="top"><tt>193</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Somalia</tt></td><td align="center" valign="top"><tt>194</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::SouthAfrica</tt></td><td align="center" valign="top"><tt>195</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::SouthGeorgiaAndTheSouthSandwichIslands</tt></td><td align="center" valign="top"><tt>196</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Spain</tt></td><td align="center" valign="top"><tt>197</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::SriLanka</tt></td><td align="center" valign="top"><tt>198</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::StHelena</tt></td><td align="center" valign="top"><tt>199</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::StPierreAndMiquelon</tt></td><td align="center" valign="top"><tt>200</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Sudan</tt></td><td align="center" valign="top"><tt>201</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Suriname</tt></td><td align="center" valign="top"><tt>202</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::SvalbardAndJanMayenIslands</tt></td><td align="center" valign="top"><tt>203</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Swaziland</tt></td><td align="center" valign="top"><tt>204</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Sweden</tt></td><td align="center" valign="top"><tt>205</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Switzerland</tt></td><td align="center" valign="top"><tt>206</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::SyrianArabRepublic</tt></td><td align="center" valign="top"><tt>207</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Taiwan</tt></td><td align="center" valign="top"><tt>208</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Tajikistan</tt></td><td align="center" valign="top"><tt>209</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Tanzania</tt></td><td align="center" valign="top"><tt>210</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Thailand</tt></td><td align="center" valign="top"><tt>211</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Togo</tt></td><td align="center" valign="top"><tt>212</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Tokelau</tt></td><td align="center" valign="top"><tt>213</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::TongaCountry</tt></td><td align="center" valign="top"><tt>214</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::TrinidadAndTobago</tt></td><td align="center" valign="top"><tt>215</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Tunisia</tt></td><td align="center" valign="top"><tt>216</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Turkey</tt></td><td align="center" valign="top"><tt>217</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Turkmenistan</tt></td><td align="center" valign="top"><tt>218</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::TurksAndCaicosIslands</tt></td><td align="center" valign="top"><tt>219</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Tuvalu</tt></td><td align="center" valign="top"><tt>220</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Uganda</tt></td><td align="center" valign="top"><tt>221</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Ukraine</tt></td><td align="center" valign="top"><tt>222</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::UnitedArabEmirates</tt></td><td align="center" valign="top"><tt>223</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::UnitedKingdom</tt></td><td align="center" valign="top"><tt>224</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::UnitedStates</tt></td><td align="center" valign="top"><tt>225</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::UnitedStatesMinorOutlyingIslands</tt></td><td align="center" valign="top"><tt>226</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Uruguay</tt></td><td align="center" valign="top"><tt>227</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Uzbekistan</tt></td><td align="center" valign="top"><tt>228</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Vanuatu</tt></td><td align="center" valign="top"><tt>229</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::VaticanCityState</tt></td><td align="center" valign="top"><tt>230</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Venezuela</tt></td><td align="center" valign="top"><tt>231</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::VietNam</tt></td><td align="center" valign="top"><tt>232</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::BritishVirginIslands</tt></td><td align="center" valign="top"><tt>233</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::USVirginIslands</tt></td><td align="center" valign="top"><tt>234</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::WallisAndFutunaIslands</tt></td><td align="center" valign="top"><tt>235</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::WesternSahara</tt></td><td align="center" valign="top"><tt>236</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Yemen</tt></td><td align="center" valign="top"><tt>237</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Yugoslavia</tt></td><td align="center" valign="top"><tt>238</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Zambia</tt></td><td align="center" valign="top"><tt>239</tt></td></tr>
+<tr><td valign="top"><tt>QLocale::Zimbabwe</tt></td><td align="center" valign="top"><tt>240</tt></td></tr>
+</table></p>
+<p>See also <a href="qlocale.html#country">country</a>().</p>
+<a name="//apple_ref/cpp/tag/QLocale/FormatType" />
+<a name="//apple_ref/cpp/econst/QLocale/LongFormat" />
+<a name="//apple_ref/cpp/econst/QLocale/ShortFormat" />
+<a name="//apple_ref/cpp/econst/QLocale/NarrowFormat" />
+<h3 class="fn"><a name="FormatType-enum"></a>enum QLocale::FormatType</h3>
+<p>This enum describes the types of format that can be used when converting <a href="qdate.html">QDate</a> and <a href="qtime.html">QTime</a> objects to strings.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QLocale::LongFormat</tt></td><td align="center" valign="top"><tt>0</tt></td><td valign="top">The long version of day and month names; for example, returning &quot;January&quot; as a month name.</td></tr>
+<tr><td valign="top"><tt>QLocale::ShortFormat</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">The short version of day and month names; for example, returning &quot;Jan&quot; as a month name.</td></tr>
+<tr><td valign="top"><tt>QLocale::NarrowFormat</tt></td><td align="center" valign="top"><tt>2</tt></td><td valign="top">A special version of day and month names for use when space is limited; for example, returning &quot;J&quot; as a month name. Note that the narrow format might contain the same text for different months and days or it can even be an empty string if the locale doesn't support narrow names, so you should avoid using it for date formatting. Also, for the system locale this format is the same as ShortFormat.</td></tr>
+</table></p>
+<a name="//apple_ref/cpp/tag/QLocale/Language" />
+<a name="//apple_ref/cpp/econst/QLocale/C" />
+<a name="//apple_ref/cpp/econst/QLocale/Abkhazian" />
+<a name="//apple_ref/cpp/econst/QLocale/Afan" />
+<a name="//apple_ref/cpp/econst/QLocale/Afar" />
+<a name="//apple_ref/cpp/econst/QLocale/Afrikaans" />
+<a name="//apple_ref/cpp/econst/QLocale/Albanian" />
+<a name="//apple_ref/cpp/econst/QLocale/Amharic" />
+<a name="//apple_ref/cpp/econst/QLocale/Arabic" />
+<a name="//apple_ref/cpp/econst/QLocale/Armenian" />
+<a name="//apple_ref/cpp/econst/QLocale/Assamese" />
+<a name="//apple_ref/cpp/econst/QLocale/Aymara" />
+<a name="//apple_ref/cpp/econst/QLocale/Azerbaijani" />
+<a name="//apple_ref/cpp/econst/QLocale/Bashkir" />
+<a name="//apple_ref/cpp/econst/QLocale/Basque" />
+<a name="//apple_ref/cpp/econst/QLocale/Bengali" />
+<a name="//apple_ref/cpp/econst/QLocale/Bhutani" />
+<a name="//apple_ref/cpp/econst/QLocale/Bihari" />
+<a name="//apple_ref/cpp/econst/QLocale/Bislama" />
+<a name="//apple_ref/cpp/econst/QLocale/Bosnian" />
+<a name="//apple_ref/cpp/econst/QLocale/Breton" />
+<a name="//apple_ref/cpp/econst/QLocale/Bulgarian" />
+<a name="//apple_ref/cpp/econst/QLocale/Burmese" />
+<a name="//apple_ref/cpp/econst/QLocale/Byelorussian" />
+<a name="//apple_ref/cpp/econst/QLocale/Cambodian" />
+<a name="//apple_ref/cpp/econst/QLocale/Catalan" />
+<a name="//apple_ref/cpp/econst/QLocale/Chinese" />
+<a name="//apple_ref/cpp/econst/QLocale/Cornish" />
+<a name="//apple_ref/cpp/econst/QLocale/Corsican" />
+<a name="//apple_ref/cpp/econst/QLocale/Croatian" />
+<a name="//apple_ref/cpp/econst/QLocale/Czech" />
+<a name="//apple_ref/cpp/econst/QLocale/Danish" />
+<a name="//apple_ref/cpp/econst/QLocale/Divehi" />
+<a name="//apple_ref/cpp/econst/QLocale/Dutch" />
+<a name="//apple_ref/cpp/econst/QLocale/English" />
+<a name="//apple_ref/cpp/econst/QLocale/Esperanto" />
+<a name="//apple_ref/cpp/econst/QLocale/Estonian" />
+<a name="//apple_ref/cpp/econst/QLocale/Faroese" />
+<a name="//apple_ref/cpp/econst/QLocale/FijiLanguage" />
+<a name="//apple_ref/cpp/econst/QLocale/Finnish" />
+<a name="//apple_ref/cpp/econst/QLocale/French" />
+<a name="//apple_ref/cpp/econst/QLocale/Frisian" />
+<a name="//apple_ref/cpp/econst/QLocale/Gaelic" />
+<a name="//apple_ref/cpp/econst/QLocale/Galician" />
+<a name="//apple_ref/cpp/econst/QLocale/Georgian" />
+<a name="//apple_ref/cpp/econst/QLocale/German" />
+<a name="//apple_ref/cpp/econst/QLocale/Greek" />
+<a name="//apple_ref/cpp/econst/QLocale/Greenlandic" />
+<a name="//apple_ref/cpp/econst/QLocale/Guarani" />
+<a name="//apple_ref/cpp/econst/QLocale/Gujarati" />
+<a name="//apple_ref/cpp/econst/QLocale/Hausa" />
+<a name="//apple_ref/cpp/econst/QLocale/Hebrew" />
+<a name="//apple_ref/cpp/econst/QLocale/Hindi" />
+<a name="//apple_ref/cpp/econst/QLocale/Hungarian" />
+<a name="//apple_ref/cpp/econst/QLocale/Icelandic" />
+<a name="//apple_ref/cpp/econst/QLocale/Indonesian" />
+<a name="//apple_ref/cpp/econst/QLocale/Interlingua" />
+<a name="//apple_ref/cpp/econst/QLocale/Interlingue" />
+<a name="//apple_ref/cpp/econst/QLocale/Inuktitut" />
+<a name="//apple_ref/cpp/econst/QLocale/Inupiak" />
+<a name="//apple_ref/cpp/econst/QLocale/Irish" />
+<a name="//apple_ref/cpp/econst/QLocale/Italian" />
+<a name="//apple_ref/cpp/econst/QLocale/Japanese" />
+<a name="//apple_ref/cpp/econst/QLocale/Javanese" />
+<a name="//apple_ref/cpp/econst/QLocale/Kannada" />
+<a name="//apple_ref/cpp/econst/QLocale/Kashmiri" />
+<a name="//apple_ref/cpp/econst/QLocale/Kazakh" />
+<a name="//apple_ref/cpp/econst/QLocale/Kinyarwanda" />
+<a name="//apple_ref/cpp/econst/QLocale/Kirghiz" />
+<a name="//apple_ref/cpp/econst/QLocale/Korean" />
+<a name="//apple_ref/cpp/econst/QLocale/Kurdish" />
+<a name="//apple_ref/cpp/econst/QLocale/Kurundi" />
+<a name="//apple_ref/cpp/econst/QLocale/Laothian" />
+<a name="//apple_ref/cpp/econst/QLocale/Latin" />
+<a name="//apple_ref/cpp/econst/QLocale/Latvian" />
+<a name="//apple_ref/cpp/econst/QLocale/Lingala" />
+<a name="//apple_ref/cpp/econst/QLocale/Lithuanian" />
+<a name="//apple_ref/cpp/econst/QLocale/Macedonian" />
+<a name="//apple_ref/cpp/econst/QLocale/Malagasy" />
+<a name="//apple_ref/cpp/econst/QLocale/Malay" />
+<a name="//apple_ref/cpp/econst/QLocale/Malayalam" />
+<a name="//apple_ref/cpp/econst/QLocale/Maltese" />
+<a name="//apple_ref/cpp/econst/QLocale/Manx" />
+<a name="//apple_ref/cpp/econst/QLocale/Maori" />
+<a name="//apple_ref/cpp/econst/QLocale/Marathi" />
+<a name="//apple_ref/cpp/econst/QLocale/Moldavian" />
+<a name="//apple_ref/cpp/econst/QLocale/Mongolian" />
+<a name="//apple_ref/cpp/econst/QLocale/NauruLanguage" />
+<a name="//apple_ref/cpp/econst/QLocale/Nepali" />
+<a name="//apple_ref/cpp/econst/QLocale/Norwegian" />
+<a name="//apple_ref/cpp/econst/QLocale/NorwegianBokmal" />
+<a name="//apple_ref/cpp/econst/QLocale/Nynorsk" />
+<a name="//apple_ref/cpp/econst/QLocale/NorwegianNynorsk" />
+<a name="//apple_ref/cpp/econst/QLocale/Occitan" />
+<a name="//apple_ref/cpp/econst/QLocale/Oriya" />
+<a name="//apple_ref/cpp/econst/QLocale/Pashto" />
+<a name="//apple_ref/cpp/econst/QLocale/Persian" />
+<a name="//apple_ref/cpp/econst/QLocale/Polish" />
+<a name="//apple_ref/cpp/econst/QLocale/Portuguese" />
+<a name="//apple_ref/cpp/econst/QLocale/Punjabi" />
+<a name="//apple_ref/cpp/econst/QLocale/Quechua" />
+<a name="//apple_ref/cpp/econst/QLocale/RhaetoRomance" />
+<a name="//apple_ref/cpp/econst/QLocale/Romanian" />
+<a name="//apple_ref/cpp/econst/QLocale/Russian" />
+<a name="//apple_ref/cpp/econst/QLocale/Samoan" />
+<a name="//apple_ref/cpp/econst/QLocale/Sangho" />
+<a name="//apple_ref/cpp/econst/QLocale/Sanskrit" />
+<a name="//apple_ref/cpp/econst/QLocale/Serbian" />
+<a name="//apple_ref/cpp/econst/QLocale/SerboCroatian" />
+<a name="//apple_ref/cpp/econst/QLocale/Sesotho" />
+<a name="//apple_ref/cpp/econst/QLocale/Setswana" />
+<a name="//apple_ref/cpp/econst/QLocale/Shona" />
+<a name="//apple_ref/cpp/econst/QLocale/Sindhi" />
+<a name="//apple_ref/cpp/econst/QLocale/Singhalese" />
+<a name="//apple_ref/cpp/econst/QLocale/Siswati" />
+<a name="//apple_ref/cpp/econst/QLocale/Slovak" />
+<a name="//apple_ref/cpp/econst/QLocale/Slovenian" />
+<a name="//apple_ref/cpp/econst/QLocale/Somali" />
+<a name="//apple_ref/cpp/econst/QLocale/Spanish" />
+<a name="//apple_ref/cpp/econst/QLocale/Sundanese" />
+<a name="//apple_ref/cpp/econst/QLocale/Swahili" />
+<a name="//apple_ref/cpp/econst/QLocale/Swedish" />
+<a name="//apple_ref/cpp/econst/QLocale/Tagalog" />
+<a name="//apple_ref/cpp/econst/QLocale/Tajik" />
+<a name="//apple_ref/cpp/econst/QLocale/Tamil" />
+<a name="//apple_ref/cpp/econst/QLocale/Tatar" />
+<a name="//apple_ref/cpp/econst/QLocale/Telugu" />
+<a name="//apple_ref/cpp/econst/QLocale/Thai" />
+<a name="//apple_ref/cpp/econst/QLocale/Tibetan" />
+<a name="//apple_ref/cpp/econst/QLocale/Tigrinya" />
+<a name="//apple_ref/cpp/econst/QLocale/TongaLanguage" />
+<a name="//apple_ref/cpp/econst/QLocale/Tsonga" />
+<a name="//apple_ref/cpp/econst/QLocale/Turkish" />
+<a name="//apple_ref/cpp/econst/QLocale/Turkmen" />
+<a name="//apple_ref/cpp/econst/QLocale/Twi" />
+<a name="//apple_ref/cpp/econst/QLocale/Uigur" />
+<a name="//apple_ref/cpp/econst/QLocale/Ukrainian" />
+<a name="//apple_ref/cpp/econst/QLocale/Urdu" />
+<a name="//apple_ref/cpp/econst/QLocale/Uzbek" />
+<a name="//apple_ref/cpp/econst/QLocale/Vietnamese" />
+<a name="//apple_ref/cpp/econst/QLocale/Volapuk" />
+<a name="//apple_ref/cpp/econst/QLocale/Welsh" />
+<a name="//apple_ref/cpp/econst/QLocale/Wolof" />
+<a name="//apple_ref/cpp/econst/QLocale/Xhosa" />
+<a name="//apple_ref/cpp/econst/QLocale/Yiddish" />
+<a name="//apple_ref/cpp/econst/QLocale/Yoruba" />
+<a name="//apple_ref/cpp/econst/QLocale/Zhuang" />
+<a name="//apple_ref/cpp/econst/QLocale/Zulu" />
+<a name="//apple_ref/cpp/econst/QLocale/Akan" />
+<a name="//apple_ref/cpp/econst/QLocale/Konkani" />
+<a name="//apple_ref/cpp/econst/QLocale/Ga" />
+<a name="//apple_ref/cpp/econst/QLocale/Igbo" />
+<a name="//apple_ref/cpp/econst/QLocale/Kamba" />
+<a name="//apple_ref/cpp/econst/QLocale/Syriac" />
+<a name="//apple_ref/cpp/econst/QLocale/Blin" />
+<a name="//apple_ref/cpp/econst/QLocale/Geez" />
+<a name="//apple_ref/cpp/econst/QLocale/Koro" />
+<a name="//apple_ref/cpp/econst/QLocale/Sidamo" />
+<a name="//apple_ref/cpp/econst/QLocale/Atsam" />
+<a name="//apple_ref/cpp/econst/QLocale/Tigre" />
+<a name="//apple_ref/cpp/econst/QLocale/Jju" />
+<a name="//apple_ref/cpp/econst/QLocale/Friulian" />
+<a name="//apple_ref/cpp/econst/QLocale/Venda" />
+<a name="//apple_ref/cpp/econst/QLocale/Ewe" />
+<a name="//apple_ref/cpp/econst/QLocale/Walamo" />
+<a name="//apple_ref/cpp/econst/QLocale/Hawaiian" />
+<a name="//apple_ref/cpp/econst/QLocale/Tyap" />
+<a name="//apple_ref/cpp/econst/QLocale/Chewa" />
+<a name="//apple_ref/cpp/econst/QLocale/LastLanguage" />
+<h3 class="fn"><a name="Language-enum"></a>enum QLocale::Language</h3>
+<p>This enumerated type is used to specify a language.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QLocale::C</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">The &quot;C&quot; locale is identical in behavior to English/<a href="qlocale.html#Country-enum">UnitedStates</a>.</td></tr>
+<tr><td valign="top"><tt>QLocale::Abkhazian</tt></td><td align="center" valign="top"><tt>2</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Afan</tt></td><td align="center" valign="top"><tt>3</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Afar</tt></td><td align="center" valign="top"><tt>4</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Afrikaans</tt></td><td align="center" valign="top"><tt>5</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Albanian</tt></td><td align="center" valign="top"><tt>6</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Amharic</tt></td><td align="center" valign="top"><tt>7</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Arabic</tt></td><td align="center" valign="top"><tt>8</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Armenian</tt></td><td align="center" valign="top"><tt>9</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Assamese</tt></td><td align="center" valign="top"><tt>10</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Aymara</tt></td><td align="center" valign="top"><tt>11</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Azerbaijani</tt></td><td align="center" valign="top"><tt>12</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Bashkir</tt></td><td align="center" valign="top"><tt>13</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Basque</tt></td><td align="center" valign="top"><tt>14</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Bengali</tt></td><td align="center" valign="top"><tt>15</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Bhutani</tt></td><td align="center" valign="top"><tt>16</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Bihari</tt></td><td align="center" valign="top"><tt>17</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Bislama</tt></td><td align="center" valign="top"><tt>18</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Bosnian</tt></td><td align="center" valign="top"><tt>142</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Breton</tt></td><td align="center" valign="top"><tt>19</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Bulgarian</tt></td><td align="center" valign="top"><tt>20</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Burmese</tt></td><td align="center" valign="top"><tt>21</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Byelorussian</tt></td><td align="center" valign="top"><tt>22</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Cambodian</tt></td><td align="center" valign="top"><tt>23</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Catalan</tt></td><td align="center" valign="top"><tt>24</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Chinese</tt></td><td align="center" valign="top"><tt>25</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Cornish</tt></td><td align="center" valign="top"><tt>145</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Corsican</tt></td><td align="center" valign="top"><tt>26</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Croatian</tt></td><td align="center" valign="top"><tt>27</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Czech</tt></td><td align="center" valign="top"><tt>28</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Danish</tt></td><td align="center" valign="top"><tt>29</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Divehi</tt></td><td align="center" valign="top"><tt>143</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Dutch</tt></td><td align="center" valign="top"><tt>30</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::English</tt></td><td align="center" valign="top"><tt>31</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Esperanto</tt></td><td align="center" valign="top"><tt>32</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Estonian</tt></td><td align="center" valign="top"><tt>33</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Faroese</tt></td><td align="center" valign="top"><tt>34</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::FijiLanguage</tt></td><td align="center" valign="top"><tt>35</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Finnish</tt></td><td align="center" valign="top"><tt>36</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::French</tt></td><td align="center" valign="top"><tt>37</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Frisian</tt></td><td align="center" valign="top"><tt>38</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Gaelic</tt></td><td align="center" valign="top"><tt>39</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Galician</tt></td><td align="center" valign="top"><tt>40</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Georgian</tt></td><td align="center" valign="top"><tt>41</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::German</tt></td><td align="center" valign="top"><tt>42</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Greek</tt></td><td align="center" valign="top"><tt>43</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Greenlandic</tt></td><td align="center" valign="top"><tt>44</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Guarani</tt></td><td align="center" valign="top"><tt>45</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Gujarati</tt></td><td align="center" valign="top"><tt>46</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Hausa</tt></td><td align="center" valign="top"><tt>47</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Hebrew</tt></td><td align="center" valign="top"><tt>48</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Hindi</tt></td><td align="center" valign="top"><tt>49</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Hungarian</tt></td><td align="center" valign="top"><tt>50</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Icelandic</tt></td><td align="center" valign="top"><tt>51</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Indonesian</tt></td><td align="center" valign="top"><tt>52</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Interlingua</tt></td><td align="center" valign="top"><tt>53</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Interlingue</tt></td><td align="center" valign="top"><tt>54</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Inuktitut</tt></td><td align="center" valign="top"><tt>55</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Inupiak</tt></td><td align="center" valign="top"><tt>56</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Irish</tt></td><td align="center" valign="top"><tt>57</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Italian</tt></td><td align="center" valign="top"><tt>58</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Japanese</tt></td><td align="center" valign="top"><tt>59</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Javanese</tt></td><td align="center" valign="top"><tt>60</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Kannada</tt></td><td align="center" valign="top"><tt>61</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Kashmiri</tt></td><td align="center" valign="top"><tt>62</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Kazakh</tt></td><td align="center" valign="top"><tt>63</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Kinyarwanda</tt></td><td align="center" valign="top"><tt>64</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Kirghiz</tt></td><td align="center" valign="top"><tt>65</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Korean</tt></td><td align="center" valign="top"><tt>66</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Kurdish</tt></td><td align="center" valign="top"><tt>67</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Kurundi</tt></td><td align="center" valign="top"><tt>68</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Laothian</tt></td><td align="center" valign="top"><tt>69</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Latin</tt></td><td align="center" valign="top"><tt>70</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Latvian</tt></td><td align="center" valign="top"><tt>71</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Lingala</tt></td><td align="center" valign="top"><tt>72</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Lithuanian</tt></td><td align="center" valign="top"><tt>73</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Macedonian</tt></td><td align="center" valign="top"><tt>74</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Malagasy</tt></td><td align="center" valign="top"><tt>75</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Malay</tt></td><td align="center" valign="top"><tt>76</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Malayalam</tt></td><td align="center" valign="top"><tt>77</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Maltese</tt></td><td align="center" valign="top"><tt>78</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Manx</tt></td><td align="center" valign="top"><tt>144</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Maori</tt></td><td align="center" valign="top"><tt>79</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Marathi</tt></td><td align="center" valign="top"><tt>80</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Moldavian</tt></td><td align="center" valign="top"><tt>81</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Mongolian</tt></td><td align="center" valign="top"><tt>82</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::NauruLanguage</tt></td><td align="center" valign="top"><tt>83</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Nepali</tt></td><td align="center" valign="top"><tt>84</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Norwegian</tt></td><td align="center" valign="top"><tt>85</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::NorwegianBokmal</tt></td><td align="center" valign="top"><tt>Norwegian</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Nynorsk</tt></td><td align="center" valign="top"><tt>NorwegianNynorsk</tt></td><td valign="top">Obsolete, please use NorwegianNynorsk</td></tr>
+<tr><td valign="top"><tt>QLocale::NorwegianNynorsk</tt></td><td align="center" valign="top"><tt>141</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Occitan</tt></td><td align="center" valign="top"><tt>86</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Oriya</tt></td><td align="center" valign="top"><tt>87</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Pashto</tt></td><td align="center" valign="top"><tt>88</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Persian</tt></td><td align="center" valign="top"><tt>89</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Polish</tt></td><td align="center" valign="top"><tt>90</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Portuguese</tt></td><td align="center" valign="top"><tt>91</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Punjabi</tt></td><td align="center" valign="top"><tt>92</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Quechua</tt></td><td align="center" valign="top"><tt>93</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::RhaetoRomance</tt></td><td align="center" valign="top"><tt>94</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Romanian</tt></td><td align="center" valign="top"><tt>95</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Russian</tt></td><td align="center" valign="top"><tt>96</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Samoan</tt></td><td align="center" valign="top"><tt>97</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Sangho</tt></td><td align="center" valign="top"><tt>98</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Sanskrit</tt></td><td align="center" valign="top"><tt>99</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Serbian</tt></td><td align="center" valign="top"><tt>100</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::SerboCroatian</tt></td><td align="center" valign="top"><tt>101</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Sesotho</tt></td><td align="center" valign="top"><tt>102</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Setswana</tt></td><td align="center" valign="top"><tt>103</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Shona</tt></td><td align="center" valign="top"><tt>104</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Sindhi</tt></td><td align="center" valign="top"><tt>105</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Singhalese</tt></td><td align="center" valign="top"><tt>106</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Siswati</tt></td><td align="center" valign="top"><tt>107</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Slovak</tt></td><td align="center" valign="top"><tt>108</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Slovenian</tt></td><td align="center" valign="top"><tt>109</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Somali</tt></td><td align="center" valign="top"><tt>110</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Spanish</tt></td><td align="center" valign="top"><tt>111</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Sundanese</tt></td><td align="center" valign="top"><tt>112</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Swahili</tt></td><td align="center" valign="top"><tt>113</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Swedish</tt></td><td align="center" valign="top"><tt>114</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Tagalog</tt></td><td align="center" valign="top"><tt>115</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Tajik</tt></td><td align="center" valign="top"><tt>116</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Tamil</tt></td><td align="center" valign="top"><tt>117</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Tatar</tt></td><td align="center" valign="top"><tt>118</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Telugu</tt></td><td align="center" valign="top"><tt>119</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Thai</tt></td><td align="center" valign="top"><tt>120</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Tibetan</tt></td><td align="center" valign="top"><tt>121</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Tigrinya</tt></td><td align="center" valign="top"><tt>122</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::TongaLanguage</tt></td><td align="center" valign="top"><tt>123</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Tsonga</tt></td><td align="center" valign="top"><tt>124</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Turkish</tt></td><td align="center" valign="top"><tt>125</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Turkmen</tt></td><td align="center" valign="top"><tt>126</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Twi</tt></td><td align="center" valign="top"><tt>127</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Uigur</tt></td><td align="center" valign="top"><tt>128</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Ukrainian</tt></td><td align="center" valign="top"><tt>129</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Urdu</tt></td><td align="center" valign="top"><tt>130</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Uzbek</tt></td><td align="center" valign="top"><tt>131</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Vietnamese</tt></td><td align="center" valign="top"><tt>132</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Volapuk</tt></td><td align="center" valign="top"><tt>133</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Welsh</tt></td><td align="center" valign="top"><tt>134</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Wolof</tt></td><td align="center" valign="top"><tt>135</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Xhosa</tt></td><td align="center" valign="top"><tt>136</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Yiddish</tt></td><td align="center" valign="top"><tt>137</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Yoruba</tt></td><td align="center" valign="top"><tt>138</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Zhuang</tt></td><td align="center" valign="top"><tt>139</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Zulu</tt></td><td align="center" valign="top"><tt>140</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Bosnian</tt></td><td align="center" valign="top"><tt>142</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Divehi</tt></td><td align="center" valign="top"><tt>143</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Manx</tt></td><td align="center" valign="top"><tt>144</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Cornish</tt></td><td align="center" valign="top"><tt>145</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Akan</tt></td><td align="center" valign="top"><tt>146</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Konkani</tt></td><td align="center" valign="top"><tt>147</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Ga</tt></td><td align="center" valign="top"><tt>148</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Igbo</tt></td><td align="center" valign="top"><tt>149</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Kamba</tt></td><td align="center" valign="top"><tt>150</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Syriac</tt></td><td align="center" valign="top"><tt>151</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Blin</tt></td><td align="center" valign="top"><tt>152</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Geez</tt></td><td align="center" valign="top"><tt>153</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Koro</tt></td><td align="center" valign="top"><tt>154</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Sidamo</tt></td><td align="center" valign="top"><tt>155</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Atsam</tt></td><td align="center" valign="top"><tt>156</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Tigre</tt></td><td align="center" valign="top"><tt>157</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Jju</tt></td><td align="center" valign="top"><tt>158</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Friulian</tt></td><td align="center" valign="top"><tt>159</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Venda</tt></td><td align="center" valign="top"><tt>160</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Ewe</tt></td><td align="center" valign="top"><tt>161</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Walamo</tt></td><td align="center" valign="top"><tt>162</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Hawaiian</tt></td><td align="center" valign="top"><tt>163</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Tyap</tt></td><td align="center" valign="top"><tt>164</tt></td><td valign="top">&nbsp;</td></tr>
+<tr><td valign="top"><tt>QLocale::Chewa</tt></td><td align="center" valign="top"><tt>165</tt></td><td valign="top">&nbsp;</td></tr>
+</table></p>
+<p>See also <a href="qlocale.html#language">language</a>().</p>
+<a name="//apple_ref/cpp/tag/QLocale/MeasurementSystem" />
+<a name="//apple_ref/cpp/econst/QLocale/MetricSystem" />
+<a name="//apple_ref/cpp/econst/QLocale/ImperialSystem" />
+<h3 class="fn"><a name="MeasurementSystem-enum"></a>enum QLocale::MeasurementSystem</h3>
+<p>This enum defines which units are used for measurement.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QLocale::MetricSystem</tt></td><td align="center" valign="top"><tt>0</tt></td><td valign="top">This value indicates metric units, such as meters, centimeters and millimeters.</td></tr>
+<tr><td valign="top"><tt>QLocale::ImperialSystem</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">This value indicates imperial units, such as inches and miles. There are several distinct imperial systems in the world; this value stands for the official United States imperial units.</td></tr>
+</table></p>
+<p>This enum was introduced in Qt 4.4.</p>
+<a name="//apple_ref/cpp/tag/QLocale/NumberOption" />
+<a name="//apple_ref/cpp/econst/QLocale/OmitGroupSeparator" />
+<a name="//apple_ref/cpp/econst/QLocale/RejectGroupSeparator" />
+<a name="//apple_ref/cpp/tdef/QLocale/NumberOptions" />
+<h3 class="flags"><a name="NumberOption-enum"></a>enum QLocale::NumberOption<br />flags QLocale::NumberOptions</h3>
+<p>This enum defines a set of options for number-to-string and string-to-number conversions. They can be retrieved with <a href="qlocale.html#numberOptions">numberOptions</a>() and set with <a href="qlocale.html#setNumberOptions">setNumberOptions</a>().</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QLocale::OmitGroupSeparator</tt></td><td align="center" valign="top"><tt>0x01</tt></td><td valign="top">If this option is set, the number-to-string functions will not insert group separators in their return values. The default is to insert group separators.</td></tr>
+<tr><td valign="top"><tt>QLocale::RejectGroupSeparator</tt></td><td align="center" valign="top"><tt>0x02</tt></td><td valign="top">If this option is set, the string-to-number functions will fail if they encounter group separators in their input. The default is to accept numbers containing correctly placed group separators.</td></tr>
+</table></p>
+<p>The NumberOptions type is a typedef for <a href="qflags.html">QFlags</a>&lt;NumberOption&gt;. It stores an OR combination of NumberOption values.</p>
+<p>See also <a href="qlocale.html#setNumberOptions">setNumberOptions</a>() and <a href="qlocale.html#numberOptions">numberOptions</a>().</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QLocale/QLocale" />
+<h3 class="fn"><a name="QLocale"></a>QLocale::QLocale ()</h3>
+<p>Constructs a <a href="qlocale.html">QLocale</a> object initialized with the default locale. If no default locale was set using setDefaultLocale(), this locale will be the same as the one returned by <a href="qlocale.html#system">system</a>().</p>
+<p>See also <a href="qlocale.html#setDefault">setDefault</a>().</p>
+<h3 class="fn"><a name="QLocale-2"></a>QLocale::QLocale ( const <a href="qstring.html">QString</a> &amp; <i>name</i> )</h3>
+<p>Constructs a <a href="qlocale.html">QLocale</a> object with the specified <i>name</i>, which has the format &quot;language[_country][.codeset][@modifier]&quot; or &quot;C&quot;, where:</p>
+<ul>
+<li>language is a lowercase, two-letter, ISO 639 language code,</li>
+<li>territory is an uppercase, two-letter, ISO 3166 country code,</li>
+<li>and codeset and modifier are ignored.</li>
+</ul>
+<p>If the string violates the locale format, or language is not a valid ISO 369 code, the &quot;C&quot; locale is used instead. If country is not present, or is not a valid ISO 3166 code, the most appropriate country is chosen for the specified language.</p>
+<p>The language and country codes are converted to their respective <tt>Language</tt> and <tt>Country</tt> enums. After this conversion is performed the constructor behaves exactly like <a href="qlocale.html">QLocale</a>(Country, Language).</p>
+<p>This constructor is much slower than <a href="qlocale.html">QLocale</a>(Country, Language).</p>
+<p>See also <a href="qlocale.html#name">name</a>().</p>
+<h3 class="fn"><a name="QLocale-3"></a>QLocale::QLocale ( <a href="qlocale.html#Language-enum">Language</a> <i>language</i>, <a href="qlocale.html#Country-enum">Country</a> <i>country</i> = AnyCountry )</h3>
+<p>Constructs a <a href="qlocale.html">QLocale</a> object with the specified <i>language</i> and <i>country</i>.</p>
+<ul>
+<li>If the language/country pair is found in the database, it is used.</li>
+<li>If the language is found but the country is not, or if the country is <tt>AnyCountry</tt>, the language is used with the most appropriate available country (for example, Germany for German),</li>
+<li>If neither the language nor the country are found, <a href="qlocale.html">QLocale</a> defaults to the default locale (see <a href="qlocale.html#setDefault">setDefault</a>()).</li>
+</ul>
+<p>The language and country that are actually used can be queried using <a href="qlocale.html#language">language</a>() and <a href="qlocale.html#country">country</a>().</p>
+<p>See also <a href="qlocale.html#setDefault">setDefault</a>(), <a href="qlocale.html#language">language</a>(), and <a href="qlocale.html#country">country</a>().</p>
+<h3 class="fn"><a name="QLocale-4"></a>QLocale::QLocale ( const QLocale &amp; <i>other</i> )</h3>
+<p>Constructs a <a href="qlocale.html">QLocale</a> object as a copy of <i>other</i>.</p>
+<a name="//apple_ref/cpp/instm/QLocale/amText" />
+<h3 class="fn"><a name="amText"></a><a href="qstring.html">QString</a> QLocale::amText () const</h3>
+<p>Returns the localized name of the &quot;AM&quot; suffix for times specified using the conventions of the 12-hour clock.</p>
+<p>This function was introduced in Qt 4.5.</p>
+<p>See also <a href="qlocale.html#pmText">pmText</a>().</p>
+<a name="//apple_ref/cpp/clm/QLocale/c" />
+<h3 class="fn"><a name="c"></a>QLocale QLocale::c ()&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Returns a <a href="qlocale.html">QLocale</a> object initialized to the &quot;C&quot; locale.</p>
+<p>See also <a href="qlocale.html#system">system</a>().</p>
+<a name="//apple_ref/cpp/clm/QLocale/countriesForLanguage" />
+<h3 class="fn"><a name="countriesForLanguage"></a><a href="qlist.html">QList</a>&lt;<a href="qlocale.html#Country-enum">Country</a>&gt; QLocale::countriesForLanguage ( <a href="qlocale.html#Language-enum">Language</a> <i>language</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Returns the list of countries that have entires for <i>language</i> in Qt's locale database. If the result is an empty list, then <i>language</i> is not represented in Qt's locale database.</p>
+<p>This function was introduced in Qt 4.3.</p>
+<a name="//apple_ref/cpp/instm/QLocale/country" />
+<h3 class="fn"><a name="country"></a><a href="qlocale.html#Country-enum">Country</a> QLocale::country () const</h3>
+<p>Returns the country of this locale.</p>
+<p>See also <a href="qlocale.html#language">language</a>(), <a href="qlocale.html#countryToString">countryToString</a>(), and <a href="qlocale.html#name">name</a>().</p>
+<a name="//apple_ref/cpp/clm/QLocale/countryToString" />
+<h3 class="fn"><a name="countryToString"></a><a href="qstring.html">QString</a> QLocale::countryToString ( <a href="qlocale.html#Country-enum">Country</a> <i>country</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Returns a <a href="qstring.html">QString</a> containing the name of <i>country</i>.</p>
+<p>See also <a href="qlocale.html#country">country</a>() and <a href="qlocale.html#name">name</a>().</p>
+<a name="//apple_ref/cpp/instm/QLocale/dateFormat" />
+<h3 class="fn"><a name="dateFormat"></a><a href="qstring.html">QString</a> QLocale::dateFormat ( <a href="qlocale.html#FormatType-enum">FormatType</a> <i>format</i> = LongFormat ) const</h3>
+<p>Returns the date format used for the current locale.</p>
+<p>If <i>format</i> is <a href="qlocale.html#FormatType-enum">LongFormat</a> the format will be a long version. Otherwise it uses a shorter version.</p>
+<p>This function was introduced in Qt 4.1.</p>
+<p>See also <a href="qdate.html#toString">QDate::toString</a>() and <a href="qdate.html#fromString">QDate::fromString</a>().</p>
+<a name="//apple_ref/cpp/instm/QLocale/dateTimeFormat" />
+<h3 class="fn"><a name="dateTimeFormat"></a><a href="qstring.html">QString</a> QLocale::dateTimeFormat ( <a href="qlocale.html#FormatType-enum">FormatType</a> <i>format</i> = LongFormat ) const</h3>
+<p>Returns the date time format used for the current locale.</p>
+<p>If <i>format</i> is <a href="qlocale.html#FormatType-enum">ShortFormat</a> the format will be a short version. Otherwise it uses a longer version.</p>
+<p>This function was introduced in Qt 4.4.</p>
+<p>See also <a href="qdatetime.html#toString">QDateTime::toString</a>() and <a href="qdatetime.html#fromString">QDateTime::fromString</a>().</p>
+<a name="//apple_ref/cpp/instm/QLocale/dayName" />
+<h3 class="fn"><a name="dayName"></a><a href="qstring.html">QString</a> QLocale::dayName ( int <i>day</i>, <a href="qlocale.html#FormatType-enum">FormatType</a> <i>type</i> = LongFormat ) const</h3>
+<p>Returns the localized name of the <i>day</i> (where 1 represents Monday, 2 represents Tuesday and so on), in the format specified by <i>type</i>.</p>
+<p>This function was introduced in Qt 4.2.</p>
+<p>See also <a href="qlocale.html#monthName">monthName</a>() and <a href="qlocale.html#standaloneDayName">standaloneDayName</a>().</p>
+<a name="//apple_ref/cpp/instm/QLocale/decimalPoint" />
+<h3 class="fn"><a name="decimalPoint"></a><a href="qchar.html">QChar</a> QLocale::decimalPoint () const</h3>
+<p>Returns the decimal point character of this locale.</p>
+<p>This function was introduced in Qt 4.1.</p>
+<a name="//apple_ref/cpp/instm/QLocale/exponential" />
+<h3 class="fn"><a name="exponential"></a><a href="qchar.html">QChar</a> QLocale::exponential () const</h3>
+<p>Returns the exponential character of this locale.</p>
+<p>This function was introduced in Qt 4.1.</p>
+<a name="//apple_ref/cpp/instm/QLocale/groupSeparator" />
+<h3 class="fn"><a name="groupSeparator"></a><a href="qchar.html">QChar</a> QLocale::groupSeparator () const</h3>
+<p>Returns the group separator character of this locale.</p>
+<p>This function was introduced in Qt 4.1.</p>
+<a name="//apple_ref/cpp/instm/QLocale/language" />
+<h3 class="fn"><a name="language"></a><a href="qlocale.html#Language-enum">Language</a> QLocale::language () const</h3>
+<p>Returns the language of this locale.</p>
+<p>See also <a href="qlocale.html#country">country</a>(), <a href="qlocale.html#languageToString">languageToString</a>(), and <a href="qlocale.html#name">name</a>().</p>
+<a name="//apple_ref/cpp/clm/QLocale/languageToString" />
+<h3 class="fn"><a name="languageToString"></a><a href="qstring.html">QString</a> QLocale::languageToString ( <a href="qlocale.html#Language-enum">Language</a> <i>language</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Returns a <a href="qstring.html">QString</a> containing the name of <i>language</i>.</p>
+<p>See also <a href="qlocale.html#countryToString">countryToString</a>() and <a href="qlocale.html#name">name</a>().</p>
+<a name="//apple_ref/cpp/instm/QLocale/measurementSystem" />
+<h3 class="fn"><a name="measurementSystem"></a><a href="qlocale.html#MeasurementSystem-enum">MeasurementSystem</a> QLocale::measurementSystem () const</h3>
+<p>Returns the measurement system for the locale.</p>
+<p>This function was introduced in Qt 4.4.</p>
+<a name="//apple_ref/cpp/instm/QLocale/monthName" />
+<h3 class="fn"><a name="monthName"></a><a href="qstring.html">QString</a> QLocale::monthName ( int <i>month</i>, <a href="qlocale.html#FormatType-enum">FormatType</a> <i>type</i> = LongFormat ) const</h3>
+<p>Returns the localized name of <i>month</i>, in the format specified by <i>type</i>.</p>
+<p>This function was introduced in Qt 4.2.</p>
+<p>See also <a href="qlocale.html#dayName">dayName</a>() and <a href="qlocale.html#standaloneMonthName">standaloneMonthName</a>().</p>
+<a name="//apple_ref/cpp/instm/QLocale/name" />
+<h3 class="fn"><a name="name"></a><a href="qstring.html">QString</a> QLocale::name () const</h3>
+<p>Returns the language and country of this locale as a string of the form &quot;language_country&quot;, where language is a lowercase, two-letter ISO 639 language code, and country is an uppercase, two-letter ISO 3166 country code.</p>
+<p>See also <a href="qlocale.html#language">language</a>() and <a href="qlocale.html#country">country</a>().</p>
+<a name="//apple_ref/cpp/instm/QLocale/negativeSign" />
+<h3 class="fn"><a name="negativeSign"></a><a href="qchar.html">QChar</a> QLocale::negativeSign () const</h3>
+<p>Returns the negative sign character of this locale.</p>
+<p>This function was introduced in Qt 4.1.</p>
+<a name="//apple_ref/cpp/instm/QLocale/numberOptions" />
+<h3 class="fn"><a name="numberOptions"></a><a href="qlocale.html#NumberOption-enum">NumberOptions</a> QLocale::numberOptions () const</h3>
+<p>Returns the options related to number conversions for this <a href="qlocale.html">QLocale</a> instance.</p>
+<p>By default, no options are set for the standard locales.</p>
+<p>This function was introduced in Qt 4.2.</p>
+<p>See also <a href="qlocale.html#setNumberOptions">setNumberOptions</a>().</p>
+<a name="//apple_ref/cpp/instm/QLocale/percent" />
+<h3 class="fn"><a name="percent"></a><a href="qchar.html">QChar</a> QLocale::percent () const</h3>
+<p>Returns the percent character of this locale.</p>
+<p>This function was introduced in Qt 4.1.</p>
+<a name="//apple_ref/cpp/instm/QLocale/pmText" />
+<h3 class="fn"><a name="pmText"></a><a href="qstring.html">QString</a> QLocale::pmText () const</h3>
+<p>Returns the localized name of the &quot;PM&quot; suffix for times specified using the conventions of the 12-hour clock.</p>
+<p>This function was introduced in Qt 4.5.</p>
+<p>See also <a href="qlocale.html#amText">amText</a>().</p>
+<a name="//apple_ref/cpp/instm/QLocale/positiveSign" />
+<h3 class="fn"><a name="positiveSign"></a><a href="qchar.html">QChar</a> QLocale::positiveSign () const</h3>
+<p>Returns the positive sign character of this locale.</p>
+<p>This function was introduced in Qt 4.5.</p>
+<a name="//apple_ref/cpp/clm/QLocale/setDefault" />
+<h3 class="fn"><a name="setDefault"></a>void QLocale::setDefault ( const QLocale &amp; <i>locale</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Sets the global default locale to <i>locale</i>. These values are used when a <a href="qlocale.html">QLocale</a> object is constructed with no arguments. If this function is not called, the system's locale is used.</p>
+<p><b>Warning:</b> In a multithreaded application, the default locale should be set at application startup, before any non-GUI threads are created.</p>
+<p><b>Warning:</b> This function is not <a href="threads-reentrancy.html#reentrant">reentrant</a>.</p>
+<p>See also <a href="qlocale.html#system">system</a>() and <a href="qlocale.html#c">c</a>().</p>
+<a name="//apple_ref/cpp/instm/QLocale/setNumberOptions" />
+<h3 class="fn"><a name="setNumberOptions"></a>void QLocale::setNumberOptions ( <a href="qlocale.html#NumberOption-enum">NumberOptions</a> <i>options</i> )</h3>
+<p>Sets the <i>options</i> related to number conversions for this <a href="qlocale.html">QLocale</a> instance.</p>
+<p>This function was introduced in Qt 4.2.</p>
+<p>See also <a href="qlocale.html#numberOptions">numberOptions</a>().</p>
+<a name="//apple_ref/cpp/instm/QLocale/standaloneDayName" />
+<h3 class="fn"><a name="standaloneDayName"></a><a href="qstring.html">QString</a> QLocale::standaloneDayName ( int <i>day</i>, <a href="qlocale.html#FormatType-enum">FormatType</a> <i>type</i> = LongFormat ) const</h3>
+<p>Returns the localized name of the <i>day</i> (where 1 represents Monday, 2 represents Tuesday and so on) that is used as a standalone text, in the format specified by <i>type</i>.</p>
+<p>If the locale information does not specify the standalone day name then return value is the same as in <a href="qlocale.html#dayName">dayName</a>().</p>
+<p>This function was introduced in Qt 4.5.</p>
+<p>See also <a href="qlocale.html#dayName">dayName</a>() and <a href="qlocale.html#standaloneMonthName">standaloneMonthName</a>().</p>
+<a name="//apple_ref/cpp/instm/QLocale/standaloneMonthName" />
+<h3 class="fn"><a name="standaloneMonthName"></a><a href="qstring.html">QString</a> QLocale::standaloneMonthName ( int <i>month</i>, <a href="qlocale.html#FormatType-enum">FormatType</a> <i>type</i> = LongFormat ) const</h3>
+<p>Returns the localized name of <i>month</i> that is used as a standalone text, in the format specified by <i>type</i>.</p>
+<p>If the locale information doesn't specify the standalone month name then return value is the same as in <a href="qlocale.html#monthName">monthName</a>().</p>
+<p>This function was introduced in Qt 4.5.</p>
+<p>See also <a href="qlocale.html#monthName">monthName</a>() and <a href="qlocale.html#standaloneDayName">standaloneDayName</a>().</p>
+<a name="//apple_ref/cpp/clm/QLocale/system" />
+<h3 class="fn"><a name="system"></a>QLocale QLocale::system ()&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Returns a <a href="qlocale.html">QLocale</a> object initialized to the system locale.</p>
+<p>On Windows and Mac, this locale will use the decimal/grouping characters and date/time formats specified in the system configuration panel.</p>
+<p>See also <a href="qtextcodec-qt3.html#locale" class="compat">QTextCodec::locale</a>() and <a href="qlocale.html#c">c</a>().</p>
+<a name="//apple_ref/cpp/instm/QLocale/timeFormat" />
+<h3 class="fn"><a name="timeFormat"></a><a href="qstring.html">QString</a> QLocale::timeFormat ( <a href="qlocale.html#FormatType-enum">FormatType</a> <i>format</i> = LongFormat ) const</h3>
+<p>Returns the time format used for the current locale.</p>
+<p>If <i>format</i> is <a href="qlocale.html#FormatType-enum">LongFormat</a> the format will be a long version. Otherwise it uses a shorter version.</p>
+<p>This function was introduced in Qt 4.1.</p>
+<p>See also <a href="qtime.html#toString">QTime::toString</a>() and <a href="qtime.html#fromString">QTime::fromString</a>().</p>
+<a name="//apple_ref/cpp/instm/QLocale/toDate" />
+<h3 class="fn"><a name="toDate"></a><a href="qdate.html">QDate</a> QLocale::toDate ( const <a href="qstring.html">QString</a> &amp; <i>string</i>, <a href="qlocale.html#FormatType-enum">FormatType</a> <i>format</i> = LongFormat ) const</h3>
+<p>Parses the date string given in <i>string</i> and returns the date. The format of the date string is chosen according to the <i>format</i> parameter (see <a href="qlocale.html#dateFormat">dateFormat</a>()).</p>
+<p>If the date could not be parsed, returns an invalid date.</p>
+<p>This function was introduced in Qt 4.4.</p>
+<p>See also <a href="qlocale.html#dateFormat">dateFormat</a>(), <a href="qlocale.html#toTime">toTime</a>(), <a href="qlocale.html#toDateTime">toDateTime</a>(), and <a href="qdate.html#fromString">QDate::fromString</a>().</p>
+<h3 class="fn"><a name="toDate-2"></a><a href="qdate.html">QDate</a> QLocale::toDate ( const <a href="qstring.html">QString</a> &amp; <i>string</i>, const <a href="qstring.html">QString</a> &amp; <i>format</i> ) const</h3>
+<p>Parses the date string given in <i>string</i> and returns the date. See <a href="qdate.html#fromString">QDate::fromString</a>() for information on the expressions that can be used with this function.</p>
+<p>This function searches month names and the names of the days of the week in the current locale.</p>
+<p>If the date could not be parsed, returns an invalid date.</p>
+<p>This function was introduced in Qt 4.4.</p>
+<p>See also <a href="qlocale.html#dateFormat">dateFormat</a>(), <a href="qlocale.html#toTime">toTime</a>(), <a href="qlocale.html#toDateTime">toDateTime</a>(), and <a href="qdate.html#fromString">QDate::fromString</a>().</p>
+<a name="//apple_ref/cpp/instm/QLocale/toDateTime" />
+<h3 class="fn"><a name="toDateTime"></a><a href="qdatetime.html">QDateTime</a> QLocale::toDateTime ( const <a href="qstring.html">QString</a> &amp; <i>string</i>, <a href="qlocale.html#FormatType-enum">FormatType</a> <i>format</i> = LongFormat ) const</h3>
+<p>Parses the date/time string given in <i>string</i> and returns the time. The format of the date/time string is chosen according to the <i>format</i> parameter (see <a href="qlocale.html#dateTimeFormat">dateTimeFormat</a>()).</p>
+<p>If the string could not be parsed, returns an invalid <a href="qdatetime.html">QDateTime</a>.</p>
+<p>This function was introduced in Qt 4.4.</p>
+<p>See also <a href="qlocale.html#dateTimeFormat">dateTimeFormat</a>(), <a href="qlocale.html#toTime">toTime</a>(), <a href="qlocale.html#toDate">toDate</a>(), and <a href="qdatetime.html#fromString">QDateTime::fromString</a>().</p>
+<h3 class="fn"><a name="toDateTime-2"></a><a href="qdatetime.html">QDateTime</a> QLocale::toDateTime ( const <a href="qstring.html">QString</a> &amp; <i>string</i>, const <a href="qstring.html">QString</a> &amp; <i>format</i> ) const</h3>
+<p>Parses the date/time string given in <i>string</i> and returns the time. See <a href="qdatetime.html#fromString">QDateTime::fromString</a>() for information on the expressions that can be used with this function.</p>
+<p><b>Note:</b> The month and day names used must be given in the user's local language.</p>
+<p>If the string could not be parsed, returns an invalid <a href="qdatetime.html">QDateTime</a>.</p>
+<p>This function was introduced in Qt 4.4.</p>
+<p>See also <a href="qlocale.html#dateTimeFormat">dateTimeFormat</a>(), <a href="qlocale.html#toTime">toTime</a>(), <a href="qlocale.html#toDate">toDate</a>(), and <a href="qdatetime.html#fromString">QDateTime::fromString</a>().</p>
+<a name="//apple_ref/cpp/instm/QLocale/toDouble" />
+<h3 class="fn"><a name="toDouble"></a>double QLocale::toDouble ( const <a href="qstring.html">QString</a> &amp; <i>s</i>, bool * <i>ok</i> = 0 ) const</h3>
+<p>Returns the double represented by the localized string <i>s</i>, or 0.0 if the conversion failed.</p>
+<p>If <i>ok</i> is not 0, reports failure by setting *ok to false and success by setting *ok to true.</p>
+<p>Unlike <a href="qstring.html#toDouble">QString::toDouble</a>(), this function does not fall back to the &quot;C&quot; locale if the string cannot be interpreted in this locale.</p>
+<pre> bool ok;
+ double d;
+
+ QLocale c(QLocale::C);
+ d = c.toDouble( &quot;1234.56&quot;, &amp;ok );  <span class="comment">// ok == true, d == 1234.56</span>
+ d = c.toDouble( &quot;1,234.56&quot;, &amp;ok ); <span class="comment">// ok == true, d == 1234.56</span>
+ d = c.toDouble( &quot;1234,56&quot;, &amp;ok );  <span class="comment">// ok == false</span>
+
+ QLocale german(QLocale::German);
+ d = german.toDouble( &quot;1234,56&quot;, &amp;ok );  <span class="comment">// ok == true, d == 1234.56</span>
+ d = german.toDouble( &quot;1.234,56&quot;, &amp;ok ); <span class="comment">// ok == true, d == 1234.56</span>
+ d = german.toDouble( &quot;1234.56&quot;, &amp;ok );  <span class="comment">// ok == false</span>
+
+ d = german.toDouble( &quot;1.234&quot;, &amp;ok );    <span class="comment">// ok == true, d == 1234.0</span></pre>
+<p>Notice that the last conversion returns 1234.0, because '.' is the thousands group separator in the German locale.</p>
+<p>This function ignores leading and trailing whitespace.</p>
+<p>See also <a href="qlocale.html#toFloat">toFloat</a>(), <a href="qlocale.html#toInt">toInt</a>(), and <a href="qlocale.html#toString">toString</a>().</p>
+<a name="//apple_ref/cpp/instm/QLocale/toFloat" />
+<h3 class="fn"><a name="toFloat"></a>float QLocale::toFloat ( const <a href="qstring.html">QString</a> &amp; <i>s</i>, bool * <i>ok</i> = 0 ) const</h3>
+<p>Returns the float represented by the localized string <i>s</i>, or 0.0 if the conversion failed.</p>
+<p>If <i>ok</i> is not 0, reports failure by setting *ok to false and success by setting *ok to true.</p>
+<p>This function ignores leading and trailing whitespace.</p>
+<p>See also <a href="qlocale.html#toDouble">toDouble</a>(), <a href="qlocale.html#toInt">toInt</a>(), and <a href="qlocale.html#toString">toString</a>().</p>
+<a name="//apple_ref/cpp/instm/QLocale/toInt" />
+<h3 class="fn"><a name="toInt"></a>int QLocale::toInt ( const <a href="qstring.html">QString</a> &amp; <i>s</i>, bool * <i>ok</i> = 0, int <i>base</i> = 0 ) const</h3>
+<p>Returns the int represented by the localized string <i>s</i>, using base <i>base</i>. If <i>base</i> is 0 the base is determined automatically using the following rules: If the string begins with &quot;0x&quot;, it is assumed to be hexadecimal; if it begins with &quot;0&quot;, it is assumed to be octal; otherwise it is assumed to be decimal.</p>
+<p>If the conversion fails the function returns 0.</p>
+<p>If <i>ok</i> is not 0, failure is reported by setting *ok to false, and success by setting *ok to true.</p>
+<p>This function ignores leading and trailing whitespace.</p>
+<p>See also <a href="qlocale.html#toUInt">toUInt</a>() and <a href="qlocale.html#toString">toString</a>().</p>
+<a name="//apple_ref/cpp/instm/QLocale/toLongLong" />
+<h3 class="fn"><a name="toLongLong"></a><a href="qtglobal.html#qlonglong-typedef">qlonglong</a> QLocale::toLongLong ( const <a href="qstring.html">QString</a> &amp; <i>s</i>, bool * <i>ok</i> = 0, int <i>base</i> = 0 ) const</h3>
+<p>Returns the long long int represented by the localized string <i>s</i>, using base <i>base</i>. If <i>base</i> is 0 the base is determined automatically using the following rules: If the string begins with &quot;0x&quot;, it is assumed to be hexadecimal; if it begins with &quot;0&quot;, it is assumed to be octal; otherwise it is assumed to be decimal.</p>
+<p>If the conversion fails the function returns 0.</p>
+<p>If <i>ok</i> is not 0, failure is reported by setting *ok to false, and success by setting *ok to true.</p>
+<p>This function ignores leading and trailing whitespace.</p>
+<p>See also <a href="qlocale.html#toInt">toInt</a>(), <a href="qlocale.html#toULongLong">toULongLong</a>(), <a href="qlocale.html#toDouble">toDouble</a>(), and <a href="qlocale.html#toString">toString</a>().</p>
+<a name="//apple_ref/cpp/instm/QLocale/toShort" />
+<h3 class="fn"><a name="toShort"></a>short QLocale::toShort ( const <a href="qstring.html">QString</a> &amp; <i>s</i>, bool * <i>ok</i> = 0, int <i>base</i> = 0 ) const</h3>
+<p>Returns the short int represented by the localized string <i>s</i>, using base <i>base</i>. If <i>base</i> is 0 the base is determined automatically using the following rules: If the string begins with &quot;0x&quot;, it is assumed to be hexadecimal; if it begins with &quot;0&quot;, it is assumed to be octal; otherwise it is assumed to be decimal.</p>
+<p>If the conversion fails the function returns 0.</p>
+<p>If <i>ok</i> is not 0, failure is reported by setting *ok to false, and success by setting *ok to true.</p>
+<p>This function ignores leading and trailing whitespace.</p>
+<p>See also <a href="qlocale.html#toUShort">toUShort</a>() and <a href="qlocale.html#toString">toString</a>().</p>
+<a name="//apple_ref/cpp/instm/QLocale/toString" />
+<h3 class="fn"><a name="toString"></a><a href="qstring.html">QString</a> QLocale::toString ( <a href="qtglobal.html#qlonglong-typedef">qlonglong</a> <i>i</i> ) const</h3>
+<p>Returns a localized string representation of <i>i</i>.</p>
+<p>See also <a href="qlocale.html#toLongLong">toLongLong</a>().</p>
+<h3 class="fn"><a name="toString-2"></a><a href="qstring.html">QString</a> QLocale::toString ( const <a href="qdate.html">QDate</a> &amp; <i>date</i>, const <a href="qstring.html">QString</a> &amp; <i>format</i> ) const</h3>
+<p>Returns a localized string representation of the given <i>date</i> in the specified <i>format</i>. If <i>format</i> is an empty string, an empty string is returned.</p>
+<h3 class="fn"><a name="toString-3"></a><a href="qstring.html">QString</a> QLocale::toString ( const <a href="qdate.html">QDate</a> &amp; <i>date</i>, <a href="qlocale.html#FormatType-enum">FormatType</a> <i>format</i> = LongFormat ) const</h3>
+<p>Returns a localized string representation of the given <i>date</i> according to the specified <i>format</i>.</p>
+<h3 class="fn"><a name="toString-4"></a><a href="qstring.html">QString</a> QLocale::toString ( const <a href="qtime.html">QTime</a> &amp; <i>time</i>, const <a href="qstring.html">QString</a> &amp; <i>format</i> ) const</h3>
+<p>Returns a localized string representation of the given <i>time</i> according to the specified <i>format</i>. If <i>format</i> is an empty string, an empty string is returned.</p>
+<h3 class="fn"><a name="toString-5"></a><a href="qstring.html">QString</a> QLocale::toString ( const <a href="qtime.html">QTime</a> &amp; <i>time</i>, <a href="qlocale.html#FormatType-enum">FormatType</a> <i>format</i> = LongFormat ) const</h3>
+<p>Returns a localized string representation of the given <i>time</i> in the specified <i>format</i>.</p>
+<h3 class="fn"><a name="toString-6"></a><a href="qstring.html">QString</a> QLocale::toString ( const <a href="qdatetime.html">QDateTime</a> &amp; <i>dateTime</i>, <a href="qlocale.html#FormatType-enum">FormatType</a> <i>format</i> = LongFormat ) const</h3>
+<p>Returns a localized string representation of the given <i>dateTime</i> according to the specified <i>format</i>.</p>
+<p>This function was introduced in Qt 4.4.</p>
+<h3 class="fn"><a name="toString-7"></a><a href="qstring.html">QString</a> QLocale::toString ( const <a href="qdatetime.html">QDateTime</a> &amp; <i>dateTime</i>, const <a href="qstring.html">QString</a> &amp; <i>format</i> ) const</h3>
+<p>Returns a localized string representation of the given <i>dateTime</i> according to the specified <i>format</i>. If <i>format</i> is an empty string, an empty string is returned.</p>
+<p>This function was introduced in Qt 4.4.</p>
+<h3 class="fn"><a name="toString-8"></a><a href="qstring.html">QString</a> QLocale::toString ( <a href="qtglobal.html#qulonglong-typedef">qulonglong</a> <i>i</i> ) const</h3>
+<p>This is an overloaded function.</p>
+<p>See also <a href="qlocale.html#toULongLong">toULongLong</a>().</p>
+<h3 class="fn"><a name="toString-9"></a><a href="qstring.html">QString</a> QLocale::toString ( double <i>i</i>, char <i>f</i> = 'g', int <i>prec</i> = 6 ) const</h3>
+<p>This is an overloaded function.</p>
+<p><i>f</i> and <i>prec</i> have the same meaning as in QString::number(double, char, int).</p>
+<p>See also <a href="qlocale.html#toDouble">toDouble</a>().</p>
+<h3 class="fn"><a name="toString-10"></a><a href="qstring.html">QString</a> QLocale::toString ( short <i>i</i> ) const</h3>
+<p>This is an overloaded function.</p>
+<p>See also <a href="qlocale.html#toShort">toShort</a>().</p>
+<h3 class="fn"><a name="toString-11"></a><a href="qstring.html">QString</a> QLocale::toString ( <a href="qtglobal.html#ushort-typedef">ushort</a> <i>i</i> ) const</h3>
+<p>This is an overloaded function.</p>
+<p>See also <a href="qlocale.html#toUShort">toUShort</a>().</p>
+<h3 class="fn"><a name="toString-12"></a><a href="qstring.html">QString</a> QLocale::toString ( int <i>i</i> ) const</h3>
+<p>This is an overloaded function.</p>
+<p>See also <a href="qlocale.html#toInt">toInt</a>().</p>
+<h3 class="fn"><a name="toString-13"></a><a href="qstring.html">QString</a> QLocale::toString ( <a href="qtglobal.html#uint-typedef">uint</a> <i>i</i> ) const</h3>
+<p>This is an overloaded function.</p>
+<p>See also <a href="qlocale.html#toUInt">toUInt</a>().</p>
+<h3 class="fn"><a name="toString-14"></a><a href="qstring.html">QString</a> QLocale::toString ( float <i>i</i>, char <i>f</i> = 'g', int <i>prec</i> = 6 ) const</h3>
+<p>This is an overloaded function.</p>
+<p><i>f</i> and <i>prec</i> have the same meaning as in QString::number(double, char, int).</p>
+<p>See also <a href="qlocale.html#toDouble">toDouble</a>().</p>
+<a name="//apple_ref/cpp/instm/QLocale/toTime" />
+<h3 class="fn"><a name="toTime"></a><a href="qtime.html">QTime</a> QLocale::toTime ( const <a href="qstring.html">QString</a> &amp; <i>string</i>, <a href="qlocale.html#FormatType-enum">FormatType</a> <i>format</i> = LongFormat ) const</h3>
+<p>Parses the time string given in <i>string</i> and returns the time. The format of the time string is chosen according to the <i>format</i> parameter (see <a href="qlocale.html#timeFormat">timeFormat</a>()).</p>
+<p>If the time could not be parsed, returns an invalid time.</p>
+<p>This function was introduced in Qt 4.4.</p>
+<p>See also <a href="qlocale.html#timeFormat">timeFormat</a>(), <a href="qlocale.html#toDate">toDate</a>(), <a href="qlocale.html#toDateTime">toDateTime</a>(), and <a href="qtime.html#fromString">QTime::fromString</a>().</p>
+<h3 class="fn"><a name="toTime-2"></a><a href="qtime.html">QTime</a> QLocale::toTime ( const <a href="qstring.html">QString</a> &amp; <i>string</i>, const <a href="qstring.html">QString</a> &amp; <i>format</i> ) const</h3>
+<p>Parses the time string given in <i>string</i> and returns the time. See <a href="qtime.html#fromString">QTime::fromString</a>() for information on what is a valid format string.</p>
+<p>If the time could not be parsed, returns an invalid time.</p>
+<p>This function was introduced in Qt 4.4.</p>
+<p>See also <a href="qlocale.html#timeFormat">timeFormat</a>(), <a href="qlocale.html#toDate">toDate</a>(), <a href="qlocale.html#toDateTime">toDateTime</a>(), and <a href="qtime.html#fromString">QTime::fromString</a>().</p>
+<a name="//apple_ref/cpp/instm/QLocale/toUInt" />
+<h3 class="fn"><a name="toUInt"></a><a href="qtglobal.html#uint-typedef">uint</a> QLocale::toUInt ( const <a href="qstring.html">QString</a> &amp; <i>s</i>, bool * <i>ok</i> = 0, int <i>base</i> = 0 ) const</h3>
+<p>Returns the unsigned int represented by the localized string <i>s</i>, using base <i>base</i>. If <i>base</i> is 0 the base is determined automatically using the following rules: If the string begins with &quot;0x&quot;, it is assumed to be hexadecimal; if it begins with &quot;0&quot;, it is assumed to be octal; otherwise it is assumed to be decimal.</p>
+<p>If the conversion fails the function returns 0.</p>
+<p>If <i>ok</i> is not 0, failure is reported by setting *ok to false, and success by setting *ok to true.</p>
+<p>This function ignores leading and trailing whitespace.</p>
+<p>See also <a href="qlocale.html#toInt">toInt</a>() and <a href="qlocale.html#toString">toString</a>().</p>
+<a name="//apple_ref/cpp/instm/QLocale/toULongLong" />
+<h3 class="fn"><a name="toULongLong"></a><a href="qtglobal.html#qlonglong-typedef">qlonglong</a> QLocale::toULongLong ( const <a href="qstring.html">QString</a> &amp; <i>s</i>, bool * <i>ok</i> = 0, int <i>base</i> = 0 ) const</h3>
+<p>Returns the unsigned long long int represented by the localized string <i>s</i>, using base <i>base</i>. If <i>base</i> is 0 the base is determined automatically using the following rules: If the string begins with &quot;0x&quot;, it is assumed to be hexadecimal; if it begins with &quot;0&quot;, it is assumed to be octal; otherwise it is assumed to be decimal.</p>
+<p>If the conversion fails the function returns 0.</p>
+<p>If <i>ok</i> is not 0, failure is reported by setting *ok to false, and success by setting *ok to true.</p>
+<p>This function ignores leading and trailing whitespace.</p>
+<p>See also <a href="qlocale.html#toLongLong">toLongLong</a>(), <a href="qlocale.html#toInt">toInt</a>(), <a href="qlocale.html#toDouble">toDouble</a>(), and <a href="qlocale.html#toString">toString</a>().</p>
+<a name="//apple_ref/cpp/instm/QLocale/toUShort" />
+<h3 class="fn"><a name="toUShort"></a><a href="qtglobal.html#ushort-typedef">ushort</a> QLocale::toUShort ( const <a href="qstring.html">QString</a> &amp; <i>s</i>, bool * <i>ok</i> = 0, int <i>base</i> = 0 ) const</h3>
+<p>Returns the unsigned short int represented by the localized string <i>s</i>, using base <i>base</i>. If <i>base</i> is 0 the base is determined automatically using the following rules: If the string begins with &quot;0x&quot;, it is assumed to be hexadecimal; if it begins with &quot;0&quot;, it is assumed to be octal; otherwise it is assumed to be decimal.</p>
+<p>If the conversion fails the function returns 0.</p>
+<p>If <i>ok</i> is not 0, failure is reported by setting *ok to false, and success by setting *ok to true.</p>
+<p>This function ignores leading and trailing whitespace.</p>
+<p>See also <a href="qlocale.html#toShort">toShort</a>() and <a href="qlocale.html#toString">toString</a>().</p>
+<a name="//apple_ref/cpp/instm/QLocale/zeroDigit" />
+<h3 class="fn"><a name="zeroDigit"></a><a href="qchar.html">QChar</a> QLocale::zeroDigit () const</h3>
+<p>Returns the zero digit character of this locale.</p>
+<p>This function was introduced in Qt 4.1.</p>
+<a name="//apple_ref/cpp/instm/QLocale/operator!=" />
+<h3 class="fn"><a name="operator-not-eq"></a>bool QLocale::operator!= ( const QLocale &amp; <i>other</i> ) const</h3>
+<p>Returns true if the <a href="qlocale.html">QLocale</a> object is not the same as the <i>other</i> locale specified; otherwise returns false.</p>
+<a name="//apple_ref/cpp/instm/QLocale/operator=" />
+<h3 class="fn"><a name="operator-eq"></a>QLocale &amp; QLocale::operator= ( const QLocale &amp; <i>other</i> )</h3>
+<p>Assigns <i>other</i> to this <a href="qlocale.html">QLocale</a> object and returns a reference to this <a href="qlocale.html">QLocale</a> object.</p>
+<a name="//apple_ref/cpp/instm/QLocale/operator==" />
+<h3 class="fn"><a name="operator-eq-eq"></a>bool QLocale::operator== ( const QLocale &amp; <i>other</i> ) const</h3>
+<p>Returns true if the <a href="qlocale.html">QLocale</a> object is the same as the <i>other</i> locale specified; otherwise returns false.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

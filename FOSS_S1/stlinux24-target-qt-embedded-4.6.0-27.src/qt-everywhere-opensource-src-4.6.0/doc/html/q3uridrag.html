@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- q3dragobject.cpp -->
+<head>
+  <title>Qt 4.6: Q3UriDrag Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//Q3UriDrag" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">Q3UriDrag Class Reference<br /><span class="small-subtitle">[<a href="qt3support.html">Qt3Support</a> module]</span>
+</h1>
+<p>The Q3UriDrag class provides a drag object for a list of URI references. <a href="#details">More...</a></p>
+<pre> #include &lt;Q3UriDrag&gt;</pre><p><b>This class is part of the Qt 3 support library.</b> It is provided to keep old source code working. We strongly advise against using it in new code. See <a href="porting4.html#quridrag">Porting to Qt 4</a> for more information.</p>
+<p>Inherits <a href="q3storeddrag.html">Q3StoredDrag</a>.</p>
+<ul>
+<li><a href="q3uridrag-members.html">List of all members, including inherited members</a></li>
+<li><a href="q3uridrag-obsolete.html">Obsolete members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="q3uridrag.html#Q3UriDrag">Q3UriDrag</a></b> ( const Q3StrList &amp; <i>uris</i>, QWidget * <i>dragSource</i> = 0, const char * <i>name</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="q3uridrag.html#Q3UriDrag-2">Q3UriDrag</a></b> ( QWidget * <i>dragSource</i> = 0, const char * <i>name</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="q3uridrag.html#dtor.Q3UriDrag">~Q3UriDrag</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="q3uridrag.html#setFileNames">setFileNames</a></b> ( const QStringList &amp; <i>filenames</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="q3uridrag.html#setFileNames-2">setFileNames</a></b> ( const QString &amp; <i>name</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="q3uridrag.html#setFilenamesx">setFilenames</a></b> ( const QString &amp; <i>name</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="q3uridrag.html#setUnicodeUris">setUnicodeUris</a></b> ( const QStringList &amp; <i>list</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="q3uridrag.html#setUris">setUris</a></b> ( const QList&lt;QByteArray&gt; &amp; <i>list</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>3 public functions inherited from <a href="q3storeddrag.html#public-functions">Q3StoredDrag</a></li>
+<li><div bar="2" class="fn"></div>9 public functions inherited from <a href="q3dragobject.html#public-functions">Q3DragObject</a></li>
+<li><div bar="2" class="fn"></div>29 public functions inherited from <a href="qobject.html#public-functions">QObject</a></li>
+<li><div bar="2" class="fn"></div>3 public functions inherited from <a href="qmimesource.html#public-functions">QMimeSource</a></li>
+</ul>
+<hr />
+<a name="static-public-members"></a>
+<h2>Static Public Members</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="q3uridrag.html#canDecode">canDecode</a></b> ( const QMimeSource * <i>source</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="q3uridrag.html#decode">decode</a></b> ( const QMimeSource * <i>source</i>, Q3StrList &amp; <i>list</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="q3uridrag.html#decodeLocalFiles">decodeLocalFiles</a></b> ( const QMimeSource * <i>source</i>, QStringList &amp; <i>list</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="q3uridrag.html#decodeToUnicodeUris">decodeToUnicodeUris</a></b> ( const QMimeSource * <i>source</i>, QStringList &amp; <i>list</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QByteArray </td><td class="memItemRight" valign="bottom"><b><a href="q3uridrag.html#localFileToUri">localFileToUri</a></b> ( const QString &amp; <i>filename</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QByteArray </td><td class="memItemRight" valign="bottom"><b><a href="q3uridrag.html#unicodeUriToUri">unicodeUriToUri</a></b> ( const QString &amp; <i>string</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="q3uridrag.html#uriToLocalFile">uriToLocalFile</a></b> ( const char * <i>string</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="q3uridrag.html#uriToUnicodeUri">uriToUnicodeUri</a></b> ( const char * <i>string</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>1 static public member inherited from <a href="q3dragobject.html#static-public-members">Q3DragObject</a></li>
+<li><div bar="2" class="fn"></div>5 static public members inherited from <a href="qobject.html#static-public-members">QObject</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li><div class="fn"></div>1 property inherited from <a href="qobject.html#properties">QObject</a></li>
+<li><div class="fn"></div>1 public slot inherited from <a href="qobject.html#public-slots">QObject</a></li>
+<li><div class="fn"></div>1 signal inherited from <a href="qobject.html#signals">QObject</a></li>
+<li><div class="fn"></div>1 protected function inherited from <a href="q3dragobject.html#protected-functions">Q3DragObject</a></li>
+<li><div class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The Q3UriDrag class provides a drag object for a list of URI references.</p>
+<p>URIs are a useful way to refer to files that may be distributed across multiple machines. A URI will often refer to a file on a machine local to both the drag source and the drop target, so the URI can be equivalent to passing a file name but is more extensible.</p>
+<p>Use URIs in Unicode form so that the user can comfortably edit and view them. For use in HTTP or other protocols, use the correctly escaped ASCII form.</p>
+<p>You can convert a list of file names to file URIs using <a href="q3uridrag.html#setFileNames">setFileNames</a>(), or into human-readable form with <a href="q3uridrag.html#setUnicodeUris">setUnicodeUris</a>().</p>
+<p>Static functions are provided to convert between filenames and URIs; e.g&#x2e; <a href="q3uridrag.html#uriToLocalFile">uriToLocalFile</a>() and <a href="q3uridrag.html#localFileToUri">localFileToUri</a>(). Static functions are also provided to convert URIs to and from human-readable form; e.g&#x2e; <a href="q3uridrag.html#uriToUnicodeUri">uriToUnicodeUri</a>() and <a href="q3uridrag.html#unicodeUriToUri">unicodeUriToUri</a>(). You can also decode URIs from a MIME source into a list with <a href="q3uridrag.html#decodeLocalFiles">decodeLocalFiles</a>() and <a href="q3uridrag.html#decodeToUnicodeUris">decodeToUnicodeUris</a>().</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/Q3UriDrag/Q3UriDrag" />
+<h3 class="fn"><a name="Q3UriDrag"></a>Q3UriDrag::Q3UriDrag ( const <a href="q3strlist.html">Q3StrList</a> &amp; <i>uris</i>, <a href="qwidget.html">QWidget</a> * <i>dragSource</i> = 0, const char * <i>name</i> = 0 )</h3>
+<p>Constructs an object to drag the list of <i>uris</i>. The <i>dragSource</i> and <i>name</i> are passed to the <a href="q3storeddrag.html" class="compat">Q3StoredDrag</a> constructor.</p>
+<p>Note that URIs are always in escaped UTF8 encoding.</p>
+<h3 class="fn"><a name="Q3UriDrag-2"></a>Q3UriDrag::Q3UriDrag ( <a href="qwidget.html">QWidget</a> * <i>dragSource</i> = 0, const char * <i>name</i> = 0 )</h3>
+<p>Constructs an object to drag with the given <i>name</i>. You must call <a href="q3uridrag.html#setUris">setUris</a>() before you start the <a href="q3dragobject.html#drag">drag</a>(). Both the <i>dragSource</i> and the <i>name</i> are passed to the <a href="q3storeddrag.html" class="compat">Q3StoredDrag</a> constructor.</p>
+<a name="//apple_ref/cpp/instm/Q3UriDrag/~Q3UriDrag" />
+<h3 class="fn"><a name="dtor.Q3UriDrag"></a>Q3UriDrag::~Q3UriDrag ()</h3>
+<p>Destroys the URI drag object.</p>
+<a name="//apple_ref/cpp/clm/Q3UriDrag/canDecode" />
+<h3 class="fn"><a name="canDecode"></a>bool Q3UriDrag::canDecode ( const <a href="qmimesource.html">QMimeSource</a> * <i>source</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Returns true if <a href="q3uridrag.html#decode">decode</a>() can decode the MIME <i>source</i>; otherwise returns false.</p>
+<a name="//apple_ref/cpp/clm/Q3UriDrag/decode" />
+<h3 class="fn"><a name="decode"></a>bool Q3UriDrag::decode ( const <a href="qmimesource.html">QMimeSource</a> * <i>source</i>, <a href="q3strlist.html">Q3StrList</a> &amp; <i>list</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Decodes URIs from the MIME <i>source</i>, placing the result in the <i>list</i>. The list is cleared before any items are inserted.</p>
+<p>Returns true if the MIME <i>source</i> contained a valid list of URIs; otherwise returns false.</p>
+<a name="//apple_ref/cpp/clm/Q3UriDrag/decodeLocalFiles" />
+<h3 class="fn"><a name="decodeLocalFiles"></a>bool Q3UriDrag::decodeLocalFiles ( const <a href="qmimesource.html">QMimeSource</a> * <i>source</i>, <a href="qstringlist.html">QStringList</a> &amp; <i>list</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Decodes URIs from the MIME <i>source</i>, converting them to local filenames where possible, and places them in the <i>list</i> (which is first cleared).</p>
+<p>Returns true if the MIME <i>source</i> contained a valid list of URIs; otherwise returns false. The list will be empty if no URIs referred to local files.</p>
+<a name="//apple_ref/cpp/clm/Q3UriDrag/decodeToUnicodeUris" />
+<h3 class="fn"><a name="decodeToUnicodeUris"></a>bool Q3UriDrag::decodeToUnicodeUris ( const <a href="qmimesource.html">QMimeSource</a> * <i>source</i>, <a href="qstringlist.html">QStringList</a> &amp; <i>list</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Decodes URIs from the MIME <i>source</i>, converting them to Unicode URIs (only useful for displaying to humans), and places them in the <i>list</i> (which is first cleared).</p>
+<p>Returns true if the MIME <i>source</i> contained a valid list of URIs; otherwise returns false.</p>
+<a name="//apple_ref/cpp/clm/Q3UriDrag/localFileToUri" />
+<h3 class="fn"><a name="localFileToUri"></a><a href="qbytearray.html">QByteArray</a> Q3UriDrag::localFileToUri ( const <a href="qstring.html">QString</a> &amp; <i>filename</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Returns the URI equivalent to the absolute local <i>filename</i>.</p>
+<p>See also <a href="q3uridrag.html#uriToLocalFile">uriToLocalFile</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3UriDrag/setFileNames" />
+<h3 class="fn"><a name="setFileNames"></a>void Q3UriDrag::setFileNames ( const <a href="qstringlist.html">QStringList</a> &amp; <i>filenames</i> )</h3>
+<p>Sets the URIs to be local file URIs equivalent to the <i>filenames</i>.</p>
+<p>See also <a href="q3uridrag.html#localFileToUri">localFileToUri</a>() and <a href="q3uridrag.html#setUris">setUris</a>().</p>
+<h3 class="fn"><a name="setFileNames-2"></a>void Q3UriDrag::setFileNames ( const <a href="qstring.html">QString</a> &amp; <i>name</i> )</h3>
+<p>Same as setFileNames(<a href="qstringlist.html">QStringList</a>(<i>name</i>)).</p>
+<a name="//apple_ref/cpp/instm/Q3UriDrag/setFilenames" />
+<h3 class="fn"><a name="setFilenamesx"></a>void Q3UriDrag::setFilenames ( const <a href="qstring.html">QString</a> &amp; <i>name</i> )</h3>
+<p>Same as setFileNames(<a href="qstringlist.html">QStringList</a>(<i>name</i>)).</p>
+<a name="//apple_ref/cpp/instm/Q3UriDrag/setUnicodeUris" />
+<h3 class="fn"><a name="setUnicodeUris"></a>void Q3UriDrag::setUnicodeUris ( const <a href="qstringlist.html">QStringList</a> &amp; <i>list</i> )</h3>
+<p>Sets the URIs in the <i>list</i> to be Unicode URIs (only useful for displaying to humans).</p>
+<p>See also <a href="q3uridrag.html#localFileToUri">localFileToUri</a>() and <a href="q3uridrag.html#setUris">setUris</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3UriDrag/setUris" />
+<h3 class="fn"><a name="setUris"></a>void Q3UriDrag::setUris ( const <a href="qlist.html">QList</a>&lt;<a href="qbytearray.html">QByteArray</a>&gt; &amp; <i>list</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Changes the <i>list</i> of URIs to be dragged.</p>
+<p>Note that URIs are always in escaped UTF8 encoding.</p>
+<a name="//apple_ref/cpp/clm/Q3UriDrag/unicodeUriToUri" />
+<h3 class="fn"><a name="unicodeUriToUri"></a><a href="qbytearray.html">QByteArray</a> Q3UriDrag::unicodeUriToUri ( const <a href="qstring.html">QString</a> &amp; <i>string</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Returns the URI equivalent of the Unicode URI given in the <i>string</i> (only useful for displaying to humans).</p>
+<p>See also <a href="q3uridrag.html#uriToLocalFile">uriToLocalFile</a>().</p>
+<a name="//apple_ref/cpp/clm/Q3UriDrag/uriToLocalFile" />
+<h3 class="fn"><a name="uriToLocalFile"></a><a href="qstring.html">QString</a> Q3UriDrag::uriToLocalFile ( const char * <i>string</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Returns the name of a local file equivalent to the URI given in the <i>string</i>, or an empty string if it does not refer to a local file.</p>
+<p>Note that URIs are always in escaped UTF8 encoding.</p>
+<p>See also <a href="q3uridrag.html#localFileToUri">localFileToUri</a>().</p>
+<a name="//apple_ref/cpp/clm/Q3UriDrag/uriToUnicodeUri" />
+<h3 class="fn"><a name="uriToUnicodeUri"></a><a href="qstring.html">QString</a> Q3UriDrag::uriToUnicodeUri ( const char * <i>string</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Returns the Unicode URI (only useful for displaying to humans) equivalent of the URI given in the <i>string</i>.</p>
+<p>Note that URIs are always in escaped UTF8 encoding.</p>
+<p>See also <a href="q3uridrag.html#localFileToUri">localFileToUri</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

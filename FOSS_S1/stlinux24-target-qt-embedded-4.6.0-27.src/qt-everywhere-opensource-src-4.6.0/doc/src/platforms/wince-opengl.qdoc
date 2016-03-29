@@ -1,0 +1,88 @@
+/****************************************************************************
+**
+** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+** All rights reserved.
+** Contact: Nokia Corporation (qt-info@nokia.com)
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:LGPL$
+** Commercial Usage
+** Licensees holding valid Qt Commercial licenses may use this file in
+** accordance with the Qt Commercial License Agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and Nokia.
+**
+** GNU Lesser General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU Lesser
+** General Public License version 2.1 as published by the Free Software
+** Foundation and appearing in the file LICENSE.LGPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU Lesser General Public License version 2.1 requirements
+** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+**
+** In addition, as a special exception, Nokia gives you certain additional
+** rights.  These rights are described in the Nokia Qt LGPL Exception
+** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+**
+** GNU General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU
+** General Public License version 3.0 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU General Public License version 3.0 requirements will be
+** met: http://www.gnu.org/copyleft/gpl.html.
+**
+** If you have questions regarding the use of this file, please contact
+** Nokia at qt-info@nokia.com.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \page windowsce-opengl.html
+    \title Qt for Windows CE and OpenGL ES
+    \ingroup qtce
+    \brief Information about support for OpenGL ES with Qt for Windows CE.
+
+    \input platforms/emb-opengl.qdocinc
+
+\section1 Using OpenGL with Qt for Windows CE
+Qt for Windows CE uses EGL 1.1 to embed OpenGL ES windows within the
+Windows CE window manager.
+
+\section2 Configure
+
+To configure Qt for Windows Mobile 5.0 and OpenGL ES Common Lite support
+you can run \c{configure} like this:
+
+    \snippet doc/src/snippets/code/doc_src_wince-opengl.qdoc 0
+
+OpenGL ES includes profiles for floating-point and fixed-point arithmetic.
+The floating point profile is called OpenGL ES CM (Common) and the
+fixed-point profile is called OpenGL ES CL (Common Lite).
+
+You can run \c{configure} with the \c{-opengl-es-cm} option for the Common
+profile or \c{-opengl-es-cl} for the Common Lite profile. In both cases,
+ensure that the \c{lib} and \c{includes} paths include the OpenGL ES
+headers and libararies from your SDK. The OpenGL ES lib should be called
+either \c{libGLES_CM.lib} for the Common profile or \c{libGLES_CL.lib} for
+the Common Lite profile.
+
+The distinction between the Common and Common Lite profiles is important,
+because the Common Lite profile has less functionality and only supports a
+fixed-point vertex format.
+
+To start programming with Qt and OpenGL ES on Windows CE, you can start
+with the \l{Hello GL ES Example}. This example shows how to use QGLWidget
+and QGLPainter with OpenGL ES. It also provides some hints on how to port
+OpenGL code to OpenGL ES.
+
+\section2 Using OpenGL to Accelerate Normal 2D Painting
+
+Qt provides QOpenGLPaintEngine, a subclass of QPaintEngine that translates
+QPainter operations into OpenGL calls. This is especially convenient for
+drawing text or QImage objects in an OpenGL ES context. For further
+details, refer to the \l{Hello GL ES Example}.
+
+*/

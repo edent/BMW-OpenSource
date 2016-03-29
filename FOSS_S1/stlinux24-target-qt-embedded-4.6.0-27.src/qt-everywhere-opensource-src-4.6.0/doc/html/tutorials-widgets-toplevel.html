@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- widgets-tutorial.qdoc -->
+<head>
+  <title>Qt 4.6: Widgets Tutorial - Creating a Window</title>
+  <link rel="prev" href="widgets-tutorial.html" />
+  <link rel="contents" href="widgets-tutorial.html" />
+  <link rel="next" href="tutorials-widgets-childwidget.html" />
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><p>
+[Previous: <a href="widgets-tutorial.html">Widgets Tutorial</a>]
+[<a href="widgets-tutorial.html">Contents</a>]
+[Next: <a href="tutorials-widgets-childwidget.html">Widgets Tutorial - Child Widgets</a>]
+</p>
+<h1 class="title">Widgets Tutorial - Creating a Window<br /><span class="subtitle"></span>
+</h1>
+<p>Files:</p>
+<ul>
+<li><a href="tutorials-widgets-toplevel-main-cpp.html">tutorials/widgets/toplevel/main.cpp</a></li>
+<li><a href="tutorials-widgets-toplevel-toplevel-pro.html">tutorials/widgets/toplevel/toplevel.pro</a></li>
+</ul>
+<p>If a widget is created without a parent, it is treated as a window, or <i>top-level widget</i>, when it is shown. Since it has no parent object to ensure that it is deleted when no longer needed, it is up to the developer to keep track of the top-level widgets in an application.</p>
+<p>In the following example, we use <a href="qwidget.html">QWidget</a> to create and show a window with a default size:</p>
+    <table align="left" width="100%">
+    <tr class="qt-code"><td>
+    <pre> #include &lt;QtGui&gt;
+
+ int main(int argc, char *argv[])
+ {
+     QApplication app(argc, argv);
+     QWidget window;
+     window.resize(320, 240);
+     window.show();
+     window.setWindowTitle(
+         QApplication::translate(&quot;toplevel&quot;, &quot;Top-level widget&quot;));
+     return app.exec();
+ }</pre>
+    </td><td align="right">
+    <p><img src="images/widgets-tutorial-toplevel.png" /></p>
+    </td></tr>
+    </table>
+    <p>To create a real GUI, we need to place widgets inside the window. To do this, we pass a <a href="qwidget.html">QWidget</a> instance to a widget's constructor, as we will demonstrate in the next part of this tutorial.</p>
+<p>
+[Previous: <a href="widgets-tutorial.html">Widgets Tutorial</a>]
+[<a href="widgets-tutorial.html">Contents</a>]
+[Next: <a href="tutorials-widgets-childwidget.html">Widgets Tutorial - Child Widgets</a>]
+</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

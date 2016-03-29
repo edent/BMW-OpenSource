@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qgl.cpp -->
+<head>
+  <title>Qt 4.6: QGL Namespace Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QGL Namespace Reference<br /><span class="small-subtitle">[<a href="qtopengl.html">QtOpenGL</a> module]</span>
+</h1>
+<p>The QGL namespace specifies miscellaneous identifiers used in the Qt OpenGL module. <a href="#details">More...</a></p>
+<pre> #include &lt;QGL&gt;</pre><ul>
+</ul>
+<hr />
+<a name="types"></a>
+<h2>Types</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qgl.html#FormatOption-enum">FormatOption</a></b> { DoubleBuffer, DepthBuffer, Rgba, AlphaChannel, ..., NoSampleBuffers }</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">flags </td><td class="memItemRight" valign="bottom"><b><a href="qgl.html#FormatOption-enum">FormatOptions</a></b></td></tr>
+</table>
+<hr />
+<a name="functions"></a>
+<h2>Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qgl.html#setPreferredPaintEngine">setPreferredPaintEngine</a></b> ( QPaintEngine::Type <i>engineType</i> )</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QGL namespace specifies miscellaneous identifiers used in the Qt OpenGL module.</p>
+<hr />
+<h2>Type Documentation</h2>
+<a name="//apple_ref/cpp/tag/QGL/FormatOption" />
+<a name="//apple_ref/cpp/econst/QGL/DoubleBuffer" />
+<a name="//apple_ref/cpp/econst/QGL/DepthBuffer" />
+<a name="//apple_ref/cpp/econst/QGL/Rgba" />
+<a name="//apple_ref/cpp/econst/QGL/AlphaChannel" />
+<a name="//apple_ref/cpp/econst/QGL/AccumBuffer" />
+<a name="//apple_ref/cpp/econst/QGL/StencilBuffer" />
+<a name="//apple_ref/cpp/econst/QGL/StereoBuffers" />
+<a name="//apple_ref/cpp/econst/QGL/DirectRendering" />
+<a name="//apple_ref/cpp/econst/QGL/HasOverlay" />
+<a name="//apple_ref/cpp/econst/QGL/SampleBuffers" />
+<a name="//apple_ref/cpp/econst/QGL/SingleBuffer" />
+<a name="//apple_ref/cpp/econst/QGL/NoDepthBuffer" />
+<a name="//apple_ref/cpp/econst/QGL/ColorIndex" />
+<a name="//apple_ref/cpp/econst/QGL/NoAlphaChannel" />
+<a name="//apple_ref/cpp/econst/QGL/NoAccumBuffer" />
+<a name="//apple_ref/cpp/econst/QGL/NoStencilBuffer" />
+<a name="//apple_ref/cpp/econst/QGL/NoStereoBuffers" />
+<a name="//apple_ref/cpp/econst/QGL/IndirectRendering" />
+<a name="//apple_ref/cpp/econst/QGL/NoOverlay" />
+<a name="//apple_ref/cpp/econst/QGL/NoSampleBuffers" />
+<a name="//apple_ref/cpp/tdef/QGL/FormatOptions" />
+<h3 class="flags"><a name="FormatOption-enum"></a>enum QGL::FormatOption<br />flags QGL::FormatOptions</h3>
+<p>This enum specifies the format options that can be used to configure an OpenGL context. These are set using <a href="qglformat.html#setOption">QGLFormat::setOption</a>().</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QGL::DoubleBuffer</tt></td><td align="center" valign="top"><tt>0x0001</tt></td><td valign="top">Specifies the use of double buffering.</td></tr>
+<tr><td valign="top"><tt>QGL::DepthBuffer</tt></td><td align="center" valign="top"><tt>0x0002</tt></td><td valign="top">Enables the use of a depth buffer.</td></tr>
+<tr><td valign="top"><tt>QGL::Rgba</tt></td><td align="center" valign="top"><tt>0x0004</tt></td><td valign="top">Specifies that the context should use RGBA as its pixel format.</td></tr>
+<tr><td valign="top"><tt>QGL::AlphaChannel</tt></td><td align="center" valign="top"><tt>0x0008</tt></td><td valign="top">Enables the use of an alpha channel.</td></tr>
+<tr><td valign="top"><tt>QGL::AccumBuffer</tt></td><td align="center" valign="top"><tt>0x0010</tt></td><td valign="top">Enables the use of an accumulation buffer.</td></tr>
+<tr><td valign="top"><tt>QGL::StencilBuffer</tt></td><td align="center" valign="top"><tt>0x0020</tt></td><td valign="top">Enables the use of a stencil buffer.</td></tr>
+<tr><td valign="top"><tt>QGL::StereoBuffers</tt></td><td align="center" valign="top"><tt>0x0040</tt></td><td valign="top">Enables the use of a stereo buffers for use with visualization hardware.</td></tr>
+<tr><td valign="top"><tt>QGL::DirectRendering</tt></td><td align="center" valign="top"><tt>0x0080</tt></td><td valign="top">Specifies that the context is used for direct rendering to a display.</td></tr>
+<tr><td valign="top"><tt>QGL::HasOverlay</tt></td><td align="center" valign="top"><tt>0x0100</tt></td><td valign="top">Enables the use of an overlay.</td></tr>
+<tr><td valign="top"><tt>QGL::SampleBuffers</tt></td><td align="center" valign="top"><tt>0x0200</tt></td><td valign="top">Enables the use of sample buffers.</td></tr>
+<tr><td valign="top"><tt>QGL::SingleBuffer</tt></td><td align="center" valign="top"><tt>DoubleBuffer&lt;&lt;16</tt></td><td valign="top">Specifies the use of a single buffer, as opposed to double buffers.</td></tr>
+<tr><td valign="top"><tt>QGL::NoDepthBuffer</tt></td><td align="center" valign="top"><tt>DepthBuffer&lt;&lt;16</tt></td><td valign="top">Disables the use of a depth buffer.</td></tr>
+<tr><td valign="top"><tt>QGL::ColorIndex</tt></td><td align="center" valign="top"><tt>Rgba&lt;&lt;16</tt></td><td valign="top">Specifies that the context should use a color index as its pixel format.</td></tr>
+<tr><td valign="top"><tt>QGL::NoAlphaChannel</tt></td><td align="center" valign="top"><tt>AlphaChannel&lt;&lt;16</tt></td><td valign="top">Disables the use of an alpha channel.</td></tr>
+<tr><td valign="top"><tt>QGL::NoAccumBuffer</tt></td><td align="center" valign="top"><tt>AccumBuffer&lt;&lt;16</tt></td><td valign="top">Disables the use of an accumulation buffer.</td></tr>
+<tr><td valign="top"><tt>QGL::NoStencilBuffer</tt></td><td align="center" valign="top"><tt>StencilBuffer&lt;&lt;16</tt></td><td valign="top">Disables the use of a stencil buffer.</td></tr>
+<tr><td valign="top"><tt>QGL::NoStereoBuffers</tt></td><td align="center" valign="top"><tt>StereoBuffers&lt;&lt;16</tt></td><td valign="top">Disables the use of stereo buffers.</td></tr>
+<tr><td valign="top"><tt>QGL::IndirectRendering</tt></td><td align="center" valign="top"><tt>DirectRendering&lt;&lt;16</tt></td><td valign="top">Specifies that the context is used for indirect rendering to a buffer.</td></tr>
+<tr><td valign="top"><tt>QGL::NoOverlay</tt></td><td align="center" valign="top"><tt>HasOverlay&lt;&lt;16</tt></td><td valign="top">Disables the use of an overlay.</td></tr>
+<tr><td valign="top"><tt>QGL::NoSampleBuffers</tt></td><td align="center" valign="top"><tt>SampleBuffers&lt;&lt;16</tt></td><td valign="top">Disables the use of sample buffers.</td></tr>
+</table></p>
+<p>The FormatOptions type is a typedef for <a href="qflags.html">QFlags</a>&lt;FormatOption&gt;. It stores an OR combination of FormatOption values.</p>
+<p>See also <a href="opengl-samplebuffers.html">Sample Buffers Example</a>.</p>
+<hr />
+<h2>Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QGL/setPreferredPaintEngine" />
+<h3 class="fn"><a name="setPreferredPaintEngine"></a>void QGL::setPreferredPaintEngine ( <a href="qpaintengine.html#Type-enum">QPaintEngine::Type</a> <i>engineType</i> )</h3>
+<p>Sets the preferred OpenGL paint engine that is used to draw onto <a href="qglwidget.html">QGLWidget</a>, <a href="qglpixelbuffer.html">QGLPixelBuffer</a> and <a href="qglframebufferobject.html">QGLFramebufferObject</a> targets with <a href="qpainter.html">QPainter</a> in Qt.</p>
+<p>The <i>engineType</i> parameter specifies which of the GL engines to use. Only <tt>QPaintEngine::OpenGL</tt> and <tt>QPaintEngine::OpenGL2</tt> are valid parameters to this function. All other values are ignored.</p>
+<p>By default, the <tt>QPaintEngine::OpenGL2</tt> engine is used if GL/GLES version 2.0 is available, otherwise <tt>QPaintEngine::OpenGL</tt> is used.</p>
+<p><b>Warning:</b> This function must be called before the <a href="qapplication.html">QApplication</a> constructor is called.</p>
+<p>This function was introduced in Qt 4.6.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

@@ -1,0 +1,196 @@
+/****************************************************************************
+**
+** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+** All rights reserved.
+** Contact: Nokia Corporation (qt-info@nokia.com)
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:LGPL$
+** Commercial Usage
+** Licensees holding valid Qt Commercial licenses may use this file in
+** accordance with the Qt Commercial License Agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and Nokia.
+**
+** GNU Lesser General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU Lesser
+** General Public License version 2.1 as published by the Free Software
+** Foundation and appearing in the file LICENSE.LGPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU Lesser General Public License version 2.1 requirements
+** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+**
+** In addition, as a special exception, Nokia gives you certain additional
+** rights.  These rights are described in the Nokia Qt LGPL Exception
+** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+**
+** GNU General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU
+** General Public License version 3.0 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU General Public License version 3.0 requirements will be
+** met: http://www.gnu.org/copyleft/gpl.html.
+**
+** If you have questions regarding the use of this file, please contact
+** Nokia at qt-info@nokia.com.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+//! [0]
+LoginWidget::LoginWidget()
+{
+    QLabel *label = new QLabel(tr("Password:"));
+    ...
+}
+//! [0]
+
+
+//! [1]
+void some_global_function(LoginWidget *logwid)
+{
+    QLabel *label = new QLabel(
+                LoginWidget::tr("Password:"), logwid);
+}
+
+void same_global_function(LoginWidget *logwid)
+{
+    QLabel *label = new QLabel(
+                qApp->translate("LoginWidget", "Password:"), logwid);
+}
+//! [1]
+
+
+//! [2]
+QString FriendlyConversation::greeting(int type)
+{
+    static const char *greeting_strings[] = {
+        QT_TR_NOOP("Hello"),
+        QT_TR_NOOP("Goodbye")
+    };
+    return tr(greeting_strings[type]);
+}
+//! [2]
+
+
+//! [3]
+static const char *greeting_strings[] = {
+    QT_TRANSLATE_NOOP("FriendlyConversation", "Hello"),
+    QT_TRANSLATE_NOOP("FriendlyConversation", "Goodbye")
+};
+
+QString FriendlyConversation::greeting(int type)
+{
+    return tr(greeting_strings[type]);
+}
+
+QString global_greeting(int type)
+{
+    return qApp->translate("FriendlyConversation",
+                           greeting_strings[type]);
+}
+//! [3]
+
+
+//! [4]
+void FileCopier::showProgress(int done, int total,
+                              const QString &currentFile)
+{
+    label.setText(tr("%1 of %2 files copied.\nCopying: %3")
+                  .arg(done)
+                  .arg(total)
+                  .arg(currentFile));
+}
+//! [4]
+
+
+//! [5]
+QString s1 = "%1 of %2 files copied. Copying: %3";
+QString s2 = "Kopierer nu %3. Av totalt %2 filer er %1 kopiert.";
+
+qDebug() << s1.arg(5).arg(10).arg("somefile.txt");
+qDebug() << s2.arg(5).arg(10).arg("somefile.txt");
+//! [5]
+
+
+//! [6]
+5 of 10 files copied. Copying: somefile.txt
+Kopierer nu somefile.txt. Av totalt 10 filer er 5 kopiert.
+//! [6]
+
+
+//! [7]
+HEADERS         = funnydialog.h \
+                  wackywidget.h
+SOURCES         = funnydialog.cpp \
+                  main.cpp \
+                  wackywidget.cpp
+FORMS           = fancybox.ui
+TRANSLATIONS    = superapp_dk.ts \
+                  superapp_fi.ts \
+                  superapp_no.ts \
+                  superapp_se.ts
+//! [7]
+
+
+//! [8]
+int main(int argc, char *argv[])
+{
+    QApplication app(argc, argv);
+
+    QTranslator qtTranslator;
+    qtTranslator.load("qt_" + QLocale::system().name(),
+            QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+    app.installTranslator(&qtTranslator);
+
+    QTranslator myappTranslator;
+    myappTranslator.load("myapp_" + QLocale::system().name());
+    app.installTranslator(&myappTranslator);
+
+    ...
+    return app.exec();
+}
+//! [8]
+
+
+//! [9]
+QString string = ...; // some Unicode text
+
+QTextCodec *codec = QTextCodec::codecForName("ISO 8859-5");
+QByteArray encodedString = codec->fromUnicode(string);
+//! [9]
+
+
+//! [10]
+QByteArray encodedString = ...; // some ISO 8859-5 encoded text
+
+QTextCodec *codec = QTextCodec::codecForName("ISO 8859-5");
+QString string = codec->toUnicode(encodedString);
+//! [10]
+
+
+//! [11]
+void Clock::setTime(const QTime &time)
+{
+    if (tr("AMPM") == "AMPM") {
+        // 12-hour clock
+    } else {
+        // 24-hour clock
+    }
+}
+//! [11]
+
+
+//! [12]
+void MyWidget::changeEvent(QEvent *event)
+{
+    if (e->type() == QEvent::LanguageChange) {
+        titleLabel->setText(tr("Document Title"));
+        ...
+        okPushButton->setText(tr("&OK"));
+    } else
+        QWidget::changeEvent(event);
+}
+//! [12]

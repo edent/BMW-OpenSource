@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- q3progressdialog.cpp -->
+<head>
+  <title>Qt 4.6: Q3ProgressDialog Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//Q3ProgressDialog" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">Q3ProgressDialog Class Reference<br /><span class="small-subtitle">[<a href="qt3support.html">Qt3Support</a> module]</span>
+</h1>
+<p>The Q3ProgressDialog class provides feedback on the progress of a slow operation. <a href="#details">More...</a></p>
+<pre> #include &lt;Q3ProgressDialog&gt;</pre><p><b>This class is part of the Qt 3 support library.</b> It is provided to keep old source code working. We strongly advise against using it in new code. See <a href="porting4.html#qprogressdialog">Porting to Qt 4</a> for more information.</p>
+<p>Inherits <a href="qdialog.html">QDialog</a>.</p>
+<ul>
+<li><a href="q3progressdialog-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="properties"></a>
+<h2>Properties</h2>
+<p><table class="propsummary" width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr><td width="45%" valign="top"><ul>
+<li><div class="fn"><b><a href="q3progressdialog.html#autoClose-prop">autoClose</a></b> : bool</div></li>
+<li><div class="fn"><b><a href="q3progressdialog.html#autoReset-prop">autoReset</a></b> : bool</div></li>
+<li><div class="fn"><b><a href="q3progressdialog.html#labelText-prop">labelText</a></b> : QString</div></li>
+<li><div class="fn"><b><a href="q3progressdialog.html#minimumDuration-prop">minimumDuration</a></b> : int</div></li>
+</ul></td><td valign="top"><ul>
+<li><div class="fn"><b><a href="q3progressdialog.html#progress-prop">progress</a></b> : int</div></li>
+<li><div class="fn"><b><a href="q3progressdialog.html#totalSteps-prop">totalSteps</a></b> : int</div></li>
+<li><div class="fn"><b><a href="q3progressdialog.html#wasCanceled-prop">wasCanceled</a></b> : const bool</div></li>
+<li><div class="fn"><b><a href="q3progressdialog.html#wasCancelled-prop">wasCancelled</a></b> : const bool</div></li>
+</ul>
+</td></tr>
+</table></p>
+<ul>
+<li><div bar="2" class="fn"></div>2 properties inherited from <a href="qdialog.html#properties">QDialog</a></li>
+<li><div bar="2" class="fn"></div>58 properties inherited from <a href="qwidget.html#properties">QWidget</a></li>
+<li><div bar="2" class="fn"></div>1 property inherited from <a href="qobject.html#properties">QObject</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="q3progressdialog.html#Q3ProgressDialog">Q3ProgressDialog</a></b> ( QWidget * <i>creator</i>, const char * <i>name</i>, bool <i>modal</i> = false, Qt::WindowFlags <i>f</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="q3progressdialog.html#Q3ProgressDialog-2">Q3ProgressDialog</a></b> ( const QString &amp; <i>labelText</i>, const QString &amp; <i>cancelButtonText</i>, int <i>totalSteps</i>, QWidget * <i>creator</i> = 0, const char * <i>name</i> = 0, bool <i>modal</i> = false, Qt::WindowFlags <i>f</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="q3progressdialog.html#Q3ProgressDialog-3">Q3ProgressDialog</a></b> ( QWidget * <i>creator</i> = 0, Qt::WindowFlags <i>f</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="q3progressdialog.html#Q3ProgressDialog-4">Q3ProgressDialog</a></b> ( const QString &amp; <i>labelText</i>, const QString &amp; <i>cancelButtonText</i>, int <i>totalSteps</i>, QWidget * <i>creator</i> = 0, Qt::WindowFlags <i>f</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="q3progressdialog.html#dtor.Q3ProgressDialog">~Q3ProgressDialog</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="q3progressdialog.html#autoClose-prop">autoClose</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="q3progressdialog.html#autoReset-prop">autoReset</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="q3progressdialog.html#labelText-prop">labelText</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="q3progressdialog.html#minimumDuration-prop">minimumDuration</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="q3progressdialog.html#progress-prop">progress</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="q3progressdialog.html#autoClose-prop">setAutoClose</a></b> ( bool <i>b</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="q3progressdialog.html#autoReset-prop">setAutoReset</a></b> ( bool <i>b</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="q3progressdialog.html#setBar">setBar</a></b> ( Q3ProgressBar * <i>bar</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="q3progressdialog.html#setCancelButton">setCancelButton</a></b> ( QPushButton * <i>cancelButton</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="q3progressdialog.html#setLabel">setLabel</a></b> ( QLabel * <i>label</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="q3progressdialog.html#totalSteps-prop">totalSteps</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="q3progressdialog.html#wasCanceled-prop">wasCanceled</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="q3progressdialog.html#wasCancelled-prop">wasCancelled</a></b> () const</td></tr>
+</table>
+<hr />
+<a name="reimplemented-public-functions"></a>
+<h2>Reimplemented Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual QSize </td><td class="memItemRight" valign="bottom"><b><a href="q3progressdialog.html#sizeHint">sizeHint</a></b> () const</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>8 public functions inherited from <a href="qdialog.html#public-functions">QDialog</a></li>
+<li><div bar="2" class="fn"></div>216 public functions inherited from <a href="qwidget.html#public-functions">QWidget</a></li>
+<li><div bar="2" class="fn"></div>29 public functions inherited from <a href="qobject.html#public-functions">QObject</a></li>
+<li><div bar="2" class="fn"></div>12 public functions inherited from <a href="qpaintdevice.html#public-functions">QPaintDevice</a></li>
+</ul>
+<hr />
+<a name="public-slots"></a>
+<h2>Public Slots</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="q3progressdialog.html#cancel">cancel</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="q3progressdialog.html#reset">reset</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="q3progressdialog.html#setCancelButtonText">setCancelButtonText</a></b> ( const QString &amp; <i>cancelButtonText</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="q3progressdialog.html#labelText-prop">setLabelText</a></b> ( const QString &amp; )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="q3progressdialog.html#minimumDuration-prop">setMinimumDuration</a></b> ( int <i>ms</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="q3progressdialog.html#progress-prop">setProgress</a></b> ( int <i>progress</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="q3progressdialog.html#progress-prop">setProgress</a></b> ( int <i>progress</i>, int <i>totalSteps</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="q3progressdialog.html#totalSteps-prop">setTotalSteps</a></b> ( int <i>totalSteps</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>5 public slots inherited from <a href="qdialog.html#public-slots">QDialog</a></li>
+<li><div bar="2" class="fn"></div>19 public slots inherited from <a href="qwidget.html#public-slots">QWidget</a></li>
+<li><div bar="2" class="fn"></div>1 public slot inherited from <a href="qobject.html#public-slots">QObject</a></li>
+</ul>
+<hr />
+<a name="signals"></a>
+<h2>Signals</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="q3progressdialog.html#canceled">canceled</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="q3progressdialog.html#cancelled">cancelled</a></b> ()</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>3 signals inherited from <a href="qdialog.html#signals">QDialog</a></li>
+<li><div bar="2" class="fn"></div>1 signal inherited from <a href="qwidget.html#signals">QWidget</a></li>
+<li><div bar="2" class="fn"></div>1 signal inherited from <a href="qobject.html#signals">QObject</a></li>
+</ul>
+<hr />
+<a name="reimplemented-protected-functions"></a>
+<h2>Reimplemented Protected Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="q3progressdialog.html#changeEvent">changeEvent</a></b> ( QEvent * <i>ev</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="q3progressdialog.html#closeEvent">closeEvent</a></b> ( QCloseEvent * <i>e</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="q3progressdialog.html#resizeEvent">resizeEvent</a></b> ( QResizeEvent * )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="q3progressdialog.html#showEvent">showEvent</a></b> ( QShowEvent * <i>e</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>7 protected functions inherited from <a href="qdialog.html#protected-functions">QDialog</a></li>
+<li><div bar="2" class="fn"></div>37 protected functions inherited from <a href="qwidget.html#protected-functions">QWidget</a></li>
+<li><div bar="2" class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+<li><div bar="2" class="fn"></div>1 protected function inherited from <a href="qpaintdevice.html#protected-functions">QPaintDevice</a></li>
+</ul>
+<hr />
+<a name="protected-slots"></a>
+<h2>Protected Slots</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="q3progressdialog.html#forceShow">forceShow</a></b> ()</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>1 protected slot inherited from <a href="qwidget.html#protected-slots">QWidget</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li><div class="fn"></div>4 static public members inherited from <a href="qwidget.html#static-public-members">QWidget</a></li>
+<li><div class="fn"></div>5 static public members inherited from <a href="qobject.html#static-public-members">QObject</a></li>
+<li><div class="fn"></div>7 protected functions inherited from <a href="qdialog.html#protected-functions">QDialog</a></li>
+<li><div class="fn"></div>37 protected functions inherited from <a href="qwidget.html#protected-functions">QWidget</a></li>
+<li><div class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+<li><div class="fn"></div>1 protected function inherited from <a href="qpaintdevice.html#protected-functions">QPaintDevice</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The Q3ProgressDialog class provides feedback on the progress of a slow operation.</p>
+<p>A progress dialog is used to give the user an indication of how long an operation is going to take, and to demonstrate that the application has not frozen. It can also give the user an opportunity to abort the operation.</p>
+<p>A common problem with progress dialogs is that it is difficult to know when to use them; operations take different amounts of time on different hardware. Q3ProgressDialog offers a solution to this problem: it estimates the time the operation will take (based on time for steps), and only shows itself if that estimate is beyond <a href="q3progressdialog.html#minimumDuration-prop">minimumDuration</a>() (4 seconds by default).</p>
+<p>Use <a href="q3progressdialog.html#totalSteps-prop">setTotalSteps</a>() (or the constructor) to set the number of &quot;steps&quot; in the operation and call <a href="q3progressdialog.html#progress-prop">setProgress</a>() as the operation progresses. The step value can be chosen arbitrarily. It can be the number of files copied, the number of bytes received, the number of iterations through the main loop of your algorithm, or some other suitable unit. Progress starts at 0, and the progress dialog shows that the operation has finished when you call <a href="q3progressdialog.html#progress-prop">setProgress</a>() with <a href="q3progressdialog.html#totalSteps-prop">totalSteps</a>() as its argument.</p>
+<p>The dialog automatically resets and hides itself at the end of the operation. Use <a href="q3progressdialog.html#autoReset-prop">setAutoReset</a>() and <a href="q3progressdialog.html#autoClose-prop">setAutoClose</a>() to change this behavior.</p>
+<p>There are two ways of using Q3ProgressDialog: modal and modeless.</p>
+<p>Using a modal Q3ProgressDialog is simpler for the programmer, but you must call <a href="qcoreapplication.html#processEvents">QApplication::processEvents</a>() or QEventLoop::processEvents(ExcludeUserInput) to keep the event loop running to ensure that the application doesn't freeze. Do the operation in a loop, call <a href="q3progressdialog.html#progress-prop">setProgress</a>() at intervals, and check for cancellation with <a href="q3progressdialog.html#wasCanceled-prop">wasCanceled</a>(). For example:</p>
+<pre> Q3ProgressDialog progress(&quot;Copying files...&quot;, &quot;Abort Copy&quot;, numFiles,
+                           this, &quot;progress&quot;, true);
+ for (int i = 0; i &lt; numFiles; i++) {
+     progress.setProgress(i);
+     qApp-&gt;processEvents();
+
+     if (progress.wasCanceled())
+         break;
+     <span class="comment">//... copy one file</span>
+ }
+ progress.setProgress(numFiles);</pre>
+<p>A modeless progress dialog is suitable for operations that take place in the background, where the user is able to interact with the application. Such operations are typically based on <a href="qtimer.html">QTimer</a> (or <a href="qobject.html#timerEvent">QObject::timerEvent</a>()), <a href="qsocketnotifier.html">QSocketNotifier</a>, or <a href="porting4.html#qurloperator">QUrlOperator</a>; or performed in a separate thread. A <a href="q3progressbar.html">Q3ProgressBar</a> in the status bar of your main window is often an alternative to a modeless progress dialog.</p>
+<p>You need to have an event loop to be running, connect the <a href="q3progressdialog.html#canceled">canceled</a>() signal to a slot that stops the operation, and call <a href="q3progressdialog.html#progress-prop">setProgress</a>() at intervals. For example:</p>
+<pre> Operation::Operation(QObject *parent = 0)
+     : QObject(parent), steps(0)
+ {
+     pd = new Q3ProgressDialog(&quot;Operation in progress.&quot;, &quot;Cancel&quot;, 100);
+     connect(pd, SIGNAL(canceled()), this, SLOT(cancel()));
+     t = new QTimer(this);
+     connect(t, SIGNAL(timeout()), this, SLOT(perform()));
+     t-&gt;start(0);
+ }
+
+ void Operation::perform()
+ {
+     pd-&gt;setProgress(steps);
+     <span class="comment">//... perform one percent of the operation</span>
+     steps++;
+     if (steps &gt; pd-&gt;totalSteps())
+         t-&gt;stop();
+ }
+
+ void Operation::cancel()
+ {
+     t-&gt;stop();
+     <span class="comment">//... cleanup</span>
+ }</pre>
+<p>In both modes the progress dialog may be customized by replacing the child widgets with custom widgets by using <a href="q3progressdialog.html#setLabel">setLabel</a>(), <a href="q3progressdialog.html#setBar">setBar</a>(), and <a href="q3progressdialog.html#setCancelButton">setCancelButton</a>(). The functions <a href="q3progressdialog.html#labelText-prop">setLabelText</a>() and <a href="q3progressdialog.html#setCancelButtonText">setCancelButtonText</a>() set the texts shown.</p>
+<p><img src="images/qprogdlg-m.png" alt="Screenshot in Motif style" /> <img src="images/qprogdlg-w.png" alt="Screenshot in Windows style" /></p>
+<p>See also <a href="qdialog.html">QDialog</a>, <a href="q3progressbar.html">Q3ProgressBar</a>, and <a href="guibooks.html#fowler">GUI Design Handbook: Progress Indicator</a>.</p>
+<hr />
+<h2>Property Documentation</h2>
+<a name="//apple_ref/cpp/instm/Q3ProgressDialog/autoClose" />
+<a name="//apple_ref/cpp/instm/Q3ProgressDialog/setAutoClose" />
+<h3 class="fn"><a name="autoClose-prop"></a>autoClose : bool</h3>
+<p>This property holds whether the dialog gets hidden by reset().</p>
+<p>The default is true.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b>autoClose</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setAutoClose</b> ( bool <i>b</i> )</td></tr>
+</table>
+<p>See also <a href="q3progressdialog.html#autoReset-prop">setAutoReset</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3ProgressDialog/autoReset" />
+<a name="//apple_ref/cpp/instm/Q3ProgressDialog/setAutoReset" />
+<h3 class="fn"><a name="autoReset-prop"></a>autoReset : bool</h3>
+<p>This property holds whether the progress dialog calls reset() as soon as progress() equals totalSteps().</p>
+<p>The default is true.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b>autoReset</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setAutoReset</b> ( bool <i>b</i> )</td></tr>
+</table>
+<p>See also <a href="q3progressdialog.html#autoClose-prop">setAutoClose</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3ProgressDialog/labelText" />
+<a name="//apple_ref/cpp/instm/Q3ProgressDialog/setLabelText" />
+<h3 class="fn"><a name="labelText-prop"></a>labelText : <a href="qstring.html">QString</a></h3>
+<p>This property holds the label's text.</p>
+<p>The default text is an empty string.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b>labelText</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setLabelText</b> ( const QString &amp; )</td></tr>
+</table>
+<a name="//apple_ref/cpp/instm/Q3ProgressDialog/minimumDuration" />
+<a name="//apple_ref/cpp/instm/Q3ProgressDialog/setMinimumDuration" />
+<h3 class="fn"><a name="minimumDuration-prop"></a>minimumDuration : int</h3>
+<p>This property holds the time that must pass before the dialog appears.</p>
+<p>If the expected duration of the task is less than the minimumDuration, the dialog will not appear at all. This prevents the dialog popping up for tasks that are quickly over. For tasks that are expected to exceed the minimumDuration, the dialog will pop up after the minimumDuration time or as soon as any progress is set.</p>
+<p>If set to 0, the dialog is always shown as soon as any progress is set. The default is 4000 milliseconds.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b>minimumDuration</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setMinimumDuration</b> ( int <i>ms</i> )</td></tr>
+</table>
+<a name="//apple_ref/cpp/instm/Q3ProgressDialog/progress" />
+<a name="//apple_ref/cpp/instm/Q3ProgressDialog/setProgress" />
+<h3 class="fn"><a name="progress-prop"></a>progress : int</h3>
+<p>This property holds the current amount of progress made.</p>
+<p>For the progress dialog to work as expected, you should initially set this property to 0 and finally set it to <a href="q3progressdialog.html#totalSteps-prop">Q3ProgressDialog::totalSteps</a>(); you can call setProgress() any number of times in-between.</p>
+<p><b>Warning:</b> If the progress dialog is modal (see <a href="q3progressdialog.html#Q3ProgressDialog">Q3ProgressDialog::Q3ProgressDialog</a>()), this function calls <a href="qcoreapplication.html#processEvents">QApplication::processEvents</a>(), so take care that this does not cause undesirable re-entrancy in your code. For example, don't use a <a href="q3progressdialog.html" class="compat">Q3ProgressDialog</a> inside a <a href="qwidget.html#paintEvent">paintEvent</a>()!</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b>progress</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setProgress</b> ( int <i>progress</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setProgress</b> ( int <i>progress</i>, int <i>totalSteps</i> )</td></tr>
+</table>
+<p>See also <a href="q3progressdialog.html#totalSteps-prop">totalSteps</a>.</p>
+<a name="//apple_ref/cpp/instm/Q3ProgressDialog/totalSteps" />
+<a name="//apple_ref/cpp/instm/Q3ProgressDialog/setTotalSteps" />
+<h3 class="fn"><a name="totalSteps-prop"></a>totalSteps : int</h3>
+<p>This property holds the total number of steps.</p>
+<p>The default is 0.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b>totalSteps</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setTotalSteps</b> ( int <i>totalSteps</i> )</td></tr>
+</table>
+<a name="//apple_ref/cpp/instm/Q3ProgressDialog/wasCanceled" />
+<h3 class="fn"><a name="wasCanceled-prop"></a>wasCanceled : const bool</h3>
+<p>This property holds whether the dialog was canceled.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b>wasCanceled</b> () const</td></tr>
+</table>
+<p>See also <a href="q3progressdialog.html#progress-prop">setProgress</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3ProgressDialog/wasCancelled" />
+<h3 class="fn"><a name="wasCancelled-prop"></a>wasCancelled : const bool</h3>
+<p>This property holds whether the dialog was canceled.</p>
+<p>Use <a href="q3progressdialog.html#wasCanceled-prop">wasCanceled</a> instead.</p>
+<p>This property was introduced in Qt 4.2.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b>wasCancelled</b> () const</td></tr>
+</table>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/Q3ProgressDialog/Q3ProgressDialog" />
+<h3 class="fn"><a name="Q3ProgressDialog"></a>Q3ProgressDialog::Q3ProgressDialog ( <a href="qwidget.html">QWidget</a> * <i>creator</i>, const char * <i>name</i>, bool <i>modal</i> = false, <a href="qt.html#WindowType-enum">Qt::WindowFlags</a> <i>f</i> = 0 )</h3>
+<p>Constructs a progress dialog.</p>
+<p>Default settings:</p>
+<ul>
+<li>The label text is empty.</li>
+<li>The cancel button text is (translated) &quot;Cancel&quot;.</li>
+<li>The total number of steps is 100.</li>
+</ul>
+<p>The <i>creator</i> argument is the widget to use as the dialog's parent. The <i>name</i>, <i>modal</i>, and the widget flags, <i>f</i>, are passed to the <a href="qdialog.html#QDialog">QDialog::QDialog</a>() constructor. If <i>modal</i> is false (the default), you must have an event loop proceeding for any redrawing of the dialog to occur. If <i>modal</i> is true, the dialog ensures that events are processed when needed.</p>
+<p>See also <a href="q3progressdialog.html#labelText-prop">setLabelText</a>(), <a href="q3progressdialog.html#setLabel">setLabel</a>(), <a href="q3progressdialog.html#setCancelButtonText">setCancelButtonText</a>(), <a href="q3progressdialog.html#setCancelButton">setCancelButton</a>(), and <a href="q3progressdialog.html#totalSteps-prop">setTotalSteps</a>().</p>
+<h3 class="fn"><a name="Q3ProgressDialog-2"></a>Q3ProgressDialog::Q3ProgressDialog ( const <a href="qstring.html">QString</a> &amp; <i>labelText</i>, const <a href="qstring.html">QString</a> &amp; <i>cancelButtonText</i>, int <i>totalSteps</i>, <a href="qwidget.html">QWidget</a> * <i>creator</i> = 0, const char * <i>name</i> = 0, bool <i>modal</i> = false, <a href="qt.html#WindowType-enum">Qt::WindowFlags</a> <i>f</i> = 0 )</h3>
+<p>Constructs a progress dialog.</p>
+<p>The <i>labelText</i> is text used to remind the user what is progressing.</p>
+<p>The <i>cancelButtonText</i> is the text to display on the cancel button, or 0 if no cancel button is to be shown.</p>
+<p>The <i>totalSteps</i> is the total number of steps in the operation for which this progress dialog shows progress. For example, if the operation is to examine 50 files, this value would be 50. Before examining the first file, call setProgress(0). As each file is processed call setProgress(1), setProgress(2), etc., finally calling setProgress(50) after examining the last file.</p>
+<p>The <i>creator</i> argument is the widget to use as the dialog's parent. The <i>name</i>, <i>modal</i>, and widget flags, <i>f</i>, are passed to the <a href="qdialog.html#QDialog">QDialog::QDialog</a>() constructor. If <i>modal</i> is false (the default), you will must have an event loop proceeding for any redrawing of the dialog to occur. If <i>modal</i> is true, the dialog ensures that events are processed when needed.</p>
+<p>See also <a href="q3progressdialog.html#labelText-prop">setLabelText</a>(), <a href="q3progressdialog.html#setLabel">setLabel</a>(), <a href="q3progressdialog.html#setCancelButtonText">setCancelButtonText</a>(), <a href="q3progressdialog.html#setCancelButton">setCancelButton</a>(), and <a href="q3progressdialog.html#totalSteps-prop">setTotalSteps</a>().</p>
+<h3 class="fn"><a name="Q3ProgressDialog-3"></a>Q3ProgressDialog::Q3ProgressDialog ( <a href="qwidget.html">QWidget</a> * <i>creator</i> = 0, <a href="qt.html#WindowType-enum">Qt::WindowFlags</a> <i>f</i> = 0 )</h3>
+<p>Constructs a progress dialog.</p>
+<p>Default settings:</p>
+<ul>
+<li>The label text is empty.</li>
+<li>The cancel button text is (translated) &quot;Cancel&quot;.</li>
+<li>The total number of steps is 100.</li>
+</ul>
+<p>The <i>creator</i> argument is the widget to use as the dialog's parent. The widget flags, <i>f</i>, are passed to the <a href="qdialog.html#QDialog">QDialog::QDialog</a>() constructor.</p>
+<p>See also <a href="q3progressdialog.html#labelText-prop">setLabelText</a>(), <a href="q3progressdialog.html#setLabel">setLabel</a>(), <a href="q3progressdialog.html#setCancelButtonText">setCancelButtonText</a>(), <a href="q3progressdialog.html#setCancelButton">setCancelButton</a>(), and <a href="q3progressdialog.html#totalSteps-prop">setTotalSteps</a>().</p>
+<h3 class="fn"><a name="Q3ProgressDialog-4"></a>Q3ProgressDialog::Q3ProgressDialog ( const <a href="qstring.html">QString</a> &amp; <i>labelText</i>, const <a href="qstring.html">QString</a> &amp; <i>cancelButtonText</i>, int <i>totalSteps</i>, <a href="qwidget.html">QWidget</a> * <i>creator</i> = 0, <a href="qt.html#WindowType-enum">Qt::WindowFlags</a> <i>f</i> = 0 )</h3>
+<p>Constructs a progress dialog.</p>
+<p>The <i>labelText</i> is text used to remind the user what is progressing.</p>
+<p>The <i>cancelButtonText</i> is the text to display on the cancel button, or 0 if no cancel button is to be shown.</p>
+<p>The <i>totalSteps</i> is the total number of steps in the operation for which this progress dialog shows progress. For example, if the operation is to examine 50 files, this value would be 50. Before examining the first file, call setProgress(0). As each file is processed call setProgress(1), setProgress(2), etc., finally calling setProgress(50) after examining the last file.</p>
+<p>The <i>creator</i> argument is the widget to use as the dialog's parent. The widget flags, <i>f</i>, are passed to the <a href="qdialog.html#QDialog">QDialog::QDialog</a>() constructor.</p>
+<p>See also <a href="q3progressdialog.html#labelText-prop">setLabelText</a>(), <a href="q3progressdialog.html#setLabel">setLabel</a>(), <a href="q3progressdialog.html#setCancelButtonText">setCancelButtonText</a>(), <a href="q3progressdialog.html#setCancelButton">setCancelButton</a>(), and <a href="q3progressdialog.html#totalSteps-prop">setTotalSteps</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3ProgressDialog/~Q3ProgressDialog" />
+<h3 class="fn"><a name="dtor.Q3ProgressDialog"></a>Q3ProgressDialog::~Q3ProgressDialog ()</h3>
+<p>Destroys the progress dialog.</p>
+<a name="//apple_ref/cpp/instm/Q3ProgressDialog/cancel" />
+<h3 class="fn"><a name="cancel"></a>void Q3ProgressDialog::cancel ()&nbsp;&nbsp;<tt> [slot]</tt></h3>
+<p>Resets the progress dialog. <a href="q3progressdialog.html#wasCanceled-prop">wasCanceled</a>() becomes true until the progress dialog is reset. The progress dialog becomes hidden.</p>
+<a name="//apple_ref/cpp/instm/Q3ProgressDialog/canceled" />
+<h3 class="fn"><a name="canceled"></a>void Q3ProgressDialog::canceled ()&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted when the cancel button is clicked. It is connected to the <a href="q3progressdialog.html#cancel">cancel</a>() slot by default.</p>
+<p>See also <a href="q3progressdialog.html#wasCanceled-prop">wasCanceled</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3ProgressDialog/cancelled" />
+<h3 class="fn"><a name="cancelled"></a>void Q3ProgressDialog::cancelled ()&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>Use <a href="q3progressdialog.html#canceled">canceled</a>() instead.</p>
+<a name="//apple_ref/cpp/instm/Q3ProgressDialog/changeEvent" />
+<h3 class="fn"><a name="changeEvent"></a>void Q3ProgressDialog::changeEvent ( <a href="qevent.html">QEvent</a> * <i>ev</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#changeEvent">QWidget::changeEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3ProgressDialog/closeEvent" />
+<h3 class="fn"><a name="closeEvent"></a>void Q3ProgressDialog::closeEvent ( <a href="qcloseevent.html">QCloseEvent</a> * <i>e</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#closeEvent">QWidget::closeEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3ProgressDialog/forceShow" />
+<h3 class="fn"><a name="forceShow"></a>void Q3ProgressDialog::forceShow ()&nbsp;&nbsp;<tt> [protected slot]</tt></h3>
+<p>Shows the dialog if it is still hidden after the algorithm has been started and <a href="q3progressdialog.html#minimumDuration-prop">minimumDuration</a> milliseconds have passed.</p>
+<p>See also <a href="q3progressdialog.html#minimumDuration-prop">setMinimumDuration</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3ProgressDialog/reset" />
+<h3 class="fn"><a name="reset"></a>void Q3ProgressDialog::reset ()&nbsp;&nbsp;<tt> [slot]</tt></h3>
+<p>Resets the progress dialog. The progress dialog becomes hidden if <a href="q3progressdialog.html#autoClose-prop">autoClose</a>() is true.</p>
+<p>See also <a href="q3progressdialog.html#autoClose-prop">setAutoClose</a>() and <a href="q3progressdialog.html#autoReset-prop">setAutoReset</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3ProgressDialog/resizeEvent" />
+<h3 class="fn"><a name="resizeEvent"></a>void Q3ProgressDialog::resizeEvent ( <a href="qresizeevent.html">QResizeEvent</a> * )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#resizeEvent">QWidget::resizeEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3ProgressDialog/setBar" />
+<h3 class="fn"><a name="setBar"></a>void Q3ProgressDialog::setBar ( <a href="q3progressbar.html">Q3ProgressBar</a> * <i>bar</i> )</h3>
+<p>Sets the progress bar widget to <i>bar</i>. The progress dialog resizes to fit. The progress dialog takes ownership of the progress <i>bar</i> which will be deleted when necessary, so do not use a progress bar allocated on the stack.</p>
+<a name="//apple_ref/cpp/instm/Q3ProgressDialog/setCancelButton" />
+<h3 class="fn"><a name="setCancelButton"></a>void Q3ProgressDialog::setCancelButton ( <a href="qpushbutton.html">QPushButton</a> * <i>cancelButton</i> )</h3>
+<p>Sets the cancel button to the push button, <i>cancelButton</i>. The progress dialog takes ownership of this button which will be deleted when necessary, so do not pass the address of an object that is on the stack, i.e&#x2e; use new() to create the button.</p>
+<p>See also <a href="q3progressdialog.html#setCancelButtonText">setCancelButtonText</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3ProgressDialog/setCancelButtonText" />
+<h3 class="fn"><a name="setCancelButtonText"></a>void Q3ProgressDialog::setCancelButtonText ( const <a href="qstring.html">QString</a> &amp; <i>cancelButtonText</i> )&nbsp;&nbsp;<tt> [slot]</tt></h3>
+<p>Sets the cancel button's text to <i>cancelButtonText</i>.</p>
+<p>See also <a href="q3progressdialog.html#setCancelButton">setCancelButton</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3ProgressDialog/setLabel" />
+<h3 class="fn"><a name="setLabel"></a>void Q3ProgressDialog::setLabel ( <a href="qlabel.html">QLabel</a> * <i>label</i> )</h3>
+<p>Sets the label to <i>label</i>. The progress dialog resizes to fit. The label becomes owned by the progress dialog and will be deleted when necessary, so do not pass the address of an object on the stack.</p>
+<p>See also <a href="q3progressdialog.html#labelText-prop">setLabelText</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3ProgressDialog/showEvent" />
+<h3 class="fn"><a name="showEvent"></a>void Q3ProgressDialog::showEvent ( <a href="qshowevent.html">QShowEvent</a> * <i>e</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#showEvent">QWidget::showEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3ProgressDialog/sizeHint" />
+<h3 class="fn"><a name="sizeHint"></a><a href="qsize.html">QSize</a> Q3ProgressDialog::sizeHint () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#sizeHint-prop">QWidget::sizeHint</a>().</p>
+<p>Returns a size that fits the contents of the progress dialog. The progress dialog resizes itself as required, so you should not need to call this yourself.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

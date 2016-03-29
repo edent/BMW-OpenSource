@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: roundedbox.cpp Example File (demos/boxes/roundedbox.cpp)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">roundedbox.cpp Example File<br /><span class="small-subtitle">demos/boxes/roundedbox.cpp</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the demonstration applications of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+
+ #include &quot;roundedbox.h&quot;
+
+<span class="comment"> //============================================================================//</span>
+<span class="comment"> //                                P3T2N3Vertex                                //</span>
+<span class="comment"> //============================================================================//</span>
+
+ VertexDescription P3T2N3Vertex::description[] = {
+     {VertexDescription::Position, GL_FLOAT, SIZE_OF_MEMBER(P3T2N3Vertex, position) / sizeof(float), 0, 0},
+     {VertexDescription::TexCoord, GL_FLOAT, SIZE_OF_MEMBER(P3T2N3Vertex, texCoord) / sizeof(float), sizeof(QVector3D), 0},
+     {VertexDescription::Normal, GL_FLOAT, SIZE_OF_MEMBER(P3T2N3Vertex, normal) / sizeof(float), sizeof(QVector3D) + sizeof(QVector2D), 0},
+
+     {VertexDescription::Null, 0, 0, 0, 0},
+ };
+
+<span class="comment"> //============================================================================//</span>
+<span class="comment"> //                                GLRoundedBox                                //</span>
+<span class="comment"> //============================================================================//</span>
+
+ float lerp(float a, float b, float t)
+ {
+     return a * (1.0f - t) + b * t;
+ }
+
+ GLRoundedBox::GLRoundedBox(float r, float scale, int n)
+     : GLTriangleMesh&lt;P3T2N3Vertex, unsigned short&gt;((n+2)*(n+3)*4, (n+1)*(n+1)*24+36+72*(n+1))
+ {
+     int vidx = 0, iidx = 0;
+     int vertexCountPerCorner = (n + 2) * (n + 3) / 2;
+
+     P3T2N3Vertex *vp = m_vb.lock();
+     unsigned short *ip = m_ib.lock();
+
+     if (!vp || !ip) {
+         qWarning(&quot;GLRoundedBox::GLRoundedBox: Failed to lock vertex buffer and/or index buffer.&quot;);
+         m_ib.unlock();
+         m_vb.unlock();
+         return;
+     }
+
+     for (int corner = 0; corner &lt; 8; ++corner) {
+         QVector3D centre(corner &amp; 1 ? 1.0f : -1.0f,
+                 corner &amp; 2 ? 1.0f : -1.0f,
+                 corner &amp; 4 ? 1.0f : -1.0f);
+         int winding = (corner &amp; 1) ^ ((corner &gt;&gt; 1) &amp; 1) ^ (corner &gt;&gt; 2);
+         int offsX = ((corner ^ 1) - corner) * vertexCountPerCorner;
+         int offsY = ((corner ^ 2) - corner) * vertexCountPerCorner;
+         int offsZ = ((corner ^ 4) - corner) * vertexCountPerCorner;
+
+         <span class="comment">// Face polygons</span>
+         if (winding) {
+             ip[iidx++] = vidx;
+             ip[iidx++] = vidx + offsX;
+             ip[iidx++] = vidx + offsY;
+
+             ip[iidx++] = vidx + vertexCountPerCorner - n - 2;
+             ip[iidx++] = vidx + vertexCountPerCorner - n - 2 + offsY;
+             ip[iidx++] = vidx + vertexCountPerCorner - n - 2 + offsZ;
+
+             ip[iidx++] = vidx + vertexCountPerCorner - 1;
+             ip[iidx++] = vidx + vertexCountPerCorner - 1 + offsZ;
+             ip[iidx++] = vidx + vertexCountPerCorner - 1 + offsX;
+         }
+
+         for (int i = 0; i &lt; n + 2; ++i) {
+
+             <span class="comment">// Edge polygons</span>
+             if (winding &amp;&amp; i &lt; n + 1) {
+                 ip[iidx++] = vidx + i + 1;
+                 ip[iidx++] = vidx;
+                 ip[iidx++] = vidx + offsY + i + 1;
+                 ip[iidx++] = vidx + offsY;
+                 ip[iidx++] = vidx + offsY + i + 1;
+                 ip[iidx++] = vidx;
+
+                 ip[iidx++] = vidx + i;
+                 ip[iidx++] = vidx + 2 * i + 2;
+                 ip[iidx++] = vidx + i + offsX;
+                 ip[iidx++] = vidx + 2 * i + offsX + 2;
+                 ip[iidx++] = vidx + i + offsX;
+                 ip[iidx++] = vidx + 2 * i + 2;
+
+                 ip[iidx++] = (corner + 1) * vertexCountPerCorner - 1 - i;
+                 ip[iidx++] = (corner + 1) * vertexCountPerCorner - 2 - i;
+                 ip[iidx++] = (corner + 1) * vertexCountPerCorner - 1 - i + offsZ;
+                 ip[iidx++] = (corner + 1) * vertexCountPerCorner - 2 - i + offsZ;
+                 ip[iidx++] = (corner + 1) * vertexCountPerCorner - 1 - i + offsZ;
+                 ip[iidx++] = (corner + 1) * vertexCountPerCorner - 2 - i;
+             }
+
+             for (int j = 0; j &lt;= i; ++j) {
+                 QVector3D normal = QVector3D(i - j, j, n + 1 - i).normalized();
+                 QVector3D offset(0.5f - r, 0.5f - r, 0.5f - r);
+                 QVector3D pos = centre * (offset + r * normal);
+
+                 vp[vidx].position = scale * pos;
+                 vp[vidx].normal = centre * normal;
+                 vp[vidx].texCoord = QVector2D(pos.x() + 0.5f, pos.y() + 0.5f);
+
+                 <span class="comment">// Corner polygons</span>
+                 if (i &lt; n + 1) {
+                     ip[iidx++] = vidx;
+                     ip[iidx++] = vidx + i + 2 - winding;
+                     ip[iidx++] = vidx + i + 1 + winding;
+                 }
+                 if (i &lt; n) {
+                     ip[iidx++] = vidx + i + 1 + winding;
+                     ip[iidx++] = vidx + i + 2 - winding;
+                     ip[iidx++] = vidx + 2 * i + 4;
+                 }
+
+                 ++vidx;
+             }
+         }
+
+     }
+
+     m_ib.unlock();
+     m_vb.unlock();
+ }</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

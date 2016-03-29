@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: boat.cpp Example File (demos/sub-attaq/boat.cpp)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">boat.cpp Example File<br /><span class="small-subtitle">demos/sub-attaq/boat.cpp</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the QtCore module of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+
+<span class="comment"> //Own</span>
+ #include &quot;boat.h&quot;
+ #include &quot;boat_p.h&quot;
+ #include &quot;bomb.h&quot;
+ #include &quot;pixmapitem.h&quot;
+ #include &quot;graphicsscene.h&quot;
+ #include &quot;animationmanager.h&quot;
+ #include &quot;qanimationstate.h&quot;
+
+<span class="comment"> //Qt</span>
+ #include &lt;QtCore/QPropertyAnimation&gt;
+ #include &lt;QtCore/QStateMachine&gt;
+ #include &lt;QtCore/QHistoryState&gt;
+ #include &lt;QtCore/QFinalState&gt;
+ #include &lt;QtCore/QState&gt;
+ #include &lt;QtCore/QSequentialAnimationGroup&gt;
+
+ static QAbstractAnimation *setupDestroyAnimation(Boat *boat)
+ {
+     QSequentialAnimationGroup *group = new QSequentialAnimationGroup(boat);
+     for (int i = 1; i &lt;= 4; i++) {
+         PixmapItem *step = new PixmapItem(QString(&quot;explosion/boat/step%1&quot;).arg(i),GraphicsScene::Big, boat);
+         step-&gt;setZValue(6);
+         step-&gt;setOpacity(0);
+
+         <span class="comment">//fade-in</span>
+         QPropertyAnimation *anim = new QPropertyAnimation(step, &quot;opacity&quot;);
+         anim-&gt;setEndValue(1);
+         anim-&gt;setDuration(100);
+         group-&gt;insertAnimation(i-1, anim);
+
+         <span class="comment">//and then fade-out</span>
+         QPropertyAnimation *anim2 = new QPropertyAnimation(step, &quot;opacity&quot;);
+         anim2-&gt;setEndValue(0);
+         anim2-&gt;setDuration(100);
+         group-&gt;addAnimation(anim2);
+     }
+
+     AnimationManager::self()-&gt;registerAnimation(group);
+     return group;
+ }
+
+ Boat::Boat() : PixmapItem(QString(&quot;boat&quot;), GraphicsScene::Big),
+     speed(0), bombsAlreadyLaunched(0), direction(Boat::None), movementAnimation(0)
+ {
+     setZValue(4);
+     setFlags(QGraphicsItem::ItemIsFocusable);
+
+     <span class="comment">//The movement animation used to animate the boat</span>
+     movementAnimation = new QPropertyAnimation(this, &quot;pos&quot;);
+
+     <span class="comment">//The destroy animation used to explode the boat</span>
+     destroyAnimation = setupDestroyAnimation(this);
+
+     <span class="comment">//We setup the state machine of the boat</span>
+     machine = new QStateMachine(this);
+     QState *moving = new QState(machine);
+     StopState *stopState = new StopState(this, moving);
+     machine-&gt;setInitialState(moving);
+     moving-&gt;setInitialState(stopState);
+     MoveStateRight *moveStateRight = new MoveStateRight(this, moving);
+     MoveStateLeft *moveStateLeft = new MoveStateLeft(this, moving);
+     LaunchStateRight *launchStateRight = new LaunchStateRight(this, machine);
+     LaunchStateLeft *launchStateLeft = new LaunchStateLeft(this, machine);
+
+     <span class="comment">//then setup the transitions for the rightMove state</span>
+     KeyStopTransition *leftStopRight = new KeyStopTransition(this, QEvent::KeyPress, Qt::Key_Left);
+     leftStopRight-&gt;setTargetState(stopState);
+     KeyMoveTransition *leftMoveRight = new KeyMoveTransition(this, QEvent::KeyPress, Qt::Key_Left);
+     leftMoveRight-&gt;setTargetState(moveStateRight);
+     KeyMoveTransition *rightMoveRight = new KeyMoveTransition(this, QEvent::KeyPress, Qt::Key_Right);
+     rightMoveRight-&gt;setTargetState(moveStateRight);
+     KeyMoveTransition *rightMoveStop = new KeyMoveTransition(this, QEvent::KeyPress, Qt::Key_Right);
+     rightMoveStop-&gt;setTargetState(moveStateRight);
+
+     <span class="comment">//then setup the transitions for the leftMove state</span>
+     KeyStopTransition *rightStopLeft = new KeyStopTransition(this, QEvent::KeyPress, Qt::Key_Right);
+     rightStopLeft-&gt;setTargetState(stopState);
+     KeyMoveTransition *rightMoveLeft = new KeyMoveTransition(this, QEvent::KeyPress, Qt::Key_Right);
+     rightMoveLeft-&gt;setTargetState(moveStateLeft);
+     KeyMoveTransition *leftMoveLeft = new KeyMoveTransition(this, QEvent::KeyPress,Qt::Key_Left);
+     leftMoveLeft-&gt;setTargetState(moveStateLeft);
+     KeyMoveTransition *leftMoveStop = new KeyMoveTransition(this, QEvent::KeyPress,Qt::Key_Left);
+     leftMoveStop-&gt;setTargetState(moveStateLeft);
+
+     <span class="comment">//We set up the right move state</span>
+     moveStateRight-&gt;addTransition(leftStopRight);
+     moveStateRight-&gt;addTransition(leftMoveRight);
+     moveStateRight-&gt;addTransition(rightMoveRight);
+     stopState-&gt;addTransition(rightMoveStop);
+
+     <span class="comment">//We set up the left move state</span>
+     moveStateLeft-&gt;addTransition(rightStopLeft);
+     moveStateLeft-&gt;addTransition(leftMoveLeft);
+     moveStateLeft-&gt;addTransition(rightMoveLeft);
+     stopState-&gt;addTransition(leftMoveStop);
+
+     <span class="comment">//The animation is finished, it means we reached the border of the screen, the boat is stopped so we move to the stop state</span>
+     moveStateLeft-&gt;addTransition(movementAnimation, SIGNAL(finished()), stopState);
+     moveStateRight-&gt;addTransition(movementAnimation, SIGNAL(finished()), stopState);
+
+     <span class="comment">//We set up the keys for dropping bombs</span>
+     KeyLaunchTransition *upFireLeft = new KeyLaunchTransition(this, QEvent::KeyPress, Qt::Key_Up);
+     upFireLeft-&gt;setTargetState(launchStateRight);
+     KeyLaunchTransition *upFireRight = new KeyLaunchTransition(this, QEvent::KeyPress, Qt::Key_Up);
+     upFireRight-&gt;setTargetState(launchStateRight);
+     KeyLaunchTransition *upFireStop = new KeyLaunchTransition(this, QEvent::KeyPress, Qt::Key_Up);
+     upFireStop-&gt;setTargetState(launchStateRight);
+     KeyLaunchTransition *downFireLeft = new KeyLaunchTransition(this, QEvent::KeyPress, Qt::Key_Down);
+     downFireLeft-&gt;setTargetState(launchStateLeft);
+     KeyLaunchTransition *downFireRight = new KeyLaunchTransition(this, QEvent::KeyPress, Qt::Key_Down);
+     downFireRight-&gt;setTargetState(launchStateLeft);
+     KeyLaunchTransition *downFireMove = new KeyLaunchTransition(this, QEvent::KeyPress, Qt::Key_Down);
+     downFireMove-&gt;setTargetState(launchStateLeft);
+
+     <span class="comment">//We set up transitions for fire up</span>
+     moveStateRight-&gt;addTransition(upFireRight);
+     moveStateLeft-&gt;addTransition(upFireLeft);
+     stopState-&gt;addTransition(upFireStop);
+
+     <span class="comment">//We set up transitions for fire down</span>
+     moveStateRight-&gt;addTransition(downFireRight);
+     moveStateLeft-&gt;addTransition(downFireLeft);
+     stopState-&gt;addTransition(downFireMove);
+
+     <span class="comment">//Finally the launch state should come back to its original state</span>
+     QHistoryState *historyState = new QHistoryState(moving);
+     launchStateLeft-&gt;addTransition(historyState);
+     launchStateRight-&gt;addTransition(historyState);
+
+     QFinalState *final = new QFinalState(machine);
+
+     <span class="comment">//This state play the destroyed animation</span>
+     QAnimationState *destroyedState = new QAnimationState(machine);
+     destroyedState-&gt;setAnimation(destroyAnimation);
+
+     <span class="comment">//Play a nice animation when the boat is destroyed</span>
+     moving-&gt;addTransition(this, SIGNAL(boatDestroyed()), destroyedState);
+
+     <span class="comment">//Transition to final state when the destroyed animation is finished</span>
+     destroyedState-&gt;addTransition(destroyedState, SIGNAL(animationFinished()), final);
+
+     <span class="comment">//The machine has finished to be executed, then the boat is dead</span>
+     connect(machine,SIGNAL(finished()), this, SIGNAL(boatExecutionFinished()));
+
+ }
+
+ void Boat::run()
+ {
+     <span class="comment">//We register animations</span>
+     AnimationManager::self()-&gt;registerAnimation(movementAnimation);
+     AnimationManager::self()-&gt;registerAnimation(destroyAnimation);
+     machine-&gt;start();
+ }
+
+ void Boat::stop()
+ {
+     movementAnimation-&gt;stop();
+     machine-&gt;stop();
+ }
+
+ void Boat::updateBoatMovement()
+ {
+     if (speed == 0 || direction == Boat::None) {
+         movementAnimation-&gt;stop();
+         return;
+     }
+
+     movementAnimation-&gt;stop();
+
+     if (direction == Boat::Left) {
+         movementAnimation-&gt;setEndValue(QPointF(0,y()));
+         movementAnimation-&gt;setDuration(x()/speed*15);
+     }
+     else <span class="comment">/*if (direction == Boat::Right)*/</span> {
+         movementAnimation-&gt;setEndValue(QPointF(scene()-&gt;width()-size().width(),y()));
+         movementAnimation-&gt;setDuration((scene()-&gt;width()-size().width()-x())/speed*15);
+     }
+     movementAnimation-&gt;start();
+ }
+
+ void Boat::destroy()
+ {
+     movementAnimation-&gt;stop();
+     emit boatDestroyed();
+ }
+
+ int Boat::bombsLaunched() const
+ {
+     return bombsAlreadyLaunched;
+ }
+
+ void Boat::setBombsLaunched(int number)
+ {
+     if (number &gt; MAX_BOMB) {
+         qWarning(&quot;Boat::setBombsLaunched : It impossible to launch that number of bombs&quot;);
+         return;
+     }
+     bombsAlreadyLaunched = number;
+ }
+
+ int Boat::currentSpeed() const
+ {
+     return speed;
+ }
+
+ void Boat::setCurrentSpeed(int speed)
+ {
+     if (speed &gt; 3 || speed &lt; 0) {
+         qWarning(&quot;Boat::setCurrentSpeed: The boat can't run on that speed&quot;);
+         return;
+     }
+     this-&gt;speed = speed;
+ }
+
+ enum Boat::Movement Boat::currentDirection() const
+ {
+     return direction;
+ }
+
+ void Boat::setCurrentDirection(Movement direction)
+ {
+     this-&gt;direction = direction;
+ }
+
+ int Boat::type() const
+ {
+     return Type;
+ }</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

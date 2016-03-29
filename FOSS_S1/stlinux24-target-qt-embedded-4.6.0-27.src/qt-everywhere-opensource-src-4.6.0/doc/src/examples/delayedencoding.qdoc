@@ -1,0 +1,125 @@
+/****************************************************************************
+**
+** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+** All rights reserved.
+** Contact: Nokia Corporation (qt-info@nokia.com)
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:LGPL$
+** Commercial Usage
+** Licensees holding valid Qt Commercial licenses may use this file in
+** accordance with the Qt Commercial License Agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and Nokia.
+**
+** GNU Lesser General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU Lesser
+** General Public License version 2.1 as published by the Free Software
+** Foundation and appearing in the file LICENSE.LGPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU Lesser General Public License version 2.1 requirements
+** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+**
+** In addition, as a special exception, Nokia gives you certain additional
+** rights.  These rights are described in the Nokia Qt LGPL Exception
+** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+**
+** GNU General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU
+** General Public License version 3.0 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU General Public License version 3.0 requirements will be
+** met: http://www.gnu.org/copyleft/gpl.html.
+**
+** If you have questions regarding the use of this file, please contact
+** Nokia at qt-info@nokia.com.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \example draganddrop/delayedencoding
+    \title Delayed Encoding Example
+
+    The Delayed Encoding example shows how to delay preparing of data
+    for drag and drop operations until a drop target is found.
+
+    \image delayedecoding-example.png
+
+    The \gui Export push button is pressed down to start the drag.
+    The data for the drag and drop operation is not processed until
+    the user of the application has found a valid drop target. This
+    removes redundant processing if the operation is aborted. In our
+    case, we have an SVG image that we wish to send as the \c {
+    "image/png" } MIME type. It is the conversion from SVG to PNG we
+    wish to delay - it can be quite expensive.
+
+    The example is implemented in two classes: \c SourceWidget and \c
+    MimeData. The \c SourceWidget class sets up the GUI and starts the
+    drag operation on request. The \c MimeData class, which inherits
+    QMimeData, sends a signal when a drop target is found. This signal
+    is connected to a slot in \c SourceWidget, which does the
+    conversion from SVG to PNG. 
+
+    \section1 SourceWidget Class Definition
+
+    The \c SourceWidget class starts drag and drop operations and also
+    does the image conversion.
+    
+    \snippet examples/draganddrop/delayedencoding/sourcewidget.h 0
+    
+    The \gui Export push button is connected to the \c startDrag()
+    slot. The \c createData() slot will be invoked when data for the
+    drag and drop operation is to be created.
+
+    \section1 SourceWidget Class Implementation
+
+    Let's start our code tour with a look at the \c startDrag() slot.
+
+    \snippet examples/draganddrop/delayedencoding/sourcewidget.cpp 0
+
+    We emit \c dataRequested() from \c MimeData when the operation has
+    found a valid drop target.
+
+    We gallop along to \c createData():
+
+    \snippet examples/draganddrop/delayedencoding/sourcewidget.cpp 1
+
+    Fortunately, Qt provides QSvgRenderer, which can render the SVG
+    image to any QPaintDevice. Also, QImage has no problems saving to
+    the PNG format.
+
+    Finally, we can give the data to \c MimeData.
+
+    \section1 MimeData Class Definition
+
+    The \c MimeData class inherits QMimeData and makes it possible to
+    delay preparing of the data for a drag and drop operation.
+
+    \snippet examples/draganddrop/delayedencoding/mimedata.h 0
+
+    We will look closer at \c retrieveData() and \c formats() in the
+    next section.
+
+    \section1 MimeData Class Implementation
+
+    \snippet examples/draganddrop/delayedencoding/mimedata.cpp 0
+
+    In the \c formats() function, we return the format of the
+    data we provide. This is the \c { image/png } MIME type.
+
+    \snippet examples/draganddrop/delayedencoding/mimedata.cpp 1
+
+    \c retrieveData() is reimplemented from QMimeData and is
+    called when the data is requested by the drag and drop
+    operation. Fortunately for us, this happens when the operation
+    is finishing, i.e., when a drop target has been found.
+
+    We emit the \c dataRequested() signal, which is picked up by
+    \c SourceWidget. The \c SourceWidget (as already explained)
+    sets the data on \c MimeData with \l{QMimeData::}{setData()}.
+
+*/
+

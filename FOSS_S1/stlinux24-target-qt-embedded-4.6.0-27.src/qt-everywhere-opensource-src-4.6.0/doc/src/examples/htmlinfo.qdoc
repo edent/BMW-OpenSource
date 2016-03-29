@@ -1,0 +1,89 @@
+/****************************************************************************
+**
+** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+** All rights reserved.
+** Contact: Nokia Corporation (qt-info@nokia.com)
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:LGPL$
+** Commercial Usage
+** Licensees holding valid Qt Commercial licenses may use this file in
+** accordance with the Qt Commercial License Agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and Nokia.
+**
+** GNU Lesser General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU Lesser
+** General Public License version 2.1 as published by the Free Software
+** Foundation and appearing in the file LICENSE.LGPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU Lesser General Public License version 2.1 requirements
+** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+**
+** In addition, as a special exception, Nokia gives you certain additional
+** rights.  These rights are described in the Nokia Qt LGPL Exception
+** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+**
+** GNU General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU
+** General Public License version 3.0 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU General Public License version 3.0 requirements will be
+** met: http://www.gnu.org/copyleft/gpl.html.
+**
+** If you have questions regarding the use of this file, please contact
+** Nokia at qt-info@nokia.com.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \example xml/htmlinfo
+    \title XML HTML Info Example
+
+    The XML HTML Info example provides a simple command line utility that
+    scans the current directory for HTML files and prints statistics about
+    them to standard out.
+    
+    \note Standard out is redirected on some platforms. On Symbian using Open
+    C \c stdout is by default directed to the console window, but this window
+    may not always be visible. To redirect to a file instead, locate the \c
+    c:\\system\\data\\config.ini file (on either the emulator or the device)
+    and change \c STDOUT to point to \c MEDIA4. This will redirect the console
+    to \c c:\\system\\data\\out.txt.
+    
+    The files are parsed using a QXmlStreamReader object. If the file does
+    not contain a well-formed XML document, a description of the error is
+    printed to the standard error console.
+
+    \section1 Basic Operation
+
+    The main function of the example uses QDir to access files in the current
+    directory that match either "*.htm" or "*.html". For each file found,
+    the \c parseHtmlFile() function is called.
+
+    Reading XML is handled by an instance of the QXmlStreamReader class, which
+    operates on the input file object:
+
+    \snippet examples/xml/htmlinfo/main.cpp 0
+
+    The work of parsing and the XML and extracting statistics is done in a
+    while loop, and is driven by input from the reader:
+
+    \snippet examples/xml/htmlinfo/main.cpp 1
+
+    If more input is available, the next token from the input file is read
+    and parsed. The program then looks for the specific element types,
+    "title", "a", and "p", and stores information about them.
+
+    When there is no more input, the loop terminates. If an error occurred,
+    information is written to the standard out file via a stream, and the
+    example exits:
+
+    \snippet examples/xml/htmlinfo/main.cpp 2
+
+    If no error occurred, the example prints some statistics from the data
+    gathered in the loop, and then exits.
+*/

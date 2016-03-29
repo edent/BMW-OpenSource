@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qpaintengine.cpp -->
+<head>
+  <title>Qt 4.6: QTextItem Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QTextItem" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QTextItem Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QTextItem class provides all the information required to draw text in a custom paint engine. <a href="#details">More...</a></p>
+<pre> #include &lt;QTextItem&gt;</pre><ul>
+<li><a href="qtextitem-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-types"></a>
+<h2>Public Types</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qtextitem.html#RenderFlag-enum">RenderFlag</a></b> { RightToLeft, Overline, Underline, StrikeOut }</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">flags </td><td class="memItemRight" valign="bottom"><b><a href="qtextitem.html#RenderFlag-enum">RenderFlags</a></b></td></tr>
+</table>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">qreal </td><td class="memItemRight" valign="bottom"><b><a href="qtextitem.html#ascent">ascent</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">qreal </td><td class="memItemRight" valign="bottom"><b><a href="qtextitem.html#descent">descent</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QFont </td><td class="memItemRight" valign="bottom"><b><a href="qtextitem.html#font">font</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">RenderFlags </td><td class="memItemRight" valign="bottom"><b><a href="qtextitem.html#renderFlags">renderFlags</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qtextitem.html#text">text</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">qreal </td><td class="memItemRight" valign="bottom"><b><a href="qtextitem.html#width">width</a></b> () const</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QTextItem class provides all the information required to draw text in a custom paint engine.</p>
+<p>When you reimplement your own paint engine, you must reimplement <a href="qpaintengine.html#drawTextItem">QPaintEngine::drawTextItem</a>(), a function that takes a QTextItem as one of its arguments.</p>
+<hr />
+<h2>Member Type Documentation</h2>
+<a name="//apple_ref/cpp/tag/QTextItem/RenderFlag" />
+<a name="//apple_ref/cpp/econst/QTextItem/RightToLeft" />
+<a name="//apple_ref/cpp/econst/QTextItem/Overline" />
+<a name="//apple_ref/cpp/econst/QTextItem/Underline" />
+<a name="//apple_ref/cpp/econst/QTextItem/StrikeOut" />
+<a name="//apple_ref/cpp/econst/QTextItem/Dummy" />
+<a name="//apple_ref/cpp/tdef/QTextItem/RenderFlags" />
+<h3 class="flags"><a name="RenderFlag-enum"></a>enum QTextItem::RenderFlag<br />flags QTextItem::RenderFlags</h3>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QTextItem::RightToLeft</tt></td><td align="center" valign="top"><tt>0x1</tt></td><td valign="top">Render the text from right to left.</td></tr>
+<tr><td valign="top"><tt>QTextItem::Overline</tt></td><td align="center" valign="top"><tt>0x10</tt></td><td valign="top">Paint a line above the text.</td></tr>
+<tr><td valign="top"><tt>QTextItem::Underline</tt></td><td align="center" valign="top"><tt>0x20</tt></td><td valign="top">Paint a line under the text.</td></tr>
+<tr><td valign="top"><tt>QTextItem::StrikeOut</tt></td><td align="center" valign="top"><tt>0x40</tt></td><td valign="top">Paint a line through the text.</td></tr>
+</table></p>
+<p>The RenderFlags type is a typedef for <a href="qflags.html">QFlags</a>&lt;RenderFlag&gt;. It stores an OR combination of RenderFlag values.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QTextItem/ascent" />
+<h3 class="fn"><a name="ascent"></a><a href="qtglobal.html#qreal-typedef">qreal</a> QTextItem::ascent () const</h3>
+<p>Corresponds to the <a href="qfontmetrics.html#ascent">ascent</a> of the piece of text that is drawn.</p>
+<a name="//apple_ref/cpp/instm/QTextItem/descent" />
+<h3 class="fn"><a name="descent"></a><a href="qtglobal.html#qreal-typedef">qreal</a> QTextItem::descent () const</h3>
+<p>Corresponds to the <a href="qfontmetrics.html#descent">descent</a> of the piece of text that is drawn.</p>
+<a name="//apple_ref/cpp/instm/QTextItem/font" />
+<h3 class="fn"><a name="font"></a><a href="qfont.html">QFont</a> QTextItem::font () const</h3>
+<p>Returns the font that should be used to draw the text.</p>
+<a name="//apple_ref/cpp/instm/QTextItem/renderFlags" />
+<h3 class="fn"><a name="renderFlags"></a><a href="qtextitem.html#RenderFlag-enum">RenderFlags</a> QTextItem::renderFlags () const</h3>
+<p>Returns the render flags used.</p>
+<a name="//apple_ref/cpp/instm/QTextItem/text" />
+<h3 class="fn"><a name="text"></a><a href="qstring.html">QString</a> QTextItem::text () const</h3>
+<p>Returns the text that should be drawn.</p>
+<a name="//apple_ref/cpp/instm/QTextItem/width" />
+<h3 class="fn"><a name="width"></a><a href="qtglobal.html#qreal-typedef">qreal</a> QTextItem::width () const</h3>
+<p>Specifies the total width of the text to be drawn.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

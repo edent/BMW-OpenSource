@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: filetree.cpp Example File (xmlpatterns/filetree/filetree.cpp)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">filetree.cpp Example File<br /><span class="small-subtitle">xmlpatterns/filetree/filetree.cpp</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the examples of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+
+ #include &lt;QtCore/QUrl&gt;
+ #include &lt;QtCore/QVariant&gt;
+ #include &lt;QtXmlPatterns/QXmlNamePool&gt;
+ #include &quot;filetree.h&quot;
+
+<span class="comment"> /*
+ The model has two types of nodes: elements &amp; attributes.
+
+     &lt;directory name=&quot;&quot;&gt;
+         &lt;file name=&quot;&quot;&gt;
+         &lt;/file&gt;
+     &lt;/directory&gt;
+
+   In QXmlNodeModelIndex we store two values. QXmlNodeIndex::data()
+   is treated as a signed int, and it is an index into m_fileInfos
+   unless it is -1, in which case it has no meaning and the value
+   of QXmlNodeModelIndex::additionalData() is a Type name instead.
+  */</span>
+
+<span class="comment"> /*!
+   The constructor passes \a pool to the base class, then loads an
+   internal vector with an instance of QXmlName for each of the
+   strings &quot;file&quot;, &quot;directory&quot;, &quot;fileName&quot;, &quot;filePath&quot;, &quot;size&quot;,
+   &quot;mimeType&quot;, and &quot;suffix&quot;.
+  */</span>
+ FileTree::FileTree(const QXmlNamePool&amp; pool)
+   : QSimpleXmlNodeModel(pool),
+     m_filterAllowAll(QDir::AllEntries |
+                      QDir::AllDirs |
+                      QDir::NoDotAndDotDot |
+                      QDir::Hidden),
+     m_sortFlags(QDir::Name)
+ {
+     QXmlNamePool np = namePool();
+     m_names.resize(7);
+     m_names[File]               = QXmlName(np, QLatin1String(&quot;file&quot;));
+     m_names[Directory]          = QXmlName(np, QLatin1String(&quot;directory&quot;));
+     m_names[AttributeFileName]  = QXmlName(np, QLatin1String(&quot;fileName&quot;));
+     m_names[AttributeFilePath]  = QXmlName(np, QLatin1String(&quot;filePath&quot;));
+     m_names[AttributeSize]      = QXmlName(np, QLatin1String(&quot;size&quot;));
+     m_names[AttributeMIMEType]  = QXmlName(np, QLatin1String(&quot;mimeType&quot;));
+     m_names[AttributeSuffix]    = QXmlName(np, QLatin1String(&quot;suffix&quot;));
+ }
+
+<span class="comment"> /*!
+   Returns the QXmlNodeModelIndex for the model node representing
+   the directory \a dirName.
+
+   It calls QDir::cleanPath(), because an instance of QFileInfo
+   constructed for a path ending in '/' will return the empty string in
+   fileName(), instead of the directory name.
+ */</span>
+ QXmlNodeModelIndex FileTree::nodeFor(const QString&amp; dirName) const
+ {
+     QFileInfo dirInfo(QDir::cleanPath(dirName));
+     Q_ASSERT(dirInfo.exists());
+     return toNodeIndex(dirInfo);
+ }
+
+<span class="comment"> /*!
+   Since the value will always be in m_fileInfos, it is safe for
+   us to return a const reference to it.
+  */</span>
+ const QFileInfo&amp;
+ FileTree::toFileInfo(const QXmlNodeModelIndex &amp;nodeIndex) const
+ {
+     return m_fileInfos.at(nodeIndex.data());
+ }
+
+<span class="comment"> /*!
+   Returns the model node index for the node specified by the
+   QFileInfo and node Type.
+  */</span>
+ QXmlNodeModelIndex
+ FileTree::toNodeIndex(const QFileInfo &amp;fileInfo, Type attributeName) const
+ {
+     const int indexOf = m_fileInfos.indexOf(fileInfo);
+
+     if (indexOf == -1) {
+         m_fileInfos.append(fileInfo);
+         return createIndex(m_fileInfos.count()-1, attributeName);
+     }
+     else
+         return createIndex(indexOf, attributeName);
+ }
+
+<span class="comment"> /*!
+   Returns the model node index for the node specified by the
+   QFileInfo, which must be a  Type::File or Type::Directory.
+  */</span>
+ QXmlNodeModelIndex FileTree::toNodeIndex(const QFileInfo &amp;fileInfo) const
+ {
+     return toNodeIndex(fileInfo, fileInfo.isDir() ? Directory : File);
+ }
+
+<span class="comment"> /*!
+   This private helper function is only called by nextFromSimpleAxis().
+   It is called whenever nextFromSimpleAxis() is called with an axis
+   parameter of either \c{PreviousSibling} or \c{NextSibling}.
+  */</span>
+ QXmlNodeModelIndex FileTree::nextSibling(const QXmlNodeModelIndex &amp;nodeIndex,
+                                          const QFileInfo &amp;fileInfo,
+                                          qint8 offset) const
+ {
+     Q_ASSERT(offset == -1 || offset == 1);
+
+     <span class="comment">// Get the context node's parent.</span>
+     const QXmlNodeModelIndex parent(nextFromSimpleAxis(Parent, nodeIndex));
+
+     if (parent.isNull())
+         return QXmlNodeModelIndex();
+
+     <span class="comment">// Get the parent's child list.</span>
+     const QFileInfo parentFI(toFileInfo(parent));
+     Q_ASSERT(Type(parent.additionalData()) == Directory);
+     const QFileInfoList siblings(QDir(parentFI.absoluteFilePath()).entryInfoList(QStringList(),
+                                                                                  m_filterAllowAll,
+                                                                                  m_sortFlags));
+     Q_ASSERT_X(!siblings.isEmpty(), Q_FUNC_INFO, &quot;Can't happen! We started at a child.&quot;);
+
+     <span class="comment">// Find the index of the child where we started.</span>
+     const int indexOfMe = siblings.indexOf(fileInfo);
+
+     <span class="comment">// Apply the offset.</span>
+     const int siblingIndex = indexOfMe + offset;
+     if (siblingIndex &lt; 0 || siblingIndex &gt; siblings.count() - 1)
+         return QXmlNodeModelIndex();
+     else
+         return toNodeIndex(siblings.at(siblingIndex));
+ }
+
+<span class="comment"> /*!
+   This function is called by the QtXmlPatterns query engine when it
+   wants to move to the next node in the model. It moves along an \a
+   axis, \e from the node specified by \a nodeIndex.
+
+   This function is usually the one that requires the most design and
+   implementation work, because the implementation depends on the
+   perhaps unique structure of your non-XML data.
+
+   There are \l {QAbstractXmlNodeModel::SimpleAxis} {four values} for
+   \a axis that the implementation must handle, but there are really
+   only two axes, i.e., vertical and horizontal. Two of the four values
+   specify direction on the vertical axis (\c{Parent} and
+   \c{FirstChild}), and the other two values specify direction on the
+   horizontal axis (\c{PreviousSibling} and \c{NextSibling}).
+
+   The typical implementation will be a \c switch statement with
+   a case for each of the four \a axis values.
+  */</span>
+ QXmlNodeModelIndex
+ FileTree::nextFromSimpleAxis(SimpleAxis axis, const QXmlNodeModelIndex &amp;nodeIndex) const
+ {
+     const QFileInfo fi(toFileInfo(nodeIndex));
+     const Type type = Type(nodeIndex.additionalData());
+
+     if (type != File &amp;&amp; type != Directory) {
+         Q_ASSERT_X(axis == Parent, Q_FUNC_INFO, &quot;An attribute only has a parent!&quot;);
+         return toNodeIndex(fi, Directory);
+     }
+
+     switch (axis) {
+         case Parent:
+             return toNodeIndex(QFileInfo(fi.path()), Directory);
+
+         case FirstChild:
+         {
+             if (type == File) <span class="comment">// A file has no children.</span>
+                 return QXmlNodeModelIndex();
+             else {
+                 Q_ASSERT(type == Directory);
+                 Q_ASSERT_X(fi.isDir(), Q_FUNC_INFO, &quot;It isn't really a directory!&quot;);
+                 const QDir dir(fi.absoluteFilePath());
+                 Q_ASSERT(dir.exists());
+
+                 const QFileInfoList children(dir.entryInfoList(QStringList(),
+                                                                m_filterAllowAll,
+                                                                m_sortFlags));
+                 if (children.isEmpty())
+                     return QXmlNodeModelIndex();
+                 const QFileInfo firstChild(children.first());
+                 return toNodeIndex(firstChild);
+             }
+         }
+
+         case PreviousSibling:
+             return nextSibling(nodeIndex, fi, -1);
+
+         case NextSibling:
+             return nextSibling(nodeIndex, fi, 1);
+     }
+
+     Q_ASSERT_X(false, Q_FUNC_INFO, &quot;Don't ever get here!&quot;);
+     return QXmlNodeModelIndex();
+ }
+
+<span class="comment"> /*!
+   No matter what part of the file system we model (the whole file
+   tree or a subtree), \a node will always have \c{file:///} as
+   the document URI.
+  */</span>
+ QUrl FileTree::documentUri(const QXmlNodeModelIndex &amp;node) const
+ {
+     Q_UNUSED(node);
+     return QUrl(&quot;file:<span class="comment">///&quot;);</span>
+ }
+
+<span class="comment"> /*!
+   This function returns QXmlNodeModelIndex::Element if \a node
+   is a directory or a file, and QXmlNodeModelIndex::Attribute
+   otherwise.
+  */</span>
+ QXmlNodeModelIndex::NodeKind
+ FileTree::kind(const QXmlNodeModelIndex &amp;node) const
+ {
+     switch (Type(node.additionalData())) {
+         case Directory:
+         case File:
+             return QXmlNodeModelIndex::Element;
+         default:
+             return QXmlNodeModelIndex::Attribute;
+     }
+ }
+
+<span class="comment"> /*!
+   No order is defined for this example, so we always return
+   QXmlNodeModelIndex::Precedes, just to keep everyone happy.
+  */</span>
+ QXmlNodeModelIndex::DocumentOrder
+ FileTree::compareOrder(const QXmlNodeModelIndex&amp;,
+                        const QXmlNodeModelIndex&amp;) const
+ {
+     return QXmlNodeModelIndex::Precedes;
+ }
+
+<span class="comment"> /*!
+   Returns the name of \a node. The caller guarantees that \a node is
+   not null and that it is contained in this node model.
+  */</span>
+ QXmlName FileTree::name(const QXmlNodeModelIndex &amp;node) const
+ {
+     return m_names.at(node.additionalData());
+ }
+
+<span class="comment"> /*!
+   Always returns the QXmlNodeModelIndex for the root of the
+   file system, i.e. &quot;/&quot;.
+  */</span>
+ QXmlNodeModelIndex FileTree::root(const QXmlNodeModelIndex &amp;node) const
+ {
+     Q_UNUSED(node);
+     return toNodeIndex(QFileInfo(QLatin1String(&quot;/&quot;)));
+ }
+
+<span class="comment"> /*!
+   Returns the typed value for \a node, which must be either an
+   attribute or an element. The QVariant returned represents the atomic
+   value of an attribute or the atomic value contained in an element.
+
+   If the QVariant is returned as a default constructed variant,
+   it means that \a node has no typed value.
+  */</span>
+ QVariant FileTree::typedValue(const QXmlNodeModelIndex &amp;node) const
+ {
+     const QFileInfo &amp;fi = toFileInfo(node);
+
+     switch (Type(node.additionalData())) {
+         case Directory:
+             <span class="comment">// deliberate fall through.</span>
+         case File:
+             return QString();
+         case AttributeFileName:
+             return fi.fileName();
+         case AttributeFilePath:
+             return fi.filePath();
+         case AttributeSize:
+             return fi.size();
+         case AttributeMIMEType:
+             {
+                 <span class="comment">/* We don't have any MIME detection code currently, so return
+                  * the most generic one. */</span>
+                 return QLatin1String(&quot;application/octet-stream&quot;);
+             }
+         case AttributeSuffix:
+             return fi.suffix();
+     }
+
+     Q_ASSERT_X(false, Q_FUNC_INFO, &quot;This line should never be reached.&quot;);
+     return QString();
+ }
+
+<span class="comment"> /*!
+   Returns the attributes of \a element. The caller guarantees
+   that \a element is an element in this node model.
+  */</span>
+ QVector&lt;QXmlNodeModelIndex&gt;
+ FileTree::attributes(const QXmlNodeModelIndex &amp;element) const
+ {
+     QVector&lt;QXmlNodeModelIndex&gt; result;
+
+     <span class="comment">/* Both elements has this attribute. */</span>
+     const QFileInfo &amp;forElement = toFileInfo(element);
+     result.append(toNodeIndex(forElement, AttributeFilePath));
+     result.append(toNodeIndex(forElement, AttributeFileName));
+
+     if (Type(element.additionalData() == File)) {
+         result.append(toNodeIndex(forElement, AttributeSize));
+         result.append(toNodeIndex(forElement, AttributeSuffix));
+         <span class="comment">//result.append(toNodeIndex(forElement, AttributeMIMEType));</span>
+     }
+     else {
+         Q_ASSERT(element.additionalData() == Directory);
+     }
+
+     return result;
+ }</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

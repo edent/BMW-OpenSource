@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qevent.cpp -->
+<head>
+  <title>Qt 4.6: QDragEnterEvent Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QDragEnterEvent" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QDragEnterEvent Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QDragEnterEvent class provides an event which is sent to a widget when a drag and drop action enters it. <a href="#details">More...</a></p>
+<pre> #include &lt;QDragEnterEvent&gt;</pre><p>Inherits <a href="qdragmoveevent.html">QDragMoveEvent</a>.</p>
+<ul>
+<li><a href="qdragenterevent-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qdragenterevent.html#QDragEnterEvent">QDragEnterEvent</a></b> ( const QPoint &amp; <i>point</i>, Qt::DropActions <i>actions</i>, const QMimeData * <i>data</i>, Qt::MouseButtons <i>buttons</i>, Qt::KeyboardModifiers <i>modifiers</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>5 public functions inherited from <a href="qdragmoveevent.html#public-functions">QDragMoveEvent</a></li>
+<li><div bar="2" class="fn"></div>10 public functions inherited from <a href="qdropevent.html#public-functions">QDropEvent</a></li>
+<li><div bar="2" class="fn"></div>6 public functions inherited from <a href="qevent.html#public-functions">QEvent</a></li>
+<li><div bar="2" class="fn"></div>3 public functions inherited from <a href="qmimesource.html#public-functions">QMimeSource</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li><div class="fn"></div>1 property inherited from <a href="qevent.html#properties">QEvent</a></li>
+<li><div class="fn"></div>1 static public member inherited from <a href="qevent.html#static-public-members">QEvent</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QDragEnterEvent class provides an event which is sent to a widget when a drag and drop action enters it.</p>
+<p>A widget must accept this event in order to receive the <a href="qdragmoveevent.html">drag move events</a> that are sent while the drag and drop action is in progress. The drag enter event is always immediately followed by a drag move event.</p>
+<p>QDragEnterEvent inherits most of its functionality from <a href="qdragmoveevent.html">QDragMoveEvent</a>, which in turn inherits most of its functionality from <a href="qdropevent.html">QDropEvent</a>.</p>
+<p>See also <a href="qdragleaveevent.html">QDragLeaveEvent</a>, <a href="qdragmoveevent.html">QDragMoveEvent</a>, and <a href="qdropevent.html">QDropEvent</a>.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QDragEnterEvent/QDragEnterEvent" />
+<h3 class="fn"><a name="QDragEnterEvent"></a>QDragEnterEvent::QDragEnterEvent ( const <a href="qpoint.html">QPoint</a> &amp; <i>point</i>, <a href="qt.html#DropAction-enum">Qt::DropActions</a> <i>actions</i>, const <a href="qmimedata.html">QMimeData</a> * <i>data</i>, <a href="qt.html#MouseButton-enum">Qt::MouseButtons</a> <i>buttons</i>, <a href="qt.html#KeyboardModifier-enum">Qt::KeyboardModifiers</a> <i>modifiers</i> )</h3>
+<p>Constructs a <a href="qdragenterevent.html">QDragEnterEvent</a> that represents a drag entering a widget at the given <i>point</i> with mouse and keyboard states specified by <i>buttons</i> and <i>modifiers</i>.</p>
+<p>The drag data is passed as MIME-encoded information in <i>data</i>, and the specified <i>actions</i> describe the possible types of drag and drop operation that can be performed.</p>
+<p><b>Warning:</b> Do not create a <a href="qdragenterevent.html">QDragEnterEvent</a> yourself since these objects rely on Qt's internal state.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

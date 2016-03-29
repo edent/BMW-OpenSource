@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- q3http.cpp -->
+<head>
+  <title>Qt 4.6: Q3HttpHeader Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//Q3HttpHeader" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">Q3HttpHeader Class Reference<br /><span class="small-subtitle">[<a href="qt3support.html">Qt3Support</a> module]</span>
+</h1>
+<p>The Q3HttpHeader class contains header information for HTTP. <a href="#details">More...</a></p>
+<pre> #include &lt;Q3HttpHeader&gt;</pre><p><b>This class is part of the Qt 3 support library.</b> It is provided to keep old source code working. We strongly advise against using it in new code. See <a href="porting4.html">Porting to Qt 4</a> for more information.</p>
+<p><b>This class is not part of the Qt GUI Framework Edition.</b></p>
+<p>Inherited by <a href="q3httprequestheader.html">Q3HttpRequestHeader</a> and <a href="q3httpresponseheader.html">Q3HttpResponseHeader</a>.</p>
+<ul>
+<li><a href="q3httpheader-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="q3httpheader.html#Q3HttpHeader">Q3HttpHeader</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="q3httpheader.html#Q3HttpHeader-2">Q3HttpHeader</a></b> ( const Q3HttpHeader &amp; <i>header</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="q3httpheader.html#Q3HttpHeader-3">Q3HttpHeader</a></b> ( const QString &amp; <i>str</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual </td><td class="memItemRight" valign="bottom"><b><a href="q3httpheader.html#dtor.Q3HttpHeader">~Q3HttpHeader</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">uint </td><td class="memItemRight" valign="bottom"><b><a href="q3httpheader.html#contentLength">contentLength</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="q3httpheader.html#contentType">contentType</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="q3httpheader.html#hasContentLength">hasContentLength</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="q3httpheader.html#hasContentType">hasContentType</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="q3httpheader.html#hasKey">hasKey</a></b> ( const QString &amp; <i>key</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="q3httpheader.html#isValid">isValid</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QStringList </td><td class="memItemRight" valign="bottom"><b><a href="q3httpheader.html#keys">keys</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual int </td><td class="memItemRight" valign="bottom"><b><a href="q3httpheader.html#majorVersion">majorVersion</a></b> () const = 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual int </td><td class="memItemRight" valign="bottom"><b><a href="q3httpheader.html#minorVersion">minorVersion</a></b> () const = 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="q3httpheader.html#removeValue">removeValue</a></b> ( const QString &amp; <i>key</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="q3httpheader.html#setContentLength">setContentLength</a></b> ( int <i>len</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="q3httpheader.html#setContentType">setContentType</a></b> ( const QString &amp; <i>type</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="q3httpheader.html#setValue">setValue</a></b> ( const QString &amp; <i>key</i>, const QString &amp; <i>value</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QString </td><td class="memItemRight" valign="bottom"><b><a href="q3httpheader.html#toString">toString</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="q3httpheader.html#value">value</a></b> ( const QString &amp; <i>key</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Q3HttpHeader &amp; </td><td class="memItemRight" valign="bottom"><b><a href="q3httpheader.html#operator-eq">operator=</a></b> ( const Q3HttpHeader &amp; <i>h</i> )</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The Q3HttpHeader class contains header information for HTTP.</p>
+<p>In most cases you should use the more specialized derivatives of this class, <a href="q3httpresponseheader.html">Q3HttpResponseHeader</a> and <a href="q3httprequestheader.html">Q3HttpRequestHeader</a>, rather than directly using Q3HttpHeader.</p>
+<p>Q3HttpHeader provides the HTTP header fields. A HTTP header field consists of a name followed by a colon, a single space, and the field value. (See RFC 1945.) Field names are case-insensitive. A typical header field looks like this:</p>
+<pre> content-type: text/html</pre>
+<p>In the API the header field name is called the &quot;key&quot; and the content is called the &quot;value&quot;. You can get and set a header field's value by using its key with <a href="q3httpheader.html#value">value</a>() and <a href="q3httpheader.html#setValue">setValue</a>(), e.g&#x2e;</p>
+<pre> header.setValue( &quot;content-type&quot;, &quot;text/html&quot; );
+ QString contentType = header.value( &quot;content-type&quot; );</pre>
+<p>Some fields are so common that getters and setters are provided for them as a convenient alternative to using <a href="q3httpheader.html#value">value</a>() and <a href="q3httpheader.html#setValue">setValue</a>(), e.g&#x2e; <a href="q3httpheader.html#contentLength">contentLength</a>() and <a href="q3httpheader.html#contentType">contentType</a>(), <a href="q3httpheader.html#setContentLength">setContentLength</a>() and <a href="q3httpheader.html#setContentType">setContentType</a>().</p>
+<p>Each header key has a <i>single</i> value associated with it. If you set the value for a key which already exists the previous value will be discarded.</p>
+<p>See also <a href="q3httprequestheader.html">Q3HttpRequestHeader</a> and <a href="q3httpresponseheader.html">Q3HttpResponseHeader</a>.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/Q3HttpHeader/Q3HttpHeader" />
+<h3 class="fn"><a name="Q3HttpHeader"></a>Q3HttpHeader::Q3HttpHeader ()</h3>
+<p>Constructs an empty HTTP header.</p>
+<h3 class="fn"><a name="Q3HttpHeader-2"></a>Q3HttpHeader::Q3HttpHeader ( const Q3HttpHeader &amp; <i>header</i> )</h3>
+<p>Constructs a copy of <i>header</i>.</p>
+<h3 class="fn"><a name="Q3HttpHeader-3"></a>Q3HttpHeader::Q3HttpHeader ( const <a href="qstring.html">QString</a> &amp; <i>str</i> )</h3>
+<p>Constructs a HTTP header for <i>str</i>.</p>
+<p>This constructor parses the string <i>str</i> for header fields and adds this information. The <i>str</i> should consist of one or more &quot;\r\n&quot; delimited lines; each of these lines should have the format key, colon, space, value.</p>
+<a name="//apple_ref/cpp/instm/Q3HttpHeader/~Q3HttpHeader" />
+<h3 class="fn"><a name="dtor.Q3HttpHeader"></a>Q3HttpHeader::~Q3HttpHeader ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Destructor.</p>
+<a name="//apple_ref/cpp/instm/Q3HttpHeader/contentLength" />
+<h3 class="fn"><a name="contentLength"></a><a href="qtglobal.html#uint-typedef">uint</a> Q3HttpHeader::contentLength () const</h3>
+<p>Returns the value of the special HTTP header field <tt>content-length</tt>.</p>
+<p>See also <a href="q3httpheader.html#setContentLength">setContentLength</a>() and <a href="q3httpheader.html#hasContentLength">hasContentLength</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3HttpHeader/contentType" />
+<h3 class="fn"><a name="contentType"></a><a href="qstring.html">QString</a> Q3HttpHeader::contentType () const</h3>
+<p>Returns the value of the special HTTP header field <tt>content-type</tt>.</p>
+<p>See also <a href="q3httpheader.html#setContentType">setContentType</a>() and <a href="q3httpheader.html#hasContentType">hasContentType</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3HttpHeader/hasContentLength" />
+<h3 class="fn"><a name="hasContentLength"></a>bool Q3HttpHeader::hasContentLength () const</h3>
+<p>Returns true if the header has an entry for the special HTTP header field <tt>content-length</tt>; otherwise returns false.</p>
+<p>See also <a href="q3httpheader.html#contentLength">contentLength</a>() and <a href="q3httpheader.html#setContentLength">setContentLength</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3HttpHeader/hasContentType" />
+<h3 class="fn"><a name="hasContentType"></a>bool Q3HttpHeader::hasContentType () const</h3>
+<p>Returns true if the header has an entry for the special HTTP header field <tt>content-type</tt>; otherwise returns false.</p>
+<p>See also <a href="q3httpheader.html#contentType">contentType</a>() and <a href="q3httpheader.html#setContentType">setContentType</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3HttpHeader/hasKey" />
+<h3 class="fn"><a name="hasKey"></a>bool Q3HttpHeader::hasKey ( const <a href="qstring.html">QString</a> &amp; <i>key</i> ) const</h3>
+<p>Returns true if the HTTP header has an entry with the given <i>key</i>; otherwise returns false.</p>
+<p>See also <a href="q3httpheader.html#value">value</a>(), <a href="q3httpheader.html#setValue">setValue</a>(), and <a href="q3httpheader.html#keys">keys</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3HttpHeader/isValid" />
+<h3 class="fn"><a name="isValid"></a>bool Q3HttpHeader::isValid () const</h3>
+<p>Returns true if the HTTP header is valid; otherwise returns false.</p>
+<p>A <a href="q3httpheader.html" class="compat">Q3HttpHeader</a> is invalid if it was created by parsing a malformed string.</p>
+<a name="//apple_ref/cpp/instm/Q3HttpHeader/keys" />
+<h3 class="fn"><a name="keys"></a><a href="qstringlist.html">QStringList</a> Q3HttpHeader::keys () const</h3>
+<p>Returns a list of the keys in the HTTP header.</p>
+<p>See also <a href="q3httpheader.html#hasKey">hasKey</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3HttpHeader/majorVersion" />
+<h3 class="fn"><a name="majorVersion"></a>int Q3HttpHeader::majorVersion () const&nbsp;&nbsp;<tt> [pure virtual]</tt></h3>
+<p>Returns the major protocol-version of the HTTP header.</p>
+<a name="//apple_ref/cpp/instm/Q3HttpHeader/minorVersion" />
+<h3 class="fn"><a name="minorVersion"></a>int Q3HttpHeader::minorVersion () const&nbsp;&nbsp;<tt> [pure virtual]</tt></h3>
+<p>Returns the minor protocol-version of the HTTP header.</p>
+<a name="//apple_ref/cpp/instm/Q3HttpHeader/removeValue" />
+<h3 class="fn"><a name="removeValue"></a>void Q3HttpHeader::removeValue ( const <a href="qstring.html">QString</a> &amp; <i>key</i> )</h3>
+<p>Removes the entry with the key <i>key</i> from the HTTP header.</p>
+<p>See also <a href="q3httpheader.html#value">value</a>() and <a href="q3httpheader.html#setValue">setValue</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3HttpHeader/setContentLength" />
+<h3 class="fn"><a name="setContentLength"></a>void Q3HttpHeader::setContentLength ( int <i>len</i> )</h3>
+<p>Sets the value of the special HTTP header field <tt>content-length</tt> to <i>len</i>.</p>
+<p>See also <a href="q3httpheader.html#contentLength">contentLength</a>() and <a href="q3httpheader.html#hasContentLength">hasContentLength</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3HttpHeader/setContentType" />
+<h3 class="fn"><a name="setContentType"></a>void Q3HttpHeader::setContentType ( const <a href="qstring.html">QString</a> &amp; <i>type</i> )</h3>
+<p>Sets the value of the special HTTP header field <tt>content-type</tt> to <i>type</i>.</p>
+<p>See also <a href="q3httpheader.html#contentType">contentType</a>() and <a href="q3httpheader.html#hasContentType">hasContentType</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3HttpHeader/setValue" />
+<h3 class="fn"><a name="setValue"></a>void Q3HttpHeader::setValue ( const <a href="qstring.html">QString</a> &amp; <i>key</i>, const <a href="qstring.html">QString</a> &amp; <i>value</i> )</h3>
+<p>Sets the value of the entry with the <i>key</i> to <i>value</i>.</p>
+<p>If no entry with <i>key</i> exists, a new entry with the given <i>key</i> and <i>value</i> is created. If an entry with the <i>key</i> already exists, its value is discarded and replaced with the given <i>value</i>.</p>
+<p>See also <a href="q3httpheader.html#value">value</a>(), <a href="q3httpheader.html#hasKey">hasKey</a>(), and <a href="q3httpheader.html#removeValue">removeValue</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3HttpHeader/toString" />
+<h3 class="fn"><a name="toString"></a><a href="qstring.html">QString</a> Q3HttpHeader::toString () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Returns a string representation of the HTTP header.</p>
+<p>The string is suitable for use by the constructor that takes a <a href="qstring.html">QString</a>. It consists of lines with the format: key, colon, space, value, &quot;\r\n&quot;.</p>
+<a name="//apple_ref/cpp/instm/Q3HttpHeader/value" />
+<h3 class="fn"><a name="value"></a><a href="qstring.html">QString</a> Q3HttpHeader::value ( const <a href="qstring.html">QString</a> &amp; <i>key</i> ) const</h3>
+<p>Returns the value for the entry with the given <i>key</i>. If no entry has this <i>key</i>, an empty string is returned.</p>
+<p>See also <a href="q3httpheader.html#setValue">setValue</a>(), <a href="q3httpheader.html#removeValue">removeValue</a>(), <a href="q3httpheader.html#hasKey">hasKey</a>(), and <a href="q3httpheader.html#keys">keys</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3HttpHeader/operator=" />
+<h3 class="fn"><a name="operator-eq"></a>Q3HttpHeader &amp; Q3HttpHeader::operator= ( const Q3HttpHeader &amp; <i>h</i> )</h3>
+<p>Assigns <i>h</i> and returns a reference to this http header.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

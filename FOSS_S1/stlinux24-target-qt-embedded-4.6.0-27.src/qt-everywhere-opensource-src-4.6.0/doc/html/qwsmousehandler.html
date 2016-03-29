@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qmouse_qws.cpp -->
+<head>
+  <title>Qt 4.6: QWSMouseHandler Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QWSMouseHandler" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QWSMouseHandler Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QWSMouseHandler class is a base class for mouse drivers in Qt for Embedded Linux. <a href="#details">More...</a></p>
+<pre> #include &lt;QWSMouseHandler&gt;</pre><p>Inherited by <a href="qwscalibratedmousehandler.html">QWSCalibratedMouseHandler</a>.</p>
+<ul>
+<li><a href="qwsmousehandler-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qwsmousehandler.html#QWSMouseHandler">QWSMouseHandler</a></b> ( const QString &amp; <i>driver</i> = QString(), const QString &amp; <i>device</i> = QString() )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual </td><td class="memItemRight" valign="bottom"><b><a href="qwsmousehandler.html#dtor.QWSMouseHandler">~QWSMouseHandler</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qwsmousehandler.html#calibrate">calibrate</a></b> ( const QWSPointerCalibrationData * <i>data</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qwsmousehandler.html#clearCalibration">clearCalibration</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qwsmousehandler.html#getCalibration">getCalibration</a></b> ( QWSPointerCalibrationData * <i>data</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qwsmousehandler.html#limitToScreen">limitToScreen</a></b> ( QPoint &amp; <i>position</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qwsmousehandler.html#mouseChanged">mouseChanged</a></b> ( const QPoint &amp; <i>position</i>, int <i>state</i>, int <i>wheel</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const QPoint &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qwsmousehandler.html#pos">pos</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qwsmousehandler.html#resume">resume</a></b> () = 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qwsmousehandler.html#setScreen">setScreen</a></b> ( const QScreen * <i>screen</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qwsmousehandler.html#suspend">suspend</a></b> () = 0</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QWSMouseHandler class is a base class for mouse drivers in Qt for Embedded Linux.</p>
+<p>Note that this class is only available in <a href="qt-embedded-linux.html">Qt for Embedded Linux</a>.</p>
+<p><a href="qt-embedded-linux.html">Qt for Embedded Linux</a> provides ready-made drivers for several mouse protocols, see the <a href="qt-embedded-pointer.html">pointer handling</a> documentation for details. Custom mouse drivers can be implemented by subclassing the QWSMouseHandler class and creating a mouse driver plugin (derived from <a href="qmousedriverplugin.html">QMouseDriverPlugin</a>). The default implementation of the <a href="qmousedriverfactory.html">QMouseDriverFactory</a> class will automatically detect the plugin, and load the driver into the server application at run-time using Qt's <a href="plugins-howto.html">plugin system</a>.</p>
+<p>The mouse driver receives mouse events from the system device and encapsulates each event with an instance of the <a href="qwsevent.html">QWSEvent</a> class which it then passes to the server application (the server is responsible for propagating the event to the appropriate client). To receive mouse events, a QWSMouseHandler object will usually create a <a href="qsocketnotifier.html">QSocketNotifier</a> object for the given device. The <a href="qsocketnotifier.html">QSocketNotifier</a> class provides support for monitoring activity on a file descriptor. When the socket notifier receives data, it will call the mouse driver's <a href="qwsmousehandler.html#mouseChanged">mouseChanged</a>() function to send the event to the <a href="qt-embedded-linux.html">Qt for Embedded Linux</a> server application for relaying to clients.</p>
+<p>If you are creating a driver for a device that needs calibration or noise reduction, such as a touchscreen, use the <a href="qwscalibratedmousehandler.html">QWSCalibratedMouseHandler</a> subclass instead to take advantage of the <a href="qwsmousehandler.html#calibrate">calibrate</a>() and <a href="qwsmousehandler.html#clearCalibration">clearCalibration</a>() functions. The <a href="qws-mousecalibration.html">Mouse Calibration</a> demonstrates how to write a simple program using the mechanisms provided by the QWSMouseHandler class to calibrate a mouse driver.</p>
+<p>Note that when deriving from the QWSMouseHandler class, the <a href="qwsmousehandler.html#resume">resume</a>() and <a href="qwsmousehandler.html#suspend">suspend</a>() functions must be reimplemented to control the flow of mouse input, i.e&#x2e;, the default implementation does nothing. Reimplementations of these functions typically call the <a href="qsocketnotifier.html#setEnabled">QSocketNotifier::setEnabled</a>() function to enable or disable the socket notifier, respectively.</p>
+<p>In addition, QWSMouseHandler provides the <a href="qwsmousehandler.html#setScreen">setScreen</a>() function that allows you to specify a screen for your mouse driver and the <a href="qwsmousehandler.html#limitToScreen">limitToScreen</a>() function that ensures that a given position is within this screen's boundaries (changing the position if necessary). Finally, QWSMouseHandler provides the <a href="qwsmousehandler.html#pos">pos</a>() function returning the current mouse position.</p>
+<p>See also <a href="qmousedriverplugin.html">QMouseDriverPlugin</a>, <a href="qmousedriverfactory.html">QMouseDriverFactory</a>, and <a href="qt-embedded-pointer.html">Qt for Embedded Linux Pointer Handling</a>.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QWSMouseHandler/QWSMouseHandler" />
+<h3 class="fn"><a name="QWSMouseHandler"></a>QWSMouseHandler::QWSMouseHandler ( const <a href="qstring.html">QString</a> &amp; <i>driver</i> = QString(), const <a href="qstring.html">QString</a> &amp; <i>device</i> = QString() )</h3>
+<p>Constructs a mouse driver. The <i>driver</i> and <i>device</i> arguments are passed by the <a href="qt-embedded-envvars.html#qws-mouse-proto">QWS_MOUSE_PROTO</a> environment variable.</p>
+<p>Call the <a href="qwsserver.html#setMouseHandler">QWSServer::setMouseHandler</a>() function to make the newly created mouse driver, the primary driver. Note that the primary driver is controlled by the system, i.e&#x2e;, the system will delete it upon exit.</p>
+<a name="//apple_ref/cpp/instm/QWSMouseHandler/~QWSMouseHandler" />
+<h3 class="fn"><a name="dtor.QWSMouseHandler"></a>QWSMouseHandler::~QWSMouseHandler ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Destroys this mouse driver.</p>
+<p>Do not call this function if this driver is the primary mouse driver, i.e&#x2e;, if <a href="qwsserver.html#setMouseHandler">QWSServer::setMouseHandler</a>() function has been called passing this driver as argument. The primary mouse driver is deleted by the system.</p>
+<a name="//apple_ref/cpp/instm/QWSMouseHandler/calibrate" />
+<h3 class="fn"><a name="calibrate"></a>void QWSMouseHandler::calibrate ( const <a href="qwspointercalibrationdata.html">QWSPointerCalibrationData</a> * <i>data</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>This virtual function allows subclasses of <a href="qwsmousehandler.html">QWSMouseHandler</a> to set the calibration information passed in the given <i>data</i>. Note that the default implementation does nothing.</p>
+<p>See also <a href="qwscalibratedmousehandler.html#calibrate">QWSCalibratedMouseHandler::calibrate</a>() and <a href="qwsmousehandler.html#clearCalibration">clearCalibration</a>().</p>
+<a name="//apple_ref/cpp/instm/QWSMouseHandler/clearCalibration" />
+<h3 class="fn"><a name="clearCalibration"></a>void QWSMouseHandler::clearCalibration ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>This virtual function allows subclasses of <a href="qwsmousehandler.html">QWSMouseHandler</a> to clear the calibration information. Note that the default implementation does nothing.</p>
+<p>See also <a href="qwscalibratedmousehandler.html#clearCalibration">QWSCalibratedMouseHandler::clearCalibration</a>() and <a href="qwsmousehandler.html#calibrate">calibrate</a>().</p>
+<a name="//apple_ref/cpp/instm/QWSMouseHandler/getCalibration" />
+<h3 class="fn"><a name="getCalibration"></a>void QWSMouseHandler::getCalibration ( <a href="qwspointercalibrationdata.html">QWSPointerCalibrationData</a> * <i>data</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>This virtual function allows subclasses of <a href="qwsmousehandler.html">QWSMouseHandler</a> to fill in the device coordinates in <i>data</i> with values that correspond to screen coordinates that are already in <i>data</i>. Note that the default implementation does nothing.</p>
+<a name="//apple_ref/cpp/instm/QWSMouseHandler/limitToScreen" />
+<h3 class="fn"><a name="limitToScreen"></a>void QWSMouseHandler::limitToScreen ( <a href="qpoint.html">QPoint</a> &amp; <i>position</i> )</h3>
+<p>Ensures that the given <i>position</i> is within the screen's boundaries, changing the <i>position</i> if necessary.</p>
+<p>See also <a href="qwsmousehandler.html#pos">pos</a>() and <a href="qwsmousehandler.html#setScreen">setScreen</a>().</p>
+<a name="//apple_ref/cpp/instm/QWSMouseHandler/mouseChanged" />
+<h3 class="fn"><a name="mouseChanged"></a>void QWSMouseHandler::mouseChanged ( const <a href="qpoint.html">QPoint</a> &amp; <i>position</i>, int <i>state</i>, int <i>wheel</i> = 0 )</h3>
+<p>Notifies the system of a new mouse event.</p>
+<p>This function updates the current mouse position and sends the event to the <a href="qt-embedded-linux.html">Qt for Embedded Linux</a> server application for delivery to the correct widget. Note that a custom mouse driver must call this function whenever it wants to deliver a new mouse event.</p>
+<p>The given <i>position</i> is the global position of the mouse cursor. The <i>state</i> parameter is a bitmask of the <a href="qt.html#MouseButton-enum">Qt::MouseButton</a> enum's values, indicating which mouse buttons are pressed. The <i>wheel</i> parameter is the delta value of the mouse wheel as returned by <a href="qwheelevent.html#delta">QWheelEvent::delta</a>().</p>
+<p>See also <a href="qwsmousehandler.html#pos">pos</a>().</p>
+<a name="//apple_ref/cpp/instm/QWSMouseHandler/pos" />
+<h3 class="fn"><a name="pos"></a>const <a href="qpoint.html">QPoint</a> &amp; QWSMouseHandler::pos () const</h3>
+<p>Returns the current mouse position.</p>
+<p>See also <a href="qwsmousehandler.html#mouseChanged">mouseChanged</a>() and <a href="qwsmousehandler.html#limitToScreen">limitToScreen</a>().</p>
+<a name="//apple_ref/cpp/instm/QWSMouseHandler/resume" />
+<h3 class="fn"><a name="resume"></a>void QWSMouseHandler::resume ()&nbsp;&nbsp;<tt> [pure virtual]</tt></h3>
+<p>Implement this function to resume reading and handling mouse events, e.g&#x2e;, call the <a href="qsocketnotifier.html#setEnabled">QSocketNotifier::setEnabled</a>() function to enable the socket notifier.</p>
+<p>See also <a href="qwsmousehandler.html#suspend">suspend</a>().</p>
+<a name="//apple_ref/cpp/instm/QWSMouseHandler/setScreen" />
+<h3 class="fn"><a name="setScreen"></a>void QWSMouseHandler::setScreen ( const <a href="qscreen.html">QScreen</a> * <i>screen</i> )</h3>
+<p>Sets the screen for this mouse driver to be the given <i>screen</i>.</p>
+<p>This function was introduced in Qt 4.2.</p>
+<p>See also <a href="qwsmousehandler.html#limitToScreen">limitToScreen</a>().</p>
+<a name="//apple_ref/cpp/instm/QWSMouseHandler/suspend" />
+<h3 class="fn"><a name="suspend"></a>void QWSMouseHandler::suspend ()&nbsp;&nbsp;<tt> [pure virtual]</tt></h3>
+<p>Implement this function to suspend reading and handling of mouse events, e.g&#x2e;, call the <a href="qsocketnotifier.html#setEnabled">QSocketNotifier::setEnabled</a>() function to disable the socket notifier.</p>
+<p>See also <a href="qwsmousehandler.html#resume">resume</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

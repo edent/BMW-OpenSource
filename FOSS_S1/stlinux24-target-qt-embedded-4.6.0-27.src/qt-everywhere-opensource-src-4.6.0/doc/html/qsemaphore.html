@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qsemaphore.cpp -->
+<head>
+  <title>Qt 4.6: QSemaphore Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QSemaphore" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QSemaphore Class Reference<br /><span class="small-subtitle">[<a href="qtcore.html">QtCore</a> module]</span>
+</h1>
+<p>The QSemaphore class provides a general counting semaphore. <a href="#details">More...</a></p>
+<pre> #include &lt;QSemaphore&gt;</pre><p><b>Note:</b> All functions in this class are <a href="threads-reentrancy.html#thread-safe">thread-safe</a>.</p>
+<ul>
+<li><a href="qsemaphore-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qsemaphore.html#QSemaphore">QSemaphore</a></b> ( int <i>n</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qsemaphore.html#dtor.QSemaphore">~QSemaphore</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qsemaphore.html#acquire">acquire</a></b> ( int <i>n</i> = 1 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qsemaphore.html#available">available</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qsemaphore.html#release">release</a></b> ( int <i>n</i> = 1 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qsemaphore.html#tryAcquire">tryAcquire</a></b> ( int <i>n</i> = 1 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qsemaphore.html#tryAcquire-2">tryAcquire</a></b> ( int <i>n</i>, int <i>timeout</i> )</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QSemaphore class provides a general counting semaphore.</p>
+<p>A semaphore is a generalization of a mutex. While a mutex can only be locked once, it's possible to acquire a semaphore multiple times. Semaphores are typically used to protect a certain number of identical resources.</p>
+<p>Semaphores support two fundamental operations, <a href="qsemaphore.html#acquire">acquire</a>() and <a href="qsemaphore.html#release">release</a>():</p>
+<ul>
+<li>acquire(<i>n</i>) tries to acquire <i>n</i> resources. If there aren't that many resources available, the call will block until this is the case.</li>
+<li>release(<i>n</i>) releases <i>n</i> resources.</li>
+</ul>
+<p>There's also a <a href="qsemaphore.html#tryAcquire">tryAcquire</a>() function that returns immediately if it cannot acquire the resources, and an <a href="qsemaphore.html#available">available</a>() function that returns the number of available resources at any time.</p>
+<p>Example:</p>
+<pre> QSemaphore sem(5);      <span class="comment">// sem.available() == 5</span>
+
+ sem.acquire(3);         <span class="comment">// sem.available() == 2</span>
+ sem.acquire(2);         <span class="comment">// sem.available() == 0</span>
+ sem.release(5);         <span class="comment">// sem.available() == 5</span>
+ sem.release(5);         <span class="comment">// sem.available() == 10</span>
+
+ sem.tryAcquire(1);      <span class="comment">// sem.available() == 9, returns true</span>
+ sem.tryAcquire(250);    <span class="comment">// sem.available() == 9, returns false</span></pre>
+<p>A typical application of semaphores is for controlling access to a circular buffer shared by a producer thread and a consumer thread. The <a href="threads-semaphores.html">Semaphores</a> example shows how to use QSemaphore to solve that problem.</p>
+<p>A non-computing example of a semaphore would be dining at a restaurant. A semaphore is initialized with the number of chairs in the restaurant. As people arrive, they want a seat. As seats are filled, <a href="qsemaphore.html#available">available</a>() is decremented. As people leave, the <a href="qsemaphore.html#available">available</a>() is incremented, allowing more people to enter. If a party of 10 people want to be seated, but there are only 9 seats, those 10 people will wait, but a party of 4 people would be seated (taking the available seats to 5, making the party of 10 people wait longer).</p>
+<p>See also <a href="qmutex.html">QMutex</a>, <a href="qwaitcondition.html">QWaitCondition</a>, <a href="qthread.html">QThread</a>, and <a href="threads-semaphores.html">Semaphores Example</a>.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QSemaphore/QSemaphore" />
+<h3 class="fn"><a name="QSemaphore"></a>QSemaphore::QSemaphore ( int <i>n</i> = 0 )</h3>
+<p>Creates a new semaphore and initializes the number of resources it guards to <i>n</i> (by default, 0).</p>
+<p>See also <a href="qsemaphore.html#release">release</a>() and <a href="qsemaphore.html#available">available</a>().</p>
+<a name="//apple_ref/cpp/instm/QSemaphore/~QSemaphore" />
+<h3 class="fn"><a name="dtor.QSemaphore"></a>QSemaphore::~QSemaphore ()</h3>
+<p>Destroys the semaphore.</p>
+<p><b>Warning:</b> Destroying a semaphore that is in use may result in undefined behavior.</p>
+<a name="//apple_ref/cpp/instm/QSemaphore/acquire" />
+<h3 class="fn"><a name="acquire"></a>void QSemaphore::acquire ( int <i>n</i> = 1 )</h3>
+<p>Tries to acquire <tt>n</tt> resources guarded by the semaphore. If <i>n</i> &gt; <a href="qsemaphore.html#available">available</a>(), this call will block until enough resources are available.</p>
+<p>See also <a href="qsemaphore.html#release">release</a>(), <a href="qsemaphore.html#available">available</a>(), and <a href="qsemaphore.html#tryAcquire">tryAcquire</a>().</p>
+<a name="//apple_ref/cpp/instm/QSemaphore/available" />
+<h3 class="fn"><a name="available"></a>int QSemaphore::available () const</h3>
+<p>Returns the number of resources currently available to the semaphore. This number can never be negative.</p>
+<p>See also <a href="qsemaphore.html#acquire">acquire</a>() and <a href="qsemaphore.html#release">release</a>().</p>
+<a name="//apple_ref/cpp/instm/QSemaphore/release" />
+<h3 class="fn"><a name="release"></a>void QSemaphore::release ( int <i>n</i> = 1 )</h3>
+<p>Releases <i>n</i> resources guarded by the semaphore.</p>
+<p>This function can be used to &quot;create&quot; resources as well. For example:</p>
+<pre> QSemaphore sem(5);      <span class="comment">// a semaphore that guards 5 resources</span>
+ sem.acquire(5);         <span class="comment">// acquire all 5 resources</span>
+ sem.release(5);         <span class="comment">// release the 5 resources</span>
+ sem.release(10);        <span class="comment">// &quot;create&quot; 10 new resources</span></pre>
+<p>See also <a href="qsemaphore.html#acquire">acquire</a>() and <a href="qsemaphore.html#available">available</a>().</p>
+<a name="//apple_ref/cpp/instm/QSemaphore/tryAcquire" />
+<h3 class="fn"><a name="tryAcquire"></a>bool QSemaphore::tryAcquire ( int <i>n</i> = 1 )</h3>
+<p>Tries to acquire <tt>n</tt> resources guarded by the semaphore and returns true on success. If <a href="qsemaphore.html#available">available</a>() &lt; <i>n</i>, this call immediately returns false without acquiring any resources.</p>
+<p>Example:</p>
+<pre> QSemaphore sem(5);      <span class="comment">// sem.available() == 5</span>
+ sem.tryAcquire(250);    <span class="comment">// sem.available() == 5, returns false</span>
+ sem.tryAcquire(3);      <span class="comment">// sem.available() == 2, returns true</span></pre>
+<p>See also <a href="qsemaphore.html#acquire">acquire</a>().</p>
+<h3 class="fn"><a name="tryAcquire-2"></a>bool QSemaphore::tryAcquire ( int <i>n</i>, int <i>timeout</i> )</h3>
+<p>Tries to acquire <tt>n</tt> resources guarded by the semaphore and returns true on success. If <a href="qsemaphore.html#available">available</a>() &lt; <i>n</i>, this call will wait for at most <i>timeout</i> milliseconds for resources to become available.</p>
+<p>Note: Passing a negative number as the <i>timeout</i> is equivalent to calling <a href="qsemaphore.html#acquire">acquire</a>(), i.e&#x2e; this function will wait forever for resources to become available if <i>timeout</i> is negative.</p>
+<p>Example:</p>
+<pre> QSemaphore sem(5);            <span class="comment">// sem.available() == 5</span>
+ sem.tryAcquire(250, 1000);    <span class="comment">// sem.available() == 5, waits 1000 milliseconds and returns false</span>
+ sem.tryAcquire(3, 30000);     <span class="comment">// sem.available() == 2, returns true without waiting</span></pre>
+<p>See also <a href="qsemaphore.html#acquire">acquire</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qdecorationdefault_qws.cpp -->
+<head>
+  <title>Qt 4.6: QDecorationDefault Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QDecorationDefault" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QDecorationDefault Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QDecorationDefault class is a base class providing default window decorations. <a href="#details">More...</a></p>
+<pre> #include &lt;QDecorationDefault&gt;</pre><p>Inherits <a href="qdecoration.html">QDecoration</a>.</p>
+<p>This class was introduced in Qt 4.4.</p>
+<ul>
+<li><a href="qdecorationdefault-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qdecorationdefault.html#QDecorationDefault">QDecorationDefault</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual </td><td class="memItemRight" valign="bottom"><b><a href="qdecorationdefault.html#dtor.QDecorationDefault">~QDecorationDefault</a></b> ()</td></tr>
+</table>
+<hr />
+<a name="reimplemented-public-functions"></a>
+<h2>Reimplemented Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qdecorationdefault.html#paint">paint</a></b> ( QPainter * <i>painter</i>, const QWidget * <i>widget</i>, int <i>decorationRegion</i> = All, DecorationState <i>state</i> = Normal )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QRegion </td><td class="memItemRight" valign="bottom"><b><a href="qdecorationdefault.html#region">region</a></b> ( const QWidget * <i>widget</i>, const QRect &amp; <i>rect</i>, int <i>decorationRegion</i> = All )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>8 public functions inherited from <a href="qdecoration.html#public-functions">QDecoration</a></li>
+</ul>
+<hr />
+<a name="protected-functions"></a>
+<h2>Protected Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qdecorationdefault.html#paintButton">paintButton</a></b> ( QPainter * <i>painter</i>, const QWidget * <i>widget</i>, int <i>buttonRegion</i>, DecorationState <i>state</i>, const QPalette &amp; <i>palette</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QPixmap </td><td class="memItemRight" valign="bottom"><b><a href="qdecorationdefault.html#pixmapFor">pixmapFor</a></b> ( const QWidget * <i>widget</i>, int <i>decorationRegion</i>, int &amp; <i>xoff</i>, int &amp; <i>yoff</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual int </td><td class="memItemRight" valign="bottom"><b><a href="qdecorationdefault.html#titleBarHeight">titleBarHeight</a></b> ( const QWidget * <i>widget</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual const char ** </td><td class="memItemRight" valign="bottom"><b><a href="qdecorationdefault.html#xpmForRegion">xpmForRegion</a></b> ( int <i>region</i> )</td></tr>
+</table>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li><div class="fn"></div>2 static public members inherited from <a href="qdecoration.html#static-public-members">QDecoration</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QDecorationDefault class is a base class providing default window decorations.</p>
+<p>See the documentation for class <a href="qdecoration.html">QDecoration</a> for a detailed description. This subclass of <a href="qdecoration.html">QDecoration</a> provides standard icons for the decoration regions.</p>
+<p>Note that this class is non-portable and only available in <a href="qt-embedded-linux.html">Qt for Embedded Linux</a>.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QDecorationDefault/QDecorationDefault" />
+<h3 class="fn"><a name="QDecorationDefault"></a>QDecorationDefault::QDecorationDefault ()</h3>
+<p>Default constructor.</p>
+<a name="//apple_ref/cpp/instm/QDecorationDefault/~QDecorationDefault" />
+<h3 class="fn"><a name="dtor.QDecorationDefault"></a>QDecorationDefault::~QDecorationDefault ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>The constructor deletes the static pixmaps.</p>
+<a name="//apple_ref/cpp/instm/QDecorationDefault/paint" />
+<h3 class="fn"><a name="paint"></a>bool QDecorationDefault::paint ( <a href="qpainter.html">QPainter</a> * <i>painter</i>, const <a href="qwidget.html">QWidget</a> * <i>widget</i>, int <i>decorationRegion</i> = All, <a href="qdecoration.html#DecorationState-enum">DecorationState</a> <i>state</i> = Normal )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qdecoration.html#paint">QDecoration::paint</a>().</p>
+<p>Paints the border and title decoration for the top-level <i>widget</i> using the <i>painter</i> provided and the decoration <i>state</i>. The value of <i>decorationRegion</i> is a combination of the bitmask values of enum <a href="qdecoration.html#DecorationRegion-enum">DecorationRegion</a>.</p>
+<p>Note that Qt for Embedded Linux expects this function to return true if any of the widget's decorations are repainted; otherwise it returns false.</p>
+<a name="//apple_ref/cpp/instm/QDecorationDefault/paintButton" />
+<h3 class="fn"><a name="paintButton"></a>void QDecorationDefault::paintButton ( <a href="qpainter.html">QPainter</a> * <i>painter</i>, const <a href="qwidget.html">QWidget</a> * <i>widget</i>, int <i>buttonRegion</i>, <a href="qdecoration.html#DecorationState-enum">DecorationState</a> <i>state</i>, const <a href="qpalette.html">QPalette</a> &amp; <i>palette</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Paints a region of the top-level <i>widget</i>. The region is painted in the specified decoration <i>state</i> using the <i>painter</i> and <i>palette</i> provided. The region to be painted is specified by <i>buttonRegion</i>, which is a combination of the bitmask values of <a href="qdecoration.html#DecorationRegion-enum">DecorationRegion</a>. If the value of <i>buttonRegion</i> is one of <i>Help</i>, <i>Menu</i>, <i>Close</i>, <i>Minimize</i>, <i>Maximize</i>, and <i>Normalize</i>, the button pixmap for that region is painted.</p>
+<p>See also <a href="qdecorationdefault.html#pixmapFor">pixmapFor</a>().</p>
+<a name="//apple_ref/cpp/instm/QDecorationDefault/pixmapFor" />
+<h3 class="fn"><a name="pixmapFor"></a><a href="qpixmap.html">QPixmap</a> QDecorationDefault::pixmapFor ( const <a href="qwidget.html">QWidget</a> * <i>widget</i>, int <i>decorationRegion</i>, int &amp; <i>xoff</i>, int &amp; <i>yoff</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Returns a pointer to the <a href="qpixmap.html">QPixmap</a> for the widget specified by <i>widget</i> and <i>decorationRegion</i>. The returned <a href="qpixmap.html">QPixmap</a> is constructed from the default X pixmap obtained from <a href="qdecorationdefault.html#xpmForRegion">xpmForRegion</a>().</p>
+<p><i>xoff</i> and <i>yoff</i> specify the offset for the pixmap.</p>
+<p>The value of <i>decorationRegion</i> must be one of a subset of the values of enum <a href="qdecoration.html#DecorationRegion-enum">DecorationRegion</a>. The supported values are <i>Help</i>, <i>Menu</i>, <i>Close</i>, <i>Minimize</i>, <i>Maximize</i>, and <i>Normalize</i>. Other values of <i>decorationRegion</i> return 0.</p>
+<p>See also <a href="qdecoration.html#DecorationRegion-enum">QDecoration::DecorationRegion</a>.</p>
+<a name="//apple_ref/cpp/instm/QDecorationDefault/region" />
+<h3 class="fn"><a name="region"></a><a href="qregion.html">QRegion</a> QDecorationDefault::region ( const <a href="qwidget.html">QWidget</a> * <i>widget</i>, const <a href="qrect.html">QRect</a> &amp; <i>rect</i>, int <i>decorationRegion</i> = All )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qdecoration.html#region">QDecoration::region</a>().</p>
+<p>Returns the region specified by <i>decorationRegion</i> for the top-level <i>widget</i>. <i>rect</i> specifies the rectangle the decoration wraps. The value of <i>decorationRegion</i> is a combination of the bitmask values of enum <a href="qdecoration.html#DecorationRegion-enum">DecorationRegion</a>.</p>
+<a name="//apple_ref/cpp/instm/QDecorationDefault/titleBarHeight" />
+<h3 class="fn"><a name="titleBarHeight"></a>int QDecorationDefault::titleBarHeight ( const <a href="qwidget.html">QWidget</a> * <i>widget</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Returns the title bar height in pixels for the given <i>widget</i>. It is the greater of 20, or the sum of the application font's line spacing value plus a border width fudge factor.</p>
+<a name="//apple_ref/cpp/instm/QDecorationDefault/xpmForRegion" />
+<h3 class="fn"><a name="xpmForRegion"></a>const char ** QDecorationDefault::xpmForRegion ( int <i>region</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Returns a pointer to the X pixmap for the icon specified by <i>region</i>. An X pixmap is an ASCII-text-based image. The value of <i>region</i> must be one of a subset of the values of enum <a href="qdecoration.html#DecorationRegion-enum">DecorationRegion</a>. The supported values are <i>Help</i>, <i>Menu</i>, <i>Close</i>, <i>Minimize</i>, <i>Maximize</i>, and <i>Normalize</i>. Other values of <i>region</i> cause zero to be returned.</p>
+<p>See also <a href="qdecoration.html#DecorationRegion-enum">QDecoration::DecorationRegion</a>.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

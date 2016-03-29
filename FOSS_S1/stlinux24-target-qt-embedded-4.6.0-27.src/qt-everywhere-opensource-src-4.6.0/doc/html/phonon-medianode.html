@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- phonon-api.qdoc -->
+<head>
+  <title>Qt 4.6: MediaNode Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl/Phonon/MediaNode" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">MediaNode Class Reference<br /><span class="small-subtitle">(Phonon::MediaNode)<br />[<a href="phonon.html">Phonon</a> module]</span>
+</h1>
+<p>The MediaNode class is the base class for all nodes in a media graph. <a href="#details">More...</a></p>
+<pre> #include &lt;Phonon/MediaNode&gt;</pre><p><b>This class is not part of the Qt GUI Framework Edition.</b></p>
+<p>Inherited by <a href="phonon-audiooutput.html">Phonon::AudioOutput</a>, <a href="phonon-effect.html">Phonon::Effect</a>, <a href="phonon-mediaobject.html">Phonon::MediaObject</a>, and <a href="phonon-videowidget.html">Phonon::VideoWidget</a>.</p>
+<p>This class was introduced in Qt 4.4.</p>
+<ul>
+<li><a href="phonon-medianode-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual </td><td class="memItemRight" valign="bottom"><b><a href="phonon-medianode.html#dtor.MediaNode">~MediaNode</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QList&lt;Path&gt; </td><td class="memItemRight" valign="bottom"><b><a href="phonon-medianode.html#inputPaths">inputPaths</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="phonon-medianode.html#isValid">isValid</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QList&lt;Path&gt; </td><td class="memItemRight" valign="bottom"><b><a href="phonon-medianode.html#outputPaths">outputPaths</a></b> () const</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The MediaNode class is the base class for all nodes in a media graph.</p>
+<p>In all phonon applications, one builds a media graph consisting of MediaNodes. The graph will take multimedia content, e.g&#x2e;, from a file, as input. After its nodes have processed the multimedia, the graph will output the media again, e.g&#x2e;, to a sound card.</p>
+<p>The multimedia content is streamed over <a href="phonon-path.html">Path</a>s between the nodes in the graph. You can query the paths that are connected to a media node with <a href="phonon-medianode.html#inputPaths">inputPaths</a>() and <a href="phonon-medianode.html#outputPaths">outputPaths</a>().</p>
+<p>You can check whether the node is implemented by the current backend by calling <a href="phonon-medianode.html#isValid">isValid</a>(). This does not guarantee that an instance of the class works as expected, but that the backend has implemented functionality for the class.</p>
+<p>Currently, Phonon has four media nodes: <a href="phonon-mediaobject.html">MediaObject</a>, <a href="phonon-audiooutput.html">AudioOutput</a>, <a href="phonon-videowidget.html">VideoWidget</a>, and <a href="phonon-effect.html">Effect</a>. Please refer to their class descriptions for details about their usage, and to find out which nodes can be connected to each other. See also <a href="phonon-overview.html#building-graphs">Building Graphs</a> in Phonon's <a href="phonon-overview.html">overview</a> document.</p>
+<p>Two nodes are connected to each other using the <a href="phonon-path.html#createPath">Phonon::createPath</a>() or <a href="phonon-path.html#insertEffect">Path::insertEffect()</a> functions (only <a href="phonon-effect.html">Phonon::Effect</a>s use <a href="phonon-path.html#insertEffect">insertEffect()</a>). We show a code example below, in which we build a media graph for video playback and then query its media nodes for their <a href="phonon-path.html">Path</a>s:</p>
+<pre>     Phonon::MediaObject *mediaObject = new Phonon::MediaObject;
+     Phonon::AudioOutput *audioOutput = new Phonon::AudioOutput;
+     Phonon::VideoWidget *videoWidget = new Phonon::VideoWidget;
+
+     Phonon::createPath(mediaObject, audioOutput);
+     Phonon::createPath(mediaObject, videoWidget);
+
+     QList&lt;Phonon::Path&gt; inputPaths =
+         audioOutput-&gt;inputPaths();   <span class="comment">// inputPaths = [ mediaObject ]</span>
+     QList&lt;Phonon::Path&gt; outputPaths =
+         mediaObject-&gt;outputPaths(); <span class="comment">// outputPaths = [ audioOutput, videoWidget ]</span></pre>
+<p>When you create a Phonon application, you will likely build the graph yourself. This makes <a href="phonon-medianode.html#isValid">isValid</a>() the most useful function of this class. The other two functions help navigate the graph, which you do not need to do as you created the nodes yourself.</p>
+<p>See also <a href="phonon-overview.html">Phonon Overview</a>, <a href="phonon-mediaobject.html">Phonon::MediaObject</a>, <a href="phonon-audiooutput.html">Phonon::AudioOutput</a>, <a href="phonon-videowidget.html">Phonon::VideoWidget</a>, and <a href="phonon-module.html">Phonon Module</a>.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/Phonon::MediaNode/~MediaNode" />
+<h3 class="fn"><a name="dtor.MediaNode"></a>MediaNode::~MediaNode ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Destroys the media node and any paths connecting it to other nodes. Any <a href="phonon-effect.html">Effect</a>s connected to these paths will also be deleted.</p>
+<a name="//apple_ref/cpp/instm/Phonon::MediaNode/inputPaths" />
+<h3 class="fn"><a name="inputPaths"></a><a href="qlist.html">QList</a>&lt;<a href="phonon-path.html">Path</a>&gt; MediaNode::inputPaths () const</h3>
+<p>Returns the paths that inputs multimedia to this media node.</p>
+<p>See also <a href="phonon-medianode.html#outputPaths">outputPaths</a>().</p>
+<a name="//apple_ref/cpp/instm/Phonon::MediaNode/isValid" />
+<h3 class="fn"><a name="isValid"></a>bool MediaNode::isValid () const</h3>
+<p>Returns true if the backend provides an implementation of this class; otherwise returns false.</p>
+<p>This does not guarantee that instances of the class works as expected, but that the backend has implemented the functionality for this class. For instance, Qt's GStreamer backend will return true for instances of the <a href="phonon-audiooutput.html">AudioOutput</a> class, even if there is a problem with GStreamer and it could not play sound.</p>
+<a name="//apple_ref/cpp/instm/Phonon::MediaNode/outputPaths" />
+<h3 class="fn"><a name="outputPaths"></a><a href="qlist.html">QList</a>&lt;<a href="phonon-path.html">Path</a>&gt; MediaNode::outputPaths () const</h3>
+<p>Returns the paths to which this media node outputs media.</p>
+<p>See also <a href="phonon-medianode.html#inputPaths">inputPaths</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

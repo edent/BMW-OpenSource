@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qdbusservicewatcher.cpp -->
+<head>
+  <title>Qt 4.6: QDBusServiceWatcher Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QDBusServiceWatcher" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QDBusServiceWatcher Class Reference<br /><span class="small-subtitle">[<a href="qtdbus.html">QtDBus</a> module]</span>
+</h1>
+<p>The QDBusServiceWatcher class allows the user to watch for a bus service change. <a href="#details">More...</a></p>
+<pre> #include &lt;QDBusServiceWatcher&gt;</pre><p>Inherits <a href="qobject.html">QObject</a>.</p>
+<p>This class was introduced in Qt 4.6.</p>
+<ul>
+<li><a href="qdbusservicewatcher-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-types"></a>
+<h2>Public Types</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">flags </td><td class="memItemRight" valign="bottom"><b><a href="qdbusservicewatcher.html#WatchModeFlag-enum">WatchMode</a></b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qdbusservicewatcher.html#WatchModeFlag-enum">WatchModeFlag</a></b> { WatchForRegistration, WatchForUnregistration, WatchForOwnerChange }</td></tr>
+</table>
+<hr />
+<a name="properties"></a>
+<h2>Properties</h2>
+<ul>
+<li><div class="fn"><b><a href="qdbusservicewatcher.html#watchMode-prop">watchMode</a></b> : WatchMode</div></li>
+<li><div class="fn"><b><a href="qdbusservicewatcher.html#watchedServices-prop">watchedServices</a></b> : QStringList</div></li>
+</ul>
+<ul>
+<li><div bar="2" class="fn"></div>1 property inherited from <a href="qobject.html#properties">QObject</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qdbusservicewatcher.html#QDBusServiceWatcher">QDBusServiceWatcher</a></b> ( QObject * <i>parent</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qdbusservicewatcher.html#QDBusServiceWatcher-2">QDBusServiceWatcher</a></b> ( const QString &amp; <i>service</i>, const QDBusConnection &amp; <i>connection</i>, WatchMode <i>watchMode</i> = WatchForOwnerChange, QObject * <i>parent</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qdbusservicewatcher.html#dtor.QDBusServiceWatcher">~QDBusServiceWatcher</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qdbusservicewatcher.html#addWatchedService">addWatchedService</a></b> ( const QString &amp; <i>newService</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QDBusConnection </td><td class="memItemRight" valign="bottom"><b><a href="qdbusservicewatcher.html#connection">connection</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qdbusservicewatcher.html#removeWatchedService">removeWatchedService</a></b> ( const QString &amp; <i>service</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qdbusservicewatcher.html#setConnection">setConnection</a></b> ( const QDBusConnection &amp; <i>connection</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qdbusservicewatcher.html#watchMode-prop">setWatchMode</a></b> ( WatchMode <i>mode</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qdbusservicewatcher.html#watchedServices-prop">setWatchedServices</a></b> ( const QStringList &amp; <i>services</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">WatchMode </td><td class="memItemRight" valign="bottom"><b><a href="qdbusservicewatcher.html#watchMode-prop">watchMode</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QStringList </td><td class="memItemRight" valign="bottom"><b><a href="qdbusservicewatcher.html#watchedServices-prop">watchedServices</a></b> () const</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>29 public functions inherited from <a href="qobject.html#public-functions">QObject</a></li>
+</ul>
+<hr />
+<a name="signals"></a>
+<h2>Signals</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qdbusservicewatcher.html#serviceOwnerChanged">serviceOwnerChanged</a></b> ( const QString &amp; <i>serviceName</i>, const QString &amp; <i>oldOwner</i>, const QString &amp; <i>newOwner</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qdbusservicewatcher.html#serviceRegistered">serviceRegistered</a></b> ( const QString &amp; <i>serviceName</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qdbusservicewatcher.html#serviceUnregistered">serviceUnregistered</a></b> ( const QString &amp; <i>serviceName</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>1 signal inherited from <a href="qobject.html#signals">QObject</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li><div class="fn"></div>1 public slot inherited from <a href="qobject.html#public-slots">QObject</a></li>
+<li><div class="fn"></div>5 static public members inherited from <a href="qobject.html#static-public-members">QObject</a></li>
+<li><div class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QDBusServiceWatcher class allows the user to watch for a bus service change.</p>
+<p>A QDBusServiceWatcher object can be used to notify the application about an ownership change of a service name on the bus. It has three watch modes:</p>
+<ul>
+<li>Watching for service registration only.</li>
+<li>Watching for service unregistration only.</li>
+<li>Watching for any kind of service ownership change (the default mode).</li>
+</ul>
+<p>Besides being created or deleted, services may change owners without a unregister/register operation happening. So the <a href="qdbusservicewatcher.html#serviceRegistered">serviceRegistered</a>() and <a href="qdbusservicewatcher.html#serviceUnregistered">serviceUnregistered</a>() signals may not be emitted if that happens.</p>
+<p>This class is more efficient than using the <a href="qdbusconnectioninterface.html#serviceOwnerChanged">QDBusConnectionInterface::serviceOwnerChanged</a>() signal because it allows one to receive only the signals for which the class is interested in.</p>
+<p>See also <a href="qdbusconnection.html">QDBusConnection</a>.</p>
+<hr />
+<h2>Member Type Documentation</h2>
+<a name="//apple_ref/cpp/tag/QDBusServiceWatcher/WatchModeFlag" />
+<a name="//apple_ref/cpp/econst/QDBusServiceWatcher/WatchForRegistration" />
+<a name="//apple_ref/cpp/econst/QDBusServiceWatcher/WatchForUnregistration" />
+<a name="//apple_ref/cpp/econst/QDBusServiceWatcher/WatchForOwnerChange" />
+<a name="//apple_ref/cpp/tdef/QDBusServiceWatcher/WatchMode" />
+<h3 class="flags"><a name="WatchModeFlag-enum"></a>enum QDBusServiceWatcher::WatchModeFlag<br />flags QDBusServiceWatcher::WatchMode</h3>
+<p><a href="qdbusservicewatcher.html">QDBusServiceWatcher</a> supports three different watch modes, which are configured by this flag:</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QDBusServiceWatcher::WatchForRegistration</tt></td><td align="center" valign="top"><tt>0x01</tt></td><td valign="top">watch for service registration only, ignoring any signals related to other service ownership change.</td></tr>
+<tr><td valign="top"><tt>QDBusServiceWatcher::WatchForUnregistration</tt></td><td align="center" valign="top"><tt>0x02</tt></td><td valign="top">watch for service unregistration only, ignoring any signals related to other service ownership change.</td></tr>
+<tr><td valign="top"><tt>QDBusServiceWatcher::WatchForOwnerChange</tt></td><td align="center" valign="top"><tt>0x03</tt></td><td valign="top">watch for any kind of service ownership change.</td></tr>
+</table></p>
+<p>The WatchMode type is a typedef for <a href="qflags.html">QFlags</a>&lt;WatchModeFlag&gt;. It stores an OR combination of WatchModeFlag values.</p>
+<hr />
+<h2>Property Documentation</h2>
+<a name="//apple_ref/cpp/instm/QDBusServiceWatcher/watchMode" />
+<a name="//apple_ref/cpp/instm/QDBusServiceWatcher/setWatchMode" />
+<h3 class="fn"><a name="watchMode-prop"></a>watchMode : <a href="qdbusservicewatcher.html#WatchModeFlag-enum">WatchMode</a></h3>
+<p>The <tt>watchMode</tt> property holds the current watch mode for this <a href="qdbusservicewatcher.html">QDBusServiceWatcher</a> object. The default value for this property is QDBusServiceWatcher::WatchForOwnershipChange.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">WatchMode </td><td class="memItemRight" valign="bottom"><b>watchMode</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setWatchMode</b> ( WatchMode <i>mode</i> )</td></tr>
+</table>
+<a name="//apple_ref/cpp/instm/QDBusServiceWatcher/watchedServices" />
+<a name="//apple_ref/cpp/instm/QDBusServiceWatcher/setWatchedServices" />
+<h3 class="fn"><a name="watchedServices-prop"></a>watchedServices : <a href="qstringlist.html">QStringList</a></h3>
+<p>The <tt>servicesWatched</tt> property holds the list of services watched.</p>
+<p>Note that modifying this list with setServicesWatched() is an expensive operation. If you can, prefer to change it by way of <a href="qdbusservicewatcher.html#addWatchedService">addWatchedService</a>() and <a href="qdbusservicewatcher.html#removeWatchedService">removeWatchedService</a>().</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">QStringList </td><td class="memItemRight" valign="bottom"><b>watchedServices</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setWatchedServices</b> ( const QStringList &amp; <i>services</i> )</td></tr>
+</table>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QDBusServiceWatcher/QDBusServiceWatcher" />
+<h3 class="fn"><a name="QDBusServiceWatcher"></a>QDBusServiceWatcher::QDBusServiceWatcher ( <a href="qobject.html">QObject</a> * <i>parent</i> = 0 )</h3>
+<p>Creates a <a href="qdbusservicewatcher.html">QDBusServiceWatcher</a> object. Note that until you set a connection with <a href="qdbusservicewatcher.html#setConnection">setConnection</a>(), this object will not emit any signals.</p>
+<p>The <i>parent</i> parameter is passed to <a href="qobject.html">QObject</a> to set the parent of this object.</p>
+<h3 class="fn"><a name="QDBusServiceWatcher-2"></a>QDBusServiceWatcher::QDBusServiceWatcher ( const <a href="qstring.html">QString</a> &amp; <i>service</i>, const <a href="qdbusconnection.html">QDBusConnection</a> &amp; <i>connection</i>, <a href="qdbusservicewatcher.html#WatchModeFlag-enum">WatchMode</a> <i>watchMode</i> = WatchForOwnerChange, <a href="qobject.html">QObject</a> * <i>parent</i> = 0 )</h3>
+<p>Creates a <a href="qdbusservicewatcher.html">QDBusServiceWatcher</a> object and attaches it to the <i>connection</i> connection. Also, this function immediately starts watching for <i>watchMode</i> changes to service <i>service</i>.</p>
+<p>The <i>parent</i> parameter is passed to <a href="qobject.html">QObject</a> to set the parent of this object.</p>
+<a name="//apple_ref/cpp/instm/QDBusServiceWatcher/~QDBusServiceWatcher" />
+<h3 class="fn"><a name="dtor.QDBusServiceWatcher"></a>QDBusServiceWatcher::~QDBusServiceWatcher ()</h3>
+<p>Destroys the <a href="qdbusservicewatcher.html">QDBusServiceWatcher</a> object and releases any resources associated with it.</p>
+<a name="//apple_ref/cpp/instm/QDBusServiceWatcher/addWatchedService" />
+<h3 class="fn"><a name="addWatchedService"></a>void QDBusServiceWatcher::addWatchedService ( const <a href="qstring.html">QString</a> &amp; <i>newService</i> )</h3>
+<p>Adds <i>newService</i> to the list of services to be watched by this object. This function is more efficient than <a href="qdbusservicewatcher.html#watchedServices-prop">setWatchedServices</a>() and should be used whenever possible to add services.</p>
+<a name="//apple_ref/cpp/instm/QDBusServiceWatcher/connection" />
+<h3 class="fn"><a name="connection"></a><a href="qdbusconnection.html">QDBusConnection</a> QDBusServiceWatcher::connection () const</h3>
+<p>Returns the <a href="qdbusconnection.html">QDBusConnection</a> that this object is attached to.</p>
+<p>See also <a href="qdbusservicewatcher.html#setConnection">setConnection</a>().</p>
+<a name="//apple_ref/cpp/instm/QDBusServiceWatcher/removeWatchedService" />
+<h3 class="fn"><a name="removeWatchedService"></a>bool QDBusServiceWatcher::removeWatchedService ( const <a href="qstring.html">QString</a> &amp; <i>service</i> )</h3>
+<p>Removes the <i>service</i> from the list of services being watched by this object. Note that D-Bus notifications are asynchronous, so there may still be signals pending delivery about <i>service</i>. Those signals will still be emitted whenever the D-Bus messages are processed.</p>
+<p>This function returns true if any services were removed.</p>
+<a name="//apple_ref/cpp/instm/QDBusServiceWatcher/serviceOwnerChanged" />
+<h3 class="fn"><a name="serviceOwnerChanged"></a>void QDBusServiceWatcher::serviceOwnerChanged ( const <a href="qstring.html">QString</a> &amp; <i>serviceName</i>, const <a href="qstring.html">QString</a> &amp; <i>oldOwner</i>, const <a href="qstring.html">QString</a> &amp; <i>newOwner</i> )&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted whenever this object detects that there was a service ownership change relating to the <i>serviceName</i> service. The <i>oldOwner</i> parameter contains the old owner name and <i>newOwner</i> is the new owner. Both <i>oldOwner</i> and <i>newOwner</i> are unique connection names.</p>
+<p>Note that this signal is also emitted whenever the <i>serviceName</i> service was registered or unregistered. If it was registered, <i>oldOwner</i> will contain an empty string, whereas if it was unregistered, <i>newOwner</i> will contain an empty string.</p>
+<p>If you need only to find out if the service is registered or unregistered only, without being notified that the ownership changed, consider using the specific modes for those operations. This class is more efficient if you use the more specific modes.</p>
+<p>See also <a href="qdbusservicewatcher.html#serviceRegistered">serviceRegistered</a>() and <a href="qdbusservicewatcher.html#serviceUnregistered">serviceUnregistered</a>().</p>
+<a name="//apple_ref/cpp/instm/QDBusServiceWatcher/serviceRegistered" />
+<h3 class="fn"><a name="serviceRegistered"></a>void QDBusServiceWatcher::serviceRegistered ( const <a href="qstring.html">QString</a> &amp; <i>serviceName</i> )&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted whenever this object detects that the service <i>serviceName</i> became available on the bus.</p>
+<p>See also <a href="qdbusservicewatcher.html#serviceUnregistered">serviceUnregistered</a>() and <a href="qdbusservicewatcher.html#serviceOwnerChanged">serviceOwnerChanged</a>().</p>
+<a name="//apple_ref/cpp/instm/QDBusServiceWatcher/serviceUnregistered" />
+<h3 class="fn"><a name="serviceUnregistered"></a>void QDBusServiceWatcher::serviceUnregistered ( const <a href="qstring.html">QString</a> &amp; <i>serviceName</i> )&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted whenever this object detects that the service <i>serviceName</i> was unregistered from the bus and is no longer available.</p>
+<p>See also <a href="qdbusservicewatcher.html#serviceRegistered">serviceRegistered</a>() and <a href="qdbusservicewatcher.html#serviceOwnerChanged">serviceOwnerChanged</a>().</p>
+<a name="//apple_ref/cpp/instm/QDBusServiceWatcher/setConnection" />
+<h3 class="fn"><a name="setConnection"></a>void QDBusServiceWatcher::setConnection ( const <a href="qdbusconnection.html">QDBusConnection</a> &amp; <i>connection</i> )</h3>
+<p>Sets the D-Bus connection that this object is attached to be <i>connection</i>. All services watched will be transferred to this connection.</p>
+<p>Note that <a href="qdbusconnection.html">QDBusConnection</a> objects are reference counted: <a href="qdbusservicewatcher.html">QDBusServiceWatcher</a> will keep a reference for this connection while it exists. The connection is not closed until the reference count drops to zero, so this will ensure that any notifications are received while this <a href="qdbusservicewatcher.html">QDBusServiceWatcher</a> object exists.</p>
+<p>See also <a href="qdbusservicewatcher.html#connection">connection</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

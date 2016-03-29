@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qaccessibleobject.cpp -->
+<head>
+  <title>Qt 4.6: QAccessibleObject Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QAccessibleObject" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QAccessibleObject Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QAccessibleObject class implements parts of the <a href="qaccessibleinterface.html">QAccessibleInterface</a> for QObjects. <a href="#details">More...</a></p>
+<pre> #include &lt;QAccessibleObject&gt;</pre><p>Inherits <a href="qaccessibleinterface.html">QAccessibleInterface</a>.</p>
+<p>Inherited by <a href="qaccessiblewidget.html">QAccessibleWidget</a>.</p>
+<ul>
+<li><a href="qaccessibleobject-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qaccessibleobject.html#QAccessibleObject">QAccessibleObject</a></b> ( QObject * <i>object</i> )</td></tr>
+</table>
+<hr />
+<a name="reimplemented-public-functions"></a>
+<h2>Reimplemented Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual QString </td><td class="memItemRight" valign="bottom"><b><a href="qaccessibleobject.html#actionText">actionText</a></b> ( int <i>action</i>, Text <i>t</i>, int <i>child</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qaccessibleobject.html#doAction">doAction</a></b> ( int <i>action</i>, int <i>child</i>, const QVariantList &amp; <i>params</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qaccessibleobject.html#isValid">isValid</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QObject * </td><td class="memItemRight" valign="bottom"><b><a href="qaccessibleobject.html#object">object</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QRect </td><td class="memItemRight" valign="bottom"><b><a href="qaccessibleobject.html#rect">rect</a></b> ( int <i>child</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qaccessibleobject.html#setText">setText</a></b> ( Text <i>t</i>, int <i>child</i>, const QString &amp; <i>text</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual int </td><td class="memItemRight" valign="bottom"><b><a href="qaccessibleobject.html#userActionCount">userActionCount</a></b> ( int <i>child</i> ) const</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>17 public functions inherited from <a href="qaccessibleinterface.html#public-functions">QAccessibleInterface</a></li>
+</ul>
+<hr />
+<a name="protected-functions"></a>
+<h2>Protected Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual </td><td class="memItemRight" valign="bottom"><b><a href="qaccessibleobject.html#dtor.QAccessibleObject">~QAccessibleObject</a></b> ()</td></tr>
+</table>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li><div class="fn"></div>7 static public members inherited from <a href="qaccessible.html#static-public-members">QAccessible</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QAccessibleObject class implements parts of the <a href="qaccessibleinterface.html">QAccessibleInterface</a> for QObjects.</p>
+<p>This class is mainly provided for convenience. All subclasses of the <a href="qaccessibleinterface.html">QAccessibleInterface</a> that provide implementations of non-widget objects should use this class as their base class.</p>
+<p>See also <a href="qaccessible.html">QAccessible</a> and <a href="qaccessiblewidget.html">QAccessibleWidget</a>.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QAccessibleObject/QAccessibleObject" />
+<h3 class="fn"><a name="QAccessibleObject"></a>QAccessibleObject::QAccessibleObject ( <a href="qobject.html">QObject</a> * <i>object</i> )</h3>
+<p>Creates a <a href="qaccessibleobject.html">QAccessibleObject</a> for <i>object</i>.</p>
+<a name="//apple_ref/cpp/instm/QAccessibleObject/~QAccessibleObject" />
+<h3 class="fn"><a name="dtor.QAccessibleObject"></a>QAccessibleObject::~QAccessibleObject ()&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Destroys the <a href="qaccessibleobject.html">QAccessibleObject</a>.</p>
+<p>This only happens when a call to release() decrements the internal reference counter to zero.</p>
+<a name="//apple_ref/cpp/instm/QAccessibleObject/actionText" />
+<h3 class="fn"><a name="actionText"></a><a href="qstring.html">QString</a> QAccessibleObject::actionText ( int <i>action</i>, <a href="qaccessible.html#Text-enum">Text</a> <i>t</i>, int <i>child</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qaccessibleinterface.html#actionText">QAccessibleInterface::actionText</a>().</p>
+<a name="//apple_ref/cpp/instm/QAccessibleObject/doAction" />
+<h3 class="fn"><a name="doAction"></a>bool QAccessibleObject::doAction ( int <i>action</i>, int <i>child</i>, const <a href="qvariant.html#QVariantList-typedef">QVariantList</a> &amp; <i>params</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qaccessibleinterface.html#doAction">QAccessibleInterface::doAction</a>().</p>
+<a name="//apple_ref/cpp/instm/QAccessibleObject/isValid" />
+<h3 class="fn"><a name="isValid"></a>bool QAccessibleObject::isValid () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qaccessibleinterface.html#isValid">QAccessibleInterface::isValid</a>().</p>
+<a name="//apple_ref/cpp/instm/QAccessibleObject/object" />
+<h3 class="fn"><a name="object"></a><a href="qobject.html">QObject</a> * QAccessibleObject::object () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qaccessibleinterface.html#object">QAccessibleInterface::object</a>().</p>
+<a name="//apple_ref/cpp/instm/QAccessibleObject/rect" />
+<h3 class="fn"><a name="rect"></a><a href="qrect.html">QRect</a> QAccessibleObject::rect ( int <i>child</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qaccessibleinterface.html#rect">QAccessibleInterface::rect</a>().</p>
+<a name="//apple_ref/cpp/instm/QAccessibleObject/setText" />
+<h3 class="fn"><a name="setText"></a>void QAccessibleObject::setText ( <a href="qaccessible.html#Text-enum">Text</a> <i>t</i>, int <i>child</i>, const <a href="qstring.html">QString</a> &amp; <i>text</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qaccessibleinterface.html#setText">QAccessibleInterface::setText</a>().</p>
+<a name="//apple_ref/cpp/instm/QAccessibleObject/userActionCount" />
+<h3 class="fn"><a name="userActionCount"></a>int QAccessibleObject::userActionCount ( int <i>child</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qaccessibleinterface.html#userActionCount">QAccessibleInterface::userActionCount</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

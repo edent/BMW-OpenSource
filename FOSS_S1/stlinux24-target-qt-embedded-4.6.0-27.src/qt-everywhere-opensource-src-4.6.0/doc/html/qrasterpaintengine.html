@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qpaintengine_raster.cpp -->
+<head>
+  <title>Qt 4.6: QRasterPaintEngine Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QRasterPaintEngine" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QRasterPaintEngine Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QRasterPaintEngine class enables hardware acceleration of painting operations in Qt for Embedded Linux. <a href="#details">More...</a></p>
+<pre> #include &lt;QRasterPaintEngine&gt;</pre><p><b>This class is under development and is subject to change.</b></p>
+<p>Inherits <a href="qpaintengine.html">QPaintEngine</a>.</p>
+<p>This class was introduced in Qt 4.2.</p>
+<ul>
+<li><a href="qrasterpaintengine-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qrasterpaintengine.html#QRasterPaintEngine">QRasterPaintEngine</a></b> ( QPaintDevice * <i>device</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qrasterpaintengine.html#dtor.QRasterPaintEngine">~QRasterPaintEngine</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qrasterpaintengine.html#drawBufferSpan">drawBufferSpan</a></b> ( const uint * <i>buffer</i>, int <i>size</i>, int <i>x</i>, int <i>y</i>, int <i>length</i>, uint <i>alpha</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qrasterpaintengine.html#drawColorSpans">drawColorSpans</a></b> ( const QSpan * <i>spans</i>, int <i>count</i>, uint <i>color</i> )</td></tr>
+</table>
+<hr />
+<a name="reimplemented-public-functions"></a>
+<h2>Reimplemented Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qrasterpaintengine.html#begin">begin</a></b> ( QPaintDevice * <i>device</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qrasterpaintengine.html#drawEllipse">drawEllipse</a></b> ( const QRectF &amp; <i>rect</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qrasterpaintengine.html#drawEllipse-2">drawEllipse</a></b> ( const QRect &amp; <i>rect</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qrasterpaintengine.html#drawImage">drawImage</a></b> ( const QRectF &amp; <i>r</i>, const QImage &amp; <i>img</i>, const QRectF &amp; <i>sr</i>, Qt::ImageConversionFlags <i>falgs</i> = Qt::AutoColor )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qrasterpaintengine.html#drawLines">drawLines</a></b> ( const QLine * <i>lines</i>, int <i>lineCount</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qrasterpaintengine.html#drawLines-2">drawLines</a></b> ( const QLineF * <i>lines</i>, int <i>lineCount</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qrasterpaintengine.html#drawPixmap">drawPixmap</a></b> ( const QRectF &amp; <i>r</i>, const QPixmap &amp; <i>pixmap</i>, const QRectF &amp; <i>sr</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qrasterpaintengine.html#drawPoints">drawPoints</a></b> ( const QPointF * <i>points</i>, int <i>pointCount</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qrasterpaintengine.html#drawPoints-2">drawPoints</a></b> ( const QPoint * <i>points</i>, int <i>pointCount</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qrasterpaintengine.html#drawPolygon">drawPolygon</a></b> ( const QPointF * <i>points</i>, int <i>pointCount</i>, PolygonDrawMode <i>mode</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qrasterpaintengine.html#drawPolygon-2">drawPolygon</a></b> ( const QPoint * <i>points</i>, int <i>pointCount</i>, PolygonDrawMode <i>mode</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qrasterpaintengine.html#drawRects">drawRects</a></b> ( const QRect * <i>rects</i>, int <i>rectCount</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qrasterpaintengine.html#drawRects-2">drawRects</a></b> ( const QRectF * <i>rects</i>, int <i>rectCount</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qrasterpaintengine.html#drawTextItem">drawTextItem</a></b> ( const QPointF &amp; <i>p</i>, const QTextItem &amp; <i>textItem</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qrasterpaintengine.html#drawTiledPixmap">drawTiledPixmap</a></b> ( const QRectF &amp; <i>r</i>, const QPixmap &amp; <i>pixmap</i>, const QPointF &amp; <i>sr</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qrasterpaintengine.html#end">end</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qrasterpaintengine.html#fillRect">fillRect</a></b> ( const QRectF &amp; <i>r</i>, const QBrush &amp; <i>brush</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qrasterpaintengine.html#fillRect-2">fillRect</a></b> ( const QRectF &amp; <i>r</i>, const QColor &amp; <i>color</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual Type </td><td class="memItemRight" valign="bottom"><b><a href="qrasterpaintengine.html#type">type</a></b> () const</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>24 public functions inherited from <a href="qpaintengine.html#public-functions">QPaintEngine</a></li>
+</ul>
+<hr />
+<a name="related-non-members"></a>
+<h2>Related Non-Members</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">typedef </td><td class="memItemRight" valign="bottom"><b><a href="qrasterpaintengine.html#QSpan-typedef">QSpan</a></b></td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QRasterPaintEngine class enables hardware acceleration of painting operations in Qt for Embedded Linux.</p>
+<p>Note that this functionality is only available in <a href="qt-embedded-linux.html">Qt for Embedded Linux</a>.</p>
+<p>In <a href="qt-embedded-linux.html">Qt for Embedded Linux</a>, painting is a pure software implementation. But starting with Qt 4.2, it is possible to add an accelerated graphics driver to take advantage of available hardware resources.</p>
+<p>Hardware acceleration is accomplished by creating a custom screen driver, accelerating the copying from memory to the screen, and implementing a custom paint engine accelerating the various painting operations. Then a custom paint device (derived from the <a href="qcustomrasterpaintdevice.html">QCustomRasterPaintDevice</a> class) and a custom window surface (derived from QWSWindowSurface) must be implemented to make <a href="qt-embedded-linux.html">Qt for Embedded Linux</a> aware of the accelerated driver.</p>
+<p><b>Note:</b> The QRasterPaintEngine class does not support 8-bit images. Instead, they need to be converted to a supported format, such as <a href="qimage.html#Format-enum">QImage::Format_ARGB32_Premultiplied</a>.</p>
+<p>See the <a href="qt-embedded-accel.html">Adding an Accelerated Graphics Driver to Qt for Embedded Linux</a> documentation for details.</p>
+<p>See also <a href="qcustomrasterpaintdevice.html">QCustomRasterPaintDevice</a> and <a href="qpaintengine.html">QPaintEngine</a>.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QRasterPaintEngine/QRasterPaintEngine" />
+<h3 class="fn"><a name="QRasterPaintEngine"></a>QRasterPaintEngine::QRasterPaintEngine ( <a href="qpaintdevice.html">QPaintDevice</a> * <i>device</i> )</h3>
+<p>Creates a raster based paint engine for operating on the given <i>device</i>, with the complete set of <a href="qpaintengine.html#PaintEngineFeature-enum">paint engine features and capabilities</a>.</p>
+<p>This function was introduced in Qt 4.5.</p>
+<a name="//apple_ref/cpp/instm/QRasterPaintEngine/~QRasterPaintEngine" />
+<h3 class="fn"><a name="dtor.QRasterPaintEngine"></a>QRasterPaintEngine::~QRasterPaintEngine ()</h3>
+<p>Destroys this paint engine.</p>
+<a name="//apple_ref/cpp/instm/QRasterPaintEngine/begin" />
+<h3 class="fn"><a name="begin"></a>bool QRasterPaintEngine::begin ( <a href="qpaintdevice.html">QPaintDevice</a> * <i>device</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qpaintengine.html#begin">QPaintEngine::begin</a>().</p>
+<a name="//apple_ref/cpp/instm/QRasterPaintEngine/drawBufferSpan" />
+<h3 class="fn"><a name="drawBufferSpan"></a>void QRasterPaintEngine::drawBufferSpan ( const <a href="qtglobal.html#uint-typedef">uint</a> * <i>buffer</i>, int <i>size</i>, int <i>x</i>, int <i>y</i>, int <i>length</i>, <a href="qtglobal.html#uint-typedef">uint</a> <i>alpha</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Draws the given <i>buffer</i>.</p>
+<p>The default implementation does nothing; reimplement this function to draw a buffer that contains more than one color. Note that this function <i>must</i> be reimplemented if the framebuffer is not memory-mapped.</p>
+<p>The <i>size</i> parameter specifies the total size of the given <i>buffer</i>, while the <i>length</i> parameter specifies the number of pixels to draw. The buffer's position is given by (<i>x</i>, <i>y</i>). The provided <i>alpha</i> value is added to each pixel in the buffer when drawing.</p>
+<p>See also <a href="qrasterpaintengine.html#drawColorSpans">drawColorSpans</a>().</p>
+<a name="//apple_ref/cpp/instm/QRasterPaintEngine/drawColorSpans" />
+<h3 class="fn"><a name="drawColorSpans"></a>void QRasterPaintEngine::drawColorSpans ( const <a href="qrasterpaintengine.html#QSpan-typedef">QSpan</a> * <i>spans</i>, int <i>count</i>, <a href="qtglobal.html#uint-typedef">uint</a> <i>color</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Draws the given color <i>spans</i> with the specified <i>color</i>. The <i>count</i> parameter specifies the number of spans.</p>
+<p>The default implementation does nothing; reimplement this function to draw the given color <i>spans</i> with the specified <i>color</i>. Note that this function <i>must</i> be reimplemented if the framebuffer is not memory-mapped.</p>
+<p>See also <a href="qrasterpaintengine.html#drawBufferSpan">drawBufferSpan</a>().</p>
+<a name="//apple_ref/cpp/instm/QRasterPaintEngine/drawEllipse" />
+<h3 class="fn"><a name="drawEllipse"></a>void QRasterPaintEngine::drawEllipse ( const <a href="qrectf.html">QRectF</a> &amp; <i>rect</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qpaintengine.html#drawEllipse">QPaintEngine::drawEllipse</a>().</p>
+<h3 class="fn"><a name="drawEllipse-2"></a>void QRasterPaintEngine::drawEllipse ( const <a href="qrect.html">QRect</a> &amp; <i>rect</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qpaintengine.html#drawEllipse-2">QPaintEngine::drawEllipse</a>().</p>
+<p>This is an overloaded function.</p>
+<p>Reimplement this function to draw the largest ellipse that can be contained within rectangle <i>rect</i>.</p>
+<a name="//apple_ref/cpp/instm/QRasterPaintEngine/drawImage" />
+<h3 class="fn"><a name="drawImage"></a>void QRasterPaintEngine::drawImage ( const <a href="qrectf.html">QRectF</a> &amp; <i>r</i>, const <a href="qimage.html">QImage</a> &amp; <i>img</i>, const <a href="qrectf.html">QRectF</a> &amp; <i>sr</i>, <a href="qt.html#ImageConversionFlag-enum">Qt::ImageConversionFlags</a> <i>falgs</i> = Qt::AutoColor )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qpaintengine.html#drawImage">QPaintEngine::drawImage</a>().</p>
+<a name="//apple_ref/cpp/instm/QRasterPaintEngine/drawLines" />
+<h3 class="fn"><a name="drawLines"></a>void QRasterPaintEngine::drawLines ( const <a href="qline.html">QLine</a> * <i>lines</i>, int <i>lineCount</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qpaintengine.html#drawLines-2">QPaintEngine::drawLines</a>().</p>
+<h3 class="fn"><a name="drawLines-2"></a>void QRasterPaintEngine::drawLines ( const <a href="qlinef.html">QLineF</a> * <i>lines</i>, int <i>lineCount</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qpaintengine.html#drawLines">QPaintEngine::drawLines</a>().</p>
+<a name="//apple_ref/cpp/instm/QRasterPaintEngine/drawPixmap" />
+<h3 class="fn"><a name="drawPixmap"></a>void QRasterPaintEngine::drawPixmap ( const <a href="qrectf.html">QRectF</a> &amp; <i>r</i>, const <a href="qpixmap.html">QPixmap</a> &amp; <i>pixmap</i>, const <a href="qrectf.html">QRectF</a> &amp; <i>sr</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qpaintengine.html#drawPixmap">QPaintEngine::drawPixmap</a>().</p>
+<a name="//apple_ref/cpp/instm/QRasterPaintEngine/drawPoints" />
+<h3 class="fn"><a name="drawPoints"></a>void QRasterPaintEngine::drawPoints ( const <a href="qpointf.html">QPointF</a> * <i>points</i>, int <i>pointCount</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qpaintengine.html#drawPoints">QPaintEngine::drawPoints</a>().</p>
+<h3 class="fn"><a name="drawPoints-2"></a>void QRasterPaintEngine::drawPoints ( const <a href="qpoint.html">QPoint</a> * <i>points</i>, int <i>pointCount</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qpaintengine.html#drawPoints-2">QPaintEngine::drawPoints</a>().</p>
+<p>This is an overloaded function.</p>
+<p>Draws the first <i>pointCount</i> points in the buffer <i>points</i></p>
+<p>The default implementation converts the first <i>pointCount</i> QPoints in <i>points</i> to QPointFs and calls the floating point version of drawPoints.</p>
+<a name="//apple_ref/cpp/instm/QRasterPaintEngine/drawPolygon" />
+<h3 class="fn"><a name="drawPolygon"></a>void QRasterPaintEngine::drawPolygon ( const <a href="qpointf.html">QPointF</a> * <i>points</i>, int <i>pointCount</i>, <a href="qpaintengine.html#PolygonDrawMode-enum">PolygonDrawMode</a> <i>mode</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qpaintengine.html#drawPolygon">QPaintEngine::drawPolygon</a>().</p>
+<h3 class="fn"><a name="drawPolygon-2"></a>void QRasterPaintEngine::drawPolygon ( const <a href="qpoint.html">QPoint</a> * <i>points</i>, int <i>pointCount</i>, <a href="qpaintengine.html#PolygonDrawMode-enum">PolygonDrawMode</a> <i>mode</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qpaintengine.html#drawPolygon-2">QPaintEngine::drawPolygon</a>().</p>
+<a name="//apple_ref/cpp/instm/QRasterPaintEngine/drawRects" />
+<h3 class="fn"><a name="drawRects"></a>void QRasterPaintEngine::drawRects ( const <a href="qrect.html">QRect</a> * <i>rects</i>, int <i>rectCount</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qpaintengine.html#drawRects-2">QPaintEngine::drawRects</a>().</p>
+<h3 class="fn"><a name="drawRects-2"></a>void QRasterPaintEngine::drawRects ( const <a href="qrectf.html">QRectF</a> * <i>rects</i>, int <i>rectCount</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qpaintengine.html#drawRects">QPaintEngine::drawRects</a>().</p>
+<a name="//apple_ref/cpp/instm/QRasterPaintEngine/drawTextItem" />
+<h3 class="fn"><a name="drawTextItem"></a>void QRasterPaintEngine::drawTextItem ( const <a href="qpointf.html">QPointF</a> &amp; <i>p</i>, const <a href="qtextitem.html">QTextItem</a> &amp; <i>textItem</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qpaintengine.html#drawTextItem">QPaintEngine::drawTextItem</a>().</p>
+<a name="//apple_ref/cpp/instm/QRasterPaintEngine/drawTiledPixmap" />
+<h3 class="fn"><a name="drawTiledPixmap"></a>void QRasterPaintEngine::drawTiledPixmap ( const <a href="qrectf.html">QRectF</a> &amp; <i>r</i>, const <a href="qpixmap.html">QPixmap</a> &amp; <i>pixmap</i>, const <a href="qpointf.html">QPointF</a> &amp; <i>sr</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qpaintengine.html#drawTiledPixmap">QPaintEngine::drawTiledPixmap</a>().</p>
+<a name="//apple_ref/cpp/instm/QRasterPaintEngine/end" />
+<h3 class="fn"><a name="end"></a>bool QRasterPaintEngine::end ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qpaintengine.html#end">QPaintEngine::end</a>().</p>
+<a name="//apple_ref/cpp/instm/QRasterPaintEngine/fillRect" />
+<h3 class="fn"><a name="fillRect"></a>void QRasterPaintEngine::fillRect ( const <a href="qrectf.html">QRectF</a> &amp; <i>r</i>, const <a href="qbrush.html">QBrush</a> &amp; <i>brush</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<h3 class="fn"><a name="fillRect-2"></a>void QRasterPaintEngine::fillRect ( const <a href="qrectf.html">QRectF</a> &amp; <i>r</i>, const <a href="qcolor.html">QColor</a> &amp; <i>color</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<a name="//apple_ref/cpp/instm/QRasterPaintEngine/type" />
+<h3 class="fn"><a name="type"></a><a href="qpaintengine.html#Type-enum">Type</a> QRasterPaintEngine::type () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qpaintengine.html#type">QPaintEngine::type</a>().</p>
+<hr />
+<h2>Related Non-Members</h2>
+<a name="//apple_ref/cpp/tdef//QSpan" />
+<h3 class="fn"><a name="QSpan-typedef"></a>typedef QSpan</h3>
+<p>A struct equivalent to QT_FT_Span, containing a position (x, y), the span's length in pixels and its color/coverage (a value ranging from 0 to 255).</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

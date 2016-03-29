@@ -1,0 +1,43 @@
+\raw HTML
+//! [0]
+<script language="javascript">
+function createSubWidget( form )
+{
+    ParentWidget.createSubWidget( form.nameEdit.value );
+}
+
+function renameSubWidget( form )
+{
+    var SubWidget = ParentWidget.subWidget( form.nameEdit.value );
+    if ( !SubWidget ) {
+        alert( "No such widget " + form.nameEdit.value + "!" );
+        return;
+    }
+    SubWidget.label = form.labelEdit.value;
+    form.nameEdit.value = SubWidget.label;
+}
+
+function setFont( form )
+{
+    ParentWidget.font = form.fontEdit.value;
+}
+</script>
+
+<p>
+This widget can have many children!
+</p>
+<object ID="ParentWidget" CLASSID="CLSID:d574a747-8016-46db-a07c-b2b4854ee75c"
+CODEBASE="http://qt.nokia.com/demos/hierarchy.cab">
+[Object not available! Did you forget to build and register the server?]
+</object><br />
+<form>
+<input type="edit" ID="nameEdit" value="&lt;enter object name&gt;" />
+<input type="button" value="Create" onClick="createSubWidget(this.form)" />
+<input type="edit" ID="labelEdit" />
+<input type="button" value="Rename" onClick="renameSubWidget(this.form)" />
+<br />
+<input type="edit" ID="fontEdit" value="MS Sans Serif" />
+<input type="button" value = "Set Font" onClick="setFont(this.form)" />
+</form>
+//! [0]
+\endraw

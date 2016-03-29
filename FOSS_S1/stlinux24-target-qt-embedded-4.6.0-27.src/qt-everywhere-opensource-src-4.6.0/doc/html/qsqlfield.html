@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qsqlfield.cpp -->
+<head>
+  <title>Qt 4.6: QSqlField Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QSqlField" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QSqlField Class Reference<br /><span class="small-subtitle">[<a href="qtsql.html">QtSql</a> module]</span>
+</h1>
+<p>The QSqlField class manipulates the fields in SQL database tables and views. <a href="#details">More...</a></p>
+<pre> #include &lt;QSqlField&gt;</pre><p><b>This class is not part of the Qt GUI Framework Edition.</b></p>
+<ul>
+<li><a href="qsqlfield-members.html">List of all members, including inherited members</a></li>
+<li><a href="qsqlfield-qt3.html">Qt 3 support members</a></li>
+</ul>
+<hr />
+<a name="public-types"></a>
+<h2>Public Types</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qsqlfield.html#RequiredStatus-enum">RequiredStatus</a></b> { Required, Optional, Unknown }</td></tr>
+</table>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qsqlfield.html#QSqlField">QSqlField</a></b> ( const QString &amp; <i>fieldName</i> = QString(), QVariant::Type <i>type</i> = QVariant::Invalid )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qsqlfield.html#QSqlField-2">QSqlField</a></b> ( const QSqlField &amp; <i>other</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qsqlfield.html#dtor.QSqlField">~QSqlField</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qsqlfield.html#clear">clear</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QVariant </td><td class="memItemRight" valign="bottom"><b><a href="qsqlfield.html#defaultValue">defaultValue</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qsqlfield.html#isAutoValue">isAutoValue</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qsqlfield.html#isGenerated">isGenerated</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qsqlfield.html#isNull">isNull</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qsqlfield.html#isReadOnly">isReadOnly</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qsqlfield.html#isValid">isValid</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qsqlfield.html#length">length</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qsqlfield.html#name">name</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qsqlfield.html#precision">precision</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">RequiredStatus </td><td class="memItemRight" valign="bottom"><b><a href="qsqlfield.html#requiredStatus">requiredStatus</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qsqlfield.html#setAutoValue">setAutoValue</a></b> ( bool <i>autoVal</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qsqlfield.html#setDefaultValue">setDefaultValue</a></b> ( const QVariant &amp; <i>value</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qsqlfield.html#setGenerated">setGenerated</a></b> ( bool <i>gen</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qsqlfield.html#setLength">setLength</a></b> ( int <i>fieldLength</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qsqlfield.html#setName">setName</a></b> ( const QString &amp; <i>name</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qsqlfield.html#setPrecision">setPrecision</a></b> ( int <i>precision</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qsqlfield.html#setReadOnly">setReadOnly</a></b> ( bool <i>readOnly</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qsqlfield.html#setRequired">setRequired</a></b> ( bool <i>required</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qsqlfield.html#setRequiredStatus">setRequiredStatus</a></b> ( RequiredStatus <i>required</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qsqlfield.html#setType">setType</a></b> ( QVariant::Type <i>type</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qsqlfield.html#setValue">setValue</a></b> ( const QVariant &amp; <i>value</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QVariant::Type </td><td class="memItemRight" valign="bottom"><b><a href="qsqlfield.html#type">type</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QVariant </td><td class="memItemRight" valign="bottom"><b><a href="qsqlfield.html#value">value</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qsqlfield.html#operator-not-eq">operator!=</a></b> ( const QSqlField &amp; <i>other</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QSqlField &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qsqlfield.html#operator-eq">operator=</a></b> ( const QSqlField &amp; <i>other</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qsqlfield.html#operator-eq-eq">operator==</a></b> ( const QSqlField &amp; <i>other</i> ) const</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QSqlField class manipulates the fields in SQL database tables and views.</p>
+<p>QSqlField represents the characteristics of a single column in a database table or view, such as the data type and column name. A field also contains the value of the database column, which can be viewed or changed.</p>
+<p>Field data values are stored as QVariants. Using an incompatible type is not permitted. For example:</p>
+<pre>     QSqlField field(&quot;age&quot;, QVariant::Int);
+     field.setValue(QPixmap());  <span class="comment">// WRONG</span></pre>
+<p>However, the field will attempt to cast certain data types to the field data type where possible:</p>
+<pre>     QSqlField field(&quot;age&quot;, QVariant::Int);
+     field.setValue(QString(&quot;123&quot;));  <span class="comment">// casts QString to int</span></pre>
+<p>QSqlField objects are rarely created explicitly in application code. They are usually accessed indirectly through <a href="qsqlrecord.html">QSqlRecord</a>s that already contain a list of fields. For example:</p>
+<pre>     QSqlQuery query;
+     ...
+     QSqlRecord record = query.record();
+     QSqlField field = record.field(&quot;country&quot;);</pre>
+<p>A QSqlField object can provide some meta-data about the field, for example, its <a href="qsqlfield.html#name">name</a>(), variant <a href="qsqlfield.html#type">type</a>(), <a href="qsqlfield.html#length">length</a>(), <a href="qsqlfield.html#precision">precision</a>(), <a href="qsqlfield.html#defaultValue">defaultValue</a>(), typeID(), and its <a href="qsqlfield.html#requiredStatus">requiredStatus</a>(), <a href="qsqlfield.html#isGenerated">isGenerated</a>() and <a href="qsqlfield.html#isReadOnly">isReadOnly</a>(). The field's data can be checked to see if it <a href="qsqlfield.html#isNull">isNull</a>(), and its <a href="qsqlfield.html#value">value</a>() retrieved. When editing the data can be set with <a href="qsqlfield.html#setValue">setValue</a>() or set to NULL with <a href="qsqlfield.html#clear">clear</a>().</p>
+<p>See also <a href="qsqlrecord.html">QSqlRecord</a>.</p>
+<hr />
+<h2>Member Type Documentation</h2>
+<a name="//apple_ref/cpp/tag/QSqlField/RequiredStatus" />
+<a name="//apple_ref/cpp/econst/QSqlField/Required" />
+<a name="//apple_ref/cpp/econst/QSqlField/Optional" />
+<a name="//apple_ref/cpp/econst/QSqlField/Unknown" />
+<h3 class="fn"><a name="RequiredStatus-enum"></a>enum QSqlField::RequiredStatus</h3>
+<p>Specifies whether the field is required or optional.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QSqlField::Required</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">The field must be specified when inserting records.</td></tr>
+<tr><td valign="top"><tt>QSqlField::Optional</tt></td><td align="center" valign="top"><tt>0</tt></td><td valign="top">The fields doesn't have to be specified when inserting records.</td></tr>
+<tr><td valign="top"><tt>QSqlField::Unknown</tt></td><td align="center" valign="top"><tt>-1</tt></td><td valign="top">The database driver couldn't determine whether the field is required or optional.</td></tr>
+</table></p>
+<p>See also <a href="qsqlfield.html#requiredStatus">requiredStatus</a>().</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QSqlField/QSqlField" />
+<h3 class="fn"><a name="QSqlField"></a>QSqlField::QSqlField ( const <a href="qstring.html">QString</a> &amp; <i>fieldName</i> = QString(), <a href="qvariant.html#Type-enum">QVariant::Type</a> <i>type</i> = QVariant::Invalid )</h3>
+<p>Constructs an empty field called <i>fieldName</i> of variant type <i>type</i>.</p>
+<p>See also <a href="qsqlfield.html#setRequiredStatus">setRequiredStatus</a>(), <a href="qsqlfield.html#setLength">setLength</a>(), <a href="qsqlfield.html#setPrecision">setPrecision</a>(), <a href="qsqlfield.html#setDefaultValue">setDefaultValue</a>(), <a href="qsqlfield.html#setGenerated">setGenerated</a>(), and <a href="qsqlfield.html#setReadOnly">setReadOnly</a>().</p>
+<h3 class="fn"><a name="QSqlField-2"></a>QSqlField::QSqlField ( const QSqlField &amp; <i>other</i> )</h3>
+<p>Constructs a copy of <i>other</i>.</p>
+<a name="//apple_ref/cpp/instm/QSqlField/~QSqlField" />
+<h3 class="fn"><a name="dtor.QSqlField"></a>QSqlField::~QSqlField ()</h3>
+<p>Destroys the object and frees any allocated resources.</p>
+<a name="//apple_ref/cpp/instm/QSqlField/clear" />
+<h3 class="fn"><a name="clear"></a>void QSqlField::clear ()</h3>
+<p>Clears the value of the field and sets it to NULL. If the field is read-only, nothing happens.</p>
+<p>See also <a href="qsqlfield.html#setValue">setValue</a>(), <a href="qsqlfield.html#isReadOnly">isReadOnly</a>(), and <a href="qsqlfield.html#requiredStatus">requiredStatus</a>().</p>
+<a name="//apple_ref/cpp/instm/QSqlField/defaultValue" />
+<h3 class="fn"><a name="defaultValue"></a><a href="qvariant.html">QVariant</a> QSqlField::defaultValue () const</h3>
+<p>Returns the field's default value (which may be NULL).</p>
+<p>See also <a href="qsqlfield.html#setDefaultValue">setDefaultValue</a>(), <a href="qsqlfield.html#type">type</a>(), <a href="qsqlfield.html#requiredStatus">requiredStatus</a>(), <a href="qsqlfield.html#length">length</a>(), <a href="qsqlfield.html#precision">precision</a>(), and <a href="qsqlfield.html#isGenerated">isGenerated</a>().</p>
+<a name="//apple_ref/cpp/instm/QSqlField/isAutoValue" />
+<h3 class="fn"><a name="isAutoValue"></a>bool QSqlField::isAutoValue () const</h3>
+<p>Returns true if the value is auto-generated by the database, for example auto-increment primary key values.</p>
+<p>See also <a href="qsqlfield.html#setAutoValue">setAutoValue</a>().</p>
+<a name="//apple_ref/cpp/instm/QSqlField/isGenerated" />
+<h3 class="fn"><a name="isGenerated"></a>bool QSqlField::isGenerated () const</h3>
+<p>Returns true if the field is generated; otherwise returns false.</p>
+<p>See also <a href="qsqlfield.html#setGenerated">setGenerated</a>(), <a href="qsqlfield.html#type">type</a>(), <a href="qsqlfield.html#requiredStatus">requiredStatus</a>(), <a href="qsqlfield.html#length">length</a>(), <a href="qsqlfield.html#precision">precision</a>(), and <a href="qsqlfield.html#defaultValue">defaultValue</a>().</p>
+<a name="//apple_ref/cpp/instm/QSqlField/isNull" />
+<h3 class="fn"><a name="isNull"></a>bool QSqlField::isNull () const</h3>
+<p>Returns true if the field's value is NULL; otherwise returns false.</p>
+<p>See also <a href="qsqlfield.html#value">value</a>().</p>
+<a name="//apple_ref/cpp/instm/QSqlField/isReadOnly" />
+<h3 class="fn"><a name="isReadOnly"></a>bool QSqlField::isReadOnly () const</h3>
+<p>Returns true if the field's value is read-only; otherwise returns false.</p>
+<p>See also <a href="qsqlfield.html#setReadOnly">setReadOnly</a>(), <a href="qsqlfield.html#type">type</a>(), <a href="qsqlfield.html#requiredStatus">requiredStatus</a>(), <a href="qsqlfield.html#length">length</a>(), <a href="qsqlfield.html#precision">precision</a>(), <a href="qsqlfield.html#defaultValue">defaultValue</a>(), and <a href="qsqlfield.html#isGenerated">isGenerated</a>().</p>
+<a name="//apple_ref/cpp/instm/QSqlField/isValid" />
+<h3 class="fn"><a name="isValid"></a>bool QSqlField::isValid () const</h3>
+<p>Returns true if the field's variant type is valid; otherwise returns false.</p>
+<a name="//apple_ref/cpp/instm/QSqlField/length" />
+<h3 class="fn"><a name="length"></a>int QSqlField::length () const</h3>
+<p>Returns the field's length.</p>
+<p>If the returned value is negative, it means that the information is not available from the database.</p>
+<p>See also <a href="qsqlfield.html#setLength">setLength</a>(), <a href="qsqlfield.html#type">type</a>(), <a href="qsqlfield.html#requiredStatus">requiredStatus</a>(), <a href="qsqlfield.html#precision">precision</a>(), <a href="qsqlfield.html#defaultValue">defaultValue</a>(), and <a href="qsqlfield.html#isGenerated">isGenerated</a>().</p>
+<a name="//apple_ref/cpp/instm/QSqlField/name" />
+<h3 class="fn"><a name="name"></a><a href="qstring.html">QString</a> QSqlField::name () const</h3>
+<p>Returns the name of the field.</p>
+<p>See also <a href="qsqlfield.html#setName">setName</a>().</p>
+<a name="//apple_ref/cpp/instm/QSqlField/precision" />
+<h3 class="fn"><a name="precision"></a>int QSqlField::precision () const</h3>
+<p>Returns the field's precision; this is only meaningful for numeric types.</p>
+<p>If the returned value is negative, it means that the information is not available from the database.</p>
+<p>See also <a href="qsqlfield.html#setPrecision">setPrecision</a>(), <a href="qsqlfield.html#type">type</a>(), <a href="qsqlfield.html#requiredStatus">requiredStatus</a>(), <a href="qsqlfield.html#length">length</a>(), <a href="qsqlfield.html#defaultValue">defaultValue</a>(), and <a href="qsqlfield.html#isGenerated">isGenerated</a>().</p>
+<a name="//apple_ref/cpp/instm/QSqlField/requiredStatus" />
+<h3 class="fn"><a name="requiredStatus"></a><a href="qsqlfield.html#RequiredStatus-enum">RequiredStatus</a> QSqlField::requiredStatus () const</h3>
+<p>Returns true if this is a required field; otherwise returns false. An <tt>INSERT</tt> will fail if a required field does not have a value.</p>
+<p>See also <a href="qsqlfield.html#setRequiredStatus">setRequiredStatus</a>(), <a href="qsqlfield.html#type">type</a>(), <a href="qsqlfield.html#length">length</a>(), <a href="qsqlfield.html#precision">precision</a>(), <a href="qsqlfield.html#defaultValue">defaultValue</a>(), and <a href="qsqlfield.html#isGenerated">isGenerated</a>().</p>
+<a name="//apple_ref/cpp/instm/QSqlField/setAutoValue" />
+<h3 class="fn"><a name="setAutoValue"></a>void QSqlField::setAutoValue ( bool <i>autoVal</i> )</h3>
+<p>Marks the field as an auto-generated value if <i>autoVal</i> is true.</p>
+<p>See also <a href="qsqlfield.html#isAutoValue">isAutoValue</a>().</p>
+<a name="//apple_ref/cpp/instm/QSqlField/setDefaultValue" />
+<h3 class="fn"><a name="setDefaultValue"></a>void QSqlField::setDefaultValue ( const <a href="qvariant.html">QVariant</a> &amp; <i>value</i> )</h3>
+<p>Sets the default value used for this field to <i>value</i>.</p>
+<p>See also <a href="qsqlfield.html#defaultValue">defaultValue</a>(), <a href="qsqlfield.html#value">value</a>(), <a href="qsqlfield.html#setType">setType</a>(), <a href="qsqlfield.html#setRequiredStatus">setRequiredStatus</a>(), <a href="qsqlfield.html#setLength">setLength</a>(), <a href="qsqlfield.html#setPrecision">setPrecision</a>(), <a href="qsqlfield.html#setGenerated">setGenerated</a>(), and <a href="qsqlfield.html#setReadOnly">setReadOnly</a>().</p>
+<a name="//apple_ref/cpp/instm/QSqlField/setGenerated" />
+<h3 class="fn"><a name="setGenerated"></a>void QSqlField::setGenerated ( bool <i>gen</i> )</h3>
+<p>Sets the generated state. If <i>gen</i> is false, no SQL will be generated for this field; otherwise, Qt classes such as <a href="qsqlquerymodel.html">QSqlQueryModel</a> and <a href="qsqltablemodel.html">QSqlTableModel</a> will generate SQL for this field.</p>
+<p>See also <a href="qsqlfield.html#isGenerated">isGenerated</a>(), <a href="qsqlfield.html#setType">setType</a>(), <a href="qsqlfield.html#setRequiredStatus">setRequiredStatus</a>(), <a href="qsqlfield.html#setLength">setLength</a>(), <a href="qsqlfield.html#setPrecision">setPrecision</a>(), <a href="qsqlfield.html#setDefaultValue">setDefaultValue</a>(), and <a href="qsqlfield.html#setReadOnly">setReadOnly</a>().</p>
+<a name="//apple_ref/cpp/instm/QSqlField/setLength" />
+<h3 class="fn"><a name="setLength"></a>void QSqlField::setLength ( int <i>fieldLength</i> )</h3>
+<p>Sets the field's length to <i>fieldLength</i>. For strings this is the maximum number of characters the string can hold; the meaning varies for other types.</p>
+<p>See also <a href="qsqlfield.html#length">length</a>(), <a href="qsqlfield.html#setType">setType</a>(), <a href="qsqlfield.html#setRequiredStatus">setRequiredStatus</a>(), <a href="qsqlfield.html#setPrecision">setPrecision</a>(), <a href="qsqlfield.html#setDefaultValue">setDefaultValue</a>(), <a href="qsqlfield.html#setGenerated">setGenerated</a>(), and <a href="qsqlfield.html#setReadOnly">setReadOnly</a>().</p>
+<a name="//apple_ref/cpp/instm/QSqlField/setName" />
+<h3 class="fn"><a name="setName"></a>void QSqlField::setName ( const <a href="qstring.html">QString</a> &amp; <i>name</i> )</h3>
+<p>Sets the name of the field to <i>name</i>.</p>
+<p>See also <a href="qsqlfield.html#name">name</a>().</p>
+<a name="//apple_ref/cpp/instm/QSqlField/setPrecision" />
+<h3 class="fn"><a name="setPrecision"></a>void QSqlField::setPrecision ( int <i>precision</i> )</h3>
+<p>Sets the field's <i>precision</i>. This only affects numeric fields.</p>
+<p>See also <a href="qsqlfield.html#precision">precision</a>(), <a href="qsqlfield.html#setType">setType</a>(), <a href="qsqlfield.html#setRequiredStatus">setRequiredStatus</a>(), <a href="qsqlfield.html#setLength">setLength</a>(), <a href="qsqlfield.html#setDefaultValue">setDefaultValue</a>(), <a href="qsqlfield.html#setGenerated">setGenerated</a>(), and <a href="qsqlfield.html#setReadOnly">setReadOnly</a>().</p>
+<a name="//apple_ref/cpp/instm/QSqlField/setReadOnly" />
+<h3 class="fn"><a name="setReadOnly"></a>void QSqlField::setReadOnly ( bool <i>readOnly</i> )</h3>
+<p>Sets the read only flag of the field's value to <i>readOnly</i>. A read-only field cannot have its value set with <a href="qsqlfield.html#setValue">setValue</a>() and cannot be cleared to NULL with <a href="qsqlfield.html#clear">clear</a>().</p>
+<p>See also <a href="qsqlfield.html#isReadOnly">isReadOnly</a>().</p>
+<a name="//apple_ref/cpp/instm/QSqlField/setRequired" />
+<h3 class="fn"><a name="setRequired"></a>void QSqlField::setRequired ( bool <i>required</i> )</h3>
+<p>Sets the required status of this field to <a href="qsqlfield.html#RequiredStatus-enum">Required</a> if <i>required</i> is true; otherwise sets it to <a href="qsqlfield.html#RequiredStatus-enum">Optional</a>.</p>
+<p>See also <a href="qsqlfield.html#setRequiredStatus">setRequiredStatus</a>() and <a href="qsqlfield.html#requiredStatus">requiredStatus</a>().</p>
+<a name="//apple_ref/cpp/instm/QSqlField/setRequiredStatus" />
+<h3 class="fn"><a name="setRequiredStatus"></a>void QSqlField::setRequiredStatus ( <a href="qsqlfield.html#RequiredStatus-enum">RequiredStatus</a> <i>required</i> )</h3>
+<p>Sets the required status of this field to <i>required</i>.</p>
+<p>See also <a href="qsqlfield.html#requiredStatus">requiredStatus</a>(), <a href="qsqlfield.html#setType">setType</a>(), <a href="qsqlfield.html#setLength">setLength</a>(), <a href="qsqlfield.html#setPrecision">setPrecision</a>(), <a href="qsqlfield.html#setDefaultValue">setDefaultValue</a>(), <a href="qsqlfield.html#setGenerated">setGenerated</a>(), and <a href="qsqlfield.html#setReadOnly">setReadOnly</a>().</p>
+<a name="//apple_ref/cpp/instm/QSqlField/setType" />
+<h3 class="fn"><a name="setType"></a>void QSqlField::setType ( <a href="qvariant.html#Type-enum">QVariant::Type</a> <i>type</i> )</h3>
+<p>Set's the field's variant type to <i>type</i>.</p>
+<p>See also <a href="qsqlfield.html#type">type</a>(), <a href="qsqlfield.html#setRequiredStatus">setRequiredStatus</a>(), <a href="qsqlfield.html#setLength">setLength</a>(), <a href="qsqlfield.html#setPrecision">setPrecision</a>(), <a href="qsqlfield.html#setDefaultValue">setDefaultValue</a>(), <a href="qsqlfield.html#setGenerated">setGenerated</a>(), and <a href="qsqlfield.html#setReadOnly">setReadOnly</a>().</p>
+<a name="//apple_ref/cpp/instm/QSqlField/setValue" />
+<h3 class="fn"><a name="setValue"></a>void QSqlField::setValue ( const <a href="qvariant.html">QVariant</a> &amp; <i>value</i> )</h3>
+<p>Sets the value of the field to <i>value</i>. If the field is read-only (<a href="qsqlfield.html#isReadOnly">isReadOnly</a>() returns true), nothing happens.</p>
+<p>If the data type of <i>value</i> differs from the field's current data type, an attempt is made to cast it to the proper type. This preserves the data type of the field in the case of assignment, e.g&#x2e; a <a href="qstring.html">QString</a> to an integer data type.</p>
+<p>To set the value to NULL, use <a href="qsqlfield.html#clear">clear</a>().</p>
+<p>See also <a href="qsqlfield.html#value">value</a>(), <a href="qsqlfield.html#isReadOnly">isReadOnly</a>(), and <a href="qsqlfield.html#defaultValue">defaultValue</a>().</p>
+<a name="//apple_ref/cpp/instm/QSqlField/type" />
+<h3 class="fn"><a name="type"></a><a href="qvariant.html#Type-enum">QVariant::Type</a> QSqlField::type () const</h3>
+<p>Returns the field's type as stored in the database. Note that the actual value might have a different type, Numerical values that are too large to store in a long int or double are usually stored as strings to prevent precision loss.</p>
+<p>See also <a href="qsqlfield.html#setType">setType</a>().</p>
+<a name="//apple_ref/cpp/instm/QSqlField/value" />
+<h3 class="fn"><a name="value"></a><a href="qvariant.html">QVariant</a> QSqlField::value () const</h3>
+<p>Returns the value of the field as a <a href="qvariant.html">QVariant</a>.</p>
+<p>Use <a href="qsqlfield.html#isNull">isNull</a>() to check if the field's value is NULL.</p>
+<p>See also <a href="qsqlfield.html#setValue">setValue</a>().</p>
+<a name="//apple_ref/cpp/instm/QSqlField/operator!=" />
+<h3 class="fn"><a name="operator-not-eq"></a>bool QSqlField::operator!= ( const QSqlField &amp; <i>other</i> ) const</h3>
+<p>Returns true if the field is unequal to <i>other</i>; otherwise returns false.</p>
+<a name="//apple_ref/cpp/instm/QSqlField/operator=" />
+<h3 class="fn"><a name="operator-eq"></a>QSqlField &amp; QSqlField::operator= ( const QSqlField &amp; <i>other</i> )</h3>
+<p>Sets the field equal to <i>other</i>.</p>
+<a name="//apple_ref/cpp/instm/QSqlField/operator==" />
+<h3 class="fn"><a name="operator-eq-eq"></a>bool QSqlField::operator== ( const QSqlField &amp; <i>other</i> ) const</h3>
+<p>Returns true if the field is equal to <i>other</i>; otherwise returns false.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

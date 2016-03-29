@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qabstracttransition.cpp -->
+<head>
+  <title>Qt 4.6: QAbstractTransition Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QAbstractTransition" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QAbstractTransition Class Reference<br /><span class="small-subtitle">[<a href="qtcore.html">QtCore</a> module]</span>
+</h1>
+<p>The QAbstractTransition class is the base class of transitions between <a href="qabstractstate.html">QAbstractState</a> objects. <a href="#details">More...</a></p>
+<pre> #include &lt;QAbstractTransition&gt;</pre><p>Inherits <a href="qobject.html">QObject</a>.</p>
+<p>Inherited by <a href="qeventtransition.html">QEventTransition</a> and <a href="qsignaltransition.html">QSignalTransition</a>.</p>
+<p>This class was introduced in Qt 4.6.</p>
+<ul>
+<li><a href="qabstracttransition-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="properties"></a>
+<h2>Properties</h2>
+<ul>
+<li><div class="fn"><b><a href="qabstracttransition.html#sourceState-prop">sourceState</a></b> : QState * const</div></li>
+<li><div class="fn"><b><a href="qabstracttransition.html#targetState-prop">targetState</a></b> : QAbstractState *</div></li>
+<li><div class="fn"><b><a href="qabstracttransition.html#targetStates-prop">targetStates</a></b> : QList&lt;QAbstractState *&gt;</div></li>
+</ul>
+<ul>
+<li><div bar="2" class="fn"></div>1 property inherited from <a href="qobject.html#properties">QObject</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qabstracttransition.html#QAbstractTransition">QAbstractTransition</a></b> ( QState * <i>sourceState</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual </td><td class="memItemRight" valign="bottom"><b><a href="qabstracttransition.html#dtor.QAbstractTransition">~QAbstractTransition</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qabstracttransition.html#addAnimation">addAnimation</a></b> ( QAbstractAnimation * <i>animation</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QList&lt;QAbstractAnimation *&gt; </td><td class="memItemRight" valign="bottom"><b><a href="qabstracttransition.html#animations">animations</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QStateMachine * </td><td class="memItemRight" valign="bottom"><b><a href="qabstracttransition.html#machine">machine</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qabstracttransition.html#removeAnimation">removeAnimation</a></b> ( QAbstractAnimation * <i>animation</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qabstracttransition.html#targetState-prop">setTargetState</a></b> ( QAbstractState * <i>target</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qabstracttransition.html#targetStates-prop">setTargetStates</a></b> ( const QList&lt;QAbstractState *&gt; &amp; <i>targets</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QState * </td><td class="memItemRight" valign="bottom"><b><a href="qabstracttransition.html#sourceState-prop">sourceState</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QAbstractState * </td><td class="memItemRight" valign="bottom"><b><a href="qabstracttransition.html#targetState-prop">targetState</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QList&lt;QAbstractState *&gt; </td><td class="memItemRight" valign="bottom"><b><a href="qabstracttransition.html#targetStates-prop">targetStates</a></b> () const</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>29 public functions inherited from <a href="qobject.html#public-functions">QObject</a></li>
+</ul>
+<hr />
+<a name="signals"></a>
+<h2>Signals</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qabstracttransition.html#triggered">triggered</a></b> ()</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>1 signal inherited from <a href="qobject.html#signals">QObject</a></li>
+</ul>
+<hr />
+<a name="protected-functions"></a>
+<h2>Protected Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qabstracttransition.html#eventTest">eventTest</a></b> ( QEvent * <i>event</i> ) = 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qabstracttransition.html#onTransition">onTransition</a></b> ( QEvent * <i>event</i> ) = 0</td></tr>
+</table>
+<hr />
+<a name="reimplemented-protected-functions"></a>
+<h2>Reimplemented Protected Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qabstracttransition.html#event">event</a></b> ( QEvent * <i>e</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li><div class="fn"></div>1 public slot inherited from <a href="qobject.html#public-slots">QObject</a></li>
+<li><div class="fn"></div>5 static public members inherited from <a href="qobject.html#static-public-members">QObject</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QAbstractTransition class is the base class of transitions between <a href="qabstractstate.html">QAbstractState</a> objects.</p>
+<p>The QAbstractTransition class is the abstract base class of transitions between states (<a href="qabstractstate.html">QAbstractState</a> objects) of a <a href="qstatemachine.html">QStateMachine</a>. QAbstractTransition is part of <a href="statemachine-api.html">The State Machine Framework</a>.</p>
+<p>The <a href="qabstracttransition.html#sourceState-prop">sourceState</a>() function returns the source of the transition. The <a href="qabstracttransition.html#targetStates-prop">targetStates</a>() function returns the targets of the transition. The <a href="qabstracttransition.html#machine">machine</a>() function returns the state machine that the transition is part of.</p>
+<p>The <a href="qabstracttransition.html#triggered">triggered</a>() signal is emitted when the transition has been triggered.</p>
+<p>Transitions can cause animations to be played. Use the <a href="qabstracttransition.html#addAnimation">addAnimation</a>() function to add an animation to the transition.</p>
+<a name="subclassing"></a>
+<h3>Subclassing</h3>
+<p>The <a href="qabstracttransition.html#eventTest">eventTest</a>() function is called by the state machine to determine whether an event should trigger the transition. In your reimplementation you typically check the event type and cast the event object to the proper type, and check that one or more properties of the event meet your criteria.</p>
+<p>The <a href="qabstracttransition.html#onTransition">onTransition</a>() function is called when the transition is triggered; reimplement this function to perform custom processing for the transition.</p>
+<hr />
+<h2>Property Documentation</h2>
+<a name="//apple_ref/cpp/instm/QAbstractTransition/sourceState" />
+<h3 class="fn"><a name="sourceState-prop"></a>sourceState : <a href="qstate.html">QState</a> * const</h3>
+<p>This property holds the source state (parent) of this transition.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">QState * </td><td class="memItemRight" valign="bottom"><b>sourceState</b> () const</td></tr>
+</table>
+<a name="//apple_ref/cpp/instm/QAbstractTransition/targetState" />
+<a name="//apple_ref/cpp/instm/QAbstractTransition/setTargetState" />
+<h3 class="fn"><a name="targetState-prop"></a>targetState : <a href="qabstractstate.html">QAbstractState</a> *</h3>
+<p>This property holds the target state of this transition.</p>
+<p>If a transition has no target state, the transition may still be triggered, but this will not cause the state machine's configuration to change (i.e&#x2e; the current state will not be exited and re-entered).</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">QAbstractState * </td><td class="memItemRight" valign="bottom"><b>targetState</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setTargetState</b> ( QAbstractState * <i>target</i> )</td></tr>
+</table>
+<a name="//apple_ref/cpp/instm/QAbstractTransition/targetStates" />
+<a name="//apple_ref/cpp/instm/QAbstractTransition/setTargetStates" />
+<h3 class="fn"><a name="targetStates-prop"></a>targetStates : <a href="qlist.html">QList</a>&lt;<a href="qabstractstate.html">QAbstractState</a> *&gt;</h3>
+<p>This property holds the target states of this transition.</p>
+<p>If multiple states are specified, all must be descendants of the same parallel group state.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">QList&lt;QAbstractState *&gt; </td><td class="memItemRight" valign="bottom"><b>targetStates</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setTargetStates</b> ( const QList&lt;QAbstractState *&gt; &amp; <i>targets</i> )</td></tr>
+</table>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QAbstractTransition/QAbstractTransition" />
+<h3 class="fn"><a name="QAbstractTransition"></a>QAbstractTransition::QAbstractTransition ( <a href="qstate.html">QState</a> * <i>sourceState</i> = 0 )</h3>
+<p>Constructs a new <a href="qabstracttransition.html">QAbstractTransition</a> object with the given <i>sourceState</i>.</p>
+<a name="//apple_ref/cpp/instm/QAbstractTransition/~QAbstractTransition" />
+<h3 class="fn"><a name="dtor.QAbstractTransition"></a>QAbstractTransition::~QAbstractTransition ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Destroys this transition.</p>
+<a name="//apple_ref/cpp/instm/QAbstractTransition/addAnimation" />
+<h3 class="fn"><a name="addAnimation"></a>void QAbstractTransition::addAnimation ( <a href="qabstractanimation.html">QAbstractAnimation</a> * <i>animation</i> )</h3>
+<p>Adds the given <i>animation</i> to this transition. The transition does not take ownership of the animation.</p>
+<p>See also <a href="qabstracttransition.html#removeAnimation">removeAnimation</a>() and <a href="qabstracttransition.html#animations">animations</a>().</p>
+<a name="//apple_ref/cpp/instm/QAbstractTransition/animations" />
+<h3 class="fn"><a name="animations"></a><a href="qlist.html">QList</a>&lt;<a href="qabstractanimation.html">QAbstractAnimation</a> *&gt; QAbstractTransition::animations () const</h3>
+<p>Returns the list of animations associated with this transition, or an empty list if it has no animations.</p>
+<p>See also <a href="qabstracttransition.html#addAnimation">addAnimation</a>().</p>
+<a name="//apple_ref/cpp/instm/QAbstractTransition/event" />
+<h3 class="fn"><a name="event"></a>bool QAbstractTransition::event ( <a href="qevent.html">QEvent</a> * <i>e</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qobject.html#event">QObject::event</a>().</p>
+<a name="//apple_ref/cpp/instm/QAbstractTransition/eventTest" />
+<h3 class="fn"><a name="eventTest"></a>bool QAbstractTransition::eventTest ( <a href="qevent.html">QEvent</a> * <i>event</i> )&nbsp;&nbsp;<tt> [pure virtual protected]</tt></h3>
+<p>This function is called to determine whether the given <i>event</i> should cause this transition to trigger. Reimplement this function and return true if the event should trigger the transition, otherwise return false.</p>
+<a name="//apple_ref/cpp/instm/QAbstractTransition/machine" />
+<h3 class="fn"><a name="machine"></a><a href="qstatemachine.html">QStateMachine</a> * QAbstractTransition::machine () const</h3>
+<p>Returns the state machine that this transition is part of, or 0 if the transition is not part of a state machine.</p>
+<a name="//apple_ref/cpp/instm/QAbstractTransition/onTransition" />
+<h3 class="fn"><a name="onTransition"></a>void QAbstractTransition::onTransition ( <a href="qevent.html">QEvent</a> * <i>event</i> )&nbsp;&nbsp;<tt> [pure virtual protected]</tt></h3>
+<p>This function is called when the transition is triggered. The given <i>event</i> is what caused the transition to trigger. Reimplement this function to perform custom processing when the transition is triggered.</p>
+<a name="//apple_ref/cpp/instm/QAbstractTransition/removeAnimation" />
+<h3 class="fn"><a name="removeAnimation"></a>void QAbstractTransition::removeAnimation ( <a href="qabstractanimation.html">QAbstractAnimation</a> * <i>animation</i> )</h3>
+<p>Removes the given <i>animation</i> from this transition.</p>
+<p>See also <a href="qabstracttransition.html#addAnimation">addAnimation</a>().</p>
+<a name="//apple_ref/cpp/instm/QAbstractTransition/triggered" />
+<h3 class="fn"><a name="triggered"></a>void QAbstractTransition::triggered ()&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted when the transition has been triggered (after <a href="qabstracttransition.html#onTransition">onTransition</a>() has been called).</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- threads.qdoc -->
+<head>
+  <title>Qt 4.6: Threads and QObjects</title>
+  <link rel="prev" href="threads-reentrancy.html" />
+  <link rel="contents" href="threads.html" />
+  <link rel="next" href="threads-qtconcurrent.html" />
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><p>
+[Previous: <a href="threads-reentrancy.html">Reentrancy and Thread-Safety</a>]
+[<a href="threads.html">Thread Support in Qt</a>]
+[Next: <a href="threads-qtconcurrent.html">Concurrent Programming</a>]
+</p>
+<h1 class="title">Threads and QObjects<br /><span class="subtitle"></span>
+</h1>
+<p><a href="qthread.html">QThread</a> inherits <a href="qobject.html">QObject</a>. It emits signals to indicate that the thread started or finished executing, and provides a few slots as well.</p>
+<p>More interesting is that <a href="qobject.html">QObject</a>s can be used in multiple threads, emit signals that invoke slots in other threads, and post events to objects that &quot;live&quot; in other threads. This is possible because each thread is allowed to have its own event loop.</p>
+<p>Topics:</p>
+<ul><li><a href="#qobject-reentrancy">QObject Reentrancy</a></li>
+<li><a href="#per-thread-event-loop">Per-Thread Event Loop</a></li>
+<li><a href="#accessing-qobject-subclasses-from-other-threads">Accessing QObject Subclasses from Other Threads</a></li>
+<li><a href="#signals-and-slots-across-threads">Signals and Slots Across Threads</a></li>
+</ul>
+<a name="qobject-reentrancy"></a>
+<h2>QObject Reentrancy</h2>
+<p><a href="qobject.html">QObject</a> is reentrant. Most of its non-GUI subclasses, such as <a href="qtimer.html">QTimer</a>, <a href="qtcpsocket.html">QTcpSocket</a>, <a href="qudpsocket.html">QUdpSocket</a>, <a href="qftp.html">QFtp</a>, and <a href="qprocess.html">QProcess</a>, are also reentrant, making it possible to use these classes from multiple threads simultaneously. Note that these classes are designed to be created and used from within a single thread; creating an object in one thread and calling its functions from another thread is not guaranteed to work. There are three constraints to be aware of:</p>
+<ul>
+<li><i>The child of a <a href="qobject.html">QObject</a> must always be created in the thread where the parent was created.</i> This implies, among other things, that you should never pass the <a href="qthread.html">QThread</a> object (<tt>this</tt>) as the parent of an object created in the thread (since the <a href="qthread.html">QThread</a> object itself was created in another thread).</li>
+<li><i>Event driven objects may only be used in a single thread.</i> Specifically, this applies to the <a href="timers.html">timer mechanism</a> and the <a href="qtnetwork.html">network module</a>. For example, you cannot start a timer or connect a socket in a thread that is not the <a href="qobject.html#thread">object's thread</a>.</li>
+<li><i>You must ensure that all objects created in a thread are deleted before you delete the <a href="qthread.html">QThread</a>.</i> This can be done easily by creating the objects on the stack in your <a href="qthread.html#run">run()</a> implementation.</li>
+</ul>
+<p>Although <a href="qobject.html">QObject</a> is reentrant, the GUI classes, notably <a href="qwidget.html">QWidget</a> and all its subclasses, are not reentrant. They can only be used from the main thread. As noted earlier, <a href="qcoreapplication.html#exec">QCoreApplication::exec</a>() must also be called from that thread.</p>
+<p>In practice, the impossibility of using GUI classes in other threads than the main thread can easily be worked around by putting time-consuming operations in a separate worker thread and displaying the results on screen in the main thread when the worker thread is finished. This is the approach used for implementing the <a href="threads-mandelbrot.html">Mandelbrot</a> and the <a href="network-blockingfortuneclient.html">Blocking Fortune Client</a> example.</p>
+<a name="per-thread-event-loop"></a>
+<h2>Per-Thread Event Loop</h2>
+<p>Each thread can have its own event loop. The initial thread starts its event loops using <a href="qcoreapplication.html#exec">QCoreApplication::exec</a>(); other threads can start an event loop using <a href="qthread.html#exec">QThread::exec</a>(). Like <a href="qcoreapplication.html">QCoreApplication</a>, <a href="qthread.html">QThread</a> provides an <a href="qthread.html#exit">exit</a>(int) function and a <a href="qthread.html#quit">quit()</a> slot.</p>
+<p>An event loop in a thread makes it possible for the thread to use certain non-GUI Qt classes that require the presence of an event loop (such as <a href="qtimer.html">QTimer</a>, <a href="qtcpsocket.html">QTcpSocket</a>, and <a href="qprocess.html">QProcess</a>). It also makes it possible to connect signals from any threads to slots of a specific thread. This is explained in more detail in the <a href="#signals-and-slots-across-threads">Signals and Slots Across Threads</a> section below.</p>
+<p align="center"><img src="images/threadsandobjects.png" alt="Threads, objects, and event loops" /></p><p>A <a href="qobject.html">QObject</a> instance is said to <i>live</i> in the thread in which it is created. Events to that object are dispatched by that thread's event loop. The thread in which a <a href="qobject.html">QObject</a> lives is available using <a href="qobject.html#thread">QObject::thread</a>().</p>
+<p>Note that for QObjects that are created before <a href="qapplication.html">QApplication</a>, <a href="qobject.html#thread">QObject::thread</a>() returns zero. This means that the main thread will only handle posted events for these objects; other event processing is not done at all for objects with no thread. Use the <a href="qobject.html#moveToThread">QObject::moveToThread</a>() function to change the thread affinity for an object and its children (the object cannot be moved if it has a parent).</p>
+<p>Calling <tt>delete</tt> on a <a href="qobject.html">QObject</a> from a thread other than the one that <i>owns</i> the object (or accessing the object in other ways) is unsafe, unless you guarantee that the object isn't processing events at that moment. Use <a href="qobject.html#deleteLater">QObject::deleteLater</a>() instead, and a <a href="qevent.html#Type-enum">DeferredDelete</a> event will be posted, which the event loop of the object's thread will eventually pick up. By default, the thread that <i>owns</i> a <a href="qobject.html">QObject</a> is the thread that <i>creates</i> the <a href="qobject.html">QObject</a>, but not after <a href="qobject.html#moveToThread">QObject::moveToThread</a>() has been called.</p>
+<p>If no event loop is running, events won't be delivered to the object. For example, if you create a <a href="qtimer.html">QTimer</a> object in a thread but never call <a href="qthread.html#exec">exec()</a>, the <a href="qtimer.html">QTimer</a> will never emit its <a href="qtimer.html#timeout">timeout()</a> signal. Calling <a href="qobject.html#deleteLater">deleteLater()</a> won't work either. (These restrictions apply to the main thread as well.)</p>
+<p>You can manually post events to any object in any thread at any time using the thread-safe function <a href="qcoreapplication.html#postEvent">QCoreApplication::postEvent</a>(). The events will automatically be dispatched by the event loop of the thread where the object was created.</p>
+<p>Event filters are supported in all threads, with the restriction that the monitoring object must live in the same thread as the monitored object. Similarly, <a href="qcoreapplication.html#sendEvent">QCoreApplication::sendEvent</a>() (unlike <a href="qcoreapplication.html#postEvent">postEvent()</a>) can only be used to dispatch events to objects living in the thread from which the function is called.</p>
+<a name="accessing-qobject-subclasses-from-other-threads"></a>
+<h2>Accessing QObject Subclasses from Other Threads</h2>
+<p><a href="qobject.html">QObject</a> and all of its subclasses are not thread-safe. This includes the entire event delivery system. It is important to keep in mind that the event loop may be delivering events to your <a href="qobject.html">QObject</a> subclass while you are accessing the object from another thread.</p>
+<p>If you are calling a function on an <a href="qobject.html">QObject</a> subclass that doesn't live in the current thread and the object might receive events, you must protect all access to your <a href="qobject.html">QObject</a> subclass's internal data with a mutex; otherwise, you may experience crashes or other undesired behavior.</p>
+<p>Like other objects, <a href="qthread.html">QThread</a> objects live in the thread where the object was created -- <i>not</i> in the thread that is created when <a href="qthread.html#run">QThread::run</a>() is called. It is generally unsafe to provide slots in your <a href="qthread.html">QThread</a> subclass, unless you protect the member variables with a mutex.</p>
+<p>On the other hand, you can safely emit signals from your <a href="qthread.html#run">QThread::run</a>() implementation, because signal emission is thread-safe.</p>
+<a name="signals-and-slots-across-threads"></a>
+<h2>Signals and Slots Across Threads</h2>
+<p>Qt supports three types of signal-slot connections:</p>
+<ul>
+<li>With <a href="qt.html#ConnectionType-enum">direct connections</a>, the slot gets called immediately when the signal is emitted. The slot is executed in the thread that emitted the signal (which is not necessarily the thread where the receiver object lives).</li>
+<li>With <a href="qt.html#ConnectionType-enum">queued connections</a>, the slot is invoked when control returns to the event loop of the thread to which the object belongs. The slot is executed in the thread where the receiver object lives.</li>
+<li>With <a href="qt.html#ConnectionType-enum">auto connections</a> (the default), the behavior is the same as with direct connections if the signal is emitted in the thread where the receiver lives; otherwise, the behavior is that of a queued connection.</li>
+</ul>
+<p>The connection type can be specified by passing an additional argument to <a href="qobject.html#connect">connect()</a>. Be aware that using direct connections when the sender and receiver live in different threads is unsafe if an event loop is running in the receiver's thread, for the same reason that calling any function on an object living in another thread is unsafe.</p>
+<p><a href="qobject.html#connect">QObject::connect</a>() itself is thread-safe.</p>
+<p>The <a href="threads-mandelbrot.html">Mandelbrot</a> example uses a queued connection to communicate between a worker thread and the main thread. To avoid freezing the main thread's event loop (and, as a consequence, the application's user interface), all the Mandelbrot fractal computation is done in a separate worker thread. The thread emits a signal when it is done rendering the fractal.</p>
+<p>Similarly, the <a href="network-blockingfortuneclient.html">Blocking Fortune Client</a> example uses a separate thread for communicating with a TCP server asynchronously.</p>
+<p>
+[Previous: <a href="threads-reentrancy.html">Reentrancy and Thread-Safety</a>]
+[<a href="threads.html">Thread Support in Qt</a>]
+[Next: <a href="threads-qtconcurrent.html">Concurrent Programming</a>]
+</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

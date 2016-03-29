@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qregexp.cpp -->
+<head>
+  <title>Qt 4.6: QRegExp Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QRegExp" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QRegExp Class Reference<br /><span class="small-subtitle">[<a href="qtcore.html">QtCore</a> module]</span>
+</h1>
+<p>The QRegExp class provides pattern matching using regular expressions. <a href="#details">More...</a></p>
+<pre> #include &lt;QRegExp&gt;</pre><p><b>Note:</b> All functions in this class are <a href="threads-reentrancy.html#reentrant">reentrant</a>.</p>
+<ul>
+<li><a href="qregexp-members.html">List of all members, including inherited members</a></li>
+<li><a href="qregexp-qt3.html">Qt 3 support members</a></li>
+</ul>
+<hr />
+<a name="public-types"></a>
+<h2>Public Types</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qregexp.html#CaretMode-enum">CaretMode</a></b> { CaretAtZero, CaretAtOffset, CaretWontMatch }</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qregexp.html#PatternSyntax-enum">PatternSyntax</a></b> { RegExp, RegExp2, Wildcard, WildcardUnix, FixedString, W3CXmlSchema11 }</td></tr>
+</table>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qregexp.html#QRegExp">QRegExp</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qregexp.html#QRegExp-2">QRegExp</a></b> ( const QString &amp; <i>pattern</i>, Qt::CaseSensitivity <i>cs</i> = Qt::CaseSensitive, PatternSyntax <i>syntax</i> = RegExp )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qregexp.html#QRegExp-3">QRegExp</a></b> ( const QRegExp &amp; <i>rx</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qregexp.html#dtor.QRegExp">~QRegExp</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qregexp.html#cap">cap</a></b> ( int <i>nth</i> = 0 ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qregexp.html#captureCount">captureCount</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QStringList </td><td class="memItemRight" valign="bottom"><b><a href="qregexp.html#capturedTexts">capturedTexts</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Qt::CaseSensitivity </td><td class="memItemRight" valign="bottom"><b><a href="qregexp.html#caseSensitivity">caseSensitivity</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qregexp.html#errorString">errorString</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qregexp.html#exactMatch">exactMatch</a></b> ( const QString &amp; <i>str</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qregexp.html#indexIn">indexIn</a></b> ( const QString &amp; <i>str</i>, int <i>offset</i> = 0, CaretMode <i>caretMode</i> = CaretAtZero ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qregexp.html#isEmpty">isEmpty</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qregexp.html#isMinimal">isMinimal</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qregexp.html#isValid">isValid</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qregexp.html#lastIndexIn">lastIndexIn</a></b> ( const QString &amp; <i>str</i>, int <i>offset</i> = -1, CaretMode <i>caretMode</i> = CaretAtZero ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qregexp.html#matchedLength">matchedLength</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qregexp.html#pattern">pattern</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">PatternSyntax </td><td class="memItemRight" valign="bottom"><b><a href="qregexp.html#patternSyntax">patternSyntax</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qregexp.html#pos">pos</a></b> ( int <i>nth</i> = 0 ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qregexp.html#setCaseSensitivity">setCaseSensitivity</a></b> ( Qt::CaseSensitivity <i>cs</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qregexp.html#setMinimal">setMinimal</a></b> ( bool <i>minimal</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qregexp.html#setPattern">setPattern</a></b> ( const QString &amp; <i>pattern</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qregexp.html#setPatternSyntax">setPatternSyntax</a></b> ( PatternSyntax <i>syntax</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qregexp.html#operator-not-eq">operator!=</a></b> ( const QRegExp &amp; <i>rx</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QRegExp &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qregexp.html#operator-eq">operator=</a></b> ( const QRegExp &amp; <i>rx</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qregexp.html#operator-eq-eq">operator==</a></b> ( const QRegExp &amp; <i>rx</i> ) const</td></tr>
+</table>
+<hr />
+<a name="static-public-members"></a>
+<h2>Static Public Members</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qregexp.html#escape">escape</a></b> ( const QString &amp; <i>str</i> )</td></tr>
+</table>
+<hr />
+<a name="related-non-members"></a>
+<h2>Related Non-Members</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">QDataStream &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qregexp.html#operator-lt-lt-31">operator&lt;&lt;</a></b> ( QDataStream &amp; <i>out</i>, const QRegExp &amp; <i>regExp</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QDataStream &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qregexp.html#operator-gt-gt-16">operator&gt;&gt;</a></b> ( QDataStream &amp; <i>in</i>, QRegExp &amp; <i>regExp</i> )</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QRegExp class provides pattern matching using regular expressions.</p>
+<a name="regular-expression"></a><p>A regular expression, or &quot;regexp&quot;, is a pattern for matching substrings in a text. This is useful in many contexts, e.g&#x2e;,</p>
+<p><table class="generic" align="center" cellpadding="2" cellspacing="1" border="0">
+<tr valign="top" class="odd"><td>Validation</td><td>A regexp can test whether a substring meets some criteria, e.g&#x2e; is an integer or contains no whitespace.</td></tr>
+<tr valign="top" class="even"><td>Searching</td><td>A regexp provides more powerful pattern matching than simple substring matching, e.g&#x2e;, match one of the words <i>mail</i>, <i>letter</i> or <i>correspondence</i>, but none of the words <i>email</i>, <i>mailman</i>, <i>mailer</i>, <i>letterbox</i>, etc.</td></tr>
+<tr valign="top" class="odd"><td>Search and Replace</td><td>A regexp can replace all occurrences of a substring with a different substring, e.g&#x2e;, replace all occurrences of <i>&amp;</i> with <i>&amp;amp;</i> except where the <i>&amp;</i> is already followed by an <i>amp;</i>.</td></tr>
+<tr valign="top" class="even"><td>String Splitting</td><td>A regexp can be used to identify where a string should be split apart, e.g&#x2e; splitting tab-delimited strings.</td></tr>
+</table></p>
+<p>A brief introduction to regexps is presented, a description of Qt's regexp language, some examples, and the function documentation itself. QRegExp is modeled on Perl's regexp language. It fully supports Unicode. QRegExp can also be used in a simpler, <i>wildcard mode</i> that is similar to the functionality found in command shells. The syntax rules used by QRegExp can be changed with <a href="qregexp.html#setPatternSyntax">setPatternSyntax</a>(). In particular, the pattern syntax can be set to <a href="qregexp.html#PatternSyntax-enum">QRegExp::FixedString</a>, which means the pattern to be matched is interpreted as a plain string, i.e&#x2e;, special characters (e.g&#x2e;, backslash) are not escaped.</p>
+<p>A good text on regexps is <i>Mastering Regular Expressions</i> (Third Edition) by Jeffrey E. F. Friedl, ISBN 0-596-52812-4.</p>
+<ul><li><a href="#introduction">Introduction</a></li>
+<li><a href="#characters-and-abbreviations-for-sets-of-characters">Characters and Abbreviations for Sets of Characters</a></li>
+<li><a href="#sets-of-characters">Sets of Characters</a></li>
+<li><a href="#quantifiers">Quantifiers</a></li>
+<li><a href="#capturing-text">Capturing Text</a></li>
+<li><a href="#assertions">Assertions</a></li>
+<li><a href="#wildcard-matching">Wildcard Matching</a></li>
+<li><a href="#notes-for-perl-users">Notes for Perl Users</a></li>
+<li><a href="#code-examples">Code Examples</a></li>
+</ul>
+<a name="introduction"></a>
+<h3>Introduction</h3>
+<p>Regexps are built up from expressions, quantifiers, and assertions. The simplest expression is a character, e.g&#x2e; <b>x</b> or <b>5</b>. An expression can also be a set of characters enclosed in square brackets. <b>[ABCD]</b> will match an <b>A</b> or a <b>B</b> or a <b>C</b> or a <b>D</b>. We can write this same expression as <b>[A-D]</b>, and an experession to match any captital letter in the English alphabet is written as <b>[A-Z]</b>.</p>
+<p>A quantifier specifies the number of occurrences of an expression that must be matched. <b>x{1,1}</b> means match one and only one <b>x</b>. <b>x{1,5}</b> means match a sequence of <b>x</b> characters that contains at least one <b>x</b> but no more than five.</p>
+<p>Note that in general regexps cannot be used to check for balanced brackets or tags. For example, a regexp can be written to match an opening html <tt>&lt;b&gt;</tt> and its closing <tt>&lt;/b&gt;</tt>, if the <tt>&lt;b&gt;</tt> tags are not nested, but if the <tt>&lt;b&gt;</tt> tags are nested, that same regexp will match an opening <tt>&lt;b&gt;</tt> tag with the wrong closing <tt>&lt;/b&gt;</tt>. For the fragment <tt>&lt;b&gt;bold &lt;b&gt;bolder&lt;/b&gt;&lt;/b&gt;</tt>, the first <tt>&lt;b&gt;</tt> would be matched with the first <tt>&lt;/b&gt;</tt>, which is not correct. However, it is possible to write a regexp that will match nested brackets or tags correctly, but only if the number of nesting levels is fixed and known. If the number of nesting levels is not fixed and known, it is impossible to write a regexp that will not fail.</p>
+<p>Suppose we want a regexp to match integers in the range 0 to 99. At least one digit is required, so we start with the expression <b>[0-9]{1,1}</b>, which matches a single digit exactly once. This regexp matches integers in the range 0 to 9. To match integers up to 99, increase the maximum number of occurrences to 2, so the regexp becomes <b>[0-9]{1,2}</b>. This regexp satisfies the original requirement to match integers from 0 to 99, but it will also match integers that occur in the middle of strings. If we want the matched integer to be the whole string, we must use the anchor assertions, <b>^</b> (caret) and <b>$</b> (dollar). When <b>^</b> is the first character in a regexp, it means the regexp must match from the beginning of the string. When <b>$</b> is the last character of the regexp, it means the regexp must match to the end of the string. The regexp becomes <b>^[0-9]{1,2}$</b>. Note that assertions, e.g&#x2e; <b>^</b> and <b>$</b>, do not match characters but locations in the string.</p>
+<p>If you have seen regexps described elsewhere, they may have looked different from the ones shown here. This is because some sets of characters and some quantifiers are so common that they have been given special symbols to represent them. <b>[0-9]</b> can be replaced with the symbol <b>\d</b>. The quantifier to match exactly one occurrence, <b>{1,1}</b>, can be replaced with the expression itself, i.e&#x2e; <b>x{1,1}</b> is the same as <b>x</b>. So our 0 to 99 matcher could be written as <b>^\d{1,2}$</b>. It can also be written <b>^\d\d{0,1}$</b>, i.e&#x2e; <i>From the start of the string, match a digit, followed immediately by 0 or 1 digits</i>. In practice, it would be written as <b>^\d\d?$</b>. The <b>?</b> is shorthand for the quantifier <b>{0,1}</b>, i.e&#x2e; 0 or 1 occurrences. <b>?</b> makes an expression optional. The regexp <b>^\d\d?$</b> means <i>From the beginning of the string, match one digit, followed immediately by 0 or 1 more digit, followed immediately by end of string</i>.</p>
+<p>To write a regexp that matches one of the words 'mail' <i>or</i> 'letter' <i>or</i> 'correspondence' but does not match words that contain these words, e.g&#x2e;, 'email', 'mailman', 'mailer', and 'letterbox', start with a regexp that matches 'mail'. Expressed fully, the regexp is <b>m{1,1}a{1,1}i{1,1}l{1,1}</b>, but because a character expression is automatically quantified by <b>{1,1}</b>, we can simplify the regexp to <b>mail</b>, i.e&#x2e;, an 'm' followed by an 'a' followed by an 'i' followed by an 'l'. Now we can use the vertical bar <b>|</b>, which means <b>or</b>, to include the other two words, so our regexp for matching any of the three words becomes <b>mail|letter|correspondence</b>. Match 'mail' <b>or</b> 'letter' <b>or</b> 'correspondence'. While this regexp will match one of the three words we want to match, it will also match words we don't want to match, e.g&#x2e;, 'email'. To prevent the regexp from matching unwanted words, we must tell it to begin and end the match at word boundaries. First we enclose our regexp in parentheses, <b>(mail|letter|correspondence)</b>. Parentheses group expressions together, and they identify a part of the regexp that we wish to <a href="#capturing-text">capture</a>. Enclosing the expression in parentheses allows us to use it as a component in more complex regexps. It also allows us to examine which of the three words was actually matched. To force the match to begin and end on word boundaries, we enclose the regexp in <b>\b</b> <i>word boundary</i> assertions: <b>\b(mail|letter|correspondence)\b</b>. Now the regexp means: <i>Match a word boundary, followed by the regexp in parentheses, followed by a word boundary</i>. The <b>\b</b> assertion matches a <i>position</i> in the regexp, not a <i>character</i>. A word boundary is any non-word character, e.g&#x2e;, a space, newline, or the beginning or ending of a string.</p>
+<p>If we want to replace ampersand characters with the HTML entity <b>&amp;amp;</b>, the regexp to match is simply <b>&amp;</b>. But this regexp will also match ampersands that have already been converted to HTML entities. We want to replace only ampersands that are not already followed by <b>amp;</b>. For this, we need the negative lookahead assertion, <b>(?!</b><a href="examples-overview.html">__</a><b>)</b>. The regexp can then be written as <b>&amp;(?!amp;)</b>, i.e&#x2e; <i>Match an ampersand that is</i> <b>not</b> <i>followed by</i> <b>amp;</b>.</p>
+<p>If we want to count all the occurrences of 'Eric' and 'Eirik' in a string, two valid solutions are <b>\b(Eric|Eirik)\b</b> and <b>\bEi?ri[ck]\b</b>. The word boundary assertion '\b' is required to avoid matching words that contain either name, e.g&#x2e; 'Ericsson'. Note that the second regexp matches more spellings than we want: 'Eric', 'Erik', 'Eiric' and 'Eirik'.</p>
+<p>Some of the examples discussed above are implemented in the <a href="#code-examples">code examples</a> section.</p>
+<a name="characters-and-abbreviations-for-sets-of-characters"></a><a name="characters-and-abbreviations-for-sets-of-characters"></a>
+<h3>Characters and Abbreviations for Sets of Characters</h3>
+<p><table class="generic" align="center" cellpadding="2" cellspacing="1" border="0">
+<thead><tr valign="top" class="qt-style"><th>Element</th><th>Meaning</th></tr></thead>
+<tr valign="top" class="odd"><td><b>c</b></td><td>A character represents itself unless it has a special regexp meaning. e.g&#x2e; <b>c</b> matches the character <i>c</i>.</td></tr>
+<tr valign="top" class="even"><td><b>\c</b></td><td>A character that follows a backslash matches the character itself, except as specified below. e.g&#x2e;, To match a literal caret at the beginning of a string, write <b>\^</b>.</td></tr>
+<tr valign="top" class="odd"><td><b>\a</b></td><td>Matches the ASCII bell (BEL, 0x07).</td></tr>
+<tr valign="top" class="even"><td><b>\f</b></td><td>Matches the ASCII form feed (FF, 0x0C).</td></tr>
+<tr valign="top" class="odd"><td><b>\n</b></td><td>Matches the ASCII line feed (LF, 0x0A, Unix newline).</td></tr>
+<tr valign="top" class="even"><td><b>\r</b></td><td>Matches the ASCII carriage return (CR, 0x0D).</td></tr>
+<tr valign="top" class="odd"><td><b>\t</b></td><td>Matches the ASCII horizontal tab (HT, 0x09).</td></tr>
+<tr valign="top" class="even"><td><b>\v</b></td><td>Matches the ASCII vertical tab (VT, 0x0B).</td></tr>
+<tr valign="top" class="odd"><td><b>\x<i>hhhh</i></b></td><td>Matches the Unicode character corresponding to the hexadecimal number <i>hhhh</i> (between 0x0000 and 0xFFFF).</td></tr>
+<tr valign="top" class="even"><td><b>\0<i>ooo</i></b> (i.e&#x2e;, \zero <i>ooo</i>)</td><td>matches the ASCII/Latin1 character for the octal number <i>ooo</i> (between 0 and 0377).</td></tr>
+<tr valign="top" class="odd"><td><b>. (dot)</b></td><td>Matches any character (including newline).</td></tr>
+<tr valign="top" class="even"><td><b>\d</b></td><td>Matches a digit (<a href="qchar.html#isDigit">QChar::isDigit</a>()).</td></tr>
+<tr valign="top" class="odd"><td><b>\D</b></td><td>Matches a non-digit.</td></tr>
+<tr valign="top" class="even"><td><b>\s</b></td><td>Matches a whitespace character (<a href="qchar.html#isSpace">QChar::isSpace</a>()).</td></tr>
+<tr valign="top" class="odd"><td><b>\S</b></td><td>Matches a non-whitespace character.</td></tr>
+<tr valign="top" class="even"><td><b>\w</b></td><td>Matches a word character (<a href="qchar.html#isLetterOrNumber">QChar::isLetterOrNumber</a>(), <a href="qchar.html#isMark">QChar::isMark</a>(), or '<a href="examples-overview.html">_</a>').</td></tr>
+<tr valign="top" class="odd"><td><b>\W</b></td><td>Matches a non-word character.</td></tr>
+<tr valign="top" class="even"><td><b>\<i>n</i></b></td><td>The <i>n</i>-th <a href="#backreferences">backreference</a>, e.g&#x2e; \1, \2, etc.</td></tr>
+</table></p>
+<p><b>Note:</b> The C++ compiler transforms backslashes in strings. To include a <b>\</b> in a regexp, enter it twice, i.e&#x2e; <tt>\\</tt>. To match the backslash character itself, enter it four times, i.e&#x2e; <tt>\\\\</tt>.</p>
+<a name="sets-of-characters"></a><a name="sets-of-characters"></a>
+<h3>Sets of Characters</h3>
+<p>Square brackets mean match any character contained in the square brackets. The character set abbreviations described above can appear in a character set in square brackets. Except for the character set abbreviations and the following two exceptions, characters do not have special meanings in square brackets.</p>
+<p><table class="generic" align="center" cellpadding="2" cellspacing="1" border="0">
+<tr valign="top" class="odd"><td><b>^</b></td><td>The caret negates the character set if it occurs as the first character (i.e&#x2e; immediately after the opening square bracket). <b>[abc]</b> matches 'a' or 'b' or 'c', but <b>[^abc]</b> matches anything <i>but</i> 'a' or 'b' or 'c'.</td></tr>
+<tr valign="top" class="even"><td><b>-</b></td><td>The dash indicates a range of characters. <b>[W-Z]</b> matches 'W' or 'X' or 'Y' or 'Z'.</td></tr>
+</table></p>
+<p>Using the predefined character set abbreviations is more portable than using character ranges across platforms and languages. For example, <b>[0-9]</b> matches a digit in Western alphabets but <b>\d</b> matches a digit in <i>any</i> alphabet.</p>
+<p>Note: In other regexp documentation, sets of characters are often called &quot;character classes&quot;.</p>
+<a name="quantifiers"></a><a name="quantifiers"></a>
+<h3>Quantifiers</h3>
+<p>By default, an expression is automatically quantified by <b>{1,1}</b>, i.e&#x2e; it should occur exactly once. In the following list, <b><i>E</i></b> stands for expression. An expression is a character, or an abbreviation for a set of characters, or a set of characters in square brackets, or an expression in parentheses.</p>
+<p><table class="generic" align="center" cellpadding="2" cellspacing="1" border="0">
+<tr valign="top" class="odd"><td><b><i>E</i>?</b></td><td>Matches zero or one occurrences of <i>E</i>. This quantifier means <i>The previous expression is optional</i>, because it will match whether or not the expression is found. <b><i>E</i>?</b> is the same as <b><i>E</i>{0,1}</b>. e.g&#x2e;, <b>dents?</b> matches 'dent' or 'dents'.</td></tr>
+<tr valign="top" class="even"><td><b><i>E</i>+</b></td><td>Matches one or more occurrences of <i>E</i>. <b><i>E</i>+</b> is the same as <b><i>E</i>{1,}</b>. e.g&#x2e;, <b>0+</b> matches '0', '00', '000', etc.</td></tr>
+<tr valign="top" class="odd"><td><b><i>E</i>*</b></td><td>Matches zero or more occurrences of <i>E</i>. It is the same as <b><i>E</i>{0,}</b>. The <b>*</b> quantifier is often used in error where <b>+</b> should be used. For example, if <b>\s*$</b> is used in an expression to match strings that end in whitespace, it will match every string because <b>\s*$</b> means <i>Match zero or more whitespaces followed by end of string</i>. The correct regexp to match strings that have at least one trailing whitespace character is <b>\s+$</b>.</td></tr>
+<tr valign="top" class="even"><td><b><i>E</i>{n}</b></td><td>Matches exactly <i>n</i> occurrences of <i>E</i>. <b><i>E</i>{n}</b> is the same as repeating <i>E</i> <i>n</i> times. For example, <b>x{5}</b> is the same as <b>xxxxx</b>. It is also the same as <b><i>E</i>{n,n}</b>, e.g&#x2e; <b>x{5,5}</b>.</td></tr>
+<tr valign="top" class="odd"><td><b><i>E</i>{n,}</b></td><td>Matches at least <i>n</i> occurrences of <i>E</i>.</td></tr>
+<tr valign="top" class="even"><td><b><i>E</i>{,m}</b></td><td>Matches at most <i>m</i> occurrences of <i>E</i>. <b><i>E</i>{,m}</b> is the same as <b><i>E</i>{0,m}</b>.</td></tr>
+<tr valign="top" class="odd"><td><b><i>E</i>{n,m}</b></td><td>Matches at least <i>n</i> and at most <i>m</i> occurrences of <i>E</i>.</td></tr>
+</table></p>
+<p>To apply a quantifier to more than just the preceding character, use parentheses to group characters together in an expression. For example, <b>tag+</b> matches a 't' followed by an 'a' followed by at least one 'g', whereas <b>(tag)+</b> matches at least one occurrence of 'tag'.</p>
+<p>Note: Quantifiers are normally &quot;greedy&quot;. They always match as much text as they can. For example, <b>0+</b> matches the first zero it finds and all the consecutive zeros after the first zero. Applied to '20005', it matches'2<u>000</u>5'. Quantifiers can be made non-greedy, see <a href="qregexp.html#setMinimal">setMinimal</a>().</p>
+<a name="capturing-parentheses"></a><a name="backreferences"></a><a name="capturing-text"></a>
+<h3>Capturing Text</h3>
+<p>Parentheses allow us to group elements together so that we can quantify and capture them. For example if we have the expression <b>mail|letter|correspondence</b> that matches a string we know that <i>one</i> of the words matched but not which one. Using parentheses allows us to &quot;capture&quot; whatever is matched within their bounds, so if we used <b>(mail|letter|correspondence)</b> and matched this regexp against the string &quot;I sent you some email&quot; we can use the <a href="qregexp.html#cap">cap</a>() or <a href="qregexp.html#capturedTexts">capturedTexts</a>() functions to extract the matched characters, in this case 'mail'.</p>
+<p>We can use captured text within the regexp itself. To refer to the captured text we use <i>backreferences</i> which are indexed from 1, the same as for <a href="qregexp.html#cap">cap</a>(). For example we could search for duplicate words in a string using <b>\b(\w+)\W+\1\b</b> which means match a word boundary followed by one or more word characters followed by one or more non-word characters followed by the same text as the first parenthesized expression followed by a word boundary.</p>
+<p>If we want to use parentheses purely for grouping and not for capturing we can use the non-capturing syntax, e.g&#x2e; <b>(?:green|blue)</b>. Non-capturing parentheses begin '(?:' and end ')'. In this example we match either 'green' or 'blue' but we do not capture the match so we only know whether or not we matched but not which color we actually found. Using non-capturing parentheses is more efficient than using capturing parentheses since the regexp engine has to do less book-keeping.</p>
+<p>Both capturing and non-capturing parentheses may be nested.</p>
+<a name="greedy-quantifiers"></a><p>For historical reasons, quantifiers (e.g&#x2e; <b>*</b>) that apply to capturing parentheses are more &quot;greedy&quot; than other quantifiers. For example, <b>a*(a)*</b> will match &quot;aaa&quot; with cap(1) == &quot;aaa&quot;. This behavior is different from what other regexp engines do (notably, Perl). To obtain a more intuitive capturing behavior, specify <a href="qregexp.html#PatternSyntax-enum">QRegExp::RegExp2</a> to the QRegExp constructor or call setPatternSyntax(<a href="qregexp.html#PatternSyntax-enum">QRegExp::RegExp2</a>).</p>
+<a name="cap-in-a-loop"></a><p>When the number of matches cannot be determined in advance, a common idiom is to use <a href="qregexp.html#cap">cap</a>() in a loop. For example:</p>
+<pre> QRegExp rx(&quot;(\\d+)&quot;);
+ QString str = &quot;Offsets: 12 14 99 231 7&quot;;
+ QStringList list;
+ int pos = 0;
+
+ while ((pos = rx.indexIn(str, pos)) != -1) {
+     list &lt;&lt; rx.cap(1);
+     pos += rx.matchedLength();
+ }
+<span class="comment"> // list: [&quot;12&quot;, &quot;14&quot;, &quot;99&quot;, &quot;231&quot;, &quot;7&quot;]</span></pre>
+<a name="assertions"></a><a name="assertions"></a>
+<h3>Assertions</h3>
+<p>Assertions make some statement about the text at the point where they occur in the regexp but they do not match any characters. In the following list <b><i>E</i></b> stands for any expression.</p>
+<p><table class="generic" align="center" cellpadding="2" cellspacing="1" border="0">
+<tr valign="top" class="odd"><td><b>^</b></td><td>The caret signifies the beginning of the string. If you wish to match a literal <tt>^</tt> you must escape it by writing <tt>\\^</tt>. For example, <b>^#include</b> will only match strings which <i>begin</i> with the characters '#include'. (When the caret is the first character of a character set it has a special meaning, see <a href="#sets-of-characters">Sets of Characters</a>.)</td></tr>
+<tr valign="top" class="even"><td><b>$</b></td><td>The dollar signifies the end of the string. For example <b>\d\s*$</b> will match strings which end with a digit optionally followed by whitespace. If you wish to match a literal <tt>$</tt> you must escape it by writing <tt>\\$</tt>.</td></tr>
+<tr valign="top" class="odd"><td><b>\b</b></td><td>A word boundary. For example the regexp <b>\bOK\b</b> means match immediately after a word boundary (e.g&#x2e; start of string or whitespace) the letter 'O' then the letter 'K' immediately before another word boundary (e.g&#x2e; end of string or whitespace). But note that the assertion does not actually match any whitespace so if we write <b>(\bOK\b)</b> and we have a match it will only contain 'OK' even if the string is &quot;It's <u>OK</u> now&quot;.</td></tr>
+<tr valign="top" class="even"><td><b>\B</b></td><td>A non-word boundary. This assertion is true wherever <b>\b</b> is false. For example if we searched for <b>\Bon\B</b> in &quot;Left on&quot; the match would fail (space and end of string aren't non-word boundaries), but it would match in &quot;t<u>on</u>ne&quot;.</td></tr>
+<tr valign="top" class="odd"><td><b>(?=<i>E</i>)</b></td><td>Positive lookahead. This assertion is true if the expression matches at this point in the regexp. For example, <b>const(?=\s+char)</b> matches 'const' whenever it is followed by 'char', as in 'static <u>const</u> char *'. (Compare with <b>const\s+char</b>, which matches 'static <u>const char</u> *'.)</td></tr>
+<tr valign="top" class="even"><td><b>(?!<i>E</i>)</b></td><td>Negative lookahead. This assertion is true if the expression does not match at this point in the regexp. For example, <b>const(?!\s+char)</b> matches 'const' <i>except</i> when it is followed by 'char'.</td></tr>
+</table></p>
+<a name="qregexp-wildcard-matching"></a><a name="wildcard-matching"></a>
+<h3>Wildcard Matching</h3>
+<p>Most command shells such as <i>bash</i> or <i>cmd.exe</i> support &quot;file globbing&quot;, the ability to identify a group of files by using wildcards. The <a href="qregexp.html#setPatternSyntax">setPatternSyntax</a>() function is used to switch between regexp and wildcard mode. Wildcard matching is much simpler than full regexps and has only four features:</p>
+<p><table class="generic" align="center" cellpadding="2" cellspacing="1" border="0">
+<tr valign="top" class="odd"><td><b>c</b></td><td>Any character represents itself apart from those mentioned below. Thus <b>c</b> matches the character <i>c</i>.</td></tr>
+<tr valign="top" class="even"><td><b>?</b></td><td>Matches any single character. It is the same as <b>.</b> in full regexps.</td></tr>
+<tr valign="top" class="odd"><td><b>*</b></td><td>Matches zero or more of any characters. It is the same as <b>.*</b> in full regexps.</td></tr>
+<tr valign="top" class="even"><td><b>[..&#x2e;]</b></td><td>Sets of characters can be represented in square brackets, similar to full regexps. Within the character class, like outside, backslash has no special meaning.</td></tr>
+</table></p>
+<p>In the mode Wildcard, the wildcard characters cannot be escaped. In the mode <a href="qregexp.html#PatternSyntax-enum">WildcardUnix</a>, the character '' escapes the wildcard.</p>
+<p>For example if we are in wildcard mode and have strings which contain filenames we could identify HTML files with <b>*.html</b>. This will match zero or more characters followed by a dot followed by 'h', 't', 'm' and 'l'.</p>
+<p>To test a string against a wildcard expression, use <a href="qregexp.html#exactMatch">exactMatch</a>(). For example:</p>
+<pre> QRegExp rx(&quot;*.txt&quot;);
+ rx.setPatternSyntax(QRegExp::Wildcard);
+ rx.exactMatch(&quot;README.txt&quot;);        <span class="comment">// returns true</span>
+ rx.exactMatch(&quot;welcome.txt.bak&quot;);   <span class="comment">// returns false</span></pre>
+<a name="perl-users"></a><a name="notes-for-perl-users"></a>
+<h3>Notes for Perl Users</h3>
+<p>Most of the character class abbreviations supported by Perl are supported by QRegExp, see <a href="#characters-and-abbreviations-for-sets-of-characters">characters and abbreviations for sets of characters</a>.</p>
+<p>In QRegExp, apart from within character classes, <tt>^</tt> always signifies the start of the string, so carets must always be escaped unless used for that purpose. In Perl the meaning of caret varies automagically depending on where it occurs so escaping it is rarely necessary. The same applies to <tt>$</tt> which in QRegExp always signifies the end of the string.</p>
+<p>QRegExp's quantifiers are the same as Perl's greedy quantifiers (but see the <a href="#greedy-quantifiers">note above</a>). Non-greedy matching cannot be applied to individual quantifiers, but can be applied to all the quantifiers in the pattern. For example, to match the Perl regexp <b>ro+?m</b> requires:</p>
+<pre> QRegExp rx(&quot;ro+m&quot;);
+ rx.setMinimal(true);</pre>
+<p>The equivalent of Perl's <tt>/i</tt> option is setCaseSensitivity(<a href="qt.html#CaseSensitivity-enum">Qt::CaseInsensitive</a>).</p>
+<p>Perl's <tt>/g</tt> option can be emulated using a <a href="#cap-in-a-loop">loop</a>.</p>
+<p>In QRegExp <b>.</b> matches any character, therefore all QRegExp regexps have the equivalent of Perl's <tt>/s</tt> option. QRegExp does not have an equivalent to Perl's <tt>/m</tt> option, but this can be emulated in various ways for example by splitting the input into lines or by looping with a regexp that searches for newlines.</p>
+<p>Because QRegExp is string oriented, there are no \A, \Z, or \z assertions. The \G assertion is not supported but can be emulated in a loop.</p>
+<p>Perl's $&amp; is cap(0) or <a href="qregexp.html#capturedTexts">capturedTexts</a>()[0]. There are no QRegExp equivalents for $`, $' or $+. Perl's capturing variables, $1, $2, ..&#x2e; correspond to cap(1) or <a href="qregexp.html#capturedTexts">capturedTexts</a>()[1], cap(2) or <a href="qregexp.html#capturedTexts">capturedTexts</a>()[2], etc.</p>
+<p>To substitute a pattern use <a href="qstring.html#replace">QString::replace</a>().</p>
+<p>Perl's extended <tt>/x</tt> syntax is not supported, nor are directives, e.g&#x2e; (?i), or regexp comments, e.g&#x2e; (?#comment). On the other hand, C++'s rules for literal strings can be used to achieve the same:</p>
+<pre> QRegExp mark(&quot;\\b&quot;      <span class="comment">// word boundary</span>
+               &quot;[Mm]ark&quot; <span class="comment">// the word we want to match</span>
+             );</pre>
+<p>Both zero-width positive and zero-width negative lookahead assertions (?=pattern) and (?!pattern) are supported with the same syntax as Perl. Perl's lookbehind assertions, &quot;independent&quot; subexpressions and conditional expressions are not supported.</p>
+<p>Non-capturing parentheses are also supported, with the same (?:pattern) syntax.</p>
+<p>See <a href="qstring.html#split">QString::split</a>() and <a href="qstringlist.html#join">QStringList::join</a>() for equivalents to Perl's split and join functions.</p>
+<p>Note: because C++ transforms \'s they must be written <i>twice</i> in code, e.g&#x2e; <b>\b</b> must be written <b>\\b</b>.</p>
+<a name="code-examples"></a><a name="code-examples"></a>
+<h3>Code Examples</h3>
+<pre> QRegExp rx(&quot;^\\d\\d?$&quot;);    <span class="comment">// match integers 0 to 99</span>
+ rx.indexIn(&quot;123&quot;);          <span class="comment">// returns -1 (no match)</span>
+ rx.indexIn(&quot;-6&quot;);           <span class="comment">// returns -1 (no match)</span>
+ rx.indexIn(&quot;6&quot;);            <span class="comment">// returns 0 (matched as position 0)</span></pre>
+<p>The third string matches '<u>6</u>'. This is a simple validation regexp for integers in the range 0 to 99.</p>
+<pre> QRegExp rx(&quot;^\\S+$&quot;);       <span class="comment">// match strings without whitespace</span>
+ rx.indexIn(&quot;Hello world&quot;);  <span class="comment">// returns -1 (no match)</span>
+ rx.indexIn(&quot;This_is-OK&quot;);   <span class="comment">// returns 0 (matched at position 0)</span></pre>
+<p>The second string matches '<u>This_is-OK</u>'. We've used the character set abbreviation '\S' (non-whitespace) and the anchors to match strings which contain no whitespace.</p>
+<p>In the following example we match strings containing 'mail' or 'letter' or 'correspondence' but only match whole words i.e&#x2e; not 'email'</p>
+<pre> QRegExp rx(&quot;\\b(mail|letter|correspondence)\\b&quot;);
+ rx.indexIn(&quot;I sent you an email&quot;);     <span class="comment">// returns -1 (no match)</span>
+ rx.indexIn(&quot;Please write the letter&quot;); <span class="comment">// returns 17</span></pre>
+<p>The second string matches &quot;Please write the <u>letter</u>&quot;. The word 'letter' is also captured (because of the parentheses). We can see what text we've captured like this:</p>
+<pre> QString captured = rx.cap(1); <span class="comment">// captured == &quot;letter&quot;</span></pre>
+<p>This will capture the text from the first set of capturing parentheses (counting capturing left parentheses from left to right). The parentheses are counted from 1 since cap(0) is the whole matched regexp (equivalent to '&amp;' in most regexp engines).</p>
+<pre> QRegExp rx(&quot;&amp;(?!amp;)&quot;);      <span class="comment">// match ampersands but not &amp;amp;</span>
+ QString line1 = &quot;This &amp; that&quot;;
+ line1.replace(rx, &quot;&amp;amp;&quot;);
+<span class="comment"> // line1 == &quot;This &amp;amp; that&quot;</span>
+ QString line2 = &quot;His &amp;amp; hers &amp; theirs&quot;;
+ line2.replace(rx, &quot;&amp;amp;&quot;);
+<span class="comment"> // line2 == &quot;His &amp;amp; hers &amp;amp; theirs&quot;</span></pre>
+<p>Here we've passed the QRegExp to <a href="qstring.html">QString</a>'s replace() function to replace the matched text with new text.</p>
+<pre> QString str = &quot;One Eric another Eirik, and an Ericsson. &quot;
+               &quot;How many Eiriks, Eric?&quot;;
+ QRegExp rx(&quot;\\b(Eric|Eirik)\\b&quot;); <span class="comment">// match Eric or Eirik</span>
+ int pos = 0;    <span class="comment">// where we are in the string</span>
+ int count = 0;  <span class="comment">// how many Eric and Eirik's we've counted</span>
+ while (pos &gt;= 0) {
+     pos = rx.indexIn(str, pos);
+     if (pos &gt;= 0) {
+         ++pos;      <span class="comment">// move along in str</span>
+         ++count;    <span class="comment">// count our Eric or Eirik</span>
+     }
+ }</pre>
+<p>We've used the <a href="qregexp.html#indexIn">indexIn</a>() function to repeatedly match the regexp in the string. Note that instead of moving forward by one character at a time <tt>pos++</tt> we could have written <tt>pos += rx.matchedLength()</tt> to skip over the already matched string. The count will equal 3, matching 'One <u>Eric</u> another <u>Eirik</u>, and an Ericsson. How many Eiriks, <u>Eric</u>?'; it doesn't match 'Ericsson' or 'Eiriks' because they are not bounded by non-word boundaries.</p>
+<p>One common use of regexps is to split lines of delimited data into their component fields.</p>
+<pre> str = &quot;Nokia Corporation\tqt.nokia.com\tNorway&quot;;
+ QString company, web, country;
+ rx.setPattern(&quot;^([^\t]+)\t([^\t]+)\t([^\t]+)$&quot;);
+ if (rx.indexIn(str) != -1) {
+     company = rx.cap(1);
+     web = rx.cap(2);
+     country = rx.cap(3);
+ }</pre>
+<p>In this example our input lines have the format company name, web address and country. Unfortunately the regexp is rather long and not very versatile -- the code will break if we add any more fields. A simpler and better solution is to look for the separator, '\t' in this case, and take the surrounding text. The <a href="qstring.html#split">QString::split</a>() function can take a separator string or regexp as an argument and split a string accordingly.</p>
+<pre> QStringList field = str.split(&quot;\t&quot;);</pre>
+<p>Here field[0] is the company, field[1] the web address and so on.</p>
+<p>To imitate the matching of a shell we can use wildcard mode.</p>
+<pre> QRegExp rx(&quot;*.html&quot;);
+ rx.setPatternSyntax(QRegExp::Wildcard);
+ rx.exactMatch(&quot;index.html&quot;);                <span class="comment">// returns true</span>
+ rx.exactMatch(&quot;default.htm&quot;);               <span class="comment">// returns false</span>
+ rx.exactMatch(&quot;readme.txt&quot;);                <span class="comment">// returns false</span></pre>
+<p>Wildcard matching can be convenient because of its simplicity, but any wildcard regexp can be defined using full regexps, e.g&#x2e; <b>.*.html$</b>. Notice that we can't match both <tt>.html</tt> and <tt>.htm</tt> files with a wildcard unless we use <b>*.htm*</b> which will also match 'test.html.bak'. A full regexp gives us the precision we need, <b>.*\.html?$</b>.</p>
+<p>QRegExp can match case insensitively using <a href="qregexp.html#setCaseSensitivity">setCaseSensitivity</a>(), and can use non-greedy matching, see <a href="qregexp.html#setMinimal">setMinimal</a>(). By default QRegExp uses full regexps but this can be changed with <a href="qregexp-qt3.html#setWildcard" class="compat">setWildcard</a>(). Searching can be forward with <a href="qregexp.html#indexIn">indexIn</a>() or backward with <a href="qregexp.html#lastIndexIn">lastIndexIn</a>(). Captured text can be accessed using <a href="qregexp.html#capturedTexts">capturedTexts</a>() which returns a string list of all captured strings, or using <a href="qregexp.html#cap">cap</a>() which returns the captured string for the given index. The <a href="qregexp.html#pos">pos</a>() function takes a match index and returns the position in the string where the match was made (or -1 if there was no match).</p>
+<p>See also <a href="qstring.html">QString</a>, <a href="qstringlist.html">QStringList</a>, <a href="qregexpvalidator.html">QRegExpValidator</a>, <a href="qsortfilterproxymodel.html">QSortFilterProxyModel</a>, and <a href="tools-regexp.html">Regular Expression Example</a>.</p>
+<hr />
+<h2>Member Type Documentation</h2>
+<a name="//apple_ref/cpp/tag/QRegExp/CaretMode" />
+<a name="//apple_ref/cpp/econst/QRegExp/CaretAtZero" />
+<a name="//apple_ref/cpp/econst/QRegExp/CaretAtOffset" />
+<a name="//apple_ref/cpp/econst/QRegExp/CaretWontMatch" />
+<h3 class="fn"><a name="CaretMode-enum"></a>enum QRegExp::CaretMode</h3>
+<p>The CaretMode enum defines the different meanings of the caret (<b>^</b>) in a regular expression. The possible values are:</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QRegExp::CaretAtZero</tt></td><td align="center" valign="top"><tt>0</tt></td><td valign="top">The caret corresponds to index 0 in the searched string.</td></tr>
+<tr><td valign="top"><tt>QRegExp::CaretAtOffset</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">The caret corresponds to the start offset of the search.</td></tr>
+<tr><td valign="top"><tt>QRegExp::CaretWontMatch</tt></td><td align="center" valign="top"><tt>2</tt></td><td valign="top">The caret never matches.</td></tr>
+</table></p>
+<a name="//apple_ref/cpp/tag/QRegExp/PatternSyntax" />
+<a name="//apple_ref/cpp/econst/QRegExp/RegExp" />
+<a name="//apple_ref/cpp/econst/QRegExp/RegExp2" />
+<a name="//apple_ref/cpp/econst/QRegExp/Wildcard" />
+<a name="//apple_ref/cpp/econst/QRegExp/WildcardUnix" />
+<a name="//apple_ref/cpp/econst/QRegExp/FixedString" />
+<a name="//apple_ref/cpp/econst/QRegExp/W3CXmlSchema11" />
+<h3 class="fn"><a name="PatternSyntax-enum"></a>enum QRegExp::PatternSyntax</h3>
+<p>The syntax used to interpret the meaning of the pattern.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QRegExp::RegExp</tt></td><td align="center" valign="top"><tt>0</tt></td><td valign="top">A rich Perl-like pattern matching syntax. This is the default.</td></tr>
+<tr><td valign="top"><tt>QRegExp::RegExp2</tt></td><td align="center" valign="top"><tt>3</tt></td><td valign="top">Like RegExp, but with <a href="qregexp.html#greedy-quantifiers">greedy quantifiers</a>. This will be the default in Qt 5. (Introduced in Qt 4.2&#x2e;)</td></tr>
+<tr><td valign="top"><tt>QRegExp::Wildcard</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">This provides a simple pattern matching syntax similar to that used by shells (command interpreters) for &quot;file globbing&quot;. See <a href="qregexp.html#wildcard-matching">Wildcard Matching</a>.</td></tr>
+<tr><td valign="top"><tt>QRegExp::WildcardUnix</tt></td><td align="center" valign="top"><tt>4</tt></td><td valign="top">This is similar to Wildcard but with the behavior of a Unix shell. The wildcard characters can be escaped with the character &quot;&quot;.</td></tr>
+<tr><td valign="top"><tt>QRegExp::FixedString</tt></td><td align="center" valign="top"><tt>2</tt></td><td valign="top">The pattern is a fixed string. This is equivalent to using the RegExp pattern on a string in which all metacharacters are escaped using <a href="qregexp.html#escape">escape</a>().</td></tr>
+<tr><td valign="top"><tt>QRegExp::W3CXmlSchema11</tt></td><td align="center" valign="top"><tt>5</tt></td><td valign="top">The pattern is a regular expression as defined by the W3C XML Schema 1.1 specification.</td></tr>
+</table></p>
+<p>See also <a href="qregexp.html#setPatternSyntax">setPatternSyntax</a>().</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QRegExp/QRegExp" />
+<h3 class="fn"><a name="QRegExp"></a>QRegExp::QRegExp ()</h3>
+<p>Constructs an empty regexp.</p>
+<p>See also <a href="qregexp.html#isValid">isValid</a>() and <a href="qregexp.html#errorString">errorString</a>().</p>
+<h3 class="fn"><a name="QRegExp-2"></a>QRegExp::QRegExp ( const <a href="qstring.html">QString</a> &amp; <i>pattern</i>, <a href="qt.html#CaseSensitivity-enum">Qt::CaseSensitivity</a> <i>cs</i> = Qt::CaseSensitive, <a href="qregexp.html#PatternSyntax-enum">PatternSyntax</a> <i>syntax</i> = RegExp )</h3>
+<p>Constructs a regular expression object for the given <i>pattern</i> string. The pattern must be given using wildcard notation if <i>syntax</i> is <a href="qregexp.html#PatternSyntax-enum">Wildcard</a>; the default is <a href="qregexp.html#PatternSyntax-enum">RegExp</a>. The pattern is case sensitive, unless <i>cs</i> is <a href="qt.html#CaseSensitivity-enum">Qt::CaseInsensitive</a>. Matching is greedy (maximal), but can be changed by calling <a href="qregexp.html#setMinimal">setMinimal</a>().</p>
+<p>See also <a href="qregexp.html#setPattern">setPattern</a>(), <a href="qregexp.html#setCaseSensitivity">setCaseSensitivity</a>(), and <a href="qregexp.html#setPatternSyntax">setPatternSyntax</a>().</p>
+<h3 class="fn"><a name="QRegExp-3"></a>QRegExp::QRegExp ( const QRegExp &amp; <i>rx</i> )</h3>
+<p>Constructs a regular expression as a copy of <i>rx</i>.</p>
+<p>See also <a href="qregexp.html#operator-eq">operator=</a>().</p>
+<a name="//apple_ref/cpp/instm/QRegExp/~QRegExp" />
+<h3 class="fn"><a name="dtor.QRegExp"></a>QRegExp::~QRegExp ()</h3>
+<p>Destroys the regular expression and cleans up its internal data.</p>
+<a name="//apple_ref/cpp/instm/QRegExp/cap" />
+<h3 class="fn"><a name="cap"></a><a href="qstring.html">QString</a> QRegExp::cap ( int <i>nth</i> = 0 ) const</h3>
+<p>Returns the text captured by the <i>nth</i> subexpression. The entire match has index 0 and the parenthesized subexpressions have indexes starting from 1 (excluding non-capturing parentheses).</p>
+<pre> QRegExp rxlen(&quot;(\\d+)(?:\\s*)(cm|inch)&quot;);
+ int pos = rxlen.indexIn(&quot;Length: 189cm&quot;);
+ if (pos &gt; -1) {
+     QString value = rxlen.cap(1); <span class="comment">// &quot;189&quot;</span>
+     QString unit = rxlen.cap(2);  <span class="comment">// &quot;cm&quot;</span>
+     <span class="comment">// ...</span>
+ }</pre>
+<p>The order of elements matched by cap() is as follows. The first element, cap(0), is the entire matching string. Each subsequent element corresponds to the next capturing open left parentheses. Thus cap(1) is the text of the first capturing parentheses, cap(2) is the text of the second, and so on.</p>
+<p>See also <a href="qregexp.html#capturedTexts">capturedTexts</a>() and <a href="qregexp.html#pos">pos</a>().</p>
+<a name="//apple_ref/cpp/instm/QRegExp/captureCount" />
+<h3 class="fn"><a name="captureCount"></a>int QRegExp::captureCount () const</h3>
+<p>Returns the number of captures contained in the regular expression.</p>
+<p>This function was introduced in Qt 4.6.</p>
+<a name="//apple_ref/cpp/instm/QRegExp/capturedTexts" />
+<h3 class="fn"><a name="capturedTexts"></a><a href="qstringlist.html">QStringList</a> QRegExp::capturedTexts () const</h3>
+<p>Returns a list of the captured text strings.</p>
+<p>The first string in the list is the entire matched string. Each subsequent list element contains a string that matched a (capturing) subexpression of the regexp.</p>
+<p>For example:</p>
+<pre> QRegExp rx(&quot;(\\d+)(\\s*)(cm|inch(es)?)&quot;);
+ int pos = rx.indexIn(&quot;Length: 36 inches&quot;);
+ QStringList list = rx.capturedTexts();
+<span class="comment"> // list is now (&quot;36 inches&quot;, &quot;36&quot;, &quot; &quot;, &quot;inches&quot;, &quot;es&quot;)</span></pre>
+<p>The above example also captures elements that may be present but which we have no interest in. This problem can be solved by using non-capturing parentheses:</p>
+<pre> QRegExp rx(&quot;(\\d+)(?:\\s*)(cm|inch(?:es)?)&quot;);
+ int pos = rx.indexIn(&quot;Length: 36 inches&quot;);
+ QStringList list = rx.capturedTexts();
+<span class="comment"> // list is now (&quot;36 inches&quot;, &quot;36&quot;, &quot;inches&quot;)</span></pre>
+<p>Note that if you want to iterate over the list, you should iterate over a copy, e.g&#x2e;</p>
+<pre> QStringList list = rx.capturedTexts();
+ QStringList::iterator it = list.begin();
+ while (it != list.end()) {
+     myProcessing(*it);
+     ++it;
+ }</pre>
+<p>Some regexps can match an indeterminate number of times. For example if the input string is &quot;Offsets: 12 14 99 231 7&quot; and the regexp, <tt>rx</tt>, is <b>(\d+)+</b>, we would hope to get a list of all the numbers matched. However, after calling <tt>rx.indexIn(str)</tt>, capturedTexts() will return the list (&quot;12&quot;, &quot;12&quot;), i.e&#x2e; the entire match was &quot;12&quot; and the first subexpression matched was &quot;12&quot;. The correct approach is to use <a href="qregexp.html#cap">cap</a>() in a <a href="qregexp.html#cap-in-a-loop">loop</a>.</p>
+<p>The order of elements in the string list is as follows. The first element is the entire matching string. Each subsequent element corresponds to the next capturing open left parentheses. Thus capturedTexts()[1] is the text of the first capturing parentheses, capturedTexts()[2] is the text of the second and so on (corresponding to $1, $2, etc., in some other regexp languages).</p>
+<p>See also <a href="qregexp.html#cap">cap</a>() and <a href="qregexp.html#pos">pos</a>().</p>
+<a name="//apple_ref/cpp/instm/QRegExp/caseSensitivity" />
+<h3 class="fn"><a name="caseSensitivity"></a><a href="qt.html#CaseSensitivity-enum">Qt::CaseSensitivity</a> QRegExp::caseSensitivity () const</h3>
+<p>Returns <a href="qt.html#CaseSensitivity-enum">Qt::CaseSensitive</a> if the regexp is matched case sensitively; otherwise returns <a href="qt.html#CaseSensitivity-enum">Qt::CaseInsensitive</a>.</p>
+<p>See also <a href="qregexp.html#setCaseSensitivity">setCaseSensitivity</a>(), <a href="qregexp.html#patternSyntax">patternSyntax</a>(), <a href="qregexp.html#pattern">pattern</a>(), and <a href="qregexp.html#isMinimal">isMinimal</a>().</p>
+<a name="//apple_ref/cpp/instm/QRegExp/errorString" />
+<h3 class="fn"><a name="errorString"></a><a href="qstring.html">QString</a> QRegExp::errorString () const</h3>
+<p>Returns a text string that explains why a regexp pattern is invalid the case being; otherwise returns &quot;no error occurred&quot;.</p>
+<p>See also <a href="qregexp.html#isValid">isValid</a>().</p>
+<a name="//apple_ref/cpp/clm/QRegExp/escape" />
+<h3 class="fn"><a name="escape"></a><a href="qstring.html">QString</a> QRegExp::escape ( const <a href="qstring.html">QString</a> &amp; <i>str</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Returns the string <i>str</i> with every regexp special character escaped with a backslash. The special characters are $, (,), *, +, ., ?, [, ,], ^, {, | and }.</p>
+<p>Example:</p>
+<pre> s1 = QRegExp::escape(&quot;bingo&quot;);   <span class="comment">// s1 == &quot;bingo&quot;</span>
+ s2 = QRegExp::escape(&quot;f(x)&quot;);    <span class="comment">// s2 == &quot;f\\(x\\)&quot;</span></pre>
+<p>This function is useful to construct regexp patterns dynamically:</p>
+<pre> QRegExp rx(&quot;(&quot; + QRegExp::escape(name) +
+            &quot;|&quot; + QRegExp::escape(alias) + &quot;)&quot;);</pre>
+<p>See also <a href="qregexp.html#setPatternSyntax">setPatternSyntax</a>().</p>
+<a name="//apple_ref/cpp/instm/QRegExp/exactMatch" />
+<h3 class="fn"><a name="exactMatch"></a>bool QRegExp::exactMatch ( const <a href="qstring.html">QString</a> &amp; <i>str</i> ) const</h3>
+<p>Returns true if <i>str</i> is matched exactly by this regular expression; otherwise returns false. You can determine how much of the string was matched by calling <a href="qregexp.html#matchedLength">matchedLength</a>().</p>
+<p>For a given regexp string R, exactMatch(&quot;R&quot;) is the equivalent of indexIn(&quot;^R$&quot;) since exactMatch() effectively encloses the regexp in the start of string and end of string anchors, except that it sets <a href="qregexp.html#matchedLength">matchedLength</a>() differently.</p>
+<p>For example, if the regular expression is <b>blue</b>, then exactMatch() returns true only for input <tt>blue</tt>. For inputs <tt>bluebell</tt>, <tt>blutak</tt> and <tt>lightblue</tt>, exactMatch() returns false and <a href="qregexp.html#matchedLength">matchedLength</a>() will return 4, 3 and 0 respectively.</p>
+<p>Although const, this function sets <a href="qregexp.html#matchedLength">matchedLength</a>(), <a href="qregexp.html#capturedTexts">capturedTexts</a>(), and <a href="qregexp.html#pos">pos</a>().</p>
+<p>See also <a href="qregexp.html#indexIn">indexIn</a>() and <a href="qregexp.html#lastIndexIn">lastIndexIn</a>().</p>
+<a name="//apple_ref/cpp/instm/QRegExp/indexIn" />
+<h3 class="fn"><a name="indexIn"></a>int QRegExp::indexIn ( const <a href="qstring.html">QString</a> &amp; <i>str</i>, int <i>offset</i> = 0, <a href="qregexp.html#CaretMode-enum">CaretMode</a> <i>caretMode</i> = CaretAtZero ) const</h3>
+<p>Attempts to find a match in <i>str</i> from position <i>offset</i> (0 by default). If <i>offset</i> is -1, the search starts at the last character; if -2, at the next to last character; etc.</p>
+<p>Returns the position of the first match, or -1 if there was no match.</p>
+<p>The <i>caretMode</i> parameter can be used to instruct whether <b>^</b> should match at index 0 or at <i>offset</i>.</p>
+<p>You might prefer to use <a href="qstring.html#indexOf">QString::indexOf</a>(), <a href="qstring.html#contains">QString::contains</a>(), or even <a href="qstringlist.html#filter">QStringList::filter</a>(). To replace matches use <a href="qstring.html#replace">QString::replace</a>().</p>
+<p>Example:</p>
+<pre> QString str = &quot;offsets: 1.23 .50 71.00 6.00&quot;;
+ QRegExp rx(&quot;\\d*\\.\\d+&quot;);    <span class="comment">// primitive floating point matching</span>
+ int count = 0;
+ int pos = 0;
+ while ((pos = rx.indexIn(str, pos)) != -1) {
+     ++count;
+     pos += rx.matchedLength();
+ }
+<span class="comment"> // pos will be 9, 14, 18 and finally 24; count will end up as 4</span></pre>
+<p>Although const, this function sets <a href="qregexp.html#matchedLength">matchedLength</a>(), <a href="qregexp.html#capturedTexts">capturedTexts</a>() and <a href="qregexp.html#pos">pos</a>().</p>
+<p>If the <a href="qregexp.html">QRegExp</a> is a wildcard expression (see <a href="qregexp.html#setPatternSyntax">setPatternSyntax</a>()) and want to test a string against the whole wildcard expression, use <a href="qregexp.html#exactMatch">exactMatch</a>() instead of this function.</p>
+<p>See also <a href="qregexp.html#lastIndexIn">lastIndexIn</a>() and <a href="qregexp.html#exactMatch">exactMatch</a>().</p>
+<a name="//apple_ref/cpp/instm/QRegExp/isEmpty" />
+<h3 class="fn"><a name="isEmpty"></a>bool QRegExp::isEmpty () const</h3>
+<p>Returns true if the pattern string is empty; otherwise returns false.</p>
+<p>If you call <a href="qregexp.html#exactMatch">exactMatch</a>() with an empty pattern on an empty string it will return true; otherwise it returns false since it operates over the whole string. If you call <a href="qregexp.html#indexIn">indexIn</a>() with an empty pattern on <i>any</i> string it will return the start offset (0 by default) because the empty pattern matches the 'emptiness' at the start of the string. In this case the length of the match returned by <a href="qregexp.html#matchedLength">matchedLength</a>() will be 0.</p>
+<p>See <a href="qstring.html#isEmpty">QString::isEmpty</a>().</p>
+<a name="//apple_ref/cpp/instm/QRegExp/isMinimal" />
+<h3 class="fn"><a name="isMinimal"></a>bool QRegExp::isMinimal () const</h3>
+<p>Returns true if minimal (non-greedy) matching is enabled; otherwise returns false.</p>
+<p>See also <a href="qregexp.html#caseSensitivity">caseSensitivity</a>() and <a href="qregexp.html#setMinimal">setMinimal</a>().</p>
+<a name="//apple_ref/cpp/instm/QRegExp/isValid" />
+<h3 class="fn"><a name="isValid"></a>bool QRegExp::isValid () const</h3>
+<p>Returns true if the regular expression is valid; otherwise returns false. An invalid regular expression never matches.</p>
+<p>The pattern <b>[a-z</b> is an example of an invalid pattern, since it lacks a closing square bracket.</p>
+<p>Note that the validity of a regexp may also depend on the setting of the wildcard flag, for example <b>*.html</b> is a valid wildcard regexp but an invalid full regexp.</p>
+<p>See also <a href="qregexp.html#errorString">errorString</a>().</p>
+<a name="//apple_ref/cpp/instm/QRegExp/lastIndexIn" />
+<h3 class="fn"><a name="lastIndexIn"></a>int QRegExp::lastIndexIn ( const <a href="qstring.html">QString</a> &amp; <i>str</i>, int <i>offset</i> = -1, <a href="qregexp.html#CaretMode-enum">CaretMode</a> <i>caretMode</i> = CaretAtZero ) const</h3>
+<p>Attempts to find a match backwards in <i>str</i> from position <i>offset</i>. If <i>offset</i> is -1 (the default), the search starts at the last character; if -2, at the next to last character; etc.</p>
+<p>Returns the position of the first match, or -1 if there was no match.</p>
+<p>The <i>caretMode</i> parameter can be used to instruct whether <b>^</b> should match at index 0 or at <i>offset</i>.</p>
+<p>Although const, this function sets <a href="qregexp.html#matchedLength">matchedLength</a>(), <a href="qregexp.html#capturedTexts">capturedTexts</a>() and <a href="qregexp.html#pos">pos</a>().</p>
+<p><b>Warning:</b> Searching backwards is much slower than searching forwards.</p>
+<p>See also <a href="qregexp.html#indexIn">indexIn</a>() and <a href="qregexp.html#exactMatch">exactMatch</a>().</p>
+<a name="//apple_ref/cpp/instm/QRegExp/matchedLength" />
+<h3 class="fn"><a name="matchedLength"></a>int QRegExp::matchedLength () const</h3>
+<p>Returns the length of the last matched string, or -1 if there was no match.</p>
+<p>See also <a href="qregexp.html#exactMatch">exactMatch</a>(), <a href="qregexp.html#indexIn">indexIn</a>(), and <a href="qregexp.html#lastIndexIn">lastIndexIn</a>().</p>
+<a name="//apple_ref/cpp/instm/QRegExp/pattern" />
+<h3 class="fn"><a name="pattern"></a><a href="qstring.html">QString</a> QRegExp::pattern () const</h3>
+<p>Returns the pattern string of the regular expression. The pattern has either regular expression syntax or wildcard syntax, depending on <a href="qregexp.html#patternSyntax">patternSyntax</a>().</p>
+<p>See also <a href="qregexp.html#setPattern">setPattern</a>(), <a href="qregexp.html#patternSyntax">patternSyntax</a>(), and <a href="qregexp.html#caseSensitivity">caseSensitivity</a>().</p>
+<a name="//apple_ref/cpp/instm/QRegExp/patternSyntax" />
+<h3 class="fn"><a name="patternSyntax"></a><a href="qregexp.html#PatternSyntax-enum">PatternSyntax</a> QRegExp::patternSyntax () const</h3>
+<p>Returns the syntax used by the regular expression. The default is <a href="qregexp.html#PatternSyntax-enum">QRegExp::RegExp</a>.</p>
+<p>See also <a href="qregexp.html#setPatternSyntax">setPatternSyntax</a>(), <a href="qregexp.html#pattern">pattern</a>(), and <a href="qregexp.html#caseSensitivity">caseSensitivity</a>().</p>
+<a name="//apple_ref/cpp/instm/QRegExp/pos" />
+<h3 class="fn"><a name="pos"></a>int QRegExp::pos ( int <i>nth</i> = 0 ) const</h3>
+<p>Returns the position of the <i>nth</i> captured text in the searched string. If <i>nth</i> is 0 (the default), pos() returns the position of the whole match.</p>
+<p>Example:</p>
+<pre> QRegExp rx(&quot;/([a-z]+)/([a-z]+)&quot;);
+ rx.indexIn(&quot;Output /dev/null&quot;);   <span class="comment">// returns 7 (position of /dev/null)</span>
+ rx.pos(0);                        <span class="comment">// returns 7 (position of /dev/null)</span>
+ rx.pos(1);                        <span class="comment">// returns 8 (position of dev)</span>
+ rx.pos(2);                        <span class="comment">// returns 12 (position of null)</span></pre>
+<p>For zero-length matches, pos() always returns -1. (For example, if cap(4) would return an empty string, pos(4) returns -1.) This is a feature of the implementation.</p>
+<p>See also <a href="qregexp.html#cap">cap</a>() and <a href="qregexp.html#capturedTexts">capturedTexts</a>().</p>
+<a name="//apple_ref/cpp/instm/QRegExp/setCaseSensitivity" />
+<h3 class="fn"><a name="setCaseSensitivity"></a>void QRegExp::setCaseSensitivity ( <a href="qt.html#CaseSensitivity-enum">Qt::CaseSensitivity</a> <i>cs</i> )</h3>
+<p>Sets case sensitive matching to <i>cs</i>.</p>
+<p>If <i>cs</i> is <a href="qt.html#CaseSensitivity-enum">Qt::CaseSensitive</a>, <b>\.txt$</b> matches <tt>readme.txt</tt> but not <tt>README.TXT</tt>.</p>
+<p>See also <a href="qregexp.html#caseSensitivity">caseSensitivity</a>(), <a href="qregexp.html#setPatternSyntax">setPatternSyntax</a>(), <a href="qregexp.html#setPattern">setPattern</a>(), and <a href="qregexp.html#setMinimal">setMinimal</a>().</p>
+<a name="//apple_ref/cpp/instm/QRegExp/setMinimal" />
+<h3 class="fn"><a name="setMinimal"></a>void QRegExp::setMinimal ( bool <i>minimal</i> )</h3>
+<p>Enables or disables minimal matching. If <i>minimal</i> is false, matching is greedy (maximal) which is the default.</p>
+<p>For example, suppose we have the input string &quot;We must be &lt;b&gt;bold&lt;/b&gt;, very &lt;b&gt;bold&lt;/b&gt;!&quot; and the pattern <b>&lt;b&gt;.*&lt;/b&gt;</b>. With the default greedy (maximal) matching, the match is &quot;We must be <u>&lt;b&gt;bold&lt;/b&gt;, very &lt;b&gt;bold&lt;/b&gt;</u>!&quot;. But with minimal (non-greedy) matching, the first match is: &quot;We must be <u>&lt;b&gt;bold&lt;/b&gt;</u>, very &lt;b&gt;bold&lt;/b&gt;!&quot; and the second match is &quot;We must be &lt;b&gt;bold&lt;/b&gt;, very <u>&lt;b&gt;bold&lt;/b&gt;</u>!&quot;. In practice we might use the pattern <b>&lt;b&gt;[^&lt;]*&lt;/b&gt;</b> instead, although this will still fail for nested tags.</p>
+<p>See also <a href="qregexp-qt3.html#minimal" class="compat">minimal</a>() and <a href="qregexp.html#setCaseSensitivity">setCaseSensitivity</a>().</p>
+<a name="//apple_ref/cpp/instm/QRegExp/setPattern" />
+<h3 class="fn"><a name="setPattern"></a>void QRegExp::setPattern ( const <a href="qstring.html">QString</a> &amp; <i>pattern</i> )</h3>
+<p>Sets the pattern string to <i>pattern</i>. The case sensitivity, wildcard, and minimal matching options are not changed.</p>
+<p>See also <a href="qregexp.html#pattern">pattern</a>(), <a href="qregexp.html#setPatternSyntax">setPatternSyntax</a>(), and <a href="qregexp.html#setCaseSensitivity">setCaseSensitivity</a>().</p>
+<a name="//apple_ref/cpp/instm/QRegExp/setPatternSyntax" />
+<h3 class="fn"><a name="setPatternSyntax"></a>void QRegExp::setPatternSyntax ( <a href="qregexp.html#PatternSyntax-enum">PatternSyntax</a> <i>syntax</i> )</h3>
+<p>Sets the syntax mode for the regular expression. The default is <a href="qregexp.html#PatternSyntax-enum">QRegExp::RegExp</a>.</p>
+<p>Setting <i>syntax</i> to <a href="qregexp.html#PatternSyntax-enum">QRegExp::Wildcard</a> enables simple shell-like <a href="qregexp.html#wildcard-matching">wildcard matching</a>. For example, <b>r*.txt</b> matches the string <tt>readme.txt</tt> in wildcard mode, but does not match <tt>readme</tt>.</p>
+<p>Setting <i>syntax</i> to <a href="qregexp.html#PatternSyntax-enum">QRegExp::FixedString</a> means that the pattern is interpreted as a plain string. Special characters (e.g&#x2e;, backslash) don't need to be escaped then.</p>
+<p>See also <a href="qregexp.html#patternSyntax">patternSyntax</a>(), <a href="qregexp.html#setPattern">setPattern</a>(), <a href="qregexp.html#setCaseSensitivity">setCaseSensitivity</a>(), and <a href="qregexp.html#escape">escape</a>().</p>
+<a name="//apple_ref/cpp/instm/QRegExp/operator!=" />
+<h3 class="fn"><a name="operator-not-eq"></a>bool QRegExp::operator!= ( const QRegExp &amp; <i>rx</i> ) const</h3>
+<p>Returns true if this regular expression is not equal to <i>rx</i>; otherwise returns false.</p>
+<p>See also <a href="qregexp.html#operator-eq-eq">operator==</a>().</p>
+<a name="//apple_ref/cpp/instm/QRegExp/operator=" />
+<h3 class="fn"><a name="operator-eq"></a>QRegExp &amp; QRegExp::operator= ( const QRegExp &amp; <i>rx</i> )</h3>
+<p>Copies the regular expression <i>rx</i> and returns a reference to the copy. The case sensitivity, wildcard, and minimal matching options are also copied.</p>
+<a name="//apple_ref/cpp/instm/QRegExp/operator==" />
+<h3 class="fn"><a name="operator-eq-eq"></a>bool QRegExp::operator== ( const QRegExp &amp; <i>rx</i> ) const</h3>
+<p>Returns true if this regular expression is equal to <i>rx</i>; otherwise returns false.</p>
+<p>Two <a href="qregexp.html">QRegExp</a> objects are equal if they have the same pattern strings and the same settings for case sensitivity, wildcard and minimal matching.</p>
+<hr />
+<h2>Related Non-Members</h2>
+<h3 class="fn"><a name="operator-lt-lt-31"></a><a href="qdatastream.html">QDataStream</a> &amp; operator&lt;&lt; ( <a href="qdatastream.html">QDataStream</a> &amp; <i>out</i>, const QRegExp &amp; <i>regExp</i> )</h3>
+<p>Writes the regular expression <i>regExp</i> to stream <i>out</i>.</p>
+<p>See also <a href="datastreamformat.html">Format of the QDataStream Operators</a>.</p>
+<h3 class="fn"><a name="operator-gt-gt-16"></a><a href="qdatastream.html">QDataStream</a> &amp; operator&gt;&gt; ( <a href="qdatastream.html">QDataStream</a> &amp; <i>in</i>, QRegExp &amp; <i>regExp</i> )</h3>
+<p>Reads a regular expression from stream <i>in</i> into <i>regExp</i>.</p>
+<p>See also <a href="datastreamformat.html">Format of the QDataStream Operators</a>.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

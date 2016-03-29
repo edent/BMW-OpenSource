@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- combowidgetmapper.qdoc -->
+<head>
+  <title>Qt 4.6: Combo Widget Mapper Example</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">Combo Widget Mapper Example<br /><span class="subtitle"></span>
+</h1>
+<p>Files:</p>
+<ul>
+<li><a href="itemviews-combowidgetmapper-window-cpp.html">itemviews/combowidgetmapper/window.cpp</a></li>
+<li><a href="itemviews-combowidgetmapper-window-h.html">itemviews/combowidgetmapper/window.h</a></li>
+<li><a href="itemviews-combowidgetmapper-main-cpp.html">itemviews/combowidgetmapper/main.cpp</a></li>
+<li><a href="itemviews-combowidgetmapper-combowidgetmapper-pro.html">itemviews/combowidgetmapper/combowidgetmapper.pro</a></li>
+</ul>
+<p>The Delegate Widget Mapper example shows how to use a custom delegate to map information from a model to specific widgets on a form.</p>
+<p align="center"><img src="images/combo-widget-mapper.png" /></p><p>In the <a href="itemviews-simplewidgetmapper.html">Simple Widget Mapper Example</a>, we showed the basic use of a widget mapper to relate data exposed by a model to simple input widgets in a user interface. However, sometimes we want to use input widgets that expose data as choices to the user, such as <a href="qcombobox.html">QComboBox</a>, and we need a way to relate their input to the values stored in the model.</p>
+<p>This example is very similar to the <a href="itemviews-simplewidgetmapper.html">Simple Widget Mapper Example</a>. Again, we create a <tt>Window</tt> class with an almost identical user interface, except that, instead of providing a spin box so that each person's age can be entered, we provide a combo box to allow their addresses to be classified as &quot;Home&quot;, &quot;Work&quot; or &quot;Other&quot;.</p>
+<a name="window-class-definition"></a>
+<h2>Window Class Definition</h2>
+<p>The class provides a constructor, a slot to keep the buttons up to date, and a private function to set up the model:</p>
+<pre> class Window : public QWidget
+ {
+     Q_OBJECT
+
+ public:
+     Window(QWidget *parent = 0);
+
+ private slots:
+     void updateButtons(int row);
+
+ private:
+     void setupModel();
+
+     QLabel *nameLabel;
+     QLabel *addressLabel;
+     QLabel *typeLabel;
+     QLineEdit *nameEdit;
+     QTextEdit *addressEdit;
+     QComboBox *typeComboBox;
+     QPushButton *nextButton;
+     QPushButton *previousButton;
+
+     QStandardItemModel *model;
+     QStringListModel *typeModel;
+     QDataWidgetMapper *mapper;
+ };</pre>
+<p>In addition to the <a href="qdatawidgetmapper.html">QDataWidgetMapper</a> object and the controls used to make up the user interface, we use a <a href="qstandarditemmodel.html">QStandardItemModel</a> to hold our data and a <a href="qstringlistmodel.html">QStringListModel</a> to hold information about the types of address that can be applied to each person's data.</p>
+<a name="window-class-implementation"></a>
+<h2>Window Class Implementation</h2>
+<p>The constructor of the <tt>Window</tt> class can be explained in three parts. In the first part, we set up the widgets used for the user interface:</p>
+<pre> Window::Window(QWidget *parent)
+     : QWidget(parent)
+ {
+     setupModel();
+
+     nameLabel = new QLabel(tr(&quot;Na&amp;me:&quot;));
+     nameEdit = new QLineEdit();
+     addressLabel = new QLabel(tr(&quot;&amp;Address:&quot;));
+     addressEdit = new QTextEdit();
+     typeLabel = new QLabel(tr(&quot;&amp;Type:&quot;));
+     typeComboBox = new QComboBox();
+     nextButton = new QPushButton(tr(&quot;&amp;Next&quot;));
+     previousButton = new QPushButton(tr(&quot;&amp;Previous&quot;));
+
+     nameLabel-&gt;setBuddy(nameEdit);
+     addressLabel-&gt;setBuddy(addressEdit);
+     typeLabel-&gt;setBuddy(typeComboBox);
+
+     typeComboBox-&gt;setModel(typeModel);</pre>
+<p>Note that we set up the mapping the combo box in the same way as for other widgets, but that we apply its own model to it so that it will display data from its own model, the <tt>typeModel</tt>, rather than from the model containing data about each person.</p>
+<p>Next, we set up the widget mapper, relating each input widget to a column in the model specified by the call to <a href="qdatawidgetmapper.html#setModel">setModel()</a>:</p>
+<pre>     mapper = new QDataWidgetMapper(this);
+     mapper-&gt;setModel(model);
+     mapper-&gt;addMapping(nameEdit, 0);
+     mapper-&gt;addMapping(addressEdit, 1);
+     mapper-&gt;addMapping(typeComboBox, 2, &quot;currentIndex&quot;);</pre>
+<p>For the combo box, we pass an extra argument to tell the widget mapper which property to relate to values from the model. As a result, the user is able to select an item from the combo box, and the corresponding value stored in the widget's <tt>currentIndex</tt> property will be stored in the model.</p>
+<p>The rest of the constructor is very similar to that of the <a href="itemviews-simplewidgetmapper.html">Simple Widget Mapper Example</a>:</p>
+<pre>     connect(previousButton, SIGNAL(clicked()),
+             mapper, SLOT(toPrevious()));
+     connect(nextButton, SIGNAL(clicked()),
+             mapper, SLOT(toNext()));
+     connect(mapper, SIGNAL(currentIndexChanged(int)),
+             this, SLOT(updateButtons(int)));
+
+     QGridLayout *layout = new QGridLayout();
+     layout-&gt;addWidget(nameLabel, 0, 0, 1, 1);
+     layout-&gt;addWidget(nameEdit, 0, 1, 1, 1);
+     layout-&gt;addWidget(previousButton, 0, 2, 1, 1);
+     layout-&gt;addWidget(addressLabel, 1, 0, 1, 1);
+     layout-&gt;addWidget(addressEdit, 1, 1, 2, 1);
+     layout-&gt;addWidget(nextButton, 1, 2, 1, 1);
+     layout-&gt;addWidget(typeLabel, 3, 0, 1, 1);
+     layout-&gt;addWidget(typeComboBox, 3, 1, 1, 1);
+     setLayout(layout);
+
+     setWindowTitle(tr(&quot;Delegate Widget Mapper&quot;));
+     mapper-&gt;toFirst();
+ }</pre>
+<p>The model is initialized in the window's <tt>setupModel()</tt> function. Here, we create a standard model with 5 rows and 3 columns. In each row, we insert a name, address, and a value that indicates the type of address. The address types are stored in a string list model.</p>
+<pre> void Window::setupModel()
+ {
+     QStringList items;
+     items &lt;&lt; tr(&quot;Home&quot;) &lt;&lt; tr(&quot;Work&quot;) &lt;&lt; tr(&quot;Other&quot;);
+     typeModel = new QStringListModel(items, this);
+
+     model = new QStandardItemModel(5, 3, this);
+     QStringList names;
+     names &lt;&lt; &quot;Alice&quot; &lt;&lt; &quot;Bob&quot; &lt;&lt; &quot;Carol&quot; &lt;&lt; &quot;Donald&quot; &lt;&lt; &quot;Emma&quot;;
+     QStringList addresses;
+     addresses &lt;&lt; &quot;&lt;qt&gt;123 Main Street&lt;br/&gt;Market Town&lt;/qt&gt;&quot;
+               &lt;&lt; &quot;&lt;qt&gt;PO Box 32&lt;br/&gt;Mail Handling Service&quot;
+                  &quot;&lt;br/&gt;Service City&lt;/qt&gt;&quot;
+               &lt;&lt; &quot;&lt;qt&gt;The Lighthouse&lt;br/&gt;Remote Island&lt;/qt&gt;&quot;
+               &lt;&lt; &quot;&lt;qt&gt;47338 Park Avenue&lt;br/&gt;Big City&lt;/qt&gt;&quot;
+               &lt;&lt; &quot;&lt;qt&gt;Research Station&lt;br/&gt;Base Camp&lt;br/&gt;Big Mountain&lt;/qt&gt;&quot;;
+
+     QStringList types;
+     types &lt;&lt; &quot;0&quot; &lt;&lt; &quot;1&quot; &lt;&lt; &quot;2&quot; &lt;&lt; &quot;0&quot; &lt;&lt; &quot;2&quot;;
+
+     for (int row = 0; row &lt; 5; ++row) {
+       QStandardItem *item = new QStandardItem(names[row]);
+       model-&gt;setItem(row, 0, item);
+       item = new QStandardItem(addresses[row]);
+       model-&gt;setItem(row, 1, item);
+       item = new QStandardItem(types[row]);
+       model-&gt;setItem(row, 2, item);
+     }
+ }</pre>
+<p>As we insert each row into the model, like a record in a database, we store values that correspond to items in <tt>typeModel</tt> for each person's address type. When the widget mapper reads these values from the final column of each row, it will need to use them as references to values in <tt>typeModel</tt>, as shown in the following diagram. This is where the delegate is used.</p>
+<p align="center"><img src="images/widgetmapper-combo-mapping.png" /></p><p>We show the implementation of the <tt>updateButtons()</tt> slot for completeness:</p>
+<pre> void Window::updateButtons(int row)
+ {
+     previousButton-&gt;setEnabled(row &gt; 0);
+     nextButton-&gt;setEnabled(row &lt; model-&gt;rowCount() - 1);
+ }</pre>
+<a name="summary-and-further-reading"></a>
+<h2>Summary and Further Reading</h2>
+<p>The use of a separate model for the combo box provides a menu of choices that are separate from the data stored in the main model. Using a named mapping that relates the combo box's <tt>currentIndex</tt> property to a column in the model effectively allows us to store a look-up value in the model.</p>
+<p>However, when reading the model outside the context of the widget mapper, we need to know about the <tt>typeModel</tt> to make sense of these look-up values. It would be useful to be able to store both the data and the choices held by the <tt>typeModel</tt> in one place. This is covered by the <a href="sql-sqlwidgetmapper.html">SQL Widget Mapper Example</a>.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

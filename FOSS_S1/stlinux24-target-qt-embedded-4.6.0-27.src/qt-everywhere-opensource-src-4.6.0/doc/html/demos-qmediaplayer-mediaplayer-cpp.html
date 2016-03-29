@@ -1,0 +1,869 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: mediaplayer.cpp Example File (demos/qmediaplayer/mediaplayer.cpp)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">mediaplayer.cpp Example File<br /><span class="small-subtitle">demos/qmediaplayer/mediaplayer.cpp</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the demonstration applications of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ***************************************************************************/</span>
+
+ #include &lt;QtGui&gt;
+
+ #define SLIDER_RANGE 8
+
+ #include &quot;mediaplayer.h&quot;
+ #include &quot;ui_settings.h&quot;
+
+ class MediaVideoWidget : public Phonon::VideoWidget
+ {
+ public:
+     MediaVideoWidget(MediaPlayer *player, QWidget *parent = 0) :
+         Phonon::VideoWidget(parent), m_player(player), m_action(this)
+     {
+         m_action.setCheckable(true);
+         m_action.setChecked(false);
+         m_action.setShortcut(QKeySequence( Qt::AltModifier + Qt::Key_Return));
+         m_action.setShortcutContext(Qt::WindowShortcut);
+         connect(&amp;m_action, SIGNAL(toggled(bool)), SLOT(setFullScreen(bool)));
+         addAction(&amp;m_action);
+         setAcceptDrops(true);
+     }
+
+ protected:
+     void mouseDoubleClickEvent(QMouseEvent *e)
+     {
+         Phonon::VideoWidget::mouseDoubleClickEvent(e);
+         setFullScreen(!isFullScreen());
+     }
+
+     void keyPressEvent(QKeyEvent *e)
+     {
+         if (e-&gt;key() == Qt::Key_Space &amp;&amp; !e-&gt;modifiers()) {
+             m_player-&gt;playPause();
+             e-&gt;accept();
+             return;
+         } else if (e-&gt;key() == Qt::Key_Escape &amp;&amp; !e-&gt;modifiers()) {
+             setFullScreen(false);
+             e-&gt;accept();
+             return;
+         }
+         Phonon::VideoWidget::keyPressEvent(e);
+     }
+
+     bool event(QEvent *e)
+     {
+         switch(e-&gt;type())
+         {
+         case QEvent::Close:
+             <span class="comment">//we just ignore the cose events on the video widget</span>
+             <span class="comment">//this prevents ALT+F4 from having an effect in fullscreen mode</span>
+             e-&gt;ignore();
+             return true;
+         case QEvent::MouseMove:
+ #ifndef QT_NO_CURSOR
+             unsetCursor();
+ #endif
+             <span class="comment">//fall through</span>
+         case QEvent::WindowStateChange:
+             {
+                 <span class="comment">//we just update the state of the checkbox, in case it wasn't already</span>
+                 m_action.setChecked(windowState() &amp; Qt::WindowFullScreen);
+                 const Qt::WindowFlags flags = m_player-&gt;windowFlags();
+                 if (windowState() &amp; Qt::WindowFullScreen) {
+                     m_timer.start(1000, this);
+                 } else {
+                     m_timer.stop();
+ #ifndef QT_NO_CURSOR
+                     unsetCursor();
+ #endif
+                 }
+             }
+             break;
+         default:
+             break;
+         }
+
+         return Phonon::VideoWidget::event(e);
+     }
+
+     void timerEvent(QTimerEvent *e)
+     {
+         if (e-&gt;timerId() == m_timer.timerId()) {
+             <span class="comment">//let's store the cursor shape</span>
+ #ifndef QT_NO_CURSOR
+             setCursor(Qt::BlankCursor);
+ #endif
+         }
+         Phonon::VideoWidget::timerEvent(e);
+     }
+
+     void dropEvent(QDropEvent *e)
+     {
+         m_player-&gt;handleDrop(e);
+     }
+
+     void dragEnterEvent(QDragEnterEvent *e) {
+         if (e-&gt;mimeData()-&gt;hasUrls())
+             e-&gt;acceptProposedAction();
+     }
+
+ private:
+     MediaPlayer *m_player;
+     QBasicTimer m_timer;
+     QAction m_action;
+ };
+
+ MediaPlayer::MediaPlayer(const QString &amp;filePath,
+                          const bool hasSmallScreen) :
+         playButton(0), nextEffect(0), settingsDialog(0), ui(0),
+             m_AudioOutput(Phonon::VideoCategory),
+             m_videoWidget(new MediaVideoWidget(this)),
+             m_hasSmallScreen(hasSmallScreen)
+ {
+     setWindowTitle(tr(&quot;Media Player&quot;));
+     setContextMenuPolicy(Qt::CustomContextMenu);
+     m_videoWidget-&gt;setContextMenuPolicy(Qt::CustomContextMenu);
+
+     QSize buttonSize(34, 28);
+
+     QPushButton *openButton = new QPushButton(this);
+
+     openButton-&gt;setIcon(style()-&gt;standardIcon(QStyle::SP_DialogOpenButton));
+     QPalette bpal;
+     QColor arrowcolor = bpal.buttonText().color();
+     if (arrowcolor == Qt::black)
+         arrowcolor = QColor(80, 80, 80);
+     bpal.setBrush(QPalette::ButtonText, arrowcolor);
+     openButton-&gt;setPalette(bpal);
+
+     rewindButton = new QPushButton(this);
+     rewindButton-&gt;setIcon(style()-&gt;standardIcon(QStyle::SP_MediaSkipBackward));
+
+     forwardButton = new QPushButton(this);
+     forwardButton-&gt;setIcon(style()-&gt;standardIcon(QStyle::SP_MediaSkipForward));
+     forwardButton-&gt;setEnabled(false);
+
+     playButton = new QPushButton(this);
+     playIcon = style()-&gt;standardIcon(QStyle::SP_MediaPlay);
+     pauseIcon = style()-&gt;standardIcon(QStyle::SP_MediaPause);
+     playButton-&gt;setIcon(playIcon);
+
+     slider = new Phonon::SeekSlider(this);
+     slider-&gt;setMediaObject(&amp;m_MediaObject);
+     volume = new Phonon::VolumeSlider(&amp;m_AudioOutput);
+
+     QVBoxLayout *vLayout = new QVBoxLayout(this);
+     vLayout-&gt;setContentsMargins(8, 8, 8, 8);
+
+     QHBoxLayout *layout = new QHBoxLayout();
+
+     info = new QLabel(this);
+     info-&gt;setMinimumHeight(70);
+     info-&gt;setAcceptDrops(false);
+     info-&gt;setMargin(2);
+     info-&gt;setFrameStyle(QFrame::StyledPanel | QFrame::Sunken);
+     info-&gt;setLineWidth(2);
+     info-&gt;setAutoFillBackground(true);
+
+     QPalette palette;
+     palette.setBrush(QPalette::WindowText, Qt::white);
+ #ifndef Q_WS_MAC
+     openButton-&gt;setMinimumSize(54, buttonSize.height());
+     rewindButton-&gt;setMinimumSize(buttonSize);
+     forwardButton-&gt;setMinimumSize(buttonSize);
+     playButton-&gt;setMinimumSize(buttonSize);
+ #endif
+     info-&gt;setStyleSheet(&quot;border-image:url(:/images/screen.png) ; border-width:3px&quot;);
+     info-&gt;setPalette(palette);
+     info-&gt;setText(tr(&quot;&lt;center&gt;No media&lt;/center&gt;&quot;));
+
+     volume-&gt;setFixedWidth(120);
+
+     layout-&gt;addWidget(openButton);
+     layout-&gt;addWidget(rewindButton);
+     layout-&gt;addWidget(playButton);
+     layout-&gt;addWidget(forwardButton);
+
+     layout-&gt;addStretch();
+     layout-&gt;addWidget(volume);
+
+     vLayout-&gt;addWidget(info);
+     initVideoWindow();
+     vLayout-&gt;addWidget(&amp;m_videoWindow);
+     QVBoxLayout *buttonPanelLayout = new QVBoxLayout();
+     m_videoWindow.hide();
+     buttonPanelLayout-&gt;addLayout(layout);
+
+     timeLabel = new QLabel(this);
+     progressLabel = new QLabel(this);
+     QWidget *sliderPanel = new QWidget(this);
+     QHBoxLayout *sliderLayout = new QHBoxLayout();
+     sliderLayout-&gt;addWidget(slider);
+     sliderLayout-&gt;addWidget(timeLabel);
+     sliderLayout-&gt;addWidget(progressLabel);
+     sliderLayout-&gt;setContentsMargins(0, 0, 0, 0);
+     sliderPanel-&gt;setLayout(sliderLayout);
+
+     buttonPanelLayout-&gt;addWidget(sliderPanel);
+     buttonPanelLayout-&gt;setContentsMargins(0, 0, 0, 0);
+ #ifdef Q_OS_MAC
+     layout-&gt;setSpacing(4);
+     buttonPanelLayout-&gt;setSpacing(0);
+     info-&gt;setMinimumHeight(100);
+     info-&gt;setFont(QFont(&quot;verdana&quot;, 15));
+     <span class="comment">// QStyle *flatButtonStyle = new QWindowsStyle;</span>
+     openButton-&gt;setFocusPolicy(Qt::NoFocus);
+     <span class="comment">// openButton-&gt;setStyle(flatButtonStyle);</span>
+     <span class="comment">// playButton-&gt;setStyle(flatButtonStyle);</span>
+     <span class="comment">// rewindButton-&gt;setStyle(flatButtonStyle);</span>
+     <span class="comment">// forwardButton-&gt;setStyle(flatButtonStyle);</span>
+  #endif
+     QWidget *buttonPanelWidget = new QWidget(this);
+     buttonPanelWidget-&gt;setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
+     buttonPanelWidget-&gt;setLayout(buttonPanelLayout);
+     vLayout-&gt;addWidget(buttonPanelWidget);
+
+     QHBoxLayout *labelLayout = new QHBoxLayout();
+
+     vLayout-&gt;addLayout(labelLayout);
+     setLayout(vLayout);
+
+     <span class="comment">// Create menu bar:</span>
+     fileMenu = new QMenu(this);
+     QAction *openFileAction = fileMenu-&gt;addAction(tr(&quot;Open &amp;File...&quot;));
+     QAction *openUrlAction = fileMenu-&gt;addAction(tr(&quot;Open &amp;Location...&quot;));
+
+     fileMenu-&gt;addSeparator();
+     QMenu *aspectMenu = fileMenu-&gt;addMenu(tr(&quot;&amp;Aspect ratio&quot;));
+     QActionGroup *aspectGroup = new QActionGroup(aspectMenu);
+     connect(aspectGroup, SIGNAL(triggered(QAction *)), this, SLOT(aspectChanged(QAction *)));
+     aspectGroup-&gt;setExclusive(true);
+     QAction *aspectActionAuto = aspectMenu-&gt;addAction(tr(&quot;Auto&quot;));
+     aspectActionAuto-&gt;setCheckable(true);
+     aspectActionAuto-&gt;setChecked(true);
+     aspectGroup-&gt;addAction(aspectActionAuto);
+     QAction *aspectActionScale = aspectMenu-&gt;addAction(tr(&quot;Scale&quot;));
+     aspectActionScale-&gt;setCheckable(true);
+     aspectGroup-&gt;addAction(aspectActionScale);
+     QAction *aspectAction16_9 = aspectMenu-&gt;addAction(tr(&quot;16/9&quot;));
+     aspectAction16_9-&gt;setCheckable(true);
+     aspectGroup-&gt;addAction(aspectAction16_9);
+     QAction *aspectAction4_3 = aspectMenu-&gt;addAction(tr(&quot;4/3&quot;));
+     aspectAction4_3-&gt;setCheckable(true);
+     aspectGroup-&gt;addAction(aspectAction4_3);
+
+     QMenu *scaleMenu = fileMenu-&gt;addMenu(tr(&quot;&amp;Scale mode&quot;));
+     QActionGroup *scaleGroup = new QActionGroup(scaleMenu);
+     connect(scaleGroup, SIGNAL(triggered(QAction *)), this, SLOT(scaleChanged(QAction *)));
+     scaleGroup-&gt;setExclusive(true);
+     QAction *scaleActionFit = scaleMenu-&gt;addAction(tr(&quot;Fit in view&quot;));
+     scaleActionFit-&gt;setCheckable(true);
+     scaleActionFit-&gt;setChecked(true);
+     scaleGroup-&gt;addAction(scaleActionFit);
+     QAction *scaleActionCrop = scaleMenu-&gt;addAction(tr(&quot;Scale and crop&quot;));
+     scaleActionCrop-&gt;setCheckable(true);
+     scaleGroup-&gt;addAction(scaleActionCrop);
+
+     fileMenu-&gt;addSeparator();
+     QAction *settingsAction = fileMenu-&gt;addAction(tr(&quot;&amp;Settings...&quot;));
+
+     <span class="comment">// Setup signal connections:</span>
+     connect(rewindButton, SIGNAL(clicked()), this, SLOT(rewind()));
+     <span class="comment">//connect(openButton, SIGNAL(clicked()), this, SLOT(openFile()));</span>
+     openButton-&gt;setMenu(fileMenu);
+
+     connect(playButton, SIGNAL(clicked()), this, SLOT(playPause()));
+     connect(forwardButton, SIGNAL(clicked()), this, SLOT(forward()));
+     <span class="comment">//connect(openButton, SIGNAL(clicked()), this, SLOT(openFile()));</span>
+     connect(settingsAction, SIGNAL(triggered(bool)), this, SLOT(showSettingsDialog()));
+     connect(openUrlAction, SIGNAL(triggered(bool)), this, SLOT(openUrl()));
+     connect(openFileAction, SIGNAL(triggered(bool)), this, SLOT(openFile()));
+
+     connect(m_videoWidget, SIGNAL(customContextMenuRequested(const QPoint &amp;)), SLOT(showContextMenu(const QPoint &amp;)));
+     connect(this, SIGNAL(customContextMenuRequested(const QPoint &amp;)), SLOT(showContextMenu(const QPoint &amp;)));
+     connect(&amp;m_MediaObject, SIGNAL(metaDataChanged()), this, SLOT(updateInfo()));
+     connect(&amp;m_MediaObject, SIGNAL(totalTimeChanged(qint64)), this, SLOT(updateTime()));
+     connect(&amp;m_MediaObject, SIGNAL(tick(qint64)), this, SLOT(updateTime()));
+     connect(&amp;m_MediaObject, SIGNAL(finished()), this, SLOT(finished()));
+     connect(&amp;m_MediaObject, SIGNAL(stateChanged(Phonon::State, Phonon::State)), this, SLOT(stateChanged(Phonon::State, Phonon::State)));
+     connect(&amp;m_MediaObject, SIGNAL(bufferStatus(int)), this, SLOT(bufferStatus(int)));
+     connect(&amp;m_MediaObject, SIGNAL(hasVideoChanged(bool)), this, SLOT(hasVideoChanged(bool)));
+
+     rewindButton-&gt;setEnabled(false);
+     playButton-&gt;setEnabled(false);
+     setAcceptDrops(true);
+
+     m_audioOutputPath = Phonon::createPath(&amp;m_MediaObject, &amp;m_AudioOutput);
+     Phonon::createPath(&amp;m_MediaObject, m_videoWidget);
+
+     if (!filePath.isEmpty())
+         setFile(filePath);
+     resize(minimumSizeHint());
+ }
+
+ void MediaPlayer::stateChanged(Phonon::State newstate, Phonon::State oldstate)
+ {
+     Q_UNUSED(oldstate);
+
+     if (oldstate == Phonon::LoadingState) {
+         QRect videoHintRect = QRect(QPoint(0, 0), m_videoWindow.sizeHint());
+         QRect newVideoRect = QApplication::desktop()-&gt;screenGeometry().intersected(videoHintRect);
+         if (!m_hasSmallScreen) {
+             if (m_MediaObject.hasVideo()) {
+                 <span class="comment">// Flush event que so that sizeHint takes the</span>
+                 <span class="comment">// recently shown/hidden m_videoWindow into account:</span>
+                 qApp-&gt;processEvents();
+                 resize(sizeHint());
+             } else
+                 resize(minimumSize());
+         }
+     }
+
+     switch (newstate) {
+         case Phonon::ErrorState:
+             QMessageBox::warning(this, &quot;Phonon Mediaplayer&quot;, m_MediaObject.errorString(), QMessageBox::Close);
+             if (m_MediaObject.errorType() == Phonon::FatalError) {
+                 playButton-&gt;setEnabled(false);
+                 rewindButton-&gt;setEnabled(false);
+             } else {
+                 m_MediaObject.pause();
+             }
+             break;
+         case Phonon::PausedState:
+         case Phonon::StoppedState:
+             playButton-&gt;setIcon(playIcon);
+
+             m_videoWidget-&gt;setFullScreen(false);
+
+             if (m_MediaObject.currentSource().type() != Phonon::MediaSource::Invalid){
+                 playButton-&gt;setEnabled(true);
+                 rewindButton-&gt;setEnabled(true);
+             } else {
+                 playButton-&gt;setEnabled(false);
+                 rewindButton-&gt;setEnabled(false);
+             }
+             break;
+         case Phonon::PlayingState:
+             playButton-&gt;setEnabled(true);
+             playButton-&gt;setIcon(pauseIcon);
+             if (m_MediaObject.hasVideo())
+                 m_videoWindow.show();
+             <span class="comment">// Fall through</span>
+         case Phonon::BufferingState:
+             rewindButton-&gt;setEnabled(true);
+             break;
+         case Phonon::LoadingState:
+             rewindButton-&gt;setEnabled(false);
+             break;
+     }
+
+ }
+
+ void MediaPlayer::initSettingsDialog()
+ {
+     settingsDialog = new QDialog(this);
+     ui = new Ui_settings();
+     ui-&gt;setupUi(settingsDialog);
+
+     connect(ui-&gt;brightnessSlider, SIGNAL(valueChanged(int)), this, SLOT(setBrightness(int)));
+     connect(ui-&gt;hueSlider, SIGNAL(valueChanged(int)), this, SLOT(setHue(int)));
+     connect(ui-&gt;saturationSlider, SIGNAL(valueChanged(int)), this, SLOT(setSaturation(int)));
+     connect(ui-&gt;contrastSlider , SIGNAL(valueChanged(int)), this, SLOT(setContrast(int)));
+     connect(ui-&gt;aspectCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(setAspect(int)));
+     connect(ui-&gt;scalemodeCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(setScale(int)));
+
+     ui-&gt;brightnessSlider-&gt;setValue(int(m_videoWidget-&gt;brightness() * SLIDER_RANGE));
+     ui-&gt;hueSlider-&gt;setValue(int(m_videoWidget-&gt;hue() * SLIDER_RANGE));
+     ui-&gt;saturationSlider-&gt;setValue(int(m_videoWidget-&gt;saturation() * SLIDER_RANGE));
+     ui-&gt;contrastSlider-&gt;setValue(int(m_videoWidget-&gt;contrast() * SLIDER_RANGE));
+     ui-&gt;aspectCombo-&gt;setCurrentIndex(m_videoWidget-&gt;aspectRatio());
+     ui-&gt;scalemodeCombo-&gt;setCurrentIndex(m_videoWidget-&gt;scaleMode());
+     connect(ui-&gt;effectButton, SIGNAL(clicked()), this, SLOT(configureEffect()));
+
+ #ifdef Q_WS_X11
+     <span class="comment">//Cross fading is not currently implemented in the GStreamer backend</span>
+     ui-&gt;crossFadeSlider-&gt;setVisible(false);
+     ui-&gt;crossFadeLabel-&gt;setVisible(false);
+     ui-&gt;crossFadeLabel1-&gt;setVisible(false);
+     ui-&gt;crossFadeLabel2-&gt;setVisible(false);
+     ui-&gt;crossFadeLabel3-&gt;setVisible(false);
+ #endif
+     ui-&gt;crossFadeSlider-&gt;setValue((int)(2 * m_MediaObject.transitionTime() / 1000.0f));
+
+     <span class="comment">// Insert audio devices:</span>
+     QList&lt;Phonon::AudioOutputDevice&gt; devices = Phonon::BackendCapabilities::availableAudioOutputDevices();
+     for (int i=0; i&lt;devices.size(); i++){
+         QString itemText = devices[i].name();
+         if (!devices[i].description().isEmpty()) {
+             itemText += QString::fromLatin1(&quot; (%1)&quot;).arg(devices[i].description());
+         }
+         ui-&gt;deviceCombo-&gt;addItem(itemText);
+         if (devices[i] == m_AudioOutput.outputDevice())
+             ui-&gt;deviceCombo-&gt;setCurrentIndex(i);
+     }
+
+     <span class="comment">// Insert audio effects:</span>
+     ui-&gt;audioEffectsCombo-&gt;addItem(tr(&quot;&lt;no effect&gt;&quot;));
+     QList&lt;Phonon::Effect *&gt; currEffects = m_audioOutputPath.effects();
+     Phonon::Effect *currEffect = currEffects.size() ? currEffects[0] : 0;
+     QList&lt;Phonon::EffectDescription&gt; availableEffects = Phonon::BackendCapabilities::availableAudioEffects();
+     for (int i=0; i&lt;availableEffects.size(); i++){
+         ui-&gt;audioEffectsCombo-&gt;addItem(availableEffects[i].name());
+         if (currEffect &amp;&amp; availableEffects[i] == currEffect-&gt;description())
+             ui-&gt;audioEffectsCombo-&gt;setCurrentIndex(i+1);
+     }
+     connect(ui-&gt;audioEffectsCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(effectChanged()));
+
+ }
+
+ void MediaPlayer::effectChanged()
+ {
+     int currentIndex = ui-&gt;audioEffectsCombo-&gt;currentIndex();
+     if (currentIndex) {
+         QList&lt;Phonon::EffectDescription&gt; availableEffects = Phonon::BackendCapabilities::availableAudioEffects();
+         Phonon::EffectDescription chosenEffect = availableEffects[currentIndex - 1];
+
+         QList&lt;Phonon::Effect *&gt; currEffects = m_audioOutputPath.effects();
+         Phonon::Effect *currentEffect = currEffects.size() ? currEffects[0] : 0;
+
+         <span class="comment">// Deleting the running effect will stop playback, it is deleted when removed from path</span>
+         if (nextEffect &amp;&amp; !(currentEffect &amp;&amp; (currentEffect-&gt;description().name() == nextEffect-&gt;description().name())))
+             delete nextEffect;
+
+         nextEffect = new Phonon::Effect(chosenEffect);
+     }
+     ui-&gt;effectButton-&gt;setEnabled(currentIndex);
+ }
+
+ void MediaPlayer::showSettingsDialog()
+ {
+     if (!settingsDialog)
+         initSettingsDialog();
+
+     float oldBrightness = m_videoWidget-&gt;brightness();
+     float oldHue = m_videoWidget-&gt;hue();
+     float oldSaturation = m_videoWidget-&gt;saturation();
+     float oldContrast = m_videoWidget-&gt;contrast();
+     Phonon::VideoWidget::AspectRatio oldAspect = m_videoWidget-&gt;aspectRatio();
+     Phonon::VideoWidget::ScaleMode oldScale = m_videoWidget-&gt;scaleMode();
+     int currentEffect = ui-&gt;audioEffectsCombo-&gt;currentIndex();
+     settingsDialog-&gt;exec();
+
+     if (settingsDialog-&gt;result() == QDialog::Accepted){
+         m_MediaObject.setTransitionTime((int)(1000 * float(ui-&gt;crossFadeSlider-&gt;value()) / 2.0f));
+         QList&lt;Phonon::AudioOutputDevice&gt; devices = Phonon::BackendCapabilities::availableAudioOutputDevices();
+         m_AudioOutput.setOutputDevice(devices[ui-&gt;deviceCombo-&gt;currentIndex()]);
+         QList&lt;Phonon::Effect *&gt; currEffects = m_audioOutputPath.effects();
+         QList&lt;Phonon::EffectDescription&gt; availableEffects = Phonon::BackendCapabilities::availableAudioEffects();
+
+         if (ui-&gt;audioEffectsCombo-&gt;currentIndex() &gt; 0){
+             Phonon::Effect *currentEffect = currEffects.size() ? currEffects[0] : 0;
+             if (!currentEffect || currentEffect-&gt;description() != nextEffect-&gt;description()){
+                 foreach(Phonon::Effect *effect, currEffects) {
+                     m_audioOutputPath.removeEffect(effect);
+                     delete effect;
+                 }
+                 m_audioOutputPath.insertEffect(nextEffect);
+             }
+         } else {
+             foreach(Phonon::Effect *effect, currEffects) {
+                 m_audioOutputPath.removeEffect(effect);
+                 delete effect;
+                 nextEffect = 0;
+             }
+         }
+     } else {
+         <span class="comment">// Restore previous settings</span>
+         m_videoWidget-&gt;setBrightness(oldBrightness);
+         m_videoWidget-&gt;setSaturation(oldSaturation);
+         m_videoWidget-&gt;setHue(oldHue);
+         m_videoWidget-&gt;setContrast(oldContrast);
+         m_videoWidget-&gt;setAspectRatio(oldAspect);
+         m_videoWidget-&gt;setScaleMode(oldScale);
+         ui-&gt;audioEffectsCombo-&gt;setCurrentIndex(currentEffect);
+     }
+ }
+
+ void MediaPlayer::initVideoWindow()
+ {
+     QVBoxLayout *videoLayout = new QVBoxLayout();
+     videoLayout-&gt;addWidget(m_videoWidget);
+     videoLayout-&gt;setContentsMargins(0, 0, 0, 0);
+     m_videoWindow.setLayout(videoLayout);
+     m_videoWindow.setMinimumSize(100, 100);
+ }
+
+ void MediaPlayer::configureEffect()
+ {
+     if (!nextEffect)
+         return;
+
+     QList&lt;Phonon::Effect *&gt; currEffects = m_audioOutputPath.effects();
+     const QList&lt;Phonon::EffectDescription&gt; availableEffects = Phonon::BackendCapabilities::availableAudioEffects();
+     if (ui-&gt;audioEffectsCombo-&gt;currentIndex() &gt; 0) {
+         Phonon::EffectDescription chosenEffect = availableEffects[ui-&gt;audioEffectsCombo-&gt;currentIndex() - 1];
+
+         QDialog effectDialog;
+         effectDialog.setWindowTitle(tr(&quot;Configure effect&quot;));
+         QVBoxLayout *topLayout = new QVBoxLayout(&amp;effectDialog);
+
+         QLabel *description = new QLabel(&quot;&lt;b&gt;Description:&lt;/b&gt;&lt;br&gt;&quot; + chosenEffect.description(), &amp;effectDialog);
+         description-&gt;setWordWrap(true);
+         topLayout-&gt;addWidget(description);
+
+         QScrollArea *scrollArea = new QScrollArea(&amp;effectDialog);
+         topLayout-&gt;addWidget(scrollArea);
+
+         QVariantList savedParamValues;
+         foreach(Phonon::EffectParameter param, nextEffect-&gt;parameters()) {
+             savedParamValues &lt;&lt; nextEffect-&gt;parameterValue(param);
+         }
+
+         QWidget *scrollWidget = new Phonon::EffectWidget(nextEffect);
+         scrollWidget-&gt;setMinimumWidth(320);
+         scrollWidget-&gt;setContentsMargins(10, 10, 10,10);
+         scrollArea-&gt;setWidget(scrollWidget);
+
+         QDialogButtonBox *bbox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, Qt::Horizontal, &amp;effectDialog);
+         connect(bbox-&gt;button(QDialogButtonBox::Ok), SIGNAL(clicked()), &amp;effectDialog, SLOT(accept()));
+         connect(bbox-&gt;button(QDialogButtonBox::Cancel), SIGNAL(clicked()), &amp;effectDialog, SLOT(reject()));
+         topLayout-&gt;addWidget(bbox);
+
+         effectDialog.exec();
+
+         if (effectDialog.result() != QDialog::Accepted) {
+             <span class="comment">//we need to restore the paramaters values</span>
+             int currentIndex = 0;
+             foreach(Phonon::EffectParameter param, nextEffect-&gt;parameters()) {
+                 nextEffect-&gt;setParameterValue(param, savedParamValues.at(currentIndex++));
+             }
+
+         }
+     }
+ }
+
+ void MediaPlayer::handleDrop(QDropEvent *e)
+ {
+     QList&lt;QUrl&gt; urls = e-&gt;mimeData()-&gt;urls();
+     if (e-&gt;proposedAction() == Qt::MoveAction){
+         <span class="comment">// Just add to the queue:</span>
+         for (int i=0; i&lt;urls.size(); i++)
+             m_MediaObject.enqueue(Phonon::MediaSource(urls[i].toLocalFile()));
+     } else {
+         <span class="comment">// Create new queue:</span>
+         m_MediaObject.clearQueue();
+         if (urls.size() &gt; 0) {
+             QString fileName = urls[0].toLocalFile();
+             QDir dir(fileName);
+             if (dir.exists()) {
+                 dir.setFilter(QDir::Files);
+                 QStringList entries = dir.entryList();
+                 if (entries.size() &gt; 0) {
+                     setFile(fileName + QDir::separator() +  entries[0]);
+                     for (int i=1; i&lt; entries.size(); ++i)
+                         m_MediaObject.enqueue(fileName + QDir::separator() + entries[i]);
+                 }
+             } else {
+                 setFile(fileName);
+                 for (int i=1; i&lt;urls.size(); i++)
+                     m_MediaObject.enqueue(Phonon::MediaSource(urls[i].toLocalFile()));
+             }
+         }
+     }
+     forwardButton-&gt;setEnabled(m_MediaObject.queue().size() &gt; 0);
+     m_MediaObject.play();
+ }
+
+ void MediaPlayer::dropEvent(QDropEvent *e)
+ {
+     if (e-&gt;mimeData()-&gt;hasUrls() &amp;&amp; e-&gt;proposedAction() != Qt::LinkAction) {
+         e-&gt;acceptProposedAction();
+         handleDrop(e);
+     } else {
+         e-&gt;ignore();
+     }
+ }
+
+ void MediaPlayer::dragEnterEvent(QDragEnterEvent *e)
+ {
+     dragMoveEvent(e);
+ }
+
+ void MediaPlayer::dragMoveEvent(QDragMoveEvent *e)
+ {
+     if (e-&gt;mimeData()-&gt;hasUrls()) {
+         if (e-&gt;proposedAction() == Qt::CopyAction || e-&gt;proposedAction() == Qt::MoveAction){
+             e-&gt;acceptProposedAction();
+         }
+     }
+ }
+
+ void MediaPlayer::playPause()
+ {
+     if (m_MediaObject.state() == Phonon::PlayingState)
+         m_MediaObject.pause();
+     else {
+         if (m_MediaObject.currentTime() == m_MediaObject.totalTime())
+             m_MediaObject.seek(0);
+         m_MediaObject.play();
+     }
+ }
+
+ void MediaPlayer::setFile(const QString &amp;fileName)
+ {
+     setWindowTitle(fileName.right(fileName.length() - fileName.lastIndexOf('/') - 1));
+     m_MediaObject.setCurrentSource(Phonon::MediaSource(fileName));
+     m_MediaObject.play();
+ }
+
+ void MediaPlayer::openFile()
+ {
+     QStringList fileNames = QFileDialog::getOpenFileNames(this, QString(),
+                                                           QDesktopServices::storageLocation(QDesktopServices::MusicLocation));
+     m_MediaObject.clearQueue();
+     if (fileNames.size() &gt; 0) {
+         QString fileName = fileNames[0];
+         setFile(fileName);
+         for (int i=1; i&lt;fileNames.size(); i++)
+             m_MediaObject.enqueue(Phonon::MediaSource(fileNames[i]));
+     }
+     forwardButton-&gt;setEnabled(m_MediaObject.queue().size() &gt; 0);
+ }
+
+ void MediaPlayer::bufferStatus(int percent)
+ {
+     if (percent == 0 || percent == 100)
+         progressLabel-&gt;setText(QString());
+     else {
+         QString str = QString::fromLatin1(&quot;(%1%)&quot;).arg(percent);
+         progressLabel-&gt;setText(str);
+     }
+ }
+
+ void MediaPlayer::setSaturation(int val)
+ {
+     m_videoWidget-&gt;setSaturation(val / qreal(SLIDER_RANGE));
+ }
+
+ void MediaPlayer::setHue(int val)
+ {
+     m_videoWidget-&gt;setHue(val / qreal(SLIDER_RANGE));
+ }
+
+ void MediaPlayer::setAspect(int val)
+ {
+     m_videoWidget-&gt;setAspectRatio(Phonon::VideoWidget::AspectRatio(val));
+ }
+
+ void MediaPlayer::setScale(int val)
+ {
+     m_videoWidget-&gt;setScaleMode(Phonon::VideoWidget::ScaleMode(val));
+ }
+
+ void MediaPlayer::setBrightness(int val)
+ {
+     m_videoWidget-&gt;setBrightness(val / qreal(SLIDER_RANGE));
+ }
+
+ void MediaPlayer::setContrast(int val)
+ {
+     m_videoWidget-&gt;setContrast(val / qreal(SLIDER_RANGE));
+ }
+
+ void MediaPlayer::updateInfo()
+ {
+     int maxLength = 30;
+     QString font = &quot;&lt;font color=#ffeeaa&gt;&quot;;
+     QString fontmono = &quot;&lt;font family=\&quot;monospace,courier new\&quot; color=#ffeeaa&gt;&quot;;
+
+     QMap &lt;QString, QString&gt; metaData = m_MediaObject.metaData();
+     QString trackArtist = metaData.value(&quot;ARTIST&quot;);
+     if (trackArtist.length() &gt; maxLength)
+         trackArtist = trackArtist.left(maxLength) + &quot;...&quot;;
+
+     QString trackTitle = metaData.value(&quot;TITLE&quot;);
+     int trackBitrate = metaData.value(&quot;BITRATE&quot;).toInt();
+
+     QString fileName;
+     if (m_MediaObject.currentSource().type() == Phonon::MediaSource::Url) {
+         fileName = m_MediaObject.currentSource().url().toString();
+     } else {
+         fileName = m_MediaObject.currentSource().fileName();
+         fileName = fileName.right(fileName.length() - fileName.lastIndexOf('/') - 1);
+         if (fileName.length() &gt; maxLength)
+             fileName = fileName.left(maxLength) + &quot;...&quot;;
+     }
+
+     QString title;
+     if (!trackTitle.isEmpty()) {
+         if (trackTitle.length() &gt; maxLength)
+             trackTitle = trackTitle.left(maxLength) + &quot;...&quot;;
+         title = &quot;Title: &quot; + font + trackTitle + &quot;&lt;br&gt;&lt;/font&gt;&quot;;
+     } else if (!fileName.isEmpty()) {
+         if (fileName.length() &gt; maxLength)
+             fileName = fileName.left(maxLength) + &quot;...&quot;;
+         title = font + fileName + &quot;&lt;/font&gt;&quot;;
+         if (m_MediaObject.currentSource().type() == Phonon::MediaSource::Url) {
+             title.prepend(&quot;Url: &quot;);
+         } else {
+             title.prepend(&quot;File: &quot;);
+         }
+     }
+
+     QString artist;
+     if (!trackArtist.isEmpty())
+         artist = &quot;Artist:  &quot; + font + trackArtist + &quot;&lt;/font&gt;&quot;;
+
+     QString bitrate;
+     if (trackBitrate != 0)
+         bitrate = &quot;&lt;br&gt;Bitrate:  &quot; + font + QString::number(trackBitrate/1000) + &quot;kbit&lt;/font&gt;&quot;;
+
+     info-&gt;setText(title + artist + bitrate);
+ }
+
+ void MediaPlayer::updateTime()
+ {
+     long len = m_MediaObject.totalTime();
+     long pos = m_MediaObject.currentTime();
+     QString timeString;
+     if (pos || len)
+     {
+         int sec = pos/1000;
+         int min = sec/60;
+         int hour = min/60;
+         int msec = pos;
+
+         QTime playTime(hour%60, min%60, sec%60, msec%1000);
+         sec = len / 1000;
+         min = sec / 60;
+         hour = min / 60;
+         msec = len;
+
+         QTime stopTime(hour%60, min%60, sec%60, msec%1000);
+         QString timeFormat = &quot;m:ss&quot;;
+         if (hour &gt; 0)
+             timeFormat = &quot;h:mm:ss&quot;;
+         timeString = playTime.toString(timeFormat);
+         if (len)
+             timeString += &quot; / &quot; + stopTime.toString(timeFormat);
+     }
+     timeLabel-&gt;setText(timeString);
+ }
+
+ void MediaPlayer::rewind()
+ {
+     m_MediaObject.seek(0);
+ }
+
+ void MediaPlayer::forward()
+ {
+     QList&lt;Phonon::MediaSource&gt; queue = m_MediaObject.queue();
+     if (queue.size() &gt; 0) {
+         m_MediaObject.setCurrentSource(queue[0]);
+         forwardButton-&gt;setEnabled(queue.size() &gt; 1);
+         m_MediaObject.play();
+     }
+ }
+
+ void MediaPlayer::openUrl()
+ {
+     QSettings settings;
+     settings.beginGroup(QLatin1String(&quot;BrowserMainWindow&quot;));
+     QString sourceURL = settings.value(&quot;location&quot;).toString();
+     bool ok = false;
+     sourceURL = QInputDialog::getText(this, tr(&quot;Open Location&quot;), tr(&quot;Please enter a valid address here:&quot;), QLineEdit::Normal, sourceURL, &amp;ok);
+     if (ok &amp;&amp; !sourceURL.isEmpty()) {
+         setWindowTitle(sourceURL.right(sourceURL.length() - sourceURL.lastIndexOf('/') - 1));
+         m_MediaObject.setCurrentSource(Phonon::MediaSource(QUrl::fromEncoded(sourceURL.toUtf8())));
+         m_MediaObject.play();
+         settings.setValue(&quot;location&quot;, sourceURL);
+     }
+ }
+
+ void MediaPlayer::finished()
+ {
+ }
+
+ void MediaPlayer::showContextMenu(const QPoint &amp;p)
+ {
+     fileMenu-&gt;popup(m_videoWidget-&gt;isFullScreen() ? p : mapToGlobal(p));
+ }
+
+ void MediaPlayer::scaleChanged(QAction *act)
+ {
+     if (act-&gt;text() == tr(&quot;Scale and crop&quot;))
+         m_videoWidget-&gt;setScaleMode(Phonon::VideoWidget::ScaleAndCrop);
+     else
+         m_videoWidget-&gt;setScaleMode(Phonon::VideoWidget::FitInView);
+ }
+
+ void MediaPlayer::aspectChanged(QAction *act)
+ {
+     if (act-&gt;text() == tr(&quot;16/9&quot;))
+         m_videoWidget-&gt;setAspectRatio(Phonon::VideoWidget::AspectRatio16_9);
+     else if (act-&gt;text() == tr(&quot;Scale&quot;))
+         m_videoWidget-&gt;setAspectRatio(Phonon::VideoWidget::AspectRatioWidget);
+     else if (act-&gt;text() == tr(&quot;4/3&quot;))
+         m_videoWidget-&gt;setAspectRatio(Phonon::VideoWidget::AspectRatio4_3);
+     else
+         m_videoWidget-&gt;setAspectRatio(Phonon::VideoWidget::AspectRatioAuto);
+ }
+
+ void MediaPlayer::hasVideoChanged(bool bHasVideo)
+ {
+     info-&gt;setVisible(!bHasVideo);
+     m_videoWindow.setVisible(bHasVideo);
+ }</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

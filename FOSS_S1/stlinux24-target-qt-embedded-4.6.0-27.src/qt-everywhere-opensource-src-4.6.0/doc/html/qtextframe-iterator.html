@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qtextobject.cpp -->
+<head>
+  <title>Qt 4.6: iterator Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl/QTextFrame/iterator" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">iterator Class Reference<br /><span class="small-subtitle">(QTextFrame::iterator)<br />[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The iterator class provides an iterator for reading the contents of a <a href="qtextframe.html">QTextFrame</a>. <a href="#details">More...</a></p>
+<pre> #include &lt;<a href="qtextframe.html">QTextFrame</a>&gt;</pre><ul>
+<li><a href="qtextframe-iterator-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qtextframe-iterator.html#iterator">iterator</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qtextframe-iterator.html#iterator-3">iterator</a></b> ( const iterator &amp; <i>other</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qtextframe-iterator.html#atEnd">atEnd</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QTextBlock </td><td class="memItemRight" valign="bottom"><b><a href="qtextframe-iterator.html#currentBlock">currentBlock</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QTextFrame * </td><td class="memItemRight" valign="bottom"><b><a href="qtextframe-iterator.html#currentFrame">currentFrame</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QTextFrame * </td><td class="memItemRight" valign="bottom"><b><a href="qtextframe-iterator.html#parentFrame">parentFrame</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qtextframe-iterator.html#operator-not-eq">operator!=</a></b> ( const iterator &amp; <i>other</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">iterator &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qtextframe-iterator.html#operator-2b-2b">operator++</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">iterator </td><td class="memItemRight" valign="bottom"><b><a href="qtextframe-iterator.html#operator-2b-2b-2">operator++</a></b> ( int )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">iterator &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qtextframe-iterator.html#operator--">operator--</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">iterator </td><td class="memItemRight" valign="bottom"><b><a href="qtextframe-iterator.html#operator---2">operator--</a></b> ( int )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">iterator &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qtextframe-iterator.html#operator-eq">operator=</a></b> ( const iterator &amp; <i>other</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qtextframe-iterator.html#operator-eq-eq">operator==</a></b> ( const iterator &amp; <i>other</i> ) const</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The iterator class provides an iterator for reading the contents of a <a href="qtextframe.html">QTextFrame</a>.</p>
+<p>A frame consists of an arbitrary sequence of <a href="qtextblock.html">QTextBlock</a>s and child <a href="qtextframe.html">QTextFrame</a>s. This class provides a way to iterate over the child objects of a frame, and read their contents. It does not provide a way to modify the contents of the frame.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QTextFrame::iterator/iterator" />
+<h3 class="fn"><a name="iterator"></a>iterator::iterator ()</h3>
+<p>Constructs an invalid iterator.</p>
+<h3 class="fn"><a name="iterator-3"></a>iterator::iterator ( const iterator &amp; <i>other</i> )</h3>
+<p>Copy constructor. Constructs a copy of the <i>other</i> iterator.</p>
+<a name="//apple_ref/cpp/instm/QTextFrame::iterator/atEnd" />
+<h3 class="fn"><a name="atEnd"></a>bool iterator::atEnd () const</h3>
+<p>Returns true if the current item is the last item in the text frame.</p>
+<a name="//apple_ref/cpp/instm/QTextFrame::iterator/currentBlock" />
+<h3 class="fn"><a name="currentBlock"></a><a href="qtextblock.html">QTextBlock</a> iterator::currentBlock () const</h3>
+<p>Returns the current block the iterator points to. If the iterator points to a child frame, the returned block is invalid.</p>
+<p>See also <a href="qtextframe-iterator.html#currentFrame">currentFrame</a>().</p>
+<a name="//apple_ref/cpp/instm/QTextFrame::iterator/currentFrame" />
+<h3 class="fn"><a name="currentFrame"></a><a href="qtextframe.html">QTextFrame</a> * iterator::currentFrame () const</h3>
+<p>Returns the current frame pointed to by the iterator, or 0 if the iterator currently points to a block.</p>
+<p>See also <a href="qtextframe-iterator.html#currentBlock">currentBlock</a>().</p>
+<a name="//apple_ref/cpp/instm/QTextFrame::iterator/parentFrame" />
+<h3 class="fn"><a name="parentFrame"></a><a href="qtextframe.html">QTextFrame</a> * iterator::parentFrame () const</h3>
+<p>Returns the parent frame of the current frame.</p>
+<p>See also <a href="qtextframe-iterator.html#currentFrame">currentFrame</a>() and <a href="qtextframe.html#parentFrame">QTextFrame::parentFrame</a>().</p>
+<a name="//apple_ref/cpp/instm/QTextFrame::iterator/operator!=" />
+<h3 class="fn"><a name="operator-not-eq"></a>bool iterator::operator!= ( const iterator &amp; <i>other</i> ) const</h3>
+<p>Retuns true if the iterator is different from the <i>other</i> iterator; otherwise returns false.</p>
+<a name="//apple_ref/cpp/instm/QTextFrame::iterator/operator++" />
+<h3 class="fn"><a name="operator-2b-2b"></a>iterator &amp; iterator::operator++ ()</h3>
+<p>Moves the iterator to the next frame or block.</p>
+<p>See also <a href="qtextframe-iterator.html#currentBlock">currentBlock</a>() and <a href="qtextframe-iterator.html#currentFrame">currentFrame</a>().</p>
+<h3 class="fn"><a name="operator-2b-2b-2"></a>iterator iterator::operator++ ( int )</h3>
+<p>The postfix ++ operator (<tt>i++</tt>) advances the iterator to the next item in the text frame, and returns an iterator to the old item.</p>
+<a name="//apple_ref/cpp/instm/QTextFrame::iterator/operator--" />
+<h3 class="fn"><a name="operator--"></a>iterator &amp; iterator::operator-- ()</h3>
+<p>Moves the iterator to the previous frame or block.</p>
+<p>See also <a href="qtextframe-iterator.html#currentBlock">currentBlock</a>() and <a href="qtextframe-iterator.html#currentFrame">currentFrame</a>().</p>
+<h3 class="fn"><a name="operator---2"></a>iterator iterator::operator-- ( int )</h3>
+<p>The postfix -- operator (<tt>i--</tt>) makes the preceding item in the current frame, and returns an iterator to the old item.</p>
+<a name="//apple_ref/cpp/instm/QTextFrame::iterator/operator=" />
+<h3 class="fn"><a name="operator-eq"></a>iterator &amp; iterator::operator= ( const iterator &amp; <i>other</i> )</h3>
+<p>Assigns <i>other</i> to this iterator and returns a reference to this iterator.</p>
+<a name="//apple_ref/cpp/instm/QTextFrame::iterator/operator==" />
+<h3 class="fn"><a name="operator-eq-eq"></a>bool iterator::operator== ( const iterator &amp; <i>other</i> ) const</h3>
+<p>Retuns true if the iterator is the same as the <i>other</i> iterator; otherwise returns false.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

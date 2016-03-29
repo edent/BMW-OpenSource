@@ -1,0 +1,421 @@
+/****************************************************************************
+**
+** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+** All rights reserved.
+** Contact: Nokia Corporation (qt-info@nokia.com)
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:LGPL$
+** Commercial Usage
+** Licensees holding valid Qt Commercial licenses may use this file in
+** accordance with the Qt Commercial License Agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and Nokia.
+**
+** GNU Lesser General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU Lesser
+** General Public License version 2.1 as published by the Free Software
+** Foundation and appearing in the file LICENSE.LGPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU Lesser General Public License version 2.1 requirements
+** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+**
+** In addition, as a special exception, Nokia gives you certain additional
+** rights.  These rights are described in the Nokia Qt LGPL Exception
+** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+**
+** GNU General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU
+** General Public License version 3.0 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU General Public License version 3.0 requirements will be
+** met: http://www.gnu.org/copyleft/gpl.html.
+**
+** If you have questions regarding the use of this file, please contact
+** Nokia at qt-info@nokia.com.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+  \example xmlpatterns/filetree
+  \title File System Example
+
+  This example shows how to use QtXmlPatterns for querying non-XML
+  data that is modeled to look like XML. 
+
+  \tableofcontents
+
+  \section1 Introduction
+
+  The example models your computer's file system to look like XML and
+  allows you to query the file system with XQuery. Suppose we want to
+  find all the \c{cpp} files in the subtree beginning at
+  \c{/filetree}:
+
+  \image filetree_1-example.png
+
+  \section2 The User Inteface
+
+  The example is shown below. First, we use \c{File->Open Directory}
+  (not shown) to select the \c{/filetree} directory. Then we use the
+  combobox on the right to select the XQuery that searches for \c{cpp}
+  files (\c{listCPPFiles.xq}).  Selecting an XQuery runs the query,
+  which in this case traverses the model looking for all the \c{cpp}
+  files. The XQuery text and the query results are shown on the right:
+
+  \image filetree_2-example.png
+
+  Don't be mislead by the XML representation of the \c{/filetree}
+  directory shown on the left. This is not the node model itself but
+  the XML obtained by traversing the node model and outputting it as
+  XML. Constructing and using the custom node model is explained in
+  the code walk-through.
+
+  \section2 Running your own XQueries
+
+  You can write your own XQuery files and run them in the example
+  program. The file \c{xmlpatterns/filetree/queries.qrc} is the \l{The
+  Qt Resource System} {resource file} for this example. It is used in
+  \c{main.cpp} (\c{Q_INIT_RESOURCE(queries);}). It lists the XQuery
+  files (\c{.xq}) that can be selected in the combobox.
+
+  \quotefromfile examples/xmlpatterns/filetree/queries.qrc
+  \printuntil
+
+  To add your own queries to the example's combobox, store your
+  \c{.xq} files in the \c{examples/xmlpatterns/filetree/queries}
+  directory and add them to \c{queries.qrc} as shown above.
+
+  \section1 Code Walk-Through
+
+  The strategy is to create a custom node model that represents the
+  directory tree of the computer's file system. That tree structure is
+  non-XML data. The custom node model must have the same callback
+  interface as the XML node models that the QtXmlPatterns query engine
+  uses to execute queries. The query engine can then traverse the
+  custom node model as if it were traversing the node model built from
+  an XML document.
+
+  The required callback interface is in QAbstractXmlNodeModel, so we
+  create a custom node model by subclassing QAbstractXmlNodeModel and
+  providing implementations for its pure virtual functions. For many
+  cases, the implementations of several of the virtual functions are
+  always the same, so QtXmlPatterns also provides QSimpleXmlNodeModel,
+  which subclasses QAbstractXmlNodeModel and provides implementations
+  for the callback functions that you can ignore. By subclassing
+  QSimpleXmlNodeModel instead of QAbstractXmlNodeModel, you can reduce
+  development time.
+
+  \section2 The Custom Node Model Class: FileTree
+
+  The custom node model for this example is class \c{FileTree}, which
+  is derived from QSimpleXmlNodeModel. \c{FileTree} implements all the
+  callback functions that don't have standard implementations in
+  QSimpleXmlNodeModel. When you implement your own custom node model,
+  you must provide implementations for these callback functions:
+
+  \snippet examples/xmlpatterns/filetree/filetree.h 0
+  \snippet examples/xmlpatterns/filetree/filetree.h 1
+
+  The \c{FileTree} class declares four data members:
+  
+  \snippet examples/xmlpatterns/filetree/filetree.h 2
+
+  The QVector \c{m_fileInfos} will contain the node model. Each
+  QFileInfo in the vector will represent a file or a directory in the
+  file system. At this point it is instructive to note that although
+  the node model class for this example (\c{FileTree}) actually builds
+  and contains the custom node model, building the custom node model
+  isn't always required. The node model class for the \l{QObject XML
+  Model Example} {QObject node model example} does not build its node
+  model but instead uses an already existing QObject tree as its node
+  model and just implements the callback interface for that already
+  existing data structure. In this file system example, however,
+  although we have an already existing data structure, i.e. the file
+  system, that data structure is not in memory and is not in a form we
+  can use. So we must build an analog of the file system in memory
+  from instances of QFileInfo, and we use that analog as the custom
+  node model.
+  
+  The two sets of flags, \c{m_filterAllowAll} and \c{m_sortFlags},
+  contain OR'ed flags from QDir::Filters and QDir::SortFlags
+  respectively. They are set by the \c{FileTree} constructor and used
+  in calls to QDir::entryInfoList() for getting the child list for a
+  directory node, i.e. a QFileInfoList containing the file and
+  directory nodes for all the immediate children of a directory.
+
+  The QVector \c{m_names} is an auxiliary component of the node
+  model. It holds the XML element and attribute names (QXmlName) for
+  all the node types that will be found in the node model. \c{m_names}
+  is indexed by the enum \c{FileTree::Type}, which specifies the node
+  types:
+
+  \target Node_Type
+  \snippet examples/xmlpatterns/filetree/filetree.h 4
+
+  \c{Directory} and \c{File} will represent the XML element nodes for
+  directories and files respectively, and the other enum values will
+  represent the XML attribute nodes for a file's path, name, suffix,
+  its size in bytes, and its mime type. The \c{FileTree} constructor
+  initializes \c{m_names} with an appropriate QXmlName for each
+  element and attribute type:
+
+  \snippet examples/xmlpatterns/filetree/filetree.cpp 2
+
+  Note that the constructor does \e{not} pre-build the entire node
+  model. Instead, the node model is built \e{incrementally} as the
+  query engine evaluates a query. To see how the query engine causes
+  the node model to be built incrementally, see \l{Building And
+  Traversing The Node Model}. To see how the query engine accesses the
+  node model, see \l{Accessing the node model}. See also: \l{Node
+  Model Building Strategy}.
+
+  \section3 Accessing The Node Model
+
+  Since the node model is stored outside the query engine in the
+  \c{FileTree} class, the query engine knows nothing about it and can
+  only access it by calling functions in the callback interface. When
+  the query engine calls any callback function to access data in the
+  node model, it passes a QXmlNodeModelIndex to identify the node in
+  the node model that it wants to access.  Hence all the virtual
+  functions in the callback interface use a QXmlNodeModelIndex to
+  uniquely identify a node in the model.
+
+  We use the index of a QFileInfo in \c{m_fileInfos} to uniquely
+  identify a node in the node model. To get the QXmlNodeModelIndex for
+  a QFileInfo, the class uses the private function \c{toNodeIndex()}:
+
+  \target main toNodeIndex
+  \snippet examples/xmlpatterns/filetree/filetree.cpp 1
+
+  It searches the \c{m_fileInfos} vector for a QFileInfo that matches
+  \c{fileInfo}. If a match is found, its array index is passed to
+  QAbstractXmlNodeModel::createIndex() as the \c data value for the
+  QXmlNodeIndex. If no match is found, the unmatched QFileInfo is
+  appended to the vector, so this function is also doing the actual
+  incremental model building (see \l{Building And Traversing The Node
+  Model}).
+
+  Note that \c{toNodeIndex()} gets a \l{Node_Type} {node type} as the
+  second parameter, which it just passes on to
+  \l{QAbstractXmlNodeModel::createIndex()} {createIndex()} as the
+  \c{additionalData} value. Logically, this second parameter
+  represents a second dimension in the node model, where the first
+  dimension represents the \e element nodes, and the second dimension
+  represents each element's attribute nodes. The meaning is that each
+  QFileInfo in the \c{m_fileInfos} vector can represent an \e{element}
+  node \e{and} one or more \e{attribute} nodes. In particular, the
+  QFileInfo for a file will contain the values for the attribute nodes
+  path, name, suffix, size, and mime type (see
+  \c{FileTree::attributes()}). Since the attributes are contained in
+  the QFileInfo of the file element, there aren't actually any
+  attribute nodes in the node model. Hence, we can use a QVector for
+  \c{m_fileInfos}.
+
+  A convenience overloading of \l{toNodeIndex of convenience}
+  {toNodeIndex()} is also called in several places, wherever it is
+  known that the QXmlNodeModelIndex being requested is for a directory
+  or a file and not for an attribute. The convenience function takes
+  only the QFileInfo parameter and calls the other \l{main toNodeIndex}
+  {toNodeIndex()}, after obtaining either the Directory or File node
+  type directly from the QFileInfo:
+
+  \target toNodeIndex of convenience
+  \snippet examples/xmlpatterns/filetree/filetree.cpp 0
+
+  Note that the auxiliary vector \c{m_names} is accessed using the
+  \l{Node_Type} {node type}, for example:
+
+  \snippet examples/xmlpatterns/filetree/filetree.cpp 3
+
+  Most of the virtual functions in the callback interface are as
+  simple as the ones described so far, but the callback function used
+  for traversing (and building) the node model is more complex.
+
+  \section3 Building And Traversing The Node Model 
+
+  The node model in \c{FileTree} is not fully built before the query
+  engine begins evaluating the query. In fact, when the query engine
+  begins evaluating its first query, the only node in the node model
+  is the one representing the root directory for the selected part of
+  the file system. See \l{The UI Class: MainWindow} below for details
+  about how the UI triggers creation of the model.
+
+  The query engine builds the node model incrementally each time it
+  calls the \l{next node on axis} {nextFromSimpleAxis()} callback
+  function, as it traverses the node model to evaluate a query. Thus
+  the query engine only builds the region of the node model that it
+  needs for evaluating the query.
+
+  \l{next node on axis} {nextFromSimpleAxis()} takes an
+  \l{QAbstractXmlNodeModel::SimpleAxis} {axis identifier} and a
+  \l{QXmlNodeModelIndex} {node identifier} as parameters. The
+  \l{QXmlNodeModelIndex} {node identifier} represents the \e{context
+  node} (i.e. the query engine's current location in the model), and
+  the \l{QAbstractXmlNodeModel::SimpleAxis} {axis identifier}
+  represents the direction we want to move from the context node. The
+  function finds the appropriate next node and returns its
+  QXmlNodeModelIndex.
+
+  \l{next node on axis} {nextFromSimpleAxis()} is where most of the
+  work of implementing a custom node model will be required. The
+  obvious way to do it is to use a switch statement with a case for
+  each \l{QAbstractXmlNodeModel::SimpleAxis} {axis}.
+
+  \target next node on axis
+  \snippet examples/xmlpatterns/filetree/filetree.cpp 4
+
+  The first thing this function does is call \l{to file info}
+  {toFileInfo()} to get the QFileInfo of the context node. The use of
+  QVector::at() here is guaranteed to succeed because the context node
+  must already be in the node model, and hence must have a QFileInfo
+  in \c{m_fileInfos}.
+
+  \target to file info
+  \snippet examples/xmlpatterns/filetree/filetree.cpp 6
+
+  The \l{QAbstractXmlNodeModel::Parent} {Parent} case looks up the
+  context node's parent by constructing a QFileInfo from the context
+  node's \l{QFileInfo::absoluteFilePath()} {path} and passing it to
+  \l{main toNodeIndex} {toNodeIndex()} to find the QFileInfo in
+  \c{m_fileInfos}.
+
+  The \l{QAbstractXmlNodeModel::FirstChild} {FirstChild} case requires
+  that the context node must be a directory, because a file doesn't
+  have children. If the context node is not a directory, a default
+  constructed QXmlNodeModelIndex is returned. Otherwise,
+  QDir::entryInfoList() constructs a QFileInfoList of the context
+  node's children. The first QFileInfo in the list is passed to
+  \l{toNodeIndex of convenience} {toNodeIndex()} to get its
+  QXmlNodeModelIndex. Note that this will add the child to the node
+  model, if it isn't in the model yet.
+
+  The \l{QAbstractXmlNodeModel::PreviousSibling} {PreviousSibling} and
+  \l{QAbstractXmlNodeModel::NextSibling} {NextSibling} cases call the
+  \l{nextSibling helper} {nextSibling() helper function}. It takes the
+  QXmlNodeModelIndex of the context node, the QFileInfo of the context
+  node, and an offest of +1 or -1. The context node is a child of some
+  parent, so the function gets the parent and then gets the child list
+  for the parent. The child list is searched to find the QFileInfo of
+  the context node. It must be there. Then the offset is applied, -1
+  for the previous sibling and +1 for the next sibling. The resulting
+  index is passed to \l{toNodeIndex of convenience} {toNodeIndex()} to
+  get its QXmlNodeModelIndex. Note again that this will add the
+  sibling to the node model, if it isn't in the model yet.
+
+  \target nextSibling helper
+  \snippet examples/xmlpatterns/filetree/filetree.cpp 5
+
+  \section2 The UI Class: MainWindow
+
+  The example's UI is a conventional Qt GUI application inheriting
+  QMainWindow and the Ui_MainWindow base class generated by 
+  \l{Qt Designer Manual} {Qt Designer}.
+
+  \snippet examples/xmlpatterns/filetree/mainwindow.h 0
+
+  It contains the custom node model (\c{m_fileTree}) and an instance
+  of QXmlNodeModelIndex (\c{m_fileNode}) used for holding the node
+  index for the root of the file system subtree. \c{m_fileNode} will
+  be bound to a $variable in the XQuery to be evaluated.
+
+  Two actions of interest are handled by slot functions: \l{Selecting
+  A Directory To Model} and \l{Selecting And Running An XQuery}.
+
+  \section3 Selecting A Directory To Model
+
+  The user selects \c{File->Open Directory} to choose a directory to
+  be loaded into the custom node model. Choosing a directory signals
+  the \c{on_actionOpenDirectory_triggered()} slot:
+
+  \snippet examples/xmlpatterns/filetree/mainwindow.cpp 1
+
+  The slot function simply calls the private function
+  \c{loadDirectory()} with the path of the chosen directory:
+
+  \target the standard code pattern
+  \snippet examples/xmlpatterns/filetree/mainwindow.cpp 4
+
+  \c{loadDirectory()} demonstrates a standard code pattern for using
+  QtXmlPatterns programatically. First it gets the node model index
+  for the root of the selected directory. Then it creates an instance
+  of QXmlQuery and calls QXmlQuery::bindVariable() to bind the node
+  index to the XQuery variable \c{$fileTree}. It then calls
+  QXmlQuery::setQuery() to load the XQuery text.
+
+  \note QXmlQuery::bindVariable() must be called \e before calling
+  QXmlQuery::setQuery(), which loads and parses the XQuery text and
+  must have access to the variable binding as the text is parsed.
+
+  The next lines create an output device for outputting the query
+  result, which is then used to create a QXmlFormatter to format the
+  query result as XML. QXmlQuery::evaluateTo() is called to run the
+  query, and the formatted XML output is displayed in the left panel
+  of the UI window.
+
+  Finally, the private function \l{Selecting And Running An XQuery}
+  {evaluateResult()} is called to run the currently selected XQuery
+  over the custom node model.
+
+  \note As described in \l{Building And Traversing The Node Model},
+  the \c FileTree class wants to build the custom node model
+  incrementally as it evaluates the XQuery. But, because the
+  \c{loadDirectory()} function runs the \c{wholeTree.xq} XQuery, it
+  actually builds the entire node model anyway. See \l{Node Model
+  Building Strategy} for a discussion about building your custom node
+  model.
+
+  \section3 Selecting And Running An XQuery
+
+  The user chooses an XQuery from the menu in the combobox on the
+  right. Choosing an XQuery signals the
+  \c{on_queryBox_currentIndexChanged()} slot:
+  
+  \snippet examples/xmlpatterns/filetree/mainwindow.cpp 2
+
+  The slot function opens and loads the query file and then calls the
+  private function \c{evaluateResult()} to run the query:
+  
+  \snippet examples/xmlpatterns/filetree/mainwindow.cpp 3
+
+  \c{evaluateResult()} is a second example of the same code pattern
+  shown in \l{the standard code pattern} {loadDirectory()}. In this
+  case, it runs the XQuery currently selected in the combobox instead
+  of \c{qrc:/queries/wholeTree.xq}, and it outputs the query result to
+  the panel on the lower right of the UI window.
+
+  \section2 Node Model Building Strategy
+
+  We saw that the \l{The Custom Node Model Class: FileTree} {FileTree}
+  tries to build its custom node model incrementally, but we also saw
+  that the \l{the standard code pattern} {MainWindow::loadDirectory()}
+  function in the UI class immediately subverts the incremental build
+  by running the \c{wholeTree.xq} XQuery, which traverses the entire
+  selected directory, thereby causing the entire node model to be
+  built.
+
+  If we want to preserve the incremental build capability of the
+  \c{FileTree} class, we can strip the running of \c{wholeTree.xq} out
+  of \l{the standard code pattern} {MainWindow::loadDirectory()}:
+
+  \snippet examples/xmlpatterns/filetree/mainwindow.cpp 5
+  \snippet examples/xmlpatterns/filetree/mainwindow.cpp 6
+
+  Note, however, that \c{FileTree} doesn't have the capability of
+  deleting all or part of the node model. The node model, once built,
+  is only deleted when the \c{FileTree} instance goes out of scope.
+
+  In this example, each element node in the node model represents a
+  directory or a file in the computer's file system, and each node is
+  represented by an instance of QFileInfo. An instance of QFileInfo is
+  not costly to produce, but you might imagine a node model where
+  building new nodes is very costly. In such cases, the capability to
+  build the node model incrementally is important, because it allows
+  us to only build the region of the model we need for evaluating the
+  query. In other cases, it will be simpler to just build the entire
+  node model. 
+
+*/

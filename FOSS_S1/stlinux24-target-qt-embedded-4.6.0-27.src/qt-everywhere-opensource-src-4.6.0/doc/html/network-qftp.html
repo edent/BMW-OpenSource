@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- ftp.qdoc -->
+<head>
+  <title>Qt 4.6: FTP Example</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">FTP Example<br /><span class="subtitle"></span>
+</h1>
+<p>Files:</p>
+<ul>
+<li><a href="network-qftp-ftpwindow-cpp.html">network/qftp/ftpwindow.cpp</a></li>
+<li><a href="network-qftp-ftpwindow-h.html">network/qftp/ftpwindow.h</a></li>
+<li><a href="network-qftp-sym-iap-util-h.html">network/qftp/sym_iap_util.h</a></li>
+<li><a href="network-qftp-main-cpp.html">network/qftp/main.cpp</a></li>
+<li><a href="network-qftp-ftp-qrc.html">network/qftp/ftp.qrc</a></li>
+<li><a href="network-qftp-qftp-pro.html">network/qftp/qftp.pro</a></li>
+</ul>
+<p>The FTP example demonstrates a simple FTP client that can be used to list the available files on an FTP server and download them.</p>
+<p align="center"><img src="images/ftp-example.png" /></p><p>The user of the example can enter the address or hostname of an FTP server in the <b>Ftp Server</b> line edit, and then push the <b>Connect</b> button to connect to it. A list of the server's top-level directory is then presented in the <b>File List</b> tree view. If the selected item in the view is a file, the user can download it by pushing the <b>Download</b> button. An item representing a directory can be double clicked with the mouse to show the contents of that directory in the view.</p>
+<p>The functionality required for the example is implemented in the <a href="qftp.html">QFtp</a> class, which provides an easy, high-level interface to the file transfer protocol. FTP operations are requested through <a href="qftp.html#Command-enum">QFtp::Command</a>s. The operations are asynchronous. <a href="qftp.html">QFtp</a> will notify us through signals when commands are started and finished.</p>
+<p>We have one class, <tt>FtpWindow</tt>, which sets up the GUI and handles the FTP functionality. We will now go through its definition and implementation - focusing on the code concerning FTP. The code for managing the GUI is explained in other examples.</p>
+<a name="ftpwindow-class-definition"></a>
+<h2>FtpWindow Class Definition</h2>
+<p>The <tt>FtpWindow</tt> class displays a window, in which the user can connect to and browse the contents of an FTP server. The slots of <tt>FtpWindow</tt> are connected to its widgets, and contain the functionality for managing the FTP connection. We also connect to signals in <a href="qftp.html">QFtp</a>, which tells us when the <a href="qftp.html#Command-enum">commands</a> we request are finished, the progress of current commands, and information about files on the server.</p>
+<pre> private slots:
+     void connectOrDisconnect();
+     void downloadFile();
+     void cancelDownload();
+
+     void ftpCommandFinished(int commandId, bool error);
+     void addToList(const QUrlInfo &amp;urlInfo);
+     void processItem(QTreeWidgetItem *item, int column);
+     void cdToParent();
+     void updateDataTransferProgress(qint64 readBytes,
+                                     qint64 totalBytes);
+     void enableDownloadButton();</pre>
+<p>We will look at each slot when we examine the <tt>FtpWindow</tt> implementation in the next section. We also make use of a few private variables:</p>
+<pre>     QHash&lt;QString, bool&gt; isDirectory;
+     QString currentPath;
+     QFtp *ftp;
+     QFile *file;
+
+ #ifdef Q_OS_SYMBIAN
+     bool bDefaultIapSet;
+ #endif</pre>
+<p>The <tt>isDirectory</tt> hash keeps a history of all entries explored on the FTP server, and registers whether an entry represents a directory or a file. We use the <a href="qfile.html">QFile</a> object to download files from the FTP server.</p>
+<a name="ftpwindow-class-implementation"></a>
+<h2>FtpWindow Class Implementation</h2>
+<p>We skip the <tt>FtpWindow</tt> constructor as it only contains code for setting up the GUI, which is explained in other examples.</p>
+<p>We move on to the slots, starting with <tt>connectOrDisconnect()</tt>.</p>
+<pre> void FtpWindow::connectOrDisconnect()
+ {
+ #ifdef Q_OS_SYMBIAN
+    if(!bDefaultIapSet) {
+        qt_SetDefaultIap();
+        bDefaultIapSet = true;
+    }
+ #endif
+     if (ftp) {
+         ftp-&gt;abort();
+         ftp-&gt;deleteLater();
+         ftp = 0;</pre>
+<p>If <tt>ftp</tt> is already pointing to a <a href="qftp.html">QFtp</a> object, we <a href="qftp.html#Command-enum">QFtp::Close</a> its FTP connection and delete the object it points to. Note that we do not delete the object using standard C++ <tt>delete</tt> as we need it to finish its abort operation.</p>
+<pre>     ...
+     ftp = new QFtp(this);
+     connect(ftp, SIGNAL(commandFinished(int, bool)),
+             this, SLOT(ftpCommandFinished(int, bool)));
+     connect(ftp, SIGNAL(listInfo(const QUrlInfo &amp;)),
+             this, SLOT(addToList(const QUrlInfo &amp;)));
+     connect(ftp, SIGNAL(dataTransferProgress(qint64, qint64)),
+             this, SLOT(updateDataTransferProgress(qint64, qint64)));
+
+     fileList-&gt;clear();
+     currentPath.clear();
+     isDirectory.clear();</pre>
+<p>If we get here, <tt>connectOrDisconnect()</tt> was called to establish a new FTP connection. We create a new <a href="qftp.html">QFtp</a> for our new connection, and connect its signals to slots in <tt>FtpWindow</tt>. The <a href="qftp.html#listInfo">listInfo()</a> signal is emitted whenever information about a single file on the sever has been resolved. This signal is sent when we ask <a href="qftp.html">QFtp</a> to <a href="qftp.html#list">list()</a> the contents of a directory. Finally, the <a href="qftp.html#dataTransferProgress">dataTransferProgress()</a> signal is emitted repeatedly during an FTP file transfer, giving us progress reports.</p>
+<pre>     QUrl url(ftpServerLineEdit-&gt;text());
+     if (!url.isValid() || url.scheme().toLower() != QLatin1String(&quot;ftp&quot;)) {
+         ftp-&gt;connectToHost(ftpServerLineEdit-&gt;text(), 21);
+         ftp-&gt;login();
+     } else {
+         ftp-&gt;connectToHost(url.host(), url.port(21));
+
+         if (!url.userName().isEmpty())
+             ftp-&gt;login(QUrl::fromPercentEncoding(url.userName().toLatin1()), url.password());
+         else
+             ftp-&gt;login();
+         if (!url.path().isEmpty())
+             ftp-&gt;cd(url.path());
+     }</pre>
+<p>The <b>Ftp Server</b> line edit contains the IP address or hostname of the server to which we want to connect. We first check that the URL is a valid FTP sever address. If it isn't, we still try to connect using the plain text in <tt>ftpServerLineEdit</tt>. In either case, we assume that port <tt>21</tt> is used.</p>
+<p>If the URL does not contain a user name and password, we use <a href="qftp.html#login">QFtp::login</a>(), which will attempt to log into the FTP sever as an anonymous user. The <a href="qftp.html">QFtp</a> object will now notify us when it has connected to the FTP server; it will also send a signal if it fails to connect or the username and password were rejected.</p>
+<p>We move on to the <tt>downloadFile()</tt> slot:</p>
+<pre> void FtpWindow::downloadFile()
+ {
+     QString fileName = fileList-&gt;currentItem()-&gt;text(0);
+     ...
+     file = new QFile(fileName);
+     if (!file-&gt;open(QIODevice::WriteOnly)) {
+         QMessageBox::information(this, tr(&quot;FTP&quot;),
+                                  tr(&quot;Unable to save the file %1: %2.&quot;)
+                                  .arg(fileName).arg(file-&gt;errorString()));
+         delete file;
+         return;
+     }
+
+     ftp-&gt;get(fileList-&gt;currentItem()-&gt;text(0), file);
+
+     progressDialog-&gt;setLabelText(tr(&quot;Downloading %1...&quot;).arg(fileName));
+     downloadButton-&gt;setEnabled(false);
+     progressDialog-&gt;exec();
+ }</pre>
+<p>We first fetch the name of the file, which we find in the selected item of <tt>fileList</tt>. We then start the download by using <a href="qftp.html#get">QFtp::get</a>(). <a href="qftp.html">QFtp</a> will send progress signals during the download and a signal when the download is completed.</p>
+<pre> void FtpWindow::cancelDownload()
+ {
+     ftp-&gt;abort();
+ }</pre>
+<p><a href="qftp.html">QFtp</a> supports canceling the download of files.</p>
+<pre> void FtpWindow::ftpCommandFinished(int, bool error)
+ {
+ #ifndef QT_NO_CURSOR
+     setCursor(Qt::ArrowCursor);
+ #endif
+
+     if (ftp-&gt;currentCommand() == QFtp::ConnectToHost) {
+         if (error) {
+             QMessageBox::information(this, tr(&quot;FTP&quot;),
+                                      tr(&quot;Unable to connect to the FTP server &quot;
+                                         &quot;at %1. Please check that the host &quot;
+                                         &quot;name is correct.&quot;)
+                                      .arg(ftpServerLineEdit-&gt;text()));
+             connectOrDisconnect();
+             return;
+         }
+         statusLabel-&gt;setText(tr(&quot;Logged onto %1.&quot;)
+                              .arg(ftpServerLineEdit-&gt;text()));
+         fileList-&gt;setFocus();
+         downloadButton-&gt;setDefault(true);
+         connectButton-&gt;setEnabled(true);
+         return;
+     }</pre>
+<p>The <tt>ftpCommandFinished()</tt> slot is called when <a href="qftp.html">QFtp</a> has finished a <a href="qftp.html#Command-enum">QFtp::Command</a>. If an error occurred during the command, <a href="qftp.html">QFtp</a> will set <tt>error</tt> to one of the values in the <a href="qftp.html#Error-enum">QFtp::Error</a> enum; otherwise, <tt>error</tt> is zero.</p>
+<pre>     if (ftp-&gt;currentCommand() == QFtp::Login)
+         ftp-&gt;list();</pre>
+<p>After login, the <a href="qftp.html#list">QFtp::list</a>() function will list the top-level directory on the server. addToList() is connected to <a href="qftp.html#listInfo">QFtp::listInfo</a>(), and will be invoked for each entry in that directory.</p>
+<pre>     if (ftp-&gt;currentCommand() == QFtp::Get) {
+         if (error) {
+             statusLabel-&gt;setText(tr(&quot;Canceled download of %1.&quot;)
+                                  .arg(file-&gt;fileName()));
+             file-&gt;close();
+             file-&gt;remove();
+         } else {
+             statusLabel-&gt;setText(tr(&quot;Downloaded %1 to current directory.&quot;)
+                                  .arg(file-&gt;fileName()));
+             file-&gt;close();
+         }
+         delete file;
+         enableDownloadButton();
+         progressDialog-&gt;hide();</pre>
+<p>When a <a href="qftp.html#Command-enum">Get</a> command is finished, a file has finished downloading (or an error occurred during the download).</p>
+<pre>     } else if (ftp-&gt;currentCommand() == QFtp::List) {
+         if (isDirectory.isEmpty()) {
+             fileList-&gt;addTopLevelItem(new QTreeWidgetItem(QStringList() &lt;&lt; tr(&quot;&lt;empty&gt;&quot;)));
+             fileList-&gt;setEnabled(false);
+         }
+     }</pre>
+<p>After a <a href="qftp.html#Command-enum">List</a> command is performed, we have to check if no entries were found (in which case our <tt>addToList()</tt> function would not have been called).</p>
+<p>Let's continue with the <tt>addToList()</tt> slot:</p>
+<pre> void FtpWindow::addToList(const QUrlInfo &amp;urlInfo)
+ {
+     QTreeWidgetItem *item = new QTreeWidgetItem;
+     item-&gt;setText(0, urlInfo.name());
+     item-&gt;setText(1, QString::number(urlInfo.size()));
+     item-&gt;setText(2, urlInfo.owner());
+     item-&gt;setText(3, urlInfo.group());
+     item-&gt;setText(4, urlInfo.lastModified().toString(&quot;MMM dd yyyy&quot;));
+
+     QPixmap pixmap(urlInfo.isDir() ? &quot;:/images/dir.png&quot; : &quot;:/images/file.png&quot;);
+     item-&gt;setIcon(0, pixmap);
+
+     isDirectory[urlInfo.name()] = urlInfo.isDir();
+     fileList-&gt;addTopLevelItem(item);
+     if (!fileList-&gt;currentItem()) {
+         fileList-&gt;setCurrentItem(fileList-&gt;topLevelItem(0));
+         fileList-&gt;setEnabled(true);
+     }
+ }</pre>
+<p>When a new file has been resolved during a <a href="qftp.html#Command-enum">QFtp::List</a> command, this slot is invoked with a <a href="qurlinfo.html">QUrlInfo</a> describing the file. We create a separate row for the file in <tt>fileList</tt>. If <tt>fileList</tt> does not have a current item, we set the new item to be the current item.</p>
+<pre> void FtpWindow::processItem(QTreeWidgetItem *item, int <span class="comment">/*column*/</span>)
+ {
+     QString name = item-&gt;text(0);
+     if (isDirectory.value(name)) {
+         fileList-&gt;clear();
+         isDirectory.clear();
+         currentPath += &quot;/&quot; + name;
+         ftp-&gt;cd(name);
+         ftp-&gt;list();
+         cdToParentButton-&gt;setEnabled(true);
+ #ifndef QT_NO_CURSOR
+         setCursor(Qt::WaitCursor);
+ #endif
+         return;
+     }
+ }</pre>
+<p>The <tt>processItem()</tt> slot is called when an item is double clicked in the <b>File List</b>. If the item represents a directory, we want to load the contents of that directory with <a href="qftp.html#list">QFtp::list</a>().</p>
+<pre> void FtpWindow::cdToParent()
+ {
+ #ifndef QT_NO_CURSOR
+     setCursor(Qt::WaitCursor);
+ #endif
+     fileList-&gt;clear();
+     isDirectory.clear();
+     currentPath = currentPath.left(currentPath.lastIndexOf('/'));
+     if (currentPath.isEmpty()) {
+         cdToParentButton-&gt;setEnabled(false);
+         ftp-&gt;cd(&quot;/&quot;);
+     } else {
+         ftp-&gt;cd(currentPath);
+     }
+     ftp-&gt;list();
+ }</pre>
+<p><tt>cdToParent()</tt> is invoked when the user requests to go to the parent directory of the one displayed in the file list. After changing the directory, we <a href="qftp.html#Command-enum">QFtp::List</a> its contents.</p>
+<pre> void FtpWindow::updateDataTransferProgress(qint64 readBytes,
+                                            qint64 totalBytes)
+ {
+     progressDialog-&gt;setMaximum(totalBytes);
+     progressDialog-&gt;setValue(readBytes);
+ }</pre>
+<p>The <tt>updateDataTransferProgress()</tt> slot is called regularly by <a href="qftp.html#dataTransferProgress">QFtp::dataTransferProgress</a>() when a file download is in progress. We use a <a href="qprogressdialog.html">QProgressDialog</a> to show the download progression to the user.</p>
+<pre> void FtpWindow::enableDownloadButton()
+ {
+     QTreeWidgetItem *current = fileList-&gt;currentItem();
+     if (current) {
+         QString currentFile = current-&gt;text(0);
+         downloadButton-&gt;setEnabled(!isDirectory.value(currentFile));
+     } else {
+         downloadButton-&gt;setEnabled(false);
+     }
+ }</pre>
+<p>The <tt>enableDownloadButton()</tt> is called whenever the current item in <tt>fileList</tt> changes. If the item represents a file, the <b>Enable Download</b> Button should be enabled; otherwise, it is disabled.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

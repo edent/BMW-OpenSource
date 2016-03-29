@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: context2d.pro Example File (script/context2d/context2d.pro)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">context2d.pro Example File<br /><span class="small-subtitle">script/context2d/context2d.pro</span>
+</h1>
+<pre> TEMPLATE = app
+ QT += script
+ # Input
+ HEADERS += qcontext2dcanvas.h \
+            context2d.h \
+            domimage.h \
+            environment.h \
+            window.h
+ SOURCES += qcontext2dcanvas.cpp \
+            context2d.cpp \
+            domimage.cpp \
+            environment.cpp \
+            window.cpp \
+            main.cpp
+ RESOURCES += context2d.qrc
+
+ contains(QT_CONFIG, scripttools): QT += scripttools
+
+ # install
+ target.path = $$[QT_INSTALL_EXAMPLES]/script/context2d
+ sources.files = $$SOURCES $$HEADERS $$RESOURCES $$FORMS context2d.pro scripts
+ sources.path = $$[QT_INSTALL_EXAMPLES]/script/context2d
+ INSTALLS += target sources
+
+ symbian:{
+     TARGET.UID3 = 0xA000C608
+     include($$QT_SOURCE_TREE/examples/symbianpkgrules.pri)
+     TARGET.EPOCHEAPSIZE = 0x200000 0xA00000
+     contextScripts.path = .
+     contextScripts.sources = scripts
+     DEPLOYMENT += contextScripts
+ }</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

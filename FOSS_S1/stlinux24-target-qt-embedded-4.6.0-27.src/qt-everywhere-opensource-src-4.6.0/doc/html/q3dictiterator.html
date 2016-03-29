@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- q3dict.qdoc -->
+<head>
+  <title>Qt 4.6: Q3DictIterator Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//Q3DictIterator" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">Q3DictIterator Class Reference<br /><span class="small-subtitle">[<a href="qt3support.html">Qt3Support</a> module]</span>
+</h1>
+<p>The Q3DictIterator class provides an iterator for <a href="q3dict.html">Q3Dict</a> collections. <a href="#details">More...</a></p>
+<pre> #include &lt;Q3DictIterator&gt;</pre><p><b>This class is part of the Qt 3 support library.</b> It is provided to keep old source code working. We strongly advise against using it in new code. See <a href="porting4.html">Porting to Qt 4</a> for more information.</p>
+<ul>
+<li><a href="q3dictiterator-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="q3dictiterator.html#Q3DictIterator">Q3DictIterator</a></b> ( const Q3Dict&lt;type&gt; &amp; <i>dict</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="q3dictiterator.html#dtor.Q3DictIterator">~Q3DictIterator</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">uint </td><td class="memItemRight" valign="bottom"><b><a href="q3dictiterator.html#count">count</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">type * </td><td class="memItemRight" valign="bottom"><b><a href="q3dictiterator.html#current">current</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="q3dictiterator.html#currentKey">currentKey</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="q3dictiterator.html#isEmpty">isEmpty</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">type * </td><td class="memItemRight" valign="bottom"><b><a href="q3dictiterator.html#toFirst">toFirst</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="q3dictiterator.html#operator-type--2a">operator type *</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">type * </td><td class="memItemRight" valign="bottom"><b><a href="q3dictiterator.html#operator-28-29">operator()</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">type * </td><td class="memItemRight" valign="bottom"><b><a href="q3dictiterator.html#operator-2b-2b">operator++</a></b> ()</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The Q3DictIterator class provides an iterator for <a href="q3dict.html">Q3Dict</a> collections.</p>
+<p>Q3DictIterator is implemented as a template class. Define a template instance Q3DictIterator&lt;X&gt; to create a dictionary iterator that operates on <a href="q3dict.html">Q3Dict</a>&lt;X&gt; (dictionary of X*).</p>
+<p>The traversal order is arbitrary; when we speak of the &quot;first&quot;, &quot;last&quot; and &quot;next&quot; item we are talking in terms of this arbitrary order.</p>
+<p>Multiple iterators may independently traverse the same dictionary. A <a href="q3dict.html">Q3Dict</a> knows about all the iterators that are operating on the dictionary. When an item is removed from the dictionary, <a href="q3dict.html">Q3Dict</a> updates all iterators that are referring to the removed item to point to the next item in the (arbitrary) traversal order.</p>
+<p>Example:</p>
+<pre> Q3Dict&lt;QLineEdit&gt; fields;
+ fields.insert( &quot;forename&quot;, new QLineEdit( this ) );
+ fields.insert( &quot;surname&quot;, new QLineEdit( this ) );
+ fields.insert( &quot;age&quot;, new QLineEdit( this ) );
+
+ fields[&quot;forename&quot;]-&gt;setText( &quot;Homer&quot; );
+ fields[&quot;surname&quot;]-&gt;setText( &quot;Simpson&quot; );
+ fields[&quot;age&quot;]-&gt;setText( &quot;45&quot; );
+
+ Q3DictIterator&lt;QLineEdit&gt; it( fields );
+ for( ; it.current(); ++it )
+     cout &lt;&lt; it.currentKey() &lt;&lt; &quot;: &quot; &lt;&lt; it.current()-&gt;text() &lt;&lt; endl;
+ cout &lt;&lt; endl;
+
+ // Output (random order):
+ //      age: 45
+ //      surname: Simpson
+ //      forename: Homer</pre>
+<p>In the example we insert some pointers to line edits into a dictionary, then iterate over the dictionary printing the strings associated with the line edits.</p>
+<p>See also <a href="q3dict.html">Q3Dict</a>.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/Q3DictIterator/Q3DictIterator" />
+<h3 class="fn"><a name="Q3DictIterator"></a>Q3DictIterator::Q3DictIterator ( const <a href="q3dict.html">Q3Dict</a>&lt;type&gt; &amp; <i>dict</i> )</h3>
+<p>Constructs an iterator for <i>dict</i>. The current iterator item is set to point to the first item in the dictionary, <i>dict</i>. First in this context means first in the arbitrary traversal order.</p>
+<a name="//apple_ref/cpp/instm/Q3DictIterator/~Q3DictIterator" />
+<h3 class="fn"><a name="dtor.Q3DictIterator"></a>Q3DictIterator::~Q3DictIterator ()</h3>
+<p>Destroys the iterator.</p>
+<a name="//apple_ref/cpp/instm/Q3DictIterator/count" />
+<h3 class="fn"><a name="count"></a><a href="qtglobal.html#uint-typedef">uint</a> Q3DictIterator::count () const</h3>
+<p>Returns the number of items in the dictionary over which the iterator is operating.</p>
+<p>See also <a href="q3dictiterator.html#isEmpty">isEmpty</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3DictIterator/current" />
+<h3 class="fn"><a name="current"></a>type * Q3DictIterator::current () const</h3>
+<p>Returns a pointer to the current iterator item's value.</p>
+<a name="//apple_ref/cpp/instm/Q3DictIterator/currentKey" />
+<h3 class="fn"><a name="currentKey"></a><a href="qstring.html">QString</a> Q3DictIterator::currentKey () const</h3>
+<p>Returns the current iterator item's key.</p>
+<a name="//apple_ref/cpp/instm/Q3DictIterator/isEmpty" />
+<h3 class="fn"><a name="isEmpty"></a>bool Q3DictIterator::isEmpty () const</h3>
+<p>Returns TRUE if the dictionary is empty, i.e&#x2e; <a href="q3dictiterator.html#count">count</a>() == 0; otherwise returns FALSE.</p>
+<p>See also <a href="q3dictiterator.html#count">count</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3DictIterator/toFirst" />
+<h3 class="fn"><a name="toFirst"></a>type * Q3DictIterator::toFirst ()</h3>
+<p>Resets the iterator, making the first item the first current item. First in this context means first in the arbitrary traversal order. Returns a pointer to this item.</p>
+<p>If the dictionary is empty it sets the current item to 0 and returns 0.</p>
+<a name="//apple_ref/cpp/instm/Q3DictIterator/operator type *" />
+<h3 class="fn"><a name="operator-type--2a"></a>Q3DictIterator::operator type * () const</h3>
+<p>Cast operator. Returns a pointer to the current iterator item. Same as <a href="q3dictiterator.html#current">current</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3DictIterator/operator" />
+<h3 class="fn"><a name="operator-28-29"></a>type * Q3DictIterator::operator() ()</h3>
+<p>Makes the next item current and returns the original current item.</p>
+<p>If the current iterator item was the last item in the dictionary or if it was 0, 0 is returned.</p>
+<a name="//apple_ref/cpp/instm/Q3DictIterator/operator++" />
+<h3 class="fn"><a name="operator-2b-2b"></a>type * Q3DictIterator::operator++ ()</h3>
+<p>Prefix ++ makes the next item current and returns the new current item.</p>
+<p>If the current iterator item was the last item in the dictionary or if it was 0, 0 is returned.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

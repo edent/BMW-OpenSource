@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qsqlrelationaldelegate.cpp -->
+<head>
+  <title>Qt 4.6: QSqlRelationalDelegate Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QSqlRelationalDelegate" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QSqlRelationalDelegate Class Reference<br /><span class="small-subtitle">[<a href="qtsql.html">QtSql</a> module]</span>
+</h1>
+<p>The QSqlRelationalDelegate class provides a delegate that is used to display and edit data from a <a href="qsqlrelationaltablemodel.html">QSqlRelationalTableModel</a>. <a href="#details">More...</a></p>
+<pre> #include &lt;QSqlRelationalDelegate&gt;</pre><p><b>This class is not part of the Qt GUI Framework Edition.</b></p>
+<p>Inherits <a href="qitemdelegate.html">QItemDelegate</a>.</p>
+<ul>
+<li><a href="qsqlrelationaldelegate-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qsqlrelationaldelegate.html#QSqlRelationalDelegate">QSqlRelationalDelegate</a></b> ( QObject * <i>parent</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qsqlrelationaldelegate.html#dtor.QSqlRelationalDelegate">~QSqlRelationalDelegate</a></b> ()</td></tr>
+</table>
+<hr />
+<a name="reimplemented-public-functions"></a>
+<h2>Reimplemented Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual QWidget * </td><td class="memItemRight" valign="bottom"><b><a href="qsqlrelationaldelegate.html#createEditor">createEditor</a></b> ( QWidget * <i>parent</i>, const QStyleOptionViewItem &amp; <i>option</i>, const QModelIndex &amp; <i>index</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qsqlrelationaldelegate.html#setEditorData">setEditorData</a></b> ( QWidget * <i>editor</i>, const QModelIndex &amp; <i>index</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qsqlrelationaldelegate.html#setModelData">setModelData</a></b> ( QWidget * <i>editor</i>, QAbstractItemModel * <i>model</i>, const QModelIndex &amp; <i>index</i> ) const</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>10 public functions inherited from <a href="qitemdelegate.html#public-functions">QItemDelegate</a></li>
+<li><div bar="2" class="fn"></div>7 public functions inherited from <a href="qabstractitemdelegate.html#public-functions">QAbstractItemDelegate</a></li>
+<li><div bar="2" class="fn"></div>29 public functions inherited from <a href="qobject.html#public-functions">QObject</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li><div class="fn"></div>1 property inherited from <a href="qitemdelegate.html#properties">QItemDelegate</a></li>
+<li><div class="fn"></div>1 property inherited from <a href="qobject.html#properties">QObject</a></li>
+<li><div class="fn"></div>1 public slot inherited from <a href="qabstractitemdelegate.html#public-slots">QAbstractItemDelegate</a></li>
+<li><div class="fn"></div>1 public slot inherited from <a href="qobject.html#public-slots">QObject</a></li>
+<li><div class="fn"></div>3 signals inherited from <a href="qabstractitemdelegate.html#signals">QAbstractItemDelegate</a></li>
+<li><div class="fn"></div>1 signal inherited from <a href="qobject.html#signals">QObject</a></li>
+<li><div class="fn"></div>5 static public members inherited from <a href="qobject.html#static-public-members">QObject</a></li>
+<li><div class="fn"></div>7 protected functions inherited from <a href="qitemdelegate.html#protected-functions">QItemDelegate</a></li>
+<li><div class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QSqlRelationalDelegate class provides a delegate that is used to display and edit data from a <a href="qsqlrelationaltablemodel.html">QSqlRelationalTableModel</a>.</p>
+<p>Unlike the default delegate, QSqlRelationalDelegate provides a combobox for fields that are foreign keys into other tables. To use the class, simply call <a href="qabstractitemview.html#setItemDelegate">QAbstractItemView::setItemDelegate</a>() on the view with an instance of QSqlRelationalDelegate:</p>
+<pre>     QTableView *view = new QTableView;
+     view-&gt;setModel(model);
+     view-&gt;setItemDelegate(new QSqlRelationalDelegate(view));</pre>
+<p>The <a href="sql-relationaltablemodel.html">Relational Table Model</a> example (shown below) illustrates how to use QSqlRelationalDelegate in conjunction with <a href="qsqlrelationaltablemodel.html">QSqlRelationalTableModel</a> to provide tables with foreign key support.</p>
+<p align="center"><img src="images/relationaltable.png" /></p><p>See also <a href="qsqlrelationaltablemodel.html">QSqlRelationalTableModel</a> and <a href="model-view-programming.html">Model/View Programming</a>.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QSqlRelationalDelegate/QSqlRelationalDelegate" />
+<h3 class="fn"><a name="QSqlRelationalDelegate"></a>QSqlRelationalDelegate::QSqlRelationalDelegate ( <a href="qobject.html">QObject</a> * <i>parent</i> = 0 )</h3>
+<p>Constructs a <a href="qsqlrelationaldelegate.html">QSqlRelationalDelegate</a> object with the given <i>parent</i>.</p>
+<a name="//apple_ref/cpp/instm/QSqlRelationalDelegate/~QSqlRelationalDelegate" />
+<h3 class="fn"><a name="dtor.QSqlRelationalDelegate"></a>QSqlRelationalDelegate::~QSqlRelationalDelegate ()</h3>
+<p>Destroys the <a href="qsqlrelationaldelegate.html">QSqlRelationalDelegate</a> object and frees any allocated resources.</p>
+<a name="//apple_ref/cpp/instm/QSqlRelationalDelegate/createEditor" />
+<h3 class="fn"><a name="createEditor"></a><a href="qwidget.html">QWidget</a> * QSqlRelationalDelegate::createEditor ( <a href="qwidget.html">QWidget</a> * <i>parent</i>, const <a href="qstyleoptionviewitem.html">QStyleOptionViewItem</a> &amp; <i>option</i>, const <a href="qmodelindex.html">QModelIndex</a> &amp; <i>index</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qabstractitemdelegate.html#createEditor">QAbstractItemDelegate::createEditor</a>().</p>
+<a name="//apple_ref/cpp/instm/QSqlRelationalDelegate/setEditorData" />
+<h3 class="fn"><a name="setEditorData"></a>void QSqlRelationalDelegate::setEditorData ( <a href="qwidget.html">QWidget</a> * <i>editor</i>, const <a href="qmodelindex.html">QModelIndex</a> &amp; <i>index</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qabstractitemdelegate.html#setEditorData">QAbstractItemDelegate::setEditorData</a>().</p>
+<a name="//apple_ref/cpp/instm/QSqlRelationalDelegate/setModelData" />
+<h3 class="fn"><a name="setModelData"></a>void QSqlRelationalDelegate::setModelData ( <a href="qwidget.html">QWidget</a> * <i>editor</i>, <a href="qabstractitemmodel.html">QAbstractItemModel</a> * <i>model</i>, const <a href="qmodelindex.html">QModelIndex</a> &amp; <i>index</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qabstractitemdelegate.html#setModelData">QAbstractItemDelegate::setModelData</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

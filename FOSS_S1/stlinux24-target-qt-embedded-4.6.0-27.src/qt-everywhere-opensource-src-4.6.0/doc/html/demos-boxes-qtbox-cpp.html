@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: qtbox.cpp Example File (demos/boxes/qtbox.cpp)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">qtbox.cpp Example File<br /><span class="small-subtitle">demos/boxes/qtbox.cpp</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the demonstration applications of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+
+ #include &quot;qtbox.h&quot;
+
+ const qreal ROTATE_SPEED_X = 30.0 / 1000.0;
+ const qreal ROTATE_SPEED_Y = 20.0 / 1000.0;
+ const qreal ROTATE_SPEED_Z = 40.0 / 1000.0;
+ const int MAX_ITEM_SIZE = 512;
+ const int MIN_ITEM_SIZE = 16;
+
+<span class="comment"> //============================================================================//</span>
+<span class="comment"> //                                  ItemBase                                  //</span>
+<span class="comment"> //============================================================================//</span>
+
+ ItemBase::ItemBase(int size, int x, int y) : m_size(size), m_isResizing(false)
+ {
+     setFlag(QGraphicsItem::ItemIsMovable, true);
+     setFlag(QGraphicsItem::ItemIsSelectable, true);
+     setFlag(QGraphicsItem::ItemIsFocusable, true);
+     setAcceptHoverEvents(true);
+     setPos(x, y);
+     m_startTime = QTime::currentTime();
+ }
+
+ ItemBase::~ItemBase()
+ {
+ }
+
+ QRectF ItemBase::boundingRect() const
+ {
+     return QRectF(-m_size / 2, -m_size / 2, m_size, m_size);
+ }
+
+ void ItemBase::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *)
+ {
+     if (option-&gt;state &amp; QStyle::State_Selected) {
+         painter-&gt;setRenderHint(QPainter::Antialiasing, true);
+         if (option-&gt;state &amp; QStyle::State_HasFocus)
+             painter-&gt;setPen(Qt::yellow);
+         else
+             painter-&gt;setPen(Qt::white);
+         painter-&gt;drawRect(boundingRect());
+
+         painter-&gt;drawLine(m_size / 2 - 9, m_size / 2, m_size / 2, m_size / 2 - 9);
+         painter-&gt;drawLine(m_size / 2 - 6, m_size / 2, m_size / 2, m_size / 2 - 6);
+         painter-&gt;drawLine(m_size / 2 - 3, m_size / 2, m_size / 2, m_size / 2 - 3);
+
+         painter-&gt;setRenderHint(QPainter::Antialiasing, false);
+     }
+ }
+
+ void ItemBase::contextMenuEvent(QGraphicsSceneContextMenuEvent *event)
+ {
+     if (!isSelected() &amp;&amp; scene()) {
+         scene()-&gt;clearSelection();
+         setSelected(true);
+     }
+
+     QMenu menu;
+     QAction *delAction = menu.addAction(&quot;Delete&quot;);
+     QAction *newAction = menu.addAction(&quot;New&quot;);
+     QAction *growAction = menu.addAction(&quot;Grow&quot;);
+     QAction *shrinkAction = menu.addAction(&quot;Shrink&quot;);
+
+     QAction *selectedAction = menu.exec(event-&gt;screenPos());
+
+     if (selectedAction == delAction)
+         deleteSelectedItems(scene());
+     else if (selectedAction == newAction)
+         duplicateSelectedItems(scene());
+     else if (selectedAction == growAction)
+         growSelectedItems(scene());
+     else if (selectedAction == shrinkAction)
+         shrinkSelectedItems(scene());
+ }
+
+ void ItemBase::duplicateSelectedItems(QGraphicsScene *scene)
+ {
+     if (!scene)
+         return;
+
+     QList&lt;QGraphicsItem *&gt; selected;
+     selected = scene-&gt;selectedItems();
+
+     foreach (QGraphicsItem *item, selected) {
+         ItemBase *itemBase = qgraphicsitem_cast&lt;ItemBase *&gt;(item);
+         if (itemBase)
+             scene-&gt;addItem(itemBase-&gt;createNew(itemBase-&gt;m_size, itemBase-&gt;pos().x() + itemBase-&gt;m_size, itemBase-&gt;pos().y()));
+     }
+ }
+
+ void ItemBase::deleteSelectedItems(QGraphicsScene *scene)
+ {
+     if (!scene)
+         return;
+
+     QList&lt;QGraphicsItem *&gt; selected;
+     selected = scene-&gt;selectedItems();
+
+     foreach (QGraphicsItem *item, selected) {
+         ItemBase *itemBase = qgraphicsitem_cast&lt;ItemBase *&gt;(item);
+         if (itemBase)
+             delete itemBase;
+     }
+ }
+
+ void ItemBase::growSelectedItems(QGraphicsScene *scene)
+ {
+     if (!scene)
+         return;
+
+     QList&lt;QGraphicsItem *&gt; selected;
+     selected = scene-&gt;selectedItems();
+
+     foreach (QGraphicsItem *item, selected) {
+         ItemBase *itemBase = qgraphicsitem_cast&lt;ItemBase *&gt;(item);
+         if (itemBase) {
+             itemBase-&gt;prepareGeometryChange();
+             itemBase-&gt;m_size *= 2;
+             if (itemBase-&gt;m_size &gt; MAX_ITEM_SIZE)
+                 itemBase-&gt;m_size = MAX_ITEM_SIZE;
+         }
+     }
+ }
+
+ void ItemBase::shrinkSelectedItems(QGraphicsScene *scene)
+ {
+     if (!scene)
+         return;
+
+     QList&lt;QGraphicsItem *&gt; selected;
+     selected = scene-&gt;selectedItems();
+
+     foreach (QGraphicsItem *item, selected) {
+         ItemBase *itemBase = qgraphicsitem_cast&lt;ItemBase *&gt;(item);
+         if (itemBase) {
+             itemBase-&gt;prepareGeometryChange();
+             itemBase-&gt;m_size /= 2;
+             if (itemBase-&gt;m_size &lt; MIN_ITEM_SIZE)
+                 itemBase-&gt;m_size = MIN_ITEM_SIZE;
+         }
+     }
+ }
+
+ void ItemBase::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
+ {
+     if (m_isResizing) {
+         int dx = int(2.0 * event-&gt;pos().x());
+         int dy = int(2.0 * event-&gt;pos().y());
+         prepareGeometryChange();
+         m_size = (dx &gt; dy ? dx : dy);
+         if (m_size &lt; MIN_ITEM_SIZE)
+             m_size = MIN_ITEM_SIZE;
+         else if (m_size &gt; MAX_ITEM_SIZE)
+             m_size = MAX_ITEM_SIZE;
+     } else {
+         QGraphicsItem::mouseMoveEvent(event);
+     }
+ }
+
+ void ItemBase::hoverMoveEvent(QGraphicsSceneHoverEvent *event)
+ {
+     if (m_isResizing || (isInResizeArea(event-&gt;pos()) &amp;&amp; isSelected()))
+         setCursor(Qt::SizeFDiagCursor);
+     else
+         setCursor(Qt::ArrowCursor);
+     QGraphicsItem::hoverMoveEvent(event);
+ }
+
+ void ItemBase::mousePressEvent(QGraphicsSceneMouseEvent *event)
+ {
+     static qreal z = 0.0;
+     setZValue(z += 1.0);
+     if (event-&gt;button() == Qt::LeftButton &amp;&amp; isInResizeArea(event-&gt;pos())) {
+         m_isResizing = true;
+     } else {
+         QGraphicsItem::mousePressEvent(event);
+     }
+ }
+
+ void ItemBase::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
+ {
+     if (event-&gt;button() == Qt::LeftButton &amp;&amp; m_isResizing) {
+         m_isResizing = false;
+     } else {
+         QGraphicsItem::mouseReleaseEvent(event);
+     }
+ }
+
+ void ItemBase::keyPressEvent(QKeyEvent *event)
+ {
+     switch (event-&gt;key()) {
+     case Qt::Key_Delete:
+         deleteSelectedItems(scene());
+         break;
+     case Qt::Key_Insert:
+         duplicateSelectedItems(scene());
+         break;
+     case Qt::Key_Plus:
+         growSelectedItems(scene());
+         break;
+     case Qt::Key_Minus:
+         shrinkSelectedItems(scene());
+         break;
+     default:
+         QGraphicsItem::keyPressEvent(event);
+         break;
+     }
+ }
+
+ void ItemBase::wheelEvent(QGraphicsSceneWheelEvent *event)
+ {
+     prepareGeometryChange();
+     m_size = int(m_size * exp(-event-&gt;delta() / 600.0));
+     if (m_size &gt; MAX_ITEM_SIZE)
+         m_size = MAX_ITEM_SIZE;
+     else if (m_size &lt; MIN_ITEM_SIZE)
+         m_size = MIN_ITEM_SIZE;
+ }
+
+ int ItemBase::type() const
+ {
+     return Type;
+ }
+
+ bool ItemBase::isInResizeArea(const QPointF &amp;pos)
+ {
+     return (-pos.y() &lt; pos.x() - m_size + 9);
+ }
+
+<span class="comment"> //============================================================================//</span>
+<span class="comment"> //                                    QtBox                                   //</span>
+<span class="comment"> //============================================================================//</span>
+
+ QtBox::QtBox(int size, int x, int y) : ItemBase(size, x, y), m_texture(0)
+ {
+     for (int i = 0; i &lt; 8; ++i) {
+         m_vertices[i].setX(i &amp; 1 ? 0.5f : -0.5f);
+         m_vertices[i].setY(i &amp; 2 ? 0.5f : -0.5f);
+         m_vertices[i].setZ(i &amp; 4 ? 0.5f : -0.5f);
+     }
+     for (int i = 0; i &lt; 4; ++i) {
+         m_texCoords[i].setX(i &amp; 1 ? 1.0f : 0.0f);
+         m_texCoords[i].setY(i &amp; 2 ? 1.0f : 0.0f);
+     }
+     m_normals[0] = QVector3D(-1.0f, 0.0f, 0.0f);
+     m_normals[1] = QVector3D(1.0f, 0.0f, 0.0f);
+     m_normals[2] = QVector3D(0.0f, -1.0f, 0.0f);
+     m_normals[3] = QVector3D(0.0f, 1.0f, 0.0f);
+     m_normals[4] = QVector3D(0.0f, 0.0f, -1.0f);
+     m_normals[5] = QVector3D(0.0f, 0.0f, 1.0f);
+ }
+
+ QtBox::~QtBox()
+ {
+     if (m_texture)
+         delete m_texture;
+ }
+
+ ItemBase *QtBox::createNew(int size, int x, int y)
+ {
+     return new QtBox(size, x, y);
+ }
+
+ void QtBox::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+ {
+     QRectF rect = boundingRect().translated(pos());
+     float width = float(painter-&gt;device()-&gt;width());
+     float height = float(painter-&gt;device()-&gt;height());
+
+     float left = 2.0f * float(rect.left()) / width - 1.0f;
+     float right = 2.0f * float(rect.right()) / width - 1.0f;
+     float top = 1.0f - 2.0f * float(rect.top()) / height;
+     float bottom = 1.0f - 2.0f * float(rect.bottom()) / height;
+     float moveToRectMatrix[] = {
+         0.5f * (right - left), 0.0f, 0.0f, 0.0f,
+         0.0f, 0.5f * (bottom - top), 0.0f, 0.0f,
+         0.0f, 0.0f, 1.0f, 0.0f,
+         0.5f * (right + left), 0.5f * (bottom + top), 0.0f, 1.0f
+     };
+
+     painter-&gt;beginNativePainting();
+
+     glMatrixMode(GL_PROJECTION);
+     glPushMatrix();
+     glLoadMatrixf(moveToRectMatrix);
+     gluPerspective(60.0, 1.0, 0.01, 10.0);
+
+     glMatrixMode(GL_MODELVIEW);
+     glPushMatrix();
+     glLoadIdentity();
+
+     <span class="comment">//glEnable(GL_DEPTH_TEST);</span>
+     glEnable(GL_CULL_FACE);
+     glEnable(GL_LIGHTING);
+     glEnable(GL_COLOR_MATERIAL);
+     glEnable(GL_NORMALIZE);
+
+     if(m_texture == 0)
+         m_texture = new GLTexture2D(&quot;:/res/boxes/qt-logo.jpg&quot;, 64, 64);
+     m_texture-&gt;bind();
+     glEnable(GL_TEXTURE_2D);
+
+     glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
+     float lightColour[] = {1.0f, 1.0f, 1.0f, 1.0f};
+     float lightDir[] = {0.0f, 0.0f, 1.0f, 0.0f};
+     glLightfv(GL_LIGHT0, GL_DIFFUSE, lightColour);
+     glLightfv(GL_LIGHT0, GL_POSITION, lightDir);
+     glEnable(GL_LIGHT0);
+
+     glTranslatef(0.0f, 0.0f, -1.5f);
+     glRotatef(ROTATE_SPEED_X * m_startTime.msecsTo(QTime::currentTime()), 1.0f, 0.0f, 0.0f);
+     glRotatef(ROTATE_SPEED_Y * m_startTime.msecsTo(QTime::currentTime()), 0.0f, 1.0f, 0.0f);
+     glRotatef(ROTATE_SPEED_Z * m_startTime.msecsTo(QTime::currentTime()), 0.0f, 0.0f, 1.0f);
+     int dt = m_startTime.msecsTo(QTime::currentTime());
+     if (dt &lt; 500)
+         glScalef(dt / 500.0f, dt / 500.0f, dt / 500.0f);
+
+     for (int dir = 0; dir &lt; 3; ++dir) {
+         glColor4f(1.0f, 1.0f, 1.0f, 1.0);
+
+         glBegin(GL_TRIANGLE_STRIP);
+         glNormal3fv(reinterpret_cast&lt;float *&gt;(&amp;m_normals[2 * dir + 0]));
+         for (int i = 0; i &lt; 2; ++i) {
+             for (int j = 0; j &lt; 2; ++j) {
+                 glTexCoord2fv(reinterpret_cast&lt;float *&gt;(&amp;m_texCoords[(j &lt;&lt; 1) | i]));
+                 glVertex3fv(reinterpret_cast&lt;float *&gt;(&amp;m_vertices[(i &lt;&lt; ((dir + 2) % 3)) | (j &lt;&lt; ((dir + 1) % 3))]));
+             }
+         }
+         glEnd();
+
+         glBegin(GL_TRIANGLE_STRIP);
+         glNormal3fv(reinterpret_cast&lt;float *&gt;(&amp;m_normals[2 * dir + 1]));
+         for (int i = 0; i &lt; 2; ++i) {
+             for (int j = 0; j &lt; 2; ++j) {
+                 glTexCoord2fv(reinterpret_cast&lt;float *&gt;(&amp;m_texCoords[(j &lt;&lt; 1) | i]));
+                 glVertex3fv(reinterpret_cast&lt;float *&gt;(&amp;m_vertices[(1 &lt;&lt; dir) | (i &lt;&lt; ((dir + 1) % 3)) | (j &lt;&lt; ((dir + 2) % 3))]));
+             }
+         }
+         glEnd();
+     }
+     m_texture-&gt;unbind();
+
+     <span class="comment">//glDisable(GL_DEPTH_TEST);</span>
+     glDisable(GL_CULL_FACE);
+     glDisable(GL_LIGHTING);
+     glDisable(GL_COLOR_MATERIAL);
+     glDisable(GL_TEXTURE_2D);
+     glDisable(GL_LIGHT0);
+     glDisable(GL_NORMALIZE);
+
+     glPopMatrix();
+
+     glMatrixMode(GL_PROJECTION);
+     glPopMatrix();
+
+     painter-&gt;endNativePainting();
+
+     ItemBase::paint(painter, option, widget);
+ }
+
+<span class="comment"> //============================================================================//</span>
+<span class="comment"> //                                 CircleItem                                 //</span>
+<span class="comment"> //============================================================================//</span>
+
+ CircleItem::CircleItem(int size, int x, int y) : ItemBase(size, x, y)
+ {
+      m_color = QColor::fromHsv(rand() % 360, 255, 255);
+ }
+
+ void CircleItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+ {
+     int dt = m_startTime.msecsTo(QTime::currentTime());
+
+     qreal r0 = 0.5 * m_size * (1.0 - exp(-0.001 * ((dt + 3800) % 4000)));
+     qreal r1 = 0.5 * m_size * (1.0 - exp(-0.001 * ((dt + 0) % 4000)));
+     qreal r2 = 0.5 * m_size * (1.0 - exp(-0.001 * ((dt + 1800) % 4000)));
+     qreal r3 = 0.5 * m_size * (1.0 - exp(-0.001 * ((dt + 2000) % 4000)));
+
+     if (r0 &gt; r1)
+         r0 = 0.0;
+     if (r2 &gt; r3)
+         r2 = 0.0;
+
+     QPainterPath path;
+     path.moveTo(r1, 0.0);
+     path.arcTo(-r1, -r1, 2 * r1, 2 * r1, 0.0, 360.0);
+     path.lineTo(r0, 0.0);
+     path.arcTo(-r0, -r0, 2 * r0, 2 * r0, 0.0, -360.0);
+     path.closeSubpath();
+     path.moveTo(r3, 0.0);
+     path.arcTo(-r3, -r3, 2 * r3, 2 * r3, 0.0, 360.0);
+     path.lineTo(r0, 0.0);
+     path.arcTo(-r2, -r2, 2 * r2, 2 * r2, 0.0, -360.0);
+     path.closeSubpath();
+     painter-&gt;setRenderHint(QPainter::Antialiasing, true);
+     painter-&gt;setBrush(QBrush(m_color));
+     painter-&gt;setPen(Qt::NoPen);
+     painter-&gt;drawPath(path);
+     painter-&gt;setBrush(Qt::NoBrush);
+     painter-&gt;setPen(Qt::SolidLine);
+     painter-&gt;setRenderHint(QPainter::Antialiasing, false);
+
+     ItemBase::paint(painter, option, widget);
+ }
+
+ ItemBase *CircleItem::createNew(int size, int x, int y)
+ {
+     return new CircleItem(size, x, y);
+ }
+
+<span class="comment"> //============================================================================//</span>
+<span class="comment"> //                                 SquareItem                                 //</span>
+<span class="comment"> //============================================================================//</span>
+
+ SquareItem::SquareItem(int size, int x, int y) : ItemBase(size, x, y)
+ {
+     m_image = QPixmap(&quot;:/res/boxes/square.jpg&quot;);
+ }
+
+ void SquareItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+ {
+     int dt = m_startTime.msecsTo(QTime::currentTime());
+     QTransform oldTransform = painter-&gt;worldTransform();
+     int dtMod = dt % 2000;
+     qreal amp = 0.002 * (dtMod &lt; 1000 ? dtMod : 2000 - dtMod) - 1.0;
+
+     qreal scale = 0.6 + 0.2 * amp * amp;
+     painter-&gt;setWorldTransform(QTransform().rotate(15.0 * amp).scale(scale, scale), true);
+
+     painter-&gt;drawPixmap(-m_size / 2, -m_size / 2, m_size, m_size, m_image);
+
+     painter-&gt;setWorldTransform(oldTransform, false);
+     ItemBase::paint(painter, option, widget);
+ }
+
+ ItemBase *SquareItem::createNew(int size, int x, int y)
+ {
+     return new SquareItem(size, x, y);
+ }</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

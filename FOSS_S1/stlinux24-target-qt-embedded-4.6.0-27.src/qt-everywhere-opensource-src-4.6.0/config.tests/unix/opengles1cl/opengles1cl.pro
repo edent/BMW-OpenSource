@@ -1,0 +1,9 @@
+SOURCES = opengles1cl.cpp
+INCLUDEPATH += $$QMAKE_INCDIR_OPENGL_ES1CL
+
+for(p, QMAKE_LIBDIR_OPENGL_ES1CL) {
+    exists($$p):LIBS += -L$$p
+}
+
+CONFIG -= qt
+LIBS += $$QMAKE_LIBS_OPENGL_ES1CL

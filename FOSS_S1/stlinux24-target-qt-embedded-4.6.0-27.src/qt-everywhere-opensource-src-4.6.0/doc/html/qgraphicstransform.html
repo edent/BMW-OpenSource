@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qgraphicstransform.cpp -->
+<head>
+  <title>Qt 4.6: QGraphicsTransform Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QGraphicsTransform" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QGraphicsTransform Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QGraphicsTransform class is an abstract base class for building advanced transformations on QGraphicsItems. <a href="#details">More...</a></p>
+<pre> #include &lt;QGraphicsTransform&gt;</pre><p>Inherits <a href="qobject.html">QObject</a>.</p>
+<p>Inherited by <a href="qgraphicsrotation.html">QGraphicsRotation</a> and <a href="qgraphicsscale.html">QGraphicsScale</a>.</p>
+<p>This class was introduced in Qt 4.6.</p>
+<ul>
+<li><a href="qgraphicstransform-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qgraphicstransform.html#QGraphicsTransform">QGraphicsTransform</a></b> ( QObject * <i>parent</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qgraphicstransform.html#dtor.QGraphicsTransform">~QGraphicsTransform</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicstransform.html#applyTo">applyTo</a></b> ( QMatrix4x4 * <i>matrix</i> ) const = 0</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>29 public functions inherited from <a href="qobject.html#public-functions">QObject</a></li>
+</ul>
+<hr />
+<a name="protected-slots"></a>
+<h2>Protected Slots</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicstransform.html#update">update</a></b> ()</td></tr>
+</table>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li><div class="fn"></div>1 property inherited from <a href="qobject.html#properties">QObject</a></li>
+<li><div class="fn"></div>1 public slot inherited from <a href="qobject.html#public-slots">QObject</a></li>
+<li><div class="fn"></div>1 signal inherited from <a href="qobject.html#signals">QObject</a></li>
+<li><div class="fn"></div>5 static public members inherited from <a href="qobject.html#static-public-members">QObject</a></li>
+<li><div class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QGraphicsTransform class is an abstract base class for building advanced transformations on QGraphicsItems.</p>
+<p>As an alternative to QGraphicsItem::transform, QGraphicsTransform lets you create and control advanced transformations that can be configured independently using specialized properties.</p>
+<p><a href="qgraphicsitem.html">QGraphicsItem</a> allows you to assign any number of QGraphicsTransform instances to one <a href="qgraphicsitem.html">QGraphicsItem</a>. Each QGraphicsTransform is applied in order, one at a time, to the <a href="qgraphicsitem.html">QGraphicsItem</a> it's assigned to.</p>
+<p>QGraphicsTransform is particularily useful for animations. Whereas <a href="qgraphicsitem.html#setTransform">QGraphicsItem::setTransform</a>() lets you assign any transform directly to an item, there is no direct way to interpolate between two different transformations (e.g&#x2e;, when transitioning between two states, each for which the item has a different arbitrary transform assigned). Using QGraphicsTransform you can interpolate the property values of each independent transformation. The resulting operation is then combined into a single transform which is applied to <a href="qgraphicsitem.html">QGraphicsItem</a>.</p>
+<p>Transformations are computed in true 3D space using <a href="qmatrix4x4.html">QMatrix4x4</a>. When the transformation is applied to a <a href="qgraphicsitem.html">QGraphicsItem</a>, it will be projected back to a 2D <a href="qtransform.html">QTransform</a>. When multiple QGraphicsTransform objects are applied to a <a href="qgraphicsitem.html">QGraphicsItem</a>, all of the transformations are computed in true 3D space, with the projection back to 2D only occurring after the last QGraphicsTransform is applied. The exception to this is <a href="qgraphicsrotation.html">QGraphicsRotation</a>, which projects back to 2D after each rotation to preserve the perspective effect around the X and Y axes.</p>
+<p>If you want to create your own configurable transformation, you can create a subclass of QGraphicsTransform (or any or the existing subclasses), and reimplement the pure virtual <a href="qgraphicstransform.html#applyTo">applyTo</a>() function, which takes a pointer to a <a href="qmatrix4x4.html">QMatrix4x4</a>. Each operation you would like to apply should be exposed as properties (e.g&#x2e;, customTransform-&gt;setVerticalShear(2.5)). Inside you reimplementation of <a href="qgraphicstransform.html#applyTo">applyTo</a>(), you can modify the provided transform respectively.</p>
+<p>QGraphicsTransform can be used together with <a href="qgraphicsitem.html#setTransform">QGraphicsItem::setTransform</a>(), <a href="qgraphicsitem.html#setRotation">QGraphicsItem::setRotation</a>(), and <a href="qgraphicsitem.html#setScale">QGraphicsItem::setScale</a>().</p>
+<p>See also <a href="qgraphicsitem.html#transform">QGraphicsItem::transform</a>(), <a href="qgraphicsscale.html">QGraphicsScale</a>, and <a href="qgraphicsrotation.html">QGraphicsRotation</a>.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QGraphicsTransform/QGraphicsTransform" />
+<h3 class="fn"><a name="QGraphicsTransform"></a>QGraphicsTransform::QGraphicsTransform ( <a href="qobject.html">QObject</a> * <i>parent</i> = 0 )</h3>
+<p>Constructs a new <a href="qgraphicstransform.html">QGraphicsTransform</a> with the given <i>parent</i>.</p>
+<a name="//apple_ref/cpp/instm/QGraphicsTransform/~QGraphicsTransform" />
+<h3 class="fn"><a name="dtor.QGraphicsTransform"></a>QGraphicsTransform::~QGraphicsTransform ()</h3>
+<p>Destroys the graphics transform.</p>
+<a name="//apple_ref/cpp/instm/QGraphicsTransform/applyTo" />
+<h3 class="fn"><a name="applyTo"></a>void QGraphicsTransform::applyTo ( <a href="qmatrix4x4.html">QMatrix4x4</a> * <i>matrix</i> ) const&nbsp;&nbsp;<tt> [pure virtual]</tt></h3>
+<p>This pure virtual method has to be reimplemented in derived classes.</p>
+<p>It applies this transformation to <i>matrix</i>.</p>
+<p>See also <a href="qgraphicsitem.html#transform">QGraphicsItem::transform</a>() and <a href="qmatrix4x4.html#toTransform">QMatrix4x4::toTransform</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsTransform/update" />
+<h3 class="fn"><a name="update"></a>void QGraphicsTransform::update ()&nbsp;&nbsp;<tt> [protected slot]</tt></h3>
+<p>Notifies that this transform operation has changed its parameters in such a way that <a href="qgraphicstransform.html#applyTo">applyTo</a>() will return a different result than before.</p>
+<p>When implementing you own custom graphics transform, you must call this function every time you change a parameter, to let <a href="qgraphicsitem.html">QGraphicsItem</a> know that its transformation needs to be updated.</p>
+<p>See also <a href="qgraphicstransform.html#applyTo">applyTo</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

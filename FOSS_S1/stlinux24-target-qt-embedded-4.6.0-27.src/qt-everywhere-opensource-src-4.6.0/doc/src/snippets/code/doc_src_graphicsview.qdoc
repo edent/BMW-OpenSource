@@ -1,0 +1,118 @@
+/****************************************************************************
+**
+** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+** All rights reserved.
+** Contact: Nokia Corporation (qt-info@nokia.com)
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:LGPL$
+** Commercial Usage
+** Licensees holding valid Qt Commercial licenses may use this file in
+** accordance with the Qt Commercial License Agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and Nokia.
+**
+** GNU Lesser General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU Lesser
+** General Public License version 2.1 as published by the Free Software
+** Foundation and appearing in the file LICENSE.LGPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU Lesser General Public License version 2.1 requirements
+** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+**
+** In addition, as a special exception, Nokia gives you certain additional
+** rights.  These rights are described in the Nokia Qt LGPL Exception
+** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+**
+** GNU General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU
+** General Public License version 3.0 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU General Public License version 3.0 requirements will be
+** met: http://www.gnu.org/copyleft/gpl.html.
+**
+** If you have questions regarding the use of this file, please contact
+** Nokia at qt-info@nokia.com.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+//! [0]
+QGraphicsScene scene;
+QGraphicsRectItem *rect = scene.addRect(QRectF(0, 0, 100, 100));
+
+QGraphicsItem *item = scene.itemAt(50, 50);
+// item == rect
+//! [0]
+
+
+//! [1]
+QGraphicsScene scene;
+myPopulateScene(&scene);
+
+QGraphicsView view(&scene);
+view.show();
+//! [1]
+
+
+//! [2]
+class View : public QGraphicsView
+{
+Q_OBJECT
+    ...
+public slots:
+    void zoomIn() { scale(1.2, 1.2); }
+    void zoomOut() { scale(1 / 1.2, 1 / 1.2); }
+    void rotateLeft() { rotate(-10); }
+    void rotateRight() { rotate(10); }
+    ...
+};
+//! [2]
+
+
+//! [3]
+QGraphicsScene scene;
+scene.addRect(QRectF(0, 0, 100, 200), QPen(Qt::black), QBrush(Qt::green));
+
+QPrinter printer;
+if (QPrintDialog(&printer).exec() == QDialog::Accepted) {
+    QPainter painter(&printer);
+    painter.setRenderHint(QPainter::Antialiasing);
+    scene.render(&painter);
+}
+//! [3]
+
+
+//! [4]
+QGraphicsScene scene;
+scene.addRect(QRectF(0, 0, 100, 200), QPen(Qt::black), QBrush(Qt::green));
+
+QPixmap pixmap;
+QPainter painter(&pixmap);
+painter.setRenderHint(QPainter::Antialiasing);
+scene.render(&painter);
+painter.end();
+
+pixmap.save("scene.png");
+//! [4]
+
+
+//! [5]
+void CustomItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
+{
+    QMimeData *data = new QMimeData;
+    data->setColor(Qt::green);
+
+    QDrag *drag = new QDrag(event->widget());
+    drag->setMimeData(data);
+    drag->start();
+}
+//! [5]
+
+
+//! [6]
+QGraphicsView view(&scene);
+view.setViewport(new QGLWidget(QGLFormat(QGL::SampleBuffers)));
+//! [6]

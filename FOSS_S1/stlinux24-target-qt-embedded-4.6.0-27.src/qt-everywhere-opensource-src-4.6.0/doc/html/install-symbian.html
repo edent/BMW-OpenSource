@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- installation.qdoc -->
+<head>
+  <title>Qt 4.6: Installing Qt on the Symbian platform</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">Installing Qt on the Symbian platform<br /><span class="subtitle"></span>
+</h1>
+<p><b>Note:</b> Qt for the Symbian platform has some requirements that are given in more detail in the <a href="requirements-symbian.html">Qt for the Symbian platform Requirements</a> document.</p>
+<p><b>Note:</b> <b>This document describes how to install and configure Qt for the Symbian platform from scratch. If you are using pre-built binaries, follow the instructions given in the <a href="install-symbian-installer.html">Installing Qt on the Symbian platform from a Binary Package</a> document.</b></p>
+<ol type="1">
+<li>Setup the development environment<p>Make sure your Symbian development environment is correctly installed and patched as explained in the <a href="requirements-symbian.html">Qt for the Symbian platform Requirements</a> document.</p>
+<p>After you have finished the Symbian development environment setup, it is good to verify that environment is functional for example by compiling one of the pure Symbian examples for both emulator and HW. This can be done from command prompt as follows:</p>
+<pre> cd &lt;Your SDK path&gt;\S60CppExamples\Note\group
+ bldmake bldfiles
+ abld build winscw udeb
+ abld build gcce urel</pre>
+<p>If all steps pass without errors your Symbian development environment is very likely installed correctly.</p>
+</li>
+<li>Install Qt<p>Uncompress the <a href="http://qt.nokia.com/downloads">downloaded</a> source package into the directory you want Qt installed, e.g&#x2e; <tt>C:\Qt\4.6.0</tt>.</p>
+<p><b>Note:</b> Qt must be installed on the same drive as the Symbian SDK you are using, and the install path must not contain any spaces.</p>
+</li>
+<li>Environment variables<p>In order to build and use Qt, the <tt>PATH</tt> environment variable needs to be extended:</p>
+<pre> PATH               - to locate qmake, moc and other Qt tools</pre>
+<p>This is done by adding <tt>c:\Qt\4.6.0\bin</tt> to the <tt>PATH</tt> variable.</p>
+<p>On Windows the PATH can be extended by navigating to &quot;Control Panel-&gt;System-&gt;Advanced-&gt;Environment variables&quot;.</p>
+<p>In addition, you must configure the environment for use with the Symbian emulator. This is done by locating the Carbide.c++ submenu on the Start menu, and choosing &quot;Configure environment for WINSCW command line&quot;.</p>
+<p>If you are planning to use abld (the default build system that comes with the S60 SDK) to build Qt, you will also need to set the following environment variable:</p>
+<pre> SYMBIANBUILD_DEPENDENCYOFF=1</pre>
+<p>This is not necessary for other applications, only when building Qt.</p>
+</li>
+<li>Configure Qt<p>To configure Qt for the Symbian platform, do:</p>
+<pre> cd \Qt\4.6.0
+ configure -platform win32-g++ -xplatform symbian-abld</pre>
+<p>to build the tools using MinGW, and the libraries using abld. or</p>
+<pre> cd \Qt\4.6.0
+ configure -platform win32-g++ -xplatform symbian-sbsv2</pre>
+<p>to build the tools using MinGW, and the libraries using SBSv2.</p>
+<p>SBSv2 also known as a (<a href="http://developer.symbian.org/wiki/index.php/Introduction_to_RAPTOR">Raptor</a>) is a next-generation Symbian build system. SBSv2 is not officially supported by any of the S60 SDKs currently available from Forum Nokia.</p>
+</li>
+<li>Build Qt<p>To build Qt for the emulator, type:</p>
+<pre> make debug-winscw</pre>
+<p>To build Qt for the device, type:</p>
+<pre> make release-armv5</pre>
+<p>Congratulations, Qt is now ready to use.</p>
+</li>
+<li>Running Qt demos<p>We've included a subset of the Qt demos in this package for you to try out. An excellent starting point is the &quot;fluidlauncher&quot; demo. To run the demo on a real device, you first have to install the Qt libraries on the device:</p>
+<pre> cd src\s60installs
+ make sis QT_SIS_OPTIONS=-i QT_SIS_CERTIFICATE=&lt;certificate file&gt; QT_SIS_KEY=&lt;certificate key file&gt;</pre>
+<p><b>Note:</b> You will need to supply certificate that allows installation of binaries with &quot;All -Tcb&quot; capability to your device.</p>
+<p>Similarly, install fluidlauncher to the device:</p>
+<pre> cd embedded\fluidlauncher
+ make sis QT_SIS_OPTIONS=-i</pre>
+<p>This will create a self-signed <tt>fluidlauncher_armv5_urel.sis</tt> and install it to your device.</p>
+<p>To run the demos on the emulator simply navigate to the directory of the demo you want to see and run:</p>
+<pre> make run</pre>
+<p>For more information about building and running Qt programs on the Symbian platform, see <a href="symbian-with-qt-introduction.html">The Symbian platform - Introduction to Qt</a>.</p>
+<p>We hope you will enjoy using Qt.</p>
+</li>
+</ol>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qcoreapplication.cpp -->
+<head>
+  <title>Qt 4.6: Qt 3 Support Members for QCoreApplication</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">Qt 3 Support Members for QCoreApplication</h1>
+<p><b>The following class members are part of the <a href="qt3support.html">Qt 3 support layer</a>.</b> They are provided to help you port old code to Qt 4. We advise against using them in new code.</p>
+<p><ul><li><a href="qcoreapplication.html">QCoreApplication class reference</a></li></ul></p>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qcoreapplication-qt3.html#lock">lock</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qcoreapplication-qt3.html#locked">locked</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qcoreapplication-qt3.html#tryLock">tryLock</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qcoreapplication-qt3.html#unlock">unlock</a></b> ( bool <i>wakeUpGui</i> = true )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>8 public functions inherited from <a href="qobject.html#public-functions">QObject</a></li>
+</ul>
+<h2>Static Public Members</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qcoreapplication-qt3.html#argc">argc</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">char ** </td><td class="memItemRight" valign="bottom"><b><a href="qcoreapplication-qt3.html#argv">argv</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qcoreapplication-qt3.html#enter_loop">enter_loop</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qcoreapplication-qt3.html#exit_loop">exit_loop</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qcoreapplication-qt3.html#loopLevel">loopLevel</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qcoreapplication-qt3.html#processOneEvent">processOneEvent</a></b> ()</td></tr>
+</table>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/clm/QCoreApplication/argc" />
+<h3 class="fn"><a name="argc"></a>int QCoreApplication::argc ()&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Use <a href="qcoreapplication.html#arguments">arguments</a>().size() instead.</p>
+<a name="//apple_ref/cpp/clm/QCoreApplication/argv" />
+<h3 class="fn"><a name="argv"></a>char ** QCoreApplication::argv ()&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Use <a href="qcoreapplication.html#arguments">arguments</a>() instead.</p>
+<a name="//apple_ref/cpp/clm/QCoreApplication/enter_loop" />
+<h3 class="fn"><a name="enter_loop"></a>int QCoreApplication::enter_loop ()&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>This function enters the main event loop (recursively). Do not call it unless you really know what you are doing.</p>
+<a name="//apple_ref/cpp/clm/QCoreApplication/exit_loop" />
+<h3 class="fn"><a name="exit_loop"></a>void QCoreApplication::exit_loop ()&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>This function exits from a recursive call to the main event loop. Do not call it unless you are an expert.</p>
+<a name="//apple_ref/cpp/instm/QCoreApplication/lock" />
+<h3 class="fn"><a name="lock"></a>void QCoreApplication::lock ()</h3>
+<p>In Qt 3, this function locked the Qt library mutex, allowing non-GUI threads to perform basic printing operations using <a href="qpainter.html">QPainter</a>.</p>
+<p>In Qt 4, this is no longer supported, since painting is only supported from within a paint event handler. This function does nothing.</p>
+<p>See also <a href="qwidget.html#paintEvent">QWidget::paintEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QCoreApplication/locked" />
+<h3 class="fn"><a name="locked"></a>bool QCoreApplication::locked ()</h3>
+<p>This function does nothing. It is there to keep old code working. It always returns false.</p>
+<p>See <a href="qcoreapplication-qt3.html#lock">lock</a>() for details.</p>
+<a name="//apple_ref/cpp/clm/QCoreApplication/loopLevel" />
+<h3 class="fn"><a name="loopLevel"></a>int QCoreApplication::loopLevel ()&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Returns the current loop level.</p>
+<a name="//apple_ref/cpp/clm/QCoreApplication/processOneEvent" />
+<h3 class="fn"><a name="processOneEvent"></a>void QCoreApplication::processOneEvent ()&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Waits for an event to occur, processes it, then returns.</p>
+<p>This function is useful for adapting Qt to situations where the event processing must be grafted onto existing program loops.</p>
+<p>Using this function in new applications may be an indication of design problems.</p>
+<p>See also <a href="qcoreapplication.html#processEvents">processEvents</a>(), <a href="qcoreapplication.html#exec">exec</a>(), and <a href="qtimer.html">QTimer</a>.</p>
+<a name="//apple_ref/cpp/instm/QCoreApplication/tryLock" />
+<h3 class="fn"><a name="tryLock"></a>bool QCoreApplication::tryLock ()</h3>
+<p>This function does nothing. It is there to keep old code working. It always returns false.</p>
+<p>See <a href="qcoreapplication-qt3.html#lock">lock</a>() for details.</p>
+<a name="//apple_ref/cpp/instm/QCoreApplication/unlock" />
+<h3 class="fn"><a name="unlock"></a>void QCoreApplication::unlock ( bool <i>wakeUpGui</i> = true )</h3>
+<p>In Qt 3, this function unlocked the Qt library mutex. The mutex allowed non-GUI threads to perform basic printing operations using <a href="qpainter.html">QPainter</a>.</p>
+<p>In Qt 4, this is no longer supported, since painting is only supported from within a paint event handler. This function does nothing.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

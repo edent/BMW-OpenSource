@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qwizard.cpp -->
+<head>
+  <title>Qt 4.6: QWizardPage Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QWizardPage" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QWizardPage Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QWizardPage class is the base class for wizard pages. <a href="#details">More...</a></p>
+<pre> #include &lt;QWizardPage&gt;</pre><p>Inherits <a href="qwidget.html">QWidget</a>.</p>
+<p>This class was introduced in Qt 4.3.</p>
+<ul>
+<li><a href="qwizardpage-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="properties"></a>
+<h2>Properties</h2>
+<ul>
+<li><div class="fn"><b><a href="qwizardpage.html#subTitle-prop">subTitle</a></b> : QString</div></li>
+<li><div class="fn"><b><a href="qwizardpage.html#title-prop">title</a></b> : QString</div></li>
+</ul>
+<ul>
+<li><div bar="2" class="fn"></div>58 properties inherited from <a href="qwidget.html#properties">QWidget</a></li>
+<li><div bar="2" class="fn"></div>1 property inherited from <a href="qobject.html#properties">QObject</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qwizardpage.html#QWizardPage">QWizardPage</a></b> ( QWidget * <i>parent</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qwizardpage.html#buttonText">buttonText</a></b> ( QWizard::WizardButton <i>which</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qwizardpage.html#cleanupPage">cleanupPage</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qwizardpage.html#initializePage">initializePage</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qwizardpage.html#isCommitPage">isCommitPage</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qwizardpage.html#isComplete">isComplete</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qwizardpage.html#isFinalPage">isFinalPage</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual int </td><td class="memItemRight" valign="bottom"><b><a href="qwizardpage.html#nextId">nextId</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QPixmap </td><td class="memItemRight" valign="bottom"><b><a href="qwizardpage.html#pixmap">pixmap</a></b> ( QWizard::WizardPixmap <i>which</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qwizardpage.html#setButtonText">setButtonText</a></b> ( QWizard::WizardButton <i>which</i>, const QString &amp; <i>text</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qwizardpage.html#setCommitPage">setCommitPage</a></b> ( bool <i>commitPage</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qwizardpage.html#setFinalPage">setFinalPage</a></b> ( bool <i>finalPage</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qwizardpage.html#setPixmap">setPixmap</a></b> ( QWizard::WizardPixmap <i>which</i>, const QPixmap &amp; <i>pixmap</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qwizardpage.html#subTitle-prop">setSubTitle</a></b> ( const QString &amp; <i>subTitle</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qwizardpage.html#title-prop">setTitle</a></b> ( const QString &amp; <i>title</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qwizardpage.html#subTitle-prop">subTitle</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qwizardpage.html#title-prop">title</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qwizardpage.html#validatePage">validatePage</a></b> ()</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>216 public functions inherited from <a href="qwidget.html#public-functions">QWidget</a></li>
+<li><div bar="2" class="fn"></div>29 public functions inherited from <a href="qobject.html#public-functions">QObject</a></li>
+<li><div bar="2" class="fn"></div>12 public functions inherited from <a href="qpaintdevice.html#public-functions">QPaintDevice</a></li>
+</ul>
+<hr />
+<a name="signals"></a>
+<h2>Signals</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qwizardpage.html#completeChanged">completeChanged</a></b> ()</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>1 signal inherited from <a href="qwidget.html#signals">QWidget</a></li>
+<li><div bar="2" class="fn"></div>1 signal inherited from <a href="qobject.html#signals">QObject</a></li>
+</ul>
+<hr />
+<a name="protected-functions"></a>
+<h2>Protected Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">QVariant </td><td class="memItemRight" valign="bottom"><b><a href="qwizardpage.html#field">field</a></b> ( const QString &amp; <i>name</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qwizardpage.html#registerField">registerField</a></b> ( const QString &amp; <i>name</i>, QWidget * <i>widget</i>, const char * <i>property</i> = 0, const char * <i>changedSignal</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qwizardpage.html#setField">setField</a></b> ( const QString &amp; <i>name</i>, const QVariant &amp; <i>value</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QWizard * </td><td class="memItemRight" valign="bottom"><b><a href="qwizardpage.html#wizard">wizard</a></b> () const</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>37 protected functions inherited from <a href="qwidget.html#protected-functions">QWidget</a></li>
+<li><div bar="2" class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+<li><div bar="2" class="fn"></div>1 protected function inherited from <a href="qpaintdevice.html#protected-functions">QPaintDevice</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li><div class="fn"></div>19 public slots inherited from <a href="qwidget.html#public-slots">QWidget</a></li>
+<li><div class="fn"></div>1 public slot inherited from <a href="qobject.html#public-slots">QObject</a></li>
+<li><div class="fn"></div>4 static public members inherited from <a href="qwidget.html#static-public-members">QWidget</a></li>
+<li><div class="fn"></div>5 static public members inherited from <a href="qobject.html#static-public-members">QObject</a></li>
+<li><div class="fn"></div>1 protected slot inherited from <a href="qwidget.html#protected-slots">QWidget</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QWizardPage class is the base class for wizard pages.</p>
+<p><a href="qwizard.html">QWizard</a> represents a wizard. Each page is a QWizardPage. When you create your own wizards, you can use QWizardPage directly, or you can subclass it for more control.</p>
+<p>A page has the following attributes, which are rendered by <a href="qwizard.html">QWizard</a>: a <a href="qwizardpage.html#title-prop">title</a>, a <a href="qwizardpage.html#subTitle-prop">subTitle</a>, and a <a href="qwizardpage.html#setPixmap">set of pixmaps</a>. See <a href="qwizard.html#elements-of-a-wizard-page">Elements of a Wizard Page</a> for details. Once a page is added to the wizard (using <a href="qwizard.html#addPage">QWizard::addPage</a>() or <a href="qwizard.html#setPage">QWizard::setPage</a>()), <a href="qwizardpage.html#wizard">wizard</a>() returns a pointer to the associated <a href="qwizard.html">QWizard</a> object.</p>
+<p>Page provides five virtual functions that can be reimplemented to provide custom behavior:</p>
+<ul>
+<li><a href="qwizardpage.html#initializePage">initializePage</a>() is called to initialize the page's contents when the user clicks the wizard's <b>Next</b> button. If you want to derive the page's default from what the user entered on previous pages, this is the function to reimplement.</li>
+<li><a href="qwizardpage.html#cleanupPage">cleanupPage</a>() is called to reset the page's contents when the user clicks the wizard's <b>Back</b> button.</li>
+<li><a href="qwizardpage.html#validatePage">validatePage</a>() validates the page when the user clicks <b>Next</b> or <b>Finish</b>. It is often used to show an error message if the user has entered incomplete or invalid information.</li>
+<li><a href="qwizardpage.html#nextId">nextId</a>() returns the ID of the next page. It is useful when <a href="qwizard.html#creating-non-linear-wizards">creating non-linear wizards</a>, which allow different traversal paths based on the information provided by the user.</li>
+<li><a href="qwizardpage.html#isComplete">isComplete</a>() is called to determine whether the <b>Next</b> and/or <b>Finish</b> button should be enabled or disabled. If you reimplement <a href="qwizardpage.html#isComplete">isComplete</a>(), also make sure that <a href="qwizardpage.html#completeChanged">completeChanged</a>() is emitted whenever the complete state changes.</li>
+</ul>
+<p>Normally, the <b>Next</b> button and the <b>Finish</b> button of a wizard are mutually exclusive. If <a href="qwizardpage.html#isFinalPage">isFinalPage</a>() returns true, <b>Finish</b> is available; otherwise, <b>Next</b> is available. By default, <a href="qwizardpage.html#isFinalPage">isFinalPage</a>() is true only when <a href="qwizardpage.html#nextId">nextId</a>() returns -1. If you want to show <b>Next</b> and <b>Final</b> simultaneously for a page (letting the user perform an &quot;early finish&quot;), call setFinalPage(true) on that page. For wizards that support early finishes, you might also want to set the <a href="qwizard.html#WizardOption-enum">HaveNextButtonOnLastPage</a> and <a href="qwizard.html#WizardOption-enum">HaveFinishButtonOnEarlyPages</a> options on the wizard.</p>
+<p>In many wizards, the contents of a page may affect the default values of the fields of a later page. To make it easy to communicate between pages, <a href="qwizard.html">QWizard</a> supports a <a href="qwizard.html#registering-and-using-fields">&quot;field&quot; mechanism</a> that allows you to register a field (e.g&#x2e;, a <a href="qlineedit.html">QLineEdit</a>) on a page and to access its value from any page. Fields are global to the entire wizard and make it easy for any single page to access information stored by another page, without having to put all the logic in <a href="qwizard.html">QWizard</a> or having the pages know explicitly about each other. Fields are registered using <a href="qwizardpage.html#registerField">registerField</a>() and can be accessed at any time using <a href="qwizardpage.html#field">field</a>() and <a href="qwizardpage.html#setField">setField</a>().</p>
+<p>See also <a href="qwizard.html">QWizard</a>, <a href="dialogs-classwizard.html">Class Wizard Example</a>, and <a href="dialogs-licensewizard.html">License Wizard Example</a>.</p>
+<hr />
+<h2>Property Documentation</h2>
+<a name="//apple_ref/cpp/instm/QWizardPage/subTitle" />
+<a name="//apple_ref/cpp/instm/QWizardPage/setSubTitle" />
+<h3 class="fn"><a name="subTitle-prop"></a>subTitle : <a href="qstring.html">QString</a></h3>
+<p>This property holds the subtitle of the page.</p>
+<p>The subtitle is shown by the <a href="qwizard.html">QWizard</a>, between the title and the actual page. Subtitles are optional. In <a href="qwizard.html#WizardStyle-enum">ClassicStyle</a> and <a href="qwizard.html#WizardStyle-enum">ModernStyle</a>, using subtitles is necessary to make the header appear. In <a href="qwizard.html#WizardStyle-enum">MacStyle</a>, the subtitle is shown as a text label just above the actual page.</p>
+<p>The subtitle may be plain text or HTML, depending on the value of the <a href="qwizard.html#subTitleFormat-prop">QWizard::subTitleFormat</a> property.</p>
+<p>By default, this property contains an empty string.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b>subTitle</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setSubTitle</b> ( const QString &amp; <i>subTitle</i> )</td></tr>
+</table>
+<p>See also <a href="qwizardpage.html#title-prop">title</a>, <a href="qwizard.html#WizardOption-enum">QWizard::IgnoreSubTitles</a>, and <a href="qwizard.html#elements-of-a-wizard-page">Elements of a Wizard Page</a>.</p>
+<a name="//apple_ref/cpp/instm/QWizardPage/title" />
+<a name="//apple_ref/cpp/instm/QWizardPage/setTitle" />
+<h3 class="fn"><a name="title-prop"></a>title : <a href="qstring.html">QString</a></h3>
+<p>This property holds the title of the page.</p>
+<p>The title is shown by the <a href="qwizard.html">QWizard</a>, above the actual page. All pages should have a title.</p>
+<p>The title may be plain text or HTML, depending on the value of the <a href="qwizard.html#titleFormat-prop">QWizard::titleFormat</a> property.</p>
+<p>By default, this property contains an empty string.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b>title</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setTitle</b> ( const QString &amp; <i>title</i> )</td></tr>
+</table>
+<p>See also <a href="qwizardpage.html#subTitle-prop">subTitle</a> and <a href="qwizard.html#elements-of-a-wizard-page">Elements of a Wizard Page</a>.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QWizardPage/QWizardPage" />
+<h3 class="fn"><a name="QWizardPage"></a>QWizardPage::QWizardPage ( <a href="qwidget.html">QWidget</a> * <i>parent</i> = 0 )</h3>
+<p>Constructs a wizard page with the given <i>parent</i>.</p>
+<p>When the page is inserted into a wizard using <a href="qwizard.html#addPage">QWizard::addPage</a>() or <a href="qwizard.html#setPage">QWizard::setPage</a>(), the parent is automatically set to be the wizard.</p>
+<p>See also <a href="qwizardpage.html#wizard">wizard</a>().</p>
+<a name="//apple_ref/cpp/instm/QWizardPage/buttonText" />
+<h3 class="fn"><a name="buttonText"></a><a href="qstring.html">QString</a> QWizardPage::buttonText ( <a href="qwizard.html#WizardButton-enum">QWizard::WizardButton</a> <i>which</i> ) const</h3>
+<p>Returns the text on button <i>which</i> on this page.</p>
+<p>If a text has ben set using <a href="qwizardpage.html#setButtonText">setButtonText</a>(), this text is returned. Otherwise, if a text has been set using <a href="qwizard.html#setButtonText">QWizard::setButtonText</a>(), this text is returned.</p>
+<p>By default, the text on buttons depends on the <a href="qwizard.html#wizardStyle-prop">QWizard::wizardStyle</a>. For example, on Mac OS X, the <b>Next</b> button is called <b>Continue</b>.</p>
+<p>See also <a href="qwizardpage.html#setButtonText">setButtonText</a>(), <a href="qwizard.html#buttonText">QWizard::buttonText</a>(), and <a href="qwizard.html#setButtonText">QWizard::setButtonText</a>().</p>
+<a name="//apple_ref/cpp/instm/QWizardPage/cleanupPage" />
+<h3 class="fn"><a name="cleanupPage"></a>void QWizardPage::cleanupPage ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>This virtual function is called by <a href="qwizard.html#cleanupPage">QWizard::cleanupPage</a>() when the user leaves the page by clicking <b>Back</b> (unless the <a href="qwizard.html#WizardOption-enum">QWizard::IndependentPages</a> option is set).</p>
+<p>The default implementation resets the page's fields to their original values (the values they had before <a href="qwizardpage.html#initializePage">initializePage</a>() was called).</p>
+<p>See also <a href="qwizard.html#cleanupPage">QWizard::cleanupPage</a>(), <a href="qwizardpage.html#initializePage">initializePage</a>(), and <a href="qwizard.html#WizardOption-enum">QWizard::IndependentPages</a>.</p>
+<a name="//apple_ref/cpp/instm/QWizardPage/completeChanged" />
+<h3 class="fn"><a name="completeChanged"></a>void QWizardPage::completeChanged ()&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted whenever the complete state of the page (i.e&#x2e;, the value of <a href="qwizardpage.html#isComplete">isComplete</a>()) changes.</p>
+<p>If you reimplement <a href="qwizardpage.html#isComplete">isComplete</a>(), make sure to emit completeChanged() whenever the value of <a href="qwizardpage.html#isComplete">isComplete</a>() changes, to ensure that <a href="qwizard.html">QWizard</a> updates the enabled or disabled state of its buttons.</p>
+<p>See also <a href="qwizardpage.html#isComplete">isComplete</a>().</p>
+<a name="//apple_ref/cpp/instm/QWizardPage/field" />
+<h3 class="fn"><a name="field"></a><a href="qvariant.html">QVariant</a> QWizardPage::field ( const <a href="qstring.html">QString</a> &amp; <i>name</i> ) const&nbsp;&nbsp;<tt> [protected]</tt></h3>
+<p>Returns the value of the field called <i>name</i>.</p>
+<p>This function can be used to access fields on any page of the wizard. It is equivalent to calling <a href="qwizardpage.html#wizard">wizard</a>()-&gt;<a href="qwizard.html#field">field</a>(<i>name</i>).</p>
+<p>Example:</p>
+<pre> void OutputFilesPage::initializePage()
+ {
+     QString className = field(&quot;className&quot;).toString();
+     headerLineEdit-&gt;setText(className.toLower() + &quot;.h&quot;);
+     implementationLineEdit-&gt;setText(className.toLower() + &quot;.cpp&quot;);
+     outputDirLineEdit-&gt;setText(QDir::convertSeparators(QDir::tempPath()));
+ }</pre>
+<p>See also <a href="qwizard.html#field">QWizard::field</a>(), <a href="qwizardpage.html#setField">setField</a>(), and <a href="qwizardpage.html#registerField">registerField</a>().</p>
+<a name="//apple_ref/cpp/instm/QWizardPage/initializePage" />
+<h3 class="fn"><a name="initializePage"></a>void QWizardPage::initializePage ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>This virtual function is called by <a href="qwizard.html#initializePage">QWizard::initializePage</a>() to prepare the page just before it is shown either as a result of <a href="qwizard.html#restart">QWizard::restart</a>() being called, or as a result of the user clicking <b>Next</b>. (However, if the <a href="qwizard.html#WizardOption-enum">QWizard::IndependentPages</a> option is set, this function is only called the first time the page is shown.)</p>
+<p>By reimplementing this function, you can ensure that the page's fields are properly initialized based on fields from previous pages. For example:</p>
+<pre> void OutputFilesPage::initializePage()
+ {
+     QString className = field(&quot;className&quot;).toString();
+     headerLineEdit-&gt;setText(className.toLower() + &quot;.h&quot;);
+     implementationLineEdit-&gt;setText(className.toLower() + &quot;.cpp&quot;);
+     outputDirLineEdit-&gt;setText(QDir::convertSeparators(QDir::tempPath()));
+ }</pre>
+<p>The default implementation does nothing.</p>
+<p>See also <a href="qwizard.html#initializePage">QWizard::initializePage</a>(), <a href="qwizardpage.html#cleanupPage">cleanupPage</a>(), and <a href="qwizard.html#WizardOption-enum">QWizard::IndependentPages</a>.</p>
+<a name="//apple_ref/cpp/instm/QWizardPage/isCommitPage" />
+<h3 class="fn"><a name="isCommitPage"></a>bool QWizardPage::isCommitPage () const</h3>
+<p>Returns true if this page is a commit page; otherwise returns false.</p>
+<p>See also <a href="qwizardpage.html#setCommitPage">setCommitPage</a>().</p>
+<a name="//apple_ref/cpp/instm/QWizardPage/isComplete" />
+<h3 class="fn"><a name="isComplete"></a>bool QWizardPage::isComplete () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>This virtual function is called by <a href="qwizard.html">QWizard</a> to determine whether the <b>Next</b> or <b>Finish</b> button should be enabled or disabled.</p>
+<p>The default implementation returns true if all <a href="qwizard.html#mandatory-fields">mandatory fields</a> are filled; otherwise, it returns false.</p>
+<p>If you reimplement this function, make sure to emit <a href="qwizardpage.html#completeChanged">completeChanged</a>(), from the rest of your implementation, whenever the value of isComplete() changes. This ensures that <a href="qwizard.html">QWizard</a> updates the enabled or disabled state of its buttons. An example of the reimplementation is available <a href="http://qt.nokia.com/doc/qq/qq22-qwizard.html#validatebeforeitstoolate">here</a>.</p>
+<p>See also <a href="qwizardpage.html#completeChanged">completeChanged</a>() and <a href="qwizardpage.html#isFinalPage">isFinalPage</a>().</p>
+<a name="//apple_ref/cpp/instm/QWizardPage/isFinalPage" />
+<h3 class="fn"><a name="isFinalPage"></a>bool QWizardPage::isFinalPage () const</h3>
+<p>This function is called by <a href="qwizard.html">QWizard</a> to determine whether the <b>Finish</b> button should be shown for this page or not.</p>
+<p>By default, it returns true if there is no next page (i.e&#x2e;, <a href="qwizardpage.html#nextId">nextId</a>() returns -1); otherwise, it returns false.</p>
+<p>By explicitly calling setFinalPage(true), you can let the user perform an &quot;early finish&quot;.</p>
+<p>See also <a href="qwizardpage.html#isComplete">isComplete</a>() and <a href="qwizard.html#WizardOption-enum">QWizard::HaveFinishButtonOnEarlyPages</a>.</p>
+<a name="//apple_ref/cpp/instm/QWizardPage/nextId" />
+<h3 class="fn"><a name="nextId"></a>int QWizardPage::nextId () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>This virtual function is called by <a href="qwizard.html#nextId">QWizard::nextId</a>() to find out which page to show when the user clicks the <b>Next</b> button.</p>
+<p>The return value is the ID of the next page, or -1 if no page follows.</p>
+<p>By default, this function returns the lowest ID greater than the ID of the current page, or -1 if there is no such ID.</p>
+<p>By reimplementing this function, you can specify a dynamic page order. For example:</p>
+<pre> int IntroPage::nextId() const
+ {
+     if (evaluateRadioButton-&gt;isChecked()) {
+         return LicenseWizard::Page_Evaluate;
+     } else {
+         return LicenseWizard::Page_Register;
+     }
+ }</pre>
+<p>See also <a href="qwizard.html#nextId">QWizard::nextId</a>().</p>
+<a name="//apple_ref/cpp/instm/QWizardPage/pixmap" />
+<h3 class="fn"><a name="pixmap"></a><a href="qpixmap.html">QPixmap</a> QWizardPage::pixmap ( <a href="qwizard.html#WizardPixmap-enum">QWizard::WizardPixmap</a> <i>which</i> ) const</h3>
+<p>Returns the pixmap set for role <i>which</i>.</p>
+<p>Pixmaps can also be set for the entire wizard using <a href="qwizard.html#setPixmap">QWizard::setPixmap</a>(), in which case they apply for all pages that don't specify a pixmap.</p>
+<p>See also <a href="qwizardpage.html#setPixmap">setPixmap</a>(), <a href="qwizard.html#pixmap">QWizard::pixmap</a>(), and <a href="qwizard.html#elements-of-a-wizard-page">Elements of a Wizard Page</a>.</p>
+<a name="//apple_ref/cpp/instm/QWizardPage/registerField" />
+<h3 class="fn"><a name="registerField"></a>void QWizardPage::registerField ( const <a href="qstring.html">QString</a> &amp; <i>name</i>, <a href="qwidget.html">QWidget</a> * <i>widget</i>, const char * <i>property</i> = 0, const char * <i>changedSignal</i> = 0 )&nbsp;&nbsp;<tt> [protected]</tt></h3>
+<p>Creates a field called <i>name</i> associated with the given <i>property</i> of the given <i>widget</i>. From then on, that property becomes accessible using <a href="qwizardpage.html#field">field</a>() and <a href="qwizardpage.html#setField">setField</a>().</p>
+<p>Fields are global to the entire wizard and make it easy for any single page to access information stored by another page, without having to put all the logic in <a href="qwizard.html">QWizard</a> or having the pages know explicitly about each other.</p>
+<p>If <i>name</i> ends with an asterisk (<tt>*</tt>), the field is a mandatory field. When a page has mandatory fields, the <b>Next</b> and/or <b>Finish</b> buttons are enabled only when all mandatory fields are filled. This requires a <i>changedSignal</i> to be specified, to tell <a href="qwizard.html">QWizard</a> to recheck the value stored by the mandatory field.</p>
+<p><a href="qwizard.html">QWizard</a> knows the most common Qt widgets. For these (or their subclasses), you don't need to specify a <i>property</i> or a <i>changedSignal</i>. The table below lists these widgets:</p>
+<p><table class="generic" align="center" cellpadding="2" cellspacing="1" border="0">
+<thead><tr valign="top" class="qt-style"><th>Widget</th><th>Property</th><th>Change Notification Signal</th></tr></thead>
+<tr valign="top" class="odd"><td><a href="qabstractbutton.html">QAbstractButton</a></td><td>bool <a href="qabstractbutton.html#checked-prop">checked</a></td><td><a href="qabstractbutton.html#toggled">toggled()</a></td></tr>
+<tr valign="top" class="even"><td><a href="qabstractslider.html">QAbstractSlider</a></td><td>int <a href="qabstractslider.html#value-prop">value</a></td><td><a href="qabstractslider.html#valueChanged">valueChanged()</a></td></tr>
+<tr valign="top" class="odd"><td><a href="qcombobox.html">QComboBox</a></td><td>int <a href="qcombobox.html#currentIndex-prop">currentIndex</a></td><td><a href="qcombobox.html#currentIndexChanged">currentIndexChanged()</a></td></tr>
+<tr valign="top" class="even"><td><a href="qdatetimeedit.html">QDateTimeEdit</a></td><td><a href="qdatetime.html">QDateTime</a> <a href="qdatetimeedit.html#dateTime-prop">dateTime</a></td><td><a href="qdatetimeedit.html#dateTimeChanged">dateTimeChanged()</a></td></tr>
+<tr valign="top" class="odd"><td><a href="qlineedit.html">QLineEdit</a></td><td><a href="qstring.html">QString</a> <a href="qlineedit.html#text-prop">text</a></td><td><a href="qlineedit.html#textChanged">textChanged()</a></td></tr>
+<tr valign="top" class="even"><td><a href="qlistwidget.html">QListWidget</a></td><td>int <a href="qlistwidget.html#currentRow-prop">currentRow</a></td><td><a href="qlistwidget.html#currentRowChanged">currentRowChanged()</a></td></tr>
+<tr valign="top" class="odd"><td><a href="qspinbox.html">QSpinBox</a></td><td>int <a href="qspinbox.html#value-prop">value</a></td><td><a href="qspinbox.html#valueChanged">valueChanged()</a></td></tr>
+</table></p>
+<p>You can use <a href="qwizard.html#setDefaultProperty">QWizard::setDefaultProperty</a>() to add entries to this table or to override existing entries.</p>
+<p>To consider a field &quot;filled&quot;, <a href="qwizard.html">QWizard</a> simply checks that their current value doesn't equal their original value (the value they had before <a href="qwizardpage.html#initializePage">initializePage</a>() was called). For <a href="qlineedit.html">QLineEdit</a>, it also checks that <a href="qlineedit.html#acceptableInput-prop">hasAcceptableInput()</a> returns true, to honor any validator or mask.</p>
+<p><a href="qwizard.html">QWizard</a>'s mandatory field mechanism is provided for convenience. It can be bypassed by reimplementing <a href="qwizardpage.html#isComplete">QWizardPage::isComplete</a>().</p>
+<p>See also <a href="qwizardpage.html#field">field</a>(), <a href="qwizardpage.html#setField">setField</a>(), and <a href="qwizard.html#setDefaultProperty">QWizard::setDefaultProperty</a>().</p>
+<a name="//apple_ref/cpp/instm/QWizardPage/setButtonText" />
+<h3 class="fn"><a name="setButtonText"></a>void QWizardPage::setButtonText ( <a href="qwizard.html#WizardButton-enum">QWizard::WizardButton</a> <i>which</i>, const <a href="qstring.html">QString</a> &amp; <i>text</i> )</h3>
+<p>Sets the text on button <i>which</i> to be <i>text</i> on this page.</p>
+<p>By default, the text on buttons depends on the <a href="qwizard.html#wizardStyle-prop">QWizard::wizardStyle</a>, but may be redefined for the wizard as a whole using <a href="qwizard.html#setButtonText">QWizard::setButtonText</a>().</p>
+<p>See also <a href="qwizardpage.html#buttonText">buttonText</a>(), <a href="qwizard.html#setButtonText">QWizard::setButtonText</a>(), and <a href="qwizard.html#buttonText">QWizard::buttonText</a>().</p>
+<a name="//apple_ref/cpp/instm/QWizardPage/setCommitPage" />
+<h3 class="fn"><a name="setCommitPage"></a>void QWizardPage::setCommitPage ( bool <i>commitPage</i> )</h3>
+<p>Sets this page to be a commit page if <i>commitPage</i> is true; otherwise, sets it to be a normal page.</p>
+<p>A commit page is a page that represents an action which cannot be undone by clicking <b>Back</b> or <b>Cancel</b>.</p>
+<p>A <b>Commit</b> button replaces the <b>Next</b> button on a commit page. Clicking this button simply calls <a href="qwizard.html#next">QWizard::next</a>() just like clicking <b>Next</b> does.</p>
+<p>A page entered directly from a commit page has its <b>Back</b> button disabled.</p>
+<p>See also <a href="qwizardpage.html#isCommitPage">isCommitPage</a>().</p>
+<a name="//apple_ref/cpp/instm/QWizardPage/setField" />
+<h3 class="fn"><a name="setField"></a>void QWizardPage::setField ( const <a href="qstring.html">QString</a> &amp; <i>name</i>, const <a href="qvariant.html">QVariant</a> &amp; <i>value</i> )&nbsp;&nbsp;<tt> [protected]</tt></h3>
+<p>Sets the value of the field called <i>name</i> to <i>value</i>.</p>
+<p>This function can be used to set fields on any page of the wizard. It is equivalent to calling <a href="qwizardpage.html#wizard">wizard</a>()-&gt;<a href="qwizard.html#setField">setField(<i>name</i>, <i>value</i>)</a>.</p>
+<p>See also <a href="qwizard.html#setField">QWizard::setField</a>(), <a href="qwizardpage.html#field">field</a>(), and <a href="qwizardpage.html#registerField">registerField</a>().</p>
+<a name="//apple_ref/cpp/instm/QWizardPage/setFinalPage" />
+<h3 class="fn"><a name="setFinalPage"></a>void QWizardPage::setFinalPage ( bool <i>finalPage</i> )</h3>
+<p>Explicitly sets this page to be final if <i>finalPage</i> is true.</p>
+<p>After calling setFinalPage(true), <a href="qwizardpage.html#isFinalPage">isFinalPage</a>() returns true and the <b>Finish</b> button is visible (and enabled if <a href="qwizardpage.html#isComplete">isComplete</a>() returns true).</p>
+<p>After calling setFinalPage(false), <a href="qwizardpage.html#isFinalPage">isFinalPage</a>() returns true if <a href="qwizardpage.html#nextId">nextId</a>() returns -1; otherwise, it returns false.</p>
+<p>See also <a href="qwizardpage.html#isFinalPage">isFinalPage</a>(), <a href="qwizardpage.html#isComplete">isComplete</a>(), and <a href="qwizard.html#WizardOption-enum">QWizard::HaveFinishButtonOnEarlyPages</a>.</p>
+<a name="//apple_ref/cpp/instm/QWizardPage/setPixmap" />
+<h3 class="fn"><a name="setPixmap"></a>void QWizardPage::setPixmap ( <a href="qwizard.html#WizardPixmap-enum">QWizard::WizardPixmap</a> <i>which</i>, const <a href="qpixmap.html">QPixmap</a> &amp; <i>pixmap</i> )</h3>
+<p>Sets the pixmap for role <i>which</i> to <i>pixmap</i>.</p>
+<p>The pixmaps are used by <a href="qwizard.html">QWizard</a> when displaying a page. Which pixmaps are actually used depend on the <a href="qwizard.html#wizard-look-and-feel">wizard style</a>.</p>
+<p>Pixmaps can also be set for the entire wizard using <a href="qwizard.html#setPixmap">QWizard::setPixmap</a>(), in which case they apply for all pages that don't specify a pixmap.</p>
+<p>See also <a href="qwizardpage.html#pixmap">pixmap</a>(), <a href="qwizard.html#setPixmap">QWizard::setPixmap</a>(), and <a href="qwizard.html#elements-of-a-wizard-page">Elements of a Wizard Page</a>.</p>
+<a name="//apple_ref/cpp/instm/QWizardPage/validatePage" />
+<h3 class="fn"><a name="validatePage"></a>bool QWizardPage::validatePage ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>This virtual function is called by <a href="qwizard.html#validateCurrentPage">QWizard::validateCurrentPage</a>() when the user clicks <b>Next</b> or <b>Finish</b> to perform some last-minute validation. If it returns true, the next page is shown (or the wizard finishes); otherwise, the current page stays up.</p>
+<p>The default implementation returns true.</p>
+<p>When possible, it is usually better style to disable the <b>Next</b> or <b>Finish</b> button (by specifying <a href="qwizard.html#mandatory-fields">mandatory fields</a> or reimplementing <a href="qwizardpage.html#isComplete">isComplete</a>()) than to reimplement validatePage().</p>
+<p>See also <a href="qwizard.html#validateCurrentPage">QWizard::validateCurrentPage</a>() and <a href="qwizardpage.html#isComplete">isComplete</a>().</p>
+<a name="//apple_ref/cpp/instm/QWizardPage/wizard" />
+<h3 class="fn"><a name="wizard"></a><a href="qwizard.html">QWizard</a> * QWizardPage::wizard () const&nbsp;&nbsp;<tt> [protected]</tt></h3>
+<p>Returns the wizard associated with this page, or 0 if this page hasn't been inserted into a <a href="qwizard.html">QWizard</a> yet.</p>
+<p>See also <a href="qwizard.html#addPage">QWizard::addPage</a>() and <a href="qwizard.html#setPage">QWizard::setPage</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

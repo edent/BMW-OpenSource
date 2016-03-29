@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qmacnativewidget_mac.mm -->
+<head>
+  <title>Qt 4.6: QMacNativeWidget Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QMacNativeWidget" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QMacNativeWidget Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QMacNativeWidget class provides a widget for Mac OS X that provides a way to put Qt widgets into Carbon or Cocoa hierarchies depending on how Qt was configured. <a href="#details">More...</a></p>
+<pre> #include &lt;QMacNativeWidget&gt;</pre><p>Inherits <a href="qwidget.html">QWidget</a>.</p>
+<p>This class was introduced in Qt 4.5.</p>
+<ul>
+<li><a href="qmacnativewidget-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qmacnativewidget.html#QMacNativeWidget">QMacNativeWidget</a></b> ( void * <i>parentView</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qmacnativewidget.html#dtor.QMacNativeWidget">~QMacNativeWidget</a></b> ()</td></tr>
+</table>
+<hr />
+<a name="reimplemented-public-functions"></a>
+<h2>Reimplemented Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual QSize </td><td class="memItemRight" valign="bottom"><b><a href="qmacnativewidget.html#sizeHint">sizeHint</a></b> () const</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>216 public functions inherited from <a href="qwidget.html#public-functions">QWidget</a></li>
+<li><div bar="2" class="fn"></div>29 public functions inherited from <a href="qobject.html#public-functions">QObject</a></li>
+<li><div bar="2" class="fn"></div>12 public functions inherited from <a href="qpaintdevice.html#public-functions">QPaintDevice</a></li>
+</ul>
+<hr />
+<a name="reimplemented-protected-functions"></a>
+<h2>Reimplemented Protected Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qmacnativewidget.html#event">event</a></b> ( QEvent * <i>ev</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>37 protected functions inherited from <a href="qwidget.html#protected-functions">QWidget</a></li>
+<li><div bar="2" class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+<li><div bar="2" class="fn"></div>1 protected function inherited from <a href="qpaintdevice.html#protected-functions">QPaintDevice</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li><div class="fn"></div>58 properties inherited from <a href="qwidget.html#properties">QWidget</a></li>
+<li><div class="fn"></div>1 property inherited from <a href="qobject.html#properties">QObject</a></li>
+<li><div class="fn"></div>19 public slots inherited from <a href="qwidget.html#public-slots">QWidget</a></li>
+<li><div class="fn"></div>1 public slot inherited from <a href="qobject.html#public-slots">QObject</a></li>
+<li><div class="fn"></div>1 signal inherited from <a href="qwidget.html#signals">QWidget</a></li>
+<li><div class="fn"></div>1 signal inherited from <a href="qobject.html#signals">QObject</a></li>
+<li><div class="fn"></div>4 static public members inherited from <a href="qwidget.html#static-public-members">QWidget</a></li>
+<li><div class="fn"></div>5 static public members inherited from <a href="qobject.html#static-public-members">QObject</a></li>
+<li><div class="fn"></div>37 protected functions inherited from <a href="qwidget.html#protected-functions">QWidget</a></li>
+<li><div class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+<li><div class="fn"></div>1 protected function inherited from <a href="qpaintdevice.html#protected-functions">QPaintDevice</a></li>
+<li><div class="fn"></div>1 protected slot inherited from <a href="qwidget.html#protected-slots">QWidget</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QMacNativeWidget class provides a widget for Mac OS X that provides a way to put Qt widgets into Carbon or Cocoa hierarchies depending on how Qt was configured.</p>
+<p>On Mac OS X, there is a difference between a window and view; normally expressed as widgets in Qt. Qt makes assumptions about its parent-child hierarchy that make it complex to put an arbitrary Qt widget into a hierarchy of &quot;normal&quot; views from Apple frameworks. QMacNativeWidget bridges the gap between views and windows and makes it possible to put a hierarchy of Qt widgets into a non-Qt window or view.</p>
+<p>QMacNativeWidget pretends it is a window (i.e&#x2e; <a href="qwidget.html#isWindow">isWindow</a>() will return true), but it cannot be shown on its own. It needs to be put into a window when it is created or later through a native call.</p>
+<p>QMacNativeWidget works for either Carbon or Cocoa depending on how Qt was configured. If Qt is using Carbon, QMacNativeWidget will embed into Carbon hierarchies. If Qt is using Cocoa, QMacNativeWidget embeds into Cocoa hierarchies.</p>
+<p>Here is an example of putting a <a href="qpushbutton.html">QPushButton</a> into a NSWindow:</p>
+<pre>     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+     NSWindow *window = [[NSWindow alloc] initWithContentRect:NSMakeRect(200, app.desktop()-&gt;height() - 200, 239, 200)
+                         styleMask:NSTitledWindowMask | NSClosableWindowMask
+                                   | NSMiniaturizableWindowMask | NSResizableWindowMask
+                         backing:NSBackingStoreBuffered defer:NO];
+
+     QMacNativeWidget *nativeWidget = new QMacNativeWidget();
+     nativeWidget-&gt;move(0, 0);
+     nativeWidget-&gt;setPalette(QPalette(Qt::red));
+     nativeWidget-&gt;setAutoFillBackground(true);
+     QVBoxLayout *layout = new QVBoxLayout();
+     QPushButton *pushButton = new QPushButton(&quot;An Embedded Qt Button!&quot;, nativeWidget);
+     pushButton-&gt;setAttribute(Qt::WA_LayoutUsesWidgetRect); // Don't use the layout rect calculated from QMacStyle.
+     layout-&gt;addWidget(pushButton);
+     nativeWidget-&gt;setLayout(layout);
+
+     // Adjust Cocoa layouts
+     NSView *nativeWidgetView = reinterpret_cast&lt;NSView *&gt;(nativeWidget-&gt;winId());
+     NSView *contentView = [window contentView];
+     [contentView setAutoresizesSubviews:YES];
+     [nativeWidgetView setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
+     [nativeWidgetView setAutoresizesSubviews:YES];
+     NSView *pushButtonView = reinterpret_cast&lt;NSView *&gt;(pushButton-&gt;winId());
+     [pushButtonView setAutoresizingMask:NSViewWidthSizable];
+
+     // Add the nativeWidget to the window.
+     [contentView addSubview:nativeWidgetView positioned:NSWindowAbove relativeTo:nil];
+     nativeWidget-&gt;show();
+     pushButton-&gt;show();
+
+     // Show the window.
+     [window makeKeyAndOrderFront:window];
+     [pool release];</pre>
+<p>On Carbon, this would do the equivalent:</p>
+<pre>     Rect contentRect;
+     SetRect(&amp;contentRect, 200, 200, 400, 400);
+     HIWindowRef windowRef;
+     CreateNewWindow(kDocumentWindowClass, kWindowStandardDocumentAttributes | kWindowCompositingAttribute | kWindowStandardHandlerAttribute | kWindowLiveResizeAttribute, &amp;contentRect, &amp;windowRef);
+     HIViewRef contentView = 0;
+     GetRootControl(windowRef, &amp;contentView);
+
+     QMacNativeWidget *nativeWidget = new QMacNativeWidget();
+     nativeWidget-&gt;move(0, 0);
+     nativeWidget-&gt;setPalette(QPalette(Qt::red));
+     nativeWidget-&gt;setAutoFillBackground(true);
+     QVBoxLayout *layout = new QVBoxLayout();
+     QPushButton *pushButton = new QPushButton(&quot;An Embedded Qt Button!&quot;, nativeWidget);
+     pushButton-&gt;setAttribute(Qt::WA_LayoutUsesWidgetRect); // Don't use the layout rect calculated from QMacStyle.
+     layout-&gt;addWidget(pushButton);
+     nativeWidget-&gt;setLayout(layout);
+     HIViewRef nativeWidgetView = reinterpret_cast&lt;HIViewRef&gt;(nativeWidget-&gt;winId());
+     // Add the nativeWidget to the window.
+     HIViewAddSubview(contentView, nativeWidgetView);
+
+     // Adjust Carbon layouts
+     HILayoutInfo layoutInfo;
+     layoutInfo.version = kHILayoutInfoVersionZero;
+     HIViewGetLayoutInfo(nativeWidgetView, &amp;layoutInfo);
+
+     layoutInfo.binding.top.toView = contentView;
+     layoutInfo.binding.top.kind = kHILayoutBindTop;
+     layoutInfo.binding.left.toView = contentView;
+     layoutInfo.binding.left.kind = kHILayoutBindLeft;
+     layoutInfo.binding.right.toView = contentView;
+     layoutInfo.binding.right.kind = kHILayoutBindRight;
+     layoutInfo.binding.bottom.toView = contentView;
+     layoutInfo.binding.bottom.kind = kHILayoutBindBottom;
+
+     HIViewSetLayoutInfo(nativeWidgetView, &amp;layoutInfo);
+     HIViewApplyLayout(nativeWidgetView);
+
+     pushButton-&gt;show();
+     nativeWidget-&gt;show();
+     // Show the window.
+     ShowWindow(windowRef);</pre>
+<p>Note that QMacNativeWidget requires knowledge of Carbon or Cocoa. All it does is get the Qt hierarchy into a window not owned by Qt. It is then up to the programmer to ensure it is placed correctly in the window and responds correctly to events.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QMacNativeWidget/QMacNativeWidget" />
+<h3 class="fn"><a name="QMacNativeWidget"></a>QMacNativeWidget::QMacNativeWidget ( void * <i>parentView</i> = 0 )</h3>
+<p>Create a <a href="qmacnativewidget.html">QMacNativeWidget</a> with <i>parentView</i> as its &quot;superview&quot; (i.e&#x2e;, parent). The <i>parentView</i> is either an HIViewRef if Qt is using Carbon or a NSView pointer if Qt is using Cocoa.</p>
+<a name="//apple_ref/cpp/instm/QMacNativeWidget/~QMacNativeWidget" />
+<h3 class="fn"><a name="dtor.QMacNativeWidget"></a>QMacNativeWidget::~QMacNativeWidget ()</h3>
+<p>Destroy the <a href="qmacnativewidget.html">QMacNativeWidget</a>.</p>
+<a name="//apple_ref/cpp/instm/QMacNativeWidget/event" />
+<h3 class="fn"><a name="event"></a>bool QMacNativeWidget::event ( <a href="qevent.html">QEvent</a> * <i>ev</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qobject.html#event">QObject::event</a>().</p>
+<a name="//apple_ref/cpp/instm/QMacNativeWidget/sizeHint" />
+<h3 class="fn"><a name="sizeHint"></a><a href="qsize.html">QSize</a> QMacNativeWidget::sizeHint () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#sizeHint-prop">QWidget::sizeHint</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qabstractslider.cpp -->
+<head>
+  <title>Qt 4.6: QAbstractSlider Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QAbstractSlider" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QAbstractSlider Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QAbstractSlider class provides an integer value within a range. <a href="#details">More...</a></p>
+<pre> #include &lt;QAbstractSlider&gt;</pre><p>Inherits <a href="qwidget.html">QWidget</a>.</p>
+<p>Inherited by <a href="qdial.html">QDial</a>, <a href="qscrollbar.html">QScrollBar</a>, and <a href="qslider.html">QSlider</a>.</p>
+<ul>
+<li><a href="qabstractslider-members.html">List of all members, including inherited members</a></li>
+<li><a href="qabstractslider-qt3.html">Qt 3 support members</a></li>
+</ul>
+<hr />
+<a name="public-types"></a>
+<h2>Public Types</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qabstractslider.html#SliderAction-enum">SliderAction</a></b> { SliderNoAction, SliderSingleStepAdd, SliderSingleStepSub, SliderPageStepAdd, ..., SliderMove }</td></tr>
+</table>
+<hr />
+<a name="properties"></a>
+<h2>Properties</h2>
+<p><table class="propsummary" width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr><td width="45%" valign="top"><ul>
+<li><div class="fn"><b><a href="qabstractslider.html#invertedAppearance-prop">invertedAppearance</a></b> : bool</div></li>
+<li><div class="fn"><b><a href="qabstractslider.html#invertedControls-prop">invertedControls</a></b> : bool</div></li>
+<li><div class="fn"><b><a href="qabstractslider.html#maximum-prop">maximum</a></b> : int</div></li>
+<li><div class="fn"><b><a href="qabstractslider.html#minimum-prop">minimum</a></b> : int</div></li>
+<li><div class="fn"><b><a href="qabstractslider.html#orientation-prop">orientation</a></b> : Qt::Orientation</div></li>
+<li><div class="fn"><b><a href="qabstractslider.html#pageStep-prop">pageStep</a></b> : int</div></li>
+</ul></td><td valign="top"><ul>
+<li><div class="fn"><b><a href="qabstractslider.html#singleStep-prop">singleStep</a></b> : int</div></li>
+<li><div class="fn"><b><a href="qabstractslider.html#sliderDown-prop">sliderDown</a></b> : bool</div></li>
+<li><div class="fn"><b><a href="qabstractslider.html#sliderPosition-prop">sliderPosition</a></b> : int</div></li>
+<li><div class="fn"><b><a href="qabstractslider.html#tracking-prop">tracking</a></b> : bool</div></li>
+<li><div class="fn"><b><a href="qabstractslider.html#value-prop">value</a></b> : int</div></li>
+</ul>
+</td></tr>
+</table></p>
+<ul>
+<li><div bar="2" class="fn"></div>58 properties inherited from <a href="qwidget.html#properties">QWidget</a></li>
+<li><div bar="2" class="fn"></div>1 property inherited from <a href="qobject.html#properties">QObject</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qabstractslider.html#QAbstractSlider">QAbstractSlider</a></b> ( QWidget * <i>parent</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qabstractslider.html#dtor.QAbstractSlider">~QAbstractSlider</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qabstractslider.html#tracking-prop">hasTracking</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qabstractslider.html#invertedAppearance-prop">invertedAppearance</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qabstractslider.html#invertedControls-prop">invertedControls</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qabstractslider.html#sliderDown-prop">isSliderDown</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qabstractslider.html#maximum-prop">maximum</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qabstractslider.html#minimum-prop">minimum</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Qt::Orientation </td><td class="memItemRight" valign="bottom"><b><a href="qabstractslider.html#orientation-prop">orientation</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qabstractslider.html#pageStep-prop">pageStep</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qabstractslider.html#invertedAppearance-prop">setInvertedAppearance</a></b> ( bool )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qabstractslider.html#invertedControls-prop">setInvertedControls</a></b> ( bool )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qabstractslider.html#maximum-prop">setMaximum</a></b> ( int )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qabstractslider.html#minimum-prop">setMinimum</a></b> ( int )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qabstractslider.html#pageStep-prop">setPageStep</a></b> ( int )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qabstractslider.html#setRange">setRange</a></b> ( int <i>min</i>, int <i>max</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qabstractslider.html#singleStep-prop">setSingleStep</a></b> ( int )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qabstractslider.html#sliderDown-prop">setSliderDown</a></b> ( bool )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qabstractslider.html#sliderPosition-prop">setSliderPosition</a></b> ( int )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qabstractslider.html#tracking-prop">setTracking</a></b> ( bool <i>enable</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qabstractslider.html#singleStep-prop">singleStep</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qabstractslider.html#sliderPosition-prop">sliderPosition</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qabstractslider.html#triggerAction">triggerAction</a></b> ( SliderAction <i>action</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qabstractslider.html#value-prop">value</a></b> () const</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>216 public functions inherited from <a href="qwidget.html#public-functions">QWidget</a></li>
+<li><div bar="2" class="fn"></div>29 public functions inherited from <a href="qobject.html#public-functions">QObject</a></li>
+<li><div bar="2" class="fn"></div>12 public functions inherited from <a href="qpaintdevice.html#public-functions">QPaintDevice</a></li>
+</ul>
+<hr />
+<a name="public-slots"></a>
+<h2>Public Slots</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qabstractslider.html#orientation-prop">setOrientation</a></b> ( Qt::Orientation )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qabstractslider.html#value-prop">setValue</a></b> ( int )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>19 public slots inherited from <a href="qwidget.html#public-slots">QWidget</a></li>
+<li><div bar="2" class="fn"></div>1 public slot inherited from <a href="qobject.html#public-slots">QObject</a></li>
+</ul>
+<hr />
+<a name="signals"></a>
+<h2>Signals</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qabstractslider.html#actionTriggered">actionTriggered</a></b> ( int <i>action</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qabstractslider.html#rangeChanged">rangeChanged</a></b> ( int <i>min</i>, int <i>max</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qabstractslider.html#sliderMoved">sliderMoved</a></b> ( int <i>value</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qabstractslider.html#sliderPressed">sliderPressed</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qabstractslider.html#sliderReleased">sliderReleased</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qabstractslider.html#valueChanged">valueChanged</a></b> ( int <i>value</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>1 signal inherited from <a href="qwidget.html#signals">QWidget</a></li>
+<li><div bar="2" class="fn"></div>1 signal inherited from <a href="qobject.html#signals">QObject</a></li>
+</ul>
+<hr />
+<a name="protected-types"></a>
+<h2>Protected Types</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qabstractslider.html#SliderChange-enum">SliderChange</a></b> { SliderRangeChange, SliderOrientationChange, SliderStepsChange, SliderValueChange }</td></tr>
+</table>
+<hr />
+<a name="protected-functions"></a>
+<h2>Protected Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">SliderAction </td><td class="memItemRight" valign="bottom"><b><a href="qabstractslider.html#repeatAction">repeatAction</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qabstractslider.html#setRepeatAction">setRepeatAction</a></b> ( SliderAction <i>action</i>, int <i>thresholdTime</i> = 500, int <i>repeatTime</i> = 50 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qabstractslider.html#sliderChange">sliderChange</a></b> ( SliderChange <i>change</i> )</td></tr>
+</table>
+<hr />
+<a name="reimplemented-protected-functions"></a>
+<h2>Reimplemented Protected Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qabstractslider.html#changeEvent">changeEvent</a></b> ( QEvent * <i>ev</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qabstractslider.html#event">event</a></b> ( QEvent * <i>e</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qabstractslider.html#keyPressEvent">keyPressEvent</a></b> ( QKeyEvent * <i>ev</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qabstractslider.html#timerEvent">timerEvent</a></b> ( QTimerEvent * <i>e</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qabstractslider.html#wheelEvent">wheelEvent</a></b> ( QWheelEvent * <i>e</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>37 protected functions inherited from <a href="qwidget.html#protected-functions">QWidget</a></li>
+<li><div bar="2" class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+<li><div bar="2" class="fn"></div>1 protected function inherited from <a href="qpaintdevice.html#protected-functions">QPaintDevice</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li><div class="fn"></div>4 static public members inherited from <a href="qwidget.html#static-public-members">QWidget</a></li>
+<li><div class="fn"></div>5 static public members inherited from <a href="qobject.html#static-public-members">QObject</a></li>
+<li><div class="fn"></div>1 protected slot inherited from <a href="qwidget.html#protected-slots">QWidget</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QAbstractSlider class provides an integer value within a range.</p>
+<p>The class is designed as a common super class for widgets like <a href="qscrollbar.html">QScrollBar</a>, <a href="qslider.html">QSlider</a> and <a href="qdial.html">QDial</a>.</p>
+<p>Here are the main properties of the class:</p>
+<ol type="1">
+<li><a href="qabstractslider.html#value-prop">value</a>: The bounded integer that QAbstractSlider maintains.</li>
+<li><a href="qabstractslider.html#minimum-prop">minimum</a>: The lowest possible value.</li>
+<li><a href="qabstractslider.html#maximum-prop">maximum</a>: The highest possible value.</li>
+<li><a href="qabstractslider.html#singleStep-prop">singleStep</a>: The smaller of two natural steps that an abstract sliders provides and typically corresponds to the user pressing an arrow key.</li>
+<li><a href="qabstractslider.html#pageStep-prop">pageStep</a>: The larger of two natural steps that an abstract slider provides and typically corresponds to the user pressing PageUp or PageDown.</li>
+<li><a href="qabstractslider.html#tracking-prop">tracking</a>: Whether slider tracking is enabled.</li>
+<li><a href="qabstractslider.html#sliderPosition-prop">sliderPosition</a>: The current position of the slider. If <a href="qabstractslider.html#tracking-prop">tracking</a> is enabled (the default), this is identical to <a href="qabstractslider.html#value-prop">value</a>.</li>
+</ol>
+<p>Unity (1) may be viewed as a third step size. <a href="qabstractslider.html#value-prop">setValue</a>() lets you set the current value to any integer in the allowed range, not just <a href="qabstractslider.html#minimum-prop">minimum</a>() + <i>n</i> * <a href="qabstractslider.html#singleStep-prop">singleStep</a>() for integer values of <i>n</i>. Some widgets may allow the user to set any value at all; others may just provide multiples of <a href="qabstractslider.html#singleStep-prop">singleStep</a>() or <a href="qabstractslider.html#pageStep-prop">pageStep</a>().</p>
+<p>QAbstractSlider emits a comprehensive set of signals:</p>
+<p><table class="generic" align="center" cellpadding="2" cellspacing="1" border="0">
+<thead><tr valign="top" class="qt-style"><th>Signal</th><th>Emitted when</th></tr></thead>
+<tr valign="top" class="odd"><td><a href="qabstractslider.html#valueChanged">valueChanged</a>()</td><td>the value has changed. The <a href="qabstractslider.html#tracking-prop">tracking</a> determines whether this signal is emitted during user interaction.</td></tr>
+<tr valign="top" class="even"><td><a href="qabstractslider.html#sliderPressed">sliderPressed</a>()</td><td>the user starts to drag the slider.</td></tr>
+<tr valign="top" class="odd"><td><a href="qabstractslider.html#sliderMoved">sliderMoved</a>()</td><td>the user drags the slider.</td></tr>
+<tr valign="top" class="even"><td><a href="qabstractslider.html#sliderReleased">sliderReleased</a>()</td><td>the user releases the slider.</td></tr>
+<tr valign="top" class="odd"><td><a href="qabstractslider.html#actionTriggered">actionTriggered</a>()</td><td>a slider action was triggerd.</td></tr>
+<tr valign="top" class="even"><td><a href="qabstractslider.html#rangeChanged">rangeChanged</a>()</td><td>a the range has changed.</td></tr>
+</table></p>
+<p>QAbstractSlider provides a virtual <a href="qabstractslider.html#sliderChange">sliderChange</a>() function that is well suited for updating the on-screen representation of sliders. By calling <a href="qabstractslider.html#triggerAction">triggerAction</a>(), subclasses trigger slider actions. Two helper functions <a href="qstyle.html#sliderPositionFromValue">QStyle::sliderPositionFromValue</a>() and <a href="qstyle.html#sliderValueFromPosition">QStyle::sliderValueFromPosition</a>() help subclasses and styles to map screen coordinates to logical range values.</p>
+<p>See also <a href="qabstractspinbox.html">QAbstractSpinBox</a>, <a href="qslider.html">QSlider</a>, <a href="qdial.html">QDial</a>, <a href="qscrollbar.html">QScrollBar</a>, and <a href="widgets-sliders.html">Sliders Example</a>.</p>
+<hr />
+<h2>Member Type Documentation</h2>
+<a name="//apple_ref/cpp/tag/QAbstractSlider/SliderAction" />
+<a name="//apple_ref/cpp/econst/QAbstractSlider/SliderNoAction" />
+<a name="//apple_ref/cpp/econst/QAbstractSlider/SliderSingleStepAdd" />
+<a name="//apple_ref/cpp/econst/QAbstractSlider/SliderSingleStepSub" />
+<a name="//apple_ref/cpp/econst/QAbstractSlider/SliderPageStepAdd" />
+<a name="//apple_ref/cpp/econst/QAbstractSlider/SliderPageStepSub" />
+<a name="//apple_ref/cpp/econst/QAbstractSlider/SliderToMinimum" />
+<a name="//apple_ref/cpp/econst/QAbstractSlider/SliderToMaximum" />
+<a name="//apple_ref/cpp/econst/QAbstractSlider/SliderMove" />
+<h3 class="fn"><a name="SliderAction-enum"></a>enum QAbstractSlider::SliderAction</h3>
+<p><table  class="valuelist" border="1" cellpadding="2" cellspacing="1" width="40%">
+<tr><th width="60%">Constant</th><th width="40%">Value</th></tr>
+<tr><td valign="top"><tt>QAbstractSlider::SliderNoAction</tt></td><td align="center" valign="top"><tt>0</tt></td></tr>
+<tr><td valign="top"><tt>QAbstractSlider::SliderSingleStepAdd</tt></td><td align="center" valign="top"><tt>1</tt></td></tr>
+<tr><td valign="top"><tt>QAbstractSlider::SliderSingleStepSub</tt></td><td align="center" valign="top"><tt>2</tt></td></tr>
+<tr><td valign="top"><tt>QAbstractSlider::SliderPageStepAdd</tt></td><td align="center" valign="top"><tt>3</tt></td></tr>
+<tr><td valign="top"><tt>QAbstractSlider::SliderPageStepSub</tt></td><td align="center" valign="top"><tt>4</tt></td></tr>
+<tr><td valign="top"><tt>QAbstractSlider::SliderToMinimum</tt></td><td align="center" valign="top"><tt>5</tt></td></tr>
+<tr><td valign="top"><tt>QAbstractSlider::SliderToMaximum</tt></td><td align="center" valign="top"><tt>6</tt></td></tr>
+<tr><td valign="top"><tt>QAbstractSlider::SliderMove</tt></td><td align="center" valign="top"><tt>7</tt></td></tr>
+</table></p>
+<a name="//apple_ref/cpp/tag/QAbstractSlider/SliderChange" />
+<a name="//apple_ref/cpp/econst/QAbstractSlider/SliderRangeChange" />
+<a name="//apple_ref/cpp/econst/QAbstractSlider/SliderOrientationChange" />
+<a name="//apple_ref/cpp/econst/QAbstractSlider/SliderStepsChange" />
+<a name="//apple_ref/cpp/econst/QAbstractSlider/SliderValueChange" />
+<h3 class="fn"><a name="SliderChange-enum"></a>enum QAbstractSlider::SliderChange</h3>
+<p><table  class="valuelist" border="1" cellpadding="2" cellspacing="1" width="40%">
+<tr><th width="60%">Constant</th><th width="40%">Value</th></tr>
+<tr><td valign="top"><tt>QAbstractSlider::SliderRangeChange</tt></td><td align="center" valign="top"><tt>0</tt></td></tr>
+<tr><td valign="top"><tt>QAbstractSlider::SliderOrientationChange</tt></td><td align="center" valign="top"><tt>1</tt></td></tr>
+<tr><td valign="top"><tt>QAbstractSlider::SliderStepsChange</tt></td><td align="center" valign="top"><tt>2</tt></td></tr>
+<tr><td valign="top"><tt>QAbstractSlider::SliderValueChange</tt></td><td align="center" valign="top"><tt>3</tt></td></tr>
+</table></p>
+<hr />
+<h2>Property Documentation</h2>
+<a name="//apple_ref/cpp/instm/QAbstractSlider/invertedAppearance" />
+<a name="//apple_ref/cpp/instm/QAbstractSlider/setInvertedAppearance" />
+<h3 class="fn"><a name="invertedAppearance-prop"></a>invertedAppearance : bool</h3>
+<p>This property holds whether or not a slider shows its values inverted.</p>
+<p>If this property is false (the default), the minimum and maximum will be shown in its classic position for the inherited widget. If the value is true, the minimum and maximum appear at their opposite location.</p>
+<p>Note: This property makes most sense for sliders and dials. For scroll bars, the visual effect of the scroll bar subcontrols depends on whether or not the styles understand inverted appearance; most styles ignore this property for scroll bars.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b>invertedAppearance</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setInvertedAppearance</b> ( bool )</td></tr>
+</table>
+<a name="//apple_ref/cpp/instm/QAbstractSlider/invertedControls" />
+<a name="//apple_ref/cpp/instm/QAbstractSlider/setInvertedControls" />
+<h3 class="fn"><a name="invertedControls-prop"></a>invertedControls : bool</h3>
+<p>This property holds whether or not the slider inverts its wheel and key events.</p>
+<p>If this property is false, scrolling the mouse wheel &quot;up&quot; and using keys like page up will increase the slider's value towards its maximum. Otherwise pressing page up will move value towards the slider's minimum.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b>invertedControls</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setInvertedControls</b> ( bool )</td></tr>
+</table>
+<a name="//apple_ref/cpp/instm/QAbstractSlider/maximum" />
+<a name="//apple_ref/cpp/instm/QAbstractSlider/setMaximum" />
+<h3 class="fn"><a name="maximum-prop"></a>maximum : int</h3>
+<p>This property holds the slider's maximum value.</p>
+<p>When setting this property, the <a href="qabstractslider.html#minimum-prop">minimum</a> is adjusted if necessary to ensure that the range remains valid. Also the slider's current value is adjusted to be within the new range.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b>maximum</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setMaximum</b> ( int )</td></tr>
+</table>
+<a name="//apple_ref/cpp/instm/QAbstractSlider/minimum" />
+<a name="//apple_ref/cpp/instm/QAbstractSlider/setMinimum" />
+<h3 class="fn"><a name="minimum-prop"></a>minimum : int</h3>
+<p>This property holds the sliders's minimum value.</p>
+<p>When setting this property, the <a href="qabstractslider.html#maximum-prop">maximum</a> is adjusted if necessary to ensure that the range remains valid. Also the slider's current value is adjusted to be within the new range.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b>minimum</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setMinimum</b> ( int )</td></tr>
+</table>
+<a name="//apple_ref/cpp/instm/QAbstractSlider/orientation" />
+<a name="//apple_ref/cpp/instm/QAbstractSlider/setOrientation" />
+<h3 class="fn"><a name="orientation-prop"></a>orientation : <a href="qt.html#Orientation-enum">Qt::Orientation</a></h3>
+<p>This property holds the orientation of the slider.</p>
+<p>The orientation must be <a href="qt.html#Orientation-enum">Qt::Vertical</a> (the default) or <a href="qt.html#Orientation-enum">Qt::Horizontal</a>.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">Qt::Orientation </td><td class="memItemRight" valign="bottom"><b>orientation</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setOrientation</b> ( Qt::Orientation )</td></tr>
+</table>
+<a name="//apple_ref/cpp/instm/QAbstractSlider/pageStep" />
+<a name="//apple_ref/cpp/instm/QAbstractSlider/setPageStep" />
+<h3 class="fn"><a name="pageStep-prop"></a>pageStep : int</h3>
+<p>This property holds the page step.</p>
+<p>The larger of two natural steps that an abstract slider provides and typically corresponds to the user pressing PageUp or PageDown.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b>pageStep</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setPageStep</b> ( int )</td></tr>
+</table>
+<p>See also <a href="qabstractslider.html#singleStep-prop">singleStep</a>.</p>
+<a name="//apple_ref/cpp/instm/QAbstractSlider/singleStep" />
+<a name="//apple_ref/cpp/instm/QAbstractSlider/setSingleStep" />
+<h3 class="fn"><a name="singleStep-prop"></a>singleStep : int</h3>
+<p>This property holds the single step.</p>
+<p>The smaller of two natural steps that an abstract sliders provides and typically corresponds to the user pressing an arrow key.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b>singleStep</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setSingleStep</b> ( int )</td></tr>
+</table>
+<p>See also <a href="qabstractslider.html#pageStep-prop">pageStep</a>.</p>
+<a name="//apple_ref/cpp/instm/QAbstractSlider/isSliderDown" />
+<a name="//apple_ref/cpp/instm/QAbstractSlider/setSliderDown" />
+<h3 class="fn"><a name="sliderDown-prop"></a>sliderDown : bool</h3>
+<p>This property holds whether the slider is pressed down.</p>
+<p>The property is set by subclasses in order to let the abstract slider know whether or not <a href="qabstractslider.html#tracking-prop">tracking</a> has any effect.</p>
+<p>Changing the slider down property emits the <a href="qabstractslider.html#sliderPressed">sliderPressed</a>() and <a href="qabstractslider.html#sliderReleased">sliderReleased</a>() signals.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b>isSliderDown</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setSliderDown</b> ( bool )</td></tr>
+</table>
+<a name="//apple_ref/cpp/instm/QAbstractSlider/sliderPosition" />
+<a name="//apple_ref/cpp/instm/QAbstractSlider/setSliderPosition" />
+<a name="//apple_ref/cpp/instm/QAbstractSlider/sliderMoved" />
+<h3 class="fn"><a name="sliderPosition-prop"></a>sliderPosition : int</h3>
+<p>This property holds the current slider position.</p>
+<p>If <a href="qabstractslider.html#tracking-prop">tracking</a> is enabled (the default), this is identical to <a href="qabstractslider.html#value-prop">value</a>.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b>sliderPosition</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setSliderPosition</b> ( int )</td></tr>
+</table>
+<p><b>Notifier signal:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qabstractslider.html#sliderMoved">sliderMoved</a></b> ( int <i>value</i> )</td></tr>
+</table>
+<a name="//apple_ref/cpp/instm/QAbstractSlider/hasTracking" />
+<a name="//apple_ref/cpp/instm/QAbstractSlider/setTracking" />
+<h3 class="fn"><a name="tracking-prop"></a>tracking : bool</h3>
+<p>This property holds whether slider tracking is enabled.</p>
+<p>If tracking is enabled (the default), the slider emits the <a href="qabstractslider.html#valueChanged">valueChanged</a>() signal while the slider is being dragged. If tracking is disabled, the slider emits the <a href="qabstractslider.html#valueChanged">valueChanged</a>() signal only when the user releases the slider.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b>hasTracking</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setTracking</b> ( bool <i>enable</i> )</td></tr>
+</table>
+<p>See also <a href="qabstractslider.html#sliderDown-prop">sliderDown</a>.</p>
+<a name="//apple_ref/cpp/instm/QAbstractSlider/value" />
+<a name="//apple_ref/cpp/instm/QAbstractSlider/setValue" />
+<a name="//apple_ref/cpp/instm/QAbstractSlider/valueChanged" />
+<h3 class="fn"><a name="value-prop"></a>value : int</h3>
+<p>This property holds the slider's current value.</p>
+<p>The slider forces the value to be within the legal range: <a href="qabstractslider.html#minimum-prop">minimum</a> &lt;= <tt>value</tt> &lt;= <a href="qabstractslider.html#maximum-prop">maximum</a>.</p>
+<p>Changing the value also changes the <a href="qabstractslider.html#sliderPosition-prop">sliderPosition</a>.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b>value</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setValue</b> ( int )</td></tr>
+</table>
+<p><b>Notifier signal:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qabstractslider.html#valueChanged">valueChanged</a></b> ( int <i>value</i> )</td></tr>
+</table>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QAbstractSlider/QAbstractSlider" />
+<h3 class="fn"><a name="QAbstractSlider"></a>QAbstractSlider::QAbstractSlider ( <a href="qwidget.html">QWidget</a> * <i>parent</i> = 0 )</h3>
+<p>Constructs an abstract slider.</p>
+<p>The <i>parent</i> arguments is sent to the <a href="qwidget.html">QWidget</a> constructor.</p>
+<p>The <a href="qabstractslider.html#minimum-prop">minimum</a> defaults to 0, the <a href="qabstractslider.html#maximum-prop">maximum</a> to 99, with a <a href="qabstractslider.html#singleStep-prop">singleStep</a> size of 1 and a <a href="qabstractslider.html#pageStep-prop">pageStep</a> size of 10, and an initial <a href="qabstractslider.html#value-prop">value</a> of 0.</p>
+<a name="//apple_ref/cpp/instm/QAbstractSlider/~QAbstractSlider" />
+<h3 class="fn"><a name="dtor.QAbstractSlider"></a>QAbstractSlider::~QAbstractSlider ()</h3>
+<p>Destroys the slider.</p>
+<a name="//apple_ref/cpp/instm/QAbstractSlider/actionTriggered" />
+<h3 class="fn"><a name="actionTriggered"></a>void QAbstractSlider::actionTriggered ( int <i>action</i> )&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted when the slider action <i>action</i> is triggered. Actions are <a href="qabstractslider.html#SliderAction-enum">SliderSingleStepAdd</a>, <a href="qabstractslider.html#SliderAction-enum">SliderSingleStepSub</a>, <a href="qabstractslider.html#SliderAction-enum">SliderPageStepAdd</a>, <a href="qabstractslider.html#SliderAction-enum">SliderPageStepSub</a>, <a href="qabstractslider.html#SliderAction-enum">SliderToMinimum</a>, <a href="qabstractslider.html#SliderAction-enum">SliderToMaximum</a>, and <a href="qabstractslider.html#SliderAction-enum">SliderMove</a>.</p>
+<p>When the signal is emitted, the <a href="qabstractslider.html#sliderPosition-prop">sliderPosition</a> has been adjusted according to the action, but the <a href="qabstractslider.html#value-prop">value</a> has not yet been propagated (meaning the <a href="qabstractslider.html#valueChanged">valueChanged</a>() signal was not yet emitted), and the visual display has not been updated. In slots connected to this signal you can thus safely adjust any action by calling <a href="qabstractslider.html#sliderPosition-prop">setSliderPosition</a>() yourself, based on both the action and the slider's value.</p>
+<p>See also <a href="qabstractslider.html#triggerAction">triggerAction</a>().</p>
+<a name="//apple_ref/cpp/instm/QAbstractSlider/changeEvent" />
+<h3 class="fn"><a name="changeEvent"></a>void QAbstractSlider::changeEvent ( <a href="qevent.html">QEvent</a> * <i>ev</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#changeEvent">QWidget::changeEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QAbstractSlider/event" />
+<h3 class="fn"><a name="event"></a>bool QAbstractSlider::event ( <a href="qevent.html">QEvent</a> * <i>e</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qobject.html#event">QObject::event</a>().</p>
+<a name="//apple_ref/cpp/instm/QAbstractSlider/keyPressEvent" />
+<h3 class="fn"><a name="keyPressEvent"></a>void QAbstractSlider::keyPressEvent ( <a href="qkeyevent.html">QKeyEvent</a> * <i>ev</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#keyPressEvent">QWidget::keyPressEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QAbstractSlider/rangeChanged" />
+<h3 class="fn"><a name="rangeChanged"></a>void QAbstractSlider::rangeChanged ( int <i>min</i>, int <i>max</i> )&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted when the slider range has changed, with <i>min</i> being the new minimum, and <i>max</i> being the new maximum.</p>
+<p>See also <a href="qabstractslider.html#minimum-prop">minimum</a> and <a href="qabstractslider.html#maximum-prop">maximum</a>.</p>
+<a name="//apple_ref/cpp/instm/QAbstractSlider/repeatAction" />
+<h3 class="fn"><a name="repeatAction"></a><a href="qabstractslider.html#SliderAction-enum">SliderAction</a> QAbstractSlider::repeatAction () const&nbsp;&nbsp;<tt> [protected]</tt></h3>
+<p>Returns the current repeat action.</p>
+<p>See also <a href="qabstractslider.html#setRepeatAction">setRepeatAction</a>().</p>
+<a name="//apple_ref/cpp/instm/QAbstractSlider/setRange" />
+<h3 class="fn"><a name="setRange"></a>void QAbstractSlider::setRange ( int <i>min</i>, int <i>max</i> )</h3>
+<p>Sets the slider's minimum to <i>min</i> and its maximum to <i>max</i>.</p>
+<p>If <i>max</i> is smaller than <i>min</i>, <i>min</i> becomes the only legal value.</p>
+<p>See also <a href="qabstractslider.html#minimum-prop">minimum</a> and <a href="qabstractslider.html#maximum-prop">maximum</a>.</p>
+<a name="//apple_ref/cpp/instm/QAbstractSlider/setRepeatAction" />
+<h3 class="fn"><a name="setRepeatAction"></a>void QAbstractSlider::setRepeatAction ( <a href="qabstractslider.html#SliderAction-enum">SliderAction</a> <i>action</i>, int <i>thresholdTime</i> = 500, int <i>repeatTime</i> = 50 )&nbsp;&nbsp;<tt> [protected]</tt></h3>
+<p>Sets action <i>action</i> to be triggered repetitively in intervals of <i>repeatTime</i>, after an initial delay of <i>thresholdTime</i>.</p>
+<p>See also <a href="qabstractslider.html#triggerAction">triggerAction</a>() and <a href="qabstractslider.html#repeatAction">repeatAction</a>().</p>
+<a name="//apple_ref/cpp/instm/QAbstractSlider/sliderChange" />
+<h3 class="fn"><a name="sliderChange"></a>void QAbstractSlider::sliderChange ( <a href="qabstractslider.html#SliderChange-enum">SliderChange</a> <i>change</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplement this virtual function to track slider changes such as <a href="qabstractslider.html#SliderChange-enum">SliderRangeChange</a>, <a href="qabstractslider.html#SliderChange-enum">SliderOrientationChange</a>, <a href="qabstractslider.html#SliderChange-enum">SliderStepsChange</a>, or <a href="qabstractslider.html#SliderChange-enum">SliderValueChange</a>. The default implementation only updates the display and ignores the <i>change</i> parameter.</p>
+<a name="//apple_ref/cpp/instm/QAbstractSlider/sliderMoved" />
+<h3 class="fn"><a name="sliderMoved"></a>void QAbstractSlider::sliderMoved ( int <i>value</i> )&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted when <a href="qabstractslider.html#sliderDown-prop">sliderDown</a> is true and the slider moves. This usually happens when the user is dragging the slider. The <i>value</i> is the new slider position.</p>
+<p>This signal is emitted even when tracking is turned off.</p>
+<p>See also <a href="qabstractslider.html#tracking-prop">setTracking</a>(), <a href="qabstractslider.html#valueChanged">valueChanged</a>(), <a href="qabstractslider.html#sliderDown-prop">isSliderDown</a>(), <a href="qabstractslider.html#sliderPressed">sliderPressed</a>(), and <a href="qabstractslider.html#sliderReleased">sliderReleased</a>().</p>
+<a name="//apple_ref/cpp/instm/QAbstractSlider/sliderPressed" />
+<h3 class="fn"><a name="sliderPressed"></a>void QAbstractSlider::sliderPressed ()&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted when the user presses the slider with the mouse, or programmatically when setSliderDown(true) is called.</p>
+<p>See also <a href="qabstractslider.html#sliderReleased">sliderReleased</a>(), <a href="qabstractslider.html#sliderMoved">sliderMoved</a>(), and <a href="qabstractslider.html#sliderDown-prop">isSliderDown</a>().</p>
+<a name="//apple_ref/cpp/instm/QAbstractSlider/sliderReleased" />
+<h3 class="fn"><a name="sliderReleased"></a>void QAbstractSlider::sliderReleased ()&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted when the user releases the slider with the mouse, or programmatically when setSliderDown(false) is called.</p>
+<p>See also <a href="qabstractslider.html#sliderPressed">sliderPressed</a>(), <a href="qabstractslider.html#sliderMoved">sliderMoved</a>(), and <a href="qabstractslider.html#sliderDown-prop">sliderDown</a>.</p>
+<a name="//apple_ref/cpp/instm/QAbstractSlider/timerEvent" />
+<h3 class="fn"><a name="timerEvent"></a>void QAbstractSlider::timerEvent ( <a href="qtimerevent.html">QTimerEvent</a> * <i>e</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qobject.html#timerEvent">QObject::timerEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QAbstractSlider/triggerAction" />
+<h3 class="fn"><a name="triggerAction"></a>void QAbstractSlider::triggerAction ( <a href="qabstractslider.html#SliderAction-enum">SliderAction</a> <i>action</i> )</h3>
+<p>Triggers a slider <i>action</i>. Possible actions are <a href="qabstractslider.html#SliderAction-enum">SliderSingleStepAdd</a>, <a href="qabstractslider.html#SliderAction-enum">SliderSingleStepSub</a>, <a href="qabstractslider.html#SliderAction-enum">SliderPageStepAdd</a>, <a href="qabstractslider.html#SliderAction-enum">SliderPageStepSub</a>, <a href="qabstractslider.html#SliderAction-enum">SliderToMinimum</a>, <a href="qabstractslider.html#SliderAction-enum">SliderToMaximum</a>, and <a href="qabstractslider.html#SliderAction-enum">SliderMove</a>.</p>
+<p>See also <a href="qabstractslider.html#actionTriggered">actionTriggered</a>().</p>
+<a name="//apple_ref/cpp/instm/QAbstractSlider/valueChanged" />
+<h3 class="fn"><a name="valueChanged"></a>void QAbstractSlider::valueChanged ( int <i>value</i> )&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted when the slider value has changed, with the new slider <i>value</i> as argument.</p>
+<a name="//apple_ref/cpp/instm/QAbstractSlider/wheelEvent" />
+<h3 class="fn"><a name="wheelEvent"></a>void QAbstractSlider::wheelEvent ( <a href="qwheelevent.html">QWheelEvent</a> * <i>e</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#wheelEvent">QWidget::wheelEvent</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

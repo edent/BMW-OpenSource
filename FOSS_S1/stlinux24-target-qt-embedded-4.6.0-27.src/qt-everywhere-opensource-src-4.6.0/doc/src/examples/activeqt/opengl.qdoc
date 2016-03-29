@@ -1,0 +1,145 @@
+/****************************************************************************
+**
+** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+** All rights reserved.
+** Contact: Nokia Corporation (qt-info@nokia.com)
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:LGPL$
+** Commercial Usage
+** Licensees holding valid Qt Commercial licenses may use this file in
+** accordance with the Qt Commercial License Agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and Nokia.
+**
+** GNU Lesser General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU Lesser
+** General Public License version 2.1 as published by the Free Software
+** Foundation and appearing in the file LICENSE.LGPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU Lesser General Public License version 2.1 requirements
+** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+**
+** In addition, as a special exception, Nokia gives you certain additional
+** rights.  These rights are described in the Nokia Qt LGPL Exception
+** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+**
+** GNU General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU
+** General Public License version 3.0 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU General Public License version 3.0 requirements will be
+** met: http://www.gnu.org/copyleft/gpl.html.
+**
+** If you have questions regarding the use of this file, please contact
+** Nokia at qt-info@nokia.com.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*! 
+    \page qaxserver-demo-opengl.html
+
+    \title OpenGL in an HTML page
+
+    \raw HTML
+    <SCRIPT LANGUAGE="JavaScript">
+    function setRot( form )
+    {
+        GLBox.setXRotation( form.XEdit.value );
+        GLBox.setYRotation( form.YEdit.value );
+        GLBox.setZRotation( form.ZEdit.value );
+    }
+    </SCRIPT>
+
+    <p />
+    An OpenGL scene:<br />
+    <object ID="GLBox" CLASSID="CLSID:5fd9c22e-ed45-43fa-ba13-1530bb6b03e0"
+    CODEBASE="http://qt.nokia.com/demos/openglax.cab">
+    [Object not available! Did you forget to build and register the server?]
+    </object><br />
+
+    <form>
+    Rotate the scene:<br />
+    X:<input type="edit" ID="XEdit" value="0" /><br />
+    Y:<input type="edit" name="YEdit" value="0" /><br />
+    Z:<input type="edit" name="ZEdit" value="0" /><br />
+    <input type="button" value="Set" onClick="setRot(this.form)" />
+    </form>
+    \endraw
+*/
+
+/*!
+    \example activeqt/opengl
+    \title OpenGL Example (ActiveQt)
+
+    The OpenGL example demonstrates the use of the default factory
+    and  QAxFactory::isServer(), and the implementation of an
+    additional COM interface using QAxBindable and QAxAggregated.
+    The server executable  can run both as an ActiveX server and as a
+    stand-alone application.
+
+    The ActiveX control in this example uses the QGlWidget class in
+    Qt to render an OpenGL scene in an ActiveX. The control exposes a few
+    methods to change the scene.
+
+    The application uses the default factory as provided by the 
+    QAXFACTORY_DEFAULT macro to expose the \c GLBox widget as an ActiveX 
+    control.
+    \snippet examples/activeqt/opengl/main.cpp 0
+    The implementation of \c main initializes the QApplication object,
+    and uses \c QAxFactory::isServer() to determine whether or not it is
+    appropriate to create and show the application interface.
+    \snippet examples/activeqt/opengl/main.cpp 1
+    \snippet examples/activeqt/opengl/main.cpp 2
+    \snippet examples/activeqt/opengl/main.cpp 3
+
+    The \c GLBox class inherits from both the \l QGLWidget class to be able
+    to render OpenGL, and from \l QAxBindable.
+    \snippet examples/activeqt/opengl/glbox.h 0
+    The class reimplements the \l QAxBindable::createAggregate() function from QAxBindable
+    to return the pointer to a \l QAxAggregated object.
+    \snippet examples/activeqt/opengl/glbox.h 1
+    The rest of the class declaration and the implementation of the OpenGL
+    rendering is identical to the original "box" example.
+
+    The implementation file of the \c GLBox class includes the \c objsafe.h
+    system header, in which the \c IObjectSafety COM interface is defined.
+    \snippet examples/activeqt/opengl/glbox.cpp 0
+    A class \c ObjectSafetyImpl is declared using multiple inheritance
+    to subclass the QAxAggregated class, and to implement the IObjectSafety
+    interface.
+    \snippet examples/activeqt/opengl/glbox.cpp 1
+    The class declares a default constructor, and implements the queryInterface
+    function to support the IObjectSafety interface.
+    \snippet examples/activeqt/opengl/glbox.cpp 2
+    Since every COM interface inherits \c IUnknown the \c QAXAGG_IUNKNOWN macro
+    is used to provide the default implementation of the \c IUnknown interface.
+    The macro is defined to delegate all calls to \c QueryInterface, \c AddRef
+    and \c Release to the interface returned by the controllingUnknown() function.
+    \snippet examples/activeqt/opengl/glbox.cpp 3
+    The implementation of the \c IObjectSafety interface provides the caller
+    with information about supported and enabled safety options, and returns 
+    \c S_OK for all calls to indicate that the ActiveX control is safe.
+    \snippet examples/activeqt/opengl/glbox.cpp 4
+    The implementation of the \c createAggregate() function just returns a new
+    \c ObjectSafetyImpl object.
+    \snippet examples/activeqt/opengl/glbox.cpp 5
+
+    To build the example you must first build the QAxServer library.
+    Then run \c qmake and your make tool in  \c
+    examples/activeqt/wrapper.
+
+    The \l{qaxserver-demo-opengl.html}{demonstration} requires your
+    WebBrowser to support ActiveX controls, and scripting to be
+    enabled.
+
+    In contrast to the other QAxServer examples Internet Explorer will not
+    open a dialog box to ask the user whether or not the scripting of the GLBox
+    control should be allowed (the exact browser behaviour depends on the security 
+    settings in the Internet Options dialog).
+
+    \snippet doc/src/examples/activeqt/opengl-demo.qdocinc 0
+*/

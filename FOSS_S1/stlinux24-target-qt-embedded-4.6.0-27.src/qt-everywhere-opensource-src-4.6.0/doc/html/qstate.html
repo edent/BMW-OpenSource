@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qstate.cpp -->
+<head>
+  <title>Qt 4.6: QState Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QState" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QState Class Reference<br /><span class="small-subtitle">[<a href="qtcore.html">QtCore</a> module]</span>
+</h1>
+<p>The QState class provides a general-purpose state for <a href="qstatemachine.html">QStateMachine</a>. <a href="#details">More...</a></p>
+<pre> #include &lt;QState&gt;</pre><p>Inherits <a href="qabstractstate.html">QAbstractState</a>.</p>
+<p>Inherited by <a href="qstatemachine.html">QStateMachine</a>.</p>
+<p>This class was introduced in Qt 4.6.</p>
+<ul>
+<li><a href="qstate-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-types"></a>
+<h2>Public Types</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qstate.html#ChildMode-enum">ChildMode</a></b> { ExclusiveStates, ParallelStates }</td></tr>
+</table>
+<hr />
+<a name="properties"></a>
+<h2>Properties</h2>
+<ul>
+<li><div class="fn"><b><a href="qstate.html#childMode-prop">childMode</a></b> : ChildMode</div></li>
+<li><div class="fn"><b><a href="qstate.html#errorState-prop">errorState</a></b> : QAbstractState *</div></li>
+<li><div class="fn"><b><a href="qstate.html#initialState-prop">initialState</a></b> : QAbstractState *</div></li>
+</ul>
+<ul>
+<li><div bar="2" class="fn"></div>1 property inherited from <a href="qobject.html#properties">QObject</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qstate.html#QState">QState</a></b> ( QState * <i>parent</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qstate.html#QState-2">QState</a></b> ( ChildMode <i>childMode</i>, QState * <i>parent</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qstate.html#dtor.QState">~QState</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qstate.html#addTransition">addTransition</a></b> ( QAbstractTransition * <i>transition</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QSignalTransition * </td><td class="memItemRight" valign="bottom"><b><a href="qstate.html#addTransition-2">addTransition</a></b> ( QObject * <i>sender</i>, const char * <i>signal</i>, QAbstractState * <i>target</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QAbstractTransition * </td><td class="memItemRight" valign="bottom"><b><a href="qstate.html#addTransition-3">addTransition</a></b> ( QAbstractState * <i>target</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qstate.html#assignProperty">assignProperty</a></b> ( QObject * <i>object</i>, const char * <i>name</i>, const QVariant &amp; <i>value</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">ChildMode </td><td class="memItemRight" valign="bottom"><b><a href="qstate.html#childMode-prop">childMode</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QAbstractState * </td><td class="memItemRight" valign="bottom"><b><a href="qstate.html#errorState-prop">errorState</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QAbstractState * </td><td class="memItemRight" valign="bottom"><b><a href="qstate.html#initialState-prop">initialState</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qstate.html#removeTransition">removeTransition</a></b> ( QAbstractTransition * <i>transition</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qstate.html#childMode-prop">setChildMode</a></b> ( ChildMode <i>mode</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qstate.html#errorState-prop">setErrorState</a></b> ( QAbstractState * <i>state</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qstate.html#initialState-prop">setInitialState</a></b> ( QAbstractState * <i>state</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>2 public functions inherited from <a href="qabstractstate.html#public-functions">QAbstractState</a></li>
+<li><div bar="2" class="fn"></div>29 public functions inherited from <a href="qobject.html#public-functions">QObject</a></li>
+</ul>
+<hr />
+<a name="signals"></a>
+<h2>Signals</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qstate.html#finished">finished</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qstate.html#propertiesAssigned">propertiesAssigned</a></b> ()</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>2 signals inherited from <a href="qabstractstate.html#signals">QAbstractState</a></li>
+<li><div bar="2" class="fn"></div>1 signal inherited from <a href="qobject.html#signals">QObject</a></li>
+</ul>
+<hr />
+<a name="reimplemented-protected-functions"></a>
+<h2>Reimplemented Protected Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qstate.html#event">event</a></b> ( QEvent * <i>e</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qstate.html#onEntry">onEntry</a></b> ( QEvent * <i>event</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qstate.html#onExit">onExit</a></b> ( QEvent * <i>event</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>3 protected functions inherited from <a href="qabstractstate.html#protected-functions">QAbstractState</a></li>
+<li><div bar="2" class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li><div class="fn"></div>1 public slot inherited from <a href="qobject.html#public-slots">QObject</a></li>
+<li><div class="fn"></div>5 static public members inherited from <a href="qobject.html#static-public-members">QObject</a></li>
+<li><div class="fn"></div>3 protected functions inherited from <a href="qabstractstate.html#protected-functions">QAbstractState</a></li>
+<li><div class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QState class provides a general-purpose state for <a href="qstatemachine.html">QStateMachine</a>.</p>
+<p>QState objects can have child states, and can have transitions to other states. QState is part of <a href="statemachine-api.html">The State Machine Framework</a>.</p>
+<p>The <a href="qstate.html#addTransition">addTransition</a>() function adds a transition. The <a href="qstate.html#removeTransition">removeTransition</a>() function removes a transition.</p>
+<p>The <a href="qstate.html#assignProperty">assignProperty</a>() function is used for defining property assignments that should be performed when a state is entered.</p>
+<p>Top-level states must be passed a <a href="qstatemachine.html">QStateMachine</a> object as their parent state, or added to a state machine using <a href="qstatemachine.html#addState">QStateMachine::addState</a>().</p>
+<a name="states-with-child-states"></a>
+<h3>States with Child States</h3>
+<p>The <a href="qstate.html#childMode-prop">childMode</a> property determines how child states are treated. For non-parallel state groups, the <a href="qstate.html#initialState-prop">setInitialState</a>() function must be called to set the initial state. The child states are mutually exclusive states, and the state machine needs to know which child state to enter when the parent state is the target of a transition.</p>
+<p>The state emits the <a href="qstate.html#finished">QState::finished</a>() signal when a final child state (<a href="qfinalstate.html">QFinalState</a>) is entered.</p>
+<p>The <a href="qstate.html#errorState-prop">setErrorState</a>() sets the state's error state. The error state is the state that the state machine will transition to if an error is detected when attempting to enter the state (e.g&#x2e; because no initial state has been set).</p>
+<hr />
+<h2>Member Type Documentation</h2>
+<a name="//apple_ref/cpp/tag/QState/ChildMode" />
+<a name="//apple_ref/cpp/econst/QState/ExclusiveStates" />
+<a name="//apple_ref/cpp/econst/QState/ParallelStates" />
+<h3 class="fn"><a name="ChildMode-enum"></a>enum QState::ChildMode</h3>
+<p>This enum specifies how a state's child states are treated.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QState::ExclusiveStates</tt></td><td align="center" valign="top"><tt>0</tt></td><td valign="top">The child states are mutually exclusive and an initial state must be set by calling <a href="qstate.html#initialState-prop">QState::setInitialState</a>().</td></tr>
+<tr><td valign="top"><tt>QState::ParallelStates</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">The child states are parallel. When the parent state is entered, all its child states are entered in parallel.</td></tr>
+</table></p>
+<hr />
+<h2>Property Documentation</h2>
+<a name="//apple_ref/cpp/instm/QState/childMode" />
+<a name="//apple_ref/cpp/instm/QState/setChildMode" />
+<h3 class="fn"><a name="childMode-prop"></a>childMode : <a href="qstate.html#ChildMode-enum">ChildMode</a></h3>
+<p>This property holds the child mode of this state.</p>
+<p>The default value of this property is <a href="qstate.html#ChildMode-enum">QState::ExclusiveStates</a>.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">ChildMode </td><td class="memItemRight" valign="bottom"><b>childMode</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setChildMode</b> ( ChildMode <i>mode</i> )</td></tr>
+</table>
+<a name="//apple_ref/cpp/instm/QState/errorState" />
+<a name="//apple_ref/cpp/instm/QState/setErrorState" />
+<h3 class="fn"><a name="errorState-prop"></a>errorState : <a href="qabstractstate.html">QAbstractState</a> *</h3>
+<p>This property holds the error state of this state.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">QAbstractState * </td><td class="memItemRight" valign="bottom"><b>errorState</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setErrorState</b> ( QAbstractState * <i>state</i> )</td></tr>
+</table>
+<a name="//apple_ref/cpp/instm/QState/initialState" />
+<a name="//apple_ref/cpp/instm/QState/setInitialState" />
+<h3 class="fn"><a name="initialState-prop"></a>initialState : <a href="qabstractstate.html">QAbstractState</a> *</h3>
+<p>This property holds the initial state of this state (one of its child states).</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">QAbstractState * </td><td class="memItemRight" valign="bottom"><b>initialState</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setInitialState</b> ( QAbstractState * <i>state</i> )</td></tr>
+</table>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QState/QState" />
+<h3 class="fn"><a name="QState"></a>QState::QState ( QState * <i>parent</i> = 0 )</h3>
+<p>Constructs a new state with the given <i>parent</i> state.</p>
+<h3 class="fn"><a name="QState-2"></a>QState::QState ( <a href="qstate.html#ChildMode-enum">ChildMode</a> <i>childMode</i>, QState * <i>parent</i> = 0 )</h3>
+<p>Constructs a new state with the given <i>childMode</i> and the given <i>parent</i> state.</p>
+<a name="//apple_ref/cpp/instm/QState/~QState" />
+<h3 class="fn"><a name="dtor.QState"></a>QState::~QState ()</h3>
+<p>Destroys this state.</p>
+<a name="//apple_ref/cpp/instm/QState/addTransition" />
+<h3 class="fn"><a name="addTransition"></a>void QState::addTransition ( <a href="qabstracttransition.html">QAbstractTransition</a> * <i>transition</i> )</h3>
+<p>Adds the given <i>transition</i>. The transition has this state as the source. This state takes ownership of the transition.</p>
+<h3 class="fn"><a name="addTransition-2"></a><a href="qsignaltransition.html">QSignalTransition</a> * QState::addTransition ( <a href="qobject.html">QObject</a> * <i>sender</i>, const char * <i>signal</i>, <a href="qabstractstate.html">QAbstractState</a> * <i>target</i> )</h3>
+<p>Adds a transition associated with the given <i>signal</i> of the given <i>sender</i> object, and returns the new <a href="qsignaltransition.html">QSignalTransition</a> object. The transition has this state as the source, and the given <i>target</i> as the target state.</p>
+<h3 class="fn"><a name="addTransition-3"></a><a href="qabstracttransition.html">QAbstractTransition</a> * QState::addTransition ( <a href="qabstractstate.html">QAbstractState</a> * <i>target</i> )</h3>
+<p>Adds an unconditional transition from this state to the given <i>target</i> state, and returns then new transition object.</p>
+<a name="//apple_ref/cpp/instm/QState/assignProperty" />
+<h3 class="fn"><a name="assignProperty"></a>void QState::assignProperty ( <a href="qobject.html">QObject</a> * <i>object</i>, const char * <i>name</i>, const <a href="qvariant.html">QVariant</a> &amp; <i>value</i> )</h3>
+<p>Instructs this state to set the property with the given <i>name</i> of the given <i>object</i> to the given <i>value</i> when the state is entered.</p>
+<p>See also <a href="qstate.html#propertiesAssigned">propertiesAssigned</a>().</p>
+<a name="//apple_ref/cpp/instm/QState/event" />
+<h3 class="fn"><a name="event"></a>bool QState::event ( <a href="qevent.html">QEvent</a> * <i>e</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qobject.html#event">QObject::event</a>().</p>
+<a name="//apple_ref/cpp/instm/QState/finished" />
+<h3 class="fn"><a name="finished"></a>void QState::finished ()&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted when a final child state of this state is entered.</p>
+<p>See also <a href="qfinalstate.html">QFinalState</a>.</p>
+<a name="//apple_ref/cpp/instm/QState/onEntry" />
+<h3 class="fn"><a name="onEntry"></a>void QState::onEntry ( <a href="qevent.html">QEvent</a> * <i>event</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qabstractstate.html#onEntry">QAbstractState::onEntry</a>().</p>
+<a name="//apple_ref/cpp/instm/QState/onExit" />
+<h3 class="fn"><a name="onExit"></a>void QState::onExit ( <a href="qevent.html">QEvent</a> * <i>event</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qabstractstate.html#onExit">QAbstractState::onExit</a>().</p>
+<a name="//apple_ref/cpp/instm/QState/propertiesAssigned" />
+<h3 class="fn"><a name="propertiesAssigned"></a>void QState::propertiesAssigned ()&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted when all properties have been assigned their final value. If the state assigns a value to one or more properties for which an animation exists (either set on the transition or as a default animation on the state machine), then the signal will not be emitted until all such animations have finished playing.</p>
+<p>If there are no relevant animations, or no property assignments defined for the state, then the signal will be emitted immediately before the state is entered.</p>
+<p>See also <a href="qstate.html#assignProperty">QState::assignProperty</a>() and <a href="qabstracttransition.html#addAnimation">QAbstractTransition::addAnimation</a>().</p>
+<a name="//apple_ref/cpp/instm/QState/removeTransition" />
+<h3 class="fn"><a name="removeTransition"></a>void QState::removeTransition ( <a href="qabstracttransition.html">QAbstractTransition</a> * <i>transition</i> )</h3>
+<p>Removes the given <i>transition</i> from this state. The state releases ownership of the transition.</p>
+<p>See also <a href="qstate.html#addTransition">addTransition</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

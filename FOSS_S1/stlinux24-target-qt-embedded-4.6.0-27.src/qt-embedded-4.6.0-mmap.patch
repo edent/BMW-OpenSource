@@ -1,0 +1,58 @@
+Fix bug in TCMalloc.  Ref: https://bugs.webkit.org/show_bug.cgi?id=33905
+
+Signed-off-by: Stephen Clarke <stephen.clarke@st.com>
+
+--- qt-everywhere-opensource-src-4.6.0/src/3rdparty/webkit/JavaScriptCore/wtf/TCSystemAlloc.cpp.orig	2009-11-27 01:27:48.000000000 +0000
++++ qt-everywhere-opensource-src-4.6.0/src/3rdparty/webkit/JavaScriptCore/wtf/TCSystemAlloc.cpp	2010-01-20 16:16:18.000000000 +0000
+@@ -442,9 +442,22 @@
+ 
+ void TCMalloc_SystemRelease(void* start, size_t length)
+ {
+-  void* newAddress = mmap(start, length, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS | MAP_FIXED, -1, 0);
++  if (pagesize == 0) pagesize = getpagesize();
++  const size_t pagemask = pagesize - 1;
++  size_t new_start = reinterpret_cast<size_t>(start);
++  size_t end = new_start + length;
++  size_t new_end = end;
++
++  new_start = (new_start + pagesize - 1) & ~pagemask;
++  new_end = new_end & ~pagemask;
++
++  if (new_end <= new_start)
++    return;
++
++  size_t new_length = new_end - new_start;
++  void* newAddress = mmap(reinterpret_cast<char*>(new_start), new_length, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS | MAP_FIXED, -1, 0);
+   // If the mmap failed then that's ok, we just won't return the memory to the system.
+-  ASSERT_UNUSED(newAddress, newAddress == start || newAddress == reinterpret_cast<void*>(MAP_FAILED));
++  ASSERT_UNUSED(newAddress, newAddress == new_start || newAddress == reinterpret_cast<void*>(MAP_FAILED));
+ }
+ 
+ #elif HAVE(VIRTUALALLOC)
+--- qt-everywhere-opensource-src-4.6.0/src/3rdparty/javascriptcore/JavaScriptCore/wtf/TCSystemAlloc.cpp.orig	2010-01-20 16:19:48.000000000 +0000
++++ qt-everywhere-opensource-src-4.6.0/src/3rdparty/javascriptcore/JavaScriptCore/wtf/TCSystemAlloc.cpp	2010-01-20 16:22:00.000000000 +0000
+@@ -442,9 +442,22 @@
+ 
+ void TCMalloc_SystemRelease(void* start, size_t length)
+ {
+-  void* newAddress = mmap(reinterpret_cast<char*>(start), length, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS | MAP_FIXED, -1, 0);
++  if (pagesize == 0) pagesize = getpagesize();
++  const size_t pagemask = pagesize - 1;
++  size_t new_start = reinterpret_cast<size_t>(start);
++  size_t end = new_start + length;
++  size_t new_end = end;
++
++  new_start = (new_start + pagesize - 1) & ~pagemask;
++  new_end = new_end & ~pagemask;
++
++  if (new_end <= new_start)
++    return;
++
++  size_t new_length = new_end - new_start;
++  void* newAddress = mmap(reinterpret_cast<char*>(new_start), new_length, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS | MAP_FIXED, -1, 0);
+   // If the mmap failed then that's ok, we just won't return the memory to the system.
+-  ASSERT_UNUSED(newAddress, newAddress == start || newAddress == reinterpret_cast<void*>(MAP_FAILED));
++  ASSERT_UNUSED(newAddress, newAddress == new_start || newAddress == reinterpret_cast<void*>(MAP_FAILED));
+ }
+ 
+ #elif HAVE(VIRTUALALLOC)

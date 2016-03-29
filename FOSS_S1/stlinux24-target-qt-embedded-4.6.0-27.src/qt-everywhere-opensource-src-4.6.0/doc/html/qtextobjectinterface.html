@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qabstracttextdocumentlayout.cpp -->
+<head>
+  <title>Qt 4.6: QTextObjectInterface Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QTextObjectInterface" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QTextObjectInterface Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QTextObjectInterface class allows drawing of custom text objects in <a href="qtextdocument.html">QTextDocument</a>s. <a href="#details">More...</a></p>
+<pre> #include &lt;QTextObjectInterface&gt;</pre><p>This class was introduced in Qt 4.5.</p>
+<ul>
+<li><a href="qtextobjectinterface-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual </td><td class="memItemRight" valign="bottom"><b><a href="qtextobjectinterface.html#dtor.QTextObjectInterface">~QTextObjectInterface</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qtextobjectinterface.html#drawObject">drawObject</a></b> ( QPainter * <i>painter</i>, const QRectF &amp; <i>rect</i>, QTextDocument * <i>doc</i>, int <i>posInDocument</i>, const QTextFormat &amp; <i>format</i> ) = 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QSizeF </td><td class="memItemRight" valign="bottom"><b><a href="qtextobjectinterface.html#intrinsicSize">intrinsicSize</a></b> ( QTextDocument * <i>doc</i>, int <i>posInDocument</i>, const QTextFormat &amp; <i>format</i> ) = 0</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QTextObjectInterface class allows drawing of custom text objects in <a href="qtextdocument.html">QTextDocument</a>s.</p>
+<p>A text object describes the structure of one or more elements in a text document; for instance, images imported from HTML are implemented using text objects. A text object knows how to lay out and draw its elements when a document is being rendered.</p>
+<p>Qt allows custom text objects to be inserted into a document by registering a custom <a href="qtextformat.html#objectType">object type</a> with <a href="qtextcharformat.html">QTextCharFormat</a>. A QTextObjectInterface must also be implemented for this type and be <a href="qabstracttextdocumentlayout.html#registerHandler">registered</a> with the <a href="qabstracttextdocumentlayout.html">QAbstractTextDocumentLayout</a> of the document. When the object type is encountered while rendering a <a href="qtextdocument.html">QTextDocument</a>, the <a href="qtextobjectinterface.html#intrinsicSize">intrinsicSize</a>() and <a href="qtextobjectinterface.html#drawObject">drawObject</a>() functions of the interface are called.</p>
+<p>The following list explains the required steps of inserting a custom text object into a document:</p>
+<ul>
+<li>Choose an <i>objectType</i>. The <i>objectType</i> is an integer with a value greater or equal to <a href="qtextformat.html#ObjectTypes-enum">QTextFormat::UserObject</a>.</li>
+<li>Create a <a href="qtextcharformat.html">QTextCharFormat</a> object and set the object type to the chosen type using the setObjectType() function.</li>
+<li>Implement the QTextObjectInterface class.</li>
+<li>Call <a href="qabstracttextdocumentlayout.html#registerHandler">QAbstractTextDocumentLayout::registerHandler</a>() with an instance of your QTextObjectInterface subclass to register your object type.</li>
+<li>Insert <a href="qchar.html#SpecialCharacter-enum">QChar::ObjectReplacementCharacter</a> with the aforementioned <a href="qtextcharformat.html">QTextCharFormat</a> of the chosen object type into the document. As mentioned, the functions of QTextObjectInterface <a href="qtextobjectinterface.html#intrinsicSize">intrinsicSize()</a> and <a href="qtextobjectinterface.html#drawObject">drawObject()</a> will then be called with the <a href="qtextformat.html">QTextFormat</a> as parameter whenever the replacement character is encountered.</li>
+</ul>
+<p>A class implementing a text object needs to inherit both <a href="qobject.html">QObject</a> and QTextObjectInterface. <a href="qobject.html">QObject</a> must be the first class inherited. For instance:</p>
+<pre> class SvgTextObject : public QObject, public QTextObjectInterface
+ {
+     Q_OBJECT
+     Q_INTERFACES(QTextObjectInterface)</pre>
+<p>The data of a text object is usually stored in the <a href="qtextcharformat.html">QTextCharFormat</a> using <a href="qtextformat.html#setProperty">QTextCharFormat::setProperty</a>(), and then retrieved with <a href="qtextformat.html#property">QTextCharFormat::property</a>().</p>
+<p><b>Warning:</b> Copy and Paste operations ignore custom text objects.</p>
+<p>See also <a href="richtext-textobject.html">Text Object Example</a>, <a href="qtextcharformat.html">QTextCharFormat</a>, and <a href="qtextlayout.html">QTextLayout</a>.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QTextObjectInterface/~QTextObjectInterface" />
+<h3 class="fn"><a name="dtor.QTextObjectInterface"></a>QTextObjectInterface::~QTextObjectInterface ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Destroys this <a href="qtextobjectinterface.html">QTextObjectInterface</a>.</p>
+<a name="//apple_ref/cpp/instm/QTextObjectInterface/drawObject" />
+<h3 class="fn"><a name="drawObject"></a>void QTextObjectInterface::drawObject ( <a href="qpainter.html">QPainter</a> * <i>painter</i>, const <a href="qrectf.html">QRectF</a> &amp; <i>rect</i>, <a href="qtextdocument.html">QTextDocument</a> * <i>doc</i>, int <i>posInDocument</i>, const <a href="qtextformat.html">QTextFormat</a> &amp; <i>format</i> )&nbsp;&nbsp;<tt> [pure virtual]</tt></h3>
+<p>Draws this text object using the specified <i>painter</i>.</p>
+<p>The size of the rectangle, <i>rect</i>, to draw in is the size previously calculated by <a href="qtextobjectinterface.html#intrinsicSize">intrinsicSize</a>(). The rectangles position is relative to the <i>painter</i>.</p>
+<p>You also get the document (<i>doc</i>) and the position (<i>posInDocument</i>) of the <i>format</i> in that document.</p>
+<p>See also <a href="qtextobjectinterface.html#intrinsicSize">intrinsicSize</a>().</p>
+<a name="//apple_ref/cpp/instm/QTextObjectInterface/intrinsicSize" />
+<h3 class="fn"><a name="intrinsicSize"></a><a href="qsizef.html">QSizeF</a> QTextObjectInterface::intrinsicSize ( <a href="qtextdocument.html">QTextDocument</a> * <i>doc</i>, int <i>posInDocument</i>, const <a href="qtextformat.html">QTextFormat</a> &amp; <i>format</i> )&nbsp;&nbsp;<tt> [pure virtual]</tt></h3>
+<p>The intrinsicSize() function returns the size of the text object represented by <i>format</i> in the given document (<i>doc</i>) at the given position (<i>posInDocument</i>).</p>
+<p>The size calculated will be used for subsequent calls to <a href="qtextobjectinterface.html#drawObject">drawObject</a>() for this <i>format</i>.</p>
+<p>See also <a href="qtextobjectinterface.html#drawObject">drawObject</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

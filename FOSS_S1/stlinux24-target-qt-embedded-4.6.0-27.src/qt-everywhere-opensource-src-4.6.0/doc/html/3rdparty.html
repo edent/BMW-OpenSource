@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- 3rdparty.qdoc -->
+<head>
+  <title>Qt 4.6: Third-Party Licenses Used in Qt</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">Third-Party Licenses Used in Qt<br /><span class="subtitle"></span>
+</h1>
+<p>Qt includes a number of third-party libraries that are used to provide certain features. Unlike the code described in the <a href="licenses.html">code used in Qt</a> document, these libraries are supplied alongside the Qt modules.</p>
+<p>Third Party Software may impose additional restrictions and it is the user's responsibility to ensure that they have met the licensing requirements of the GPL, LGPL, or Qt Commercial license and the relevant license of the Third Party Software they are using.</p>
+<p>Run <tt>configure -help</tt> to see any options that may be available for controlling the use of these libraries.</p>
+<ul><li><a href="#des">DES (<tt>des.cpp</tt>)</a></li>
+<li><a href="#freetype-2-version-2-3-6">FreeType 2 (<tt>freetype</tt>) version 2.3&#x2e;6</a></li>
+<li><a href="#harfbuzz">HarfBuzz (<tt>harfbuzz</tt>)</a></li>
+<li><a href="#the-independent-jpeg-group-s-jpeg-software-version-6b">The Independent JPEG Group's JPEG Software (<tt>libjpeg</tt>) version 6b</a></li>
+<li><a href="#md4-and">MD4 (<tt>md4.cpp</tt> and <tt>md4.h</tt>)</a></li>
+<li><a href="#md5-and">MD5 (<tt>md5.cpp</tt> and <tt>md5.h</tt>)</a></li>
+<li><a href="#mng-library-version-1-0-10">MNG Library (<tt>libmng</tt>) version 1.0&#x2e;10</a></li>
+<li><a href="#png-reference-library-version-1-2-29">PNG Reference Library (<tt>libpng</tt>) version 1.2&#x2e;29</a></li>
+<li><a href="#the-ptmalloc-memory-allocator-version-1-8">The ptmalloc memory allocator (<tt>ptmalloc3</tt>) version 1.8</a></li>
+<li><a href="#sha-1">SHA-1 (<tt>sha1.cpp</tt>)</a></li>
+<li><a href="#sqlite-version-3-5-9">SQLite (<tt>sqlite</tt>) version 3.5&#x2e;9</a></li>
+<li><a href="#tiff-software-distribution-version-3-8-2">TIFF Software Distribution (<tt>libtiff</tt>) version 3.8&#x2e;2</a></li>
+<li><a href="#wintab-api">Wintab API (<tt>wintab</tt>)</a></li>
+<li><a href="#data-compression-library-version-1-2-3">Data Compression Library (<tt>zlib</tt>) version 1.2&#x2e;3</a></li>
+<li><a href="#javascriptcore">JavaScriptCore</a></li>
+</ul>
+<a name="des"></a>
+<h3>DES (<tt>des.cpp</tt>)</h3>
+<p><i>Implementation of DES encryption for NTLM<br /> Copyright 1997-2005 Simon Tatham.<br /> This software is released under the MIT license.</i></p>
+<p>See <tt>src/3rdparty/des/des.cpp</tt> for more information about the terms and conditions under which the code is supplied.</p>
+<a name="freetype-2-version-2-3-6"></a>
+<h3>FreeType 2 (<tt>freetype</tt>) version 2.3&#x2e;6</h3>
+<p><i>The <a href="qt-embedded-fonts.html#freetype">FreeType</a> project is a team of volunteers who develop free, portable and high-quality software solutions for digital typography. We specifically target embedded systems and focus on bringing small, efficient and ubiquitous products.</i> -- quoted from <tt>3rdparty/freetype/docs/freetype2.html</tt>.</p>
+<p>See <tt>src/3rdparty/freetype/docs/FTL.txt</tt> and <tt>src/3rdparty/freetype/docs/GPL.txt</tt> for license details.</p>
+<p>See also the files in <tt>src/3rdparty/harfbuzz</tt>, which are used by <a href="qt-embedded-fonts.html#freetype">FreeType</a>.</p>
+<p>Parts of the <a href="qt-embedded-fonts.html#freetype">FreeType</a> projects have been modified and put into Qt for use in the painting subsystem. These files are ftraster.h, ftraster.c, ftgrays.h and ftgrays.c&#x2e; The following modifications has been made to these files:</p>
+<ul>
+<li>Renamed FT_ and ft_ symbols to QT_FT_ and qt_ft_ to avoid name conflicts.</li>
+<li>Removed parts of code not relevant when compiled with _STANDALONE_ defined.</li>
+<li>Changed behavior in ftraster.c to follow X polygon filling rules.</li>
+<li>Implemented support in ftraster.c for winding / odd even polygon fill rules.</li>
+<li>Replaced bitmap generation with span generation in ftraster.c</li>
+<li>Renamed: ftraster.h to qblackraster_p.h</li>
+<li>Renamed: ftraster.c to qblackraster.c</li>
+<li>Renamed: ftgrays.h to qgrayraster_p.h</li>
+<li>Renamed: ftgrays.c to qgrayraster.c</li>
+</ul>
+<a name="harfbuzz"></a>
+<h3>HarfBuzz (<tt>harfbuzz</tt>)</h3>
+<p><i>This is <a href="#harfbuzz">HarfBuzz</a>, an OpenType Layout engine.</i></p>
+<p><i>It was derived originally from the OpenType code in <a href="qt-embedded-fonts.html#freetype">FreeType</a>-1.x, ported to FreeType2. (This code has been abandoned for FreeType2, but until something better comes along, should serve our purposes.) In addition to porting to <a href="qt-embedded-fonts.html#freetype">FreeType</a>-2, it has been modified in various other ways.</i> -- quoted from <tt>src/3rdparty/harfbuzz/README</tt>.</p>
+<hr /><p>Copyright (C) 2004,2007 Red Hat, Inc.<br /> Copyright (C) 1998-2004 David Turner and Werner Lemberg<br /> Copyright (C) 2006 Behdad Esfahbod<br /> Copyright (C) 2008 Nokia Corporation and/or its subsidiary(-ies)</p>
+<p>This is part of <a href="#harfbuzz">HarfBuzz</a>, an OpenType Layout engine library.</p>
+<p>Permission is hereby granted, without written agreement and without license or royalty fees, to use, copy, modify, and distribute this software and its documentation for any purpose, provided that the above copyright notice and the following two paragraphs appear in all copies of this software.</p>
+<p>IN NO EVENT SHALL THE COPYRIGHT HOLDER BE LIABLE TO ANY PARTY FOR DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OF THIS SOFTWARE AND ITS DOCUMENTATION, EVEN IF THE COPYRIGHT HOLDER HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+<p>THE COPYRIGHT HOLDER SPECIFICALLY DISCLAIMS ANY WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE SOFTWARE PROVIDED HEREUNDER IS ON AN &quot;AS IS&quot; BASIS, AND THE COPYRIGHT HOLDER HAS NO OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.</p>
+<hr /><p>See <tt>src/3rdparty/harfbuzz/COPYING.FTL</tt> and src/3rdparty/harfbuzz/COPYING.GPL for license details.</p>
+<a name="the-independent-jpeg-group-s-jpeg-software-version-6b"></a>
+<h3>The Independent JPEG Group's JPEG Software (<tt>libjpeg</tt>) version 6b</h3>
+<p><i>This package contains C software to implement JPEG image compression and decompression. JPEG (pronounced &quot;jay-peg&quot;) is a standardized compression method for full-color and gray-scale images. JPEG is intended for compressing &quot;real-world&quot; scenes; line drawings, cartoons and other non-realistic images are not its strong suit. JPEG is lossy, meaning that the output image is not exactly identical to the input image.</i> -- quoted from <tt>src/3rdparty/libjpeg/README</tt>.</p>
+<p>See <tt>src/3rdparty/libjpeg/README</tt> for license details.</p>
+<a name="md4-and"></a>
+<h3>MD4 (<tt>md4.cpp</tt> and <tt>md4.h</tt>)</h3>
+<p><i>MD4 (RFC-1320) message digest.<br /> Modified from MD5 code by Andrey Panin &lt;pazke@donpac.ru&gt;<br /><br /> Written by Solar Designer &lt;solar@openwall.com&gt; in 2001, and placed in<br /> the public domain. There's absolutely no warranty.</i></p>
+<p>See <tt>src/3rdparty/md4/md4.cpp</tt> and <tt>src/3rdparty/md4/md4.h</tt> for more information about the terms and conditions under which the code is supplied.</p>
+<a name="md5-and"></a>
+<h3>MD5 (<tt>md5.cpp</tt> and <tt>md5.h</tt>)</h3>
+<p><i>This code implements the MD5 message-digest algorithm. The algorithm is due to Ron Rivest. This code was written by Colin Plumb in 1993, no copyright is claimed. This code is in the public domain; do with it what you wish.</i> -- quoted from <tt>src/3rdparty/md5/md5.h</tt></p>
+<p>See <tt>src/3rdparty/md5/md5.cpp</tt> and <tt>src/3rdparty/md5/md5.h</tt> for more information about the terms and conditions under which the code is supplied.</p>
+<a name="mng-library-version-1-0-10"></a>
+<h3>MNG Library (<tt>libmng</tt>) version 1.0&#x2e;10</h3>
+<p><i>The libmng library supports decoding, displaying, encoding, and various other manipulations of the Multiple-image Network Graphics (MNG) format image files. It uses the zlib compression library, and optionally the JPEG library by the Independant JPEG Group (IJG) and/or lcms (little cms), a color-management library by Marti Maria Saguer.</i> -- quoted from <tt>src/3rdparty/libmng/doc/libmng.txt</tt></p>
+<p>See <tt>src/3rdparty/libmng/LICENSE</tt> for license details.</p>
+<a name="png-reference-library-version-1-2-29"></a>
+<h3>PNG Reference Library (<tt>libpng</tt>) version 1.2&#x2e;29</h3>
+<p><i>Libpng was written as a companion to the PNG specification, as a way of reducing the amount of time and effort it takes to support the PNG file format in application programs.</i> -- quoted from <tt>src/3rdparty/libpng/libpng.txt</tt>.</p>
+<p>See <tt>src/3rdparty/libpng/LICENSE</tt> for license details.</p>
+<a name="the-ptmalloc-memory-allocator-version-1-8"></a>
+<h3>The ptmalloc memory allocator (<tt>ptmalloc3</tt>) version 1.8</h3>
+<p><i>ptmcalloc3</i> is a scalable concurrent memory allocator suitable for use in multi-threaded programs.</p>
+<hr /><p>Copyright (c) 2001-2006 Wolfram Gloger</p>
+<p>Permission to use, copy, modify, distribute, and sell this software and its documentation for any purpose is hereby granted without fee, provided that (i) the above copyright notices and this permission notice appear in all copies of the software and related documentation, and (ii) the name of Wolfram Gloger may not be used in any advertising or publicity relating to the software.</p>
+<p>THE SOFTWARE IS PROVIDED &quot;AS-IS&quot; AND WITHOUT WARRANTY OF ANY KIND, EXPRESS, IMPLIED OR OTHERWISE, INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.</p>
+<p>IN NO EVENT SHALL WOLFRAM GLOGER BE LIABLE FOR ANY SPECIAL, INCIDENTAL, INDIRECT OR CONSEQUENTIAL DAMAGES OF ANY KIND, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER OR NOT ADVISED OF THE POSSIBILITY OF DAMAGE, AND ON ANY THEORY OF LIABILITY, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.</p>
+<hr /><p>See <tt>src/3rdparty/ptmalloc/COPYRIGHT</tt> for license details.</p>
+<a name="sha-1"></a>
+<h3>SHA-1 (<tt>sha1.cpp</tt>)</h3>
+<p><i>Based on the public domain implementation of the SHA-1 algorithm<br /> Copyright (C) Dominik Reichl &lt;dominik.reichl@t-online.de&gt;</i></p>
+<p>See <tt>src/3rdparty/sha1/sha1.cpp</tt> for more information about the terms and conditions under which the code is supplied.</p>
+<a name="sqlite-version-3-5-9"></a>
+<h3>SQLite (<tt>sqlite</tt>) version 3.5&#x2e;9</h3>
+<p><i>SQLite is a small C library that implements a self-contained, embeddable, zero-configuration SQL database engine.</i> -- quoted from <a href="http://www.sqlite.org/">www.sqlite.org</a>.</p>
+<p>According to the comments in the source files, the code is in the public domain. See the <a href="http://www.sqlite.org/copyright.html">SQLite Copyright</a> page on the SQLite web site for further information.</p>
+<a name="tiff-software-distribution-version-3-8-2"></a>
+<h3>TIFF Software Distribution (<tt>libtiff</tt>) version 3.8&#x2e;2</h3>
+<p><i>libtiff is a set of C functions (a library) that support the manipulation of TIFF image files.</i> -- quoted from <tt>src/libtiff/html/libtiff.html</tt></p>
+<hr /><p>Copyright (c) 1988-1997 Sam Leffler<br /> Copyright (c) 1991-1997 Silicon Graphics, Inc.<br /> Copyright (C) 2004, Andrey Kiselev &lt;dron@ak4719.spb.edu&gt;<br /> Copyright (c) 1997 Greg Ward Larson</p>
+<p>Permission to use, copy, modify, distribute, and sell this software and its documentation for any purpose is hereby granted without fee, provided that (i) the above copyright notices and this permission notice appear in all copies of the software and related documentation, and (ii) the names of Sam Leffler and Silicon Graphics may not be used in any advertising or publicity relating to the software without the specific, prior written permission of Sam Leffler and Silicon Graphics.</p>
+<p>THE SOFTWARE IS PROVIDED &quot;AS-IS&quot; AND WITHOUT WARRANTY OF ANY KIND, EXPRESS, IMPLIED OR OTHERWISE, INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.</p>
+<p>IN NO EVENT SHALL SAM LEFFLER OR SILICON GRAPHICS BE LIABLE FOR ANY SPECIAL, INCIDENTAL, INDIRECT OR CONSEQUENTIAL DAMAGES OF ANY KIND, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER OR NOT ADVISED OF THE POSSIBILITY OF DAMAGE, AND ON ANY THEORY OF LIABILITY, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.</p>
+<hr /><p>Copyright (c) 1996-1997 Sam Leffler<br /> Copyright (c) 1996 Pixar<br /> Copyright (c) 1991-1997 Silicon Graphics, Inc.<br /> Copyright (C) 2004, Andrey Kiselev &lt;dron@ak4719.spb.edu&gt;</p>
+<p>Permission to use, copy, modify, distribute, and sell this software and its documentation for any purpose is hereby granted without fee, provided that (i) the above copyright notices and this permission notice appear in all copies of the software and related documentation, and (ii) the names of Pixar, Sam Leffler and Silicon Graphics may not be used in any advertising or publicity relating to the software without the specific, prior written permission of Pixar, Sam Leffler and Silicon Graphics.</p>
+<p>THE SOFTWARE IS PROVIDED &quot;AS-IS&quot; AND WITHOUT WARRANTY OF ANY KIND, EXPRESS, IMPLIED OR OTHERWISE, INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.</p>
+<p>IN NO EVENT SHALL PIXAR, SAM LEFFLER OR SILICON GRAPHICS BE LIABLE FOR ANY SPECIAL, INCIDENTAL, INDIRECT OR CONSEQUENTIAL DAMAGES OF ANY KIND, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER OR NOT ADVISED OF THE POSSIBILITY OF DAMAGE, AND ON ANY THEORY OF LIABILITY, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.</p>
+<hr /><p>Copyright (c) 1985, 1986 The Regents of the University of California.<br /> All rights reserved.</p>
+<p>This code is derived from software contributed to Berkeley by James A. Woods, derived from original work by Spencer Thomas and Joseph Orost.</p>
+<p>Redistribution and use in source and binary forms are permitted provided that the above copyright notice and this paragraph are duplicated in all such forms and that any documentation, advertising materials, and other materials related to such distribution and use acknowledge that the software was developed by the University of California, Berkeley. The name of the University may not be used to endorse or promote products derived from this software without specific prior written permission. THIS SOFTWARE IS PROVIDED ``AS IS'' AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.</p>
+<hr /><p>See <tt>src/3rdparty/libtiff/COPYRIGHT</tt> for license details.</p>
+<a name="wintab-api"></a>
+<h3>Wintab API (<tt>wintab</tt>)</h3>
+<p>Wintab is a de facto API for pointing devices on Windows. The wintab code is from <a href="http://www.pointing.com/WINTAB.HTM">http://www.pointing.com/WINTAB.HTM</a>.</p>
+<p>See <tt>src/3rdparty/wintab/wintab.h</tt> for license details.</p>
+<a name="data-compression-library-version-1-2-3"></a>
+<h3>Data Compression Library (<tt>zlib</tt>) version 1.2&#x2e;3</h3>
+<p><i>zlib is a general purpose data compression library. All the code is thread safe. The data format used by the zlib library is described by RFCs (Request for Comments) 1950 to 1952</i> -- quoted from <tt>src/3rdparty/zlib/README</tt>.</p>
+<p>See <tt>src/3rdparty/zlib/README</tt> for license details.</p>
+<a name="javascriptcore"></a>
+<h3>JavaScriptCore</h3>
+<hr /><p>Copyright (c) 1991, 2000, 2001 by Lucent Technologies.<br /> Copyright (C) 2002, 2005, 2006, 2007, 2008 Apple Inc. All rights reserved.</p>
+<p>Permission to use, copy, modify, and distribute this software for any purpose without fee is hereby granted, provided that this entire notice is included in all copies of any software which is or includes a copy or modification of this software and in all copies of the supporting documentation for such software.</p>
+<p>THIS SOFTWARE IS BEING PROVIDED &quot;AS IS&quot;, WITHOUT ANY EXPRESS OR IMPLIED WARRANTY. IN PARTICULAR, NEITHER THE AUTHOR NOR LUCENT MAKES ANY REPRESENTATION OR WARRANTY OF ANY KIND CONCERNING THE MERCHANTABILITY OF THIS SOFTWARE OR ITS FITNESS FOR ANY PARTICULAR PURPOSE.</p>
+<p>See <tt>src/3rdparty/webkit/JavaScriptCore/wtf/dtoa.cpp</tt> for license details.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

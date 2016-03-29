@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- sql-programming.qdoc -->
+<head>
+  <title>Qt 4.6: Connecting to Databases</title>
+  <link rel="prev" href="sql-programming.html" />
+  <link rel="contents" href="sql-programming.html" />
+  <link rel="next" href="sql-sqlstatements.html" />
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><p>
+[Previous: <a href="sql-programming.html">SQL Programming</a>]
+[<a href="sql-programming.html">SQL Programming</a>]
+[Next: <a href="sql-sqlstatements.html">Executing SQL Statements</a>]
+</p>
+<h1 class="title">Connecting to Databases<br /><span class="subtitle"></span>
+</h1>
+<p>To access a database with <a href="qsqlquery.html">QSqlQuery</a> or <a href="qsqlquerymodel.html">QSqlQueryModel</a>, create and open one or more database connections. Database connections are normally identified by connection name, <i>not</i> by database name. You can have multiple connections to the same database. <a href="qsqldatabase.html">QSqlDatabase</a> also supports the concept of a <i>default</i> connection, which is an unnamed connection. When calling <a href="qsqlquery.html">QSqlQuery</a> or <a href="qsqlquerymodel.html">QSqlQueryModel</a> member functions that take a connection name argument, if you don't pass a connection name, the default connection will be used. Creating a default connection is convenient when your application only requires one database connection.</p>
+<p>Note the difference between creating a connection and opening it. Creating a connection involves creating an instance of class <a href="qsqldatabase.html">QSqlDatabase</a>. The connection is not usable until it is opened. The following snippet shows how to create a <i>default</i> connection and then open it:</p>
+<pre>     QSqlDatabase db = QSqlDatabase::addDatabase(&quot;QMYSQL&quot;);
+     db.setHostName(&quot;bigblue&quot;);
+     db.setDatabaseName(&quot;flightdb&quot;);
+     db.setUserName(&quot;acarlson&quot;);
+     db.setPassword(&quot;1uTbSbAs&quot;);
+     bool ok = db.open();</pre>
+<p>The first line creates the connection object, and the last line opens it for use. In between, we initialize some connection information, including the <a href="qsqldatabase.html#setDatabaseName">database name</a>, the <a href="qsqldatabase.html#setHostName">host name</a>, the <a href="qsqldatabase.html#setUserName">user name</a>, and the <a href="qsqldatabase.html#setPassword">password</a>. In this case, we are connecting to the MySQL database <tt>flightdb</tt> on the host <tt>bigblue</tt>. The <tt>&quot;QMYSQL&quot;</tt> argument to <a href="qsqldatabase.html#addDatabase">addDatabase()</a> specifies the type of database driver to use for the connection. The set of database drivers included with Qt are shown in the table of <a href="sql-driver.html#supported-databases">supported database drivers</a>.</p>
+<p>The connection in the snippet will be the <i>default</i> connection, because we don't pass the second argument to <a href="qsqldatabase.html#addDatabase">addDatabase()</a>, which is the connection name. For example, here we establish two MySQL database connections named <tt>&quot;first&quot;</tt> and <tt>&quot;second&quot;</tt>:</p>
+<pre>     QSqlDatabase firstDB = QSqlDatabase::addDatabase(&quot;QMYSQL&quot;, &quot;first&quot;);
+     QSqlDatabase secondDB = QSqlDatabase::addDatabase(&quot;QMYSQL&quot;, &quot;second&quot;);</pre>
+<p>After these connections have been initialized, <a href="qsqldatabase.html#open">open()</a> for each one to establish the live connections. If the <a href="qsqldatabase.html#open">open()</a> fails, it returns false. In that case, call <a href="qsqldatabase.html#lastError">QSqlDatabase::lastError</a>() to get error information.</p>
+<p>Once a connection is established, we can call the static function <a href="qsqldatabase.html#database">QSqlDatabase::database</a>() from anywhere with a connection name to get a pointer to that database connection. If we don't pass a connection name, it will return the default connection. For example:</p>
+<pre>     QSqlDatabase defaultDB = QSqlDatabase::database();
+     QSqlDatabase firstDB = QSqlDatabase::database(&quot;first&quot;);
+     QSqlDatabase secondDB = QSqlDatabase::database(&quot;second&quot;);</pre>
+<p>To remove a database connection, first close the database using <a href="qsqldatabase.html#close">QSqlDatabase::close</a>(), then remove it using the static method <a href="qsqldatabase.html#removeDatabase">QSqlDatabase::removeDatabase</a>().</p>
+<p>
+[Previous: <a href="sql-programming.html">SQL Programming</a>]
+[<a href="sql-programming.html">SQL Programming</a>]
+[Next: <a href="sql-sqlstatements.html">Executing SQL Statements</a>]
+</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

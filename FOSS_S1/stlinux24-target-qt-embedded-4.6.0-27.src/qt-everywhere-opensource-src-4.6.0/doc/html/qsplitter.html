@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qsplitter.cpp -->
+<head>
+  <title>Qt 4.6: QSplitter Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QSplitter" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QSplitter Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QSplitter class implements a splitter widget. <a href="#details">More...</a></p>
+<pre> #include &lt;QSplitter&gt;</pre><p>Inherits <a href="qframe.html">QFrame</a>.</p>
+<ul>
+<li><a href="qsplitter-members.html">List of all members, including inherited members</a></li>
+<li><a href="qsplitter-obsolete.html">Obsolete members</a></li>
+<li><a href="qsplitter-qt3.html">Qt 3 support members</a></li>
+</ul>
+<hr />
+<a name="properties"></a>
+<h2>Properties</h2>
+<ul>
+<li><div class="fn"><b><a href="qsplitter.html#childrenCollapsible-prop">childrenCollapsible</a></b> : bool</div></li>
+<li><div class="fn"><b><a href="qsplitter.html#handleWidth-prop">handleWidth</a></b> : int</div></li>
+<li><div class="fn"><b><a href="qsplitter.html#opaqueResize-prop">opaqueResize</a></b> : bool</div></li>
+<li><div class="fn"><b><a href="qsplitter.html#orientation-prop">orientation</a></b> : Qt::Orientation</div></li>
+</ul>
+<ul>
+<li><div bar="2" class="fn"></div>6 properties inherited from <a href="qframe.html#properties">QFrame</a></li>
+<li><div bar="2" class="fn"></div>58 properties inherited from <a href="qwidget.html#properties">QWidget</a></li>
+<li><div bar="2" class="fn"></div>1 property inherited from <a href="qobject.html#properties">QObject</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qsplitter.html#QSplitter">QSplitter</a></b> ( QWidget * <i>parent</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qsplitter.html#QSplitter-2">QSplitter</a></b> ( Qt::Orientation <i>orientation</i>, QWidget * <i>parent</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qsplitter.html#dtor.QSplitter">~QSplitter</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qsplitter.html#addWidget">addWidget</a></b> ( QWidget * <i>widget</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qsplitter.html#childrenCollapsible-prop">childrenCollapsible</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qsplitter.html#count">count</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qsplitter.html#getRange">getRange</a></b> ( int <i>index</i>, int * <i>min</i>, int * <i>max</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QSplitterHandle * </td><td class="memItemRight" valign="bottom"><b><a href="qsplitter.html#handle">handle</a></b> ( int <i>index</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qsplitter.html#handleWidth-prop">handleWidth</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qsplitter.html#indexOf">indexOf</a></b> ( QWidget * <i>widget</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qsplitter.html#insertWidget">insertWidget</a></b> ( int <i>index</i>, QWidget * <i>widget</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qsplitter.html#isCollapsible">isCollapsible</a></b> ( int <i>index</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qsplitter.html#opaqueResize-prop">opaqueResize</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Qt::Orientation </td><td class="memItemRight" valign="bottom"><b><a href="qsplitter.html#orientation-prop">orientation</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qsplitter.html#refresh">refresh</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qsplitter.html#restoreState">restoreState</a></b> ( const QByteArray &amp; <i>state</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QByteArray </td><td class="memItemRight" valign="bottom"><b><a href="qsplitter.html#saveState">saveState</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qsplitter.html#childrenCollapsible-prop">setChildrenCollapsible</a></b> ( bool )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qsplitter.html#setCollapsible">setCollapsible</a></b> ( int <i>index</i>, bool <i>collapse</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qsplitter.html#handleWidth-prop">setHandleWidth</a></b> ( int )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qsplitter.html#opaqueResize-prop">setOpaqueResize</a></b> ( bool <i>opaque</i> = true )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qsplitter.html#orientation-prop">setOrientation</a></b> ( Qt::Orientation )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qsplitter.html#setSizes">setSizes</a></b> ( const QList&lt;int&gt; &amp; <i>list</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qsplitter.html#setStretchFactor">setStretchFactor</a></b> ( int <i>index</i>, int <i>stretch</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QList&lt;int&gt; </td><td class="memItemRight" valign="bottom"><b><a href="qsplitter.html#sizes">sizes</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QWidget * </td><td class="memItemRight" valign="bottom"><b><a href="qsplitter.html#widget">widget</a></b> ( int <i>index</i> ) const</td></tr>
+</table>
+<hr />
+<a name="reimplemented-public-functions"></a>
+<h2>Reimplemented Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual QSize </td><td class="memItemRight" valign="bottom"><b><a href="qsplitter.html#minimumSizeHint">minimumSizeHint</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QSize </td><td class="memItemRight" valign="bottom"><b><a href="qsplitter.html#sizeHint">sizeHint</a></b> () const</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>14 public functions inherited from <a href="qframe.html#public-functions">QFrame</a></li>
+<li><div bar="2" class="fn"></div>216 public functions inherited from <a href="qwidget.html#public-functions">QWidget</a></li>
+<li><div bar="2" class="fn"></div>29 public functions inherited from <a href="qobject.html#public-functions">QObject</a></li>
+<li><div bar="2" class="fn"></div>12 public functions inherited from <a href="qpaintdevice.html#public-functions">QPaintDevice</a></li>
+</ul>
+<hr />
+<a name="signals"></a>
+<h2>Signals</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qsplitter.html#splitterMoved">splitterMoved</a></b> ( int <i>pos</i>, int <i>index</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>1 signal inherited from <a href="qwidget.html#signals">QWidget</a></li>
+<li><div bar="2" class="fn"></div>1 signal inherited from <a href="qobject.html#signals">QObject</a></li>
+</ul>
+<hr />
+<a name="protected-functions"></a>
+<h2>Protected Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qsplitter.html#closestLegalPosition">closestLegalPosition</a></b> ( int <i>pos</i>, int <i>index</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QSplitterHandle * </td><td class="memItemRight" valign="bottom"><b><a href="qsplitter.html#createHandle">createHandle</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qsplitter.html#moveSplitter">moveSplitter</a></b> ( int <i>pos</i>, int <i>index</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qsplitter.html#setRubberBand">setRubberBand</a></b> ( int <i>pos</i> )</td></tr>
+</table>
+<hr />
+<a name="reimplemented-protected-functions"></a>
+<h2>Reimplemented Protected Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qsplitter.html#changeEvent">changeEvent</a></b> ( QEvent * <i>ev</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qsplitter.html#childEvent">childEvent</a></b> ( QChildEvent * <i>c</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qsplitter.html#event">event</a></b> ( QEvent * <i>e</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qsplitter.html#resizeEvent">resizeEvent</a></b> ( QResizeEvent * )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>3 protected functions inherited from <a href="qframe.html#protected-functions">QFrame</a></li>
+<li><div bar="2" class="fn"></div>37 protected functions inherited from <a href="qwidget.html#protected-functions">QWidget</a></li>
+<li><div bar="2" class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+<li><div bar="2" class="fn"></div>1 protected function inherited from <a href="qpaintdevice.html#protected-functions">QPaintDevice</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li><div class="fn"></div>19 public slots inherited from <a href="qwidget.html#public-slots">QWidget</a></li>
+<li><div class="fn"></div>1 public slot inherited from <a href="qobject.html#public-slots">QObject</a></li>
+<li><div class="fn"></div>4 static public members inherited from <a href="qwidget.html#static-public-members">QWidget</a></li>
+<li><div class="fn"></div>5 static public members inherited from <a href="qobject.html#static-public-members">QObject</a></li>
+<li><div class="fn"></div>1 protected slot inherited from <a href="qwidget.html#protected-slots">QWidget</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QSplitter class implements a splitter widget.</p>
+<p>A splitter lets the user control the size of child widgets by dragging the boundary between the children. Any number of widgets may be controlled by a single splitter. The typical use of a QSplitter is to create several widgets and add them using <a href="qsplitter.html#insertWidget">insertWidget</a>() or <a href="qsplitter.html#addWidget">addWidget</a>().</p>
+<p>The following example will show a <a href="qlistview.html">QListView</a>, <a href="qtreeview.html">QTreeView</a>, and <a href="qtextedit.html">QTextEdit</a> side by side, with two splitter handles:</p>
+<pre>     QSplitter *splitter = new QSplitter(parent);
+     QListView *listview = new QListView;
+     QTreeView *treeview = new QTreeView;
+     QTextEdit *textedit = new QTextEdit;
+     splitter-&gt;addWidget(listview);
+     splitter-&gt;addWidget(treeview);
+     splitter-&gt;addWidget(textedit);</pre>
+<p>If a widget is already inside a QSplitter when <a href="qsplitter.html#insertWidget">insertWidget</a>() or <a href="qsplitter.html#addWidget">addWidget</a>() is called, it will move to the new position. This can be used to reorder widgets in the splitter later. You can use <a href="qsplitter.html#indexOf">indexOf</a>(), <a href="qsplitter.html#widget">widget</a>(), and <a href="qsplitter.html#count">count</a>() to get access to the widgets inside the splitter.</p>
+<p>A default QSplitter lays out its children horizontally (side by side); you can use setOrientation(<a href="qt.html#Orientation-enum">Qt::Vertical</a>) to lay its children out vertically.</p>
+<p>By default, all widgets can be as large or as small as the user wishes, between the <a href="qsplitter.html#minimumSizeHint">minimumSizeHint</a>() (or <a href="qwidget.html#minimumSize-prop">minimumSize</a>()) and <a href="qwidget.html#maximumSize-prop">maximumSize</a>() of the widgets.</p>
+<p>QSplitter resizes its children dynamically by default. If you would rather have QSplitter resize the children only at the end of a resize operation, call setOpaqueResize(false).</p>
+<p>The initial distribution of size between the widgets is determined by multiplying the initial size with the stretch factor. You can also use <a href="qsplitter.html#setSizes">setSizes</a>() to set the sizes of all the widgets. The function <a href="qsplitter.html#sizes">sizes</a>() returns the sizes set by the user. Alternatively, you can save and restore the sizes of the widgets from a <a href="qbytearray.html">QByteArray</a> using <a href="qsplitter.html#saveState">saveState</a>() and <a href="qsplitter.html#restoreState">restoreState</a>() respectively.</p>
+<p>When you <a href="qwidget.html#hide">hide</a>() a child its space will be distributed among the other children. It will be reinstated when you <a href="qwidget.html#show">show</a>() it again.</p>
+<p>See also <a href="qsplitterhandle.html">QSplitterHandle</a>, <a href="qhboxlayout.html">QHBoxLayout</a>, <a href="qvboxlayout.html">QVBoxLayout</a>, and <a href="qtabwidget.html">QTabWidget</a>.</p>
+<hr />
+<h2>Property Documentation</h2>
+<a name="//apple_ref/cpp/instm/QSplitter/childrenCollapsible" />
+<a name="//apple_ref/cpp/instm/QSplitter/setChildrenCollapsible" />
+<h3 class="fn"><a name="childrenCollapsible-prop"></a>childrenCollapsible : bool</h3>
+<p>This property holds whether child widgets can be resized down to size 0 by the user.</p>
+<p>By default, children are collapsible. It is possible to enable and disable the collapsing of individual children using <a href="qsplitter.html#setCollapsible">setCollapsible</a>().</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b>childrenCollapsible</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setChildrenCollapsible</b> ( bool )</td></tr>
+</table>
+<p>See also <a href="qsplitter.html#setCollapsible">setCollapsible</a>().</p>
+<a name="//apple_ref/cpp/instm/QSplitter/handleWidth" />
+<a name="//apple_ref/cpp/instm/QSplitter/setHandleWidth" />
+<h3 class="fn"><a name="handleWidth-prop"></a>handleWidth : int</h3>
+<p>This property holds the width of the splitter handles.</p>
+<p>By default, this property contains a value that depends on the user's platform and style preferences.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b>handleWidth</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setHandleWidth</b> ( int )</td></tr>
+</table>
+<a name="//apple_ref/cpp/instm/QSplitter/opaqueResize" />
+<a name="//apple_ref/cpp/instm/QSplitter/setOpaqueResize" />
+<h3 class="fn"><a name="opaqueResize-prop"></a>opaqueResize : bool</h3>
+<p>This property holds whether resizing is opaque.</p>
+<p>Opaque resizing is on by default.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b>opaqueResize</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setOpaqueResize</b> ( bool <i>opaque</i> = true )</td></tr>
+</table>
+<a name="//apple_ref/cpp/instm/QSplitter/orientation" />
+<a name="//apple_ref/cpp/instm/QSplitter/setOrientation" />
+<h3 class="fn"><a name="orientation-prop"></a>orientation : <a href="qt.html#Orientation-enum">Qt::Orientation</a></h3>
+<p>This property holds the orientation of the splitter.</p>
+<p>By default the orientation is horizontal (i.e&#x2e;, the widgets are laid out side by side). The possible orientations are <a href="qt.html#Orientation-enum">Qt::Horizontal</a> and <a href="qt.html#Orientation-enum">Qt::Vertical</a>.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">Qt::Orientation </td><td class="memItemRight" valign="bottom"><b>orientation</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setOrientation</b> ( Qt::Orientation )</td></tr>
+</table>
+<p>See also <a href="qsplitterhandle.html#orientation">QSplitterHandle::orientation</a>().</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QSplitter/QSplitter" />
+<h3 class="fn"><a name="QSplitter"></a>QSplitter::QSplitter ( <a href="qwidget.html">QWidget</a> * <i>parent</i> = 0 )</h3>
+<p>Constructs a horizontal splitter with the <i>parent</i> arguments is passed on to the <a href="qframe.html">QFrame</a> constructor.</p>
+<p>See also <a href="qsplitter.html#orientation-prop">setOrientation</a>().</p>
+<h3 class="fn"><a name="QSplitter-2"></a>QSplitter::QSplitter ( <a href="qt.html#Orientation-enum">Qt::Orientation</a> <i>orientation</i>, <a href="qwidget.html">QWidget</a> * <i>parent</i> = 0 )</h3>
+<p>Constructs a splitter with the given <i>orientation</i> and <i>parent</i>.</p>
+<p>See also <a href="qsplitter.html#orientation-prop">setOrientation</a>().</p>
+<a name="//apple_ref/cpp/instm/QSplitter/~QSplitter" />
+<h3 class="fn"><a name="dtor.QSplitter"></a>QSplitter::~QSplitter ()</h3>
+<p>Destroys the splitter. All children are deleted.</p>
+<a name="//apple_ref/cpp/instm/QSplitter/addWidget" />
+<h3 class="fn"><a name="addWidget"></a>void QSplitter::addWidget ( <a href="qwidget.html">QWidget</a> * <i>widget</i> )</h3>
+<p>Adds the given <i>widget</i> to the splitter's layout after all the other items.</p>
+<p>If <i>widget</i> is already in the splitter, it will be moved to the new position.</p>
+<p>See also <a href="qsplitter.html#insertWidget">insertWidget</a>(), <a href="qsplitter.html#widget">widget</a>(), and <a href="qsplitter.html#indexOf">indexOf</a>().</p>
+<a name="//apple_ref/cpp/instm/QSplitter/changeEvent" />
+<h3 class="fn"><a name="changeEvent"></a>void QSplitter::changeEvent ( <a href="qevent.html">QEvent</a> * <i>ev</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#changeEvent">QWidget::changeEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QSplitter/childEvent" />
+<h3 class="fn"><a name="childEvent"></a>void QSplitter::childEvent ( <a href="qchildevent.html">QChildEvent</a> * <i>c</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qobject.html#childEvent">QObject::childEvent</a>().</p>
+<p>Tells the splitter that the child widget described by <i>c</i> has been inserted or removed.</p>
+<p>This method is also used to handle the situation where a widget is created with the splitter as a parent but not explicitly added with <a href="qsplitter.html#insertWidget">insertWidget</a>() or <a href="qsplitter.html#addWidget">addWidget</a>(). This is for compatibility and not the recommended way of putting widgets into a splitter in new code. Please use <a href="qsplitter.html#insertWidget">insertWidget</a>() or <a href="qsplitter.html#addWidget">addWidget</a>() in new code.</p>
+<p>See also <a href="qsplitter.html#addWidget">addWidget</a>() and <a href="qsplitter.html#insertWidget">insertWidget</a>().</p>
+<a name="//apple_ref/cpp/instm/QSplitter/closestLegalPosition" />
+<h3 class="fn"><a name="closestLegalPosition"></a>int QSplitter::closestLegalPosition ( int <i>pos</i>, int <i>index</i> )&nbsp;&nbsp;<tt> [protected]</tt></h3>
+<p>Returns the closest legal position to <i>pos</i> of the widget with index <i>index</i>.</p>
+<p>For right-to-left languages such as Arabic and Hebrew, the layout of horizontal splitters is reversed. Positions are then measured from the right edge of the widget.</p>
+<p>See also <a href="qsplitter.html#getRange">getRange</a>().</p>
+<a name="//apple_ref/cpp/instm/QSplitter/count" />
+<h3 class="fn"><a name="count"></a>int QSplitter::count () const</h3>
+<p>Returns the number of widgets contained in the splitter's layout.</p>
+<p>See also <a href="qsplitter.html#widget">widget</a>() and <a href="qsplitter.html#handle">handle</a>().</p>
+<a name="//apple_ref/cpp/instm/QSplitter/createHandle" />
+<h3 class="fn"><a name="createHandle"></a><a href="qsplitterhandle.html">QSplitterHandle</a> * QSplitter::createHandle ()&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Returns a new splitter handle as a child widget of this splitter. This function can be reimplemented in subclasses to provide support for custom handles.</p>
+<p>See also <a href="qsplitter.html#handle">handle</a>() and <a href="qsplitter.html#indexOf">indexOf</a>().</p>
+<a name="//apple_ref/cpp/instm/QSplitter/event" />
+<h3 class="fn"><a name="event"></a>bool QSplitter::event ( <a href="qevent.html">QEvent</a> * <i>e</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qobject.html#event">QObject::event</a>().</p>
+<a name="//apple_ref/cpp/instm/QSplitter/getRange" />
+<h3 class="fn"><a name="getRange"></a>void QSplitter::getRange ( int <i>index</i>, int * <i>min</i>, int * <i>max</i> ) const</h3>
+<p>Returns the valid range of the splitter with index <i>index</i> in *<i>min</i> and *<i>max</i> if <i>min</i> and <i>max</i> are not 0.</p>
+<a name="//apple_ref/cpp/instm/QSplitter/handle" />
+<h3 class="fn"><a name="handle"></a><a href="qsplitterhandle.html">QSplitterHandle</a> * QSplitter::handle ( int <i>index</i> ) const</h3>
+<p>Returns the handle to the left (or above) for the item in the splitter's layout at the given <i>index</i>. The handle at index 0 is always hidden.</p>
+<p>For right-to-left languages such as Arabic and Hebrew, the layout of horizontal splitters is reversed. The handle will be to the right of the widget at <i>index</i>.</p>
+<p>See also <a href="qsplitter.html#count">count</a>(), <a href="qsplitter.html#widget">widget</a>(), <a href="qsplitter.html#indexOf">indexOf</a>(), <a href="qsplitter.html#createHandle">createHandle</a>(), and <a href="qsplitter.html#handleWidth-prop">setHandleWidth</a>().</p>
+<a name="//apple_ref/cpp/instm/QSplitter/indexOf" />
+<h3 class="fn"><a name="indexOf"></a>int QSplitter::indexOf ( <a href="qwidget.html">QWidget</a> * <i>widget</i> ) const</h3>
+<p>Returns the index in the splitter's layout of the specified <i>widget</i>. This also works for handles.</p>
+<p>Handles are numbered from 0. There are as many handles as there are child widgets, but the handle at position 0 is always hidden.</p>
+<p>See also <a href="qsplitter.html#count">count</a>() and <a href="qsplitter.html#widget">widget</a>().</p>
+<a name="//apple_ref/cpp/instm/QSplitter/insertWidget" />
+<h3 class="fn"><a name="insertWidget"></a>void QSplitter::insertWidget ( int <i>index</i>, <a href="qwidget.html">QWidget</a> * <i>widget</i> )</h3>
+<p>Inserts the <i>widget</i> specified into the splitter's layout at the given <i>index</i>.</p>
+<p>If <i>widget</i> is already in the splitter, it will be moved to the new position.</p>
+<p>if <i>index</i> is an invalid index, then the widget will be inserted at the end.</p>
+<p>See also <a href="qsplitter.html#addWidget">addWidget</a>(), <a href="qsplitter.html#indexOf">indexOf</a>(), and <a href="qsplitter.html#widget">widget</a>().</p>
+<a name="//apple_ref/cpp/instm/QSplitter/isCollapsible" />
+<h3 class="fn"><a name="isCollapsible"></a>bool QSplitter::isCollapsible ( int <i>index</i> ) const</h3>
+<p>Returns true if the widget at <i>index</i> is collapsible, otherwise returns false</p>
+<a name="//apple_ref/cpp/instm/QSplitter/minimumSizeHint" />
+<h3 class="fn"><a name="minimumSizeHint"></a><a href="qsize.html">QSize</a> QSplitter::minimumSizeHint () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#minimumSizeHint-prop">QWidget::minimumSizeHint</a>().</p>
+<a name="//apple_ref/cpp/instm/QSplitter/moveSplitter" />
+<h3 class="fn"><a name="moveSplitter"></a>void QSplitter::moveSplitter ( int <i>pos</i>, int <i>index</i> )&nbsp;&nbsp;<tt> [protected]</tt></h3>
+<p>Moves the left or top edge of the splitter handle at <i>index</i> as close as possible to position <i>pos</i>, which is the distance from the left or top edge of the widget.</p>
+<p>For right-to-left languages such as Arabic and Hebrew, the layout of horizontal splitters is reversed. <i>pos</i> is then the distance from the right edge of the widget.</p>
+<p>See also <a href="qsplitter.html#splitterMoved">splitterMoved</a>(), <a href="qsplitter.html#closestLegalPosition">closestLegalPosition</a>(), and <a href="qsplitter.html#getRange">getRange</a>().</p>
+<a name="//apple_ref/cpp/instm/QSplitter/refresh" />
+<h3 class="fn"><a name="refresh"></a>void QSplitter::refresh ()</h3>
+<p>Updates the splitter's state. You should not need to call this function.</p>
+<a name="//apple_ref/cpp/instm/QSplitter/resizeEvent" />
+<h3 class="fn"><a name="resizeEvent"></a>void QSplitter::resizeEvent ( <a href="qresizeevent.html">QResizeEvent</a> * )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#resizeEvent">QWidget::resizeEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QSplitter/restoreState" />
+<h3 class="fn"><a name="restoreState"></a>bool QSplitter::restoreState ( const <a href="qbytearray.html">QByteArray</a> &amp; <i>state</i> )</h3>
+<p>Restores the splitter's layout to the <i>state</i> specified. Returns true if the state is restored; otherwise returns false.</p>
+<p>Typically this is used in conjunction with <a href="qsettings.html">QSettings</a> to restore the size from a past session. Here is an example:</p>
+<p>Restore the splitters's state:</p>
+<pre>     QSettings settings;
+     splitter-&gt;restoreState(settings.value(&quot;splitterSizes&quot;).toByteArray());</pre>
+<p>A failure to restore the splitter's layout may result from either invalid or out-of-date data in the supplied byte array.</p>
+<p>See also <a href="qsplitter.html#saveState">saveState</a>().</p>
+<a name="//apple_ref/cpp/instm/QSplitter/saveState" />
+<h3 class="fn"><a name="saveState"></a><a href="qbytearray.html">QByteArray</a> QSplitter::saveState () const</h3>
+<p>Saves the state of the splitter's layout.</p>
+<p>Typically this is used in conjunction with <a href="qsettings.html">QSettings</a> to remember the size for a future session. A version number is stored as part of the data. Here is an example:</p>
+<pre>     QSettings settings;
+     settings.setValue(&quot;splitterSizes&quot;, splitter-&gt;saveState());</pre>
+<p>See also <a href="qsplitter.html#restoreState">restoreState</a>().</p>
+<a name="//apple_ref/cpp/instm/QSplitter/setCollapsible" />
+<h3 class="fn"><a name="setCollapsible"></a>void QSplitter::setCollapsible ( int <i>index</i>, bool <i>collapse</i> )</h3>
+<p>Sets whether the child widget at index <i>index</i> is collapsible to <i>collapse</i>.</p>
+<p>By default, children are collapsible, meaning that the user can resize them down to size 0, even if they have a non-zero <a href="qwidget.html#minimumSize-prop">minimumSize</a>() or <a href="qsplitter.html#minimumSizeHint">minimumSizeHint</a>(). This behavior can be changed on a per-widget basis by calling this function, or globally for all the widgets in the splitter by setting the <a href="qsplitter.html#childrenCollapsible-prop">childrenCollapsible</a> property.</p>
+<p>See also <a href="qsplitter.html#isCollapsible">isCollapsible</a>() and <a href="qsplitter.html#childrenCollapsible-prop">childrenCollapsible</a>.</p>
+<a name="//apple_ref/cpp/instm/QSplitter/setRubberBand" />
+<h3 class="fn"><a name="setRubberBand"></a>void QSplitter::setRubberBand ( int <i>pos</i> )&nbsp;&nbsp;<tt> [protected]</tt></h3>
+<p>Displays a rubber band at position <i>pos</i>. If <i>pos</i> is negative, the rubber band is removed.</p>
+<a name="//apple_ref/cpp/instm/QSplitter/setSizes" />
+<h3 class="fn"><a name="setSizes"></a>void QSplitter::setSizes ( const <a href="qlist.html">QList</a>&lt;int&gt; &amp; <i>list</i> )</h3>
+<p>Sets the child widgets respective sizes to the values given in the <i>list</i>.</p>
+<p>If the splitter is horizontal, the values set the widths of each widget in pixels, from left to right. If the splitter is vertical, the heights of each widget is set, from top to bottom.</p>
+<p>Extra values in the <i>list</i> are ignored. If <i>list</i> contains too few values, the result is undefined but the program will still be well-behaved.</p>
+<p>The overall size of the splitter widget is not affected. Instead, any additional/missing space is distributed amongst the widgets according to the relative weight of the sizes.</p>
+<p>If you specify a size of 0, the widget will be invisible. The size policies of the widgets are preserved. That is, a value smaller then the minimal size hint of the respective widget will be replaced by the value of the hint.</p>
+<p>See also <a href="qsplitter.html#sizes">sizes</a>().</p>
+<a name="//apple_ref/cpp/instm/QSplitter/setStretchFactor" />
+<h3 class="fn"><a name="setStretchFactor"></a>void QSplitter::setStretchFactor ( int <i>index</i>, int <i>stretch</i> )</h3>
+<p>Updates the size policy of the widget at position <i>index</i> to have a stretch factor of <i>stretch</i>.</p>
+<p><i>stretch</i> is not the effective stretch factor; the effective stretch factor is calculated by taking the initial size of the widget and multiplying it with <i>stretch</i>.</p>
+<p>This function is provided for convenience. It is equivalent to</p>
+<pre> QWidget *widget = splitter-&gt;widget(index);
+ QSizePolicy policy = widget-&gt;sizePolicy();
+ policy.setHorizontalStretch(stretch);
+ policy.setVerticalStretch(stretch);
+ widget-&gt;setSizePolicy(policy);</pre>
+<p>See also <a href="qsplitter.html#setSizes">setSizes</a>() and <a href="qsplitter.html#widget">widget</a>().</p>
+<a name="//apple_ref/cpp/instm/QSplitter/sizeHint" />
+<h3 class="fn"><a name="sizeHint"></a><a href="qsize.html">QSize</a> QSplitter::sizeHint () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#sizeHint-prop">QWidget::sizeHint</a>().</p>
+<a name="//apple_ref/cpp/instm/QSplitter/sizes" />
+<h3 class="fn"><a name="sizes"></a><a href="qlist.html">QList</a>&lt;int&gt; QSplitter::sizes () const</h3>
+<p>Returns a list of the size parameters of all the widgets in this splitter.</p>
+<p>If the splitter's orientation is horizontal, the list contains the widgets width in pixels, from left to right; if the orientation is vertical, the list contains the widgets height in pixels, from top to bottom.</p>
+<p>Giving the values to another splitter's <a href="qsplitter.html#setSizes">setSizes</a>() function will produce a splitter with the same layout as this one.</p>
+<p>Note that invisible widgets have a size of 0.</p>
+<p>See also <a href="qsplitter.html#setSizes">setSizes</a>().</p>
+<a name="//apple_ref/cpp/instm/QSplitter/splitterMoved" />
+<h3 class="fn"><a name="splitterMoved"></a>void QSplitter::splitterMoved ( int <i>pos</i>, int <i>index</i> )&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted when the splitter handle at a particular <i>index</i> has been moved to position <i>pos</i>.</p>
+<p>For right-to-left languages such as Arabic and Hebrew, the layout of horizontal splitters is reversed. <i>pos</i> is then the distance from the right edge of the widget.</p>
+<p>See also <a href="qsplitter.html#moveSplitter">moveSplitter</a>().</p>
+<a name="//apple_ref/cpp/instm/QSplitter/widget" />
+<h3 class="fn"><a name="widget"></a><a href="qwidget.html">QWidget</a> * QSplitter::widget ( int <i>index</i> ) const</h3>
+<p>Returns the widget at the given <i>index</i> in the splitter's layout.</p>
+<p>See also <a href="qsplitter.html#count">count</a>(), <a href="qsplitter.html#handle">handle</a>(), <a href="qsplitter.html#indexOf">indexOf</a>(), and <a href="qsplitter.html#insertWidget">insertWidget</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

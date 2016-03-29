@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- paintsystem.qdoc -->
+<head>
+  <title>Qt 4.6: Styling</title>
+  <link rel="prev" href="paintsystem-images.html" />
+  <link rel="contents" href="paintsystem.html" />
+  <link rel="next" href="printing.html" />
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><p>
+[Previous: <a href="paintsystem-images.html">Reading and Writing Image Files</a>]
+[<a href="paintsystem.html">The Paint System</a>]
+[Next: <a href="printing.html">Printing with Qt</a>]
+</p>
+<h1 class="title">Styling<br /><span class="subtitle"></span>
+</h1>
+<p>Qt's built-in widgets use the <a href="qstyle.html">QStyle</a> class to perform nearly all of their drawing. <a href="qstyle.html">QStyle</a> is an abstract base class that encapsulates the look and feel of a GUI, and can be used to make the widgets look exactly like the equivalent native widgets or to give the widgets a custom look.</p>
+<p>Qt provides a set of <a href="qstyle.html">QStyle</a> subclasses that emulate the native look of the different platforms supported by Qt (<a href="qwindowsstyle.html">QWindowsStyle</a>, <a href="qmacstyle.html">QMacStyle</a>, <a href="qmotifstyle.html">QMotifStyle</a>, etc.)&#x2e; These styles are built into the <a href="qtgui.html">QtGui</a> library, other styles can be made available using Qt's plugin mechansim.</p>
+<p>Most functions for drawing style elements take four arguments:</p>
+<ul>
+<li>an enum value specifying which graphical element to draw</li>
+<li>a <a href="qstyleoption.html">QStyleOption</a> object specifying how and where to render that element</li>
+<li>a <a href="qpainter.html">QPainter</a> object that should be used to draw the element</li>
+<li>a <a href="qwidget.html">QWidget</a> object on which the drawing is performed (optional)</li>
+</ul>
+<p>The style gets all the information it needs to render the graphical element from the <a href="qstyleoption.html">QStyleOption</a> class. The widget is passed as the last argument in case the style needs it to perform special effects (such as animated default buttons on Mac OS X), but it isn't mandatory. In fact, <a href="qstyle.html">QStyle</a> can be used to draw on any paint device (not just widgets), in which case the widget argument is a zero pointer.</p>
+<p align="center"><img src="images/paintsystem-stylepainter.png" /></p><p>The paint system also provides the <a href="qstylepainter.html">QStylePainter</a> class inheriting from <a href="qpainter.html">QPainter</a>. <a href="qstylepainter.html">QStylePainter</a> is a convenience class for drawing <a href="qstyle.html">QStyle</a> elements inside a widget, and extends <a href="qpainter.html">QPainter</a> with a set of high-level drawing functions implemented on top of <a href="qstyle.html">QStyle</a>'s API. The advantage of using <a href="qstylepainter.html">QStylePainter</a> is that the parameter lists get considerably shorter.</p>
+<p><table class="generic" width="100%" align="center" cellpadding="2" cellspacing="1" border="0">
+<tr valign="top" class="odd"><td><img src="images/paintsystem-icon.png" /></td><td><b>QIcon</b><p>The <a href="qicon.html">QIcon</a> class provides scalable icons in different modes and states.</p>
+<p><a href="qicon.html">QIcon</a> can generate pixmaps reflecting an icon's state, mode and size. These pixmaps are generated from the set of pixmaps made available to the icon, and are used by Qt widgets to show an icon representing a particular action.</p>
+<p>The rendering of a <a href="qicon.html">QIcon</a> object is handled by the <a href="qiconengine.html">QIconEngine</a> class. Each icon has a corresponding icon engine that is responsible for drawing the icon with a requested size, mode and state.</p>
+</td></tr>
+</table></p>
+<p>For more information about widget styling and appearance, see the documentation about <a href="style-reference.html">Implementing Styles and Style Aware Widgets</a>.</p>
+<p>
+[Previous: <a href="paintsystem-images.html">Reading and Writing Image Files</a>]
+[<a href="paintsystem.html">The Paint System</a>]
+[Next: <a href="printing.html">Printing with Qt</a>]
+</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

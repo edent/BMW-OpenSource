@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- simplewidgetmapper.qdoc -->
+<head>
+  <title>Qt 4.6: Simple Widget Mapper Example</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">Simple Widget Mapper Example<br /><span class="subtitle"></span>
+</h1>
+<p>Files:</p>
+<ul>
+<li><a href="itemviews-simplewidgetmapper-window-cpp.html">itemviews/simplewidgetmapper/window.cpp</a></li>
+<li><a href="itemviews-simplewidgetmapper-window-h.html">itemviews/simplewidgetmapper/window.h</a></li>
+<li><a href="itemviews-simplewidgetmapper-main-cpp.html">itemviews/simplewidgetmapper/main.cpp</a></li>
+<li><a href="itemviews-simplewidgetmapper-simplewidgetmapper-pro.html">itemviews/simplewidgetmapper/simplewidgetmapper.pro</a></li>
+</ul>
+<p>The Simple Widget Mapper example shows how to use a widget mapper to display data from a model in a collection of widgets.</p>
+<p align="center"><img src="images/simplewidgetmapper-example.png" /></p><p>The <a href="qdatawidgetmapper.html">QDataWidgetMapper</a> class allows information obtained from a <a href="model-view-model.html">model</a> to be viewed and edited in a collection of widgets instead of in an <a href="model-view-view.html">item view</a>. Any model derived from <a href="qabstractitemmodel.html">QAbstractItemModel</a> can be used as the source of data and almost any input widget can be used to display it.</p>
+<p>The example itself is very simple: we create <tt>Window</tt>, a <a href="qwidget.html">QWidget</a> subclass that we use to hold the widgets used to present the data, and show it. The <tt>Window</tt> class will provide buttons that the user can click to show different records from the model.</p>
+<a name="window-class-definition"></a>
+<h2>Window Class Definition</h2>
+<p>The class provides a constructor, a slot to keep the buttons up to date, and a private function to set up the model:</p>
+<pre> class Window : public QWidget
+ {
+     Q_OBJECT
+
+ public:
+     Window(QWidget *parent = 0);
+
+ private slots:
+     void updateButtons(int row);
+
+ private:
+     void setupModel();
+
+     QLabel *nameLabel;
+     QLabel *addressLabel;
+     QLabel *ageLabel;
+     QLineEdit *nameEdit;
+     QTextEdit *addressEdit;
+     QSpinBox *ageSpinBox;
+     QPushButton *nextButton;
+     QPushButton *previousButton;
+
+     QStandardItemModel *model;
+     QDataWidgetMapper *mapper;
+ };</pre>
+<p>In addition to the <a href="qdatawidgetmapper.html">QDataWidgetMapper</a> object and the controls used to make up the user interface, we use a <a href="qstandarditemmodel.html">QStandardItemModel</a> to hold our data. We could use a custom model, but this standard implementation is sufficient for our purposes.</p>
+<a name="window-class-implementation"></a>
+<h2>Window Class Implementation</h2>
+<p>The constructor of the <tt>Window</tt> class can be explained in three parts. In the first part, we set up the widgets used for the user interface:</p>
+<pre> Window::Window(QWidget *parent)
+     : QWidget(parent)
+ {
+     setupModel();
+
+     nameLabel = new QLabel(tr(&quot;Na&amp;me:&quot;));
+     nameEdit = new QLineEdit();
+     addressLabel = new QLabel(tr(&quot;&amp;Address:&quot;));
+     addressEdit = new QTextEdit();
+     ageLabel = new QLabel(tr(&quot;A&amp;ge (in years):&quot;));
+     ageSpinBox = new QSpinBox();
+     nextButton = new QPushButton(tr(&quot;&amp;Next&quot;));
+     previousButton = new QPushButton(tr(&quot;&amp;Previous&quot;));
+
+     nameLabel-&gt;setBuddy(nameEdit);
+     addressLabel-&gt;setBuddy(addressEdit);
+     ageLabel-&gt;setBuddy(ageSpinBox);</pre>
+<p>We also set up the buddy relationships between various labels and the corresponding input widgets.</p>
+<p>Next, we set up the widget mapper, relating each input widget to a column in the model specified by the call to <a href="qdatawidgetmapper.html#setModel">setModel()</a>:</p>
+<pre>     mapper = new QDataWidgetMapper(this);
+     mapper-&gt;setModel(model);
+     mapper-&gt;addMapping(nameEdit, 0);
+     mapper-&gt;addMapping(addressEdit, 1);
+     mapper-&gt;addMapping(ageSpinBox, 2);
+
+     connect(previousButton, SIGNAL(clicked()),
+             mapper, SLOT(toPrevious()));
+     connect(nextButton, SIGNAL(clicked()),
+             mapper, SLOT(toNext()));
+     connect(mapper, SIGNAL(currentIndexChanged(int)),
+             this, SLOT(updateButtons(int)));</pre>
+<p>We also connect the mapper to the <b>Next</b> and <b>Previous</b> buttons via its <a href="qdatawidgetmapper.html#toNext">toNext()</a> and <a href="qdatawidgetmapper.html#toPrevious">toPrevious()</a> slots. The mapper's <a href="qdatawidgetmapper.html#currentIndexChanged">currentIndexChanged()</a> signal is connected to the <tt>updateButtons()</tt> slot in the window which we'll show later.</p>
+<p>In the final part of the constructor, we set up the layout, placing each of the widgets in a grid (we could also use a <a href="qformlayout.html">QFormLayout</a> for this):</p>
+<pre>     QGridLayout *layout = new QGridLayout();
+     layout-&gt;addWidget(nameLabel, 0, 0, 1, 1);
+     layout-&gt;addWidget(nameEdit, 0, 1, 1, 1);
+     layout-&gt;addWidget(previousButton, 0, 2, 1, 1);
+     layout-&gt;addWidget(addressLabel, 1, 0, 1, 1);
+     layout-&gt;addWidget(addressEdit, 1, 1, 2, 1);
+     layout-&gt;addWidget(nextButton, 1, 2, 1, 1);
+     layout-&gt;addWidget(ageLabel, 3, 0, 1, 1);
+     layout-&gt;addWidget(ageSpinBox, 3, 1, 1, 1);
+     setLayout(layout);
+
+     setWindowTitle(tr(&quot;Simple Widget Mapper&quot;));
+     mapper-&gt;toFirst();
+ }</pre>
+<p>Lastly, we set the window title and initialize the mapper by setting it to refer to the first row in the model.</p>
+<p>The model is initialized in the window's <tt>setupModel()</tt> function. Here, we create a standard model with 5 rows and 3 columns, and we insert some sample names, addresses and ages into each row:</p>
+<pre> void Window::setupModel()
+ {
+     model = new QStandardItemModel(5, 3, this);
+
+     QStringList names;
+     names &lt;&lt; &quot;Alice&quot; &lt;&lt; &quot;Bob&quot; &lt;&lt; &quot;Carol&quot; &lt;&lt; &quot;Donald&quot; &lt;&lt; &quot;Emma&quot;;
+
+     QStringList addresses;
+     addresses &lt;&lt; &quot;&lt;qt&gt;123 Main Street&lt;br/&gt;Market Town&lt;/qt&gt;&quot;
+               &lt;&lt; &quot;&lt;qt&gt;PO Box 32&lt;br/&gt;Mail Handling Service&quot;
+                  &quot;&lt;br/&gt;Service City&lt;/qt&gt;&quot;
+               &lt;&lt; &quot;&lt;qt&gt;The Lighthouse&lt;br/&gt;Remote Island&lt;/qt&gt;&quot;
+               &lt;&lt; &quot;&lt;qt&gt;47338 Park Avenue&lt;br/&gt;Big City&lt;/qt&gt;&quot;
+               &lt;&lt; &quot;&lt;qt&gt;Research Station&lt;br/&gt;Base Camp&lt;br/&gt;Big Mountain&lt;/qt&gt;&quot;;
+
+     QStringList ages;
+     ages &lt;&lt; &quot;20&quot; &lt;&lt; &quot;31&quot; &lt;&lt; &quot;32&quot; &lt;&lt; &quot;19&quot; &lt;&lt; &quot;26&quot;;
+
+     for (int row = 0; row &lt; 5; ++row) {
+       QStandardItem *item = new QStandardItem(names[row]);
+       model-&gt;setItem(row, 0, item);
+       item = new QStandardItem(addresses[row]);
+       model-&gt;setItem(row, 1, item);
+       item = new QStandardItem(ages[row]);
+       model-&gt;setItem(row, 2, item);
+     }
+ }</pre>
+<p>As a result, each row can be treated like a record in a database, and the widget mapper will read the data from each row, using the column numbers specified earlier to access the correct data for each widget. This is shown in the following diagram:</p>
+<p align="center"><img src="images/widgetmapper-simple-mapping.png" /></p><p>Since the user can navigate using the buttons in the user interface, the example is fully-functional at this point, but to make it a bit more user-friendly, we implement the <tt>updateButtons()</tt> slot to show when the user is viewing the first or last records:</p>
+<pre> void Window::updateButtons(int row)
+ {
+     previousButton-&gt;setEnabled(row &gt; 0);
+     nextButton-&gt;setEnabled(row &lt; model-&gt;rowCount() - 1);
+ }</pre>
+<p>If the mapper is referring to the first row in the model, the <b>Previous</b> button is disabled. Similarly, the <b>Next</b> button is disabled if the mapper reaches the last row in the model.</p>
+<a name="more-complex-mappings"></a>
+<h2>More Complex Mappings</h2>
+<p>The <a href="qdatawidgetmapper.html">QDataWidgetMapper</a> class makes it easy to relate information from a model to widgets in a user interface. However, it is sometimes necessary to use input widgets which offer choices to the user, such as <a href="qcombobox.html">QComboBox</a>, in conjunction with a widget mapper.</p>
+<p>In these situations, although the mapping to input widgets remains simple, more work needs to be done to expose additional data to the widget mapper. This is covered by the <a href="itemviews-combowidgetmapper.html">Combo Widget Mapper</a> and <a href="sql-sqlwidgetmapper.html">SQL Widget Mapper</a> examples.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

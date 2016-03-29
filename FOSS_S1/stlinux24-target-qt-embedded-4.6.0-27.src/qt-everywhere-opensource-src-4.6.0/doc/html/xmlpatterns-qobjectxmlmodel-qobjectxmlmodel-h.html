@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: qobjectxmlmodel.h Example File (xmlpatterns/qobjectxmlmodel/qobjectxmlmodel.h)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">qobjectxmlmodel.h Example File<br /><span class="small-subtitle">xmlpatterns/qobjectxmlmodel/qobjectxmlmodel.h</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the examples of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+
+ #ifndef Patternist_QObjectNodeModel_H
+ #define Patternist_QObjectNodeModel_H
+
+ #include &lt;QSimpleXmlNodeModel&gt;
+
+ QT_BEGIN_HEADER
+ class QObject;
+ class PropertyToAtomicValue;
+
+<span class="comment"> /**
+  * @short Delegates QtCore's QObject into Patternist's QAbstractXmlNodeModel.
+  * known as pre/post numbering.
+  *
+  * QObjectXmlModel sets the toggle on QXmlNodeModelIndex to @c true, if it
+  * represents a property of the QObject. That is, if the QXmlNodeModelIndex is
+  * an attribute.
+  *
+  * @author Frans Englich &lt;frans.englich@nokia.com&gt;
+  */</span>
+ class QObjectXmlModel : public QSimpleXmlNodeModel
+ {
+   public:
+     QObjectXmlModel(QObject *const object, const QXmlNamePool &amp;np);
+
+     QXmlNodeModelIndex root() const;
+
+     virtual QXmlNodeModelIndex::DocumentOrder compareOrder(const QXmlNodeModelIndex &amp;n1, const QXmlNodeModelIndex &amp;n2) const;
+     virtual QXmlName name(const QXmlNodeModelIndex &amp;n) const;
+     virtual QUrl documentUri(const QXmlNodeModelIndex &amp;n) const;
+     virtual QXmlNodeModelIndex::NodeKind kind(const QXmlNodeModelIndex &amp;n) const;
+     virtual QXmlNodeModelIndex root(const QXmlNodeModelIndex &amp;n) const;
+     virtual QVariant typedValue(const QXmlNodeModelIndex &amp;n) const;
+     virtual QVector&lt;QXmlNodeModelIndex&gt; attributes(const QXmlNodeModelIndex&amp;) const;
+     virtual QXmlNodeModelIndex nextFromSimpleAxis(SimpleAxis, const QXmlNodeModelIndex&amp;) const;
+
+   private:
+     <span class="comment">/**
+      * The highest three bits are used to signify whether the node index
+      * is an artificial node.
+      *
+      * @short if QXmlNodeModelIndex::additionalData() has the
+      * QObjectPropery flag set, then the QXmlNodeModelIndex is an
+      * attribute of the QObject element, and the remaining bits form
+      * an offset to the QObject property that the QXmlNodeModelIndex
+      * refers to.
+      *
+      */</span>
+     enum QObjectNodeType
+     {
+         IsQObject               = 0,
+         QObjectProperty         = 1 &lt;&lt; 26,
+         MetaObjects             = 2 &lt;&lt; 26,
+         MetaObject              = 3 &lt;&lt; 26,
+         MetaObjectClassName     = 4 &lt;&lt; 26,
+         MetaObjectSuperClass    = 5 &lt;&lt; 26,
+         QObjectClassName        = 6 &lt;&lt; 26
+     };
+
+     typedef QVector&lt;const QMetaObject *&gt; AllMetaObjects;
+     AllMetaObjects allMetaObjects() const;
+
+     static QObjectNodeType toNodeType(const QXmlNodeModelIndex &amp;n);
+     static bool isTypeSupported(QVariant::Type type);
+     static inline QObject *asQObject(const QXmlNodeModelIndex &amp;n);
+     static inline bool isProperty(const QXmlNodeModelIndex n);
+     static inline QMetaProperty toMetaProperty(const QXmlNodeModelIndex &amp;n);
+     <span class="comment">/**
+      * Returns the ancestors of @p n. Does therefore not include
+      * @p n.
+      */</span>
+     inline QXmlNodeModelIndex::List ancestors(const QXmlNodeModelIndex n) const;
+     QXmlNodeModelIndex qObjectSibling(const int pos,
+                                       const QXmlNodeModelIndex &amp;n) const;
+     QXmlNodeModelIndex metaObjectSibling(const int pos,
+                                          const QXmlNodeModelIndex &amp;n) const;
+
+     const QUrl              m_baseURI;
+     QObject *const          m_root;
+     const AllMetaObjects    m_allMetaObjects;
+ };
+
+
+ QT_END_HEADER
+
+ #endif</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

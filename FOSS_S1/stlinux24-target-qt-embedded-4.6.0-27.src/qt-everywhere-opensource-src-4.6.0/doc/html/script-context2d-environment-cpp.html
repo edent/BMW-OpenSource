@@ -1,0 +1,568 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: environment.cpp Example File (script/context2d/environment.cpp)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">environment.cpp Example File<br /><span class="small-subtitle">script/context2d/environment.cpp</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the examples of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+
+ #include &quot;environment.h&quot;
+ #include &quot;qcontext2dcanvas.h&quot;
+ #include &quot;context2d.h&quot;
+ #include &lt;QScriptValueIterator&gt;
+ #include &lt;QDateTime&gt;
+
+ struct FakeDomEvent
+ {
+     enum KeyCodes  {
+         DOM_VK_UNDEFINED            = 0x0,
+         DOM_VK_RIGHT_ALT            = 0x12,
+         DOM_VK_LEFT_ALT             = 0x12,
+         DOM_VK_LEFT_CONTROL         = 0x11,
+         DOM_VK_RIGHT_CONTROL        = 0x11,
+         DOM_VK_LEFT_SHIFT           = 0x10,
+         DOM_VK_RIGHT_SHIFT          = 0x10,
+         DOM_VK_META                 = 0x9D,
+         DOM_VK_BACK_SPACE           = 0x08,
+         DOM_VK_CAPS_LOCK            = 0x14,
+         DOM_VK_DELETE               = 0x7F,
+         DOM_VK_END                  = 0x23,
+         DOM_VK_ENTER                = 0x0D,
+         DOM_VK_ESCAPE               = 0x1B,
+         DOM_VK_HOME                 = 0x24,
+         DOM_VK_NUM_LOCK             = 0x90,
+         DOM_VK_PAUSE                = 0x13,
+         DOM_VK_PRINTSCREEN          = 0x9A,
+         DOM_VK_SCROLL_LOCK          = 0x91,
+         DOM_VK_SPACE                = 0x20,
+         DOM_VK_TAB                  = 0x09,
+         DOM_VK_LEFT                 = 0x25,
+         DOM_VK_RIGHT                = 0x27,
+         DOM_VK_UP                   = 0x26,
+         DOM_VK_DOWN                 = 0x28,
+         DOM_VK_PAGE_DOWN            = 0x22,
+         DOM_VK_PAGE_UP              = 0x21,
+         DOM_VK_F1                   = 0x70,
+         DOM_VK_F2                   = 0x71,
+         DOM_VK_F3                   = 0x72,
+         DOM_VK_F4                   = 0x73,
+         DOM_VK_F5                   = 0x74,
+         DOM_VK_F6                   = 0x75,
+         DOM_VK_F7                   = 0x76,
+         DOM_VK_F8                   = 0x77,
+         DOM_VK_F9                   = 0x78,
+         DOM_VK_F10                  = 0x79,
+         DOM_VK_F11                  = 0x7A,
+         DOM_VK_F12                  = 0x7B,
+         DOM_VK_F13                  = 0xF000,
+         DOM_VK_F14                  = 0xF001,
+         DOM_VK_F15                  = 0xF002,
+         DOM_VK_F16                  = 0xF003,
+         DOM_VK_F17                  = 0xF004,
+         DOM_VK_F18                  = 0xF005,
+         DOM_VK_F19                  = 0xF006,
+         DOM_VK_F20                  = 0xF007,
+         DOM_VK_F21                  = 0xF008,
+         DOM_VK_F22                  = 0xF009,
+         DOM_VK_F23                  = 0xF00A,
+         DOM_VK_F24                  = 0xF00B
+     };
+
+     static int qtToDomKey(int keyCode);
+ };
+
+ int FakeDomEvent::qtToDomKey(int keyCode)
+ {
+     switch (keyCode) {
+     case Qt::Key_Backspace:
+         return  DOM_VK_BACK_SPACE;
+     case Qt::Key_Enter:
+         return  DOM_VK_ENTER;
+     case Qt::Key_Return:
+         return  DOM_VK_ENTER;
+     case Qt::Key_NumLock:
+         return  DOM_VK_NUM_LOCK;
+     case Qt::Key_Alt:
+         return  DOM_VK_RIGHT_ALT;
+     case Qt::Key_Control:
+         return  DOM_VK_LEFT_CONTROL;
+     case Qt::Key_Shift:
+         return  DOM_VK_LEFT_SHIFT;
+     case Qt::Key_Meta:
+         return  DOM_VK_META;
+     case Qt::Key_CapsLock:
+         return  DOM_VK_CAPS_LOCK;
+     case Qt::Key_Delete:
+         return  DOM_VK_DELETE;
+     case Qt::Key_End:
+         return  DOM_VK_END;
+     case Qt::Key_Escape:
+         return  DOM_VK_ESCAPE;
+     case Qt::Key_Home:
+         return  DOM_VK_HOME;
+     case Qt::Key_Pause:
+         return  DOM_VK_PAUSE;
+     case Qt::Key_Print:
+         return  DOM_VK_PRINTSCREEN;
+     case Qt::Key_ScrollLock:
+         return  DOM_VK_SCROLL_LOCK;
+     case Qt::Key_Left:
+         return  DOM_VK_LEFT;
+     case Qt::Key_Right:
+         return  DOM_VK_RIGHT;
+     case Qt::Key_Up:
+         return  DOM_VK_UP;
+     case Qt::Key_Down:
+         return  DOM_VK_DOWN;
+     case Qt::Key_PageDown:
+         return  DOM_VK_PAGE_DOWN;
+     case Qt::Key_PageUp:
+         return  DOM_VK_PAGE_UP;
+     case Qt::Key_F1:
+         return  DOM_VK_F1;
+     case Qt::Key_F2:
+         return  DOM_VK_F2;
+     case Qt::Key_F3:
+         return  DOM_VK_F3;
+     case Qt::Key_F4:
+         return  DOM_VK_F4;
+     case Qt::Key_F5:
+         return  DOM_VK_F5;
+     case Qt::Key_F6:
+         return  DOM_VK_F6;
+     case Qt::Key_F7:
+         return  DOM_VK_F7;
+     case Qt::Key_F8:
+         return  DOM_VK_F8;
+     case Qt::Key_F9:
+         return  DOM_VK_F9;
+     case Qt::Key_F10:
+         return  DOM_VK_F10;
+     case Qt::Key_F11:
+         return  DOM_VK_F11;
+     case Qt::Key_F12:
+         return  DOM_VK_F12;
+     case Qt::Key_F13:
+         return  DOM_VK_F13;
+     case Qt::Key_F14:
+         return  DOM_VK_F14;
+     case Qt::Key_F15:
+         return  DOM_VK_F15;
+     case Qt::Key_F16:
+         return  DOM_VK_F16;
+     case Qt::Key_F17:
+         return  DOM_VK_F17;
+     case Qt::Key_F18:
+         return  DOM_VK_F18;
+     case Qt::Key_F19:
+         return  DOM_VK_F19;
+     case Qt::Key_F20:
+         return  DOM_VK_F20;
+     case Qt::Key_F21:
+         return  DOM_VK_F21;
+     case Qt::Key_F22:
+         return  DOM_VK_F22;
+     case Qt::Key_F23:
+         return  DOM_VK_F23;
+     case Qt::Key_F24:
+         return  DOM_VK_F24;
+     }
+     return keyCode;
+ }
+
+ Environment::Environment(QObject *parent)
+     : QObject(parent)
+ {
+     m_engine = new QScriptEngine(this);
+
+     m_document = m_engine-&gt;newQObject(
+         new Document(this), QScriptEngine::QtOwnership,
+         QScriptEngine::ExcludeSuperClassContents);
+
+     CanvasGradientPrototype::setup(m_engine);
+
+     m_originalGlobalObject = m_engine-&gt;globalObject();
+     reset();
+ }
+
+ Environment::~Environment()
+ {
+ }
+
+ QScriptEngine *Environment::engine() const
+ {
+     return m_engine;
+ }
+
+ QScriptValue Environment::document() const
+ {
+     return m_document;
+ }
+
+ int Environment::setTimeout(const QScriptValue &amp;expression, int delay)
+ {
+     if (expression.isString() || expression.isFunction()) {
+         int timerId = startTimer(delay);
+         m_timeoutHash.insert(timerId, expression);
+         return timerId;
+     }
+     return -1;
+ }
+
+ void Environment::clearTimeout(int timerId)
+ {
+     killTimer(timerId);
+     m_timeoutHash.remove(timerId);
+ }
+
+ int Environment::setInterval(const QScriptValue &amp;expression, int delay)
+ {
+     if (expression.isString() || expression.isFunction()) {
+         int timerId = startTimer(delay);
+         m_intervalHash.insert(timerId, expression);
+         return timerId;
+     }
+     return -1;
+ }
+
+ void Environment::clearInterval(int timerId)
+ {
+     killTimer(timerId);
+     m_intervalHash.remove(timerId);
+ }
+
+ void Environment::timerEvent(QTimerEvent *event)
+ {
+     int id = event-&gt;timerId();
+     QScriptValue expression = m_intervalHash.value(id);
+     if (!expression.isValid()) {
+         expression = m_timeoutHash.value(id);
+         if (expression.isValid())
+             killTimer(id);
+     }
+     if (expression.isString()) {
+         evaluate(expression.toString());
+     } else if (expression.isFunction()) {
+         expression.call();
+     }
+     maybeEmitScriptError();
+ }
+
+ void Environment::addCanvas(QContext2DCanvas *canvas)
+ {
+     m_canvases.append(canvas);
+ }
+
+ QContext2DCanvas *Environment::canvasByName(const QString &amp;name) const
+ {
+     for (int i = 0; i &lt; m_canvases.size(); ++i) {
+         QContext2DCanvas *canvas = m_canvases.at(i);
+         if (canvas-&gt;objectName() == name)
+             return canvas;
+     }
+     return 0;
+ }
+
+ QList&lt;QContext2DCanvas*&gt; Environment::canvases() const
+ {
+     return m_canvases;
+ }
+
+ void Environment::reset()
+ {
+     if (m_engine-&gt;isEvaluating())
+         m_engine-&gt;abortEvaluation();
+
+     {
+         QHash&lt;int, QScriptValue&gt;::const_iterator it;
+         for (it = m_intervalHash.constBegin(); it != m_intervalHash.constEnd(); ++it)
+             killTimer(it.key());
+         m_intervalHash.clear();
+         for (it = m_timeoutHash.constBegin(); it != m_timeoutHash.constEnd(); ++it)
+             killTimer(it.key());
+         m_timeoutHash.clear();
+     }
+
+     for (int i = 0; i &lt; m_canvases.size(); ++i)
+         m_canvases.at(i)-&gt;reset();
+
+     QScriptValue self = m_engine-&gt;newQObject(
+         this, QScriptEngine::QtOwnership,
+         QScriptEngine::ExcludeSuperClassContents);
+
+     {
+         QScriptValueIterator it(m_originalGlobalObject);
+         while (it.hasNext()) {
+             it.next();
+             self.setProperty(it.scriptName(), it.value(), it.flags());
+         }
+     }
+
+     self.setProperty(&quot;self&quot;, self);
+     self.setProperty(&quot;window&quot;, self);
+
+     QScriptValue navigator = m_engine-&gt;newObject();
+     navigator.setProperty(&quot;appCodeName&quot;, &quot;context2d&quot;);
+     navigator.setProperty(&quot;appMinorVersion&quot;, 1);
+     navigator.setProperty(&quot;appVersion&quot;, 1);
+     navigator.setProperty(&quot;browserLanguage&quot;, &quot;en_US&quot;);
+     navigator.setProperty(&quot;cookieEnabled&quot;, false);
+     navigator.setProperty(&quot;cpuClass&quot;, &quot;i686&quot;);
+     navigator.setProperty(&quot;onLine&quot;, false);
+     navigator.setProperty(&quot;platform&quot;, &quot;bogus OS&quot;);
+     navigator.setProperty(&quot;systemLanguage&quot;, &quot;en_US&quot;);
+     navigator.setProperty(&quot;userAgent&quot;, &quot;Context2D/1.1&quot;);
+     navigator.setProperty(&quot;userLanguage&quot;, &quot;en_US&quot;);
+     self.setProperty(&quot;navigator&quot;, navigator);
+
+     m_engine-&gt;setGlobalObject(self);
+
+     m_engine-&gt;collectGarbage();
+ }
+
+ QScriptValue Environment::evaluate(const QString &amp;code, const QString &amp;fileName)
+ {
+     return m_engine-&gt;evaluate(code, fileName);
+ }
+
+ QScriptValue Environment::toWrapper(QObject *object)
+ {
+     return m_engine-&gt;newQObject(object, QScriptEngine::QtOwnership,
+                                 QScriptEngine::PreferExistingWrapperObject
+                                 | QScriptEngine::ExcludeSuperClassContents);
+ }
+
+ void Environment::handleEvent(QContext2DCanvas *canvas, QMouseEvent *e)
+ {
+     QString type;
+     switch (e-&gt;type()) {
+     case QEvent::MouseButtonPress:
+         type = &quot;mousedown&quot;; break;
+     case QEvent::MouseButtonRelease:
+         type = &quot;mouseup&quot;; break;
+     case QEvent::MouseMove:
+         type = &quot;mousemove&quot;; break;
+     default: break;
+     }
+     if (type.isEmpty())
+         return;
+
+     QScriptValue handlerObject;
+     QScriptValue handler = eventHandler(canvas, type, &amp;handlerObject);
+     if (!handler.isFunction())
+         return;
+
+     QScriptValue scriptEvent = newFakeDomEvent(type, toWrapper(canvas));
+     <span class="comment">// MouseEvent</span>
+     scriptEvent.setProperty(&quot;screenX&quot;, e-&gt;globalX(), QScriptValue::ReadOnly);
+     scriptEvent.setProperty(&quot;screenY&quot;, e-&gt;globalY(), QScriptValue::ReadOnly);
+     scriptEvent.setProperty(&quot;clientX&quot;, e-&gt;x(), QScriptValue::ReadOnly);
+     scriptEvent.setProperty(&quot;clientY&quot;, e-&gt;y(), QScriptValue::ReadOnly);
+     scriptEvent.setProperty(&quot;layerX&quot;, e-&gt;x(), QScriptValue::ReadOnly);
+     scriptEvent.setProperty(&quot;layerY&quot;, e-&gt;y(), QScriptValue::ReadOnly);
+     scriptEvent.setProperty(&quot;pageX&quot;, e-&gt;x(), QScriptValue::ReadOnly);
+     scriptEvent.setProperty(&quot;pageY&quot;, e-&gt;y(), QScriptValue::ReadOnly);
+     scriptEvent.setProperty(&quot;altKey&quot;, (e-&gt;modifiers() &amp; Qt::AltModifier) != 0,
+                             QScriptValue::ReadOnly);
+     scriptEvent.setProperty(&quot;ctrlKey&quot;, (e-&gt;modifiers() &amp; Qt::ControlModifier) != 0,
+                             QScriptValue::ReadOnly);
+     scriptEvent.setProperty(&quot;metaKey&quot;, (e-&gt;modifiers() &amp; Qt::MetaModifier) != 0,
+                             QScriptValue::ReadOnly);
+     scriptEvent.setProperty(&quot;shiftKey&quot;, (e-&gt;modifiers() &amp; Qt::ShiftModifier) != 0,
+                             QScriptValue::ReadOnly);
+     int button = 0;
+     if (e-&gt;button() == Qt::RightButton)
+         button = 2;
+     else if (e-&gt;button() == Qt::MidButton)
+         button = 1;
+     scriptEvent.setProperty(&quot;button&quot;, button);
+     scriptEvent.setProperty(&quot;relatedTarget&quot;, m_engine-&gt;nullValue(),
+                             QScriptValue::ReadOnly);
+     handler.call(handlerObject, QScriptValueList() &lt;&lt; scriptEvent);
+     maybeEmitScriptError();
+ }
+
+ void Environment::handleEvent(QContext2DCanvas *canvas, QKeyEvent *e)
+ {
+     QString type;
+     switch (e-&gt;type()) {
+     case QEvent::KeyPress:
+         type = &quot;keydown&quot;; break;
+     case QEvent::KeyRelease:
+         type = &quot;keyup&quot;; break;
+     default: break;
+     }
+     if (type.isEmpty())
+         return;
+
+     QScriptValue handlerObject;
+     QScriptValue handler = eventHandler(canvas, type, &amp;handlerObject);
+     if (!handler.isFunction())
+         return;
+
+     QScriptValue scriptEvent = newFakeDomEvent(type, toWrapper(canvas));
+     <span class="comment">// KeyEvent</span>
+     scriptEvent.setProperty(&quot;isChar&quot;, !e-&gt;text().isEmpty());
+     scriptEvent.setProperty(&quot;charCode&quot;, e-&gt;text());
+     scriptEvent.setProperty(&quot;keyCode&quot;, FakeDomEvent::qtToDomKey(e-&gt;key()));
+     scriptEvent.setProperty(&quot;which&quot;, e-&gt;key());
+
+     handler.call(handlerObject, QScriptValueList() &lt;&lt; scriptEvent);
+     maybeEmitScriptError();
+ }
+
+ QScriptValue Environment::eventHandler(QContext2DCanvas *canvas, const QString &amp;type,
+                                        QScriptValue *who)
+ {
+     QString handlerName = &quot;on&quot; + type;
+     QScriptValue obj = toWrapper(canvas);
+     QScriptValue handler = obj.property(handlerName);
+     if (!handler.isValid()) {
+         obj = m_document;
+         handler = obj.property(handlerName);
+     }
+     if (who &amp;&amp; handler.isFunction())
+         *who = obj;
+     return handler;
+ }
+
+ QScriptValue Environment::newFakeDomEvent(const QString &amp;type, const QScriptValue &amp;target)
+ {
+     QScriptValue e = m_engine-&gt;newObject();
+     <span class="comment">// Event</span>
+     e.setProperty(&quot;type&quot;, type, QScriptValue::ReadOnly);
+     e.setProperty(&quot;bubbles&quot;, true, QScriptValue::ReadOnly);
+     e.setProperty(&quot;cancelable&quot;, false, QScriptValue::ReadOnly);
+     e.setProperty(&quot;target&quot;, target, QScriptValue::ReadOnly);
+     e.setProperty(&quot;currentTarget&quot;, target, QScriptValue::ReadOnly);
+     e.setProperty(&quot;eventPhase&quot;, 3); <span class="comment">// bubbling</span>
+     e.setProperty(&quot;timeStamp&quot;, QDateTime::currentDateTime().toTime_t());
+     <span class="comment">// UIEvent</span>
+     e.setProperty(&quot;detail&quot;, 0, QScriptValue::ReadOnly);
+     e.setProperty(&quot;view&quot;, m_engine-&gt;globalObject(), QScriptValue::ReadOnly);
+     return e;
+ }
+
+ void Environment::maybeEmitScriptError()
+ {
+     if (m_engine-&gt;hasUncaughtException())
+         emit scriptError(m_engine-&gt;uncaughtException());
+ }
+
+ Document::Document(Environment *env)
+     : QObject(env)
+ {
+ }
+
+ Document::~Document()
+ {
+ }
+
+ QScriptValue Document::getElementById(const QString &amp;id) const
+ {
+     Environment *env = qobject_cast&lt;Environment*&gt;(parent());
+     QContext2DCanvas *canvas = env-&gt;canvasByName(id);
+     if (!canvas)
+         return QScriptValue();
+     return env-&gt;toWrapper(canvas);
+ }
+
+ QScriptValue Document::getElementsByTagName(const QString &amp;name) const
+ {
+     if (name != &quot;canvas&quot;)
+         return QScriptValue();
+     Environment *env = qobject_cast&lt;Environment*&gt;(parent());
+     QList&lt;QContext2DCanvas*&gt; list = env-&gt;canvases();
+     QScriptValue result = env-&gt;engine()-&gt;newArray(list.size());
+     for (int i = 0; i &lt; list.size(); ++i)
+         result.setProperty(i, env-&gt;toWrapper(list.at(i)));
+     return result;
+ }
+
+ void Document::addEventListener(const QString &amp;type, const QScriptValue &amp;listener,
+                                 bool useCapture)
+ {
+     Q_UNUSED(useCapture);
+     if (listener.isFunction()) {
+         Environment *env = qobject_cast&lt;Environment*&gt;(parent());
+         QScriptValue self = env-&gt;toWrapper(this);
+         self.setProperty(&quot;on&quot; + type, listener);
+     }
+ }
+
+ QColor colorFromString(const QString &amp;name);
+
+ CanvasGradientPrototype::CanvasGradientPrototype(QObject *parent)
+     : QObject(parent)
+ {
+ }
+
+ void CanvasGradientPrototype::addColorStop(qreal offset, const QString &amp;color)
+ {
+     CanvasGradient *self = qscriptvalue_cast&lt;CanvasGradient*&gt;(thisObject());
+     if (!self || (self-&gt;value.type() == QGradient::NoGradient))
+         return;
+     self-&gt;value.setColorAt(offset, colorFromString(color));
+ }
+
+ void CanvasGradientPrototype::setup(QScriptEngine *engine)
+ {
+     CanvasGradientPrototype *proto = new CanvasGradientPrototype();
+     engine-&gt;setDefaultPrototype(qMetaTypeId&lt;CanvasGradient&gt;(),
+         engine-&gt;newQObject(proto, QScriptEngine::ScriptOwnership,
+                            QScriptEngine::ExcludeSuperClassContents));
+ }</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

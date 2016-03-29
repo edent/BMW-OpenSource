@@ -1,0 +1,2 @@
+SYNCQT.HEADER_FILES = qvg.h ../../include/QtOpenVG/QtOpenVG 
+SYNCQT.HEADER_CLASSES = 

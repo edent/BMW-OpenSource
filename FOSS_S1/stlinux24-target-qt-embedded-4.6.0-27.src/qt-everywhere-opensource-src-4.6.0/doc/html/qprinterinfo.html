@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qprinterinfo.qdoc -->
+<head>
+  <title>Qt 4.6: QPrinterInfo Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QPrinterInfo" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QPrinterInfo Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QPrinterInfo class gives access to information about existing printers. <a href="#details">More...</a></p>
+<pre> #include &lt;QPrinterInfo&gt;</pre><p>This class was introduced in Qt 4.4.</p>
+<ul>
+<li><a href="qprinterinfo-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qprinterinfo.html#QPrinterInfo">QPrinterInfo</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qprinterinfo.html#QPrinterInfo-2">QPrinterInfo</a></b> ( const QPrinterInfo &amp; <i>src</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qprinterinfo.html#QPrinterInfo-3">QPrinterInfo</a></b> ( const QPrinter &amp; <i>printer</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qprinterinfo.html#dtor.QPrinterInfo">~QPrinterInfo</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qprinterinfo.html#isDefault">isDefault</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qprinterinfo.html#isNull">isNull</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qprinterinfo.html#printerName">printerName</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QList&lt;QPrinter::PaperSize&gt; </td><td class="memItemRight" valign="bottom"><b><a href="qprinterinfo.html#supportedPaperSizes">supportedPaperSizes</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QPrinterInfo &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qprinterinfo.html#operator-eq">operator=</a></b> ( const QPrinterInfo &amp; <i>src</i> )</td></tr>
+</table>
+<hr />
+<a name="static-public-members"></a>
+<h2>Static Public Members</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">QList&lt;QPrinterInfo&gt; </td><td class="memItemRight" valign="bottom"><b><a href="qprinterinfo.html#availablePrinters">availablePrinters</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QPrinterInfo </td><td class="memItemRight" valign="bottom"><b><a href="qprinterinfo.html#defaultPrinter">defaultPrinter</a></b> ()</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QPrinterInfo class gives access to information about existing printers.</p>
+<p>Use the static functions to generate a list of QPrinterInfo objects. Each QPrinterInfo object in the list represents a single printer and can be queried for name, supported paper sizes, and whether or not it is the default printer.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QPrinterInfo/QPrinterInfo" />
+<h3 class="fn"><a name="QPrinterInfo"></a>QPrinterInfo::QPrinterInfo ()</h3>
+<p>Constructs an empty <a href="qprinterinfo.html">QPrinterInfo</a> object.</p>
+<p>See also <a href="qprinterinfo.html#isNull">isNull</a>().</p>
+<h3 class="fn"><a name="QPrinterInfo-2"></a>QPrinterInfo::QPrinterInfo ( const QPrinterInfo &amp; <i>src</i> )</h3>
+<p>Constructs a copy of <i>src</i>.</p>
+<h3 class="fn"><a name="QPrinterInfo-3"></a>QPrinterInfo::QPrinterInfo ( const <a href="qprinter.html">QPrinter</a> &amp; <i>printer</i> )</h3>
+<p>Constructs a <a href="qprinterinfo.html">QPrinterInfo</a> object from <i>printer</i>.</p>
+<a name="//apple_ref/cpp/instm/QPrinterInfo/~QPrinterInfo" />
+<h3 class="fn"><a name="dtor.QPrinterInfo"></a>QPrinterInfo::~QPrinterInfo ()</h3>
+<p>Destroys the <a href="qprinterinfo.html">QPrinterInfo</a> object. References to the values in the object become invalid.</p>
+<a name="//apple_ref/cpp/clm/QPrinterInfo/availablePrinters" />
+<h3 class="fn"><a name="availablePrinters"></a><a href="qlist.html">QList</a>&lt;QPrinterInfo&gt; QPrinterInfo::availablePrinters ()&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Returns a list of available printers on the system.</p>
+<a name="//apple_ref/cpp/clm/QPrinterInfo/defaultPrinter" />
+<h3 class="fn"><a name="defaultPrinter"></a>QPrinterInfo QPrinterInfo::defaultPrinter ()&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Returns the default printer on the system.</p>
+<p>The return value should be checked using <a href="qprinterinfo.html#isNull">isNull</a>() before being used, in case there is no default printer.</p>
+<p>See also <a href="qprinterinfo.html#isNull">isNull</a>().</p>
+<a name="//apple_ref/cpp/instm/QPrinterInfo/isDefault" />
+<h3 class="fn"><a name="isDefault"></a>bool QPrinterInfo::isDefault () const</h3>
+<p>Returns whether this printer is the default printer.</p>
+<a name="//apple_ref/cpp/instm/QPrinterInfo/isNull" />
+<h3 class="fn"><a name="isNull"></a>bool QPrinterInfo::isNull () const</h3>
+<p>Returns whether this <a href="qprinterinfo.html">QPrinterInfo</a> object holds a printer definition.</p>
+<p>An empty <a href="qprinterinfo.html">QPrinterInfo</a> object could result for example from calling <a href="qprinterinfo.html#defaultPrinter">defaultPrinter</a>() when there are no printers on the system.</p>
+<a name="//apple_ref/cpp/instm/QPrinterInfo/printerName" />
+<h3 class="fn"><a name="printerName"></a><a href="qstring.html">QString</a> QPrinterInfo::printerName () const</h3>
+<p>Returns the name of the printer.</p>
+<p>See also <a href="qprinter.html#setPrinterName">QPrinter::setPrinterName</a>().</p>
+<a name="//apple_ref/cpp/instm/QPrinterInfo/supportedPaperSizes" />
+<h3 class="fn"><a name="supportedPaperSizes"></a><a href="qlist.html">QList</a>&lt;<a href="qprinter.html#PaperSize-enum">QPrinter::PaperSize</a>&gt; QPrinterInfo::supportedPaperSizes () const</h3>
+<p>Returns a list of supported paper sizes by the printer.</p>
+<p>Not all printer drivers support this query, so the list may be empty. On Mac OS X 10.3, this function always returns an empty list.</p>
+<p>This function was introduced in Qt 4.4.</p>
+<a name="//apple_ref/cpp/instm/QPrinterInfo/operator=" />
+<h3 class="fn"><a name="operator-eq"></a>QPrinterInfo &amp; QPrinterInfo::operator= ( const QPrinterInfo &amp; <i>src</i> )</h3>
+<p>Sets the <a href="qprinterinfo.html">QPrinterInfo</a> object to be equal to <i>src</i>.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

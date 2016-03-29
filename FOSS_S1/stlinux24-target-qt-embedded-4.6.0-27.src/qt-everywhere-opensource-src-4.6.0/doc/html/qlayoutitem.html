@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qlayoutitem.cpp -->
+<head>
+  <title>Qt 4.6: QLayoutItem Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QLayoutItem" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QLayoutItem Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QLayoutItem class provides an abstract item that a <a href="qlayout.html">QLayout</a> manipulates. <a href="#details">More...</a></p>
+<pre> #include &lt;QLayoutItem&gt;</pre><p>Inherited by <a href="qlayout.html">QLayout</a>, <a href="qspaceritem.html">QSpacerItem</a>, and <a href="qwidgetitem.html">QWidgetItem</a>.</p>
+<ul>
+<li><a href="qlayoutitem-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qlayoutitem.html#QLayoutItem">QLayoutItem</a></b> ( Qt::Alignment <i>alignment</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual </td><td class="memItemRight" valign="bottom"><b><a href="qlayoutitem.html#dtor.QLayoutItem">~QLayoutItem</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Qt::Alignment </td><td class="memItemRight" valign="bottom"><b><a href="qlayoutitem.html#alignment">alignment</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QSizePolicy::ControlTypes </td><td class="memItemRight" valign="bottom"><b><a href="qlayoutitem.html#controlTypes">controlTypes</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual Qt::Orientations </td><td class="memItemRight" valign="bottom"><b><a href="qlayoutitem.html#expandingDirections">expandingDirections</a></b> () const = 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QRect </td><td class="memItemRight" valign="bottom"><b><a href="qlayoutitem.html#geometry">geometry</a></b> () const = 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qlayoutitem.html#hasHeightForWidth">hasHeightForWidth</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual int </td><td class="memItemRight" valign="bottom"><b><a href="qlayoutitem.html#heightForWidth">heightForWidth</a></b> ( int <i>w</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qlayoutitem.html#invalidate">invalidate</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qlayoutitem.html#isEmpty">isEmpty</a></b> () const = 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QLayout * </td><td class="memItemRight" valign="bottom"><b><a href="qlayoutitem.html#layout">layout</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QSize </td><td class="memItemRight" valign="bottom"><b><a href="qlayoutitem.html#maximumSize">maximumSize</a></b> () const = 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual int </td><td class="memItemRight" valign="bottom"><b><a href="qlayoutitem.html#minimumHeightForWidth">minimumHeightForWidth</a></b> ( int <i>w</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QSize </td><td class="memItemRight" valign="bottom"><b><a href="qlayoutitem.html#minimumSize">minimumSize</a></b> () const = 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qlayoutitem.html#setAlignment">setAlignment</a></b> ( Qt::Alignment <i>alignment</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qlayoutitem.html#setGeometry">setGeometry</a></b> ( const QRect &amp; <i>r</i> ) = 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QSize </td><td class="memItemRight" valign="bottom"><b><a href="qlayoutitem.html#sizeHint">sizeHint</a></b> () const = 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QSpacerItem * </td><td class="memItemRight" valign="bottom"><b><a href="qlayoutitem.html#spacerItem">spacerItem</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QWidget * </td><td class="memItemRight" valign="bottom"><b><a href="qlayoutitem.html#widget">widget</a></b> ()</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QLayoutItem class provides an abstract item that a <a href="qlayout.html">QLayout</a> manipulates.</p>
+<p>This is used by custom layouts.</p>
+<p>Pure virtual functions are provided to return information about the layout, including, <a href="qlayoutitem.html#sizeHint">sizeHint</a>(), <a href="qlayoutitem.html#minimumSize">minimumSize</a>(), <a href="qlayoutitem.html#maximumSize">maximumSize</a>() and expanding().</p>
+<p>The layout's geometry can be set and retrieved with <a href="qlayoutitem.html#setGeometry">setGeometry</a>() and <a href="qlayoutitem.html#geometry">geometry</a>(), and its alignment with <a href="qlayoutitem.html#setAlignment">setAlignment</a>() and <a href="qlayoutitem.html#alignment">alignment</a>().</p>
+<p><a href="qlayoutitem.html#isEmpty">isEmpty</a>() returns whether the layout item is empty. If the concrete item is a <a href="qwidget.html">QWidget</a>, it can be retrieved using <a href="qlayoutitem.html#widget">widget</a>(). Similarly for <a href="qlayoutitem.html#layout">layout</a>() and <a href="qlayoutitem.html#spacerItem">spacerItem</a>().</p>
+<p>Some layouts have width and height interdependencies. These can be expressed using <a href="qlayoutitem.html#hasHeightForWidth">hasHeightForWidth</a>(), <a href="qlayoutitem.html#heightForWidth">heightForWidth</a>(), and <a href="qlayoutitem.html#minimumHeightForWidth">minimumHeightForWidth</a>(). For more explanation see the <i>Qt Quarterly</i> article <a href="http://qt.nokia.com/doc/qq/qq04-height-for-width.html">Trading Height for Width</a>.</p>
+<p>See also <a href="qlayout.html">QLayout</a>.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QLayoutItem/QLayoutItem" />
+<h3 class="fn"><a name="QLayoutItem"></a>QLayoutItem::QLayoutItem ( <a href="qt.html#AlignmentFlag-enum">Qt::Alignment</a> <i>alignment</i> = 0 )</h3>
+<p>Constructs a layout item with an <i>alignment</i>. Not all subclasses support alignment.</p>
+<a name="//apple_ref/cpp/instm/QLayoutItem/~QLayoutItem" />
+<h3 class="fn"><a name="dtor.QLayoutItem"></a>QLayoutItem::~QLayoutItem ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Destroys the <a href="qlayoutitem.html">QLayoutItem</a>.</p>
+<a name="//apple_ref/cpp/instm/QLayoutItem/alignment" />
+<h3 class="fn"><a name="alignment"></a><a href="qt.html#AlignmentFlag-enum">Qt::Alignment</a> QLayoutItem::alignment () const</h3>
+<p>Returns the alignment of this item.</p>
+<p>See also <a href="qlayoutitem.html#setAlignment">setAlignment</a>().</p>
+<a name="//apple_ref/cpp/instm/QLayoutItem/controlTypes" />
+<h3 class="fn"><a name="controlTypes"></a><a href="qsizepolicy.html#ControlType-enum">QSizePolicy::ControlTypes</a> QLayoutItem::controlTypes () const</h3>
+<p>Returns the control type(s) for the layout item. For a <a href="qwidgetitem.html">QWidgetItem</a>, the control type comes from the widget's size policy; for a <a href="qlayoutitem.html">QLayoutItem</a>, the control types is derived from the layout's contents.</p>
+<p>See also <a href="qsizepolicy.html#controlType">QSizePolicy::controlType</a>().</p>
+<a name="//apple_ref/cpp/instm/QLayoutItem/expandingDirections" />
+<h3 class="fn"><a name="expandingDirections"></a><a href="qt.html#Orientation-enum">Qt::Orientations</a> QLayoutItem::expandingDirections () const&nbsp;&nbsp;<tt> [pure virtual]</tt></h3>
+<p>Returns whether this layout item can make use of more space than <a href="qlayoutitem.html#sizeHint">sizeHint</a>(). A value of <a href="qt.html#Orientation-enum">Qt::Vertical</a> or <a href="qt.html#Orientation-enum">Qt::Horizontal</a> means that it wants to grow in only one dimension, whereas <a href="qt.html#Orientation-enum">Qt::Vertical</a> | <a href="qt.html#Orientation-enum">Qt::Horizontal</a> means that it wants to grow in both dimensions.</p>
+<a name="//apple_ref/cpp/instm/QLayoutItem/geometry" />
+<h3 class="fn"><a name="geometry"></a><a href="qrect.html">QRect</a> QLayoutItem::geometry () const&nbsp;&nbsp;<tt> [pure virtual]</tt></h3>
+<p>Returns the rectangle covered by this layout item.</p>
+<p>See also <a href="qlayoutitem.html#setGeometry">setGeometry</a>().</p>
+<a name="//apple_ref/cpp/instm/QLayoutItem/hasHeightForWidth" />
+<h3 class="fn"><a name="hasHeightForWidth"></a>bool QLayoutItem::hasHeightForWidth () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Returns true if this layout's preferred height depends on its width; otherwise returns false. The default implementation returns false.</p>
+<p>Reimplement this function in layout managers that support height for width.</p>
+<p>See also <a href="qlayoutitem.html#heightForWidth">heightForWidth</a>() and <a href="qwidget.html#heightForWidth">QWidget::heightForWidth</a>().</p>
+<a name="//apple_ref/cpp/instm/QLayoutItem/heightForWidth" />
+<h3 class="fn"><a name="heightForWidth"></a>int QLayoutItem::heightForWidth ( int <i>w</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Returns the preferred height for this layout item, given the width <i>w</i>.</p>
+<p>The default implementation returns -1, indicating that the preferred height is independent of the width of the item. Using the function <a href="qlayoutitem.html#hasHeightForWidth">hasHeightForWidth</a>() will typically be much faster than calling this function and testing for -1.</p>
+<p>Reimplement this function in layout managers that support height for width. A typical implementation will look like this:</p>
+<pre> int MyLayout::heightForWidth(int w) const
+ {
+     if (cache_dirty || cached_width != w) {
+         <span class="comment">// not all C++ compilers support &quot;mutable&quot;</span>
+         MyLayout *that = (MyLayout*)this;
+         int h = calculateHeightForWidth(w);
+         that-&gt;cached_hfw = h;
+         return h;
+     }
+     return cached_hfw;
+ }</pre>
+<p>Caching is strongly recommended; without it layout will take exponential time.</p>
+<p>See also <a href="qlayoutitem.html#hasHeightForWidth">hasHeightForWidth</a>().</p>
+<a name="//apple_ref/cpp/instm/QLayoutItem/invalidate" />
+<h3 class="fn"><a name="invalidate"></a>void QLayoutItem::invalidate ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Invalidates any cached information in this layout item.</p>
+<a name="//apple_ref/cpp/instm/QLayoutItem/isEmpty" />
+<h3 class="fn"><a name="isEmpty"></a>bool QLayoutItem::isEmpty () const&nbsp;&nbsp;<tt> [pure virtual]</tt></h3>
+<p>Implemented in subclasses to return whether this item is empty, i.e&#x2e; whether it contains any widgets.</p>
+<a name="//apple_ref/cpp/instm/QLayoutItem/layout" />
+<h3 class="fn"><a name="layout"></a><a href="qlayout.html">QLayout</a> * QLayoutItem::layout ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>If this item is a <a href="qlayout.html">QLayout</a>, it is returned as a <a href="qlayout.html">QLayout</a>; otherwise 0 is returned. This function provides type-safe casting.</p>
+<a name="//apple_ref/cpp/instm/QLayoutItem/maximumSize" />
+<h3 class="fn"><a name="maximumSize"></a><a href="qsize.html">QSize</a> QLayoutItem::maximumSize () const&nbsp;&nbsp;<tt> [pure virtual]</tt></h3>
+<p>Implemented in subclasses to return the maximum size of this item.</p>
+<a name="//apple_ref/cpp/instm/QLayoutItem/minimumHeightForWidth" />
+<h3 class="fn"><a name="minimumHeightForWidth"></a>int QLayoutItem::minimumHeightForWidth ( int <i>w</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Returns the minimum height this widget needs for the given width, <i>w</i>. The default implementation simply returns heightForWidth(<i>w</i>).</p>
+<a name="//apple_ref/cpp/instm/QLayoutItem/minimumSize" />
+<h3 class="fn"><a name="minimumSize"></a><a href="qsize.html">QSize</a> QLayoutItem::minimumSize () const&nbsp;&nbsp;<tt> [pure virtual]</tt></h3>
+<p>Implemented in subclasses to return the minimum size of this item.</p>
+<a name="//apple_ref/cpp/instm/QLayoutItem/setAlignment" />
+<h3 class="fn"><a name="setAlignment"></a>void QLayoutItem::setAlignment ( <a href="qt.html#AlignmentFlag-enum">Qt::Alignment</a> <i>alignment</i> )</h3>
+<p>Sets the alignment of this item to <i>alignment</i>.</p>
+<p><b>Note:</b> Item alignment is only supported by <a href="qlayoutitem.html">QLayoutItem</a> subclasses where it would have a visual effect. Except for <a href="qspaceritem.html">QSpacerItem</a>, which provides blank space for layouts, all public Qt classes that inherit <a href="qlayoutitem.html">QLayoutItem</a> support item alignment.</p>
+<p>See also <a href="qlayoutitem.html#alignment">alignment</a>().</p>
+<a name="//apple_ref/cpp/instm/QLayoutItem/setGeometry" />
+<h3 class="fn"><a name="setGeometry"></a>void QLayoutItem::setGeometry ( const <a href="qrect.html">QRect</a> &amp; <i>r</i> )&nbsp;&nbsp;<tt> [pure virtual]</tt></h3>
+<p>Implemented in subclasses to set this item's geometry to <i>r</i>.</p>
+<p>See also <a href="qlayoutitem.html#geometry">geometry</a>().</p>
+<a name="//apple_ref/cpp/instm/QLayoutItem/sizeHint" />
+<h3 class="fn"><a name="sizeHint"></a><a href="qsize.html">QSize</a> QLayoutItem::sizeHint () const&nbsp;&nbsp;<tt> [pure virtual]</tt></h3>
+<p>Implemented in subclasses to return the preferred size of this item.</p>
+<a name="//apple_ref/cpp/instm/QLayoutItem/spacerItem" />
+<h3 class="fn"><a name="spacerItem"></a><a href="qspaceritem.html">QSpacerItem</a> * QLayoutItem::spacerItem ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>If this item is a <a href="qspaceritem.html">QSpacerItem</a>, it is returned as a <a href="qspaceritem.html">QSpacerItem</a>; otherwise 0 is returned. This function provides type-safe casting.</p>
+<a name="//apple_ref/cpp/instm/QLayoutItem/widget" />
+<h3 class="fn"><a name="widget"></a><a href="qwidget.html">QWidget</a> * QLayoutItem::widget ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>If this item is a <a href="qwidget.html">QWidget</a>, it is returned as a <a href="qwidget.html">QWidget</a>; otherwise 0 is returned. This function provides type-safe casting.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

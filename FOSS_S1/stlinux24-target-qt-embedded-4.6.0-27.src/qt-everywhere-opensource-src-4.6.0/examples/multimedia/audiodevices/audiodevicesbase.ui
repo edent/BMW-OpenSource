@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AudioDevicesBase</class>
+ <widget class="QMainWindow" name="AudioDevicesBase">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>504</width>
+    <height>702</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>AudioDevicesBase</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="deviceLabel">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>1</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Device</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLabel" name="modeLabel">
+        <property name="text">
+         <string>Mode</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QComboBox" name="deviceBox"/>
+      </item>
+      <item row="1" column="1">
+       <widget class="QComboBox" name="modeBox"/>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="actualLabel">
+        <property name="frameShape">
+         <enum>QFrame::Panel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <property name="text">
+         <string>Actual Settings</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLabel" name="nearestLabel">
+        <property name="frameShape">
+         <enum>QFrame::Panel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <property name="text">
+         <string>Nearest Settings</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="actualFreqLabel">
+        <property name="text">
+         <string>Frequency</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QLabel" name="nearestFreqLabel">
+        <property name="text">
+         <string>Frequency</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QComboBox" name="frequencyBox"/>
+      </item>
+      <item row="4" column="1">
+       <widget class="QLineEdit" name="nearestFreq"/>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="actualChannelsLabel">
+        <property name="text">
+         <string>Channels</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QLabel" name="nearestChannelLabel">
+        <property name="text">
+         <string>Channel</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0">
+       <widget class="QComboBox" name="channelsBox"/>
+      </item>
+      <item row="6" column="1">
+       <widget class="QLineEdit" name="nearestChannel"/>
+      </item>
+      <item row="7" column="0">
+       <widget class="QLabel" name="actualCodecLabel">
+        <property name="text">
+         <string>Codecs</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="1">
+       <widget class="QLabel" name="nearestCodecLabel">
+        <property name="text">
+         <string>Codec</string>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="0">
+       <widget class="QComboBox" name="codecsBox"/>
+      </item>
+      <item row="8" column="1">
+       <widget class="QLineEdit" name="nearestCodec"/>
+      </item>
+      <item row="9" column="0">
+       <widget class="QLabel" name="actualSampleSizeLabel">
+        <property name="text">
+         <string>SampleSize</string>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="1">
+       <widget class="QLabel" name="nearestSampleSizeLabel">
+        <property name="text">
+         <string>SampleSize</string>
+        </property>
+       </widget>
+      </item>
+      <item row="10" column="0">
+       <widget class="QComboBox" name="sampleSizesBox"/>
+      </item>
+      <item row="10" column="1">
+       <widget class="QLineEdit" name="nearestSampleSize"/>
+      </item>
+      <item row="11" column="0">
+       <widget class="QLabel" name="actualSampleTypeLabel">
+        <property name="text">
+         <string>SampleType</string>
+        </property>
+       </widget>
+      </item>
+      <item row="11" column="1">
+       <widget class="QLabel" name="nearestSampleTypeLabel">
+        <property name="text">
+         <string>SampleType</string>
+        </property>
+       </widget>
+      </item>
+      <item row="12" column="0">
+       <widget class="QComboBox" name="sampleTypesBox"/>
+      </item>
+      <item row="12" column="1">
+       <widget class="QLineEdit" name="nearestSampleType"/>
+      </item>
+      <item row="13" column="0">
+       <widget class="QLabel" name="actualEndianLabel">
+        <property name="text">
+         <string>Endianess</string>
+        </property>
+       </widget>
+      </item>
+      <item row="13" column="1">
+       <widget class="QLabel" name="nearestEndianLabel">
+        <property name="text">
+         <string>Endianess</string>
+        </property>
+       </widget>
+      </item>
+      <item row="14" column="0">
+       <widget class="QComboBox" name="endianBox"/>
+      </item>
+      <item row="14" column="1">
+       <widget class="QLineEdit" name="nearestEndian"/>
+      </item>
+      <item row="15" column="0" colspan="2">
+       <widget class="QTextEdit" name="logOutput">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>40</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item row="16" column="0" colspan="2">
+       <widget class="QPushButton" name="testButton">
+        <property name="text">
+         <string>Test</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>504</width>
+     <height>19</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

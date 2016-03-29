@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qscopedpointer.cpp -->
+<head>
+  <title>Qt 4.6: QScopedPointer Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QScopedPointer" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QScopedPointer Class Reference<br /><span class="small-subtitle">[<a href="qtcore.html">QtCore</a> module]</span>
+</h1>
+<p>The QScopedPointer class stores a pointer to a dynamically allocated object, and deletes it upon destruction. <a href="#details">More...</a></p>
+<pre> #include &lt;QScopedPointer&gt;</pre><p><b>Note:</b> All functions in this class are <a href="threads-reentrancy.html#reentrant">reentrant</a>.</p>
+<p>This class was introduced in Qt 4.6.</p>
+<ul>
+<li><a href="qscopedpointer-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qscopedpointer.html#QScopedPointer">QScopedPointer</a></b> ( T * <i>p</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qscopedpointer.html#dtor.QScopedPointer">~QScopedPointer</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T * </td><td class="memItemRight" valign="bottom"><b><a href="qscopedpointer.html#data">data</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qscopedpointer.html#isNull">isNull</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qscopedpointer.html#reset">reset</a></b> ( T * <i>other</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qscopedpointer.html#swap">swap</a></b> ( QScopedPointer&lt;T, Cleanup&gt; &amp; <i>other</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T * </td><td class="memItemRight" valign="bottom"><b><a href="qscopedpointer.html#take">take</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qscopedpointer.html#operator-bool">operator bool</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qscopedpointer.html#operator-not">operator!</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qscopedpointer.html#operator-2a">operator*</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T * </td><td class="memItemRight" valign="bottom"><b><a href="qscopedpointer.html#operator--gt">operator-&gt;</a></b> () const</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QScopedPointer class stores a pointer to a dynamically allocated object, and deletes it upon destruction.</p>
+<p>Managing heap allocated objects manually is hard and error prone, with the common result that code leaks memory and is hard to maintain. QScopedPointer is a small utility class that heavily simplifies this by assigning stack-based memory ownership to heap allocations, more generally called resource acquisition is initialization(RAII).</p>
+<p>QScopedPointer guarantees that the object pointed to will get deleted when the current scope dissapears.</p>
+<p>Consider this function which does heap allocations, and have various exit points:</p>
+<pre> void myFunction(bool useSubClass)
+ {
+     MyClass *p = useSubClass ? new MyClass() : new MySubClass;
+     QIODevice *device = handsOverOwnership();
+
+     if (m_value &gt; 3) {
+         delete p;
+         delete device;
+         return;
+     }
+
+     try {
+         process(device);
+     }
+     catch (...) {
+         delete p;
+         delete device;
+         throw;
+     }
+
+     delete p;
+     delete device;
+ }</pre>
+<p>It's encumbered by the manual delete calls. With QScopedPointer, the code can be simplified to:</p>
+<pre> void myFunction(bool useSubClass)
+ {
+     <span class="comment">// assuming that MyClass has a virtual destructor</span>
+     QScopedPointer&lt;MyClass&gt; p(useSubClass ? new MyClass() : new MySubClass);
+     QScopedPointer&lt;QIODevice&gt; device(handsOverOwnership());
+
+     if (m_value &gt; 3)
+         return;
+
+     process(device);
+ }</pre>
+<p>The code the compiler generates for QScopedPointer is the same as when writing it manually. Code that makes use of <i>delete</i> are candidates for QScopedPointer usage (and if not, possibly another type of smart pointer such as <a href="qsharedpointer.html">QSharedPointer</a>). QScopedPointer intentionally has no copy constructor or assignment operator, such that ownership and lifetime is clearly communicated.</p>
+<p>The const qualification on a regular C++ pointer can also be expressed with a QScopedPointer:</p>
+<pre>     const QWidget *const p = new QWidget();
+     <span class="comment">// is equivalent to:</span>
+     const QScopedPointer&lt;const QWidget&gt; p(new QWidget());
+
+     QWidget *const p = new QWidget();
+     <span class="comment">// is equivalent to:</span>
+     const QScopedPointer&lt;QWidget&gt; p(new QWidget());
+
+     QWidget *const p = new QWidget();
+     <span class="comment">// is equivalent to:</span>
+     const QScopedPointer&lt;QWidget&gt; p(new QWidget());
+
+     const QWidget *p = new QWidget();
+     <span class="comment">// is equivalent to:</span>
+     QScopedPointer&lt;const QWidget&gt; p(new QWidget());</pre>
+<a name="custom-cleanup-handlers"></a>
+<h3>Custom cleanup handlers</h3>
+<p>Arrays as well as pointers that have been allocated with <tt>malloc</tt> must not be deleted using <tt>delete</tt>. QScopedPointer's second template parameter can be used for custom cleanup handlers.</p>
+<p>The following custom cleanup handlers exist:</p>
+<ul>
+<li>QScopedPointerDeleter - the default, deletes the pointer using <tt>delete</tt></li>
+<li>QScopedPointerArrayDeleter - deletes the pointer using <tt>delete []</tt>. Use this handler for pointers that were allocated with <tt>new []</tt>.</li>
+<li>QScopedPointerPodDeleter - deletes the pointer using <tt>free()</tt>. Use this handler for pointers that were allocated with <tt>malloc()</tt>.</li>
+</ul>
+<p>You can pass your own classes as handlers, provided that they have a public static function <tt>void cleanup(T *pointer)</tt>.</p>
+<pre><span class="comment"> // this QScopedPointer deletes its data using the delete[] operator:</span>
+ QScopedPointer&lt;int, QScopedPointerArrayDeleter&lt;int&gt; &gt; arrayPointer(new int[42]);
+
+<span class="comment"> // this QScopedPointer frees its data using free():</span>
+ QScopedPointer&lt;int, QScopedPointerPodDeleter&lt;int&gt; &gt; podPointer(reinterpret_cast&lt;int *&gt;(malloc(42)));
+
+<span class="comment"> // this struct calls &quot;myCustomDeallocator&quot; to delete the pointer</span>
+ struct ScopedPointerCustomDeleter
+ {
+     static inline void cleanup(MyCustomClass *pointer)
+     {
+         myCustomDeallocator(pointer);
+     }
+ };
+
+<span class="comment"> // QScopedPointer using a custom deleter:</span>
+ QScopedPointer&lt;MyCustomClass, ScopedPointerCustomDeleter&gt; customPointer(new MyCustomClass);</pre>
+<a name="forward-declared-pointers"></a>
+<h3>Forward Declared Pointers</h3>
+<p>Classes that are forward declared can be used within QScopedPointer, as long as the destructor of the forward declared class is available whenever a QScopedPointer needs to clean up.</p>
+<p>Concretely, this means that all classes containing a QScopedPointer that points to a forward declared class must have non-inline constructors, destructors and assignment operators:</p>
+<pre> class MyPrivateClass; <span class="comment">// forward declare MyPrivateClass</span>
+
+ class MyClass
+ {
+ private:
+     QScopedPointer&lt;MyPrivateClass&gt; privatePtr; <span class="comment">// QScopedPointer to forward declared class</span>
+
+ public:
+     MyClass(); <span class="comment">// OK</span>
+     inline ~MyClass() {} <span class="comment">// VIOLATION - Destructor must not be inline</span>
+
+ private:
+     Q_DISABLE_COPY(MyClass) <span class="comment">// OK - copy constructor and assignment operators</span>
+                              <span class="comment">// are now disabled, so the compiler won't implicitely</span>
+                              <span class="comment">// generate them.</span>
+ };</pre>
+<p>Otherwise, the compiler output a warning about not being able to destruct <tt>MyPrivateClass</tt>.</p>
+<p>See also <a href="qsharedpointer.html">QSharedPointer</a>.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QScopedPointer/QScopedPointer" />
+<h3 class="fn"><a name="QScopedPointer"></a>QScopedPointer::QScopedPointer ( T * <i>p</i> = 0 )</h3>
+<p>Constructs this <a href="qscopedpointer.html">QScopedPointer</a> instance and sets its pointer to <i>p</i>.</p>
+<a name="//apple_ref/cpp/instm/QScopedPointer/~QScopedPointer" />
+<h3 class="fn"><a name="dtor.QScopedPointer"></a>QScopedPointer::~QScopedPointer ()</h3>
+<p>Destroys this <a href="qscopedpointer.html">QScopedPointer</a> object. Delete the object its pointer points to.</p>
+<a name="//apple_ref/cpp/instm/QScopedPointer/data" />
+<h3 class="fn"><a name="data"></a>T * QScopedPointer::data () const</h3>
+<p>Returns the value of the pointer referenced by this object. <a href="qscopedpointer.html">QScopedPointer</a> still owns the object pointed to.</p>
+<a name="//apple_ref/cpp/instm/QScopedPointer/isNull" />
+<h3 class="fn"><a name="isNull"></a>bool QScopedPointer::isNull () const</h3>
+<p>Returns <tt>true</tt> if this object is holding a pointer that is <tt>null</tt>.</p>
+<a name="//apple_ref/cpp/instm/QScopedPointer/reset" />
+<h3 class="fn"><a name="reset"></a>void QScopedPointer::reset ( T * <i>other</i> = 0 )</h3>
+<p>Deletes the existing object it is pointing to if any, and sets its pointer to <i>other</i>. <a href="qscopedpointer.html">QScopedPointer</a> now owns <i>other</i> and will delete it in its destructor.</p>
+<a name="//apple_ref/cpp/instm/QScopedPointer/swap" />
+<h3 class="fn"><a name="swap"></a>void QScopedPointer::swap ( QScopedPointer&lt;T, Cleanup&gt; &amp; <i>other</i> )</h3>
+<p>Swap this pointer with <i>other</i>.</p>
+<a name="//apple_ref/cpp/instm/QScopedPointer/take" />
+<h3 class="fn"><a name="take"></a>T * QScopedPointer::take ()</h3>
+<p>Returns the value of the pointer referenced by this object. The pointer of this <a href="qscopedpointer.html">QScopedPointer</a> object will be reset to <tt>null</tt>.</p>
+<p>Callers of this function take ownership of the pointer.</p>
+<a name="//apple_ref/cpp/instm/QScopedPointer/operator bool" />
+<h3 class="fn"><a name="operator-bool"></a>QScopedPointer::operator bool () const</h3>
+<p>Returns <tt>true</tt> if this object is not <tt>null</tt>. This function is suitable for use in <tt>if-constructs</tt>, like:</p>
+<pre> if (scopedPointer) {
+     ...
+ }</pre>
+<p>See also <a href="qscopedpointer.html#isNull">isNull</a>().</p>
+<a name="//apple_ref/cpp/instm/QScopedPointer/operator!" />
+<h3 class="fn"><a name="operator-not"></a>bool QScopedPointer::operator! () const</h3>
+<p>Returns <tt>true</tt> if the pointer referenced by this object is <tt>null</tt>, otherwise returns <tt>false</tt>.</p>
+<p>See also <a href="qscopedpointer.html#isNull">isNull</a>().</p>
+<a name="//apple_ref/cpp/instm/QScopedPointer/operator*" />
+<h3 class="fn"><a name="operator-2a"></a>T &amp; QScopedPointer::operator* () const</h3>
+<p>Provides access to the scoped pointer's object.</p>
+<p>If the contained pointer is <tt>null</tt>, behavior is undefined.</p>
+<p>See also <a href="qscopedpointer.html#isNull">isNull</a>().</p>
+<a name="//apple_ref/cpp/instm/QScopedPointer/operator-&gt;" />
+<h3 class="fn"><a name="operator--gt"></a>T * QScopedPointer::operator-&gt; () const</h3>
+<p>Provides access to the scoped pointer's object.</p>
+<p>If the contained pointer is <tt>null</tt>, behavior is undefined.</p>
+<p>See also <a href="qscopedpointer.html#isNull">isNull</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

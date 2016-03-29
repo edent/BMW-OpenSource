@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- simple.qdoc -->
+<head>
+  <title>Qt 4.6: Simple Example (ActiveQt)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">Simple Example (ActiveQt)<br /><span class="subtitle"></span>
+</h1>
+<p>Files:</p>
+<ul>
+<li><a href="activeqt-simple-main-cpp.html">activeqt/simple/main.cpp</a></li>
+<li><a href="activeqt-simple-simple-pro.html">activeqt/simple/simple.pro</a></li>
+</ul>
+<p>The Simple example demonstrates the use of <a href="qaxbindable.html#requestPropertyChange">QAxBindable::requestPropertyChange</a>() and <a href="qaxbindable.html#propertyChanged">QAxBindable::propertyChanged</a>(), and the use of the default <a href="qaxfactory.html">QAxFactory</a> through the <tt>QAXFACTORY_DEFAULT()</tt> macro.</p>
+<p>The ActiveX control in this example is a laid out <a href="qwidget.html">QWidget</a> with a <a href="qslider.html">QSlider</a>, a <a href="qlcdnumber.html">QLCDNumber</a> and a <a href="qlineedit.html">QLineEdit</a>. It provides a signal/slot/property interface to change the values of the slider and the line edit, and to get notified of any property changes.</p>
+<p>The Qt implementation of the ActiveX for this example is</p>
+<pre> class QSimpleAX : public QWidget, public QAxBindable
+ {
+     Q_OBJECT
+     Q_PROPERTY( QString text READ text WRITE setText )
+     Q_PROPERTY( int value READ value WRITE setValue )
+ public:
+     QSimpleAX(QWidget *parent = 0)
+     : QWidget(parent)
+     {
+         QVBoxLayout *vbox = new QVBoxLayout( this );
+
+         slider = new QSlider( Qt::Horizontal, this );
+         LCD = new QLCDNumber( 3, this );
+         edit = new QLineEdit( this );
+
+         connect( slider, SIGNAL( valueChanged( int ) ), this, SLOT( setValue(int) ) );
+         connect( edit, SIGNAL(textChanged(const QString&amp;)), this, SLOT(setText(const QString&amp;)) );
+
+         vbox-&gt;addWidget( slider );
+         vbox-&gt;addWidget( LCD );
+         vbox-&gt;addWidget( edit );
+     }
+
+     QString text() const
+     {
+         return edit-&gt;text();
+     }
+     int value() const
+     {
+         return slider-&gt;value();
+     }
+
+ signals:
+     void someSignal();
+     void valueChanged(int);
+     void textChanged(const QString&amp;);
+
+ public slots:
+     void setText( const QString &amp;string )
+     {
+         if ( !requestPropertyChange( &quot;text&quot; ) )
+             return;
+
+         edit-&gt;blockSignals( true );
+         edit-&gt;setText( string );
+         edit-&gt;blockSignals( false );
+         emit someSignal();
+         emit textChanged( string );
+
+         propertyChanged( &quot;text&quot; );
+     }
+     void about()
+     {
+         QMessageBox::information( this, &quot;About QSimpleAX&quot;, &quot;This is a Qt widget, and this slot has been\n&quot;
+                                                           &quot;called through ActiveX/OLE automation!&quot; );
+     }
+     void setValue( int i )
+     {
+         if ( !requestPropertyChange( &quot;value&quot; ) )
+             return;
+         slider-&gt;blockSignals( true );
+         slider-&gt;setValue( i );
+         slider-&gt;blockSignals( false );
+         LCD-&gt;display( i );
+         emit valueChanged( i );
+
+         propertyChanged( &quot;value&quot; );
+     }
+
+ private:
+     QSlider *slider;
+     QLCDNumber *LCD;
+     QLineEdit *edit;
+ };</pre>
+<p>The control is exported using the default <a href="qaxfactory.html">QAxFactory</a></p>
+<pre> QAXFACTORY_DEFAULT(QSimpleAX,
+            &quot;{DF16845C-92CD-4AAB-A982-EB9840E74669}&quot;,
+            &quot;{616F620B-91C5-4410-A74E-6B81C76FFFE0}&quot;,
+            &quot;{E1816BBA-BF5D-4A31-9855-D6BA432055FF}&quot;,
+            &quot;{EC08F8FC-2754-47AB-8EFE-56A54057F34E}&quot;,
+            &quot;{A095BA0C-224F-4933-A458-2DD7F6B85D8F}&quot;)</pre>
+<p>To build the example you must first build the <a href="qaxserver.html">QAxServer</a> library. Then run qmake and your make tool in <tt>examples/activeqt/simple</tt>.</p>
+<p>The <a href="qaxserver-demo-simple.html">demonstration</a> requires your WebBrowser to support ActiveX controls, and scripting to be enabled.</p>
+<p>The simple ActiveX control is embedded using the <tt>&lt;object&gt;</tt> tag.</p>
+<pre> &lt;object ID=&quot;QSimpleAX&quot; CLASSID=&quot;CLSID:DF16845C-92CD-4AAB-A982-EB9840E74669&quot;
+ CODEBASE=&quot;http://qt.nokia.com/demos/simpleax.cab&quot;&gt;
+     &lt;PARAM NAME=&quot;text&quot; VALUE=&quot;A simple control&quot; /&gt;
+     &lt;PARAM NAME=&quot;value&quot; VALUE=&quot;1&quot; /&gt;
+ [Object not available! Did you forget to build and register the server?]
+ &lt;/object&gt;</pre>
+<p>A simple HTML button is connected to the <a href="activeqt.html#activeqt">ActiveQt</a>'s about() slot.</p>
+<pre> &lt;FORM&gt;
+     &lt;INPUT TYPE=&quot;BUTTON&quot; VALUE=&quot;About...&quot; onClick=&quot;QSimpleAX.about()&quot; /&gt;
+ &lt;/FORM&gt;</pre>
+<p>A second ActiveX control - the standard Calendar Control - is instantiated</p>
+<pre> &lt;object ID=&quot;Calendar&quot; CLASSID=&quot;CLSID:8E27C92B-1264-101C-8A2F-040224009C02&quot;&gt;
+ [Standard Calendar control not available!]
+     &lt;PARAM NAME=&quot;day&quot; VALUE=&quot;1&quot; /&gt;
+ &lt;/object&gt;</pre>
+<p>Events from the ActiveX controls are handled using both Visual Basic Script and JavaScript.</p>
+<pre> &lt;SCRIPT LANGUAGE=&quot;VBScript&quot;&gt;
+ Sub Calendar_Click()
+     MsgBox( &quot;Calendar Clicked!&quot; )
+ End Sub
+
+ Sub QSimpleAX_TextChanged( str )
+     document.title = str
+ End Sub
+ &lt;/SCRIPT&gt;
+
+ &lt;SCRIPT LANGUAGE=&quot;JavaScript&quot;&gt;
+ function QSimpleAX::ValueChanged( Newvalue )
+ {
+     Calendar.Day = Newvalue;
+ }
+ &lt;/SCRIPT&gt;</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

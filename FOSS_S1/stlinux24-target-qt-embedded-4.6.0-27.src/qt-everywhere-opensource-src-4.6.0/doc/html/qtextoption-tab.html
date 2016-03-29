@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qtextoption.cpp -->
+<head>
+  <title>Qt 4.6: Tab Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl/QTextOption/Tab" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">Tab Class Reference<br /><span class="small-subtitle">(QTextOption::Tab)<br />[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<pre> #include &lt;<a href="qtextoption.html">QTextOption</a>&gt;</pre><p>This class was introduced in Qt 4.4.</p>
+<ul>
+<li><a href="qtextoption-tab-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qtextoption-tab.html#Tab">Tab</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qtextoption-tab.html#operator-not-eq">operator!=</a></b> ( const Tab &amp; <i>other</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qtextoption-tab.html#operator-eq-eq">operator==</a></b> ( const Tab &amp; <i>other</i> ) const</td></tr>
+</table>
+<hr />
+<a name="public-variables"></a>
+<h2>Public Variables</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">QChar </td><td class="memItemRight" valign="bottom"><b><a href="qtextoption-tab.html#delimiter-var">delimiter</a></b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">qreal </td><td class="memItemRight" valign="bottom"><b><a href="qtextoption-tab.html#position-var">position</a></b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">TabType </td><td class="memItemRight" valign="bottom"><b><a href="qtextoption-tab.html#type-varx">type</a></b></td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>Each tab definition is represented by this struct.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QTextOption::Tab/Tab" />
+<h3 class="fn"><a name="Tab"></a>Tab::Tab ()</h3>
+<p>Creates a default left tab with position 80.</p>
+<a name="//apple_ref/cpp/instm/QTextOption::Tab/operator!=" />
+<h3 class="fn"><a name="operator-not-eq"></a>bool Tab::operator!= ( const Tab &amp; <i>other</i> ) const</h3>
+<p>Returns true if tab <i>other</i> is not equal to this tab; otherwise returns false.</p>
+<a name="//apple_ref/cpp/instm/QTextOption::Tab/operator==" />
+<h3 class="fn"><a name="operator-eq-eq"></a>bool Tab::operator== ( const Tab &amp; <i>other</i> ) const</h3>
+<p>Returns true if tab <i>other</i> is equal to this tab; otherwise returns false.</p>
+<hr />
+<h2>Member Variable Documentation</h2>
+<a name="//apple_ref/cpp/data/QTextOption::Tab/delimiter" />
+<h3 class="fn"><a name="delimiter-var"></a><a href="qchar.html">QChar</a> Tab::delimiter</h3>
+<p>If type is DelimitorTab; tab until this char is found in the text.</p>
+<a name="//apple_ref/cpp/data/QTextOption::Tab/position" />
+<h3 class="fn"><a name="position-var"></a><a href="qtglobal.html#qreal-typedef">qreal</a> Tab::position</h3>
+<p>Distance from the start of the paragraph. The position of a tab is from the start of the paragraph which implies that when the alignment of the paragraph is set to centered, the tab is interpreted to be moved the same distance as the left ege of the paragraph does. In case the paragraph is set to have a layoutDirection() RightToLeft the position is interpreted to be from the right side of the paragraph with higher numbers moving the tab to the left.</p>
+<a name="//apple_ref/cpp/data/QTextOption::Tab/type" />
+<h3 class="fn"><a name="type-varx"></a><a href="qtextoption.html#TabType-enum">TabType</a> Tab::type</h3>
+<p>Determine which type is used. In a paragraph that has layoutDirection() RightToLeft the type <a href="qtextoption.html#TabType-enum">LeftTab</a> will be interpreted to be a <a href="qtextoption.html#TabType-enum">RightTab</a> and vice versa.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

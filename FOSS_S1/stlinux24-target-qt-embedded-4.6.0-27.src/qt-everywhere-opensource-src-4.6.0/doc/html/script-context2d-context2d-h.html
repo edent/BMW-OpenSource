@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: context2d.h Example File (script/context2d/context2d.h)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">context2d.h Example File<br /><span class="small-subtitle">script/context2d/context2d.h</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the examples of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+
+ #ifndef CONTEXT2D_H
+ #define CONTEXT2D_H
+
+ #include &quot;domimage.h&quot;
+
+ #include &lt;QPainter&gt;
+ #include &lt;QPainterPath&gt;
+ #include &lt;QString&gt;
+ #include &lt;QStack&gt;
+ #include &lt;QMetaType&gt;
+ #include &lt;QTimerEvent&gt;
+
+<span class="comment"> // [3]</span>
+ class CanvasGradient
+ {
+ public:
+     CanvasGradient(const QGradient &amp;v)
+         : value(v) {}
+     CanvasGradient() {}
+
+     QGradient value;
+ };
+<span class="comment"> // [3]</span>
+
+ Q_DECLARE_METATYPE(CanvasGradient)
+ Q_DECLARE_METATYPE(CanvasGradient*)
+
+ class ImageData {
+ };
+
+ class QContext2DCanvas;
+
+ class Context2D : public QObject
+ {
+     Q_OBJECT
+     <span class="comment">// compositing</span>
+     Q_PROPERTY(qreal globalAlpha READ globalAlpha WRITE setGlobalAlpha)
+     Q_PROPERTY(QString globalCompositeOperation READ globalCompositeOperation WRITE setGlobalCompositeOperation)
+     Q_PROPERTY(QVariant strokeStyle READ strokeStyle WRITE setStrokeStyle)
+     Q_PROPERTY(QVariant fillStyle READ fillStyle WRITE setFillStyle)
+     <span class="comment">// line caps/joins</span>
+     Q_PROPERTY(qreal lineWidth READ lineWidth WRITE setLineWidth)
+     Q_PROPERTY(QString lineCap READ lineCap WRITE setLineCap)
+     Q_PROPERTY(QString lineJoin READ lineJoin WRITE setLineJoin)
+     Q_PROPERTY(qreal miterLimit READ miterLimit WRITE setMiterLimit)
+     <span class="comment">// shadows</span>
+     Q_PROPERTY(qreal shadowOffsetX READ shadowOffsetX WRITE setShadowOffsetX)
+     Q_PROPERTY(qreal shadowOffsetY READ shadowOffsetY WRITE setShadowOffsetY)
+     Q_PROPERTY(qreal shadowBlur READ shadowBlur WRITE setShadowBlur)
+     Q_PROPERTY(QString shadowColor READ shadowColor WRITE setShadowColor)
+
+ public:
+     Context2D(QObject *parent = 0);
+     void setSize(int width, int height);
+     void setSize(const QSize &amp;size);
+     QSize size() const;
+
+     void clear();
+     void reset();
+
+     <span class="comment">// compositing</span>
+     qreal globalAlpha() const; <span class="comment">// (default 1.0)</span>
+     QString globalCompositeOperation() const; <span class="comment">// (default over)</span>
+     QVariant strokeStyle() const; <span class="comment">// (default black)</span>
+     QVariant fillStyle() const; <span class="comment">// (default black)</span>
+
+     void setGlobalAlpha(qreal alpha);
+     void setGlobalCompositeOperation(const QString &amp;op);
+     void setStrokeStyle(const QVariant &amp;style);
+     void setFillStyle(const QVariant &amp;style);
+
+     <span class="comment">// line caps/joins</span>
+     qreal lineWidth() const; <span class="comment">// (default 1)</span>
+     QString lineCap() const; <span class="comment">// &quot;butt&quot;, &quot;round&quot;, &quot;square&quot; (default &quot;butt&quot;)</span>
+     QString lineJoin() const; <span class="comment">// &quot;round&quot;, &quot;bevel&quot;, &quot;miter&quot; (default &quot;miter&quot;)</span>
+     qreal miterLimit() const; <span class="comment">// (default 10)</span>
+
+     void setLineWidth(qreal w);
+     void setLineCap(const QString &amp;s);
+     void setLineJoin(const QString &amp;s);
+     void setMiterLimit(qreal m);
+
+     <span class="comment">// shadows</span>
+     qreal shadowOffsetX() const; <span class="comment">// (default 0)</span>
+     qreal shadowOffsetY() const; <span class="comment">// (default 0)</span>
+     qreal shadowBlur() const; <span class="comment">// (default 0)</span>
+     QString shadowColor() const; <span class="comment">// (default black)</span>
+
+     void setShadowOffsetX(qreal x);
+     void setShadowOffsetY(qreal y);
+     void setShadowBlur(qreal b);
+     void setShadowColor(const QString &amp;str);
+
+ public slots:
+     void save(); <span class="comment">// push state on state stack</span>
+     void restore(); <span class="comment">// pop state stack and restore state</span>
+
+     void scale(qreal x, qreal y);
+     void rotate(qreal angle);
+     void translate(qreal x, qreal y);
+     void transform(qreal m11, qreal m12, qreal m21, qreal m22,
+                    qreal dx, qreal dy);
+     void setTransform(qreal m11, qreal m12, qreal m21, qreal m22,
+                       qreal dx, qreal dy);
+
+     CanvasGradient createLinearGradient(qreal x0, qreal y0,
+                                         qreal x1, qreal y1);
+     CanvasGradient createRadialGradient(qreal x0, qreal y0,
+                                         qreal r0, qreal x1,
+                                         qreal y1, qreal r1);
+
+     <span class="comment">// rects</span>
+     void clearRect(qreal x, qreal y, qreal w, qreal h);
+     void fillRect(qreal x, qreal y, qreal w, qreal h);
+     void strokeRect(qreal x, qreal y, qreal w, qreal h);
+
+     <span class="comment">// path API</span>
+     void beginPath();
+     void closePath();
+     void moveTo(qreal x, qreal y);
+     void lineTo(qreal x, qreal y);
+     void quadraticCurveTo(qreal cpx, qreal cpy, qreal x, qreal y);
+     void bezierCurveTo(qreal cp1x, qreal cp1y,
+                        qreal cp2x, qreal cp2y, qreal x, qreal y);
+     void arcTo(qreal x1, qreal y1, qreal x2, qreal y2, qreal radius);
+     void rect(qreal x, qreal y, qreal w, qreal h);
+     void arc(qreal x, qreal y, qreal radius,
+              qreal startAngle, qreal endAngle,
+              bool anticlockwise);
+     void fill();
+     void stroke();
+     void clip();
+     bool isPointInPath(qreal x, qreal y) const;
+
+     <span class="comment">// drawing images</span>
+     void drawImage(DomImage *image, qreal dx, qreal dy);
+     void drawImage(DomImage *image, qreal dx, qreal dy,
+                    qreal dw, qreal dh);
+     void drawImage(DomImage *image, qreal sx, qreal sy,
+                    qreal sw, qreal sh, qreal dx, qreal dy,
+                    qreal dw, qreal dh);
+
+     <span class="comment">// pixel manipulation</span>
+     ImageData getImageData(qreal sx, qreal sy, qreal sw, qreal sh);
+     void putImageData(ImageData image, qreal dx, qreal dy);
+
+ signals:
+     void changed(const QImage &amp;image);
+
+ protected:
+     void timerEvent(QTimerEvent *e);
+
+ private:
+     void beginPainting();
+     const QImage &amp;endPainting();
+     void scheduleChange();
+
+     int m_changeTimerId;
+     QImage  m_image;
+     QPainter m_painter;
+     QPainterPath m_path;
+
+     enum DirtyFlag {
+         DirtyTransformationMatrix = 0x00001,
+         DirtyClippingRegion       = 0x00002,
+         DirtyStrokeStyle          = 0x00004,
+         DirtyFillStyle            = 0x00008,
+         DirtyGlobalAlpha          = 0x00010,
+         DirtyLineWidth            = 0x00020,
+         DirtyLineCap              = 0x00040,
+         DirtyLineJoin             = 0x00080,
+         DirtyMiterLimit           = 0x00100,
+         MDirtyPen                 = DirtyStrokeStyle
+                                   | DirtyLineWidth
+                                   | DirtyLineCap
+                                   | DirtyLineJoin
+                                   | DirtyMiterLimit,
+         DirtyShadowOffsetX        = 0x00200,
+         DirtyShadowOffsetY        = 0x00400,
+         DirtyShadowBlur           = 0x00800,
+         DirtyShadowColor          = 0x01000,
+         DirtyGlobalCompositeOperation = 0x2000,
+         DirtyFont                 = 0x04000,
+         DirtyTextAlign            = 0x08000,
+         DirtyTextBaseline         = 0x10000,
+         AllIsFullOfDirt           = 0xfffff
+     };
+
+     struct State {
+         State() : flags(0) {}
+         QMatrix matrix;
+         QPainterPath clipPath;
+         QBrush strokeStyle;
+         QBrush fillStyle;
+         qreal globalAlpha;
+         qreal lineWidth;
+         Qt::PenCapStyle lineCap;
+         Qt::PenJoinStyle lineJoin;
+         qreal miterLimit;
+         qreal shadowOffsetX;
+         qreal shadowOffsetY;
+         qreal shadowBlur;
+         QColor shadowColor;
+         QPainter::CompositionMode globalCompositeOperation;
+         QFont font;
+         int textAlign;
+         int textBaseline;
+         int flags;
+     };
+     State m_state;
+     QStack&lt;State&gt; m_stateStack;
+ };
+
+ #endif</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

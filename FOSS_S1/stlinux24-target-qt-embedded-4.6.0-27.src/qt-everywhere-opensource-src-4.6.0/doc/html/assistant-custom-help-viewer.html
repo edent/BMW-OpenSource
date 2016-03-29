@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- assistant-manual.qdoc -->
+<head>
+  <title>Qt 4.6: Using Qt Assistant as a Custom Help Viewer</title>
+  <link rel="prev" href="assistant-details.html" />
+  <link rel="contents" href="assistant-manual.html" />
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><p>
+[Previous: <a href="assistant-details.html">Qt Assistant in More Detail</a>]
+[<a href="assistant-manual.html">Contents</a>]
+</p>
+<h1 class="title">Using Qt Assistant as a Custom Help Viewer<br /><span class="subtitle"></span>
+</h1>
+<p>Using <i>Qt Assistant</i> as custom help viewer requires more than just being able to display custom documentation. It is equally important that the appearance of <i>Qt Assistant</i> can be customized so that it is seen as a application-specific help viewer rather than <i>Qt Assistant</i>. This is achieved by changing the window title or icon, as well as some application-specific menu texts and actions. The complete list of possible customizations can be found in the <a href="#creating-a-custom-help-collection-file">Creating a Custom Help Collection File</a> section.</p>
+<p>Another requirement of a custom help viewer is the ability to receive actions or commands from the application it provides help for. This is especially important when the application offers context sensitive help. When used in this way, the help viewer may need to change its contents depending on the state the application is currently in. This means that the application has to communicate the current state to the help viewer. The section about <a href="#using-qt-assistant-remotely">Using Qt Assistant Remotely</a> explains how this can be done.</p>
+<ul><li><a href="#qt-help-collection-files">Qt Help Collection Files</a></li>
+<li><a href="#displaying-custom-documentation">Displaying Custom Documentation</a></li>
+<li><a href="#changing-the-appearance-of-qt-assistant">Changing the Appearance of Qt Assistant</a></li>
+<ul><li><a href="#creating-a-custom-help-collection-file">Creating a Custom Help Collection File</a></li>
+</ul>
+<li><a href="#using-qt-assistant-remotely">Using Qt Assistant Remotely</a></li>
+<li><a href="#compatibility-with-old-formats">Compatibility with Old Formats</a></li>
+</ul>
+<p>The <a href="help-simpletextviewer.html">Simple Text Viewer</a> example uses the techniques described in this document to show how to use <i>Qt Assistant</i> as a custom help viewer for an application.</p>
+<p><b>Warning:</b> In order to ship Qt Assistant in your application, it is crucial that you include the sqlite plugin. For more information on how to include plugins in your application, refer to the <a href="deployment.html">deployment documentation</a>.</p>
+<a name="qt-help-collection-files"></a>
+<h2>Qt Help Collection Files</h2>
+<p>The first important point to know about <i>Qt Assistant</i> is that it stores all settings related to its appearance <i>and</i> a list of installed documentation in a help collection file. This means, when starting <i>Qt Assistant</i> with different collection files, <i>Qt Assistant</i> may look totally different. This complete separation of settings makes it possible to deploy <i>Qt Assistant</i> as a custom help viewer for more than one application on one machine without risk of interference between different instances of <i>Qt Assistant</i>.</p>
+<p>To apply a certain help collection to <i>Qt Assistant</i>, specify the respective collection file on the command line when starting it. For example:</p>
+<pre> assistant -collectionFile mycollection.qhc</pre>
+<p>However, storing all settings in one collection file raises some problems. The collection file is usually installed in the same directory as the application itself, or one of its subdirectories. Depending on the directory and the operating system, the user may not have any permissions to modify this file which would happen when the user settings are stored. Also, it may not even be possible to give the user write permissions; e.g&#x2e;, when the file is located on a read-only medium like a CD-ROM.</p>
+<p>Even if it is possible to give everybody the right to store their settings in a globally available collection file, the settings from one user would be overwritten by another user when exiting <i>Qt Assistant</i>.</p>
+<p>To solve this dilemma, <i>Qt Assistant</i> creates user specific collection files which are more or less copied from the original collection file. The user-specific collection file will be saved in a subdirectory of the path returned by <a href="qdesktopservices.html#StandardLocation-enum">QDesktopServices::DataLocation</a>. The subdirectory, or <i>cache directory</i> within this user-specific location, can be defined in the help collection project file. For example:</p>
+<pre> &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
+ &lt;QHelpCollectionProject version=&quot;1.0&quot;&gt;
+     &lt;assistant&gt;
+         &lt;title&gt;My Application Help&lt;/title&gt;
+         &lt;cacheDirectory&gt;mycompany/myapplication&lt;/cacheDirectory&gt;
+         ...
+     &lt;/assistant&gt;
+ &lt;/QHelpCollectionProject&gt;</pre>
+<p>So, when calling</p>
+<pre> assistant -collectionFile mycollection.qhc</pre>
+<p><i>Qt Assistant</i> actually uses the collection file:</p>
+<pre> %QDesktopServices::DataLocation%/mycompany/myapplication/mycollection.qhc</pre>
+<p>There is no need ever to start <i>Qt Assistant</i> with the user specific collection file. Instead, the collection file shipped with the application should always be used. Also, when adding or removing documentation from the collection file (see next section) always use the normal collection file. <i>Qt Assistant</i> will take care of synchronizing the user collection files when the list of installed documentation has changed.</p>
+<a name="displaying-custom-documentation"></a>
+<h2>Displaying Custom Documentation</h2>
+<p>Before <i>Qt Assistant</i> is able to show documentation, it has to know where it can find the actual documentation files, meaning that it has to know the location of the Qt compressed help file (*.qch). As already mentioned, <i>Qt Assistant</i> stores references to the compressed help files in the currently used collection file. So, when creating a new collection file you can list all compressed help files <i>Qt Assistant</i> should display.</p>
+<pre> &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
+ &lt;QHelpCollectionProject version=&quot;1.0&quot;&gt;
+     ...
+     &lt;docFiles&gt;
+         &lt;register&gt;
+             &lt;file&gt;myapplication-manual.qch&lt;/file&gt;
+             &lt;file&gt;another-manual.qch&lt;/file&gt;
+         &lt;/register&gt;
+     &lt;/docFiles&gt;
+ &lt;/QHelpCollectionProject&gt;</pre>
+<p>Sometimes, depending on the application for which <i>Qt Assistant</i> acts as a help viewer, more documentation needs to be added over time; for example, when installing more application components or plugins. This can be done manually by starting <i>Qt Assistant</i>, opening the <b>Edit|Preferences</b> dialog and navigating to the <b>Documentation</b> tab page. Then click the <b>Add..&#x2e;</b> button, select a Qt compressed help file (*.qch) and press <b>Open</b>. However, this approach has the disadvantage that every user has to do it manually to get access to the new documentation.</p>
+<p>The prefered way of adding documentation to an already existing collection file is to use the <tt>-register</tt> command line flag of <i>Qt Assistant</i>. When starting <i>Qt Assistant</i> with this flag, the documentation will be added and <i>Qt Assistant</i> will exit right away displaying a message if the registration was successful or not.</p>
+<pre> assistant -collectionFile mycollection.qhc -register myapplication-manual.qch</pre>
+<p>The <tt>-quiet</tt> flag can be passed on to <i>Qt Assistant</i> to prevent it from writing out the status message.</p>
+<p><b>Note:</b> <i>Qt Assistant</i> will show the documentation in the contents view in the same order as it was registered.</p>
+<a name="changing-the-appearance-of-qt-assistant"></a>
+<h2>Changing the Appearance of Qt Assistant</h2>
+<p>The appearance of <i>Qt Assistant</i> can be changed by passing different command line options on startup. However, these command line options only allow to show or hide specific widgets, like the contents or index view. Other customizations, such as changing the application title or icon, or disabling the filter functionality, can be done by creating a custom help collection file.</p>
+<a name="creating-a-custom-help-collection-file"></a>
+<h3>Creating a Custom Help Collection File</h3>
+<p>The help collection file (*.qhc) used by <i>Qt Assistant</i> is created when running the <tt>qcollectiongenerator</tt> tool on a help collection project file (*.qhcp). The project file format is XML and supports the following tags:</p>
+<p><table class="generic" align="center" cellpadding="2" cellspacing="1" border="0">
+<thead><tr valign="top" class="qt-style"><th>Tag</th><th>Brief Description</th></tr></thead>
+<tr valign="top" class="odd"><td><tt>&lt;title&gt;</tt></td><td>This property is used to specify a window title for <i>Qt Assistant</i>.</td></tr>
+<tr valign="top" class="even"><td><tt>&lt;homePage&gt;</tt></td><td>This tag specifies which page should be display when pressing the home button in <i>Qt Assistant</i>'s main user interface.</td></tr>
+<tr valign="top" class="odd"><td><tt>&lt;startPage&gt;</tt></td><td>This tag specifies which page <i>Qt Assistant</i> should initially display when the help collection is used.</td></tr>
+<tr valign="top" class="even"><td><tt>&lt;currentFilter&gt;</tt></td><td>This tag specifies the <a href="assistant-details.html#preferences-dialog">filter</a> that is initially used. If this filter is not specified, the documentation will not be filtered. This has no impact if only one documentation set is installed.</td></tr>
+<tr valign="top" class="odd"><td><tt>&lt;applicationIcon&gt;</tt></td><td>This tag describes an icon that will be used instead of the normal <i>Qt Assistant</i> application icon. This is specified as a relative path from the directory containing the collection file.</td></tr>
+<tr valign="top" class="even"><td><tt>&lt;enableFilterFunctionality&gt;</tt></td><td>This tag is used to enable or disable user accessible filter functionality, making it possible to prevent the user from changing any filter when running <i>Qt Assistant</i>. It does not mean that the internal filter functionality is completely disabled. Set the value to <tt>false</tt> if you want to disable the filtering. If the filter toolbar should be shown by default, set the attribute <tt>visible</tt> to <tt>true</tt>.</td></tr>
+<tr valign="top" class="odd"><td><tt>&lt;enableDocumentationManager&gt;</tt></td><td>This tag is used to specify whether the documentation manager should be shown in the preferences dialog. Disabling the Documentation Manager allows you to limit <i>Qt Assistant</i> to display a specific documentation set or make it impossible for the end user to accidentally remove or install documentation. To hide the documentation manager, set the tag value to <tt>false</tt>.</td></tr>
+<tr valign="top" class="even"><td><tt>&lt;enableAddressBar&gt;</tt></td><td>This tag describes if the address bar can be shown. By default it is enabled; if you want to disable it set the tag value to <tt>false</tt>. If the address bar functionality is enabled, the address bar can be shown by setting the tag attribute <tt>visible</tt> to <tt>true</tt>.</td></tr>
+<tr valign="top" class="odd"><td><tt>&lt;aboutMenuText&gt;, &lt;text&gt;</tt></td><td>The <tt>aboutMenuText</tt> tag lists texts for different languages which will later appear in the <b>Help</b> menu; e.g&#x2e;, &quot;About Application&quot;. A text is specified within the <tt>text</tt> tags; the <tt>language</tt> attribute takes the two letter language name. The text is used as the default text if no language attribute is specified.</td></tr>
+<tr valign="top" class="even"><td><tt>&lt;aboutDialog&gt;, &lt;file&gt;, &lt;icon&gt;</tt></td><td>The <tt>aboutDialog</tt> tag can be used to specify the text for the <b>About</b> dialog that can be opened from the <b>Help</b> menu. The text is taken from the file in the <tt>file</tt> tags. It is possible to specify a different file or any language. The icon defined by the <tt>icon</tt> tags is applied to any language.</td></tr>
+<tr valign="top" class="odd"><td><tt>&lt;cacheDirectory&gt;</tt></td><td>Specified as a path relative to the directory given by <a href="qdesktopservices.html#StandardLocation-enum">QDesktopServices::DataLocation</a>, the cache path is used to store index files needed for the full text search and a copy of the collection file. The copy is needed because <i>Qt Assistant</i> stores all its settings in the collection file; i.e&#x2e;, it must be writable for the user.</td></tr>
+</table></p>
+<p>In addition to those <i>Qt Assistant</i> specific tags, the tags for generating and registering documentation can be used. See <a href="qthelp-framework.html#creating-a-qt-help-collection">Qt Help Collection</a> documentation for more information.</p>
+<p>An example of a help collection file that uses all the available tags is shown below:</p>
+<pre> &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
+ &lt;QHelpCollectionProject version=&quot;1.0&quot;&gt;
+     &lt;assistant&gt;
+         &lt;title&gt;My Application Help&lt;/title&gt;
+         &lt;startPage&gt;qthelp://com.mycompany.1_0_0/doc/index.html&lt;/startPage&gt;
+         &lt;currentFilter&gt;myfilter&lt;/currentFilter&gt;
+         &lt;applicationIcon&gt;application.png&lt;/applicationIcon&gt;
+         &lt;enableFilterFunctionality&gt;false&lt;/enableFilterFunctionality&gt;
+         &lt;enableDocumentationManager&gt;false&lt;/enableDocumentationManager&gt;
+         &lt;enableAddressBar visible=&quot;true&quot;&gt;true&lt;/enableAddressBar&gt;
+         &lt;cacheDirectory&gt;mycompany/myapplication&lt;/cacheDirectory&gt;
+         &lt;aboutMenuText&gt;
+             &lt;text&gt;About My Application&lt;/text&gt;
+             &lt;text language=&quot;de&quot;&gt;ber meine Applikation...&lt;/text&gt;
+         &lt;/aboutMenuText&gt;
+         &lt;aboutDialog&gt;
+             &lt;file&gt;about.txt&lt;/file&gt;
+             &lt;file language=&quot;de&quot;&gt;ueber.txt&lt;/file&gt;
+             &lt;icon&gt;about.png&lt;/icon&gt;
+         &lt;/aboutDialog&gt;
+     &lt;/assistant&gt;
+     &lt;docFiles&gt;
+         &lt;generate&gt;
+             &lt;file&gt;
+                 &lt;input&gt;myapplication-manual.qhp&lt;/input&gt;
+                 &lt;output&gt;myapplication-manual.qch&lt;/output&gt;
+             &lt;/file&gt;
+         &lt;/generate&gt;
+         &lt;register&gt;
+             &lt;file&gt;myapplication-manual.qch&lt;/file&gt;
+         &lt;/register&gt;
+     &lt;/docFiles&gt;
+ &lt;/QHelpCollectionProject&gt;</pre>
+<p>To create the binary collection file, run the <tt>qcollectiongenerator</tt> tool:</p>
+<pre> qcollectiongenerator mycollection.qhcp -o mycollection.qhc</pre>
+<p>To test the generated collection file, start <i>Qt Assistant</i> in the following way:</p>
+<pre> assistant -collectionFile mycollection.qhc</pre>
+<a name="using-qt-assistant-remotely"></a>
+<h2>Using Qt Assistant Remotely</h2>
+<p>Even though the help viewer is a standalone application, it will mostly be launched by the application it provides help for. This approach gives the application the possibility to ask for specific help contents to be displayed as soon as the help viewer is started. Another advantage with this approach is that the application can communicate with the help viewer process and can therefore request other help contents to be shown depending on the current state of the application.</p>
+<p>So, to use <i>Qt Assistant</i> as the custom help viewer of your application, simply create a <a href="qprocess.html">QProcess</a> and specify the path to the Assistant executable. In order to make Assistant listen to your application, turn on its remote control functionality by passing the <tt>-enableRemoteControl</tt> command line option.</p>
+<p><b>Warning:</b> The trailing '\0' must be appended separately to the <a href="qbytearray.html">QByteArray</a>, e.g&#x2e;, <tt>QByteArray(&quot;command&quot; + '\0')</tt>.</p>
+<p>The following example shows how this can be done:</p>
+<pre> QProcess *process = new QProcess;
+ QStringList args;
+ args &lt;&lt; QLatin1String(&quot;-collectionFile&quot;)
+     &lt;&lt; QLatin1String(&quot;mycollection.qhc&quot;)
+     &lt;&lt; QLatin1String(&quot;-enableRemoteControl&quot;);
+ process-&gt;start(QLatin1String(&quot;assistant&quot;), args);
+ if (!process-&gt;waitForStarted())
+     return;</pre>
+<p>Once <i>Qt Assistant</i> is running, you can send commands by using the stdin channel of the process. The code snippet below shows how to tell <i>Qt Assistant</i> to show a certain page in the documentation.</p>
+<pre> QByteArray ba;
+ ba.append(&quot;setSource qthelp://com.mycompany.1_0_0/doc/index.html&quot;);
+ ba.append('\0');
+ process-&gt;write(ba);</pre>
+<p>The following commands can be used to control <i>Qt Assistant</i>:</p>
+<p><table class="generic" align="center" cellpadding="2" cellspacing="1" border="0">
+<thead><tr valign="top" class="qt-style"><th>Command</th><th>Brief Description</th></tr></thead>
+<tr valign="top" class="odd"><td><tt>show &lt;Widget&gt;</tt></td><td>Shows the dock widget specified by &lt;Widget&gt;. If the widget is already shown and this command is sent again, the widget will be activated, meaning that it will be raised and given the input focus. Possible values for &lt;Widget&gt; are &quot;contents&quot;, &quot;index&quot;, &quot;bookmarks&quot; or &quot;search&quot;.</td></tr>
+<tr valign="top" class="even"><td><tt>hide &lt;Widget&gt;</tt></td><td>Hides the dock widget specified by &lt;Widget&gt;. Possible values for &lt;Widget&gt; are &quot;contents&quot;, &quot;index&quot;, &quot;bookmarks&quot; and &quot;search&quot;.</td></tr>
+<tr valign="top" class="odd"><td><tt>setSource &lt;Url&gt;</tt></td><td>Displays the given &lt;Url&gt;. The URL can be absolute or relative to the currently displayed page. If the URL is absolute, it has to be a valid Qt help system URL; i.e&#x2e;, starting with &quot;qthelp://&quot;.</td></tr>
+<tr valign="top" class="even"><td><tt>activateKeyword &lt;Keyword&gt;</tt></td><td>Inserts the specified &lt;Keyword&gt; into the line edit of the index dock widget and activates the corresponding item in the index list. If such an item has more than one link associated with it, a topic chooser will be shown.</td></tr>
+<tr valign="top" class="odd"><td><tt>activateIdentifier &lt;Id&gt;</tt></td><td>Displays the help contents for the given &lt;Id&gt;. An ID is unique in each namespace and has only one link associated to it, so the topic chooser will never pop up.</td></tr>
+<tr valign="top" class="even"><td><tt>syncContents</tt></td><td>Selects the item in the contents widget which corresponds to the currently displayed page.</td></tr>
+<tr valign="top" class="odd"><td><tt>setCurrentFilter</tt></td><td>Selects the specified filter and updates the visual representation accordingly.</td></tr>
+<tr valign="top" class="even"><td><tt>expandToc &lt;Depth&gt;</tt></td><td>Expands the table of contents tree to the given depth. If depth is less than 1, the tree will be collapsed completely.</td></tr>
+</table></p>
+<p>If you want to send several commands within a short period of time, it is recommended that you write only a single line to the stdin of the process instead of one line for every command. The commands have to be separated by a semicolon, as shown in the following example:</p>
+<pre> QByteArray ba;
+ ba.append(&quot;hide bookmarks;&quot;);
+ ba.append(&quot;hide index;&quot;);
+ ba.append(&quot;setSource qthelp://com.mycompany.1_0_0/doc/index.html&quot;);
+ ba.append('\0');
+ process-&gt;write(ba);</pre>
+<a name="compatibility-with-old-formats"></a>
+<h2>Compatibility with Old Formats</h2>
+<p>In older versions of Qt, the help system was based on Document Content File (DCF) and Qt Assistant Documentation Profile (ADP) formats. In contrast, Qt Assistant and the help system used in Qt 4.4 use the formats described earlier in this manual.</p>
+<p>Unfortunately, the old file formats are not compatible with the new ones. In general, the differences are not that big &mdash; in most cases is the old format is just a subset of the new one. One example is the <tt>namespace</tt> tag in the Qt Help Project format, which was not part of the old format, but plays a vital role in the new one. To help you to move to the new file format, we have created a conversion wizard.</p>
+<p>The wizard is started by executing <tt>qhelpconverter</tt>. It guides you through the conversion of different parts of the file and generates a new <tt>qch</tt> or <tt>qhcp</tt> file.</p>
+<p>Once the wizard is finished and the files created, run the <tt>qhelpgenerator</tt> or the <tt>qcollectiongenerator</tt> tool to generate the binary help files used by <i>Qt Assistant</i>.</p>
+<p>
+[Previous: <a href="assistant-details.html">Qt Assistant in More Detail</a>]
+[<a href="assistant-manual.html">Contents</a>]
+</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qtwebkit.qdoc -->
+<head>
+  <title>Qt 4.6: Integrating Web Content with QtWebKit</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">Integrating Web Content with QtWebKit<br /><span class="subtitle"></span>
+</h1>
+<a name="browser"></a><a name="web-browser"></a><p><a href="qtwebkit.html">QtWebKit</a> provides a Web browser engine that makes it easy to embed content from the World Wide Web into your Qt application. At the same time Web content can be enhanced with native controls.</p>
+<p><a href="qtwebkit.html">QtWebKit</a> provides facilities for rendering of HyperText Markup Language (HTML), Extensible HyperText Markup Language (XHTML) and Scalable Vector Graphics (SVG) documents, styled using Cascading Style Sheets (CSS) and scripted with JavaScript.</p>
+<p>A bridge between the JavaScript execution environment and the Qt object model makes it possible for custom QObjects to be scripted. Integration with the Qt networking module enables Web pages to be transparently loaded from Web servers, the local file system or even the Qt resource system.</p>
+<p>In addition to providing pure rendering features, HTML documents can be made fully editable to the user through the use of the <tt>contenteditable</tt> attribute on HTML elements.</p>
+<p><a href="qtwebkit.html">QtWebKit</a> is based on the Open Source WebKit engine. More information about WebKit itself can be found on the <a href="http://webkit.org/">WebKit Open Source Project</a> Web site.</p>
+<p>The <a href="qtwebkit.html">QtWebKit</a> module is part of the <a href="full-framework-edition-classes.html">Qt Full Framework Edition</a>, and the <a href="opensourceedition.html">Open Source Versions of Qt</a>.</p>
+<p><b>Note:</b> Building the <a href="qtwebkit.html">QtWebKit</a> module with debugging symbols is problematic on many platforms due to the size of the WebKit engine. We recommend building the module only in release mode for embedded platforms. Currently <a href="qtwebkit.html">QtWebKit</a> will always be compiled without debugging symbols when using gcc. Take a look at the last lines of <tt>src/3rdparty/webkit/WebCore/WebCore.pro</tt> if you need to change this.</p>
+<p><b>Note:</b> Web site icons, also known as &quot;FavIcons&quot;, are currently not supported on Windows. We plan to address this in a future release.</p>
+<p><b>Note:</b> WebKit has certain minimum requirements that must be met on Embedded Linux systems. See the <a href="requirements-embedded-linux.html">Qt for Embedded Linux Requirements</a> document for more information.</p>
+<p>Topics:</p>
+<ul><li><a href="#architecture">Architecture</a></li>
+<li><a href="#netscape-plugin-support">Netscape Plugin Support</a></li>
+</ul>
+<a name="architecture"></a>
+<h2>Architecture</h2>
+<p>The easiest way to render content is through the <a href="qwebview.html">QWebView</a> class. As a widget it can be embedded into your forms or a graphics view, and it provides convenience functions for downloading and rendering web sites.</p>
+<pre>     QWebView *view = new QWebView(parent);
+     view-&gt;load(QUrl(&quot;http:<span class="comment">//qt.nokia.com/&quot;));</span>
+     view-&gt;show();</pre>
+<p><a href="qwebview.html">QWebView</a> is used to view Web pages. An instance of <a href="qwebview.html">QWebView</a> has one <a href="qwebpage.html">QWebPage</a>. <a href="qwebpage.html">QWebPage</a> provides access to the document structure in a page, describing features such as frames, the navigation history, and the undo/redo stack for editable content.</p>
+<p>HTML documents can be nested using frames in a frameset. An individual frame in HTML is represented using the <a href="qwebframe.html">QWebFrame</a> class. This class includes the bridge to the JavaScript window object and can be painted using <a href="qpainter.html">QPainter</a>. Each <a href="qwebpage.html">QWebPage</a> has one <a href="qwebframe.html">QWebFrame</a> object as its main frame, and the main frame may contain many child frames.</p>
+<p>Individual elements of an HTML document can be accessed via DOM JavaScript interfaces from within a web page. The equivalent of this API in <a href="qtwebkit.html">QtWebKit</a> is represented by <a href="qwebelement.html">QWebElement</a>. <a href="qwebelement.html">QWebElement</a> objects are obtained using <a href="qwebframe.html">QWebFrame</a>'s <a href="qwebframe.html#findAllElements">findAllElements()</a> and <a href="qwebframe.html#findFirstElement">findFirstElement()</a> functions with CSS selector queries.</p>
+<p>Common web browser features, defaults and other settings can be configured through the <a href="qwebsettings.html">QWebSettings</a> class. It is possible to provide defaults for all <a href="qwebpage.html">QWebPage</a> instances through the default settings. Individual attributes can be overidden by the page specific settings object.</p>
+<a name="netscape-plugin-support"></a>
+<h2>Netscape Plugin Support</h2>
+<p><b>Note:</b> Netscape plugin support is only available on desktop platforms.</p>
+<p>Since WebKit supports the Netscape Plugin API, Qt applications can display Web pages that embed common plugins on platforms for which those plugins are available. To enable plugin support, the user must have the appropriate binary files for those plugins installed and the <a href="qwebsettings.html#WebAttribute-enum">QWebSettings::PluginsEnabled</a> attribute must be enabled for the application.</p>
+<p>The following locations are searched for plugins:</p>
+<p><table class="generic" align="center" cellpadding="2" cellspacing="1" border="0">
+<thead><tr valign="top" class="qt-style"><th>Linux/Unix (X11)</th><th>Windows</th></tr></thead>
+<tr valign="top" class="odd"><td rowspan="3"><ul>
+<li><tt>.mozilla/plugins</tt> in the user's home directory</li>
+<li><tt>.netscape/plugins</tt> in the user's home directory</li>
+<li>System locations, such as<ul>
+<li><tt>/usr/lib/browser/plugins</tt></li>
+<li><tt>/usr/local/lib/mozilla/plugins</tt></li>
+<li><tt>/usr/lib/firefox/plugins</tt></li>
+<li><tt>/usr/lib64/browser-plugins</tt></li>
+<li><tt>/usr/lib/browser-plugins</tt></li>
+<li><tt>/usr/lib/mozilla/plugins</tt></li>
+<li><tt>/usr/local/netscape/plugins</tt></li>
+<li><tt>/opt/mozilla/plugins</tt></li>
+<li><tt>/opt/mozilla/lib/plugins</tt></li>
+<li><tt>/opt/netscape/plugins</tt></li>
+<li><tt>/opt/netscape/communicator/plugins</tt></li>
+<li><tt>/usr/lib/netscape/plugins</tt></li>
+<li><tt>/usr/lib/netscape/plugins-libc5</tt></li>
+<li><tt>/usr/lib/netscape/plugins-libc6</tt></li>
+<li><tt>/usr/lib64/netscape/plugins</tt></li>
+<li><tt>/usr/lib64/mozilla/plugins</tt></li>
+</ul>
+</li>
+<li>Locations specified by environment variables:<ul>
+<li><tt>$MOZILLA_HOME/plugins</tt></li>
+<li><tt>$MOZ_PLUGIN_PATH</tt></li>
+<li><tt>$QTWEBKIT_PLUGIN_PATH</tt></li>
+</ul>
+</li>
+</ul>
+</td><td><ul>
+<li>The user's <tt>Application Data\Mozilla\plugins</tt> directory</li>
+<li>Standard system locations of plugins for Quicktime, Flash, etc.</li>
+</ul>
+</td></tr>
+<tr valign="top" class="even">    <th class="qt-style">Mac OS X</th>
+    </tr>
+<tr valign="top" class="odd"><td><ul>
+<li><tt>Library/Internet Plug-Ins</tt> in the user's home directory</li>
+<li>The system <tt>/Library/Internet Plug-Ins</tt> directory</li>
+</ul>
+</td></tr>
+</table></p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

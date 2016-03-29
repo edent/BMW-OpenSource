@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qkbd_qws.cpp -->
+<head>
+  <title>Qt 4.6: QWSKeyboardHandler Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QWSKeyboardHandler" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QWSKeyboardHandler Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QWSKeyboardHandler class is a base class for keyboard drivers in Qt for Embedded Linux. <a href="#details">More...</a></p>
+<pre> #include &lt;QWSKeyboardHandler&gt;</pre><ul>
+<li><a href="qwskeyboardhandler-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-types"></a>
+<h2>Public Types</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qwskeyboardhandler.html#KeycodeAction-enum">KeycodeAction</a></b> { None, CapsLockOn, CapsLockOff, NumLockOn, ..., Reboot }</td></tr>
+</table>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qwskeyboardhandler.html#QWSKeyboardHandler">QWSKeyboardHandler</a></b> ( const QString &amp; <i>device</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qwskeyboardhandler.html#QWSKeyboardHandler-2">QWSKeyboardHandler</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual </td><td class="memItemRight" valign="bottom"><b><a href="qwskeyboardhandler.html#dtor.QWSKeyboardHandler">~QWSKeyboardHandler</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qwskeyboardhandler.html#processKeyEvent">processKeyEvent</a></b> ( int <i>unicode</i>, int <i>keycode</i>, Qt::KeyboardModifiers <i>modifiers</i>, bool <i>isPress</i>, bool <i>autoRepeat</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">KeycodeAction </td><td class="memItemRight" valign="bottom"><b><a href="qwskeyboardhandler.html#processKeycode">processKeycode</a></b> ( quint16 <i>keycode</i>, bool <i>isPress</i>, bool <i>autoRepeat</i> )</td></tr>
+</table>
+<hr />
+<a name="protected-functions"></a>
+<h2>Protected Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qwskeyboardhandler.html#beginAutoRepeat">beginAutoRepeat</a></b> ( int <i>unicode</i>, int <i>keycode</i>, Qt::KeyboardModifiers <i>modifier</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qwskeyboardhandler.html#endAutoRepeat">endAutoRepeat</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qwskeyboardhandler.html#transformDirKey">transformDirKey</a></b> ( int <i>keycode</i> )</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QWSKeyboardHandler class is a base class for keyboard drivers in Qt for Embedded Linux.</p>
+<p>Note that this class is only available in <a href="qt-embedded-linux.html">Qt for Embedded Linux</a>.</p>
+<p><a href="qt-embedded-linux.html">Qt for Embedded Linux</a> provides ready-made drivers for several keyboard protocols, see the <a href="qt-embedded-charinput.html">character input</a> documentation for details. Custom keyboard drivers can be implemented by subclassing the QWSKeyboardHandler class and creating a keyboard driver plugin (derived from <a href="qkbddriverplugin.html">QKbdDriverPlugin</a>). The default implementation of the <a href="qkbddriverfactory.html">QKbdDriverFactory</a> class will automatically detect the plugin, and load the driver into the server application at run-time using Qt's <a href="plugins-howto.html">plugin system</a>.</p>
+<p>The keyboard driver receives keyboard events from the system device and encapsulates each event with an instance of the <a href="qwsevent.html">QWSEvent</a> class which it then passes to the server application (the server is responsible for propagating the event to the appropriate client). To receive keyboard events, a QWSKeyboardHandler object will usually create a <a href="qsocketnotifier.html">QSocketNotifier</a> object for the given device. The <a href="qsocketnotifier.html">QSocketNotifier</a> class provides support for monitoring activity on a file descriptor. When the socket notifier receives data, it will call the keyboard driver's <a href="qwskeyboardhandler.html#processKeyEvent">processKeyEvent</a>() function to send the event to the <a href="qt-embedded-linux.html">Qt for Embedded Linux</a> server application for relaying to clients.</p>
+<p>QWSKeyboardHandler also provides functions to control auto-repetion of key sequences, <a href="qwskeyboardhandler.html#beginAutoRepeat">beginAutoRepeat</a>() and <a href="qwskeyboardhandler.html#endAutoRepeat">endAutoRepeat</a>(), and the <a href="qwskeyboardhandler.html#transformDirKey">transformDirKey</a>() function enabling transformation of arrow keys according to the display orientation.</p>
+<p>See also <a href="qkbddriverplugin.html">QKbdDriverPlugin</a>, <a href="qkbddriverfactory.html">QKbdDriverFactory</a>, and <a href="qt-embedded-charinput.html">Qt for Embedded Linux Character Input</a>.</p>
+<hr />
+<h2>Member Type Documentation</h2>
+<a name="//apple_ref/cpp/tag/QWSKeyboardHandler/KeycodeAction" />
+<a name="//apple_ref/cpp/econst/QWSKeyboardHandler/None" />
+<a name="//apple_ref/cpp/econst/QWSKeyboardHandler/CapsLockOn" />
+<a name="//apple_ref/cpp/econst/QWSKeyboardHandler/CapsLockOff" />
+<a name="//apple_ref/cpp/econst/QWSKeyboardHandler/NumLockOn" />
+<a name="//apple_ref/cpp/econst/QWSKeyboardHandler/NumLockOff" />
+<a name="//apple_ref/cpp/econst/QWSKeyboardHandler/ScrollLockOn" />
+<a name="//apple_ref/cpp/econst/QWSKeyboardHandler/ScrollLockOff" />
+<a name="//apple_ref/cpp/econst/QWSKeyboardHandler/PreviousConsole" />
+<a name="//apple_ref/cpp/econst/QWSKeyboardHandler/NextConsole" />
+<a name="//apple_ref/cpp/econst/QWSKeyboardHandler/SwitchConsoleFirst" />
+<a name="//apple_ref/cpp/econst/QWSKeyboardHandler/SwitchConsoleLast" />
+<a name="//apple_ref/cpp/econst/QWSKeyboardHandler/SwitchConsoleMask" />
+<a name="//apple_ref/cpp/econst/QWSKeyboardHandler/Reboot" />
+<h3 class="fn"><a name="KeycodeAction-enum"></a>enum QWSKeyboardHandler::KeycodeAction</h3>
+<p>This enum describes the various special actions that actual <a href="qwskeyboardhandler.html">QWSKeyboardHandler</a> implementations have to take care of.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QWSKeyboardHandler::None</tt></td><td align="center" valign="top"><tt>0</tt></td><td valign="top">No further action required.</td></tr>
+<tr><td valign="top"><tt>QWSKeyboardHandler::CapsLockOn</tt></td><td align="center" valign="top"><tt>0x01000001</tt></td><td valign="top">Set the state of the Caps lock LED to on.</td></tr>
+<tr><td valign="top"><tt>QWSKeyboardHandler::CapsLockOff</tt></td><td align="center" valign="top"><tt>0x01000000</tt></td><td valign="top">Set the state of the Caps lock LED to off.</td></tr>
+<tr><td valign="top"><tt>QWSKeyboardHandler::NumLockOn</tt></td><td align="center" valign="top"><tt>0x02000001</tt></td><td valign="top">Set the state of the Num lock LED to on.</td></tr>
+<tr><td valign="top"><tt>QWSKeyboardHandler::NumLockOff</tt></td><td align="center" valign="top"><tt>0x02000000</tt></td><td valign="top">Set the state of the Num lock LED to off.</td></tr>
+<tr><td valign="top"><tt>QWSKeyboardHandler::ScrollLockOn</tt></td><td align="center" valign="top"><tt>0x03000001</tt></td><td valign="top">Set the state of the Scroll lock LED to on.</td></tr>
+<tr><td valign="top"><tt>QWSKeyboardHandler::ScrollLockOff</tt></td><td align="center" valign="top"><tt>0x03000000</tt></td><td valign="top">Set the state of the Scroll lock LED to off.</td></tr>
+<tr><td valign="top"><tt>QWSKeyboardHandler::PreviousConsole</tt></td><td align="center" valign="top"><tt>0x05000000</tt></td><td valign="top">Switch to the previous virtual console (by default Ctrl+Alt+Left on Linux).</td></tr>
+<tr><td valign="top"><tt>QWSKeyboardHandler::NextConsole</tt></td><td align="center" valign="top"><tt>0x05000001</tt></td><td valign="top">Switch to the next virtual console (by default Ctrl+Alt+Right on Linux).</td></tr>
+<tr><td valign="top"><tt>QWSKeyboardHandler::SwitchConsoleFirst</tt></td><td align="center" valign="top"><tt>0x06000000</tt></td><td valign="top">Switch to the first virtual console (0).</td></tr>
+<tr><td valign="top"><tt>QWSKeyboardHandler::SwitchConsoleLast</tt></td><td align="center" valign="top"><tt>0x0600007f</tt></td><td valign="top">Switch to the last virtual console (255).</td></tr>
+<tr><td valign="top"><tt>QWSKeyboardHandler::SwitchConsoleMask</tt></td><td align="center" valign="top"><tt>0x0000007f</tt></td><td valign="top">If the KeyAction value is between SwitchConsoleFirst and SwitchConsoleLast, you can use this mask to get the specific virtual console number to switch to.</td></tr>
+<tr><td valign="top"><tt>QWSKeyboardHandler::Reboot</tt></td><td align="center" valign="top"><tt>0x04000000</tt></td><td valign="top">Reboot the machine - this is ignored in both the TTY and LinuxInput handlers though (by default Ctrl+Alt+Del on Linux).</td></tr>
+</table></p>
+<p>See also <a href="qwskeyboardhandler.html#processKeycode">processKeycode</a>().</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QWSKeyboardHandler/QWSKeyboardHandler" />
+<h3 class="fn"><a name="QWSKeyboardHandler"></a>QWSKeyboardHandler::QWSKeyboardHandler ( const <a href="qstring.html">QString</a> &amp; <i>device</i> )</h3>
+<p>Constructs a keyboard driver. The <i>device</i> argument is passed by the <a href="qt-embedded-envvars.html#qws-keyboard">QWS_KEYBOARD</a> environment variable.</p>
+<p>Call the <a href="qwsserver.html#setKeyboardHandler">QWSServer::setKeyboardHandler</a>() function to make the newly created keyboard driver, the primary driver. Note that the primary driver is controlled by the system, i.e&#x2e;, the system will delete it upon exit.</p>
+<h3 class="fn"><a name="QWSKeyboardHandler-2"></a>QWSKeyboardHandler::QWSKeyboardHandler ()</h3>
+<p>This is an overloaded function.</p>
+<a name="//apple_ref/cpp/instm/QWSKeyboardHandler/~QWSKeyboardHandler" />
+<h3 class="fn"><a name="dtor.QWSKeyboardHandler"></a>QWSKeyboardHandler::~QWSKeyboardHandler ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Destroys this keyboard driver.</p>
+<p>Do not call this function if this driver is the primary keyboard handler, i.e&#x2e;, if <a href="qwsserver.html#setKeyboardHandler">QWSServer::setKeyboardHandler</a>() function has been called passing this driver as argument. The primary keyboard driver is deleted by the system.</p>
+<a name="//apple_ref/cpp/instm/QWSKeyboardHandler/beginAutoRepeat" />
+<h3 class="fn"><a name="beginAutoRepeat"></a>void QWSKeyboardHandler::beginAutoRepeat ( int <i>unicode</i>, int <i>keycode</i>, <a href="qt.html#KeyboardModifier-enum">Qt::KeyboardModifiers</a> <i>modifier</i> )&nbsp;&nbsp;<tt> [protected]</tt></h3>
+<p>Begins auto-repeating the specified key press; after a short delay the key press is sent periodically until the <a href="qwskeyboardhandler.html#endAutoRepeat">endAutoRepeat</a>() function is called.</p>
+<p>The key press is specified by its <i>unicode</i>, <i>keycode</i> and <i>modifier</i> state.</p>
+<p>See also <a href="qwskeyboardhandler.html#endAutoRepeat">endAutoRepeat</a>() and <a href="qwskeyboardhandler.html#processKeyEvent">processKeyEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QWSKeyboardHandler/endAutoRepeat" />
+<h3 class="fn"><a name="endAutoRepeat"></a>void QWSKeyboardHandler::endAutoRepeat ()&nbsp;&nbsp;<tt> [protected]</tt></h3>
+<p>Stops auto-repeating a key press.</p>
+<p>See also <a href="qwskeyboardhandler.html#beginAutoRepeat">beginAutoRepeat</a>() and <a href="qwskeyboardhandler.html#processKeyEvent">processKeyEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QWSKeyboardHandler/processKeyEvent" />
+<h3 class="fn"><a name="processKeyEvent"></a>void QWSKeyboardHandler::processKeyEvent ( int <i>unicode</i>, int <i>keycode</i>, <a href="qt.html#KeyboardModifier-enum">Qt::KeyboardModifiers</a> <i>modifiers</i>, bool <i>isPress</i>, bool <i>autoRepeat</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Sends a key event to the <a href="qt-embedded-linux.html">Qt for Embedded Linux</a> server application.</p>
+<p>The key event is identified by its <i>unicode</i> value and the <i>keycode</i>, <i>modifiers</i>, <i>isPress</i> and <i>autoRepeat</i> parameters.</p>
+<p>The <i>keycode</i> parameter is the Qt keycode value as defined by the <a href="qt.html#Key-enum">Qt::Key</a> enum. The <i>modifiers</i> is an OR combination of <a href="qt.html#KeyboardModifier-enum">Qt::KeyboardModifier</a> values, indicating whether <b>Shift/Alt/Ctrl</b> keys are pressed. The <i>isPress</i> parameter is true if the event is a key press event and <i>autoRepeat</i> is true if the event is caused by an auto-repeat mechanism and not an actual key press.</p>
+<p>Note that this function does not handle key mapping. Please use <a href="qwskeyboardhandler.html#processKeycode">processKeycode</a>() if you need that functionality.</p>
+<p>See also <a href="qwskeyboardhandler.html#processKeycode">processKeycode</a>(), <a href="qwskeyboardhandler.html#beginAutoRepeat">beginAutoRepeat</a>(), <a href="qwskeyboardhandler.html#endAutoRepeat">endAutoRepeat</a>(), and <a href="qwskeyboardhandler.html#transformDirKey">transformDirKey</a>().</p>
+<a name="//apple_ref/cpp/instm/QWSKeyboardHandler/processKeycode" />
+<h3 class="fn"><a name="processKeycode"></a><a href="qwskeyboardhandler.html#KeycodeAction-enum">KeycodeAction</a> QWSKeyboardHandler::processKeycode ( <a href="qtglobal.html#quint16-typedef">quint16</a> <i>keycode</i>, bool <i>isPress</i>, bool <i>autoRepeat</i> )</h3>
+<p>Maps <i>keycode</i> according to a keymap and sends that key event to the <a href="qt-embedded-linux.html">Qt for Embedded Linux</a> server application.</p>
+<p>Please see the <a href="qt-embedded-charinput.html">Qt for Embedded Linux Character Input</a> and the <a href="qt-embedded-kmap2qmap.html">kmap2qmap</a> documentations for a description on how to create and use keymap files.</p>
+<p>The key event is identified by its <i>keycode</i> value and the <i>isPress</i> and <i>autoRepeat</i> parameters.</p>
+<p>The <i>keycode</i> parameter is <b>NOT</b> the Qt keycode value as defined by the <a href="qt.html#Key-enum">Qt::Key</a> enum. This functions expects a standard Linux 16 bit kernel keycode as it is used in the Linux Input Event sub-system. This <i>keycode</i> is transformed to a <a href="qt.html#Key-enum">Qt::Key</a> code by using either a compiled-in US keyboard layout or by dynamically loading a keymap at startup which can be specified via the <a href="qt-embedded-envvars.html#qws-keyboard">QWS_KEYBOARD</a> environment variable.</p>
+<p>The <i>isPress</i> parameter is true if the event is a key press event and <i>autoRepeat</i> is true if the event is caused by an auto-repeat mechanism and not an actual key press.</p>
+<p>The return value indicates if the actual <a href="qwskeyboardhandler.html">QWSKeyboardHandler</a> implementation needs to take care of a special action, like console switching or LED handling.</p>
+<p>If standard Linux console keymaps are used, <i>keycode</i> must be one of the standardized values defined in <tt>/usr/include/linux/input.h</tt></p>
+<p>See also <a href="qwskeyboardhandler.html#processKeyEvent">processKeyEvent</a>() and <a href="qwskeyboardhandler.html#KeycodeAction-enum">KeycodeAction</a>.</p>
+<a name="//apple_ref/cpp/instm/QWSKeyboardHandler/transformDirKey" />
+<h3 class="fn"><a name="transformDirKey"></a>int QWSKeyboardHandler::transformDirKey ( int <i>keycode</i> )&nbsp;&nbsp;<tt> [protected]</tt></h3>
+<p>Transforms the arrow key specified by the given <i>keycode</i>, to the orientation of the display and returns the transformed keycode.</p>
+<p>The <i>keycode</i> is a <a href="qt.html#Key-enum">Qt::Key</a> value. The values identifying arrow keys are:</p>
+<ul>
+<li><a href="qt.html#Key-enum">Qt::Key_Left</a></li>
+<li><a href="qt.html#Key-enum">Qt::Key_Up</a></li>
+<li><a href="qt.html#Key-enum">Qt::Key_Right</a></li>
+<li><a href="qt.html#Key-enum">Qt::Key_Down</a></li>
+</ul>
+<p>See also <a href="qwskeyboardhandler.html#processKeyEvent">processKeyEvent</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

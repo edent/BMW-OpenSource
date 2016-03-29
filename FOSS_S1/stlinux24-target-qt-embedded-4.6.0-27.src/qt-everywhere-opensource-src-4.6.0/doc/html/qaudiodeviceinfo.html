@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qaudiodeviceinfo.cpp -->
+<head>
+  <title>Qt 4.6: QAudioDeviceInfo Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QAudioDeviceInfo" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QAudioDeviceInfo Class Reference<br /><span class="small-subtitle">[<a href="qtmultimedia.html">QtMultimedia</a> module]</span>
+</h1>
+<p>The QAudioDeviceInfo class provides an interface to query audio devices and their functionality. <a href="#details">More...</a></p>
+<pre> #include &lt;QAudioDeviceInfo&gt;</pre><p><b>This class is not part of the Qt GUI Framework Edition.</b></p>
+<p>This class was introduced in Qt 4.6.</p>
+<ul>
+<li><a href="qaudiodeviceinfo-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qaudiodeviceinfo.html#QAudioDeviceInfo">QAudioDeviceInfo</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qaudiodeviceinfo.html#QAudioDeviceInfo-2">QAudioDeviceInfo</a></b> ( const QAudioDeviceInfo &amp; <i>other</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qaudiodeviceinfo.html#dtor.QAudioDeviceInfo">~QAudioDeviceInfo</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qaudiodeviceinfo.html#deviceName">deviceName</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qaudiodeviceinfo.html#isFormatSupported">isFormatSupported</a></b> ( const QAudioFormat &amp; <i>settings</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qaudiodeviceinfo.html#isNull">isNull</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QAudioFormat </td><td class="memItemRight" valign="bottom"><b><a href="qaudiodeviceinfo.html#nearestFormat">nearestFormat</a></b> ( const QAudioFormat &amp; <i>settings</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QAudioFormat </td><td class="memItemRight" valign="bottom"><b><a href="qaudiodeviceinfo.html#preferredFormat">preferredFormat</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QList&lt;QAudioFormat::Endian&gt; </td><td class="memItemRight" valign="bottom"><b><a href="qaudiodeviceinfo.html#supportedByteOrders">supportedByteOrders</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QList&lt;int&gt; </td><td class="memItemRight" valign="bottom"><b><a href="qaudiodeviceinfo.html#supportedChannels">supportedChannels</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QStringList </td><td class="memItemRight" valign="bottom"><b><a href="qaudiodeviceinfo.html#supportedCodecs">supportedCodecs</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QList&lt;int&gt; </td><td class="memItemRight" valign="bottom"><b><a href="qaudiodeviceinfo.html#supportedFrequencies">supportedFrequencies</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QList&lt;int&gt; </td><td class="memItemRight" valign="bottom"><b><a href="qaudiodeviceinfo.html#supportedSampleSizes">supportedSampleSizes</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QList&lt;QAudioFormat::SampleType&gt; </td><td class="memItemRight" valign="bottom"><b><a href="qaudiodeviceinfo.html#supportedSampleTypes">supportedSampleTypes</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QAudioDeviceInfo &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qaudiodeviceinfo.html#operator-eq">operator=</a></b> ( const QAudioDeviceInfo &amp; <i>other</i> )</td></tr>
+</table>
+<hr />
+<a name="static-public-members"></a>
+<h2>Static Public Members</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">QList&lt;QAudioDeviceInfo&gt; </td><td class="memItemRight" valign="bottom"><b><a href="qaudiodeviceinfo.html#availableDevices">availableDevices</a></b> ( QAudio::Mode <i>mode</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QAudioDeviceInfo </td><td class="memItemRight" valign="bottom"><b><a href="qaudiodeviceinfo.html#defaultInputDevice">defaultInputDevice</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QAudioDeviceInfo </td><td class="memItemRight" valign="bottom"><b><a href="qaudiodeviceinfo.html#defaultOutputDevice">defaultOutputDevice</a></b> ()</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QAudioDeviceInfo class provides an interface to query audio devices and their functionality.</p>
+<p>QAudioDeviceInfo lets you query for audio devices--such as sound cards and USB headsets--that are currently available on the system. The audio devices available are dependent on the platform or audio plugins installed.</p>
+<p>You can also query each device for the formats it supports. A format in this context is a set consisting of a specific byte order, channel, codec, frequency, sample rate, and sample type. A format is represented by the <a href="qaudioformat.html">QAudioFormat</a> class.</p>
+<p>The values supported by the the device for each of these parameters can be fetched with <a href="qaudiodeviceinfo.html#supportedByteOrders">supportedByteOrders</a>(), <a href="qaudiodeviceinfo.html#supportedChannels">supportedChannels</a>(), <a href="qaudiodeviceinfo.html#supportedCodecs">supportedCodecs</a>(), <a href="qaudiodeviceinfo.html#supportedFrequencies">supportedFrequencies</a>(), <a href="qaudiodeviceinfo.html#supportedSampleSizes">supportedSampleSizes</a>(), and <a href="qaudiodeviceinfo.html#supportedSampleTypes">supportedSampleTypes</a>(). The combinations supported are dependent on the platform, audio plugins installed and the audio device capabilities. If you need a specific format, you can check if the device supports it with <a href="qaudiodeviceinfo.html#isFormatSupported">isFormatSupported</a>(), or fetch a supported format that is as close as possible to the format with <a href="qaudiodeviceinfo.html#nearestFormat">nearestFormat</a>(). For instance:</p>
+<pre>         QAudioFormat format;
+         format.setFrequency(44100);
+         ...
+         format.setSampleType(QAudioFormat::SignedInt);
+
+         QAudioDeviceInfo info(QAudioDeviceInfo::defaultOutputDevice());
+
+         if (!info.isFormatSupported(format))
+             format = info.nearestFormat(format);</pre>
+<p>A QAudioDeviceInfo is used by Qt to construct classes that communicate with the device--such as <a href="qaudioinput.html">QAudioInput</a>, and <a href="qaudiooutput.html">QAudioOutput</a>. The static functions <a href="qaudiodeviceinfo.html#defaultInputDevice">defaultInputDevice</a>(), <a href="qaudiodeviceinfo.html#defaultOutputDevice">defaultOutputDevice</a>(), and <a href="qaudiodeviceinfo.html#availableDevices">availableDevices</a>() let you get a list of all available devices. Devices are fetch according to the value of mode this is specified by the <a href="qaudio.html#Mode-enum">QAudio::Mode</a> enum. The QAudioDeviceInfo returned are only valid for the <a href="qaudio.html#Mode-enum">QAudio::Mode</a>.</p>
+<p>For instance:</p>
+<pre> foreach(const QAudioDeviceInfo &amp;deviceInfo, QAudioDeviceInfo::availableDevices(QAudio::AudioOutput))
+     qDebug() &lt;&lt; &quot;Device name: &quot; &lt;&lt; deviceInfo.deviceName();</pre>
+<p>In this code sample, we loop through all devices that are able to output sound, i.e&#x2e;, play an audio stream in a supported format. For each device we find, we simply print the <a href="qaudiodeviceinfo.html#deviceName">deviceName</a>().</p>
+<p>See also <a href="qaudiooutput.html">QAudioOutput</a> and <a href="qaudioinput.html">QAudioInput</a>.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QAudioDeviceInfo/QAudioDeviceInfo" />
+<h3 class="fn"><a name="QAudioDeviceInfo"></a>QAudioDeviceInfo::QAudioDeviceInfo ()</h3>
+<p>Constructs an empty <a href="qaudiodeviceinfo.html">QAudioDeviceInfo</a> object.</p>
+<h3 class="fn"><a name="QAudioDeviceInfo-2"></a>QAudioDeviceInfo::QAudioDeviceInfo ( const QAudioDeviceInfo &amp; <i>other</i> )</h3>
+<p>Constructs a copy of <i>other</i>.</p>
+<a name="//apple_ref/cpp/instm/QAudioDeviceInfo/~QAudioDeviceInfo" />
+<h3 class="fn"><a name="dtor.QAudioDeviceInfo"></a>QAudioDeviceInfo::~QAudioDeviceInfo ()</h3>
+<p>Destroy this audio device info.</p>
+<a name="//apple_ref/cpp/clm/QAudioDeviceInfo/availableDevices" />
+<h3 class="fn"><a name="availableDevices"></a><a href="qlist.html">QList</a>&lt;QAudioDeviceInfo&gt; QAudioDeviceInfo::availableDevices ( <a href="qaudio.html#Mode-enum">QAudio::Mode</a> <i>mode</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Returns a list of audio devices that support <i>mode</i>.</p>
+<a name="//apple_ref/cpp/clm/QAudioDeviceInfo/defaultInputDevice" />
+<h3 class="fn"><a name="defaultInputDevice"></a>QAudioDeviceInfo QAudioDeviceInfo::defaultInputDevice ()&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Returns the name of the default input audio device. All platform and audio plugin implementations provide a default audio device to use.</p>
+<a name="//apple_ref/cpp/clm/QAudioDeviceInfo/defaultOutputDevice" />
+<h3 class="fn"><a name="defaultOutputDevice"></a>QAudioDeviceInfo QAudioDeviceInfo::defaultOutputDevice ()&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Returns the name of the default output audio device. All platform and audio plugin implementations provide a default audio device to use.</p>
+<a name="//apple_ref/cpp/instm/QAudioDeviceInfo/deviceName" />
+<h3 class="fn"><a name="deviceName"></a><a href="qstring.html">QString</a> QAudioDeviceInfo::deviceName () const</h3>
+<p>Returns human readable name of audio device.</p>
+<p>Device names vary depending on platform/audio plugin being used.</p>
+<p>They are a unique string identifiers for the audio device.</p>
+<p>eg. default, Intel, U0x46d0x9a4</p>
+<a name="//apple_ref/cpp/instm/QAudioDeviceInfo/isFormatSupported" />
+<h3 class="fn"><a name="isFormatSupported"></a>bool QAudioDeviceInfo::isFormatSupported ( const <a href="qaudioformat.html">QAudioFormat</a> &amp; <i>settings</i> ) const</h3>
+<p>Returns true if <i>settings</i> are supported by the audio device of this <a href="qaudiodeviceinfo.html">QAudioDeviceInfo</a>.</p>
+<a name="//apple_ref/cpp/instm/QAudioDeviceInfo/isNull" />
+<h3 class="fn"><a name="isNull"></a>bool QAudioDeviceInfo::isNull () const</h3>
+<p>Returns whether this <a href="qaudiodeviceinfo.html">QAudioDeviceInfo</a> object holds a device definition.</p>
+<a name="//apple_ref/cpp/instm/QAudioDeviceInfo/nearestFormat" />
+<h3 class="fn"><a name="nearestFormat"></a><a href="qaudioformat.html">QAudioFormat</a> QAudioDeviceInfo::nearestFormat ( const <a href="qaudioformat.html">QAudioFormat</a> &amp; <i>settings</i> ) const</h3>
+<p>Returns closest <a href="qaudioformat.html">QAudioFormat</a> to <i>settings</i> that system audio supports.</p>
+<p>These settings are provided by the platform/audio plugin being used.</p>
+<p>They also are dependent on the <a href="qaudio.html#Mode-enum">QAudio::Mode</a> being used.</p>
+<a name="//apple_ref/cpp/instm/QAudioDeviceInfo/preferredFormat" />
+<h3 class="fn"><a name="preferredFormat"></a><a href="qaudioformat.html">QAudioFormat</a> QAudioDeviceInfo::preferredFormat () const</h3>
+<p>Returns <a href="qaudioformat.html">QAudioFormat</a> of default settings.</p>
+<p>These settings are provided by the platform/audio plugin being used.</p>
+<p>They also are dependent on the <a href="qaudio.html#Mode-enum">QAudio::Mode</a> being used.</p>
+<p>A typical audio system would provide something like:</p>
+<ul>
+<li>Input settings: 8000Hz mono 8 bit.</li>
+<li>Output settings: 44100Hz stereo 16 bit little endian.</li>
+</ul>
+<a name="//apple_ref/cpp/instm/QAudioDeviceInfo/supportedByteOrders" />
+<h3 class="fn"><a name="supportedByteOrders"></a><a href="qlist.html">QList</a>&lt;<a href="qaudioformat.html#Endian-enum">QAudioFormat::Endian</a>&gt; QAudioDeviceInfo::supportedByteOrders () const</h3>
+<p>Returns a list of supported byte orders.</p>
+<a name="//apple_ref/cpp/instm/QAudioDeviceInfo/supportedChannels" />
+<h3 class="fn"><a name="supportedChannels"></a><a href="qlist.html">QList</a>&lt;int&gt; QAudioDeviceInfo::supportedChannels () const</h3>
+<p>Returns a list of supported channels.</p>
+<a name="//apple_ref/cpp/instm/QAudioDeviceInfo/supportedCodecs" />
+<h3 class="fn"><a name="supportedCodecs"></a><a href="qstringlist.html">QStringList</a> QAudioDeviceInfo::supportedCodecs () const</h3>
+<p>Returns a list of supported codecs.</p>
+<p>All platform and plugin implementations should provide support for:</p>
+<p>&quot;audio/pcm&quot; - Linear PCM</p>
+<p>For writing plugins to support additional codecs refer to:</p>
+<p>http://www.iana.org/assignments/media-types/audio/</p>
+<a name="//apple_ref/cpp/instm/QAudioDeviceInfo/supportedFrequencies" />
+<h3 class="fn"><a name="supportedFrequencies"></a><a href="qlist.html">QList</a>&lt;int&gt; QAudioDeviceInfo::supportedFrequencies () const</h3>
+<p>Returns a list of supported frequencies.</p>
+<a name="//apple_ref/cpp/instm/QAudioDeviceInfo/supportedSampleSizes" />
+<h3 class="fn"><a name="supportedSampleSizes"></a><a href="qlist.html">QList</a>&lt;int&gt; QAudioDeviceInfo::supportedSampleSizes () const</h3>
+<p>Returns a list of supported sample sizes.</p>
+<a name="//apple_ref/cpp/instm/QAudioDeviceInfo/supportedSampleTypes" />
+<h3 class="fn"><a name="supportedSampleTypes"></a><a href="qlist.html">QList</a>&lt;<a href="qaudioformat.html#SampleType-enum">QAudioFormat::SampleType</a>&gt; QAudioDeviceInfo::supportedSampleTypes () const</h3>
+<p>Returns a list of supported sample types.</p>
+<a name="//apple_ref/cpp/instm/QAudioDeviceInfo/operator=" />
+<h3 class="fn"><a name="operator-eq"></a>QAudioDeviceInfo &amp; QAudioDeviceInfo::operator= ( const QAudioDeviceInfo &amp; <i>other</i> )</h3>
+<p>Sets the <a href="qaudiodeviceinfo.html">QAudioDeviceInfo</a> object to be equal to <i>other</i>.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

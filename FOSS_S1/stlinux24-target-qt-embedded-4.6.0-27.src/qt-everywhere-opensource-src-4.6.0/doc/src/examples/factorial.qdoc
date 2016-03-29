@@ -1,0 +1,102 @@
+/****************************************************************************
+**
+** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+** All rights reserved.
+** Contact: Nokia Corporation (qt-info@nokia.com)
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:LGPL$
+** Commercial Usage
+** Licensees holding valid Qt Commercial licenses may use this file in
+** accordance with the Qt Commercial License Agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and Nokia.
+**
+** GNU Lesser General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU Lesser
+** General Public License version 2.1 as published by the Free Software
+** Foundation and appearing in the file LICENSE.LGPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU Lesser General Public License version 2.1 requirements
+** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+**
+** In addition, as a special exception, Nokia gives you certain additional
+** rights.  These rights are described in the Nokia Qt LGPL Exception
+** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+**
+** GNU General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU
+** General Public License version 3.0 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU General Public License version 3.0 requirements will be
+** met: http://www.gnu.org/copyleft/gpl.html.
+**
+** If you have questions regarding the use of this file, please contact
+** Nokia at qt-info@nokia.com.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \example statemachine/factorial
+    \title Factorial States Example
+
+    The Factorial States example shows how to use \l{The State Machine
+    Framework} to calculate the factorial of an integer.
+
+    The statechart for calculating the factorial looks as follows:
+
+    \img factorial-example.png
+    \omit
+    \caption This is a caption
+    \endomit
+
+    In other words, the state machine calculates the factorial of 6 and prints
+    the result.
+
+    \snippet examples/statemachine/factorial/main.cpp 0
+
+    The Factorial class is used to hold the data of the computation, \c x and
+    \c fac. It also provides a signal that's emitted whenever the value of \c
+    x changes.
+
+    \snippet examples/statemachine/factorial/main.cpp 1
+
+    The FactorialLoopTransition class implements the guard (\c x > 1) and
+    calculations (\c fac = \c x * \c fac; \c x = \c x - 1) of the factorial
+    loop.
+
+    \snippet examples/statemachine/factorial/main.cpp 2
+
+    The FactorialDoneTransition class implements the guard (\c x <= 1) that
+    terminates the factorial computation. It also prints the final result to
+    standard output.
+
+    \snippet examples/statemachine/factorial/main.cpp 3
+
+    The application's main() function first creates the application object, a
+    Factorial object and a state machine.
+
+    \snippet examples/statemachine/factorial/main.cpp 4
+
+    The \c compute state is created, and the initial values of \c x and \c fac
+    are defined. A FactorialLoopTransition object is created and added to the
+    state.
+
+    \snippet examples/statemachine/factorial/main.cpp 5
+
+    A final state, \c done, is created, and a FactorialDoneTransition object
+    is created with \c done as its target state. The transition is then added
+    to the \c compute state.
+
+    \snippet examples/statemachine/factorial/main.cpp 6
+
+    The machine's initial state is set to be the \c compute state. We connect
+    the QStateMachine::finished() signal to the QCoreApplication::quit() slot,
+    so the application will quit when the state machine's work is
+    done. Finally, the state machine is started, and the application's event
+    loop is entered.
+
+ */

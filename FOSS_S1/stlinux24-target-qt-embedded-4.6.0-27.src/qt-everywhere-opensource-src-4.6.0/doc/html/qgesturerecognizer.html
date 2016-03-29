@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qgesturerecognizer.cpp -->
+<head>
+  <title>Qt 4.6: QGestureRecognizer Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QGestureRecognizer" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QGestureRecognizer Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QGestureRecognizer class provides the infrastructure for gesture recognition. <a href="#details">More...</a></p>
+<pre> #include &lt;QGestureRecognizer&gt;</pre><p>This class was introduced in Qt 4.6.</p>
+<ul>
+<li><a href="qgesturerecognizer-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-types"></a>
+<h2>Public Types</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">flags </td><td class="memItemRight" valign="bottom"><b><a href="qgesturerecognizer.html#ResultFlag-enum">Result</a></b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qgesturerecognizer.html#ResultFlag-enum">ResultFlag</a></b> { Ignore, MayBeGesture, TriggerGesture, FinishGesture, CancelGesture, ConsumeEventHint }</td></tr>
+</table>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qgesturerecognizer.html#QGestureRecognizer">QGestureRecognizer</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual </td><td class="memItemRight" valign="bottom"><b><a href="qgesturerecognizer.html#dtor.QGestureRecognizer">~QGestureRecognizer</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QGesture * </td><td class="memItemRight" valign="bottom"><b><a href="qgesturerecognizer.html#create">create</a></b> ( QObject * <i>target</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual Result </td><td class="memItemRight" valign="bottom"><b><a href="qgesturerecognizer.html#recognize">recognize</a></b> ( QGesture * <i>gesture</i>, QObject * <i>watched</i>, QEvent * <i>event</i> ) = 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qgesturerecognizer.html#reset">reset</a></b> ( QGesture * <i>gesture</i> )</td></tr>
+</table>
+<hr />
+<a name="static-public-members"></a>
+<h2>Static Public Members</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">Qt::GestureType </td><td class="memItemRight" valign="bottom"><b><a href="qgesturerecognizer.html#registerRecognizer">registerRecognizer</a></b> ( QGestureRecognizer * <i>recognizer</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qgesturerecognizer.html#unregisterRecognizer">unregisterRecognizer</a></b> ( Qt::GestureType <i>type</i> )</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QGestureRecognizer class provides the infrastructure for gesture recognition.</p>
+<p>Gesture recognizers are responsible for creating and managing <a href="qgesture.html">QGesture</a> objects and monitoring input events sent to <a href="qwidget.html">QWidget</a> and <a href="qgraphicsobject.html">QGraphicsObject</a> subclasses. QGestureRecognizer is the base class for implementing custom gestures.</p>
+<p>Developers that only need to provide gesture recognition for standard gestures do not need to use this class directly. Instances will be created behind the scenes by the framework.</p>
+<a name="recognizing-gestures"></a>
+<h3>Recognizing Gestures</h3>
+<p>The process of recognizing gestures involves filtering input events sent to specific objects, and modifying the associated <a href="qgesture.html">QGesture</a> objects to include relevant information about the user's input.</p>
+<p>Gestures are created when the framework calls <a href="qgesturerecognizer.html#create">create</a>() to handle user input for a particular instance of a <a href="qwidget.html">QWidget</a> or <a href="qgraphicsobject.html">QGraphicsObject</a> subclass. A <a href="qgesture.html">QGesture</a> object is created for each widget or item that is configured to use gestures.</p>
+<p>Once a <a href="qgesture.html">QGesture</a> has been created for a target object, the gesture recognizer will receive events for it in its <a href="qgesturerecognizer.html#recognize">recognize</a>() handler function.</p>
+<p>When a gesture is canceled, the <a href="qgesturerecognizer.html#reset">reset</a>() function is called, giving the recognizer the chance to update the appropriate properties in the corresponding <a href="qgesture.html">QGesture</a> object.</p>
+<a name="supporting-new-gestures"></a>
+<h3>Supporting New Gestures</h3>
+<p>To add support for new gestures, you need to derive from QGestureRecognizer to create a custom recognizer class, construct an instance of this class, and register it with the application by calling <a href="qgesturerecognizer.html#registerRecognizer">QGestureRecognizer::registerRecognizer</a>(). You can also subclass <a href="qgesture.html">QGesture</a> to create a custom gesture class, or rely on dynamic properties to express specific details of the gesture you want to handle.</p>
+<p>Your custom QGestureRecognizer subclass needs to reimplement the <a href="qgesturerecognizer.html#recognize">recognize</a>() function to handle and filter the incoming input events for <a href="qwidget.html">QWidget</a> and <a href="qgraphicsobject.html">QGraphicsObject</a> subclasses. Although the logic for gesture recognition is implemented in this function, you can store persistent information about the state of the recognition process in the <a href="qgesture.html">QGesture</a> object supplied. The <a href="qgesturerecognizer.html#recognize">recognize</a>() function must return a value of <a href="qgesturerecognizer.html#ResultFlag-enum">QGestureRecognizer::Result</a> that indicates the state of recognition for a given gesture and target object. This determines whether or not a gesture event will be delivered to a target object.</p>
+<p>If you choose to represent a gesture by a custom <a href="qgesture.html">QGesture</a> subclass, you will need to reimplement the <a href="qgesturerecognizer.html#create">create</a>() function to construct instances of your gesture class. Similarly, you may need to reimplement the <a href="qgesturerecognizer.html#reset">reset</a>() function if your custom gesture objects need to be specially handled when a gesture is canceled.</p>
+<p>See also <a href="qgesture.html">QGesture</a>.</p>
+<hr />
+<h2>Member Type Documentation</h2>
+<a name="//apple_ref/cpp/tag/QGestureRecognizer/ResultFlag" />
+<a name="//apple_ref/cpp/econst/QGestureRecognizer/Ignore" />
+<a name="//apple_ref/cpp/econst/QGestureRecognizer/MayBeGesture" />
+<a name="//apple_ref/cpp/econst/QGestureRecognizer/TriggerGesture" />
+<a name="//apple_ref/cpp/econst/QGestureRecognizer/FinishGesture" />
+<a name="//apple_ref/cpp/econst/QGestureRecognizer/CancelGesture" />
+<a name="//apple_ref/cpp/econst/QGestureRecognizer/ConsumeEventHint" />
+<a name="//apple_ref/cpp/econst/QGestureRecognizer/ResultState_Mask" />
+<a name="//apple_ref/cpp/econst/QGestureRecognizer/ResultHint_Mask" />
+<a name="//apple_ref/cpp/tdef/QGestureRecognizer/Result" />
+<h3 class="flags"><a name="ResultFlag-enum"></a>enum QGestureRecognizer::ResultFlag<br />flags QGestureRecognizer::Result</h3>
+<p>This enum describes the result of the current event filtering step in a gesture recognizer state machine.</p>
+<p>The result consists of a state value (one of Ignore, MayBeGesture, TriggerGesture, FinishGesture, CancelGesture) and an optional hint (ConsumeEventHint).</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QGestureRecognizer::Ignore</tt></td><td align="center" valign="top"><tt>0x0001</tt></td><td valign="top">The event does not change the state of the recognizer.</td></tr>
+<tr><td valign="top"><tt>QGestureRecognizer::MayBeGesture</tt></td><td align="center" valign="top"><tt>0x0002</tt></td><td valign="top">The event changed the internal state of the recognizer, but it isn't clear yet if it is a gesture or not. The recognizer needs to filter more events to decide. Gesture recognizers in the MayBeGesture state may be reset automatically if they take too long to recognize gestures.</td></tr>
+<tr><td valign="top"><tt>QGestureRecognizer::TriggerGesture</tt></td><td align="center" valign="top"><tt>0x0004</tt></td><td valign="top">The gesture has been triggered and the appropriate <a href="qgesture.html">QGesture</a> object will be delivered to the target as a part of a <a href="qgestureevent.html">QGestureEvent</a>.</td></tr>
+<tr><td valign="top"><tt>QGestureRecognizer::FinishGesture</tt></td><td align="center" valign="top"><tt>0x0008</tt></td><td valign="top">The gesture has been finished successfully and the appropriate <a href="qgesture.html">QGesture</a> object will be delivered to the target as a part of a <a href="qgestureevent.html">QGestureEvent</a>.</td></tr>
+<tr><td valign="top"><tt>QGestureRecognizer::CancelGesture</tt></td><td align="center" valign="top"><tt>0x0010</tt></td><td valign="top">The event made it clear that it is not a gesture. If the gesture recognizer was in GestureTriggered state before, then the gesture is canceled and the appropriate <a href="qgesture.html">QGesture</a> object will be delivered to the target as a part of a <a href="qgestureevent.html">QGestureEvent</a>.</td></tr>
+<tr><td valign="top"><tt>QGestureRecognizer::ConsumeEventHint</tt></td><td align="center" valign="top"><tt>0x0100</tt></td><td valign="top">This hint specifies that the gesture framework should consume the filtered event and not deliver it to the receiver.</td></tr>
+</table></p>
+<p>The Result type is a typedef for <a href="qflags.html">QFlags</a>&lt;ResultFlag&gt;. It stores an OR combination of ResultFlag values.</p>
+<p>See also <a href="qgesturerecognizer.html#recognize">QGestureRecognizer::recognize</a>().</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QGestureRecognizer/QGestureRecognizer" />
+<h3 class="fn"><a name="QGestureRecognizer"></a>QGestureRecognizer::QGestureRecognizer ()</h3>
+<p>Constructs a new gesture recognizer object.</p>
+<a name="//apple_ref/cpp/instm/QGestureRecognizer/~QGestureRecognizer" />
+<h3 class="fn"><a name="dtor.QGestureRecognizer"></a>QGestureRecognizer::~QGestureRecognizer ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Destroys the gesture recognizer.</p>
+<a name="//apple_ref/cpp/instm/QGestureRecognizer/create" />
+<h3 class="fn"><a name="create"></a><a href="qgesture.html">QGesture</a> * QGestureRecognizer::create ( <a href="qobject.html">QObject</a> * <i>target</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>This function is called by Qt to create a new <a href="qgesture.html">QGesture</a> object for the given <i>target</i> (<a href="qwidget.html">QWidget</a> or <a href="qgraphicsobject.html">QGraphicsObject</a>).</p>
+<p>Reimplement this function to create a custom <a href="qgesture.html">QGesture</a>-derived gesture object if necessary.</p>
+<a name="//apple_ref/cpp/instm/QGestureRecognizer/recognize" />
+<h3 class="fn"><a name="recognize"></a><a href="qgesturerecognizer.html#ResultFlag-enum">Result</a> QGestureRecognizer::recognize ( <a href="qgesture.html">QGesture</a> * <i>gesture</i>, <a href="qobject.html">QObject</a> * <i>watched</i>, <a href="qevent.html">QEvent</a> * <i>event</i> )&nbsp;&nbsp;<tt> [pure virtual]</tt></h3>
+<p>Handles the given <i>event</i> for the <i>watched</i> object, updating the state of the <i>gesture</i> object as required, and returns a suitable result for the current recognition step.</p>
+<p>This function is called by the framework to allow the recognizer to filter input events dispatched to <a href="qwidget.html">QWidget</a> or <a href="qgraphicsobject.html">QGraphicsObject</a> instances that it is monitoring.</p>
+<p>The result reflects how much of the gesture has been recognized. The state of the <i>gesture</i> object is set depending on the result.</p>
+<p>See also <a href="qgesturerecognizer.html#ResultFlag-enum">QGestureRecognizer::Result</a>.</p>
+<a name="//apple_ref/cpp/clm/QGestureRecognizer/registerRecognizer" />
+<h3 class="fn"><a name="registerRecognizer"></a><a href="qt.html#GestureType-enum">Qt::GestureType</a> QGestureRecognizer::registerRecognizer ( QGestureRecognizer * <i>recognizer</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Registers the given <i>recognizer</i> in the gesture framework and returns a gesture ID for it.</p>
+<p>The application takes ownership of the <i>recognizer</i> and returns the gesture type ID associated with it. For gesture recognizers which handle custom <a href="qgesture.html">QGesture</a> objects (i.e&#x2e;, those which return <a href="qt.html#GestureType-enum">Qt::CustomGesture</a> in a <a href="qgesture.html#gestureType-prop">QGesture::gestureType</a>() function) the return value is a generated gesture ID with the <a href="qt.html#GestureType-enum">Qt::CustomGesture</a> flag set.</p>
+<p>See also <a href="qgesturerecognizer.html#unregisterRecognizer">unregisterRecognizer</a>(), <a href="qgesturerecognizer.html#create">QGestureRecognizer::create</a>(), and <a href="qgesture.html">QGesture</a>.</p>
+<a name="//apple_ref/cpp/instm/QGestureRecognizer/reset" />
+<h3 class="fn"><a name="reset"></a>void QGestureRecognizer::reset ( <a href="qgesture.html">QGesture</a> * <i>gesture</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>This function is called by the framework to reset a given <i>gesture</i>.</p>
+<p>Reimplement this function to implement additional requirements for custom <a href="qgesture.html">QGesture</a> objects. This may be necessary if you implement a custom <a href="qgesture.html">QGesture</a> whose properties need special handling when the gesture is reset.</p>
+<a name="//apple_ref/cpp/clm/QGestureRecognizer/unregisterRecognizer" />
+<h3 class="fn"><a name="unregisterRecognizer"></a>void QGestureRecognizer::unregisterRecognizer ( <a href="qt.html#GestureType-enum">Qt::GestureType</a> <i>type</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Unregisters all gesture recognizers of the specified <i>type</i>.</p>
+<p>See also <a href="qgesturerecognizer.html#registerRecognizer">registerRecognizer</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

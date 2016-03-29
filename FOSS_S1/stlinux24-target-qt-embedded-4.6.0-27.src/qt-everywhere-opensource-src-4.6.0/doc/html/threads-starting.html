@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- threads.qdoc -->
+<head>
+  <title>Qt 4.6: Starting Threads with QThread</title>
+  <link rel="contents" href="threads.html" />
+  <link rel="next" href="threads-synchronizing.html" />
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><p>
+[<a href="threads.html">Thread Support in Qt</a>]
+[Next: <a href="threads-synchronizing.html">Synchronizing Threads</a>]
+</p>
+<h1 class="title">Starting Threads with QThread<br /><span class="subtitle"></span>
+</h1>
+<p>A <a href="qthread.html">QThread</a> instance represents a thread and provides the means to <a href="qthread.html#start">start()</a> a thread, which will then execute the reimplementation of <a href="qthread.html#run">QThread::run</a>(). The <tt>run()</tt> implementation is for a thread what the <tt>main()</tt> entry point is for the application. All code executed in a call stack that starts in the <tt>run()</tt> function is executed by the new thread, and the thread finishes when the function returns. <a href="qthread.html">QThread</a> emits signals to indicate that the thread started or finished executing.</p>
+<a name="creating-a-thread"></a>
+<h2>Creating a Thread</h2>
+<p>To create a thread, subclass <a href="qthread.html">QThread</a> and reimplement its <a href="qthread.html#run">run()</a> function. For example:</p>
+<pre> class MyThread : public QThread
+ {
+     Q_OBJECT
+
+ protected:
+     void run();
+ };
+
+ void MyThread::run()
+ {
+     ...
+ }</pre>
+<a name="starting-a-thread"></a>
+<h2>Starting a Thread</h2>
+<p>Then, create an instance of the thread object and call <a href="qthread.html#start">QThread::start</a>(). Note that you must create the <a href="qapplication.html">QApplication</a> (or <a href="qcoreapplication.html">QCoreApplication</a>) object before you can create a <a href="qthread.html">QThread</a>.</p>
+<p>The function will return immediately and the main thread will continue. The code that appears in the <a href="qthread.html#run">run()</a> reimplementation will then be executed in a separate thread.</p>
+<p>Creating threads is explained in more detail in the <a href="qthread.html">QThread</a> documentation.</p>
+<p>Note that <a href="qcoreapplication.html#exec">QCoreApplication::exec</a>() must always be called from the main thread (the thread that executes <tt>main()</tt>), not from a <a href="qthread.html">QThread</a>. In GUI applications, the main thread is also called the GUI thread because it's the only thread that is allowed to perform GUI-related operations.</p>
+<p>
+[<a href="threads.html">Thread Support in Qt</a>]
+[Next: <a href="threads-synchronizing.html">Synchronizing Threads</a>]
+</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

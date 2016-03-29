@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- widgets-tutorial.qdoc -->
+<head>
+  <title>Qt 4.6: Widgets Tutorial - Child Widgets</title>
+  <link rel="prev" href="tutorials-widgets-toplevel.html" />
+  <link rel="contents" href="widgets-tutorial.html" />
+  <link rel="next" href="tutorials-widgets-windowlayout.html" />
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><p>
+[Previous: <a href="tutorials-widgets-toplevel.html">Widgets Tutorial - Creating a Window</a>]
+[<a href="widgets-tutorial.html">Contents</a>]
+[Next: <a href="tutorials-widgets-windowlayout.html">Widgets Tutorial - Using Layouts</a>]
+</p>
+<h1 class="title">Widgets Tutorial - Child Widgets<br /><span class="subtitle"></span>
+</h1>
+<p>Files:</p>
+<ul>
+<li><a href="tutorials-widgets-childwidget-main-cpp.html">tutorials/widgets/childwidget/main.cpp</a></li>
+<li><a href="tutorials-widgets-childwidget-childwidget-pro.html">tutorials/widgets/childwidget/childwidget.pro</a></li>
+</ul>
+<p>We can add a child widget to the window created in the previous example by passing <tt>window</tt> as the parent to its constructor. In this case, we add a button to the window and place it in a specific location:</p>
+    <table align="left" width="100%">
+    <tr class="qt-code"><td>
+    <pre> #include &lt;QtGui&gt;
+
+ int main(int argc, char *argv[])
+ {
+     QApplication app(argc, argv);
+     QWidget window;
+     window.resize(320, 240);
+     window.setWindowTitle(QApplication::translate(&quot;childwidget&quot;, &quot;Child widget&quot;));
+     window.show();
+
+     QPushButton *button = new QPushButton(
+         QApplication::translate(&quot;childwidget&quot;, &quot;Press me&quot;), &amp;window);
+     button-&gt;move(100, 100);
+     button-&gt;show();
+     return app.exec();
+ }</pre>
+    </td><td align="right">
+    <p><img src="images/widgets-tutorial-childwidget.png" /></p>
+    </td></tr>
+    </table>
+    <p>The button is now a child of the window and will be deleted when the window is destroyed. Note that hiding or closing the window does not automatically destroy it. It will be destroyed when the example exits.</p>
+<p>
+[Previous: <a href="tutorials-widgets-toplevel.html">Widgets Tutorial - Creating a Window</a>]
+[<a href="widgets-tutorial.html">Contents</a>]
+[Next: <a href="tutorials-widgets-windowlayout.html">Widgets Tutorial - Using Layouts</a>]
+</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

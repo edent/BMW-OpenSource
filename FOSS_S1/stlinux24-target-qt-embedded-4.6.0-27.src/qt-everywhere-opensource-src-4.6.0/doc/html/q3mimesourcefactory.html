@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- q3mimefactory.cpp -->
+<head>
+  <title>Qt 4.6: Q3MimeSourceFactory Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//Q3MimeSourceFactory" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">Q3MimeSourceFactory Class Reference<br /><span class="small-subtitle">[<a href="qt3support.html">Qt3Support</a> module]</span>
+</h1>
+<p>The Q3MimeSourceFactory class is an extensible provider of mime-typed data. <a href="#details">More...</a></p>
+<pre> #include &lt;Q3MimeSourceFactory&gt;</pre><p><b>This class is part of the Qt 3 support library.</b> It is provided to keep old source code working. We strongly advise against using it in new code. See <a href="porting4.html#qmimesourcefactory">Porting to Qt 4</a> for more information.</p>
+<ul>
+<li><a href="q3mimesourcefactory-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="q3mimesourcefactory.html#Q3MimeSourceFactory">Q3MimeSourceFactory</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual </td><td class="memItemRight" valign="bottom"><b><a href="q3mimesourcefactory.html#dtor.Q3MimeSourceFactory">~Q3MimeSourceFactory</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="q3mimesourcefactory.html#addFilePath">addFilePath</a></b> ( const QString &amp; <i>p</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual const QMimeSource * </td><td class="memItemRight" valign="bottom"><b><a href="q3mimesourcefactory.html#data">data</a></b> ( const QString &amp; <i>abs_name</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const QMimeSource * </td><td class="memItemRight" valign="bottom"><b><a href="q3mimesourcefactory.html#data-2">data</a></b> ( const QString &amp; <i>abs_or_rel_name</i>, const QString &amp; <i>context</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QStringList </td><td class="memItemRight" valign="bottom"><b><a href="q3mimesourcefactory.html#filePath">filePath</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QString </td><td class="memItemRight" valign="bottom"><b><a href="q3mimesourcefactory.html#makeAbsolute">makeAbsolute</a></b> ( const QString &amp; <i>abs_or_rel_name</i>, const QString &amp; <i>context</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="q3mimesourcefactory.html#setData">setData</a></b> ( const QString &amp; <i>abs_name</i>, QMimeSource * <i>data</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="q3mimesourcefactory.html#setExtensionType">setExtensionType</a></b> ( const QString &amp; <i>ext</i>, const char * <i>mimetype</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="q3mimesourcefactory.html#setFilePath">setFilePath</a></b> ( const QStringList &amp; <i>path</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="q3mimesourcefactory.html#setFilePath-2">setFilePath</a></b> ( const QString &amp; <i>path</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="q3mimesourcefactory.html#setImage">setImage</a></b> ( const QString &amp; <i>abs_name</i>, const QImage &amp; <i>image</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="q3mimesourcefactory.html#setPixmap">setPixmap</a></b> ( const QString &amp; <i>abs_name</i>, const QPixmap &amp; <i>pixmap</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="q3mimesourcefactory.html#setText">setText</a></b> ( const QString &amp; <i>abs_name</i>, const QString &amp; <i>text</i> )</td></tr>
+</table>
+<hr />
+<a name="static-public-members"></a>
+<h2>Static Public Members</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="q3mimesourcefactory.html#addFactory">addFactory</a></b> ( Q3MimeSourceFactory * <i>f</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Q3MimeSourceFactory * </td><td class="memItemRight" valign="bottom"><b><a href="q3mimesourcefactory.html#defaultFactory">defaultFactory</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="q3mimesourcefactory.html#removeFactory">removeFactory</a></b> ( Q3MimeSourceFactory * <i>f</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="q3mimesourcefactory.html#setDefaultFactory">setDefaultFactory</a></b> ( Q3MimeSourceFactory * <i>factory</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Q3MimeSourceFactory * </td><td class="memItemRight" valign="bottom"><b><a href="q3mimesourcefactory.html#takeDefaultFactory">takeDefaultFactory</a></b> ()</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The Q3MimeSourceFactory class is an extensible provider of mime-typed data.</p>
+<p>A Q3MimeSourceFactory provides an abstract interface to a collection of information. Each piece of information is represented by a <a href="qmimesource.html" class="obsolete">QMimeSource</a> object which can be examined and converted to concrete data types by functions such as <a href="q3imagedrag.html#canDecode">Q3ImageDrag::canDecode</a>() and <a href="q3imagedrag.html#decode">Q3ImageDrag::decode</a>().</p>
+<p>The base Q3MimeSourceFactory can be used in two ways: as an abstraction of a collection of files or as specifically stored data. For it to access files, call <a href="q3mimesourcefactory.html#setFilePath">setFilePath</a>() before accessing data. For stored data, call <a href="q3mimesourcefactory.html#setData">setData</a>() for each item (there are also convenience functions, e.g&#x2e; <a href="q3mimesourcefactory.html#setText">setText</a>(), <a href="q3mimesourcefactory.html#setImage">setImage</a>() and <a href="q3mimesourcefactory.html#setPixmap">setPixmap</a>(), that simply call <a href="q3mimesourcefactory.html#setData">setData</a>() with appropriate parameters).</p>
+<p>The rich text widgets, <a href="qtextedit.html">QTextEdit</a> and <a href="qtextbrowser.html">QTextBrowser</a>, use Q3MimeSourceFactory to resolve references such as images or links within rich text documents. They either access the default factory (see <a href="q3mimesourcefactory.html#defaultFactory">defaultFactory</a>()) or their own. Other classes that are capable of displaying rich text (such as <a href="qlabel.html">QLabel</a>, <a href="qwhatsthis.html">QWhatsThis</a> or <a href="qmessagebox.html">QMessageBox</a>) always use the default factory.</p>
+<p>A factory can also be used as a container to store data associated with a name. This technique is useful whenever rich text contains images that are stored in the program itself, not loaded from the hard disk. Your program may, for example, define some image data as:</p>
+<pre> static const char* myimage_data[]={
+ &quot;...&quot;,
+ ...
+ &quot;...&quot;};</pre>
+<p>To be able to use this image within some rich text, for example inside a <a href="qlabel.html">QLabel</a>, you must create a <a href="qimage.html">QImage</a> from the raw data and insert it into the factory with a unique name:</p>
+<pre> Q3MimeSourceFactory::defaultFactory()-&gt;setImage(&quot;myimage&quot;, QImage(myimage_data));</pre>
+<p>Now you can create a rich text <a href="qlabel.html">QLabel</a> with</p>
+<pre> QLabel* label = new QLabel(
+     &quot;Rich text with embedded image:&lt;img source=\&quot;myimage\&quot;&gt;&quot;
+     &quot;Isn't that &lt;em&gt;cute&lt;/em&gt;?&quot;);</pre>
+<p>When no longer needed, you can clear the data from the factory:</p>
+<pre> delete label;
+ Q3MimeSourceFactory::defaultFactory()-&gt;setData(&quot;myimage&quot;, 0);</pre>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/Q3MimeSourceFactory/Q3MimeSourceFactory" />
+<h3 class="fn"><a name="Q3MimeSourceFactory"></a>Q3MimeSourceFactory::Q3MimeSourceFactory ()</h3>
+<p>Constructs a <a href="q3mimesourcefactory.html" class="compat">Q3MimeSourceFactory</a> that has no file path and no stored content.</p>
+<a name="//apple_ref/cpp/instm/Q3MimeSourceFactory/~Q3MimeSourceFactory" />
+<h3 class="fn"><a name="dtor.Q3MimeSourceFactory"></a>Q3MimeSourceFactory::~Q3MimeSourceFactory ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Destroys the <a href="q3mimesourcefactory.html" class="compat">Q3MimeSourceFactory</a>, deleting all stored content.</p>
+<a name="//apple_ref/cpp/clm/Q3MimeSourceFactory/addFactory" />
+<h3 class="fn"><a name="addFactory"></a>void Q3MimeSourceFactory::addFactory ( Q3MimeSourceFactory * <i>f</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Adds the <a href="q3mimesourcefactory.html" class="compat">Q3MimeSourceFactory</a> <i>f</i> to the list of available mimesource factories. If the <a href="q3mimesourcefactory.html#defaultFactory">defaultFactory</a>() can't resolve a <a href="q3mimesourcefactory.html#data">data</a>() it iterates over the list of installed mimesource factories until the data can be resolved.</p>
+<p>See also <a href="q3mimesourcefactory.html#removeFactory">removeFactory</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3MimeSourceFactory/addFilePath" />
+<h3 class="fn"><a name="addFilePath"></a>void Q3MimeSourceFactory::addFilePath ( const <a href="qstring.html">QString</a> &amp; <i>p</i> )</h3>
+<p>Adds another search path, <i>p</i> to the existing search paths.</p>
+<p>See also <a href="q3mimesourcefactory.html#setFilePath">setFilePath</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3MimeSourceFactory/data" />
+<h3 class="fn"><a name="data"></a>const <a href="qmimesource.html">QMimeSource</a> * Q3MimeSourceFactory::data ( const <a href="qstring.html">QString</a> &amp; <i>abs_name</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Returns a reference to the data associated with <i>abs_name</i>. The return value remains valid only until the next data() or <a href="q3mimesourcefactory.html#setData">setData</a>() call, so you should immediately decode the result.</p>
+<p>If there is no data associated with <i>abs_name</i> in the factory's store, the factory tries to access the local filesystem. If <i>abs_name</i> isn't an absolute file name, the factory will search for it in all defined paths (see <a href="q3mimesourcefactory.html#setFilePath">setFilePath</a>()).</p>
+<p>The factory understands all the image formats supported by <a href="qimagereader.html">QImageReader</a>. Any other mime types are determined by the file name extension. The default settings are</p>
+<pre> setExtensionType(&quot;html&quot;, &quot;text/html;charset=iso8859-1&quot;);
+ setExtensionType(&quot;htm&quot;, &quot;text/html;charset=iso8859-1&quot;);
+ setExtensionType(&quot;txt&quot;, &quot;text/plain&quot;);
+ setExtensionType(&quot;xml&quot;, &quot;text/xml;charset=UTF-8&quot;);</pre>
+<p>The effect of these is that file names ending in &quot;txt&quot; will be treated as text encoded in the local encoding; those ending in &quot;xml&quot; will be treated as text encoded in Unicode UTF-8 encoding. The text/html type is treated specially, since the encoding can be specified in the html file itself. &quot;html&quot; or &quot;htm&quot; will be treated as text encoded in the encoding specified by the html meta tag, if none could be found, the charset of the mime type will be used. The text subtype (&quot;html&quot;, &quot;plain&quot;, or &quot;xml&quot;) does not affect the factory, but users of the factory may behave differently. We recommend creating &quot;xml&quot; files where practical. These files can be viewed regardless of the runtime encoding and can encode any Unicode characters without resorting to encoding definitions inside the file.</p>
+<p>Any file data that is not recognized will be retrieved as a <a href="qmimesource.html" class="obsolete">QMimeSource</a> providing the &quot;application/octet-stream&quot; mime type, meaning uninterpreted binary data.</p>
+<p>You can add further extensions or change existing ones with subsequent calls to <a href="q3mimesourcefactory.html#setExtensionType">setExtensionType</a>(). If the extension mechanism is not sufficient for your problem domain, you can inherit <a href="q3mimesourcefactory.html" class="compat">Q3MimeSourceFactory</a> and reimplement this function to perform some more specialized mime-type detection. The same applies if you want to use the mime source factory to access URL referenced data over a network.</p>
+<p>See also <a href="q3mimesourcefactory.html#setData">setData</a>().</p>
+<h3 class="fn"><a name="data-2"></a>const <a href="qmimesource.html">QMimeSource</a> * Q3MimeSourceFactory::data ( const <a href="qstring.html">QString</a> &amp; <i>abs_or_rel_name</i>, const <a href="qstring.html">QString</a> &amp; <i>context</i> ) const</h3>
+<p>This is an overloaded function.</p>
+<p>A convenience function. See data(const <a href="qstring.html">QString</a>&amp; abs_name). The file name is given in <i>abs_or_rel_name</i> and the path is in <i>context</i>.</p>
+<a name="//apple_ref/cpp/clm/Q3MimeSourceFactory/defaultFactory" />
+<h3 class="fn"><a name="defaultFactory"></a>Q3MimeSourceFactory * Q3MimeSourceFactory::defaultFactory ()&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Returns the application-wide default mime source factory. This factory is used by rich text rendering classes such as <a href="porting4.html#qsimplerichtext">QSimpleRichText</a>, <a href="qwhatsthis.html">QWhatsThis</a> and <a href="qmessagebox.html">QMessageBox</a> to resolve named references within rich text documents. It serves also as the initial factory for the more complex render widgets, <a href="qtextedit.html">QTextEdit</a> and <a href="qtextbrowser.html">QTextBrowser</a>.</p>
+<p>See also <a href="q3mimesourcefactory.html#setDefaultFactory">setDefaultFactory</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3MimeSourceFactory/filePath" />
+<h3 class="fn"><a name="filePath"></a><a href="qstringlist.html">QStringList</a> Q3MimeSourceFactory::filePath () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Returns the currently set search paths.</p>
+<p>See also <a href="q3mimesourcefactory.html#setFilePath">setFilePath</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3MimeSourceFactory/makeAbsolute" />
+<h3 class="fn"><a name="makeAbsolute"></a><a href="qstring.html">QString</a> Q3MimeSourceFactory::makeAbsolute ( const <a href="qstring.html">QString</a> &amp; <i>abs_or_rel_name</i>, const <a href="qstring.html">QString</a> &amp; <i>context</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Converts the absolute or relative data item name <i>abs_or_rel_name</i> to an absolute name, interpreted within the context (path) of the data item named <i>context</i> (this must be an absolute name).</p>
+<a name="//apple_ref/cpp/clm/Q3MimeSourceFactory/removeFactory" />
+<h3 class="fn"><a name="removeFactory"></a>void Q3MimeSourceFactory::removeFactory ( Q3MimeSourceFactory * <i>f</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Removes the mimesource factory <i>f</i> from the list of available mimesource factories.</p>
+<p>See also <a href="q3mimesourcefactory.html#addFactory">addFactory</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3MimeSourceFactory/setData" />
+<h3 class="fn"><a name="setData"></a>void Q3MimeSourceFactory::setData ( const <a href="qstring.html">QString</a> &amp; <i>abs_name</i>, <a href="qmimesource.html">QMimeSource</a> * <i>data</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Sets <i>data</i> to be the data item associated with the absolute name <i>abs_name</i>. Note that the ownership of <i>data</i> is transferred to the factory: do not delete or access the pointer after passing it to this function.</p>
+<p>Passing 0 for data removes previously stored data.</p>
+<p>See also <a href="q3mimesourcefactory.html#data">data</a>().</p>
+<a name="//apple_ref/cpp/clm/Q3MimeSourceFactory/setDefaultFactory" />
+<h3 class="fn"><a name="setDefaultFactory"></a>void Q3MimeSourceFactory::setDefaultFactory ( Q3MimeSourceFactory * <i>factory</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Sets the default <i>factory</i>, destroying any previously set mime source provider. The ownership of the factory is transferred to Qt.</p>
+<p>See also <a href="q3mimesourcefactory.html#defaultFactory">defaultFactory</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3MimeSourceFactory/setExtensionType" />
+<h3 class="fn"><a name="setExtensionType"></a>void Q3MimeSourceFactory::setExtensionType ( const <a href="qstring.html">QString</a> &amp; <i>ext</i>, const char * <i>mimetype</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Sets the mime-type to be associated with the file name extension, <i>ext</i> to <i>mimetype</i>. This determines the mime-type for files found via the paths set by <a href="q3mimesourcefactory.html#setFilePath">setFilePath</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3MimeSourceFactory/setFilePath" />
+<h3 class="fn"><a name="setFilePath"></a>void Q3MimeSourceFactory::setFilePath ( const <a href="qstringlist.html">QStringList</a> &amp; <i>path</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Sets the list of directories that will be searched when named data is requested to those given in the string list <i>path</i>.</p>
+<p>See also <a href="q3mimesourcefactory.html#filePath">filePath</a>().</p>
+<h3 class="fn"><a name="setFilePath-2"></a>void Q3MimeSourceFactory::setFilePath ( const <a href="qstring.html">QString</a> &amp; <i>path</i> )</h3>
+<p>Sets the list of directories that will be searched when named data is requested to those given in the string list <i>path</i>.</p>
+<p>See also <a href="q3mimesourcefactory.html#filePath">filePath</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3MimeSourceFactory/setImage" />
+<h3 class="fn"><a name="setImage"></a>void Q3MimeSourceFactory::setImage ( const <a href="qstring.html">QString</a> &amp; <i>abs_name</i>, const <a href="qimage.html">QImage</a> &amp; <i>image</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Sets <i>image</i> to be the data item associated with the absolute name <i>abs_name</i>.</p>
+<p>Equivalent to setData(abs_name, new <a href="q3imagedrag.html" class="compat">Q3ImageDrag</a>(image)).</p>
+<a name="//apple_ref/cpp/instm/Q3MimeSourceFactory/setPixmap" />
+<h3 class="fn"><a name="setPixmap"></a>void Q3MimeSourceFactory::setPixmap ( const <a href="qstring.html">QString</a> &amp; <i>abs_name</i>, const <a href="qpixmap.html">QPixmap</a> &amp; <i>pixmap</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Sets <i>pixmap</i> to be the data item associated with the absolute name <i>abs_name</i>.</p>
+<a name="//apple_ref/cpp/instm/Q3MimeSourceFactory/setText" />
+<h3 class="fn"><a name="setText"></a>void Q3MimeSourceFactory::setText ( const <a href="qstring.html">QString</a> &amp; <i>abs_name</i>, const <a href="qstring.html">QString</a> &amp; <i>text</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Sets <i>text</i> to be the data item associated with the absolute name <i>abs_name</i>.</p>
+<p>Equivalent to setData(abs_name, new <a href="q3textdrag.html" class="compat">Q3TextDrag</a>(text)).</p>
+<a name="//apple_ref/cpp/clm/Q3MimeSourceFactory/takeDefaultFactory" />
+<h3 class="fn"><a name="takeDefaultFactory"></a>Q3MimeSourceFactory * Q3MimeSourceFactory::takeDefaultFactory ()&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Sets the <a href="q3mimesourcefactory.html#defaultFactory">defaultFactory</a>() to 0 and returns the previous one.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

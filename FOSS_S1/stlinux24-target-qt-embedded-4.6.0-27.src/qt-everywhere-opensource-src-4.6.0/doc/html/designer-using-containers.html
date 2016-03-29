@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- designer-manual.qdoc -->
+<head>
+  <title>Qt 4.6: Using Containers in Qt Designer</title>
+  <link rel="prev" href="designer-tab-order.html" />
+  <link rel="contents" href="designer-manual.html" />
+  <link rel="next" href="designer-creating-mainwindows.html" />
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><p>
+[Previous: <a href="designer-tab-order.html">Qt Designer's Tab Order Editing Mode</a>]
+[<a href="designer-manual.html">Contents</a>]
+[Next: <a href="designer-creating-mainwindows.html">Creating Main Windows in Qt Designer</a>]
+</p>
+<h1 class="title">Using Containers in Qt Designer<br /><span class="subtitle"></span>
+</h1>
+<p>Container widgets provide high level control over groups of objects on a form. They can be used to perform a variety of functions, such as managing input widgets, providing paged and tabbed layouts, or just acting as decorative containers for other objects.</p>
+<p align="center"><img src="images/designer-widget-morph.png" /></p><p><i>Qt Designer</i> provides visual feedback to help you place objects inside your containers. When you drag an object from the widget box (or elsewhere) on the form, each container will be highlighted when the cursor is positioned over it. This indicates that you can drop the object inside, making it a child object of the container. This feedback is important because it is easy to place objects close to containers without actually placing them inside. Both widgets and spacers can be used inside containers.</p>
+<p>Stacked widgets, tab widgets, and toolboxes are handled specially in <i>Qt Designer</i>. Normally, when adding pages (tabs, pages, compartments) to these containers in your own code, you need to supply existing widgets, either as placeholders or containing child widgets. In <i>Qt Designer</i>, these are automatically created for you, so you can add child objects to each page straight away.</p>
+<p>Each container typically allows its child objects to be arranged in one or more layouts. The type of layout management provided depends on each container, although setting the layout is usually just a matter of selecting the container by clicking it, and applying a layout. The table below shows a list of available containers.</p>
+<p><table class="generic" align="center" cellpadding="2" cellspacing="1" border="0">
+<tr valign="top" class="odd"><td><img src="images/designer-containers-frame.png" /></td><td><b>Frames</b><p>Frames are used to enclose and group widgets, as well as to provide decoration. They are used as the foundation for more complex containers, but they can also be used as placeholders in forms.</p>
+<p>The most important properties of frames are <tt>frameShape</tt>, <tt>frameShadow</tt>, <tt>lineWidth</tt>, and <tt>midLineWidth</tt>. These are described in more detail in the <a href="qframe.html">QFrame</a> class description.</p>
+</td></tr>
+<tr valign="top" class="even"><td><img src="images/designer-containers-groupbox.png" /></td><td><b>Group Boxes</b><p>Group boxes are usually used to group together collections of checkboxes and radio buttons with similar purposes.</p>
+<p>Among the significant properties of group boxes are <tt>title</tt>, <tt>flat</tt>, <tt>checkable</tt>, and <tt>checked</tt>. These are demonstrated in the <a href="widgets-groupbox.html">Group Box</a> example, and described in the <a href="qgroupbox.html">QGroupBox</a> class documentation. Each group box can contain its own layout, and this is necessary if it contains other widgets. To add a layout to the group box, click inside it and apply the layout as usual.</p>
+</td></tr>
+<tr valign="top" class="odd"><td><img src="images/designer-containers-stackedwidget.png" /></td><td><b>Stacked Widgets</b><p>Stacked widgets are collections of widgets in which only the topmost layer is visible. Control over the visible layer is usually managed by another widget, such as combobox, using signals and slots.</p>
+<p><i>Qt Designer</i> shows arrows in the top-right corner of the stack to allow you to see all the widgets in the stack when designing it. These arrows do not appear in the preview or in the final component. To navigate between pages in the stack, select the stacked widget and use the <b>Next Page</b> and <b>Previous Page</b> entries from the context menu. The <b>Insert Page</b> and <b>Delete Page</b> context menu options allow you to add and remove pages.</p>
+</td></tr>
+<tr valign="top" class="even"><td><img src="images/designer-containers-tabwidget.png" /></td><td><b>Tab Widgets</b><p>Tab widgets allow the developer to split up the contents of a widget into different labelled sections, only one of which is displayed at any given time. By default, the tab widget contains two tabs, and these can be deleted or renamed as required. You can also add additional tabs.</p>
+<p>To delete a tab:</p>
+<ul>
+<li>Click on its label to make it the current tab.</li>
+<li>Select the tab widget and open its context menu.</li>
+<li>Select <b>Delete Page</b>.</li>
+</ul>
+<p>To add a new tab:</p>
+<ul>
+<li>Select the tab widget and open its context menu.</li>
+<li>Select <b>Insert Page</b>.</li>
+<li>You can add a page before or after the <i>current</i> page. <i>Qt Designer</i> will create a new widget for that particular tab and insert it into the tab widget.</li>
+<li>You can set the title of the current tab by changing the <tt>currentTabText</tt> property in the <b>Property Editor</b>.</li>
+</ul>
+</td></tr>
+<tr valign="top" class="odd"><td><img src="images/designer-containers-toolbox.png" /></td><td><b>ToolBox Widgets</b><p>Toolbox widgets provide a series of pages or compartments in a toolbox. They are handled in a way similar to stacked widgets.</p>
+<p>To rename a page in a toolbox, make the toolbox your current pange and change its <tt>currentItemText</tt> property from the <b>Property Editor</b>.</p>
+<p>To add a new page, select <b>Insert Page</b> from the toolbox widget's context menu. You can add the page before or after the current page.</p>
+<p>To delete a page, select <b>Delete Page</b> from the toolbox widget's context menu.</p>
+</td></tr>
+<tr valign="top" class="even"><td><img src="images/designer-containers-dockwidget.png" /></td><td><b>Dock Widgets</b><p>Dock widgets are floating panels, often containing input widgets and more complex controls, that are either attached to the edges of the main window in &quot;dock areas&quot;, or floated as independent tool windows.</p>
+<p>Although dock widgets can be added to any type of form, they are typically used with forms created from the <a href="designer-creating-mainwindows.html">main window template</a>.</p>
+</td></tr>
+</table></p>
+<p>
+[Previous: <a href="designer-tab-order.html">Qt Designer's Tab Order Editing Mode</a>]
+[<a href="designer-manual.html">Contents</a>]
+[Next: <a href="designer-creating-mainwindows.html">Creating Main Windows in Qt Designer</a>]
+</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

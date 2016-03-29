@@ -1,0 +1,45 @@
+\raw HTML
+//! [0]
+<object ID="QSimpleAX" CLASSID="CLSID:DF16845C-92CD-4AAB-A982-EB9840E74669"
+CODEBASE="http://qt.nokia.com/demos/simpleax.cab">
+    <PARAM NAME="text" VALUE="A simple control" />
+    <PARAM NAME="value" VALUE="1" />
+[Object not available! Did you forget to build and register the server?]
+</object>
+//! [0] //! [1]
+
+<FORM>
+    <INPUT TYPE="BUTTON" VALUE="About..." onClick="QSimpleAX.about()" />
+</FORM>
+//! [1]
+
+//! [2]
+<object ID="Calendar" CLASSID="CLSID:8E27C92B-1264-101C-8A2F-040224009C02">
+[Standard Calendar control not available!]
+    <PARAM NAME="day" VALUE="1" />
+</object>
+//! [2]
+
+<FORM>
+    <INPUT TYPE="BUTTON" VALUE="Today" onClick="Calendar.Today()" />
+</FORM>
+
+//! [3]
+<SCRIPT LANGUAGE="VBScript">
+Sub Calendar_Click()
+    MsgBox( "Calendar Clicked!" )
+End Sub
+
+Sub QSimpleAX_TextChanged( str )
+    document.title = str
+End Sub
+</SCRIPT>
+
+<SCRIPT LANGUAGE="JavaScript">
+function QSimpleAX::ValueChanged( Newvalue )
+{
+    Calendar.Day = Newvalue;
+}
+</SCRIPT>
+//! [3]
+\endraw

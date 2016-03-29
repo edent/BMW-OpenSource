@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: car.cpp Example File (dbus/remotecontrolledcar/car/car.cpp)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">car.cpp Example File<br /><span class="small-subtitle">dbus/remotecontrolledcar/car/car.cpp</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the examples of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+
+ #include &quot;car.h&quot;
+ #include &lt;QtGui/QtGui&gt;
+ #include &lt;math.h&gt;
+
+ static const double Pi = 3.14159265358979323846264338327950288419717;
+
+ QRectF Car::boundingRect() const
+ {
+     return QRectF(-35, -81, 70, 115);
+ }
+
+ Car::Car() : color(Qt::green), wheelsAngle(0), speed(0)
+ {
+     startTimer(1000 / 33);
+     setFlag(QGraphicsItem::ItemIsMovable, true);
+     setFlag(QGraphicsItem::ItemIsFocusable, true);
+ }
+
+ void Car::accelerate()
+ {
+     if (speed &lt; 10)
+         ++speed;
+ }
+
+ void Car::decelerate()
+ {
+     if (speed &gt; -10)
+         --speed;
+ }
+
+ void Car::turnLeft()
+ {
+     if (wheelsAngle &gt; -30)
+         wheelsAngle -= 5;
+ }
+
+ void Car::turnRight()
+ {
+     if (wheelsAngle &lt; 30)
+        wheelsAngle += 5;
+ }
+
+ void Car::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+ {
+     Q_UNUSED(option);
+     Q_UNUSED(widget);
+
+     painter-&gt;setBrush(Qt::gray);
+     painter-&gt;drawRect(-20, -58, 40, 2); <span class="comment">// front axel</span>
+     painter-&gt;drawRect(-20, 7, 40, 2); <span class="comment">// rear axel</span>
+
+     painter-&gt;setBrush(color);
+     painter-&gt;drawRect(-25, -79, 50, 10); <span class="comment">// front wing</span>
+
+     painter-&gt;drawEllipse(-25, -48, 50, 20); <span class="comment">// side pods</span>
+     painter-&gt;drawRect(-25, -38, 50, 35); <span class="comment">// side pods</span>
+     painter-&gt;drawRect(-5, 9, 10, 10); <span class="comment">// back pod</span>
+
+     painter-&gt;drawEllipse(-10, -81, 20, 100); <span class="comment">// main body</span>
+
+     painter-&gt;drawRect(-17, 19, 34, 15); <span class="comment">// rear wing</span>
+
+     painter-&gt;setBrush(Qt::black);
+     painter-&gt;drawPie(-5, -51, 10, 15, 0, 180 * 16);
+     painter-&gt;drawRect(-5, -44, 10, 10); <span class="comment">// cocpit</span>
+
+     painter-&gt;save();
+     painter-&gt;translate(-20, -58);
+     painter-&gt;rotate(wheelsAngle);
+     painter-&gt;drawRect(-10, -7, 10, 15); <span class="comment">// front left</span>
+     painter-&gt;restore();
+
+     painter-&gt;save();
+     painter-&gt;translate(20, -58);
+     painter-&gt;rotate(wheelsAngle);
+     painter-&gt;drawRect(0, -7, 10, 15); <span class="comment">// front left</span>
+     painter-&gt;restore();
+
+     painter-&gt;drawRect(-30, 0, 12, 17); <span class="comment">// rear left</span>
+     painter-&gt;drawRect(19, 0, 12, 17);  <span class="comment">// rear right</span>
+ }
+
+ void Car::timerEvent(QTimerEvent *event)
+ {
+     Q_UNUSED(event);
+
+     const qreal axelDistance = 54;
+     qreal wheelsAngleRads = (wheelsAngle * Pi) / 180;
+     qreal turnDistance = ::cos(wheelsAngleRads) * axelDistance * 2;
+     qreal turnRateRads = wheelsAngleRads / turnDistance;  <span class="comment">// rough estimate</span>
+     qreal turnRate = (turnRateRads * 180) / Pi;
+     qreal rotation = speed * turnRate;
+
+     rotate(rotation);
+     translate(0, -speed);
+     update();
+ }</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

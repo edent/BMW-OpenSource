@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: mainwindow.cpp Example File (painting/svgviewer/mainwindow.cpp)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">mainwindow.cpp Example File<br /><span class="small-subtitle">painting/svgviewer/mainwindow.cpp</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the examples of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+
+ #include &quot;mainwindow.h&quot;
+
+ #include &lt;QtGui&gt;
+
+ #include &quot;svgview.h&quot;
+
+ MainWindow::MainWindow()
+     : QMainWindow()
+     , m_view(new SvgView)
+ {
+     QMenu *fileMenu = new QMenu(tr(&quot;&amp;File&quot;), this);
+     QAction *openAction = fileMenu-&gt;addAction(tr(&quot;&amp;Open...&quot;));
+     openAction-&gt;setShortcut(QKeySequence(tr(&quot;Ctrl+O&quot;)));
+     QAction *quitAction = fileMenu-&gt;addAction(tr(&quot;E&amp;xit&quot;));
+     quitAction-&gt;setShortcuts(QKeySequence::Quit);
+
+     menuBar()-&gt;addMenu(fileMenu);
+
+     QMenu *viewMenu = new QMenu(tr(&quot;&amp;View&quot;), this);
+     m_backgroundAction = viewMenu-&gt;addAction(tr(&quot;&amp;Background&quot;));
+     m_backgroundAction-&gt;setEnabled(false);
+     m_backgroundAction-&gt;setCheckable(true);
+     m_backgroundAction-&gt;setChecked(false);
+     connect(m_backgroundAction, SIGNAL(toggled(bool)), m_view, SLOT(setViewBackground(bool)));
+
+     m_outlineAction = viewMenu-&gt;addAction(tr(&quot;&amp;Outline&quot;));
+     m_outlineAction-&gt;setEnabled(false);
+     m_outlineAction-&gt;setCheckable(true);
+     m_outlineAction-&gt;setChecked(true);
+     connect(m_outlineAction, SIGNAL(toggled(bool)), m_view, SLOT(setViewOutline(bool)));
+
+     menuBar()-&gt;addMenu(viewMenu);
+
+     QMenu *rendererMenu = new QMenu(tr(&quot;&amp;Renderer&quot;), this);
+     m_nativeAction = rendererMenu-&gt;addAction(tr(&quot;&amp;Native&quot;));
+     m_nativeAction-&gt;setCheckable(true);
+     m_nativeAction-&gt;setChecked(true);
+ #ifndef QT_NO_OPENGL
+     m_glAction = rendererMenu-&gt;addAction(tr(&quot;&amp;OpenGL&quot;));
+     m_glAction-&gt;setCheckable(true);
+ #endif
+     m_imageAction = rendererMenu-&gt;addAction(tr(&quot;&amp;Image&quot;));
+     m_imageAction-&gt;setCheckable(true);
+
+ #ifndef QT_NO_OPENGL
+     rendererMenu-&gt;addSeparator();
+     m_highQualityAntialiasingAction = rendererMenu-&gt;addAction(tr(&quot;&amp;High Quality Antialiasing&quot;));
+     m_highQualityAntialiasingAction-&gt;setEnabled(false);
+     m_highQualityAntialiasingAction-&gt;setCheckable(true);
+     m_highQualityAntialiasingAction-&gt;setChecked(false);
+     connect(m_highQualityAntialiasingAction, SIGNAL(toggled(bool)), m_view, SLOT(setHighQualityAntialiasing(bool)));
+ #endif
+
+     QActionGroup *rendererGroup = new QActionGroup(this);
+     rendererGroup-&gt;addAction(m_nativeAction);
+ #ifndef QT_NO_OPENGL
+     rendererGroup-&gt;addAction(m_glAction);
+ #endif
+     rendererGroup-&gt;addAction(m_imageAction);
+
+     menuBar()-&gt;addMenu(rendererMenu);
+
+     connect(openAction, SIGNAL(triggered()), this, SLOT(openFile()));
+     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
+     connect(rendererGroup, SIGNAL(triggered(QAction *)),
+             this, SLOT(setRenderer(QAction *)));
+
+     setCentralWidget(m_view);
+     setWindowTitle(tr(&quot;SVG Viewer&quot;));
+ }
+
+ void MainWindow::openFile(const QString &amp;path)
+ {
+     QString fileName;
+     if (path.isNull())
+         fileName = QFileDialog::getOpenFileName(this, tr(&quot;Open SVG File&quot;),
+                 m_currentPath, &quot;SVG files (*.svg *.svgz *.svg.gz)&quot;);
+     else
+         fileName = path;
+
+     if (!fileName.isEmpty()) {
+         QFile file(fileName);
+         if (!file.exists()) {
+             QMessageBox::critical(this, tr(&quot;Open SVG File&quot;),
+                            QString(&quot;Could not open file '%1'.&quot;).arg(fileName));
+
+             m_outlineAction-&gt;setEnabled(false);
+             m_backgroundAction-&gt;setEnabled(false);
+             return;
+         }
+
+         m_view-&gt;openFile(file);
+
+         if (!fileName.startsWith(&quot;:/&quot;)) {
+             m_currentPath = fileName;
+             setWindowTitle(tr(&quot;%1 - SVGViewer&quot;).arg(m_currentPath));
+         }
+
+         m_outlineAction-&gt;setEnabled(true);
+         m_backgroundAction-&gt;setEnabled(true);
+
+         resize(m_view-&gt;sizeHint() + QSize(80, 80 + menuBar()-&gt;height()));
+     }
+ }
+
+ void MainWindow::setRenderer(QAction *action)
+ {
+ #ifndef QT_NO_OPENGL
+     m_highQualityAntialiasingAction-&gt;setEnabled(false);
+ #endif
+
+     if (action == m_nativeAction)
+         m_view-&gt;setRenderer(SvgView::Native);
+ #ifndef QT_NO_OPENGL
+     else if (action == m_glAction) {
+         m_highQualityAntialiasingAction-&gt;setEnabled(true);
+         m_view-&gt;setRenderer(SvgView::OpenGL);
+     }
+ #endif
+     else if (action == m_imageAction) {
+         m_view-&gt;setRenderer(SvgView::Image);
+     }
+ }</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- inputpanel.qdoc -->
+<head>
+  <title>Qt 4.6: Input Panel Example</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">Input Panel Example<br /><span class="subtitle"></span>
+</h1>
+<p>Files:</p>
+<ul>
+<li><a href="tools-inputpanel-mainform-ui.html">tools/inputpanel/mainform.ui</a></li>
+<li><a href="tools-inputpanel-myinputpanel-cpp.html">tools/inputpanel/myinputpanel.cpp</a></li>
+<li><a href="tools-inputpanel-myinputpanel-h.html">tools/inputpanel/myinputpanel.h</a></li>
+<li><a href="tools-inputpanel-myinputpanelcontext-cpp.html">tools/inputpanel/myinputpanelcontext.cpp</a></li>
+<li><a href="tools-inputpanel-myinputpanelcontext-h.html">tools/inputpanel/myinputpanelcontext.h</a></li>
+<li><a href="tools-inputpanel-myinputpanelform-ui.html">tools/inputpanel/myinputpanelform.ui</a></li>
+<li><a href="tools-inputpanel-main-cpp.html">tools/inputpanel/main.cpp</a></li>
+<li><a href="tools-inputpanel-inputpanel-pro.html">tools/inputpanel/inputpanel.pro</a></li>
+</ul>
+<p>The Input Panel example shows how to create an input panel that can be used to input text into widgets using only the pointer and no keyboard.</p>
+<p align="center"><img src="images/inputpanel-example.png" /></p><p>The input fields in the main window have no function other than to accept input. The main focus is on how the extra input panel can be used to input text without the need for a real keyboard or keypad.</p>
+<a name="main-form-class-definition"></a>
+<h2>Main Form Class Definition</h2>
+<p>Because the main window has no other function than to accept input, it has no class definition. Instead, its whole layout is made in Qt Designer. This emphasizes the point that no widget specific code is needed to use input panels with Qt.</p>
+<a name="myinputpanelcontext-class-definition"></a>
+<h2>MyInputPanelContext Class Definition</h2>
+<pre> class MyInputPanelContext : public QInputContext
+ {
+     Q_OBJECT
+
+ public:
+     MyInputPanelContext();
+     ~MyInputPanelContext();
+
+     bool filterEvent(const QEvent* event);
+
+     QString identifierName();
+     QString language();
+
+     bool isComposing() const;
+
+     void reset();
+
+ private slots:
+     void sendCharacter(QChar character);
+
+ private:
+     void updatePosition();
+
+ private:
+     MyInputPanel *inputPanel;
+ };</pre>
+<p>The <tt>MyInputPanelContext</tt> class inherits <a href="qinputcontext.html">QInputContext</a>, which is Qt's base class for handling input methods. <tt>MyInputPanelContext</tt> is responsible for managing the state of the input panel and sending input method events to the receiving widgets.</p>
+<p>The <tt>inputPanel</tt> member is a pointer to the input panel widget itself; in other words, the window that will display the buttons used for input.</p>
+<p>The <tt>identifierName()</tt>, <tt>language()</tt>, <tt>isComposing()</tt> and <tt>reset()</tt> functions are there mainly to fill in the pure virtual functions in the base class, <a href="qinputcontext.html">QInputContext</a>, but they can be useful in other scenarios. The important functions and slots are the following:</p>
+<ul>
+<li><tt>filterEvent()</tt> is where we receive events telling us to open or close the input panel.</li>
+<li><tt>sendCharacter()</tt> is a slot which is called when we want to send a character to the focused widget.</li>
+<li><tt>updatePosition()</tt> is used to position the input panel relative to the focused widget, and will be used when opening the input panel.</li>
+</ul>
+<a name="myinputpanelcontext-class-implementation"></a>
+<h2>MyInputPanelContext Class Implementation</h2>
+<p>In the constructor we connect to the <tt>characterGenerated()</tt> signal of the input panel, in order to receive key presses. We'll see how it works in detail later on.</p>
+<pre> MyInputPanelContext::MyInputPanelContext()
+ {
+     inputPanel = new MyInputPanel;
+     connect(inputPanel, SIGNAL(characterGenerated(QChar)), SLOT(sendCharacter(QChar)));
+ }</pre>
+<p>In the <tt>filterEvent()</tt> function, we must look for the two event types: <tt>RequestSoftwareInputPanel</tt> and <tt>CloseSoftwareInputPanel</tt>.</p>
+<pre> bool MyInputPanelContext::filterEvent(const QEvent* event)
+ {
+     if (event-&gt;type() == QEvent::RequestSoftwareInputPanel) {
+         updatePosition();
+         inputPanel-&gt;show();
+         return true;
+     } else if (event-&gt;type() == QEvent::CloseSoftwareInputPanel) {
+         inputPanel-&gt;hide();
+         return true;
+     }
+     return false;
+ }</pre>
+<p>The first type will be sent whenever an input capable widget wants to ask for an input panel. Qt's input widgets do this automatically. If we receive that type of event, we call <tt>updatePosition()</tt> &mdash; we'll see later on what it does &mdash; then show the actual input panel widget. If we receive the <tt>CloseSoftwareInputPanel</tt> event, we do the opposite, and hide the input panel.</p>
+<pre> void MyInputPanelContext::sendCharacter(QChar character)
+ {
+     QPointer&lt;QWidget&gt; w = focusWidget();
+
+     if (!w)
+         return;
+
+     QKeyEvent keyPress(QEvent::KeyPress, character.unicode(), Qt::NoModifier, QString(character));
+     QApplication::sendEvent(w, &amp;keyPress);
+
+     if (!w)
+         return;
+
+     QKeyEvent keyRelease(QEvent::KeyPress, character.unicode(), Qt::NoModifier, QString());
+     QApplication::sendEvent(w, &amp;keyRelease);
+ }</pre>
+<p>We implement the <tt>sendCharacter()</tt> function so that it sends the supplied character to the focused widget. All <a href="qinputcontext.html">QInputContext</a> based classes are always supposed to send events to the widget returned by <a href="qinputcontext.html#focusWidget">QInputContext::focusWidget</a>(). Note the <a href="qpointer.html">QPointer</a> guards to make sure that the widget does not get destroyed in between events.</p>
+<p>Also note that we chose to use key press events in this example. For more complex use cases with composed text it might be more appropriate to send <a href="qinputmethodevent.html">QInputMethodEvent</a> events.</p>
+<p>The <tt>updatePosition()</tt> function is implemented to position the actual input panel window directly below the focused widget.</p>
+<pre> void MyInputPanelContext::updatePosition()
+ {
+     QWidget *widget = focusWidget();
+     if (!widget)
+         return;
+
+     QRect widgetRect = widget-&gt;rect();
+     QPoint panelPos = QPoint(widgetRect.left(), widgetRect.bottom() + 2);
+     panelPos = widget-&gt;mapToGlobal(panelPos);
+     inputPanel-&gt;move(panelPos);
+ }</pre>
+<p>It performs the positioning by obtaining the coordinates of the focused widget and translating them to global coordinates.</p>
+<a name="myinputpanel-class-definition"></a>
+<h2>MyInputPanel Class Definition</h2>
+<p>The <tt>MyInputPanel</tt> class inherits <a href="qwidget.html">QWidget</a> and is used to display the input panel widget and its buttons.</p>
+<pre> class MyInputPanel : public QWidget
+ {
+     Q_OBJECT
+
+ public:
+     MyInputPanel();
+
+ signals:
+     void characterGenerated(QChar character);
+
+ protected:
+     bool event(QEvent *e);
+
+ private slots:
+     void saveFocusWidget(QWidget *oldFocus, QWidget *newFocus);
+     void buttonClicked(QWidget *w);
+
+ private:
+     Ui::MyInputPanelForm form;
+     QWidget *lastFocusedWidget;
+     QSignalMapper signalMapper;
+ };</pre>
+<p>If we look at the member variables first, we see that there is <tt>form</tt>, which is made with Qt Designer, that contains the layout of buttons to click. Note that all the buttons in the layout have been declared with the <tt>NoFocus</tt> focus policy so that we can maintain focus on the window receiving input instead of the window containing buttons.</p>
+<p>The <tt>lastFocusedWidget</tt> is a helper variable, which also aids in maintaining focus.</p>
+<p><tt>signalMapper</tt> is an instance of the <a href="qsignalmapper.html">QSignalMapper</a> class and is there to help us tell which button was clicked. Since they are all very similar this is a better solution than creating a separate slot for each one.</p>
+<p>The functions that we implement in <tt>MyInputPanel</tt> are the following:</p>
+<ul>
+<li><tt>event()</tt> is used to intercept and manipulate focus events, so we can maintain focus in the main window.</li>
+<li><tt>saveFocusWidget()</tt> is a slot which will be called whenever focus changes, and allows us to store the newly focused widget in <tt>lastFocusedWidget</tt>, so that its focus can be restored if it loses it to the input panel.</li>
+<li><tt>buttonClicked()</tt> is a slot which will be called by the <tt>signalMapper</tt> whenever it receives a <tt>clicked()</tt> signal from any of the buttons.</li>
+</ul>
+<a name="myinputpanel-class-implementation"></a>
+<h2>MyInputPanel Class Implementation</h2>
+<p>If we look at the constructor first, we have a lot of signals to connect to!</p>
+<p>We connect the <a href="qapplication.html#focusChanged">QApplication::focusChanged</a>() signal to the <tt>saveFocusWidget()</tt> signal in order to get focus updates. Then comes the interesting part with the signal mapper: the series of <tt>setMapping()</tt> calls sets the mapper up so that each signal from one of the buttons will result in a <a href="qsignalmapper.html#mapped">QSignalMapper::mapped</a>() signal, with the given widget as a parameter. This allows us to do general processing of clicks.</p>
+<pre> MyInputPanel::MyInputPanel()
+     : QWidget(0, Qt::Tool | Qt::WindowStaysOnTopHint),
+       lastFocusedWidget(0)
+ {
+     form.setupUi(this);
+
+     connect(qApp, SIGNAL(focusChanged(QWidget *, QWidget *)),
+             this, SLOT(saveFocusWidget(QWidget *, QWidget *)));
+
+     signalMapper.setMapping(form.panelButton_1, form.panelButton_1);
+     signalMapper.setMapping(form.panelButton_2, form.panelButton_2);
+     signalMapper.setMapping(form.panelButton_3, form.panelButton_3);
+     signalMapper.setMapping(form.panelButton_4, form.panelButton_4);
+     signalMapper.setMapping(form.panelButton_5, form.panelButton_5);
+     signalMapper.setMapping(form.panelButton_6, form.panelButton_6);
+     signalMapper.setMapping(form.panelButton_7, form.panelButton_7);
+     signalMapper.setMapping(form.panelButton_8, form.panelButton_8);
+     signalMapper.setMapping(form.panelButton_9, form.panelButton_9);
+     signalMapper.setMapping(form.panelButton_star, form.panelButton_star);
+     signalMapper.setMapping(form.panelButton_0, form.panelButton_0);
+     signalMapper.setMapping(form.panelButton_hash, form.panelButton_hash);
+
+     connect(form.panelButton_1, SIGNAL(clicked()),
+             &amp;signalMapper, SLOT(map()));
+     connect(form.panelButton_2, SIGNAL(clicked()),
+             &amp;signalMapper, SLOT(map()));
+     connect(form.panelButton_3, SIGNAL(clicked()),
+             &amp;signalMapper, SLOT(map()));
+     connect(form.panelButton_4, SIGNAL(clicked()),
+             &amp;signalMapper, SLOT(map()));
+     connect(form.panelButton_5, SIGNAL(clicked()),
+             &amp;signalMapper, SLOT(map()));
+     connect(form.panelButton_6, SIGNAL(clicked()),
+             &amp;signalMapper, SLOT(map()));
+     connect(form.panelButton_7, SIGNAL(clicked()),
+             &amp;signalMapper, SLOT(map()));
+     connect(form.panelButton_8, SIGNAL(clicked()),
+             &amp;signalMapper, SLOT(map()));
+     connect(form.panelButton_9, SIGNAL(clicked()),
+             &amp;signalMapper, SLOT(map()));
+     connect(form.panelButton_star, SIGNAL(clicked()),
+             &amp;signalMapper, SLOT(map()));
+     connect(form.panelButton_0, SIGNAL(clicked()),
+             &amp;signalMapper, SLOT(map()));
+     connect(form.panelButton_hash, SIGNAL(clicked()),
+             &amp;signalMapper, SLOT(map()));
+
+     connect(&amp;signalMapper, SIGNAL(mapped(QWidget *)),
+             this, SLOT(buttonClicked(QWidget *)));
+ }</pre>
+<p>The next series of connections then connect each button's <tt>clicked()</tt> signal to the signal mapper. Finally, we create a connection from the <tt>mapped()</tt> signal to the <tt>buttonClicked()</tt> slot, where we will handle it.</p>
+<pre> void MyInputPanel::buttonClicked(QWidget *w)
+ {
+     QChar chr = qvariant_cast&lt;QChar&gt;(w-&gt;property(&quot;buttonValue&quot;));
+     emit characterGenerated(chr);
+ }</pre>
+<p>In the <tt>buttonClicked()</tt> slot, we extract the value of the &quot;buttonValue&quot; property. This is a custom property which was created in Qt Designer and set to the character that we wish the button to produce. Then we emit the <tt>characterGenerated()</tt> signal, which <tt>MyInputPanelContext</tt> is connected to. This will in turn cause it to send the input to the focused widget.</p>
+<p>In the <tt>saveFocusWidget()</tt> slot, we test whether the newly focused widget is a child of the input panel or not, using the <a href="qwidget.html#isAncestorOf">QWidget::isAncestorOf</a>() call.</p>
+<pre> void MyInputPanel::saveFocusWidget(QWidget * <span class="comment">/*oldFocus*/</span>, QWidget *newFocus)
+ {
+     if (newFocus != 0 &amp;&amp; !this-&gt;isAncestorOf(newFocus)) {
+         lastFocusedWidget = newFocus;
+     }
+ }</pre>
+<p>If it isn't, it means that the widget is outside the input panel, and we store a pointer to that widget for later.</p>
+<p>In the <tt>event()</tt> function we handle <a href="qevent.html#Type-enum">QEvent::WindowActivate</a> event, which occurs if the focus switches to the input panel.</p>
+<pre>     case QEvent::WindowActivate:
+         if (lastFocusedWidget)
+             lastFocusedWidget-&gt;activateWindow();
+         break;</pre>
+<p>Since we want avoid focus on the input panel, we immediately call <a href="qwidget.html#activateWindow">QWidget::activateWindow</a>() on the widget that last had focus, so that input into that widget can continue. We ignore any other events that we receive.</p>
+<a name="setting-the-input-context"></a>
+<h2>Setting the Input Context</h2>
+<p>The main function for the example is very similar to those for other examples. The only real difference is that it creates a <tt>MyInputPanelContext</tt> and sets it as the application-wide input context.</p>
+<pre> #include &quot;myinputpanelcontext.h&quot;
+ #include &quot;ui_mainform.h&quot;
+
+ int main(int argc, char **argv)
+ {
+     QApplication app(argc, argv);
+
+     MyInputPanelContext *ic = new MyInputPanelContext;
+     app.setInputContext(ic);
+
+     QWidget widget;
+     Ui::MainForm form;
+     form.setupUi(&amp;widget);
+     widget.show();
+     return app.exec();
+ }</pre>
+<p>With the input context in place, we set up and show the user interface made in Qt Designer before running the event loop.</p>
+<a name="further-reading"></a>
+<h2>Further Reading</h2>
+<p>This example shows a specific kind of input context that uses interaction with a widget to provide input for another. Qt's input context system can also be used to create other kinds of input methods. We recommend starting with the <a href="qinputcontext.html">QInputContext</a> documentation if you want to explore further.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: states.cpp Example File (demos/sub-attaq/states.cpp)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">states.cpp Example File<br /><span class="small-subtitle">demos/sub-attaq/states.cpp</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the QtCore module of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+
+<span class="comment"> //Own</span>
+ #include &quot;states.h&quot;
+ #include &quot;graphicsscene.h&quot;
+ #include &quot;boat.h&quot;
+ #include &quot;submarine.h&quot;
+ #include &quot;torpedo.h&quot;
+ #include &quot;animationmanager.h&quot;
+ #include &quot;progressitem.h&quot;
+ #include &quot;textinformationitem.h&quot;
+
+<span class="comment"> //Qt</span>
+ #include &lt;QtGui/QMessageBox&gt;
+ #include &lt;QtGui/QGraphicsView&gt;
+ #include &lt;QtCore/QStateMachine&gt;
+ #include &lt;QtGui/QKeyEventTransition&gt;
+ #include &lt;QtCore/QFinalState&gt;
+
+ PlayState::PlayState(GraphicsScene *scene, QState *parent)
+     : QState(parent),
+     scene(scene),
+     machine(0),
+     currentLevel(0),
+     score(0)
+ {
+ }
+
+ PlayState::~PlayState()
+ {
+     delete machine;
+ }
+
+ void PlayState::onEntry(QEvent *)
+ {
+     <span class="comment">//We are now playing?</span>
+     if (machine) {
+         machine-&gt;stop();
+         <span class="comment">//we hide the information</span>
+         scene-&gt;textInformationItem-&gt;hide();
+         scene-&gt;clearScene();
+         currentLevel = 0;
+         score = 0;
+         delete machine;
+     }
+
+     machine = new QStateMachine;
+
+     <span class="comment">//This state is when player is playing</span>
+     LevelState *levelState = new LevelState(scene, this, machine);
+
+     <span class="comment">//This state is when the player is actually playing but the game is not paused</span>
+     QState *playingState = new QState(levelState);
+     levelState-&gt;setInitialState(playingState);
+
+     <span class="comment">//This state is when the game is paused</span>
+     PauseState *pauseState = new PauseState(scene, levelState);
+
+     <span class="comment">//We have one view, it receive the key press event</span>
+     QKeyEventTransition *pressPplay = new QKeyEventTransition(scene-&gt;views().at(0), QEvent::KeyPress, Qt::Key_P);
+     pressPplay-&gt;setTargetState(pauseState);
+     QKeyEventTransition *pressPpause = new QKeyEventTransition(scene-&gt;views().at(0), QEvent::KeyPress, Qt::Key_P);
+     pressPpause-&gt;setTargetState(playingState);
+
+     <span class="comment">//Pause &quot;P&quot; is triggered, the player pause the game</span>
+     playingState-&gt;addTransition(pressPplay);
+
+     <span class="comment">//To get back playing when the game has been paused</span>
+     pauseState-&gt;addTransition(pressPpause);
+
+     <span class="comment">//This state is when player have lost</span>
+     LostState *lostState = new LostState(scene, this, machine);
+
+     <span class="comment">//This state is when player have won</span>
+     WinState *winState = new WinState(scene, this, machine);
+
+     <span class="comment">//The boat has been destroyed then the game is finished</span>
+     levelState-&gt;addTransition(scene-&gt;boat, SIGNAL(boatExecutionFinished()),lostState);
+
+     <span class="comment">//This transition check if we won or not</span>
+     WinTransition *winTransition = new WinTransition(scene, this, winState);
+
+     <span class="comment">//The boat has been destroyed then the game is finished</span>
+     levelState-&gt;addTransition(winTransition);
+
+     <span class="comment">//This state is an animation when the score changed</span>
+     UpdateScoreState *scoreState = new UpdateScoreState(this, levelState);
+
+     <span class="comment">//This transition update the score when a submarine die</span>
+     UpdateScoreTransition *scoreTransition = new UpdateScoreTransition(scene, this, levelState);
+     scoreTransition-&gt;setTargetState(scoreState);
+
+     <span class="comment">//The boat has been destroyed then the game is finished</span>
+     playingState-&gt;addTransition(scoreTransition);
+
+     <span class="comment">//We go back to play state</span>
+     scoreState-&gt;addTransition(playingState);
+
+     <span class="comment">//We start playing</span>!!!
+     machine-&gt;setInitialState(levelState);
+
+     <span class="comment">//Final state</span>
+     QFinalState *final = new QFinalState(machine);
+
+     <span class="comment">//This transition is triggered when the player press space after completing a level</span>
+     CustomSpaceTransition *spaceTransition = new CustomSpaceTransition(scene-&gt;views().at(0), this, QEvent::KeyPress, Qt::Key_Space);
+     spaceTransition-&gt;setTargetState(levelState);
+     winState-&gt;addTransition(spaceTransition);
+
+     <span class="comment">//We lost we should reach the final state</span>
+     lostState-&gt;addTransition(lostState, SIGNAL(finished()), final);
+
+     machine-&gt;start();
+ }
+
+ LevelState::LevelState(GraphicsScene *scene, PlayState *game, QState *parent) : QState(parent), scene(scene), game(game)
+ {
+ }
+ void LevelState::onEntry(QEvent *)
+ {
+     initializeLevel();
+ }
+
+ void LevelState::initializeLevel()
+ {
+     <span class="comment">//we re-init the boat</span>
+     scene-&gt;boat-&gt;setPos(scene-&gt;width()/2, scene-&gt;sealLevel() - scene-&gt;boat-&gt;size().height());
+     scene-&gt;boat-&gt;setCurrentSpeed(0);
+     scene-&gt;boat-&gt;setCurrentDirection(Boat::None);
+     scene-&gt;boat-&gt;setBombsLaunched(0);
+     scene-&gt;boat-&gt;show();
+     scene-&gt;setFocusItem(scene-&gt;boat, Qt::OtherFocusReason);
+     scene-&gt;boat-&gt;run();
+
+     scene-&gt;progressItem-&gt;setScore(game-&gt;score);
+     scene-&gt;progressItem-&gt;setLevel(game-&gt;currentLevel + 1);
+
+     GraphicsScene::LevelDescription currentLevelDescription = scene-&gt;levelsData.value(game-&gt;currentLevel);
+
+     for (int i = 0; i &lt; currentLevelDescription.submarines.size(); ++i ) {
+
+         QPair&lt;int,int&gt; subContent = currentLevelDescription.submarines.at(i);
+         GraphicsScene::SubmarineDescription submarineDesc = scene-&gt;submarinesData.at(subContent.first);
+
+         for (int j = 0; j &lt; subContent.second; ++j ) {
+             SubMarine *sub = new SubMarine(submarineDesc.type, submarineDesc.name, submarineDesc.points);
+             scene-&gt;addItem(sub);
+             int random = (qrand() % 15 + 1);
+             qreal x = random == 13 || random == 5 ? 0 : scene-&gt;width() - sub-&gt;size().width();
+             qreal y = scene-&gt;height() -(qrand() % 150 + 1) - sub-&gt;size().height();
+             sub-&gt;setPos(x,y);
+             sub-&gt;setCurrentDirection(x == 0 ? SubMarine::Right : SubMarine::Left);
+             sub-&gt;setCurrentSpeed(qrand() % 3 + 1);
+         }
+     }
+ }
+
+<span class="comment"> /** Pause State */</span>
+ PauseState::PauseState(GraphicsScene *scene, QState *parent) : QState(parent),scene(scene)
+ {
+ }
+ void PauseState::onEntry(QEvent *)
+ {
+     AnimationManager::self()-&gt;pauseAll();
+     scene-&gt;boat-&gt;setEnabled(false);
+ }
+ void PauseState::onExit(QEvent *)
+ {
+     AnimationManager::self()-&gt;resumeAll();
+     scene-&gt;boat-&gt;setEnabled(true);
+     scene-&gt;boat-&gt;setFocus();
+ }
+
+<span class="comment"> /** Lost State */</span>
+ LostState::LostState(GraphicsScene *scene, PlayState *game, QState *parent) : QState(parent), scene(scene), game(game)
+ {
+ }
+
+ void LostState::onEntry(QEvent *)
+ {
+     <span class="comment">//The message to display</span>
+     QString message = QString(&quot;You lose on level %1. Your score is %2.&quot;).arg(game-&gt;currentLevel+1).arg(game-&gt;score);
+
+     <span class="comment">//We set the level back to 0</span>
+     game-&gt;currentLevel = 0;
+
+     <span class="comment">//We set the score back to 0</span>
+     game-&gt;score = 0;
+
+     <span class="comment">//We clear the scene</span>
+     scene-&gt;clearScene();
+
+     <span class="comment">//We inform the player</span>
+     scene-&gt;textInformationItem-&gt;setMessage(message);
+     scene-&gt;textInformationItem-&gt;show();
+ }
+
+ void LostState::onExit(QEvent *)
+ {
+     <span class="comment">//we hide the information</span>
+     scene-&gt;textInformationItem-&gt;hide();
+ }
+
+<span class="comment"> /** Win State */</span>
+ WinState::WinState(GraphicsScene *scene, PlayState *game, QState *parent) : QState(parent), scene(scene), game(game)
+ {
+ }
+
+ void WinState::onEntry(QEvent *)
+ {
+     <span class="comment">//We clear the scene</span>
+     scene-&gt;clearScene();
+
+     QString message;
+     if (scene-&gt;levelsData.size() - 1 != game-&gt;currentLevel) {
+         message = QString(&quot;You win the level %1. Your score is %2.\nPress Space to continue.&quot;).arg(game-&gt;currentLevel+1).arg(game-&gt;score);
+         <span class="comment">//We increment the level number</span>
+         game-&gt;currentLevel++;
+     } else {
+         message = QString(&quot;You finish the game on level %1. Your score is %2.&quot;).arg(game-&gt;currentLevel+1).arg(game-&gt;score);
+         <span class="comment">//We set the level back to 0</span>
+         game-&gt;currentLevel = 0;
+         <span class="comment">//We set the score back to 0</span>
+         game-&gt;score = 0;
+     }
+
+     <span class="comment">//We inform the player</span>
+     scene-&gt;textInformationItem-&gt;setMessage(message);
+     scene-&gt;textInformationItem-&gt;show();
+ }
+
+ void WinState::onExit(QEvent *)
+ {
+     <span class="comment">//we hide the information</span>
+     scene-&gt;textInformationItem-&gt;hide();
+ }
+
+<span class="comment"> /** UpdateScore State */</span>
+ UpdateScoreState::UpdateScoreState(PlayState *g, QState *parent) : QState(parent), game(g)
+ {
+ }
+
+<span class="comment"> /** Win transition */</span>
+ UpdateScoreTransition::UpdateScoreTransition(GraphicsScene *scene, PlayState *game, QAbstractState *target)
+     : QSignalTransition(scene,SIGNAL(subMarineDestroyed(int))),
+     game(game), scene(scene)
+ {
+     setTargetState(target);
+ }
+
+ bool UpdateScoreTransition::eventTest(QEvent *event)
+ {
+     if (!QSignalTransition::eventTest(event))
+         return false;
+     QStateMachine::SignalEvent *se = static_cast&lt;QStateMachine::SignalEvent*&gt;(event);
+     game-&gt;score += se-&gt;arguments().at(0).toInt();
+     scene-&gt;progressItem-&gt;setScore(game-&gt;score);
+     return true;
+ }
+
+<span class="comment"> /** Win transition */</span>
+ WinTransition::WinTransition(GraphicsScene *scene, PlayState *game, QAbstractState *target)
+     : QSignalTransition(scene,SIGNAL(allSubMarineDestroyed(int))),
+     game(game), scene(scene)
+ {
+     setTargetState(target);
+ }
+
+ bool WinTransition::eventTest(QEvent *event)
+ {
+     if (!QSignalTransition::eventTest(event))
+         return false;
+     QStateMachine::SignalEvent *se = static_cast&lt;QStateMachine::SignalEvent*&gt;(event);
+     game-&gt;score += se-&gt;arguments().at(0).toInt();
+     scene-&gt;progressItem-&gt;setScore(game-&gt;score);
+     return true;
+ }
+
+<span class="comment"> /** Space transition */</span>
+ CustomSpaceTransition::CustomSpaceTransition(QWidget *widget, PlayState *game, QEvent::Type type, int key)
+     :   QKeyEventTransition(widget, type, key),
+         game(game)
+ {
+ }
+
+ bool CustomSpaceTransition::eventTest(QEvent *event)
+ {
+     if (!QKeyEventTransition::eventTest(event))
+         return false;
+     return (game-&gt;currentLevel != 0);
+ }</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

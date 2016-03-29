@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qaxfactory.cpp -->
+<head>
+  <title>Qt 4.6: QAxFactory Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QAxFactory" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QAxFactory Class Reference<br /><span class="small-subtitle">[<a href="qaxserver.html">QAxServer</a> module]</span>
+</h1>
+<p>The QAxFactory class defines a factory for the creation of COM components. <a href="#details">More...</a></p>
+<pre> #include &lt;QAxFactory&gt;</pre><p><b>This class is not part of the Qt GUI Framework Edition.</b></p>
+<p>Inherits <a href="qobject.html">QObject</a>.</p>
+<ul>
+<li><a href="qaxfactory-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-types"></a>
+<h2>Public Types</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qaxfactory.html#ServerType-enum">ServerType</a></b> { SingleInstance, MultipleInstances }</td></tr>
+</table>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qaxfactory.html#QAxFactory">QAxFactory</a></b> ( const QUuid &amp; <i>libid</i>, const QUuid &amp; <i>appid</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual </td><td class="memItemRight" valign="bottom"><b><a href="qaxfactory.html#dtor.QAxFactory">~QAxFactory</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QUuid </td><td class="memItemRight" valign="bottom"><b><a href="qaxfactory.html#appID">appID</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QUuid </td><td class="memItemRight" valign="bottom"><b><a href="qaxfactory.html#classIDx">classID</a></b> ( const QString &amp; <i>key</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QObject * </td><td class="memItemRight" valign="bottom"><b><a href="qaxfactory.html#createObject">createObject</a></b> ( const QString &amp; <i>key</i> ) = 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qaxfactory.html#createObjectWrapper">createObjectWrapper</a></b> ( QObject * <i>object</i>, IDispatch ** <i>wrapper</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QUuid </td><td class="memItemRight" valign="bottom"><b><a href="qaxfactory.html#eventsID">eventsID</a></b> ( const QString &amp; <i>key</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QString </td><td class="memItemRight" valign="bottom"><b><a href="qaxfactory.html#exposeToSuperClass">exposeToSuperClass</a></b> ( const QString &amp; <i>key</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QStringList </td><td class="memItemRight" valign="bottom"><b><a href="qaxfactory.html#featureList">featureList</a></b> () const = 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qaxfactory.html#hasStockEvents">hasStockEvents</a></b> ( const QString &amp; <i>key</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QUuid </td><td class="memItemRight" valign="bottom"><b><a href="qaxfactory.html#interfaceID">interfaceID</a></b> ( const QString &amp; <i>key</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qaxfactory.html#isService">isService</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual const QMetaObject * </td><td class="memItemRight" valign="bottom"><b><a href="qaxfactory.html#metaObject">metaObject</a></b> ( const QString &amp; <i>key</i> ) const = 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qaxfactory.html#registerClass">registerClass</a></b> ( const QString &amp; <i>key</i>, QSettings * <i>settings</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qaxfactory.html#stayTopLevel">stayTopLevel</a></b> ( const QString &amp; <i>key</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QUuid </td><td class="memItemRight" valign="bottom"><b><a href="qaxfactory.html#typeLibID">typeLibID</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qaxfactory.html#unregisterClass">unregisterClass</a></b> ( const QString &amp; <i>key</i>, QSettings * <i>settings</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qaxfactory.html#validateLicenseKey">validateLicenseKey</a></b> ( const QString &amp; <i>key</i>, const QString &amp; <i>licenseKey</i> ) const</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>29 public functions inherited from <a href="qobject.html#public-functions">QObject</a></li>
+</ul>
+<hr />
+<a name="static-public-members"></a>
+<h2>Static Public Members</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qaxfactory.html#isServer">isServer</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qaxfactory.html#registerActiveObject">registerActiveObject</a></b> ( QObject * <i>object</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qaxfactory.html#serverDirPath">serverDirPath</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qaxfactory.html#serverFilePath">serverFilePath</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qaxfactory.html#startServer">startServer</a></b> ( ServerType <i>type</i> = MultipleInstances )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qaxfactory.html#stopServer">stopServer</a></b> ()</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>5 static public members inherited from <a href="qobject.html#static-public-members">QObject</a></li>
+</ul>
+<hr />
+<a name="macros"></a>
+<h2>Macros</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qaxfactory.html#QAXCLASS">QAXCLASS</a></b> (  <i>Class</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qaxfactory.html#QAXFACTORY_BEGIN">QAXFACTORY_BEGIN</a></b> (  <i>IDTypeLib</i>,  <i>IDApp</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qaxfactory.html#QAXFACTORY_DEFAULT">QAXFACTORY_DEFAULT</a></b> (  <i>Class</i>,  <i>ClassID</i>,  <i>InterfaceID</i>,  <i>EventID</i>,  <i>LibID</i>,  <i>AppID</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qaxfactory.html#QAXFACTORY_END">QAXFACTORY_END</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qaxfactory.html#QAXFACTORY_EXPORT">QAXFACTORY_EXPORT</a></b> (  <i>Class</i>,  <i>LibID</i>,  <i>AppID</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qaxfactory.html#QAXTYPE">QAXTYPE</a></b> (  <i>Class</i> )</td></tr>
+</table>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li><div class="fn"></div>1 property inherited from <a href="qobject.html#properties">QObject</a></li>
+<li><div class="fn"></div>1 public slot inherited from <a href="qobject.html#public-slots">QObject</a></li>
+<li><div class="fn"></div>1 signal inherited from <a href="qobject.html#signals">QObject</a></li>
+<li><div class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QAxFactory class defines a factory for the creation of COM components.</p>
+<p>Implement this factory once in your COM server to provide information about the components the server can create. Subclass QAxFactory and implement the pure virtual functions in any implementation file (e.g&#x2e; main.cpp), and export the factory using the <tt>QAXFACTORY_EXPORT()</tt> macro.</p>
+<pre> QStringList ActiveQtFactory::featureList() const
+ {
+     QStringList list;
+     list &lt;&lt; &quot;ActiveX1&quot;;
+     list &lt;&lt; &quot;ActiveX2&quot;;
+     return list;
+ }
+
+ QObject *ActiveQtFactory::createObject(const QString &amp;key)
+ {
+     if (key == &quot;ActiveX1&quot;)
+         return new ActiveX1(parent);
+     if (key == &quot;ActiveX2&quot;)
+         return new ActiveX2(parent);
+     return 0;
+ }
+
+ const QMetaObject *ActiveQtFactory::metaObject(const QString &amp;key) const
+ {
+     if (key == &quot;ActiveX1&quot;)
+         return &amp;ActiveX1::staticMetaObject;
+     if (key == &quot;ActiveX2&quot;)
+         return &amp;ActiveX2::staticMetaObject;
+ }
+
+ QUuid ActiveQtFactory::classID(const QString &amp;key) const
+ {
+     if (key == &quot;ActiveX1&quot;)
+         return &quot;{01234567-89AB-CDEF-0123-456789ABCDEF}&quot;;
+     ...
+     return QUuid();
+ }
+
+ QUuid ActiveQtFactory::interfaceID(const QString &amp;key) const
+ {
+     if (key == &quot;ActiveX1&quot;)
+         return &quot;{01234567-89AB-CDEF-0123-456789ABCDEF}&quot;;
+     ...
+     return QUuid();
+ }
+
+ QUuid ActiveQtFactory::eventsID(const QString &amp;key) const
+ {
+     if (key == &quot;ActiveX1&quot;)
+         return &quot;{01234567-89AB-CDEF-0123-456789ABCDEF}&quot;;
+     ...
+     return QUuid();
+ }
+
+ QAXFACTORY_EXPORT(
+     ActiveQtFactory,                          <span class="comment">// factory class</span>
+     &quot;{01234567-89AB-CDEF-0123-456789ABCDEF}&quot;, <span class="comment">// type library ID</span>
+     &quot;{01234567-89AB-CDEF-0123-456789ABCDEF}&quot;  <span class="comment">// application ID</span>
+ )</pre>
+<p>If you use the <tt>Q_CLASSINFO()</tt> macro to provide the unique identifiers or other attributes for your class you can use the <tt>QAXFACTORY_BEGIN()</tt>, <tt>QAXCLASS()</tt> and <tt>QAXFACTORY_END()</tt> macros to expose one or more classes as COM objects.</p>
+<pre> QAXFACTORY_BEGIN(
+     &quot;{01234567-89AB-CDEF-0123-456789ABCDEF}&quot;, <span class="comment">// type library ID</span>
+     &quot;{01234567-89AB-CDEF-0123-456789ABCDEF}&quot;  <span class="comment">// application ID</span>
+ )
+     QAXCLASS(Class1)
+     QAXCLASS(Class2)
+ QAXFACTORY_END()</pre>
+<p>If your server supports just a single COM object, you can use a default factory implementation through the <tt>QAXFACTORY_DEFAULT()</tt> macro.</p>
+<pre> #include &lt;qapplication.h&gt;
+ #include &lt;qaxfactory.h&gt;
+
+ #include &quot;theactivex.h&quot;
+
+ QAXFACTORY_DEFAULT(
+     TheActiveX,                           <span class="comment">// widget class</span>
+     &quot;{01234567-89AB-CDEF-0123-456789ABCDEF}&quot;, <span class="comment">// class ID</span>
+     &quot;{01234567-89AB-CDEF-0123-456789ABCDEF}&quot;, <span class="comment">// interface ID</span>
+     &quot;{01234567-89AB-CDEF-0123-456789ABCDEF}&quot;, <span class="comment">// event interface ID</span>
+     &quot;{01234567-89AB-CDEF-0123-456789ABCDEF}&quot;, <span class="comment">// type library ID</span>
+     &quot;{01234567-89AB-CDEF-0123-456789ABCDEF}&quot;  <span class="comment">// application ID</span>
+ )</pre>
+<p>Only one QAxFactory implementation may be instantiated and exported by an ActiveX server application. This instance is accessible through the global qAxFactory() function.</p>
+<p>A factory can also reimplement the <a href="qaxfactory.html#registerClass">registerClass</a>() and <a href="qaxfactory.html#unregisterClass">unregisterClass</a>() functions to set additional flags for an ActiveX control in the registry. To limit the number of methods or properties a widget class exposes from its parent classes reimplement <a href="qaxfactory.html#exposeToSuperClass">exposeToSuperClass</a>().</p>
+<p>See also <a href="qaxaggregated.html">QAxAggregated</a>, <a href="qaxbindable.html">QAxBindable</a>, and <a href="activeqt.html">ActiveQt Framework</a>.</p>
+<hr />
+<h2>Member Type Documentation</h2>
+<a name="//apple_ref/cpp/tag/QAxFactory/ServerType" />
+<a name="//apple_ref/cpp/econst/QAxFactory/SingleInstance" />
+<a name="//apple_ref/cpp/econst/QAxFactory/MultipleInstances" />
+<h3 class="fn"><a name="ServerType-enum"></a>enum QAxFactory::ServerType</h3>
+<p>This enum specifies the different types of servers that can be started with startServer.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QAxFactory::SingleInstance</tt></td><td align="center" valign="top"><tt>0</tt></td><td valign="top">The server process can create only one instance of each exported class. COM starts a new process for each request. This is typically used in servers that export only one creatable class.</td></tr>
+<tr><td valign="top"><tt>QAxFactory::MultipleInstances</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">The server can create multiple instances of each exported class. This is the default. All instances will live in the same thread, and will share static resources.</td></tr>
+</table></p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QAxFactory/QAxFactory" />
+<h3 class="fn"><a name="QAxFactory"></a>QAxFactory::QAxFactory ( const <a href="quuid.html">QUuid</a> &amp; <i>libid</i>, const <a href="quuid.html">QUuid</a> &amp; <i>appid</i> )</h3>
+<p>Constructs a <a href="qaxfactory.html">QAxFactory</a> object that returns <i>libid</i> and <i>appid</i> in the implementation of the respective interface functions.</p>
+<a name="//apple_ref/cpp/instm/QAxFactory/~QAxFactory" />
+<h3 class="fn"><a name="dtor.QAxFactory"></a>QAxFactory::~QAxFactory ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Destroys the <a href="qaxfactory.html">QAxFactory</a> object.</p>
+<a name="//apple_ref/cpp/instm/QAxFactory/appID" />
+<h3 class="fn"><a name="appID"></a><a href="quuid.html">QUuid</a> QAxFactory::appID () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplement this function to return the ActiveX server's application identifier.</p>
+<a name="//apple_ref/cpp/instm/QAxFactory/classID" />
+<h3 class="fn"><a name="classIDx"></a><a href="quuid.html">QUuid</a> QAxFactory::classID ( const <a href="qstring.html">QString</a> &amp; <i>key</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplement this function to return the class identifier for each <i>key</i> returned by the <a href="qaxfactory.html#featureList">featureList</a>() implementation, or an empty <a href="quuid.html">QUuid</a> if this factory doesn't support the value of <i>key</i>.</p>
+<p>The default implementation interprets <i>key</i> as the class name, and returns the value of the <a href="qobject.html#Q_CLASSINFO">Q_CLASSINFO</a>() entry &quot;ClassID&quot;.</p>
+<a name="//apple_ref/cpp/instm/QAxFactory/createObject" />
+<h3 class="fn"><a name="createObject"></a><a href="qobject.html">QObject</a> * QAxFactory::createObject ( const <a href="qstring.html">QString</a> &amp; <i>key</i> )&nbsp;&nbsp;<tt> [pure virtual]</tt></h3>
+<p>Reimplement this function to return a new object for <i>key</i>, or 0 if this factory doesn't support the value of <i>key</i>.</p>
+<p>If the object returned is a <a href="qwidget.html">QWidget</a> it will be exposed as an ActiveX control, otherwise the returned object will be exposed as a simple COM object.</p>
+<a name="//apple_ref/cpp/instm/QAxFactory/createObjectWrapper" />
+<h3 class="fn"><a name="createObjectWrapper"></a>bool QAxFactory::createObjectWrapper ( <a href="qobject.html">QObject</a> * <i>object</i>, IDispatch ** <i>wrapper</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplement this function to provide the COM object for <i>object</i> in <i>wrapper</i>. Return true if the function was successful; otherwise return false.</p>
+<p>The default implementation creates a generic automation wrapper based on the meta object information of <i>object</i>.</p>
+<a name="//apple_ref/cpp/instm/QAxFactory/eventsID" />
+<h3 class="fn"><a name="eventsID"></a><a href="quuid.html">QUuid</a> QAxFactory::eventsID ( const <a href="qstring.html">QString</a> &amp; <i>key</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplement this function to return the identifier of the event interface for each <i>key</i> returned by the <a href="qaxfactory.html#featureList">featureList</a>() implementation, or an empty <a href="quuid.html">QUuid</a> if this factory doesn't support the value of <i>key</i>.</p>
+<p>The default implementation interprets <i>key</i> as the class name, and returns the value of the <a href="qobject.html#Q_CLASSINFO">Q_CLASSINFO</a>() entry &quot;EventsID&quot;.</p>
+<a name="//apple_ref/cpp/instm/QAxFactory/exposeToSuperClass" />
+<h3 class="fn"><a name="exposeToSuperClass"></a><a href="qstring.html">QString</a> QAxFactory::exposeToSuperClass ( const <a href="qstring.html">QString</a> &amp; <i>key</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplement this function to return the name of the super class of <i>key</i> up to which methods and properties should be exposed by the ActiveX control.</p>
+<p>The default implementation interprets <i>key</i> as the class name, and returns the value of the <tt>Q_CLASSINFO()</tt> entry &quot;ToSuperClass&quot;. If no such value is set the null-string is returned, and the functions and properties of all the super classes including <a href="qwidget.html">QWidget</a> will be exposed.</p>
+<p>To only expose the functions and properties of the class itself, reimplement this function to return <i>key</i>.</p>
+<a name="//apple_ref/cpp/instm/QAxFactory/featureList" />
+<h3 class="fn"><a name="featureList"></a><a href="qstringlist.html">QStringList</a> QAxFactory::featureList () const&nbsp;&nbsp;<tt> [pure virtual]</tt></h3>
+<p>Reimplement this function to return a list of the widgets (class names) supported by this factory.</p>
+<a name="//apple_ref/cpp/instm/QAxFactory/hasStockEvents" />
+<h3 class="fn"><a name="hasStockEvents"></a>bool QAxFactory::hasStockEvents ( const <a href="qstring.html">QString</a> &amp; <i>key</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplement this function to return true if the ActiveX control <i>key</i> should support the standard ActiveX events</p>
+<ul>
+<li>Click</li>
+<li>DblClick</li>
+<li>KeyDown</li>
+<li>KeyPress</li>
+<li>KeyUp</li>
+<li>MouseDown</li>
+<li>MouseUp</li>
+<li>MouseMove</li>
+</ul>
+<p>The default implementation interprets <i>key</i> as the class name, and returns true if the value of the <tt>Q_CLASSINFO()</tt> entry &quot;StockEvents&quot; is &quot;yes&quot;. Otherwise this function returns false.</p>
+<a name="//apple_ref/cpp/instm/QAxFactory/interfaceID" />
+<h3 class="fn"><a name="interfaceID"></a><a href="quuid.html">QUuid</a> QAxFactory::interfaceID ( const <a href="qstring.html">QString</a> &amp; <i>key</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplement this function to return the interface identifier for each <i>key</i> returned by the <a href="qaxfactory.html#featureList">featureList</a>() implementation, or an empty <a href="quuid.html">QUuid</a> if this factory doesn't support the value of <i>key</i>.</p>
+<p>The default implementation interprets <i>key</i> as the class name, and returns the value of the <a href="qobject.html#Q_CLASSINFO">Q_CLASSINFO</a>() entry &quot;InterfaceID&quot;.</p>
+<a name="//apple_ref/cpp/clm/QAxFactory/isServer" />
+<h3 class="fn"><a name="isServer"></a>bool QAxFactory::isServer ()&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Returns true if the application has been started (by COM) as an ActiveX server, otherwise returns false.</p>
+<pre> int main(int argc, char *argv[])
+ {
+     QApplication app(argc, argv);
+     if (!QAxFactory::isServer()) {
+         <span class="comment">// initialize for stand-alone execution</span>
+     }
+     return app.exec();
+ }</pre>
+<a name="//apple_ref/cpp/instm/QAxFactory/isService" />
+<h3 class="fn"><a name="isService"></a>bool QAxFactory::isService () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplement this function to return true if the server is running as a persistent service (e.g&#x2e; an NT service) and should not terminate even when all objects provided have been released.</p>
+<p>The default implementation returns false.</p>
+<a name="//apple_ref/cpp/instm/QAxFactory/metaObject" />
+<h3 class="fn"><a name="metaObject"></a>const <a href="qmetaobject.html">QMetaObject</a> * QAxFactory::metaObject ( const <a href="qstring.html">QString</a> &amp; <i>key</i> ) const&nbsp;&nbsp;<tt> [pure virtual]</tt></h3>
+<p>Reimplement this function to return the <a href="qmetaobject.html">QMetaObject</a> corresponding to <i>key</i>, or 0 if this factory doesn't support the value of <i>key</i>.</p>
+<a name="//apple_ref/cpp/clm/QAxFactory/registerActiveObject" />
+<h3 class="fn"><a name="registerActiveObject"></a>bool QAxFactory::registerActiveObject ( <a href="qobject.html">QObject</a> * <i>object</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Registers the <a href="qobject.html">QObject</a> <i>object</i> with COM as a running object, and returns true if the registration succeeded, otherwise returns false. The object is unregistered automatically when it is destroyed.</p>
+<p>This function should only be called if the application has been started by the user (i.e&#x2e; not by COM to respond to a request), and only for one object, usually the toplevel object of the application's object hierarchy.</p>
+<p>This function does nothing and returns false if the object's class info for &quot;RegisterObject&quot; is not set to &quot;yes&quot;, or if the server is an in-process server.</p>
+<a name="//apple_ref/cpp/instm/QAxFactory/registerClass" />
+<h3 class="fn"><a name="registerClass"></a>void QAxFactory::registerClass ( const <a href="qstring.html">QString</a> &amp; <i>key</i>, <a href="qsettings.html">QSettings</a> * <i>settings</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Registers additional values for the class <i>key</i> in the system registry using the <i>settings</i> object. The standard values have already been registered by the framework, but additional values, e.g&#x2e; implemented categories, can be added in an implementation of this function.</p>
+<pre> settings-&gt;setValue(&quot;/CLSID/&quot; + classID(key)
+                    + &quot;/Implemented Categories/&quot;
+                    + &quot;/{00000000-0000-0000-000000000000}/.&quot;,
+                    QString());</pre>
+<p>If you reimplement this function you must also reimplement <a href="qaxfactory.html#unregisterClass">unregisterClass</a>() to remove the additional registry values.</p>
+<p>See also <a href="qsettings.html">QSettings</a>.</p>
+<a name="//apple_ref/cpp/clm/QAxFactory/serverDirPath" />
+<h3 class="fn"><a name="serverDirPath"></a><a href="qstring.html">QString</a> QAxFactory::serverDirPath ()&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Returns the directory that contains the server binary.</p>
+<p>For out-of-process servers this is the same as <a href="qcoreapplication.html#applicationDirPath">QApplication::applicationDirPath</a>(). For in-process servers that function returns the directory that contains the hosting application.</p>
+<a name="//apple_ref/cpp/clm/QAxFactory/serverFilePath" />
+<h3 class="fn"><a name="serverFilePath"></a><a href="qstring.html">QString</a> QAxFactory::serverFilePath ()&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Returns the file path of the server binary.</p>
+<p>For out-of-process servers this is the same as <a href="qcoreapplication.html#applicationFilePath">QApplication::applicationFilePath</a>(). For in-process servers that function returns the file path of the hosting application.</p>
+<a name="//apple_ref/cpp/clm/QAxFactory/startServer" />
+<h3 class="fn"><a name="startServer"></a>bool QAxFactory::startServer ( <a href="qaxfactory.html#ServerType-enum">ServerType</a> <i>type</i> = MultipleInstances )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Starts the COM server with <i>type</i> and returns true if successful, otherwise returns false.</p>
+<p>Calling this function if the server is already running (or for an in-process server) does nothing and returns true.</p>
+<p>The server is started automatically with <i>type</i> set to <tt>MultipleInstances</tt> if the server executable has been started with the <tt>-activex</tt> command line parameter. To switch to <a href="qaxfactory.html#ServerType-enum">SingleInstance</a>, call</p>
+<pre> if (QAxFactory::isServer()) {
+     QAxFactory::stopServer();
+     QAxFactory::startServer(QAxFactory::SingleInstance);
+ }</pre>
+<p>in your own main() entry point function.</p>
+<a name="//apple_ref/cpp/instm/QAxFactory/stayTopLevel" />
+<h3 class="fn"><a name="stayTopLevel"></a>bool QAxFactory::stayTopLevel ( const <a href="qstring.html">QString</a> &amp; <i>key</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplement this function to return true if the ActiveX control <i>key</i> should be a top level window, e.g&#x2e; a dialog. The default implementation returns false.</p>
+<a name="//apple_ref/cpp/clm/QAxFactory/stopServer" />
+<h3 class="fn"><a name="stopServer"></a>bool QAxFactory::stopServer ()&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Stops the COM server and returns true if successful, otherwise returns false.</p>
+<p>Calling this function if the server is not running (or for an in-process server) does nothing and returns true.</p>
+<p>Stopping the server will not invalidate existing objects, but no new objects can be created from the existing server process. Usually COM will start a new server process if additional objects are requested.</p>
+<p>The server is stopped automatically when the main() function returns.</p>
+<a name="//apple_ref/cpp/instm/QAxFactory/typeLibID" />
+<h3 class="fn"><a name="typeLibID"></a><a href="quuid.html">QUuid</a> QAxFactory::typeLibID () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplement this function to return the ActiveX server's type library identifier.</p>
+<a name="//apple_ref/cpp/instm/QAxFactory/unregisterClass" />
+<h3 class="fn"><a name="unregisterClass"></a>void QAxFactory::unregisterClass ( const <a href="qstring.html">QString</a> &amp; <i>key</i>, <a href="qsettings.html">QSettings</a> * <i>settings</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Unregisters any additional values for the class <i>key</i> from the system registry using the <i>settings</i> object.</p>
+<pre> settings-&gt;remove(&quot;/CLSID/&quot; + classID(key)
+                  + &quot;/Implemented Categories&quot;
+                  + &quot;/{00000000-0000-0000-000000000000}/.&quot;);</pre>
+<p>See also <a href="qaxfactory.html#registerClass">registerClass</a>() and <a href="qsettings.html">QSettings</a>.</p>
+<a name="//apple_ref/cpp/instm/QAxFactory/validateLicenseKey" />
+<h3 class="fn"><a name="validateLicenseKey"></a>bool QAxFactory::validateLicenseKey ( const <a href="qstring.html">QString</a> &amp; <i>key</i>, const <a href="qstring.html">QString</a> &amp; <i>licenseKey</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplement this function to return true if <i>licenseKey</i> is a valid license for the class <i>key</i>, or if the current machine is licensed.</p>
+<p>The default implementation returns true if the class <i>key</i> is not licensed (ie. no <tt>Q_CLASSINFO()</tt> attribute &quot;LicenseKey&quot;), or if <i>licenseKey</i> matches the value of the &quot;LicenseKey&quot; attribute, or if the machine is licensed through a .LIC file with the same filename as this COM server.</p>
+<hr />
+<h2>Macro Documentation</h2>
+<a name="//apple_ref/cpp/macro//QAXCLASS" />
+<h3 class="fn"><a name="QAXCLASS"></a>QAXCLASS (  <i>Class</i> )</h3>
+<p>This macro adds a creatable COM class <i>Class</i> to the <a href="qaxfactory.html">QAxFactory</a> declared with the <a href="qaxfactory.html#QAXFACTORY_BEGIN">QAXFACTORY_BEGIN</a>() macro.</p>
+<p>See also <a href="qaxfactory.html#QAXFACTORY_BEGIN">QAXFACTORY_BEGIN</a>(), <a href="qaxfactory.html#QAXTYPE">QAXTYPE</a>(), <a href="qaxfactory.html#QAXFACTORY_END">QAXFACTORY_END</a>(), and <a href="qobject.html#Q_CLASSINFO">Q_CLASSINFO</a>().</p>
+<a name="//apple_ref/cpp/macro//QAXFACTORY_BEGIN" />
+<h3 class="fn"><a name="QAXFACTORY_BEGIN"></a>QAXFACTORY_BEGIN (  <i>IDTypeLib</i>,  <i>IDApp</i> )</h3>
+<p>This macro can be used to export multiple <a href="qobject.html">QObject</a> classes through an implicitly declared <a href="qaxfactory.html">QAxFactory</a> implementation. All <a href="qobject.html">QObject</a> classes have to declare the ClassID, InterfaceID and EventsID (if applicable) through the <a href="qobject.html#Q_CLASSINFO">Q_CLASSINFO</a>() macro. All declarations will be in a type library with the id <i>IDTypeLib</i>, and if the server is an executable server then it will have the application id <i>IDApp</i>.</p>
+<p>This macro needs to be used together with the <a href="qaxfactory.html#QAXCLASS">QAXCLASS</a>(), <a href="qaxfactory.html#QAXTYPE">QAXTYPE</a>() and <a href="qaxfactory.html#QAXFACTORY_END">QAXFACTORY_END</a>() macros.</p>
+<pre> QAXFACTORY_BEGIN(
+     &quot;{01234567-89AB-CDEF-0123-456789ABCDEF}&quot;, <span class="comment">// type library ID</span>
+     &quot;{01234567-89AB-CDEF-0123-456789ABCDEF}&quot;  <span class="comment">// application ID</span>
+ )
+     QAXCLASS(Class1)
+     QAXCLASS(Class2)
+ QAXFACTORY_END()</pre>
+<a name="//apple_ref/cpp/macro//QAXFACTORY_DEFAULT" />
+<h3 class="fn"><a name="QAXFACTORY_DEFAULT"></a>QAXFACTORY_DEFAULT (  <i>Class</i>,  <i>ClassID</i>,  <i>InterfaceID</i>,  <i>EventID</i>,  <i>LibID</i>,  <i>AppID</i> )</h3>
+<p>This macro can be used to export a single <a href="qobject.html">QObject</a> subclass <i>Class</i> a this COM server through an implicitly declared <a href="qaxfactory.html">QAxFactory</a> implementation.</p>
+<p>This macro exports the class <i>Class</i> as a COM coclass with the CLSID <i>ClassID</i>. The properties and slots will be declared through a COM interface with the IID <i>InterfaceID</i>, and signals will be declared through a COM event interface with the IID <i>EventID</i>. All declarations will be in a type library with the id <i>LibID</i>, and if the server is an executable server then it will have the application id <i>AppID</i>.</p>
+<pre> #include &lt;qaxfactory.h&gt;
+
+ #include &quot;theactivex.h&quot;
+
+ QAXFACTORY_DEFAULT(
+     TheActiveX,                           <span class="comment">// widget class</span>
+     &quot;{01234567-89AB-CDEF-0123-456789ABCDEF}&quot;, <span class="comment">// class ID</span>
+     &quot;{01234567-89AB-CDEF-0123-456789ABCDEF}&quot;, <span class="comment">// interface ID</span>
+     &quot;{01234567-89AB-CDEF-0123-456789ABCDEF}&quot;, <span class="comment">// event interface ID</span>
+     &quot;{01234567-89AB-CDEF-0123-456789ABCDEF}&quot;, <span class="comment">// type library ID</span>
+     &quot;{01234567-89AB-CDEF-0123-456789ABCDEF}&quot;  <span class="comment">// application ID</span>
+ )</pre>
+<p>See also <a href="qaxfactory.html#QAXFACTORY_EXPORT">QAXFACTORY_EXPORT</a>() and <a href="qaxfactory.html#QAXFACTORY_BEGIN">QAXFACTORY_BEGIN</a>().</p>
+<a name="//apple_ref/cpp/macro//QAXFACTORY_END" />
+<h3 class="fn"><a name="QAXFACTORY_END"></a>QAXFACTORY_END ()</h3>
+<p>Completes the <a href="qaxfactory.html">QAxFactory</a> declaration started with the <a href="qaxfactory.html#QAXFACTORY_BEGIN">QAXFACTORY_BEGIN</a>() macro.</p>
+<p>See also <a href="qaxfactory.html#QAXFACTORY_BEGIN">QAXFACTORY_BEGIN</a>(), <a href="qaxfactory.html#QAXCLASS">QAXCLASS</a>(), and <a href="qaxfactory.html#QAXTYPE">QAXTYPE</a>().</p>
+<a name="//apple_ref/cpp/macro//QAXFACTORY_EXPORT" />
+<h3 class="fn"><a name="QAXFACTORY_EXPORT"></a>QAXFACTORY_EXPORT (  <i>Class</i>,  <i>LibID</i>,  <i>AppID</i> )</h3>
+<p>This macro can be used to export a <a href="qaxfactory.html">QAxFactory</a> implementation <i>Class</i> from a COM server. All declarations will be in a type library with the id <i>LibID</i>, and if the server is an executable server then it will have the application id <i>AppID</i>.</p>
+<pre> QAXFACTORY_EXPORT(
+     MyFactory,                                <span class="comment">// factory class</span>
+     &quot;{01234567-89AB-CDEF-0123-456789ABCDEF}&quot;, <span class="comment">// type library ID</span>
+     &quot;{01234567-89AB-CDEF-0123-456789ABCDEF}&quot;  <span class="comment">// application ID</span>
+ )</pre>
+<p>See also <a href="qaxfactory.html#QAXFACTORY_BEGIN">QAXFACTORY_BEGIN</a>().</p>
+<a name="//apple_ref/cpp/macro//QAXTYPE" />
+<h3 class="fn"><a name="QAXTYPE"></a>QAXTYPE (  <i>Class</i> )</h3>
+<p>This macro adds a non-creatable COM class <i>Class</i> to the <a href="qaxfactory.html">QAxFactory</a> declared with the <a href="qaxfactory.html#QAXFACTORY_BEGIN">QAXFACTORY_BEGIN</a>(). The class <i>Class</i> can be used in APIs of other COM classes exported through QAXTYPE() or <a href="qaxfactory.html#QAXCLASS">QAXCLASS</a>().</p>
+<p>Instances of type <i>Class</i> can only be retrieved using APIs of already instantiated objects.</p>
+<p>See also <a href="qaxfactory.html#QAXFACTORY_BEGIN">QAXFACTORY_BEGIN</a>(), <a href="qaxfactory.html#QAXCLASS">QAXCLASS</a>(), <a href="qaxfactory.html#QAXFACTORY_END">QAXFACTORY_END</a>(), and <a href="qobject.html#Q_CLASSINFO">Q_CLASSINFO</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

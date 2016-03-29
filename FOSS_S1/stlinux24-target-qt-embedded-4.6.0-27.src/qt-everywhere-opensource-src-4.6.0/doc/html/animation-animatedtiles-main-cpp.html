@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: main.cpp Example File (animation/animatedtiles/main.cpp)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">main.cpp Example File<br /><span class="small-subtitle">animation/animatedtiles/main.cpp</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the QtCore module of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+
+ #include &lt;QtGui&gt;
+ #include &lt;QtCore/qstate.h&gt;
+
+ class Pixmap : public QObject, public QGraphicsPixmapItem
+ {
+     Q_OBJECT
+     Q_PROPERTY(QPointF pos READ pos WRITE setPos)
+ public:
+     Pixmap(const QPixmap &amp;pix)
+         : QObject(), QGraphicsPixmapItem(pix)
+     {
+         setCacheMode(DeviceCoordinateCache);
+     }
+ };
+
+ class Button : public QGraphicsWidget
+ {
+     Q_OBJECT
+ public:
+     Button(const QPixmap &amp;pixmap, QGraphicsItem *parent = 0)
+         : QGraphicsWidget(parent), _pix(pixmap)
+     {
+         setAcceptHoverEvents(true);
+         setCacheMode(DeviceCoordinateCache);
+     }
+
+     QRectF boundingRect() const
+     {
+         return QRectF(-65, -65, 130, 130);
+     }
+
+     QPainterPath shape() const
+     {
+         QPainterPath path;
+         path.addEllipse(boundingRect());
+         return path;
+     }
+
+     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *)
+     {
+         bool down = option-&gt;state &amp; QStyle::State_Sunken;
+         QRectF r = boundingRect();
+         QLinearGradient grad(r.topLeft(), r.bottomRight());
+         grad.setColorAt(down ? 1 : 0, option-&gt;state &amp; QStyle::State_MouseOver ? Qt::white : Qt::lightGray);
+         grad.setColorAt(down ? 0 : 1, Qt::darkGray);
+         painter-&gt;setPen(Qt::darkGray);
+         painter-&gt;setBrush(grad);
+         painter-&gt;drawEllipse(r);
+         QLinearGradient grad2(r.topLeft(), r.bottomRight());
+         grad.setColorAt(down ? 1 : 0, Qt::darkGray);
+         grad.setColorAt(down ? 0 : 1, Qt::lightGray);
+         painter-&gt;setPen(Qt::NoPen);
+         painter-&gt;setBrush(grad);
+         if (down)
+             painter-&gt;translate(2, 2);
+         painter-&gt;drawEllipse(r.adjusted(5, 5, -5, -5));
+         painter-&gt;drawPixmap(-_pix.width()/2, -_pix.height()/2, _pix);
+     }
+
+ signals:
+     void pressed();
+
+ protected:
+     void mousePressEvent(QGraphicsSceneMouseEvent *)
+     {
+         emit pressed();
+         update();
+     }
+
+     void mouseReleaseEvent(QGraphicsSceneMouseEvent *)
+     {
+         update();
+     }
+
+ private:
+     QPixmap _pix;
+ };
+
+ class View : public QGraphicsView
+ {
+ public:
+     View(QGraphicsScene *scene) : QGraphicsView(scene) { }
+
+ protected:
+     void resizeEvent(QResizeEvent *event)
+     {
+         QGraphicsView::resizeEvent(event);
+         fitInView(sceneRect(), Qt::KeepAspectRatio);
+     }
+ };
+
+ int main(int argc, char **argv)
+ {
+     Q_INIT_RESOURCE(animatedtiles);
+
+     QApplication app(argc, argv);
+
+     QPixmap kineticPix(&quot;:/images/kinetic.png&quot;);
+     QPixmap bgPix(&quot;:/images/Time-For-Lunch-2.jpg&quot;);
+
+     QGraphicsScene scene(-350, -350, 700, 700);
+
+     QList&lt;Pixmap *&gt; items;
+     for (int i = 0; i &lt; 64; ++i) {
+         Pixmap *item = new Pixmap(kineticPix);
+         item-&gt;setOffset(-kineticPix.width()/2, -kineticPix.height()/2);
+         item-&gt;setZValue(i);
+         items &lt;&lt; item;
+         scene.addItem(item);
+     }
+
+     <span class="comment">// Buttons</span>
+     QGraphicsItem *buttonParent = new QGraphicsRectItem;
+     Button *ellipseButton = new Button(QPixmap(&quot;:/images/ellipse.png&quot;), buttonParent);
+     Button *figure8Button = new Button(QPixmap(&quot;:/images/figure8.png&quot;), buttonParent);
+     Button *randomButton = new Button(QPixmap(&quot;:/images/random.png&quot;), buttonParent);
+     Button *tiledButton = new Button(QPixmap(&quot;:/images/tile.png&quot;), buttonParent);
+     Button *centeredButton = new Button(QPixmap(&quot;:/images/centered.png&quot;), buttonParent);
+
+     ellipseButton-&gt;setPos(-100, -100);
+     figure8Button-&gt;setPos(100, -100);
+     randomButton-&gt;setPos(0, 0);
+     tiledButton-&gt;setPos(-100, 100);
+     centeredButton-&gt;setPos(100, 100);
+
+     scene.addItem(buttonParent);
+     buttonParent-&gt;scale(0.75, 0.75);
+     buttonParent-&gt;setPos(200, 200);
+     buttonParent-&gt;setZValue(65);
+
+     <span class="comment">// States</span>
+     QState *rootState = new QState;
+     QState *ellipseState = new QState(rootState);
+     QState *figure8State = new QState(rootState);
+     QState *randomState = new QState(rootState);
+     QState *tiledState = new QState(rootState);
+     QState *centeredState = new QState(rootState);
+
+     <span class="comment">// Values</span>
+     for (int i = 0; i &lt; items.count(); ++i) {
+         Pixmap *item = items.at(i);
+         <span class="comment">// Ellipse</span>
+         ellipseState-&gt;assignProperty(item, &quot;pos&quot;,
+                                          QPointF(cos((i / 63.0) * 6.28) * 250,
+                                                  sin((i / 63.0) * 6.28) * 250));
+
+         <span class="comment">// Figure 8</span>
+         figure8State-&gt;assignProperty(item, &quot;pos&quot;,
+                                          QPointF(sin((i / 63.0) * 6.28) * 250,
+                                                  sin(((i * 2)/63.0) * 6.28) * 250));
+
+         <span class="comment">// Random</span>
+         randomState-&gt;assignProperty(item, &quot;pos&quot;,
+                                         QPointF(-250 + qrand() % 500,
+                                                 -250 + qrand() % 500));
+
+         <span class="comment">// Tiled</span>
+         tiledState-&gt;assignProperty(item, &quot;pos&quot;,
+                                        QPointF(((i % 8) - 4) * kineticPix.width() + kineticPix.width() / 2,
+                                                ((i / 8) - 4) * kineticPix.height() + kineticPix.height() / 2));
+
+         <span class="comment">// Centered</span>
+         centeredState-&gt;assignProperty(item, &quot;pos&quot;, QPointF());
+     }
+
+     <span class="comment">// Ui</span>
+     View *view = new View(&amp;scene);
+     view-&gt;setWindowTitle(QT_TRANSLATE_NOOP(QGraphicsView, &quot;Animated Tiles&quot;));
+     view-&gt;setViewportUpdateMode(QGraphicsView::BoundingRectViewportUpdate);
+     view-&gt;setBackgroundBrush(bgPix);
+     view-&gt;setCacheMode(QGraphicsView::CacheBackground);
+     view-&gt;setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+     view-&gt;show();
+
+     QStateMachine states;
+     states.addState(rootState);
+     states.setInitialState(rootState);
+     rootState-&gt;setInitialState(centeredState);
+
+     QParallelAnimationGroup *group = new QParallelAnimationGroup;
+     for (int i = 0; i &lt; items.count(); ++i) {
+         QPropertyAnimation *anim = new QPropertyAnimation(items[i], &quot;pos&quot;);
+         anim-&gt;setDuration(750 + i * 25);
+         anim-&gt;setEasingCurve(QEasingCurve::InOutBack);
+         group-&gt;addAnimation(anim);
+     }
+     QAbstractTransition *trans = rootState-&gt;addTransition(ellipseButton, SIGNAL(pressed()), ellipseState);
+     trans-&gt;addAnimation(group);
+
+     trans = rootState-&gt;addTransition(figure8Button, SIGNAL(pressed()), figure8State);
+     trans-&gt;addAnimation(group);
+
+     trans = rootState-&gt;addTransition(randomButton, SIGNAL(pressed()), randomState);
+     trans-&gt;addAnimation(group);
+
+     trans = rootState-&gt;addTransition(tiledButton, SIGNAL(pressed()), tiledState);
+     trans-&gt;addAnimation(group);
+
+     trans = rootState-&gt;addTransition(centeredButton, SIGNAL(pressed()), centeredState);
+     trans-&gt;addAnimation(group);
+
+     QTimer timer;
+     timer.start(125);
+     timer.setSingleShot(true);
+     trans = rootState-&gt;addTransition(&amp;timer, SIGNAL(timeout()), ellipseState);
+     trans-&gt;addAnimation(group);
+
+     states.start();
+
+ #ifdef QT_KEYPAD_NAVIGATION
+     QApplication::setNavigationMode(Qt::NavigationModeCursorAuto);
+ #endif
+     return app.exec();
+ }
+
+ #include &quot;main.moc&quot;</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

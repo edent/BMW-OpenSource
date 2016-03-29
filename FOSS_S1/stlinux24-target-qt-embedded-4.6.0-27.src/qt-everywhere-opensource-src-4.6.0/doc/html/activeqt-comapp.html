@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- comapp.qdoc -->
+<head>
+  <title>Qt 4.6: COM App Example (ActiveQt)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">COM App Example (ActiveQt)<br /><span class="subtitle"></span>
+</h1>
+<p>Files:</p>
+<ul>
+<li><a href="activeqt-comapp-main-cpp.html">activeqt/comapp/main.cpp</a></li>
+<li><a href="activeqt-comapp-comapp-pro.html">activeqt/comapp/comapp.pro</a></li>
+</ul>
+<p>The COM App example shows how to use <a href="activeqt.html#activeqt">ActiveQt</a> to develop a Qt application that can be automated via COM. Different <a href="qobject.html">QObject</a> based classes are exposed as COM objects that communicate with the GUI of the running Qt application. The APIs of those COM objects has been designed to resemble the APIs of standard COM applications; i.e&#x2e; those from Microsoft Office.</p>
+<pre> class Application : public QObject
+ {
+     Q_OBJECT
+
+     Q_CLASSINFO(&quot;ClassID&quot;, &quot;{b50a71db-c4a7-4551-8d14-49983566afee}&quot;)
+     Q_CLASSINFO(&quot;InterfaceID&quot;, &quot;{4a427759-16ef-4ed8-be79-59ffe5789042}&quot;)
+     Q_CLASSINFO(&quot;RegisterObject&quot;, &quot;yes&quot;)
+
+     Q_PROPERTY(DocumentList* documents READ documents)
+     Q_PROPERTY(QString id READ id)
+     Q_PROPERTY(bool visible READ isVisible WRITE setVisible)
+
+ public:
+     Application(QObject *parent = 0);
+     DocumentList *documents() const;
+
+     QString id() const { return objectName(); }
+
+     void setVisible(bool on);
+     bool isVisible() const;
+
+     QTabWidget *window() const { return ui; }
+
+ public slots:
+     void quit();
+
+ private:
+     DocumentList *docs;
+
+     QTabWidget *ui;
+ };</pre>
+<p>The first class <tt>Application</tt> represents the application object. It exposes read-only properties <tt>documents</tt> and <tt>id</tt> to get access to the list of documents, and an identifier. A read/write property <tt>visible</tt> controls whether the <a href="qtabwidget.html">QTabWidget</a>-based user interface of the application should be visible, and a slot <tt>quit()</tt> terminates the application.</p>
+<p>The <i>RegisterObject</i> attribute is set to make sure that instances of this class are registered in COM's running object table (ROT) - this allows COM clients to connect to an already instantiated COM object.</p>
+<pre> class DocumentList : public QObject
+ {
+     Q_OBJECT
+
+     Q_CLASSINFO(&quot;ClassID&quot;, &quot;{496b761d-924b-4554-a18a-8f3704d2a9a6}&quot;)
+     Q_CLASSINFO(&quot;InterfaceID&quot;, &quot;{6c9e30e8-3ff6-4e6a-9edc-d219d074a148}&quot;)
+
+     Q_PROPERTY(Application* application READ application)
+     Q_PROPERTY(int count READ count)
+
+ public:
+     DocumentList(Application *application);
+
+     int count() const;
+     Application *application() const;
+
+ public slots:
+     Document *addDocument();
+     Document *item(int index) const;
+
+ private:
+     QList&lt;Document*&gt; list;
+ };</pre>
+<p>The <tt>DocumentList</tt> class stores a list of documents. It provides an API to read the number of documents, to access each document by index and to create a new document. The <tt>application</tt> property returns the root object.</p>
+<pre> class Document : public QObject
+ {
+     Q_OBJECT
+
+     Q_CLASSINFO(&quot;ClassID&quot;, &quot;{2b5775cd-72c2-43da-bc3b-b0e8d1e1c4f7}&quot;)
+     Q_CLASSINFO(&quot;InterfaceID&quot;, &quot;{2ce1761e-07a3-415c-bd11-0eab2c7283de}&quot;)
+
+     Q_PROPERTY(Application *application READ application)
+     Q_PROPERTY(QString title READ title WRITE setTitle)
+
+ public:
+     Document(DocumentList *list);
+     ~Document();
+
+     Application *application() const;
+
+     QString title() const;
+     void setTitle(const QString &amp;title);
+
+ private:
+     QWidget *page;
+ };</pre>
+<p>The <tt>Document</tt> class finally represents a document in the application. Each document is represented by a page in the application's tab widget, and has a title that is readable and writable through the document's API. The <tt>application</tt> property again returns the root object.</p>
+<pre> Document::Document(DocumentList *list)
+ : QObject(list)
+ {
+     QTabWidget *tabs = list-&gt;application()-&gt;window();
+     page = new QWidget(tabs);
+     page-&gt;setWindowTitle(&quot;Unnamed&quot;);
+     tabs-&gt;addTab(page, page-&gt;windowTitle());
+
+     page-&gt;show();
+ }
+
+ Document::~Document()
+ {
+     delete page;
+ }
+
+ Application *Document::application() const
+ {
+     return qobject_cast&lt;DocumentList*&gt;(parent())-&gt;application();
+ }
+
+ QString Document::title() const
+ {
+     return page-&gt;windowTitle();
+ }
+
+ void Document::setTitle(const QString &amp;t)
+ {
+     page-&gt;setWindowTitle(t);
+
+     QTabWidget *tabs = application()-&gt;window();
+     int index = tabs-&gt;indexOf(page);
+     tabs-&gt;setTabText(index, page-&gt;windowTitle());
+ }</pre>
+<p>The implementation of the <tt>Document</tt> class creates a new page for the tab widget, and uses the title of that page for the title property. The page is deleted when the document is deleted.</p>
+<pre> DocumentList::DocumentList(Application *application)
+ : QObject(application)
+ {
+ }
+
+ Application *DocumentList::application() const
+ {
+     return qobject_cast&lt;Application*&gt;(parent());
+ }
+
+ int DocumentList::count() const
+ {
+     return list.count();
+ }
+
+ Document *DocumentList::item(int index) const
+ {
+     if (index &gt;= list.count())
+         return 0;
+
+     return list.at(index);
+ }
+
+ Document *DocumentList::addDocument()
+ {
+     Document *document = new Document(this);
+     list.append(document);
+
+     return document;
+ }</pre>
+<p>The <tt>DocumentList</tt> implementation is straightforward.</p>
+<pre> Application::Application(QObject *parent)
+ : QObject(parent), ui(0)
+ {
+     ui = new QTabWidget;
+
+     setObjectName(&quot;From QAxFactory&quot;);
+     docs = new DocumentList(this);
+ }
+
+ DocumentList *Application::documents() const
+ {
+     return docs;
+ }
+
+ void Application::setVisible(bool on)
+ {
+     ui-&gt;setShown(on);
+ }
+
+ bool Application::isVisible() const
+ {
+     return ui-&gt;isVisible();
+ }
+
+ void Application::quit()
+ {
+     delete docs;
+     docs = 0;
+
+     delete ui;
+     ui = 0;
+     QTimer::singleShot(0, qApp, SLOT(quit()));
+ }
+
+ #include &quot;main.moc&quot;</pre>
+<p>The <tt>Application</tt> class initializes the user interface in the constructor, and shows and hides it in the implementation of <tt>setVisible()</tt>. The object name (accessible through the <tt>id</tt> property) is set to <tt>&quot;From</tt> <a href="qaxfactory.html">QAxFactory</a>&quot; to indicate that this COM object has been created by COM. Note that there is no destructor that would delete the <a href="qtabwidget.html">QTabWidget</a> - this is instead done in the <tt>quit()</tt> slot, before calling <a href="qcoreapplication.html#quit">QApplication::quit</a>() through a single-shot-timer, which is necessary ensure that the COM call to the slot is complete.</p>
+<pre> QAXFACTORY_BEGIN(&quot;{edd3e836-f537-4c6f-be7d-6014c155cc7a}&quot;, &quot;{b7da3de8-83bb-4bbe-9ab7-99a05819e201}&quot;)
+    QAXCLASS(Application)
+    QAXTYPE(Document)
+    QAXTYPE(DocumentList)
+ QAXFACTORY_END()</pre>
+<p>The classes are exported from the server using the <a href="qaxfactory.html">QAxFactory</a> macros. Only <tt>Application</tt> objects can be instantiated from outside - the other APIs can only be used after accessing the respective objects throught the <tt>Application</tt> API.</p>
+<pre> int main(int argc, char **argv)
+ {
+     QApplication app(argc, argv);
+     app.setQuitOnLastWindowClosed(false);
+
+     <span class="comment">// started by COM - don't do anything</span>
+     if (QAxFactory::isServer())
+         return app.exec();
+
+     <span class="comment">// started by user</span>
+     Application appobject(0);
+     appobject.setObjectName(&quot;From Application&quot;);
+
+     QAxFactory::startServer();
+     QAxFactory::registerActiveObject(&amp;appobject);
+
+     appobject.setVisible(true);
+
+     QObject::connect(qApp, SIGNAL(lastWindowClosed()), &amp;appobject, SLOT(quit()));
+
+     return app.exec();
+ }</pre>
+<p>The main() entry point function creates a <a href="qapplication.html">QApplication</a>, and just enters the event loop if the application has been started by COM. If the application has been started by the user, then the <tt>Application</tt> object is created and the object name is set to &quot;From Application&quot;. Then the COM server is started, and the application object is registered with COM. It is now accessible to COM clients through the client-specific APIs.</p>
+<p>Application exiting is controlled explicitly - if COM started the application, then the client code has to call quit(); if the user started the application, then the application terminates when the last window has been closed.</p>
+<p>Finally, the user interface is made visible, and the event loop is started.</p>
+<p>A simple Visual Basic application could now access this Qt application. In VB, start a new &quot;Standard Exe&quot; project and add a project reference to the comappLib type library. Create a form with a listbox &quot;DocumentList&quot;, a static label &quot;DocumentsCount&quot; and a command button &quot;NewDocument&quot;. Finally, implement the code for the form like this:</p>
+<pre> Private Application As comappLib.Application
+ Private MyApp As Boolean
+
+ Private Sub UpdateList()
+     DocumentList.Clear
+     DocumentsCount.Caption = Application.documents.Count
+     For Index = 0 To Application.documents.Count - 1
+        DocumentList.AddItem (Application.documents.Item(Index).Title)
+     Next
+ End Sub
+
+ Private Sub Form_Load()
+     On Error GoTo CreateNew
+     Set Application = GetObject(, &quot;comapp.Application&quot;)
+     MyApp = False
+     GoTo Initialized
+ CreateNew:
+     On Error GoTo InitializeFailed
+     Set Application = New Application
+     Application.Visible = True
+     MyApp = True
+ Initialized:
+     Caption = Application.id
+     UpdateList
+ InitializeFailed:
+ End Sub
+
+ Private Sub Form_Unload(Cancel As Integer)
+     If MyApp Then
+         Application.quit
+     End If
+ End Sub
+
+ Private Sub NewDocument_Click()
+     Application.documents.addDocument
+     UpdateList
+ End Sub</pre>
+<p>To build the example you must first build the <a href="qaxserver.html">QAxServer</a> library. Then run <tt>qmake</tt> and your make tool in <tt>examples\activeqt\comapp</tt>.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

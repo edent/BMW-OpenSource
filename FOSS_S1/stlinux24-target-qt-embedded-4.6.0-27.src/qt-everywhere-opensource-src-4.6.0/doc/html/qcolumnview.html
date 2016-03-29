@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qcolumnview.cpp -->
+<head>
+  <title>Qt 4.6: QColumnView Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QColumnView" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QColumnView Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QColumnView class provides a model/view implementation of a column view. <a href="#details">More...</a></p>
+<pre> #include &lt;QColumnView&gt;</pre><p>Inherits <a href="qabstractitemview.html">QAbstractItemView</a>.</p>
+<p>This class was introduced in Qt 4.3.</p>
+<ul>
+<li><a href="qcolumnview-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="properties"></a>
+<h2>Properties</h2>
+<ul>
+<li><div class="fn"><b><a href="qcolumnview.html#resizeGripsVisible-prop">resizeGripsVisible</a></b> : bool</div></li>
+</ul>
+<ul>
+<li><div bar="2" class="fn"></div>16 properties inherited from <a href="qabstractitemview.html#properties">QAbstractItemView</a></li>
+<li><div bar="2" class="fn"></div>2 properties inherited from <a href="qabstractscrollarea.html#properties">QAbstractScrollArea</a></li>
+<li><div bar="2" class="fn"></div>6 properties inherited from <a href="qframe.html#properties">QFrame</a></li>
+<li><div bar="2" class="fn"></div>58 properties inherited from <a href="qwidget.html#properties">QWidget</a></li>
+<li><div bar="2" class="fn"></div>1 property inherited from <a href="qobject.html#properties">QObject</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qcolumnview.html#QColumnView">QColumnView</a></b> ( QWidget * <i>parent</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qcolumnview.html#dtor.QColumnView">~QColumnView</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QList&lt;int&gt; </td><td class="memItemRight" valign="bottom"><b><a href="qcolumnview.html#columnWidths">columnWidths</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QWidget * </td><td class="memItemRight" valign="bottom"><b><a href="qcolumnview.html#previewWidget">previewWidget</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qcolumnview.html#resizeGripsVisible-prop">resizeGripsVisible</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qcolumnview.html#setColumnWidths">setColumnWidths</a></b> ( const QList&lt;int&gt; &amp; <i>list</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qcolumnview.html#setPreviewWidget">setPreviewWidget</a></b> ( QWidget * <i>widget</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qcolumnview.html#resizeGripsVisible-prop">setResizeGripsVisible</a></b> ( bool <i>visible</i> )</td></tr>
+</table>
+<hr />
+<a name="reimplemented-public-functions"></a>
+<h2>Reimplemented Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual QModelIndex </td><td class="memItemRight" valign="bottom"><b><a href="qcolumnview.html#indexAt">indexAt</a></b> ( const QPoint &amp; <i>point</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qcolumnview.html#scrollTo">scrollTo</a></b> ( const QModelIndex &amp; <i>index</i>, ScrollHint <i>hint</i> = EnsureVisible )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qcolumnview.html#selectAll">selectAll</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qcolumnview.html#setModel">setModel</a></b> ( QAbstractItemModel * <i>model</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qcolumnview.html#setRootIndex">setRootIndex</a></b> ( const QModelIndex &amp; <i>index</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qcolumnview.html#setSelectionModel">setSelectionModel</a></b> ( QItemSelectionModel * <i>newSelectionModel</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QSize </td><td class="memItemRight" valign="bottom"><b><a href="qcolumnview.html#sizeHint">sizeHint</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QRect </td><td class="memItemRight" valign="bottom"><b><a href="qcolumnview.html#visualRect">visualRect</a></b> ( const QModelIndex &amp; <i>index</i> ) const</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>57 public functions inherited from <a href="qabstractitemview.html#public-functions">QAbstractItemView</a></li>
+<li><div bar="2" class="fn"></div>17 public functions inherited from <a href="qabstractscrollarea.html#public-functions">QAbstractScrollArea</a></li>
+<li><div bar="2" class="fn"></div>14 public functions inherited from <a href="qframe.html#public-functions">QFrame</a></li>
+<li><div bar="2" class="fn"></div>216 public functions inherited from <a href="qwidget.html#public-functions">QWidget</a></li>
+<li><div bar="2" class="fn"></div>29 public functions inherited from <a href="qobject.html#public-functions">QObject</a></li>
+<li><div bar="2" class="fn"></div>12 public functions inherited from <a href="qpaintdevice.html#public-functions">QPaintDevice</a></li>
+</ul>
+<hr />
+<a name="signals"></a>
+<h2>Signals</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qcolumnview.html#updatePreviewWidget">updatePreviewWidget</a></b> ( const QModelIndex &amp; <i>index</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>6 signals inherited from <a href="qabstractitemview.html#signals">QAbstractItemView</a></li>
+<li><div bar="2" class="fn"></div>1 signal inherited from <a href="qwidget.html#signals">QWidget</a></li>
+<li><div bar="2" class="fn"></div>1 signal inherited from <a href="qobject.html#signals">QObject</a></li>
+</ul>
+<hr />
+<a name="protected-functions"></a>
+<h2>Protected Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual QAbstractItemView * </td><td class="memItemRight" valign="bottom"><b><a href="qcolumnview.html#createColumn">createColumn</a></b> ( const QModelIndex &amp; <i>index</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qcolumnview.html#initializeColumn">initializeColumn</a></b> ( QAbstractItemView * <i>column</i> ) const</td></tr>
+</table>
+<hr />
+<a name="reimplemented-protected-functions"></a>
+<h2>Reimplemented Protected Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qcolumnview.html#currentChanged">currentChanged</a></b> ( const QModelIndex &amp; <i>current</i>, const QModelIndex &amp; <i>previous</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual int </td><td class="memItemRight" valign="bottom"><b><a href="qcolumnview.html#horizontalOffset">horizontalOffset</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qcolumnview.html#isIndexHidden">isIndexHidden</a></b> ( const QModelIndex &amp; <i>index</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QModelIndex </td><td class="memItemRight" valign="bottom"><b><a href="qcolumnview.html#moveCursor">moveCursor</a></b> ( CursorAction <i>cursorAction</i>, Qt::KeyboardModifiers <i>modifiers</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qcolumnview.html#resizeEvent">resizeEvent</a></b> ( QResizeEvent * <i>event</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qcolumnview.html#rowsInserted">rowsInserted</a></b> ( const QModelIndex &amp; <i>parent</i>, int <i>start</i>, int <i>end</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qcolumnview.html#scrollContentsBy">scrollContentsBy</a></b> ( int <i>dx</i>, int <i>dy</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qcolumnview.html#setSelection">setSelection</a></b> ( const QRect &amp; <i>rect</i>, QItemSelectionModel::SelectionFlags <i>command</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual int </td><td class="memItemRight" valign="bottom"><b><a href="qcolumnview.html#verticalOffset">verticalOffset</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QRegion </td><td class="memItemRight" valign="bottom"><b><a href="qcolumnview.html#visualRegionForSelection">visualRegionForSelection</a></b> ( const QItemSelection &amp; <i>selection</i> ) const</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>36 protected functions inherited from <a href="qabstractitemview.html#protected-functions">QAbstractItemView</a></li>
+<li><div bar="2" class="fn"></div>18 protected functions inherited from <a href="qabstractscrollarea.html#protected-functions">QAbstractScrollArea</a></li>
+<li><div bar="2" class="fn"></div>3 protected functions inherited from <a href="qframe.html#protected-functions">QFrame</a></li>
+<li><div bar="2" class="fn"></div>37 protected functions inherited from <a href="qwidget.html#protected-functions">QWidget</a></li>
+<li><div bar="2" class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+<li><div bar="2" class="fn"></div>1 protected function inherited from <a href="qpaintdevice.html#protected-functions">QPaintDevice</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li><div class="fn"></div>9 public slots inherited from <a href="qabstractitemview.html#public-slots">QAbstractItemView</a></li>
+<li><div class="fn"></div>19 public slots inherited from <a href="qwidget.html#public-slots">QWidget</a></li>
+<li><div class="fn"></div>1 public slot inherited from <a href="qobject.html#public-slots">QObject</a></li>
+<li><div class="fn"></div>4 static public members inherited from <a href="qwidget.html#static-public-members">QWidget</a></li>
+<li><div class="fn"></div>5 static public members inherited from <a href="qobject.html#static-public-members">QObject</a></li>
+<li><div class="fn"></div>9 protected slots inherited from <a href="qabstractitemview.html#protected-slots">QAbstractItemView</a></li>
+<li><div class="fn"></div>1 protected slot inherited from <a href="qabstractscrollarea.html#protected-slots">QAbstractScrollArea</a></li>
+<li><div class="fn"></div>1 protected slot inherited from <a href="qwidget.html#protected-slots">QWidget</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QColumnView class provides a model/view implementation of a column view.</p>
+<p>QColumnView displays a model in a number of QListViews, one for each hierarchy in the tree. This is sometimes referred to as a cascading list.</p>
+<p>The QColumnView class is one of the <a href="model-view.html">Model/View Classes</a> and is part of Qt's <a href="model-view-programming.html">model/view framework</a>.</p>
+<p>QColumnView implements the interfaces defined by the <a href="qabstractitemview.html">QAbstractItemView</a> class to allow it to display data provided by models derived from the <a href="qabstractitemmodel.html">QAbstractItemModel</a> class.</p>
+<p align="center"><img src="images/qcolumnview.png" /></p><p>See also <a href="model-view-programming.html">Model/View Programming</a>.</p>
+<hr />
+<h2>Property Documentation</h2>
+<a name="//apple_ref/cpp/instm/QColumnView/resizeGripsVisible" />
+<a name="//apple_ref/cpp/instm/QColumnView/setResizeGripsVisible" />
+<h3 class="fn"><a name="resizeGripsVisible-prop"></a>resizeGripsVisible : bool</h3>
+<p>This property holds the way to specify if the list views gets resize grips or not.</p>
+<p>By default, <tt>visible</tt> is set to true</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b>resizeGripsVisible</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setResizeGripsVisible</b> ( bool <i>visible</i> )</td></tr>
+</table>
+<p>See also <a href="qcolumnview.html#setRootIndex">setRootIndex</a>().</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QColumnView/QColumnView" />
+<h3 class="fn"><a name="QColumnView"></a>QColumnView::QColumnView ( <a href="qwidget.html">QWidget</a> * <i>parent</i> = 0 )</h3>
+<p>Constructs a column view with a <i>parent</i> to represent a model's data. Use <a href="qcolumnview.html#setModel">setModel</a>() to set the model.</p>
+<p>See also <a href="qabstractitemmodel.html">QAbstractItemModel</a>.</p>
+<a name="//apple_ref/cpp/instm/QColumnView/~QColumnView" />
+<h3 class="fn"><a name="dtor.QColumnView"></a>QColumnView::~QColumnView ()</h3>
+<p>Destroys the column view.</p>
+<a name="//apple_ref/cpp/instm/QColumnView/columnWidths" />
+<h3 class="fn"><a name="columnWidths"></a><a href="qlist.html">QList</a>&lt;int&gt; QColumnView::columnWidths () const</h3>
+<p>Returns a list of the width of all the columns in this view.</p>
+<p>See also <a href="qcolumnview.html#setColumnWidths">setColumnWidths</a>().</p>
+<a name="//apple_ref/cpp/instm/QColumnView/createColumn" />
+<h3 class="fn"><a name="createColumn"></a><a href="qabstractitemview.html">QAbstractItemView</a> * QColumnView::createColumn ( const <a href="qmodelindex.html">QModelIndex</a> &amp; <i>index</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>To use a custom widget for the final column when you select an item overload this function and return a widget. <i>index</i> is the root index that will be assigned to the view.</p>
+<p>Return the new view. <a href="qcolumnview.html">QColumnView</a> will automatically take ownership of the widget.</p>
+<p>See also <a href="qcolumnview.html#setPreviewWidget">setPreviewWidget</a>().</p>
+<a name="//apple_ref/cpp/instm/QColumnView/currentChanged" />
+<h3 class="fn"><a name="currentChanged"></a>void QColumnView::currentChanged ( const <a href="qmodelindex.html">QModelIndex</a> &amp; <i>current</i>, const <a href="qmodelindex.html">QModelIndex</a> &amp; <i>previous</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qabstractitemview.html#currentChanged">QAbstractItemView::currentChanged</a>().</p>
+<a name="//apple_ref/cpp/instm/QColumnView/horizontalOffset" />
+<h3 class="fn"><a name="horizontalOffset"></a>int QColumnView::horizontalOffset () const&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qabstractitemview.html#horizontalOffset">QAbstractItemView::horizontalOffset</a>().</p>
+<a name="//apple_ref/cpp/instm/QColumnView/indexAt" />
+<h3 class="fn"><a name="indexAt"></a><a href="qmodelindex.html">QModelIndex</a> QColumnView::indexAt ( const <a href="qpoint.html">QPoint</a> &amp; <i>point</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qabstractitemview.html#indexAt">QAbstractItemView::indexAt</a>().</p>
+<a name="//apple_ref/cpp/instm/QColumnView/initializeColumn" />
+<h3 class="fn"><a name="initializeColumn"></a>void QColumnView::initializeColumn ( <a href="qabstractitemview.html">QAbstractItemView</a> * <i>column</i> ) const&nbsp;&nbsp;<tt> [protected]</tt></h3>
+<p>Copies the behavior and options of the column view and applies them to the <i>column</i> such as the <a href="qabstractitemview.html#iconSize-prop">iconSize</a>(), <a href="qabstractitemview.html#textElideMode-prop">textElideMode</a>() and <a href="qabstractitemview.html#alternatingRowColors-prop">alternatingRowColors</a>(). This can be useful when reimplementing <a href="qcolumnview.html#createColumn">createColumn</a>().</p>
+<p>This function was introduced in Qt 4.4.</p>
+<p>See also <a href="qcolumnview.html#createColumn">createColumn</a>().</p>
+<a name="//apple_ref/cpp/instm/QColumnView/isIndexHidden" />
+<h3 class="fn"><a name="isIndexHidden"></a>bool QColumnView::isIndexHidden ( const <a href="qmodelindex.html">QModelIndex</a> &amp; <i>index</i> ) const&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qabstractitemview.html#isIndexHidden">QAbstractItemView::isIndexHidden</a>().</p>
+<a name="//apple_ref/cpp/instm/QColumnView/moveCursor" />
+<h3 class="fn"><a name="moveCursor"></a><a href="qmodelindex.html">QModelIndex</a> QColumnView::moveCursor ( <a href="qabstractitemview.html#CursorAction-enum">CursorAction</a> <i>cursorAction</i>, <a href="qt.html#KeyboardModifier-enum">Qt::KeyboardModifiers</a> <i>modifiers</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qabstractitemview.html#moveCursor">QAbstractItemView::moveCursor</a>().</p>
+<p>Move left should go to the parent index Move right should go to the child index or down if there is no child</p>
+<a name="//apple_ref/cpp/instm/QColumnView/previewWidget" />
+<h3 class="fn"><a name="previewWidget"></a><a href="qwidget.html">QWidget</a> * QColumnView::previewWidget () const</h3>
+<p>Returns the preview widget, or 0 if there is none.</p>
+<p>See also <a href="qcolumnview.html#setPreviewWidget">setPreviewWidget</a>() and <a href="qcolumnview.html#updatePreviewWidget">updatePreviewWidget</a>().</p>
+<a name="//apple_ref/cpp/instm/QColumnView/resizeEvent" />
+<h3 class="fn"><a name="resizeEvent"></a>void QColumnView::resizeEvent ( <a href="qresizeevent.html">QResizeEvent</a> * <i>event</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#resizeEvent">QWidget::resizeEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QColumnView/rowsInserted" />
+<h3 class="fn"><a name="rowsInserted"></a>void QColumnView::rowsInserted ( const <a href="qmodelindex.html">QModelIndex</a> &amp; <i>parent</i>, int <i>start</i>, int <i>end</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qabstractitemview.html#rowsInserted">QAbstractItemView::rowsInserted</a>().</p>
+<a name="//apple_ref/cpp/instm/QColumnView/scrollContentsBy" />
+<h3 class="fn"><a name="scrollContentsBy"></a>void QColumnView::scrollContentsBy ( int <i>dx</i>, int <i>dy</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qabstractscrollarea.html#scrollContentsBy">QAbstractScrollArea::scrollContentsBy</a>().</p>
+<a name="//apple_ref/cpp/instm/QColumnView/scrollTo" />
+<h3 class="fn"><a name="scrollTo"></a>void QColumnView::scrollTo ( const <a href="qmodelindex.html">QModelIndex</a> &amp; <i>index</i>, <a href="qabstractitemview.html#ScrollHint-enum">ScrollHint</a> <i>hint</i> = EnsureVisible )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qabstractitemview.html#scrollTo">QAbstractItemView::scrollTo</a>().</p>
+<a name="//apple_ref/cpp/instm/QColumnView/selectAll" />
+<h3 class="fn"><a name="selectAll"></a>void QColumnView::selectAll ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qabstractitemview.html#selectAll">QAbstractItemView::selectAll</a>().</p>
+<a name="//apple_ref/cpp/instm/QColumnView/setColumnWidths" />
+<h3 class="fn"><a name="setColumnWidths"></a>void QColumnView::setColumnWidths ( const <a href="qlist.html">QList</a>&lt;int&gt; &amp; <i>list</i> )</h3>
+<p>Sets the column widths to the values given in the <i>list</i>. Extra values in the list are kept and used when the columns are created.</p>
+<p>If list contains too few values, only width of the rest of the columns will not be modified.</p>
+<p>See also <a href="qcolumnview.html#columnWidths">columnWidths</a>() and <a href="qcolumnview.html#createColumn">createColumn</a>().</p>
+<a name="//apple_ref/cpp/instm/QColumnView/setModel" />
+<h3 class="fn"><a name="setModel"></a>void QColumnView::setModel ( <a href="qabstractitemmodel.html">QAbstractItemModel</a> * <i>model</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qabstractitemview.html#setModel">QAbstractItemView::setModel</a>().</p>
+<a name="//apple_ref/cpp/instm/QColumnView/setPreviewWidget" />
+<h3 class="fn"><a name="setPreviewWidget"></a>void QColumnView::setPreviewWidget ( <a href="qwidget.html">QWidget</a> * <i>widget</i> )</h3>
+<p>Sets the preview <i>widget</i>.</p>
+<p>The <i>widget</i> becomes a child of the column view, and will be destroyed when the column area is deleted or when a new widget is set.</p>
+<p>See also <a href="qcolumnview.html#previewWidget">previewWidget</a>() and <a href="qcolumnview.html#updatePreviewWidget">updatePreviewWidget</a>().</p>
+<a name="//apple_ref/cpp/instm/QColumnView/setRootIndex" />
+<h3 class="fn"><a name="setRootIndex"></a>void QColumnView::setRootIndex ( const <a href="qmodelindex.html">QModelIndex</a> &amp; <i>index</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qabstractitemview.html#setRootIndex">QAbstractItemView::setRootIndex</a>().</p>
+<a name="//apple_ref/cpp/instm/QColumnView/setSelection" />
+<h3 class="fn"><a name="setSelection"></a>void QColumnView::setSelection ( const <a href="qrect.html">QRect</a> &amp; <i>rect</i>, <a href="qitemselectionmodel.html#SelectionFlag-enum">QItemSelectionModel::SelectionFlags</a> <i>command</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qabstractitemview.html#setSelection">QAbstractItemView::setSelection</a>().</p>
+<a name="//apple_ref/cpp/instm/QColumnView/setSelectionModel" />
+<h3 class="fn"><a name="setSelectionModel"></a>void QColumnView::setSelectionModel ( <a href="qitemselectionmodel.html">QItemSelectionModel</a> * <i>newSelectionModel</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qabstractitemview.html#setSelectionModel">QAbstractItemView::setSelectionModel</a>().</p>
+<a name="//apple_ref/cpp/instm/QColumnView/sizeHint" />
+<h3 class="fn"><a name="sizeHint"></a><a href="qsize.html">QSize</a> QColumnView::sizeHint () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#sizeHint-prop">QWidget::sizeHint</a>().</p>
+<a name="//apple_ref/cpp/instm/QColumnView/updatePreviewWidget" />
+<h3 class="fn"><a name="updatePreviewWidget"></a>void QColumnView::updatePreviewWidget ( const <a href="qmodelindex.html">QModelIndex</a> &amp; <i>index</i> )&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted when the preview widget should be updated to provide rich information about <i>index</i></p>
+<p>See also <a href="qcolumnview.html#previewWidget">previewWidget</a>().</p>
+<a name="//apple_ref/cpp/instm/QColumnView/verticalOffset" />
+<h3 class="fn"><a name="verticalOffset"></a>int QColumnView::verticalOffset () const&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qabstractitemview.html#verticalOffset">QAbstractItemView::verticalOffset</a>().</p>
+<a name="//apple_ref/cpp/instm/QColumnView/visualRect" />
+<h3 class="fn"><a name="visualRect"></a><a href="qrect.html">QRect</a> QColumnView::visualRect ( const <a href="qmodelindex.html">QModelIndex</a> &amp; <i>index</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qabstractitemview.html#visualRect">QAbstractItemView::visualRect</a>().</p>
+<a name="//apple_ref/cpp/instm/QColumnView/visualRegionForSelection" />
+<h3 class="fn"><a name="visualRegionForSelection"></a><a href="qregion.html">QRegion</a> QColumnView::visualRegionForSelection ( const <a href="qitemselection.html">QItemSelection</a> &amp; <i>selection</i> ) const&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qabstractitemview.html#visualRegionForSelection">QAbstractItemView::visualRegionForSelection</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

@@ -1,0 +1,77 @@
+Adds support for sh4_uclibc target for QT embedded
+
+Index: qt-everywhere-opensource-src-4.6.0/mkspecs/qws/linux-sh4_uclibc-g++/qmake.conf
+===================================================================
+--- /dev/null
++++ qt-everywhere-opensource-src-4.6.0/mkspecs/qws/linux-sh4_uclibc-g++/qmake.conf
+@@ -0,0 +1,27 @@
++#
++# qmake configuration for linux-g++ using the sh4-linux-uclibc-g++ crosscompiler
++#
++
++include(../../common/g++.conf)
++include(../../common/linux.conf)
++include(../../common/qws.conf)
++
++QMAKE = $$[QT_INSTALL_BINS]/sh4-linux-uclibc-qmake
++
++# modifications to g++.conf
++QMAKE_CC		= sh4-linux-uclibc-gcc
++QMAKE_CXX		= sh4-linux-uclibc-g++
++QMAKE_LINK		= sh4-linux-uclibc-g++
++QMAKE_LINK_SHLIB	= sh4-linux-uclibc-g++
++
++# modifications to linux.conf
++QMAKE_AR		= sh4-linux-uclibc-ar cqs
++QMAKE_OBJCOPY		= sh4-linux-uclibc-objcopy
++QMAKE_STRIP            = true
++QMAKE_RANLIB		= sh4-linux-uclibc-ranlib
++QMAKE_MOC		= $$[QT_INSTALL_BINS]/sh4_uclibc-linux-moc
++QMAKE_UIC		= $$[QT_INSTALL_BINS]/sh4_uclibc-linux-uic
++
++QMAKE_RCC		= $$[QT_INSTALL_BINS]/sh4_uclibc-linux-rcc
++
++load(qt_config)
+Index: qt-everywhere-opensource-src-4.6.0/mkspecs/qws/linux-sh4_uclibc-g++/qplatformdefs.h
+===================================================================
+--- /dev/null
++++ qt-everywhere-opensource-src-4.6.0/mkspecs/qws/linux-sh4_uclibc-g++/qplatformdefs.h
+@@ -0,0 +1,38 @@
++/****************************************************************************
++**
++** Copyright (C) 2008 Nokia Corporation and/or its subsidiary(-ies).
++** Contact: Qt Software Information (qt-info@nokia.com)
++**
++** This file is part of the qmake spec of the Qt Toolkit.
++**
++** Commercial Usage
++** Licensees holding valid Qt Commercial licenses may use this file in
++** accordance with the Qt Commercial License Agreement provided with the
++** Software or, alternatively, in accordance with the terms contained in
++** a written agreement between you and Nokia.
++**
++**
++** GNU General Public License Usage
++** Alternatively, this file may be used under the terms of the GNU
++** General Public License versions 2.0 or 3.0 as published by the Free
++** Software Foundation and appearing in the file LICENSE.GPL included in
++** the packaging of this file.  Please review the following information
++** to ensure GNU General Public Licensing requirements will be met:
++** http://www.fsf.org/licensing/licenses/info/GPLv2.html and
++** http://www.gnu.org/copyleft/gpl.html.  In addition, as a special
++** exception, Nokia gives you certain additional rights. These rights
++** are described in the Nokia Qt GPL Exception version 1.3, included in
++** the file GPL_EXCEPTION.txt in this package.
++**
++** Qt for Windows(R) Licensees
++** As a special exception, Nokia, as the sole copyright holder for Qt
++** Designer, grants users of the Qt/Eclipse Integration plug-in the
++** right for the Qt/Eclipse Integration to link to functionality
++** provided by Qt Designer and its related libraries.
++**
++** If you are unsure which license is appropriate for your use, please
++** contact the sales department at qt-sales@nokia.com.
++**
++****************************************************************************/
++
++#include "../../linux-g++/qplatformdefs.h"

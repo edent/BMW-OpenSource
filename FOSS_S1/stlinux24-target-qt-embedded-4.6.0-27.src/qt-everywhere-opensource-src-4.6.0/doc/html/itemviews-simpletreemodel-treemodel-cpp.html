@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: treemodel.cpp Example File (itemviews/simpletreemodel/treemodel.cpp)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">treemodel.cpp Example File<br /><span class="small-subtitle">itemviews/simpletreemodel/treemodel.cpp</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the examples of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+
+<span class="comment"> /*
+     treemodel.cpp
+
+     Provides a simple tree model to show how to create and use hierarchical
+     models.
+ */</span>
+
+ #include &lt;QtGui&gt;
+
+ #include &quot;treeitem.h&quot;
+ #include &quot;treemodel.h&quot;
+
+ TreeModel::TreeModel(const QString &amp;data, QObject *parent)
+     : QAbstractItemModel(parent)
+ {
+     QList&lt;QVariant&gt; rootData;
+     rootData &lt;&lt; &quot;Title&quot; &lt;&lt; &quot;Summary&quot;;
+     rootItem = new TreeItem(rootData);
+     setupModelData(data.split(QString(&quot;\n&quot;)), rootItem);
+ }
+
+ TreeModel::~TreeModel()
+ {
+     delete rootItem;
+ }
+
+ int TreeModel::columnCount(const QModelIndex &amp;parent) const
+ {
+     if (parent.isValid())
+         return static_cast&lt;TreeItem*&gt;(parent.internalPointer())-&gt;columnCount();
+     else
+         return rootItem-&gt;columnCount();
+ }
+
+ QVariant TreeModel::data(const QModelIndex &amp;index, int role) const
+ {
+     if (!index.isValid())
+         return QVariant();
+
+     if (role != Qt::DisplayRole)
+         return QVariant();
+
+     TreeItem *item = static_cast&lt;TreeItem*&gt;(index.internalPointer());
+
+     return item-&gt;data(index.column());
+ }
+
+ Qt::ItemFlags TreeModel::flags(const QModelIndex &amp;index) const
+ {
+     if (!index.isValid())
+         return 0;
+
+     return Qt::ItemIsEnabled | Qt::ItemIsSelectable;
+ }
+
+ QVariant TreeModel::headerData(int section, Qt::Orientation orientation,
+                                int role) const
+ {
+     if (orientation == Qt::Horizontal &amp;&amp; role == Qt::DisplayRole)
+         return rootItem-&gt;data(section);
+
+     return QVariant();
+ }
+
+ QModelIndex TreeModel::index(int row, int column, const QModelIndex &amp;parent)
+             const
+ {
+     if (!hasIndex(row, column, parent))
+         return QModelIndex();
+
+     TreeItem *parentItem;
+
+     if (!parent.isValid())
+         parentItem = rootItem;
+     else
+         parentItem = static_cast&lt;TreeItem*&gt;(parent.internalPointer());
+
+     TreeItem *childItem = parentItem-&gt;child(row);
+     if (childItem)
+         return createIndex(row, column, childItem);
+     else
+         return QModelIndex();
+ }
+
+ QModelIndex TreeModel::parent(const QModelIndex &amp;index) const
+ {
+     if (!index.isValid())
+         return QModelIndex();
+
+     TreeItem *childItem = static_cast&lt;TreeItem*&gt;(index.internalPointer());
+     TreeItem *parentItem = childItem-&gt;parent();
+
+     if (parentItem == rootItem)
+         return QModelIndex();
+
+     return createIndex(parentItem-&gt;row(), 0, parentItem);
+ }
+
+ int TreeModel::rowCount(const QModelIndex &amp;parent) const
+ {
+     TreeItem *parentItem;
+     if (parent.column() &gt; 0)
+         return 0;
+
+     if (!parent.isValid())
+         parentItem = rootItem;
+     else
+         parentItem = static_cast&lt;TreeItem*&gt;(parent.internalPointer());
+
+     return parentItem-&gt;childCount();
+ }
+
+ void TreeModel::setupModelData(const QStringList &amp;lines, TreeItem *parent)
+ {
+     QList&lt;TreeItem*&gt; parents;
+     QList&lt;int&gt; indentations;
+     parents &lt;&lt; parent;
+     indentations &lt;&lt; 0;
+
+     int number = 0;
+
+     while (number &lt; lines.count()) {
+         int position = 0;
+         while (position &lt; lines[number].length()) {
+             if (lines[number].mid(position, 1) != &quot; &quot;)
+                 break;
+             position++;
+         }
+
+         QString lineData = lines[number].mid(position).trimmed();
+
+         if (!lineData.isEmpty()) {
+             <span class="comment">// Read the column data from the rest of the line.</span>
+             QStringList columnStrings = lineData.split(&quot;\t&quot;, QString::SkipEmptyParts);
+             QList&lt;QVariant&gt; columnData;
+             for (int column = 0; column &lt; columnStrings.count(); ++column)
+                 columnData &lt;&lt; columnStrings[column];
+
+             if (position &gt; indentations.last()) {
+                 <span class="comment">// The last child of the current parent is now the new parent</span>
+                 <span class="comment">// unless the current parent has no children.</span>
+
+                 if (parents.last()-&gt;childCount() &gt; 0) {
+                     parents &lt;&lt; parents.last()-&gt;child(parents.last()-&gt;childCount()-1);
+                     indentations &lt;&lt; position;
+                 }
+             } else {
+                 while (position &lt; indentations.last() &amp;&amp; parents.count() &gt; 0) {
+                     parents.pop_back();
+                     indentations.pop_back();
+                 }
+             }
+
+             <span class="comment">// Append a new item to the current parent's list of children.</span>
+             parents.last()-&gt;appendChild(new TreeItem(columnData, parents.last()));
+         }
+
+         number++;
+     }
+ }</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

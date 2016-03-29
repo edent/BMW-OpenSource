@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qs60mainapplication.cpp -->
+<head>
+  <title>Qt 4.6: QS60MainApplication Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QS60MainApplication" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QS60MainApplication Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QS60MainApplication class provides support for migration from S60. <a href="#details">More...</a></p>
+<pre> #include &lt;QS60MainApplication&gt;</pre><p>This class was introduced in Qt 4.6.</p>
+<ul>
+<li><a href="qs60mainapplication-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qs60mainapplication.html#QS60MainApplication">QS60MainApplication</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual </td><td class="memItemRight" valign="bottom"><b><a href="qs60mainapplication.html#dtor.QS60MainApplication">~QS60MainApplication</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual TUid </td><td class="memItemRight" valign="bottom"><b><a href="qs60mainapplication.html#AppDllUid">AppDllUid</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual TFileName </td><td class="memItemRight" valign="bottom"><b><a href="qs60mainapplication.html#ResourceFileName">ResourceFileName</a></b> () const</td></tr>
+</table>
+<hr />
+<a name="protected-functions"></a>
+<h2>Protected Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual CApaDocument * </td><td class="memItemRight" valign="bottom"><b><a href="qs60mainapplication.html#CreateDocumentL">CreateDocumentL</a></b> ()</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QS60MainApplication class provides support for migration from S60.</p>
+<p><b>Warning:</b> This class is provided only to get access to S60 specific functionality in the application framework classes. It is not portable. We strongly recommend against using it in new applications.</p>
+<p>The QS60MainApplication provides a helper class for use in migrating from existing S60 based applications to Qt based applications. It is used in the exact same way as the <tt>CAknApplication</tt> class from Symbian, but internally provides extensions used by Qt.</p>
+<p>When modifying old S60 applications that rely on implementing functions in <tt>CAknApplication</tt>, the class should be modified to inherit from this class instead of <tt>CAknApplication</tt>. Then the application can choose to override only certain functions. To make Qt use the custom application objects, pass a factory function to <tt>QApplication::QApplication(QApplication::QS60MainApplicationFactory, int &amp;, char **)</tt>.</p>
+<p>For more information on <tt>CAknApplication</tt>, please see the S60 documentation.</p>
+<p>Unlike other Qt classes, QS60MainApplication behaves like an S60 class, and can throw Symbian leaves.</p>
+<p>See also <a href="qs60maindocument.html">QS60MainDocument</a>, <a href="qs60mainappui.html">QS60MainAppUi</a>, and <a href="qapplication.html#QS60MainApplicationFactory-typedef">QApplication::QS60MainApplicationFactory</a>.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QS60MainApplication/QS60MainApplication" />
+<h3 class="fn"><a name="QS60MainApplication"></a>QS60MainApplication::QS60MainApplication ()</h3>
+<p>Contructs an instance of <a href="qs60mainapplication.html">QS60MainApplication</a>.</p>
+<a name="//apple_ref/cpp/instm/QS60MainApplication/~QS60MainApplication" />
+<h3 class="fn"><a name="dtor.QS60MainApplication"></a>QS60MainApplication::~QS60MainApplication ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Destroys the <a href="qs60mainapplication.html">QS60MainApplication</a>.</p>
+<a name="//apple_ref/cpp/instm/QS60MainApplication/AppDllUid" />
+<h3 class="fn"><a name="AppDllUid"></a>TUid QS60MainApplication::AppDllUid () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Returns the UID of the application.</p>
+<a name="//apple_ref/cpp/instm/QS60MainApplication/CreateDocumentL" />
+<h3 class="fn"><a name="CreateDocumentL"></a>CApaDocument * QS60MainApplication::CreateDocumentL ()&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Creates an instance of <a href="qs60maindocument.html">QS60MainDocument</a>.</p>
+<p>See also <a href="qs60maindocument.html">QS60MainDocument</a>.</p>
+<a name="//apple_ref/cpp/instm/QS60MainApplication/ResourceFileName" />
+<h3 class="fn"><a name="ResourceFileName"></a>TFileName QS60MainApplication::ResourceFileName () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Returns the resource file name.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

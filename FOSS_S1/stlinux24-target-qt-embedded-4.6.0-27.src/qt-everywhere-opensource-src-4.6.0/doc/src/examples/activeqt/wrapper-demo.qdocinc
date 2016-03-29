@@ -1,0 +1,51 @@
+\raw HTML
+//! [0]
+<SCRIPT LANGUAGE="VBScript">
+Sub ToolButton_Clicked()
+    RadioButton.text = InputBox( "Enter something", "Wrapper Demo" )
+End Sub
+
+Sub PushButton_clicked()
+    MsgBox( "Thank you!" )
+End Sub
+
+Sub CheckBox_toggled( state )
+    if state = 0 then
+        CheckBox.text = "Check me!"
+    else
+        CheckBox.text = "Uncheck me!"
+    end if
+End Sub
+</SCRIPT>
+<p />
+A QPushButton:<br />
+<object ID="PushButton" CLASSID="CLSID:2B262458-A4B6-468B-B7D4-CF5FEE0A7092"
+CODEBASE="http://qt.nokia.com/demos/wrapperax.cab">
+    <PARAM NAME="text" VALUE="Click me!" />
+[Object not available! Did you forget to build and register the server?]
+</object><br />
+
+<p />
+A QCheckBox:<br />
+<object ID="CheckBox" CLASSID="CLSID:6E795de9-872d-43cf-a831-496ef9d86c68"
+CODEBASE="http://qt.nokia.com/demos/wrapperax.cab">
+    <PARAM NAME="text" VALUE="Check me!" />
+[Object not available! Did you forget to build and register the server?]
+</object><br />
+
+<p />
+A QToolButton:<br />
+<object ID="ToolButton" CLASSID="CLSID:7c0ffe7a-60c3-4666-bde2-5cf2b54390a1"
+CODEBASE="http://qt.nokia.com/demos/wrapperax.cab">
+[Object not available! Did you forget to build and register the server?]
+</object><br />
+
+<p />
+A QRadioButton:<br />
+<object ID="RadioButton" CLASSID="CLSID:afcf78c8-446c-409a-93b3-ba2959039189"
+CODEBASE="http://qt.nokia.com/demos/wrapperax.cab">
+    <PARAM NAME="text" VALUE="Tune me!" />
+[Object not available! Did you forget to build and register the server?]
+</object><br />
+//! [0]
+\endraw

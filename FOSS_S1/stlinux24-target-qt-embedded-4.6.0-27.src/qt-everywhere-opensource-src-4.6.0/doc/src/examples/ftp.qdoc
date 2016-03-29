@@ -1,0 +1,211 @@
+/****************************************************************************
+**
+** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+** All rights reserved.
+** Contact: Nokia Corporation (qt-info@nokia.com)
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:LGPL$
+** Commercial Usage
+** Licensees holding valid Qt Commercial licenses may use this file in
+** accordance with the Qt Commercial License Agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and Nokia.
+**
+** GNU Lesser General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU Lesser
+** General Public License version 2.1 as published by the Free Software
+** Foundation and appearing in the file LICENSE.LGPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU Lesser General Public License version 2.1 requirements
+** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+**
+** In addition, as a special exception, Nokia gives you certain additional
+** rights.  These rights are described in the Nokia Qt LGPL Exception
+** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+**
+** GNU General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU
+** General Public License version 3.0 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU General Public License version 3.0 requirements will be
+** met: http://www.gnu.org/copyleft/gpl.html.
+**
+** If you have questions regarding the use of this file, please contact
+** Nokia at qt-info@nokia.com.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \example network/qftp
+    \title FTP Example
+
+    The FTP example demonstrates a simple FTP client that can be used
+    to list the available files on an FTP server and download them.
+
+    \image ftp-example.png
+
+    The user of the example can enter the address or hostname of an
+    FTP server in the \gui {Ftp Server} line edit, and then push the
+    \gui Connect button to connect to it. A list of the server's
+    top-level directory is then presented in the \gui {File List} tree
+    view. If the selected item in the view is a file, the user can
+    download it by pushing the \gui Download button. An item
+    representing a directory can be double clicked with the mouse to
+    show the contents of that directory in the view.
+
+    The functionality required for the example is implemented in the
+    QFtp class, which provides an easy, high-level interface to the
+    file transfer protocol. FTP operations are requested through
+    \l{QFtp::Command}s. The operations are asynchronous. QFtp will
+    notify us through signals when commands are started and finished.
+
+    We have one class, \c FtpWindow, which sets up the GUI and handles
+    the FTP functionality. We will now go through its definition and
+    implementation - focusing on the code concerning FTP. The code for
+    managing the GUI is explained in other examples.
+
+    \section1 FtpWindow Class Definition
+
+    The \c FtpWindow class displays a window, in which the user can
+    connect to and browse the contents of an FTP server. The slots of
+    \c FtpWindow are connected to its widgets, and contain the
+    functionality for managing the FTP connection. We also connect to
+    signals in QFtp, which tells us when the
+    \l{QFtp::Command}{commands} we request are finished, the progress
+    of current commands, and information about files on the server.
+
+    \snippet examples/network/qftp/ftpwindow.h 0
+
+    We will look at each slot when we examine the \c FtpWindow
+    implementation in the next section. We also make use of a few
+    private variables:
+
+    \snippet examples/network/qftp/ftpwindow.h 1
+
+    The \c isDirectory hash keeps a history of all entries explored on
+    the FTP server, and registers whether an entry represents a
+    directory or a file. We use the QFile object to download files
+    from the FTP server. 
+
+    \section1 FtpWindow Class Implementation
+
+    We skip the \c FtpWindow constructor as it only contains code for
+    setting up the GUI, which is explained in other examples.
+
+    We move on to the slots, starting with \c connectOrDisconnect().
+
+    \snippet examples/network/qftp/ftpwindow.cpp 0
+
+    If \c ftp is already pointing to a QFtp object, we QFtp::Close its
+    FTP connection and delete the object it points to. Note that we do
+    not delete the object using standard C++ \c delete as we need it
+    to finish its abort operation.
+
+    \dots
+    \snippet examples/network/qftp/ftpwindow.cpp 1
+
+    If we get here, \c connectOrDisconnect() was called to establish a
+    new FTP connection. We create a new QFtp for our new connection,
+    and connect its signals to slots in \c FtpWindow. The
+    \l{QFtp::}{listInfo()} signal is emitted whenever information
+    about a single file on the sever has been resolved. This signal is
+    sent when we ask QFtp to \l{QFtp::}{list()} the contents of a
+    directory. Finally, the \l{QFtp::}{dataTransferProgress()} signal
+    is emitted repeatedly during an FTP file transfer, giving us
+    progress reports.
+
+    \snippet examples/network/qftp/ftpwindow.cpp 2
+
+    The \gui {Ftp Server} line edit contains the IP address or
+    hostname of the server to which we want to connect. We first check
+    that the URL is a valid FTP sever address. If it isn't, we still
+    try to connect using the plain text in \c ftpServerLineEdit. In
+    either case, we assume that port \c 21 is used.
+
+    If the URL does not contain a user name and password, we use
+    QFtp::login(), which will attempt to log into the FTP sever as an
+    anonymous user. The QFtp object will now notify us when it has
+    connected to the FTP server; it will also send a signal if it
+    fails to connect or the username and password were rejected.
+
+    We move on to the \c downloadFile() slot:
+
+    \snippet examples/network/qftp/ftpwindow.cpp 3
+    \dots
+    \snippet examples/network/qftp/ftpwindow.cpp 4
+
+    We first fetch the name of the file, which we find in the selected
+    item of \c fileList. We then start the download by using
+    QFtp::get(). QFtp will send progress signals during the download
+    and a signal when the download is completed.  
+
+    \snippet examples/network/qftp/ftpwindow.cpp 5
+
+    QFtp supports canceling the download of files.
+
+    \snippet examples/network/qftp/ftpwindow.cpp 6
+
+    The \c ftpCommandFinished() slot is called when QFtp has
+    finished a QFtp::Command. If an error occurred during the
+    command, QFtp will set \c error to one of the values in
+    the QFtp::Error enum; otherwise, \c error is zero.
+
+    \snippet examples/network/qftp/ftpwindow.cpp 7
+
+    After login, the QFtp::list() function will list the top-level
+    directory on the server. addToList() is connected to
+    QFtp::listInfo(), and will be invoked for each entry in that
+    directory.
+
+    \snippet examples/network/qftp/ftpwindow.cpp 8
+
+    When a \l{QFtp::}{Get} command is finished, a file has finished
+    downloading (or an error occurred during the download).
+
+    \snippet examples/network/qftp/ftpwindow.cpp 9
+
+    After a \l{QFtp::}{List} command is performed, we have to check if
+    no entries were found (in which case our \c addToList() function
+    would not have been called). 
+
+    Let's continue with the \c addToList() slot:
+
+    \snippet examples/network/qftp/ftpwindow.cpp 10
+
+    When a new file has been resolved during a QFtp::List command,
+    this slot is invoked with a QUrlInfo describing the file. We
+    create a separate row for the file in \c fileList. If \c fileList
+    does not have a current item, we set the new item to be the
+    current item.
+
+    \snippet examples/network/qftp/ftpwindow.cpp 11
+
+    The \c processItem() slot is called when an item is double clicked
+    in the \gui {File List}. If the item represents a directory, we
+    want to load the contents of that directory with QFtp::list().
+
+    \snippet examples/network/qftp/ftpwindow.cpp 12
+
+    \c cdToParent() is invoked when the user requests to go to the
+    parent directory of the one displayed in the file list. After
+    changing the directory, we QFtp::List its contents.
+
+    \snippet examples/network/qftp/ftpwindow.cpp 13
+
+    The \c updateDataTransferProgress() slot is called regularly by
+    QFtp::dataTransferProgress() when a file download is in progress.
+    We use a QProgressDialog to show the download progression to the
+    user.
+
+    \snippet examples/network/qftp/ftpwindow.cpp 14
+
+    The \c enableDownloadButton() is called whenever the current item
+    in \c fileList changes. If the item represents a file, the \gui
+    {Enable Download} Button should be enabled; otherwise, it is
+    disabled.
+*/
+

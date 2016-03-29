@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: mainwindow.cpp Example File (xmlpatterns/trafficinfo/mainwindow.cpp)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">mainwindow.cpp Example File<br /><span class="small-subtitle">xmlpatterns/trafficinfo/mainwindow.cpp</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the examples of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+
+ #include &quot;mainwindow.h&quot;
+ #include &quot;stationdialog.h&quot;
+
+ #include &lt;QtCore/QSettings&gt;
+ #include &lt;QtCore/QTimer&gt;
+ #include &lt;QtGui/QAction&gt;
+ #include &lt;QtGui/QApplication&gt;
+ #include &lt;QtGui/QBitmap&gt;
+ #include &lt;QtGui/QLinearGradient&gt;
+ #include &lt;QtGui/QMouseEvent&gt;
+ #include &lt;QtGui/QPainter&gt;
+
+ MainWindow::MainWindow()
+     : QWidget(0, Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint)
+ {
+     QAction *quitAction = new QAction(tr(&quot;E&amp;xit&quot;), this);
+     quitAction-&gt;setShortcuts(QKeySequence::Quit);
+     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
+
+     QAction *configAction = new QAction(tr(&quot;&amp;Select station...&quot;), this);
+     configAction-&gt;setShortcut(tr(&quot;Ctrl+C&quot;));
+     connect(configAction, SIGNAL(triggered()), this, SLOT(configure()));
+
+     addAction(configAction);
+     addAction(quitAction);
+
+     setContextMenuPolicy(Qt::ActionsContextMenu);
+
+     setWindowTitle(tr(&quot;Traffic Info Oslo&quot;));
+
+     const QSettings settings(&quot;Qt Traffic Info&quot;, &quot;trafficinfo&quot;);
+     m_station = StationInformation(settings.value(&quot;stationId&quot;, &quot;03012130&quot;).toString(),
+                                    settings.value(&quot;stationName&quot;, &quot;Nydalen [T-bane] (OSL)&quot;).toString());
+     m_lines = settings.value(&quot;lines&quot;, QStringList()).toStringList();
+
+     QTimer *timer = new QTimer(this);
+     connect(timer, SIGNAL(timeout()), this, SLOT(updateTimeInformation()));
+     timer-&gt;start(1000*60*5);
+     QMetaObject::invokeMethod(this, SLOT(updateTimeInformation()), Qt::QueuedConnection);
+ }
+
+ MainWindow::~MainWindow()
+ {
+     QSettings settings(&quot;Qt Traffic Info&quot;, &quot;trafficinfo&quot;);
+     settings.setValue(&quot;stationId&quot;, m_station.id());
+     settings.setValue(&quot;stationName&quot;, m_station.name());
+     settings.setValue(&quot;lines&quot;, m_lines);
+ }
+
+ QSize MainWindow::sizeHint() const
+ {
+     return QSize(300, 200);
+ }
+
+ void MainWindow::mouseMoveEvent(QMouseEvent *event)
+ {
+     if (event-&gt;buttons() &amp; Qt::LeftButton) {
+         move(event-&gt;globalPos() - m_dragPosition);
+         event-&gt;accept();
+     }
+ }
+
+ void MainWindow::mousePressEvent(QMouseEvent *event)
+ {
+     if (event-&gt;button() == Qt::LeftButton) {
+         m_dragPosition = event-&gt;globalPos() - frameGeometry().topLeft();
+         event-&gt;accept();
+     }
+ }
+
+ void MainWindow::paintEvent(QPaintEvent*)
+ {
+     const QPoint start(width()/2, 0);
+     const QPoint finalStop(width()/2, height());
+     QLinearGradient gradient(start, finalStop);
+     const QColor qtGreen(102, 176, 54);
+     gradient.setColorAt(0, qtGreen.dark());
+     gradient.setColorAt(0.5, qtGreen);
+     gradient.setColorAt(1, qtGreen.dark());
+
+     QPainter p(this);
+     p.fillRect(0, 0, width(), height(), gradient);
+
+     QFont headerFont(&quot;Sans Serif&quot;, 12, QFont::Bold);
+     QFont normalFont(&quot;Sans Serif&quot;, 9, QFont::Normal);
+
+     <span class="comment">// draw it twice for shadow effect</span>
+     p.setFont(headerFont);
+     QRect headerRect(1, 1, width(), 25);
+     p.setPen(Qt::black);
+     p.drawText(headerRect, Qt::AlignCenter, m_station.name());
+
+     headerRect.moveTopLeft(QPoint(0, 0));
+     p.setPen(Qt::white);
+     p.drawText(headerRect, Qt::AlignCenter, m_station.name());
+
+     p.setFont(normalFont);
+     int pos = 40;
+     for (int i = 0; i &lt; m_times.count() &amp;&amp; i &lt; 9; ++i) {
+         p.setPen(Qt::black);
+         p.drawText(51, pos + 1, m_times.at(i).time());
+         p.drawText(101, pos + 1, m_times.at(i).direction());
+
+         p.setPen(Qt::white);
+         p.drawText(50, pos, m_times.at(i).time());
+         p.drawText(100, pos, m_times.at(i).direction());
+
+         pos += 18;
+     }
+ }
+
+ void MainWindow::resizeEvent(QResizeEvent*)
+ {
+     QBitmap maskBitmap(width(), height());
+     maskBitmap.clear();
+
+     QPainter p(&amp;maskBitmap);
+     p.setBrush(Qt::black);
+     p.drawRoundRect(0, 0, width(), height(), 20, 30);
+     p.end();
+
+     setMask(maskBitmap);
+ }
+
+ void MainWindow::updateTimeInformation()
+ {
+     m_times = TimeQuery::query(m_station.id(), m_lines, QDateTime::currentDateTime());
+
+     update();
+ }
+
+ void MainWindow::configure()
+ {
+     StationDialog dlg(m_station.name(), m_lines, this);
+     if (dlg.exec()) {
+         m_station = dlg.selectedStation();
+         m_lines = dlg.lineNumbers();
+         updateTimeInformation();
+     }
+ }</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

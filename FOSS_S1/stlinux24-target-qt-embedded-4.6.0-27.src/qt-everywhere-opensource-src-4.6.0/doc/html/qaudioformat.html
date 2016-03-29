@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qaudioformat.cpp -->
+<head>
+  <title>Qt 4.6: QAudioFormat Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QAudioFormat" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QAudioFormat Class Reference<br /><span class="small-subtitle">[<a href="qtmultimedia.html">QtMultimedia</a> module]</span>
+</h1>
+<p>The QAudioFormat class stores audio parameter information. <a href="#details">More...</a></p>
+<pre> #include &lt;QAudioFormat&gt;</pre><p><b>This class is not part of the Qt GUI Framework Edition.</b></p>
+<p>This class was introduced in Qt 4.6.</p>
+<ul>
+<li><a href="qaudioformat-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-types"></a>
+<h2>Public Types</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qaudioformat.html#Endian-enum">Endian</a></b> { BigEndian, LittleEndian }</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qaudioformat.html#SampleType-enum">SampleType</a></b> { Unknown, SignedInt, UnSignedInt, Float }</td></tr>
+</table>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qaudioformat.html#QAudioFormat">QAudioFormat</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qaudioformat.html#QAudioFormat-2">QAudioFormat</a></b> ( const QAudioFormat &amp; <i>other</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qaudioformat.html#dtor.QAudioFormat">~QAudioFormat</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QAudioFormat::Endian </td><td class="memItemRight" valign="bottom"><b><a href="qaudioformat.html#byteOrder">byteOrder</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qaudioformat.html#channels">channels</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qaudioformat.html#codec">codec</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qaudioformat.html#frequency">frequency</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qaudioformat.html#isValid">isValid</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qaudioformat.html#sampleSize">sampleSize</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QAudioFormat::SampleType </td><td class="memItemRight" valign="bottom"><b><a href="qaudioformat.html#sampleType">sampleType</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qaudioformat.html#setByteOrder">setByteOrder</a></b> ( QAudioFormat::Endian <i>byteOrder</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qaudioformat.html#setChannels">setChannels</a></b> ( int <i>channels</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qaudioformat.html#setCodec">setCodec</a></b> ( const QString &amp; <i>codec</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qaudioformat.html#setFrequency">setFrequency</a></b> ( int <i>frequency</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qaudioformat.html#setSampleSize">setSampleSize</a></b> ( int <i>sampleSize</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qaudioformat.html#setSampleType">setSampleType</a></b> ( QAudioFormat::SampleType <i>sampleType</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qaudioformat.html#operator-not-eq">operator!=</a></b> ( const QAudioFormat &amp; <i>other</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QAudioFormat &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qaudioformat.html#operator-eq">operator=</a></b> ( const QAudioFormat &amp; <i>other</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qaudioformat.html#operator-eq-eq">operator==</a></b> ( const QAudioFormat &amp; <i>other</i> ) const</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QAudioFormat class stores audio parameter information.</p>
+<p>An audio format specifies how data in an audio stream is arranged, i.e, how the stream is to be interpreted. The encoding itself is specified by the <a href="qaudioformat.html#codec">codec</a>() used for the stream.</p>
+<p>In addition to the encoding, QAudioFormat contains other parameters that further specify how the audio data is arranged. These are the frequency, the number of channels, the sample size, the sample type, and the byte order. The following table describes these in more detail.</p>
+<p><table class="generic" align="center" cellpadding="2" cellspacing="1" border="0">
+<thead><tr valign="top" class="qt-style"><th>Parameter</th><th>Description</th></tr></thead>
+<tr valign="top" class="odd"><td>Frequency</td><td>Samples per second of audio data in Hertz.</td></tr>
+<tr valign="top" class="even"><td>Number of channels</td><td>The number of audio channels (typically one for mono or two for stereo)</td></tr>
+<tr valign="top" class="odd"><td>Sample size</td><td>How much data is stored in each sample (typically 8 or 16)</td></tr>
+<tr valign="top" class="even"><td>Sample type</td><td>Numerical representation of sample (typically signed integer, unsigned integer or float)</td></tr>
+<tr valign="top" class="odd"><td>Byte order</td><td>Byte ordering of sample (typically little endian, big endian)</td></tr>
+</table></p>
+<p>You can obtain audio formats compatible with the audio device used through functions in <a href="qaudiodeviceinfo.html">QAudioDeviceInfo</a>. This class also lets you query available parameter values for a device, so that you can set the parameters yourself. See the <a href="qaudiodeviceinfo.html">QAudioDeviceInfo</a> class description for details. You need to know the format of the audio streams you wish to play. Qt does not set up formats for you.</p>
+<hr />
+<h2>Member Type Documentation</h2>
+<a name="//apple_ref/cpp/tag/QAudioFormat/Endian" />
+<a name="//apple_ref/cpp/econst/QAudioFormat/BigEndian" />
+<a name="//apple_ref/cpp/econst/QAudioFormat/LittleEndian" />
+<h3 class="fn"><a name="Endian-enum"></a>enum QAudioFormat::Endian</h3>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QAudioFormat::BigEndian</tt></td><td align="center" valign="top"><tt>QSysInfo::BigEndian</tt></td><td valign="top">samples are big endian byte order</td></tr>
+<tr><td valign="top"><tt>QAudioFormat::LittleEndian</tt></td><td align="center" valign="top"><tt>QSysInfo::LittleEndian</tt></td><td valign="top">samples are little endian byte order</td></tr>
+</table></p>
+<a name="//apple_ref/cpp/tag/QAudioFormat/SampleType" />
+<a name="//apple_ref/cpp/econst/QAudioFormat/Unknown" />
+<a name="//apple_ref/cpp/econst/QAudioFormat/SignedInt" />
+<a name="//apple_ref/cpp/econst/QAudioFormat/UnSignedInt" />
+<a name="//apple_ref/cpp/econst/QAudioFormat/Float" />
+<h3 class="fn"><a name="SampleType-enum"></a>enum QAudioFormat::SampleType</h3>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QAudioFormat::Unknown</tt></td><td align="center" valign="top"><tt>0</tt></td><td valign="top">Not Set</td></tr>
+<tr><td valign="top"><tt>QAudioFormat::SignedInt</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">samples are signed integers</td></tr>
+<tr><td valign="top"><tt>QAudioFormat::UnSignedInt</tt></td><td align="center" valign="top"><tt>2</tt></td><td valign="top">samples are unsigned intergers</td></tr>
+<tr><td valign="top"><tt>QAudioFormat::Float</tt></td><td align="center" valign="top"><tt>3</tt></td><td valign="top">samples are floats</td></tr>
+</table></p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QAudioFormat/QAudioFormat" />
+<h3 class="fn"><a name="QAudioFormat"></a>QAudioFormat::QAudioFormat ()</h3>
+<p>Construct a new audio format.</p>
+<p>Values are initialized as follows:</p>
+<ul>
+<li><a href="qaudioformat.html#frequency">frequency</a>() = -1</li>
+<li><a href="qaudioformat.html#channels">channels</a>() = -1</li>
+<li><a href="qaudioformat.html#sampleSize">sampleSize</a>() = -1</li>
+<li><a href="qaudioformat.html#byteOrder">byteOrder</a>() = <a href="qaudioformat.html#Endian-enum">QAudioFormat::Endian</a>(<a href="qsysinfo.html#Endian-enum">QSysInfo::ByteOrder</a>)</li>
+<li><a href="qaudioformat.html#sampleType">sampleType</a>() = <a href="qaudioformat.html#SampleType-enum">QAudioFormat::Unknown</a> <tt>codec()</tt> = &quot;&quot;</li>
+</ul>
+<h3 class="fn"><a name="QAudioFormat-2"></a>QAudioFormat::QAudioFormat ( const QAudioFormat &amp; <i>other</i> )</h3>
+<p>Construct a new audio format using <i>other</i>.</p>
+<a name="//apple_ref/cpp/instm/QAudioFormat/~QAudioFormat" />
+<h3 class="fn"><a name="dtor.QAudioFormat"></a>QAudioFormat::~QAudioFormat ()</h3>
+<p>Destroy this audio format.</p>
+<a name="//apple_ref/cpp/instm/QAudioFormat/byteOrder" />
+<h3 class="fn"><a name="byteOrder"></a><a href="qaudioformat.html#Endian-enum">QAudioFormat::Endian</a> QAudioFormat::byteOrder () const</h3>
+<p>Returns the current byteOrder value.</p>
+<p>See also <a href="qaudioformat.html#setByteOrder">setByteOrder</a>().</p>
+<a name="//apple_ref/cpp/instm/QAudioFormat/channels" />
+<h3 class="fn"><a name="channels"></a>int QAudioFormat::channels () const</h3>
+<p>Returns the current channel value.</p>
+<p>See also <a href="qaudioformat.html#setChannels">setChannels</a>().</p>
+<a name="//apple_ref/cpp/instm/QAudioFormat/codec" />
+<h3 class="fn"><a name="codec"></a><a href="qstring.html">QString</a> QAudioFormat::codec () const</h3>
+<p>Returns the current codec value.</p>
+<p>See also <a href="qaudioformat.html#setCodec">setCodec</a>() and <a href="qaudiodeviceinfo.html#supportedCodecs">QAudioDeviceInfo::supportedCodecs</a>().</p>
+<a name="//apple_ref/cpp/instm/QAudioFormat/frequency" />
+<h3 class="fn"><a name="frequency"></a>int QAudioFormat::frequency () const</h3>
+<p>Returns the current frequency value.</p>
+<p>See also <a href="qaudioformat.html#setFrequency">setFrequency</a>().</p>
+<a name="//apple_ref/cpp/instm/QAudioFormat/isValid" />
+<h3 class="fn"><a name="isValid"></a>bool QAudioFormat::isValid () const</h3>
+<p>Returns true if all of the parameters are valid.</p>
+<a name="//apple_ref/cpp/instm/QAudioFormat/sampleSize" />
+<h3 class="fn"><a name="sampleSize"></a>int QAudioFormat::sampleSize () const</h3>
+<p>Returns the current sampleSize value.</p>
+<p>See also <a href="qaudioformat.html#setSampleSize">setSampleSize</a>().</p>
+<a name="//apple_ref/cpp/instm/QAudioFormat/sampleType" />
+<h3 class="fn"><a name="sampleType"></a><a href="qaudioformat.html#SampleType-enum">QAudioFormat::SampleType</a> QAudioFormat::sampleType () const</h3>
+<p>Returns the current <a href="qaudioformat.html#SampleType-enum">SampleType</a> value.</p>
+<p>See also <a href="qaudioformat.html#setSampleType">setSampleType</a>().</p>
+<a name="//apple_ref/cpp/instm/QAudioFormat/setByteOrder" />
+<h3 class="fn"><a name="setByteOrder"></a>void QAudioFormat::setByteOrder ( <a href="qaudioformat.html#Endian-enum">QAudioFormat::Endian</a> <i>byteOrder</i> )</h3>
+<p>Sets the byteOrder to <i>byteOrder</i>.</p>
+<p>See also <a href="qaudioformat.html#byteOrder">byteOrder</a>().</p>
+<a name="//apple_ref/cpp/instm/QAudioFormat/setChannels" />
+<h3 class="fn"><a name="setChannels"></a>void QAudioFormat::setChannels ( int <i>channels</i> )</h3>
+<p>Sets the channels to <i>channels</i>.</p>
+<p>See also <a href="qaudioformat.html#channels">channels</a>().</p>
+<a name="//apple_ref/cpp/instm/QAudioFormat/setCodec" />
+<h3 class="fn"><a name="setCodec"></a>void QAudioFormat::setCodec ( const <a href="qstring.html">QString</a> &amp; <i>codec</i> )</h3>
+<p>Sets the codec to <i>codec</i>.</p>
+<p>See also <a href="qaudioformat.html#codec">codec</a>() and <a href="qaudiodeviceinfo.html#supportedCodecs">QAudioDeviceInfo::supportedCodecs</a>().</p>
+<a name="//apple_ref/cpp/instm/QAudioFormat/setFrequency" />
+<h3 class="fn"><a name="setFrequency"></a>void QAudioFormat::setFrequency ( int <i>frequency</i> )</h3>
+<p>Sets the frequency to <i>frequency</i>.</p>
+<p>See also <a href="qaudioformat.html#frequency">frequency</a>().</p>
+<a name="//apple_ref/cpp/instm/QAudioFormat/setSampleSize" />
+<h3 class="fn"><a name="setSampleSize"></a>void QAudioFormat::setSampleSize ( int <i>sampleSize</i> )</h3>
+<p>Sets the sampleSize to <i>sampleSize</i>.</p>
+<p>See also <a href="qaudioformat.html#sampleSize">sampleSize</a>().</p>
+<a name="//apple_ref/cpp/instm/QAudioFormat/setSampleType" />
+<h3 class="fn"><a name="setSampleType"></a>void QAudioFormat::setSampleType ( <a href="qaudioformat.html#SampleType-enum">QAudioFormat::SampleType</a> <i>sampleType</i> )</h3>
+<p>Sets the sampleType to <i>sampleType</i>.</p>
+<p>See also <a href="qaudioformat.html#sampleType">sampleType</a>().</p>
+<a name="//apple_ref/cpp/instm/QAudioFormat/operator!=" />
+<h3 class="fn"><a name="operator-not-eq"></a>bool QAudioFormat::operator!= ( const QAudioFormat &amp; <i>other</i> ) const</h3>
+<p>Returns true if this <a href="qaudioformat.html">QAudioFormat</a> is not equal to the <i>other</i> <a href="qaudioformat.html">QAudioFormat</a>; otherwise returns false.</p>
+<p>All elements of <a href="qaudioformat.html">QAudioFormat</a> are used for the comparison.</p>
+<a name="//apple_ref/cpp/instm/QAudioFormat/operator=" />
+<h3 class="fn"><a name="operator-eq"></a>QAudioFormat &amp; QAudioFormat::operator= ( const QAudioFormat &amp; <i>other</i> )</h3>
+<p>Assigns <i>other</i> to this <a href="qaudioformat.html">QAudioFormat</a> implementation.</p>
+<a name="//apple_ref/cpp/instm/QAudioFormat/operator==" />
+<h3 class="fn"><a name="operator-eq-eq"></a>bool QAudioFormat::operator== ( const QAudioFormat &amp; <i>other</i> ) const</h3>
+<p>Returns true if this <a href="qaudioformat.html">QAudioFormat</a> is equal to the <i>other</i> <a href="qaudioformat.html">QAudioFormat</a>; otherwise returns false.</p>
+<p>All elements of <a href="qaudioformat.html">QAudioFormat</a> are used for the comparison.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

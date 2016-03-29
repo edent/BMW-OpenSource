@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: svgview.cpp Example File (painting/svgviewer/svgview.cpp)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">svgview.cpp Example File<br /><span class="small-subtitle">painting/svgviewer/svgview.cpp</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the examples of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+ #include &quot;svgview.h&quot;
+
+ #include &lt;QFile&gt;
+ #include &lt;QWheelEvent&gt;
+ #include &lt;QMouseEvent&gt;
+ #include &lt;QGraphicsRectItem&gt;
+ #include &lt;QGraphicsSvgItem&gt;
+ #include &lt;QPaintEvent&gt;
+ #include &lt;qmath.h&gt;
+
+ #ifndef QT_NO_OPENGL
+ #include &lt;QGLWidget&gt;
+ #endif
+
+ SvgView::SvgView(QWidget *parent)
+     : QGraphicsView(parent)
+     , m_renderer(Native)
+     , m_svgItem(0)
+     , m_backgroundItem(0)
+     , m_outlineItem(0)
+ {
+     setScene(new QGraphicsScene(this));
+     setTransformationAnchor(AnchorUnderMouse);
+     setDragMode(ScrollHandDrag);
+     setViewportUpdateMode(FullViewportUpdate);
+
+     <span class="comment">// Prepare background check-board pattern</span>
+     QPixmap tilePixmap(64, 64);
+     tilePixmap.fill(Qt::white);
+     QPainter tilePainter(&amp;tilePixmap);
+     QColor color(220, 220, 220);
+     tilePainter.fillRect(0, 0, 32, 32, color);
+     tilePainter.fillRect(32, 32, 32, 32, color);
+     tilePainter.end();
+
+     setBackgroundBrush(tilePixmap);
+ }
+
+ void SvgView::drawBackground(QPainter *p, const QRectF &amp;)
+ {
+     p-&gt;save();
+     p-&gt;resetTransform();
+     p-&gt;drawTiledPixmap(viewport()-&gt;rect(), backgroundBrush().texture());
+     p-&gt;restore();
+ }
+
+ void SvgView::openFile(const QFile &amp;file)
+ {
+     if (!file.exists())
+         return;
+
+     QGraphicsScene *s = scene();
+
+     bool drawBackground = (m_backgroundItem ? m_backgroundItem-&gt;isVisible() : false);
+     bool drawOutline = (m_outlineItem ? m_outlineItem-&gt;isVisible() : true);
+
+     s-&gt;clear();
+     resetTransform();
+
+     m_svgItem = new QGraphicsSvgItem(file.fileName());
+     m_svgItem-&gt;setFlags(QGraphicsItem::ItemClipsToShape);
+     m_svgItem-&gt;setCacheMode(QGraphicsItem::NoCache);
+     m_svgItem-&gt;setZValue(0);
+
+     m_backgroundItem = new QGraphicsRectItem(m_svgItem-&gt;boundingRect());
+     m_backgroundItem-&gt;setBrush(Qt::white);
+     m_backgroundItem-&gt;setPen(Qt::NoPen);
+     m_backgroundItem-&gt;setVisible(drawBackground);
+     m_backgroundItem-&gt;setZValue(-1);
+
+     m_outlineItem = new QGraphicsRectItem(m_svgItem-&gt;boundingRect());
+     QPen outline(Qt::black, 2, Qt::DashLine);
+     outline.setCosmetic(true);
+     m_outlineItem-&gt;setPen(outline);
+     m_outlineItem-&gt;setBrush(Qt::NoBrush);
+     m_outlineItem-&gt;setVisible(drawOutline);
+     m_outlineItem-&gt;setZValue(1);
+
+     s-&gt;addItem(m_backgroundItem);
+     s-&gt;addItem(m_svgItem);
+     s-&gt;addItem(m_outlineItem);
+
+     s-&gt;setSceneRect(m_outlineItem-&gt;boundingRect().adjusted(-10, -10, 10, 10));
+ }
+
+ void SvgView::setRenderer(RendererType type)
+ {
+     m_renderer = type;
+
+     if (m_renderer == OpenGL) {
+ #ifndef QT_NO_OPENGL
+         setViewport(new QGLWidget(QGLFormat(QGL::SampleBuffers)));
+ #endif
+     } else {
+         setViewport(new QWidget);
+     }
+ }
+
+ void SvgView::setHighQualityAntialiasing(bool highQualityAntialiasing)
+ {
+ #ifndef QT_NO_OPENGL
+     setRenderHint(QPainter::HighQualityAntialiasing, highQualityAntialiasing);
+ #else
+     Q_UNUSED(highQualityAntialiasing);
+ #endif
+ }
+
+ void SvgView::setViewBackground(bool enable)
+ {
+     if (!m_backgroundItem)
+           return;
+
+     m_backgroundItem-&gt;setVisible(enable);
+ }
+
+ void SvgView::setViewOutline(bool enable)
+ {
+     if (!m_outlineItem)
+         return;
+
+     m_outlineItem-&gt;setVisible(enable);
+ }
+
+ void SvgView::paintEvent(QPaintEvent *event)
+ {
+     if (m_renderer == Image) {
+         if (m_image.size() != viewport()-&gt;size()) {
+             m_image = QImage(viewport()-&gt;size(), QImage::Format_ARGB32_Premultiplied);
+         }
+
+         QPainter imagePainter(&amp;m_image);
+         QGraphicsView::render(&amp;imagePainter);
+         imagePainter.end();
+
+         QPainter p(viewport());
+         p.drawImage(0, 0, m_image);
+
+     } else {
+         QGraphicsView::paintEvent(event);
+     }
+ }
+
+ void SvgView::wheelEvent(QWheelEvent *event)
+ {
+     qreal factor = qPow(1.2, event-&gt;delta() / 240.0);
+     scale(factor, factor);
+     event-&gt;accept();
+ }</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

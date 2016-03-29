@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- designer-manual.qdoc -->
+<head>
+  <title>Qt 4.6: A Quick Start to Qt Designer</title>
+  <link rel="contents" href="designer-manual.html" />
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><p>
+[<a href="designer-manual.html">Contents</a>]
+</p>
+<h1 class="title">A Quick Start to Qt Designer<br /><span class="subtitle"></span>
+</h1>
+<p>Using <i>Qt Designer</i> involves <b>four</b> basic steps:</p>
+<ol type="1">
+<li>Choose your form and objects</li>
+<li>Lay the objects out on the form</li>
+<li>Connect the signals to the slots</li>
+<li>Preview the form</li>
+</ol>
+<p align="center"><img src="images/rgbController-screenshot.png" /></p><p>Suppose you would like to design a small widget (see screenshot above) that contains the controls needed to manipulate Red, Green and Blue (RGB) values -- a type of widget that can be seen everywhere in image manipulation programs.</p>
+<p><table class="generic" align="center" cellpadding="2" cellspacing="1" border="0">
+<tr valign="top" class="odd"><td><img src="images/designer-choosing-form.png" /></td><td><b>Choosing a Form</b><p>You start by choosing <b>Widget</b> from the <b>New Form</b> dialog.</p>
+</td></tr>
+</table></p>
+<p><table class="generic" align="center" cellpadding="2" cellspacing="1" border="0">
+<tr valign="top" class="odd"><td><img src="images/rgbController-arrangement.png" /></td><td><b>Placing Widgets on a Form</b><p>Drag three labels, three spin boxes and three vertical sliders on to your form. To change the label's default text, simply double-click on it. You can arrange them according to how you would like them to be laid out.</p>
+</td></tr>
+</table></p>
+<p>To ensure that they are laid out exactly like this in your program, you need to place these widgets into a layout. We will do this in groups of three. Select the &quot;RED&quot; label. Then, hold down <b>Ctrl</b> while you select its corresponding spin box and slider. In the <b>Form</b> menu, select <b>Lay Out in a Grid</b>.</p>
+<p><table class="generic" align="center" cellpadding="2" cellspacing="1" border="0">
+<tr valign="top" class="odd"><td><img src="images/rgbController-form-gridLayout.png" /></td><td><img src="images/rgbController-selectForLayout.png" /></td></tr>
+</table></p>
+<p>Repeat the step for the other two labels along with their corresponding spin boxes and sliders as well.</p>
+<p>The next step is to combine all three layouts into one <b>main layout</b>. The main layout is the top level widget's (in this case, the <a href="qwidget.html">QWidget</a>) layout. It is important that your top level widget has a layout; otherwise, the widgets on your window will not resize when your window is resized. To set the layout, <b>Right click</b> anywhere on your form, outside of the three separate layouts, and select <b>Lay Out Horizontally</b>. Alternatively, you could also select <b>Lay Out in a Grid</b> -- you will still see the same arrangement (shown below).</p>
+<p align="center"><img src="images/rgbController-final-layout.png" /></p><p><b>Note:</b> Main layouts cannot be seen on the form. To check if you have a main layout installed, try resizing your form; your widgets should resize accordingly. Alternatively, you can take a look at <i>Qt Designer</i>'s <b>Object Inspector</b>. If your top level widget does not have a layout, you will see the broken layout icon next to it, <img src="images/rgbController-no-toplevel-layout.png" /> .</p>
+<p>When you click on the slider and drag it to a certain value, you want the spin box to display the slider's position. To accomplish this behavior, you need to connect the slider's <a href="qabstractslider.html#valueChanged">valueChanged()</a> signal to the spin box's <a href="qspinbox.html#value-prop">setValue()</a> slot. You also need to make the reverse connections, e.g&#x2e;, connect the spin box's <a href="qspinbox.html#valueChanged">valueChanged()</a> signal to the slider's <a href="qabstractslider.html#value-prop">setValue()</a> slot.</p>
+<p>To do this, you have to switch to <b>Edit Signals/Slots</b> mode, either by pressing <b>F4</b> or something <b>Edit Signals/Slots</b> from the <b>Edit</b> menu.</p>
+<p><table class="generic" align="center" cellpadding="2" cellspacing="1" border="0">
+<tr valign="top" class="odd"><td><img src="images/rgbController-signalsAndSlots.png" /></td><td><b>Connecting Signals to Slots</b><p>Click on the slider and drag the cursor towards the spin box. The <b>Configure Connection</b> dialog, shown below, will pop up. Select the correct signal and slot and click <b>OK</b>.</p>
+</td></tr>
+</table></p>
+<p align="center"><img src="images/rgbController-configure-connection1.png" /></p><p>Repeat the step (in reverse order), clicking on the spin box and dragging the cursor towards the slider, to connect the spin box's <a href="qspinbox.html#valueChanged">valueChanged()</a> signal to the slider's <a href="qabstractslider.html#value-prop">setValue()</a> slot.</p>
+<p>You can use the screenshot below as a guide to selecting the correct signal and slot.</p>
+<p align="center"><img src="images/rgbController-configure-connection2.png" /></p><p>Now that you have successfully connected the objects for the &quot;RED&quot; component of the RGB Controller, do the same for the &quot;GREEN&quot; and &quot;BLUE&quot; components as well.</p>
+<p>Since RGB values range between 0 and 255, we need to limit the spin box and slider to that particular range.</p>
+<p><table class="generic" align="center" cellpadding="2" cellspacing="1" border="0">
+<tr valign="top" class="odd"><td><img src="images/rgbController-property-editing.png" /></td><td><b>Setting Widget Properties</b><p>Click on the first spin box. Within the <b>Property Editor</b>, you will see <a href="qspinbox.html">QSpinBox</a>'s properties. Enter &quot;255&quot; for the <a href="qspinbox.html#maximum-prop">maximum</a> property. Then, click on the first vertical slider, you will see <a href="qabstractslider.html">QAbstractSlider</a>'s properties. Enter &quot;255&quot; for the <a href="qabstractslider.html#maximum-prop">maximum</a> property as well. Repeat this process for the remaining spin boxes and sliders.</p>
+</td></tr>
+</table></p>
+<p>Now, we preview your form to see how it would look in your application - press <b>Ctrl + R</b> or select <b>Preview</b> from the <b>Form</b> menu. Try dragging the slider - the spin box will mirror its value too (and vice versa). Also, you can resize it to see how the layouts that are used to manage the child widgets, respond to different window sizes.</p>
+<p>
+[<a href="designer-manual.html">Contents</a>]
+</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

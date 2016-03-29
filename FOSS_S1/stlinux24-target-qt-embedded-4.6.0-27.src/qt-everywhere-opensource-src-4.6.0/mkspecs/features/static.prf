@@ -1,0 +1,19 @@
+CONFIG -= shared dll
+contains(TEMPLATE, ".*lib"):{
+    CONFIG += staticlib
+    unix {
+        QMAKE_CFLAGS += $$QMAKE_CFLAGS_STATIC_LIB
+        QMAKE_CXXFLAGS += $$QMAKE_CXXFLAGS_STATIC_LIB
+    }
+}
+
+mac {
+    QMAKE_LFLAGS += $$QMAKE_LFLAGS_STATIC_LIB
+}
+
+symbian {
+    # we don't care about exports from static libraries, as they don't end up in DEF files
+    MMP_RULES -= $$MMP_RULES_DONT_EXPORT_ALL_CLASS_IMPEDIMENTA
+}
+
+!static_and_shared:fix_output_dirs:fixExclusiveOutputDirs(static, shared)

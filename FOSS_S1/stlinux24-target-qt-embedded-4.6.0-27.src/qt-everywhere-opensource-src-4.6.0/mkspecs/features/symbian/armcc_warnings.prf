@@ -1,0 +1,10 @@
+# 111:  Statement is unreachable
+# 185:  Dynamic initialization in unreachable code
+# 191:  Type qualifier is meaningless on cast type
+# 368:  class "<class>" defines no constructor to initialize the following: <member>
+#       (Disabled because there are other ways of assigning besides constructors)
+# 1293: Assignment in condition
+# 1294: pre-ANSI C style functions declarations (used a lot in 3rd party code)
+# 2874: <variable> may be used before being set (this one sounds useful, but
+#       it's output also for class instances, making it useless in practice)
+QMAKE_CFLAGS.ARMCC += --diag_suppress 111,185,191,368,1293,1294,2874

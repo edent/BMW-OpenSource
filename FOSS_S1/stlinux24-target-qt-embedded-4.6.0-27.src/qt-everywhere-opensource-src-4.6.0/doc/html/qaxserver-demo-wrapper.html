@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- wrapper.qdoc -->
+<head>
+  <title>Qt 4.6: Standard Qt widgets in an HTML page</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">Standard Qt widgets in an HTML page<br /><span class="subtitle"></span>
+</h1>
+//! [0]
+<SCRIPT LANGUAGE="VBScript">
+Sub ToolButton_Clicked()
+    RadioButton.text = InputBox( "Enter something", "Wrapper Demo" )
+End Sub
+
+Sub PushButton_clicked()
+    MsgBox( "Thank you!" )
+End Sub
+
+Sub CheckBox_toggled( state )
+    if state = 0 then
+        CheckBox.text = "Check me!"
+    else
+        CheckBox.text = "Uncheck me!"
+    end if
+End Sub
+</SCRIPT>
+<p />
+A QPushButton:<br />
+<object ID="PushButton" CLASSID="CLSID:2B262458-A4B6-468B-B7D4-CF5FEE0A7092"
+CODEBASE="http://qt.nokia.com/demos/wrapperax.cab">
+    <PARAM NAME="text" VALUE="Click me!" />
+[Object not available! Did you forget to build and register the server?]
+</object><br />
+
+<p />
+A QCheckBox:<br />
+<object ID="CheckBox" CLASSID="CLSID:6E795de9-872d-43cf-a831-496ef9d86c68"
+CODEBASE="http://qt.nokia.com/demos/wrapperax.cab">
+    <PARAM NAME="text" VALUE="Check me!" />
+[Object not available! Did you forget to build and register the server?]
+</object><br />
+
+<p />
+A QToolButton:<br />
+<object ID="ToolButton" CLASSID="CLSID:7c0ffe7a-60c3-4666-bde2-5cf2b54390a1"
+CODEBASE="http://qt.nokia.com/demos/wrapperax.cab">
+[Object not available! Did you forget to build and register the server?]
+</object><br />
+
+<p />
+A QRadioButton:<br />
+<object ID="RadioButton" CLASSID="CLSID:afcf78c8-446c-409a-93b3-ba2959039189"
+CODEBASE="http://qt.nokia.com/demos/wrapperax.cab">
+    <PARAM NAME="text" VALUE="Tune me!" />
+[Object not available! Did you forget to build and register the server?]
+</object><br />
+//! [0]
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

@@ -1,0 +1,68 @@
+--- sqlite3.c.orig
++++ sqlite3.c
+@@ -383,7 +383,7 @@ SQLITE_PRIVATE   void sqlite3Coverage(int);
+ **
+ ** See also ticket #2741.
+ */
+-#if !defined(_XOPEN_SOURCE) && !defined(__DARWIN__) && !defined(__APPLE__) && SQLITE_THREADSAFE
++#if !defined(_XOPEN_SOURCE) && !defined(__DARWIN__) && !defined(__APPLE__) && SQLITE_THREADSAFE && !defined(VXWORKS)
+ #  define _XOPEN_SOURCE 500  /* Needed to enable pthread recursive mutexes */
+ #endif
+ 
+@@ -440,6 +440,13 @@ SQLITE_PRIVATE   void sqlite3Coverage(int);
+ */
+ #ifndef _SQLITE3_H_
+ #define _SQLITE3_H_
++
++#ifdef VXWORKS
++# define SQLITE_HOMEGROWN_RECURSIVE_MUTEX
++# define NO_GETTOD
++# include <ioLib.h>
++#endif
++
+ #include <stdarg.h>     /* Needed for the definition of va_list */
+ 
+ /*
+@@ -18792,7 +18799,11 @@ SQLITE_PRIVATE sqlite3_vfs *sqlite3OsDefaultVfs(void){
+ #include <sys/stat.h>
+ #include <fcntl.h>
+ #include <unistd.h>
+-#include <sys/time.h>
++#ifdef VXWORKS
++# include <sys/times.h>
++#else
++# include <sys/time.h>
++#endif
+ #include <errno.h>
+ #ifdef SQLITE_ENABLE_LOCKING_STYLE
+ #include <sys/ioctl.h>
+@@ -19728,7 +19739,11 @@ static int seekAndWrite(unixFile *id, i64 offset, const void *pBuf, int cnt){
+   if( newOffset!=offset ){
+     return -1;
+   }
++# ifndef VXWORKS
+   got = write(id->h, pBuf, cnt);
++# else
++  got = write(id->h, (char *)pBuf, cnt);
++# endif
+ #endif
+   TIMER_END;
+   OSTRACE5("WRITE   %-3d %5d %7lld %d\n", id->h, got, offset, TIMER_ELAPSED);
+@@ -21554,12 +21569,16 @@ static int unixRandomness(sqlite3_vfs *pVfs, int nBuf, char *zBuf){
+ #if !defined(SQLITE_TEST)
+   {
+     int pid, fd;
+-    fd = open("/dev/urandom", O_RDONLY);
++    fd = open("/dev/urandom", O_RDONLY, 0);
+     if( fd<0 ){
+       time_t t;
+       time(&t);
+       memcpy(zBuf, &t, sizeof(t));
++#ifndef VXWORKS
+       pid = getpid();
++#else
++      pid = (int)taskIdCurrent();
++#endif
+       memcpy(&zBuf[sizeof(t)], &pid, sizeof(pid));
+     }else{
+       read(fd, zBuf, nBuf);

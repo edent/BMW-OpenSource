@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: reportGlobals.xq Example File (xmlpatterns/xquery/globalVariables/reportGlobals.xq)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">reportGlobals.xq Example File<br /><span class="small-subtitle">xmlpatterns/xquery/globalVariables/reportGlobals.xq</span>
+</h1>
+<pre> (:
+     This XQuery loads a GCC-XML file and reports the locations of all
+     global variables in the original C++ source. To run the query,
+     use the command line:
+
+     xmlpatterns reportGlobals.xq -param fileToOpen=globals.gccxml -output globals.html
+
+     &quot;fileToOpen=globals.gccxml&quot; binds the file name &quot;globals.gccxml&quot;
+     to the variable &quot;fileToOpen&quot; declared and used below.
+ :)
+
+ declare variable $fileToOpen as xs:anyURI external;
+ declare variable $inDoc as document-node() := doc($fileToOpen);
+
+ (:
+    This function determines whether the typeId is a complex type,
+    e.g. QString. We only check whether it's a class. To be strictly
+    correct, we should check whether the class has a non-synthesized
+    constructor. We accept both mutable and const types.
+ :)
+ declare function local:isComplexType($typeID as xs:string) as xs:boolean
+ {
+     exists($inDoc/GCC_XML/Class[@id = $typeID])
+     or
+     exists($inDoc/GCC_XML/Class[@id = $inDoc/GCC_XML/CvQualifiedType[@id = $typeID]/@type])
+ };
+
+ (:
+    This function determines whether the typeId is a primitive type.
+ :)
+ declare function local:isPrimitive($typeId as xs:string) as xs:boolean
+ {
+     exists($inDoc/GCC_XML/FundamentalType[@id = $typeId])
+ };
+
+ (:
+    This function constructs a line for the report. The line contains
+    a variable name, the source file, and the line number.
+ :)
+ declare function local:location($block as element()) as xs:string
+ {
+     concat($inDoc/GCC_XML/File[@id = $block/@file]/@name, &quot; at line &quot;, $block/@line)
+ };
+
+ (:
+    This function generates the report. Note that it is called once
+    in the &lt;body&gt; element of the &lt;html&gt; output.
+
+    It ignores const variables of simple types but reports all others.
+ :)
+ declare function local:report() as element()+
+ {
+     let $complexVariables as element(Variable)* := $inDoc/GCC_XML/Variable[local:isComplexType(@type)]
+     return if (exists($complexVariables))
+            then (&lt;p xmlns=&quot;http://www.w3.org/1999/xhtml/&quot;&gt;Global variables with complex types:&lt;/p&gt;,
+                  &lt;ol xmlns=&quot;http://www.w3.org/1999/xhtml/&quot;&gt;
+                     {
+                         (: For each Variable in $complexVariables... :)
+                         $complexVariables/&lt;li&gt;&lt;span class=&quot;variableName&quot;&gt;{string(@name)}&lt;/span&gt; in {local:location(.)}&lt;/li&gt;
+                     }
+                  &lt;/ol&gt;)
+            else &lt;p xmlns=&quot;http://www.w3.org/1999/xhtml/&quot;&gt;No complex global variables found.&lt;/p&gt;
+
+     ,
+
+     let $primitiveVariables as element(Variable)+ := $inDoc/GCC_XML/Variable[local:isPrimitive(@type)]
+     return if (exists($primitiveVariables))
+            then (&lt;p xmlns=&quot;http://www.w3.org/1999/xhtml/&quot;&gt;Mutable global variables with primitives types:&lt;/p&gt;,
+                  &lt;ol xmlns=&quot;http://www.w3.org/1999/xhtml/&quot;&gt;
+                     {
+                         (: For each Variable in $complexVariables... :)
+                         $primitiveVariables/&lt;li&gt;&lt;span class=&quot;variableName&quot;&gt;{string(@name)}&lt;/span&gt; in {local:location(.)}&lt;/li&gt;
+                     }
+                  &lt;/ol&gt;)
+            else &lt;p xmlns=&quot;http://www.w3.org/1999/xhtml/&quot;&gt;No mutable primitive global variables found.&lt;/p&gt;
+ };
+
+ (:
+     This is where the &lt;html&gt; report is output. First
+     there is some style stuff, then the &lt;body&gt; element,
+     which contains the call to the \c{local:report()}
+     declared above.
+ :)
+ &lt;html xmlns=&quot;http://www.w3.org/1999/xhtml/&quot; xml:lang=&quot;en&quot; lang=&quot;en&quot;&gt;
+     &lt;head&gt;
+         &lt;title&gt;Global variables report for {$fileToOpen}&lt;/title&gt;
+     &lt;/head&gt;
+     &lt;style type=&quot;text/css&quot;&gt;
+         .details
+         {{
+             text-align: left;
+             font-size: 80%;
+             color: blue
+         }}
+         .variableName
+         {{
+             font-family: courier;
+             color: blue
+         }}
+     &lt;/style&gt;
+
+     &lt;body&gt;
+         &lt;p class=&quot;details&quot;&gt;Start report: {current-dateTime()}&lt;/p&gt;
+         {
+             local:report()
+         }
+         &lt;p class=&quot;details&quot;&gt;End report: {current-dateTime()}&lt;/p&gt;
+     &lt;/body&gt;
+
+ &lt;/html&gt;</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

@@ -1,0 +1,555 @@
+Adds support for the ST200 to the QT build. This is for 
+the embedded build only, not the X build. Includes support
+for atomic operations done by PC rollback technique.  This
+increases performance by about 10% on timing how fast the 
+"affine" demo runs.
+
+Signed-off-by: Stephen Clarke <stephen.clarke@st.com>
+
+Index: qt-everywhere-opensource-src-4.6.0/include/Qt/qatomic_st231.h
+===================================================================
+--- /dev/null
++++ qt-everywhere-opensource-src-4.6.0/include/Qt/qatomic_st231.h
+@@ -0,0 +1 @@
++#include "../../src/corelib/arch/qatomic_st231.h"
+Index: qt-everywhere-opensource-src-4.6.0/include/QtCore/headers.pri
+===================================================================
+--- qt-everywhere-opensource-src-4.6.0.orig/include/QtCore/headers.pri
++++ qt-everywhere-opensource-src-4.6.0/include/QtCore/headers.pri
+@@ -1,2 +1,2 @@
+-SYNCQT.HEADER_FILES = ../corelib/xml/qxmlstream.h ../corelib/io/qabstractfileengine.h ../corelib/io/qbuffer.h ../corelib/io/qdatastream.h ../corelib/io/qdebug.h ../corelib/io/qdir.h ../corelib/io/qdiriterator.h ../corelib/io/qfile.h ../corelib/io/qfileinfo.h ../corelib/io/qfilesystemwatcher.h ../corelib/io/qfsfileengine.h ../corelib/io/qiodevice.h ../corelib/io/qprocess.h ../corelib/io/qresource.h ../corelib/io/qsettings.h ../corelib/io/qtemporaryfile.h ../corelib/io/qtextstream.h ../corelib/io/qurl.h ../corelib/codecs/qtextcodec.h ../corelib/codecs/qtextcodecplugin.h ../corelib/tools/qalgorithms.h ../corelib/tools/qbitarray.h ../corelib/tools/qbytearray.h ../corelib/tools/qbytearraymatcher.h ../corelib/tools/qcache.h ../corelib/tools/qchar.h ../corelib/tools/qcontainerfwd.h ../corelib/tools/qcontiguouscache.h ../corelib/tools/qcryptographichash.h ../corelib/tools/qdatetime.h ../corelib/tools/qeasingcurve.h ../corelib/tools/qhash.h ../corelib/tools/qiterator.h ../corelib/tools/qline.h ../corelib/tools/qlinkedlist.h ../corelib/tools/qlist.h ../corelib/tools/qlocale.h ../corelib/tools/qmap.h ../corelib/tools/qmargins.h ../corelib/tools/qpair.h ../corelib/tools/qpoint.h ../corelib/tools/qqueue.h ../corelib/tools/qrect.h ../corelib/tools/qregexp.h ../corelib/tools/qscopedpointer.h ../corelib/tools/qset.h ../corelib/tools/qshareddata.h ../corelib/tools/qsharedpointer.h ../corelib/tools/qsharedpointer_impl.h ../corelib/tools/qsize.h ../corelib/tools/qstack.h ../corelib/tools/qstring.h ../corelib/tools/qstringbuilder.h ../corelib/tools/qstringlist.h ../corelib/tools/qstringmatcher.h ../corelib/tools/qtextboundaryfinder.h ../corelib/tools/qtimeline.h ../corelib/tools/qvarlengtharray.h ../corelib/tools/qvector.h ../corelib/global/qconfig-dist.h ../corelib/global/qconfig-large.h ../corelib/global/qconfig-medium.h ../corelib/global/qconfig-minimal.h ../corelib/global/qconfig-small.h ../corelib/global/qendian.h ../corelib/global/qfeatures.h ../corelib/global/qglobal.h ../corelib/global/qlibraryinfo.h ../corelib/global/qnamespace.h ../corelib/global/qnumeric.h ../corelib/global/qt_windows.h ../corelib/kernel/qabstracteventdispatcher.h ../corelib/kernel/qabstractitemmodel.h ../corelib/kernel/qbasictimer.h ../corelib/kernel/qcoreapplication.h ../corelib/kernel/qcoreevent.h ../corelib/kernel/qeventloop.h ../corelib/kernel/qfunctions_vxworks.h ../corelib/kernel/qfunctions_wince.h ../corelib/kernel/qmath.h ../corelib/kernel/qmetaobject.h ../corelib/kernel/qmetatype.h ../corelib/kernel/qmimedata.h ../corelib/kernel/qobject.h ../corelib/kernel/qobjectcleanuphandler.h ../corelib/kernel/qobjectdefs.h ../corelib/kernel/qpointer.h ../corelib/kernel/qsharedmemory.h ../corelib/kernel/qsignalmapper.h ../corelib/kernel/qsocketnotifier.h ../corelib/kernel/qsystemsemaphore.h ../corelib/kernel/qtimer.h ../corelib/kernel/qtranslator.h ../corelib/kernel/qvariant.h ../corelib/concurrent/qfuture.h ../corelib/concurrent/qfutureinterface.h ../corelib/concurrent/qfuturesynchronizer.h ../corelib/concurrent/qfuturewatcher.h ../corelib/concurrent/qrunnable.h ../corelib/concurrent/qtconcurrentcompilertest.h ../corelib/concurrent/qtconcurrentexception.h ../corelib/concurrent/qtconcurrentfilter.h ../corelib/concurrent/qtconcurrentfilterkernel.h ../corelib/concurrent/qtconcurrentfunctionwrappers.h ../corelib/concurrent/qtconcurrentiteratekernel.h ../corelib/concurrent/qtconcurrentmap.h ../corelib/concurrent/qtconcurrentmapkernel.h ../corelib/concurrent/qtconcurrentmedian.h ../corelib/concurrent/qtconcurrentreducekernel.h ../corelib/concurrent/qtconcurrentresultstore.h ../corelib/concurrent/qtconcurrentrun.h ../corelib/concurrent/qtconcurrentrunbase.h ../corelib/concurrent/qtconcurrentstoredfunctioncall.h ../corelib/concurrent/qtconcurrentthreadengine.h ../corelib/concurrent/qthreadpool.h ../corelib/arch/qatomic_alpha.h ../corelib/arch/qatomic_arch.h ../corelib/arch/qatomic_arm.h ../corelib/arch/qatomic_armv6.h ../corelib/arch/qatomic_avr32.h ../corelib/arch/qatomic_bfin.h ../corelib/arch/qatomic_bootstrap.h ../corelib/arch/qatomic_generic.h ../corelib/arch/qatomic_i386.h ../corelib/arch/qatomic_ia64.h ../corelib/arch/qatomic_macosx.h ../corelib/arch/qatomic_mips.h ../corelib/arch/qatomic_parisc.h ../corelib/arch/qatomic_powerpc.h ../corelib/arch/qatomic_s390.h ../corelib/arch/qatomic_sh.h ../corelib/arch/qatomic_sh4a.h ../corelib/arch/qatomic_sparc.h ../corelib/arch/qatomic_symbian.h ../corelib/arch/qatomic_vxworks.h ../corelib/arch/qatomic_windows.h ../corelib/arch/qatomic_windowsce.h ../corelib/arch/qatomic_x86_64.h ../corelib/plugin/qfactoryinterface.h ../corelib/plugin/qlibrary.h ../corelib/plugin/qplugin.h ../corelib/plugin/qpluginloader.h ../corelib/plugin/quuid.h ../corelib/thread/qatomic.h ../corelib/thread/qbasicatomic.h ../corelib/thread/qmutex.h ../corelib/thread/qreadwritelock.h ../corelib/thread/qsemaphore.h ../corelib/thread/qthread.h ../corelib/thread/qthreadstorage.h ../corelib/thread/qwaitcondition.h ../corelib/statemachine/qabstractstate.h ../corelib/statemachine/qabstracttransition.h ../corelib/statemachine/qeventtransition.h ../corelib/statemachine/qfinalstate.h ../corelib/statemachine/qhistorystate.h ../corelib/statemachine/qsignaltransition.h ../corelib/statemachine/qstate.h ../corelib/statemachine/qstatemachine.h ../corelib/animation/qabstractanimation.h ../corelib/animation/qanimationgroup.h ../corelib/animation/qparallelanimationgroup.h ../corelib/animation/qpauseanimation.h ../corelib/animation/qpropertyanimation.h ../corelib/animation/qsequentialanimationgroup.h ../corelib/animation/qvariantanimation.h ../../include/QtCore/QtCore 
++SYNCQT.HEADER_FILES = ../corelib/xml/qxmlstream.h ../corelib/io/qabstractfileengine.h ../corelib/io/qbuffer.h ../corelib/io/qdatastream.h ../corelib/io/qdebug.h ../corelib/io/qdir.h ../corelib/io/qdiriterator.h ../corelib/io/qfile.h ../corelib/io/qfileinfo.h ../corelib/io/qfilesystemwatcher.h ../corelib/io/qfsfileengine.h ../corelib/io/qiodevice.h ../corelib/io/qprocess.h ../corelib/io/qresource.h ../corelib/io/qsettings.h ../corelib/io/qtemporaryfile.h ../corelib/io/qtextstream.h ../corelib/io/qurl.h ../corelib/codecs/qtextcodec.h ../corelib/codecs/qtextcodecplugin.h ../corelib/tools/qalgorithms.h ../corelib/tools/qbitarray.h ../corelib/tools/qbytearray.h ../corelib/tools/qbytearraymatcher.h ../corelib/tools/qcache.h ../corelib/tools/qchar.h ../corelib/tools/qcontainerfwd.h ../corelib/tools/qcontiguouscache.h ../corelib/tools/qcryptographichash.h ../corelib/tools/qdatetime.h ../corelib/tools/qeasingcurve.h ../corelib/tools/qhash.h ../corelib/tools/qiterator.h ../corelib/tools/qline.h ../corelib/tools/qlinkedlist.h ../corelib/tools/qlist.h ../corelib/tools/qlocale.h ../corelib/tools/qmap.h ../corelib/tools/qmargins.h ../corelib/tools/qpair.h ../corelib/tools/qpoint.h ../corelib/tools/qqueue.h ../corelib/tools/qrect.h ../corelib/tools/qregexp.h ../corelib/tools/qscopedpointer.h ../corelib/tools/qset.h ../corelib/tools/qshareddata.h ../corelib/tools/qsharedpointer.h ../corelib/tools/qsharedpointer_impl.h ../corelib/tools/qsize.h ../corelib/tools/qstack.h ../corelib/tools/qstring.h ../corelib/tools/qstringbuilder.h ../corelib/tools/qstringlist.h ../corelib/tools/qstringmatcher.h ../corelib/tools/qtextboundaryfinder.h ../corelib/tools/qtimeline.h ../corelib/tools/qvarlengtharray.h ../corelib/tools/qvector.h ../corelib/global/qconfig-dist.h ../corelib/global/qconfig-large.h ../corelib/global/qconfig-medium.h ../corelib/global/qconfig-minimal.h ../corelib/global/qconfig-small.h ../corelib/global/qendian.h ../corelib/global/qfeatures.h ../corelib/global/qglobal.h ../corelib/global/qlibraryinfo.h ../corelib/global/qnamespace.h ../corelib/global/qnumeric.h ../corelib/global/qt_windows.h ../corelib/kernel/qabstracteventdispatcher.h ../corelib/kernel/qabstractitemmodel.h ../corelib/kernel/qbasictimer.h ../corelib/kernel/qcoreapplication.h ../corelib/kernel/qcoreevent.h ../corelib/kernel/qeventloop.h ../corelib/kernel/qfunctions_vxworks.h ../corelib/kernel/qfunctions_wince.h ../corelib/kernel/qmath.h ../corelib/kernel/qmetaobject.h ../corelib/kernel/qmetatype.h ../corelib/kernel/qmimedata.h ../corelib/kernel/qobject.h ../corelib/kernel/qobjectcleanuphandler.h ../corelib/kernel/qobjectdefs.h ../corelib/kernel/qpointer.h ../corelib/kernel/qsharedmemory.h ../corelib/kernel/qsignalmapper.h ../corelib/kernel/qsocketnotifier.h ../corelib/kernel/qsystemsemaphore.h ../corelib/kernel/qtimer.h ../corelib/kernel/qtranslator.h ../corelib/kernel/qvariant.h ../corelib/concurrent/qfuture.h ../corelib/concurrent/qfutureinterface.h ../corelib/concurrent/qfuturesynchronizer.h ../corelib/concurrent/qfuturewatcher.h ../corelib/concurrent/qrunnable.h ../corelib/concurrent/qtconcurrentcompilertest.h ../corelib/concurrent/qtconcurrentexception.h ../corelib/concurrent/qtconcurrentfilter.h ../corelib/concurrent/qtconcurrentfilterkernel.h ../corelib/concurrent/qtconcurrentfunctionwrappers.h ../corelib/concurrent/qtconcurrentiteratekernel.h ../corelib/concurrent/qtconcurrentmap.h ../corelib/concurrent/qtconcurrentmapkernel.h ../corelib/concurrent/qtconcurrentmedian.h ../corelib/concurrent/qtconcurrentreducekernel.h ../corelib/concurrent/qtconcurrentresultstore.h ../corelib/concurrent/qtconcurrentrun.h ../corelib/concurrent/qtconcurrentrunbase.h ../corelib/concurrent/qtconcurrentstoredfunctioncall.h ../corelib/concurrent/qtconcurrentthreadengine.h ../corelib/concurrent/qthreadpool.h ../corelib/arch/qatomic_alpha.h ../corelib/arch/qatomic_arch.h ../corelib/arch/qatomic_arm.h ../corelib/arch/qatomic_armv6.h ../corelib/arch/qatomic_avr32.h ../corelib/arch/qatomic_bfin.h ../corelib/arch/qatomic_bootstrap.h ../corelib/arch/qatomic_generic.h ../corelib/arch/qatomic_i386.h ../corelib/arch/qatomic_ia64.h ../corelib/arch/qatomic_macosx.h ../corelib/arch/qatomic_mips.h ../corelib/arch/qatomic_parisc.h ../corelib/arch/qatomic_powerpc.h ../corelib/arch/qatomic_s390.h ../corelib/arch/qatomic_st231.h ../corelib/arch/qatomic_sh.h ../corelib/arch/qatomic_sh4a.h ../corelib/arch/qatomic_sparc.h ../corelib/arch/qatomic_symbian.h ../corelib/arch/qatomic_vxworks.h ../corelib/arch/qatomic_windows.h ../corelib/arch/qatomic_windowsce.h ../corelib/arch/qatomic_x86_64.h ../corelib/plugin/qfactoryinterface.h ../corelib/plugin/qlibrary.h ../corelib/plugin/qplugin.h ../corelib/plugin/qpluginloader.h ../corelib/plugin/quuid.h ../corelib/thread/qatomic.h ../corelib/thread/qbasicatomic.h ../corelib/thread/qmutex.h ../corelib/thread/qreadwritelock.h ../corelib/thread/qsemaphore.h ../corelib/thread/qthread.h ../corelib/thread/qthreadstorage.h ../corelib/thread/qwaitcondition.h ../corelib/statemachine/qabstractstate.h ../corelib/statemachine/qabstracttransition.h ../corelib/statemachine/qeventtransition.h ../corelib/statemachine/qfinalstate.h ../corelib/statemachine/qhistorystate.h ../corelib/statemachine/qsignaltransition.h ../corelib/statemachine/qstate.h ../corelib/statemachine/qstatemachine.h ../corelib/animation/qabstractanimation.h ../corelib/animation/qanimationgroup.h ../corelib/animation/qparallelanimationgroup.h ../corelib/animation/qpauseanimation.h ../corelib/animation/qpropertyanimation.h ../corelib/animation/qsequentialanimationgroup.h ../corelib/animation/qvariantanimation.h ../../include/QtCore/QtCore
+ SYNCQT.HEADER_CLASSES = ../../include/QtCore/QXmlStreamStringRef ../../include/QtCore/QXmlStreamAttribute ../../include/QtCore/QXmlStreamAttributes ../../include/QtCore/QXmlStreamNamespaceDeclaration ../../include/QtCore/QXmlStreamNamespaceDeclarations ../../include/QtCore/QXmlStreamNotationDeclaration ../../include/QtCore/QXmlStreamNotationDeclarations ../../include/QtCore/QXmlStreamEntityDeclaration ../../include/QtCore/QXmlStreamEntityDeclarations ../../include/QtCore/QXmlStreamEntityResolver ../../include/QtCore/QXmlStreamReader ../../include/QtCore/QXmlStreamWriter ../../include/QtCore/QAbstractFileEngine ../../include/QtCore/QAbstractFileEngineHandler ../../include/QtCore/QAbstractFileEngineIterator ../../include/QtCore/QBuffer ../../include/QtCore/QDataStream ../../include/QtCore/QtDebug ../../include/QtCore/QDebug ../../include/QtCore/QNoDebug ../../include/QtCore/QDir ../../include/QtCore/QDirIterator ../../include/QtCore/QFile ../../include/QtCore/QFileInfo ../../include/QtCore/QFileInfoList ../../include/QtCore/QFileInfoListIterator ../../include/QtCore/QFileSystemWatcher ../../include/QtCore/QFSFileEngine ../../include/QtCore/QIODevice ../../include/QtCore/Q_PID ../../include/QtCore/QProcessEnvironment ../../include/QtCore/QProcess ../../include/QtCore/QResource ../../include/QtCore/QSettings ../../include/QtCore/QTemporaryFile ../../include/QtCore/QTextStream ../../include/QtCore/QTextStreamFunction ../../include/QtCore/QTextStreamManipulator ../../include/QtCore/QTS ../../include/QtCore/QTextIStream ../../include/QtCore/QTextOStream ../../include/QtCore/QUrl ../../include/QtCore/QTextCodec ../../include/QtCore/QTextEncoder ../../include/QtCore/QTextDecoder ../../include/QtCore/QTextCodecFactoryInterface ../../include/QtCore/QTextCodecPlugin ../../include/QtCore/QtAlgorithms ../../include/QtCore/QBitArray ../../include/QtCore/QBitRef ../../include/QtCore/QByteArray ../../include/QtCore/QByteRef ../../include/QtCore/QByteArrayMatcher ../../include/QtCore/QCache ../../include/QtCore/QLatin1Char ../../include/QtCore/QChar ../../include/QtCore/QtContainerFwd ../../include/QtCore/QContiguousCacheData ../../include/QtCore/QContiguousCacheTypedData ../../include/QtCore/QContiguousCache ../../include/QtCore/QCryptographicHash ../../include/QtCore/QDate ../../include/QtCore/QTime ../../include/QtCore/QDateTime ../../include/QtCore/QEasingCurve ../../include/QtCore/QHashData ../../include/QtCore/QHashDummyValue ../../include/QtCore/QHashDummyNode ../../include/QtCore/QHashNode ../../include/QtCore/QHash ../../include/QtCore/QMultiHash ../../include/QtCore/QHashIterator ../../include/QtCore/QMutableHashIterator ../../include/QtCore/QLine ../../include/QtCore/QLineF ../../include/QtCore/QLinkedListData ../../include/QtCore/QLinkedListNode ../../include/QtCore/QLinkedList ../../include/QtCore/QLinkedListIterator ../../include/QtCore/QMutableLinkedListIterator ../../include/QtCore/QListData ../../include/QtCore/QList ../../include/QtCore/QListIterator ../../include/QtCore/QMutableListIterator ../../include/QtCore/QSystemLocale ../../include/QtCore/QLocale ../../include/QtCore/QMapData ../../include/QtCore/QMapNode ../../include/QtCore/QMapPayloadNode ../../include/QtCore/QMap ../../include/QtCore/QMultiMap ../../include/QtCore/QMapIterator ../../include/QtCore/QMutableMapIterator ../../include/QtCore/QMargins ../../include/QtCore/QPair ../../include/QtCore/QPoint ../../include/QtCore/QPointF ../../include/QtCore/QQueue ../../include/QtCore/QRect ../../include/QtCore/QRectF ../../include/QtCore/QRegExp ../../include/QtCore/QScopedPointerDeleter ../../include/QtCore/QScopedPointerArrayDeleter ../../include/QtCore/QScopedPointerPodDeleter ../../include/QtCore/QScopedPointer ../../include/QtCore/QScopedArrayPointer ../../include/QtCore/QSet ../../include/QtCore/QSetIterator ../../include/QtCore/QMutableSetIterator ../../include/QtCore/QSharedData ../../include/QtCore/QSharedDataPointer ../../include/QtCore/QExplicitlySharedDataPointer ../../include/QtCore/QSharedPointer ../../include/QtCore/QWeakPointer ../../include/QtCore/QSize ../../include/QtCore/QSizeF ../../include/QtCore/QStack ../../include/QtCore/QStdWString ../../include/QtCore/QString ../../include/QtCore/QLatin1String ../../include/QtCore/QCharRef ../../include/QtCore/QConstString ../../include/QtCore/QStringRef ../../include/QtCore/QLatin1Literal ../../include/QtCore/QAbstractConcatenable ../../include/QtCore/QConcatenable ../../include/QtCore/QStringBuilder ../../include/QtCore/QStringListIterator ../../include/QtCore/QMutableStringListIterator ../../include/QtCore/QStringList ../../include/QtCore/QStringMatcher ../../include/QtCore/QTextBoundaryFinder ../../include/QtCore/QTimeLine ../../include/QtCore/QVarLengthArray ../../include/QtCore/QVectorData ../../include/QtCore/QVectorTypedData ../../include/QtCore/QVector ../../include/QtCore/QVectorIterator ../../include/QtCore/QMutableVectorIterator ../../include/QtCore/QtEndian ../../include/QtCore/QtGlobal ../../include/QtCore/QIntegerForSize ../../include/QtCore/QNoImplicitBoolCast ../../include/QtCore/Q_INT8 ../../include/QtCore/Q_UINT8 ../../include/QtCore/Q_INT16 ../../include/QtCore/Q_UINT16 ../../include/QtCore/Q_INT32 ../../include/QtCore/Q_UINT32 ../../include/QtCore/Q_INT64 ../../include/QtCore/Q_UINT64 ../../include/QtCore/Q_LLONG ../../include/QtCore/Q_ULLONG ../../include/QtCore/Q_LONG ../../include/QtCore/Q_ULONG ../../include/QtCore/QSysInfo ../../include/QtCore/QtMsgHandler ../../include/QtCore/QGlobalStatic ../../include/QtCore/QGlobalStaticDeleter ../../include/QtCore/QBool ../../include/QtCore/QTypeInfo ../../include/QtCore/QFlag ../../include/QtCore/QIncompatibleFlag ../../include/QtCore/QFlags ../../include/QtCore/QForeachContainer ../../include/QtCore/QForeachContainerBase ../../include/QtCore/QLibraryInfo ../../include/QtCore/Qt ../../include/QtCore/QInternal ../../include/QtCore/QCOORD ../../include/QtCore/QAbstractEventDispatcher ../../include/QtCore/QModelIndex ../../include/QtCore/QPersistentModelIndex ../../include/QtCore/QModelIndexList ../../include/QtCore/QAbstractItemModel ../../include/QtCore/QAbstractTableModel ../../include/QtCore/QAbstractListModel ../../include/QtCore/QBasicTimer ../../include/QtCore/QCoreApplication ../../include/QtCore/QtCleanUpFunction ../../include/QtCore/QEvent ../../include/QtCore/QTimerEvent ../../include/QtCore/QChildEvent ../../include/QtCore/QCustomEvent ../../include/QtCore/QDynamicPropertyChangeEvent ../../include/QtCore/QEventLoop ../../include/QtCore/QMetaMethod ../../include/QtCore/QMetaEnum ../../include/QtCore/QMetaProperty ../../include/QtCore/QMetaClassInfo ../../include/QtCore/QMetaType ../../include/QtCore/QMetaTypeId ../../include/QtCore/QMetaTypeId2 ../../include/QtCore/QMimeData ../../include/QtCore/QObjectList ../../include/QtCore/QObjectData ../../include/QtCore/QObject ../../include/QtCore/QObjectUserData ../../include/QtCore/QObjectCleanupHandler ../../include/QtCore/QGenericArgument ../../include/QtCore/QGenericReturnArgument ../../include/QtCore/QArgument ../../include/QtCore/QReturnArgument ../../include/QtCore/QMetaObject ../../include/QtCore/QMetaObjectAccessor ../../include/QtCore/QMetaObjectExtraData ../../include/QtCore/QPointer ../../include/QtCore/QSharedMemory ../../include/QtCore/QSignalMapper ../../include/QtCore/QSocketNotifier ../../include/QtCore/QSystemSemaphore ../../include/QtCore/QTimer ../../include/QtCore/QTranslator ../../include/QtCore/QVariant ../../include/QtCore/QVariantList ../../include/QtCore/QVariantMap ../../include/QtCore/QVariantHash ../../include/QtCore/QVariantComparisonHelper ../../include/QtCore/QFuture ../../include/QtCore/QFutureIterator ../../include/QtCore/QMutableFutureIterator ../../include/QtCore/QFutureInterfaceBase ../../include/QtCore/QFutureInterface ../../include/QtCore/QFutureSynchronizer ../../include/QtCore/QFutureWatcherBase ../../include/QtCore/QFutureWatcher ../../include/QtCore/QRunnable ../../include/QtCore/QtConcurrentFilter ../../include/QtCore/QtConcurrentMap ../../include/QtCore/QtConcurrentRun ../../include/QtCore/QThreadPool ../../include/QtCore/QFactoryInterface ../../include/QtCore/QLibrary ../../include/QtCore/QtPlugin ../../include/QtCore/QtPluginInstanceFunction ../../include/QtCore/QPluginLoader ../../include/QtCore/QUuid ../../include/QtCore/QAtomicInt ../../include/QtCore/QAtomicPointer ../../include/QtCore/QBasicAtomicInt ../../include/QtCore/QBasicAtomicPointer ../../include/QtCore/QMutex ../../include/QtCore/QMutexLocker ../../include/QtCore/QReadWriteLock ../../include/QtCore/QReadLocker ../../include/QtCore/QWriteLocker ../../include/QtCore/QSemaphore ../../include/QtCore/QThread ../../include/QtCore/QThreadStorageData ../../include/QtCore/QThreadStorage ../../include/QtCore/QWaitCondition ../../include/QtCore/QAbstractState ../../include/QtCore/QAbstractTransition ../../include/QtCore/QEventTransition ../../include/QtCore/QFinalState ../../include/QtCore/QHistoryState ../../include/QtCore/QSignalTransition ../../include/QtCore/QState ../../include/QtCore/QStateMachine ../../include/QtCore/QAbstractAnimation ../../include/QtCore/QAnimationGroup ../../include/QtCore/QParallelAnimationGroup ../../include/QtCore/QPauseAnimation ../../include/QtCore/QPropertyAnimation ../../include/QtCore/QSequentialAnimationGroup ../../include/QtCore/QVariantAnimation 
+Index: qt-everywhere-opensource-src-4.6.0/include/QtCore/qatomic_st231.h
+===================================================================
+--- /dev/null
++++ qt-everywhere-opensource-src-4.6.0/include/QtCore/qatomic_st231.h
+@@ -0,0 +1 @@
++#include "../../src/corelib/arch/qatomic_st231.h"
+Index: qt-everywhere-opensource-src-4.6.0/mkspecs/qws/linux-st231-g++/qmake.conf
+===================================================================
+--- /dev/null
++++ qt-everywhere-opensource-src-4.6.0/mkspecs/qws/linux-st231-g++/qmake.conf
+@@ -0,0 +1,30 @@
++#
++# qmake configuration for linux-g++ using the st231-linux-g++ crosscompiler
++#
++
++include(../../common/g++.conf)
++include(../../common/linux.conf)
++include(../../common/qws.conf)
++
++QMAKE = $$[QT_INSTALL_BINS]/st231-linux-qmake
++
++# modifications to g++.conf
++QMAKE_CC                = st231-linux-gcc
++QMAKE_CXX               = st231-linux-g++
++QMAKE_LINK              = st231-linux-g++
++QMAKE_LINK_SHLIB        = st231-linux-g++
++QMAKE_CFLAGS_RELEASE    = -Os -INLINE:all_inline
++QMAKE_CXXFLAGS_RELEASE	 = -Os -INLINE:all_inline
++QMAKE_LFLAGS_RELEASE    = -Wl,-O1,--gc-sections
++
++# modifications to linux.conf
++QMAKE_AR                = st231-linux-ar cqs
++QMAKE_OBJCOPY           = st231-linux-objcopy
++QMAKE_RANLIB            = st231-linux-ranlib
++QMAKE_STRIP             = true
++QMAKE_MOC               = $$[QT_INSTALL_BINS]/st231-linux-moc
++QMAKE_UIC               = $$[QT_INSTALL_BINS]/st231-linux-uic
++
++QMAKE_RCC               = $$[QT_INSTALL_BINS]/st231-linux-rcc
++
++load(qt_config)
+Index: qt-everywhere-opensource-src-4.6.0/mkspecs/qws/linux-st231-g++/qplatformdefs.h
+===================================================================
+--- /dev/null
++++ qt-everywhere-opensource-src-4.6.0/mkspecs/qws/linux-st231-g++/qplatformdefs.h
+@@ -0,0 +1,38 @@
++/****************************************************************************
++**
++** Copyright (C) 2008 Nokia Corporation and/or its subsidiary(-ies).
++** Contact: Qt Software Information (qt-info@nokia.com)
++**
++** This file is part of the qmake spec of the Qt Toolkit.
++**
++** Commercial Usage
++** Licensees holding valid Qt Commercial licenses may use this file in
++** accordance with the Qt Commercial License Agreement provided with the
++** Software or, alternatively, in accordance with the terms contained in
++** a written agreement between you and Nokia.
++**
++**
++** GNU General Public License Usage
++** Alternatively, this file may be used under the terms of the GNU
++** General Public License versions 2.0 or 3.0 as published by the Free
++** Software Foundation and appearing in the file LICENSE.GPL included in
++** the packaging of this file.  Please review the following information
++** to ensure GNU General Public Licensing requirements will be met:
++** http://www.fsf.org/licensing/licenses/info/GPLv2.html and
++** http://www.gnu.org/copyleft/gpl.html.  In addition, as a special
++** exception, Nokia gives you certain additional rights. These rights
++** are described in the Nokia Qt GPL Exception version 1.3, included in
++** the file GPL_EXCEPTION.txt in this package.
++**
++** Qt for Windows(R) Licensees
++** As a special exception, Nokia, as the sole copyright holder for Qt
++** Designer, grants users of the Qt/Eclipse Integration plug-in the
++** right for the Qt/Eclipse Integration to link to functionality
++** provided by Qt Designer and its related libraries.
++**
++** If you are unsure which license is appropriate for your use, please
++** contact the sales department at qt-sales@nokia.com.
++**
++****************************************************************************/
++
++#include "../../linux-g++/qplatformdefs.h"
+Index: qt-everywhere-opensource-src-4.6.0/src/3rdparty/webkit/JavaScriptCore/wtf/Platform.h
+===================================================================
+--- qt-everywhere-opensource-src-4.6.0.orig/src/3rdparty/webkit/JavaScriptCore/wtf/Platform.h
++++ qt-everywhere-opensource-src-4.6.0/src/3rdparty/webkit/JavaScriptCore/wtf/Platform.h
+@@ -378,6 +378,14 @@
+ #   include <ce_time.h>
+ #endif
+ 
++/* PLATFORM(ST200) */
++#if defined(__st200__)
++#define WTF_PLATFORM_ST200 1
++#if defined(__st231__)
++#define WTF_PLATFORM_ST231 1
++#endif
++#endif
++
+ /* Compiler */
+ 
+ /* COMPILER(MSVC) */
+Index: qt-everywhere-opensource-src-4.6.0/src/corelib/arch/arch.pri
+===================================================================
+--- qt-everywhere-opensource-src-4.6.0.orig/src/corelib/arch/arch.pri
++++ qt-everywhere-opensource-src-4.6.0/src/corelib/arch/arch.pri
+@@ -25,6 +25,7 @@ vxworks:HEADERS += arch/qatomic_vxworks.
+                        arch/qatomic_i386.h \
+                        arch/qatomic_mips.h \
+                        arch/qatomic_s390.h \
++                       arch/qatomic_st231.h \
+                        arch/qatomic_x86_64.h \
+                        arch/qatomic_sh.h \
+                        arch/qatomic_sh4a.h
+Index: qt-everywhere-opensource-src-4.6.0/src/corelib/arch/qatomic_arch.h
+===================================================================
+--- qt-everywhere-opensource-src-4.6.0.orig/src/corelib/arch/qatomic_arch.h
++++ qt-everywhere-opensource-src-4.6.0/src/corelib/arch/qatomic_arch.h
+@@ -76,6 +76,8 @@ QT_BEGIN_HEADER
+ #  include "QtCore/qatomic_s390.h"
+ #elif defined(QT_ARCH_SPARC)
+ #  include "QtCore/qatomic_sparc.h"
++#elif defined(QT_ARCH_ST231)
++#  include "QtCore/qatomic_st231.h"
+ #elif defined(QT_ARCH_WINDOWS)
+ #  include "QtCore/qatomic_windows.h"
+ #elif defined(QT_ARCH_WINDOWSCE)
+Index: qt-everywhere-opensource-src-4.6.0/src/corelib/arch/qatomic_st231.h
+===================================================================
+--- /dev/null
++++ qt-everywhere-opensource-src-4.6.0/src/corelib/arch/qatomic_st231.h
+@@ -0,0 +1,378 @@
++/****************************************************************************
++**
++** Copyright (C) 2008 Nokia Corporation and/or its subsidiary(-ies).
++** Contact: Qt Software Information (qt-info@nokia.com)
++**
++** This file is part of the QtCore module of the Qt Toolkit.
++**
++** Commercial Usage
++** Licensees holding valid Qt Commercial licenses may use this file in
++** accordance with the Qt Commercial License Agreement provided with the
++** Software or, alternatively, in accordance with the terms contained in
++** a written agreement between you and Nokia.
++**
++**
++** GNU General Public License Usage
++** Alternatively, this file may be used under the terms of the GNU
++** General Public License versions 2.0 or 3.0 as published by the Free
++** Software Foundation and appearing in the file LICENSE.GPL included in
++** the packaging of this file.  Please review the following information
++** to ensure GNU General Public Licensing requirements will be met:
++** http://www.fsf.org/licensing/licenses/info/GPLv2.html and
++** http://www.gnu.org/copyleft/gpl.html.  In addition, as a special
++** exception, Nokia gives you certain additional rights. These rights
++** are described in the Nokia Qt GPL Exception version 1.3, included in
++** the file GPL_EXCEPTION.txt in this package.
++**
++** Qt for Windows(R) Licensees
++** As a special exception, Nokia, as the sole copyright holder for Qt
++** Designer, grants users of the Qt/Eclipse Integration plug-in the
++** right for the Qt/Eclipse Integration to link to functionality
++** provided by Qt Designer and its related libraries.
++**
++** If you are unsure which license is appropriate for your use, please
++** contact the sales department at qt-sales@nokia.com.
++**
++****************************************************************************/
++
++#ifndef QATOMIC_ST231_H
++#define QATOMIC_ST231_H
++
++QT_BEGIN_HEADER
++
++QT_BEGIN_NAMESPACE
++
++#define Q_ATOMIC_INT_REFERENCE_COUNTING_IS_ALWAYS_NATIVE
++
++inline bool QBasicAtomicInt::isReferenceCountingNative()
++{ return true; }
++inline bool QBasicAtomicInt::isReferenceCountingWaitFree()
++{ return false; }
++
++#define Q_ATOMIC_INT_TEST_AND_SET_IS_ALWAYS_NATIVE
++
++inline bool QBasicAtomicInt::isTestAndSetNative()
++{ return true; }
++inline bool QBasicAtomicInt::isTestAndSetWaitFree()
++{ return false; }
++
++#define Q_ATOMIC_INT_FETCH_AND_STORE_IS_ALWAYS_NATIVE
++
++inline bool QBasicAtomicInt::isFetchAndStoreNative()
++{ return true; }
++inline bool QBasicAtomicInt::isFetchAndStoreWaitFree()
++{ return false; }
++
++#define Q_ATOMIC_INT_FETCH_AND_ADD_IS_ALWAYS_NATIVE
++
++inline bool QBasicAtomicInt::isFetchAndAddNative()
++{ return true; }
++inline bool QBasicAtomicInt::isFetchAndAddWaitFree()
++{ return false; }
++
++#define Q_ATOMIC_POINTER_TEST_AND_SET_IS_ALWAYS_NATIVE
++
++template <typename T>
++Q_INLINE_TEMPLATE bool QBasicAtomicPointer<T>::isTestAndSetNative()
++{ return true; }
++template <typename T>
++Q_INLINE_TEMPLATE bool QBasicAtomicPointer<T>::isTestAndSetWaitFree()
++{ return false; }
++
++#define Q_ATOMIC_POINTER_FETCH_AND_STORE_IS_ALWAYS_NATIVE
++
++template <typename T>
++Q_INLINE_TEMPLATE bool QBasicAtomicPointer<T>::isFetchAndStoreNative()
++{ return true; }
++template <typename T>
++Q_INLINE_TEMPLATE bool QBasicAtomicPointer<T>::isFetchAndStoreWaitFree()
++{ return false; }
++
++#define Q_ATOMIC_POINTER_FETCH_AND_ADD_IS_ALWAYS_NATIVE
++
++template <typename T>
++Q_INLINE_TEMPLATE bool QBasicAtomicPointer<T>::isFetchAndAddNative()
++{ return true; }
++template <typename T>
++Q_INLINE_TEMPLATE bool QBasicAtomicPointer<T>::isFetchAndAddWaitFree()
++{ return false; }
++
++inline bool QBasicAtomicInt::ref()
++{
++	register int old, tmp;
++
++    	asm volatile(	"	call $r63 = 1f 		\n"
++			"	;; 			\n"
++			"1:	ldw %0 = 0[%2] 		\n" /* old = *_q_value */
++			"    	mov $r62 = $r63 	\n"
++		 	"    	or  $r12 = $r12, 1 	\n"
++			"	;; 			\n"
++		 	"	add %1 = %0, 1 		\n" /* tmp = old + 1 */
++		 	"	;; 			\n"
++		 	"	stw 0[%2] = %1 		\n" /* *_q_value = tmp */
++		 	"	and $r12 = $r12, ~1 	\n"
++                 	: "=&r" (old) /* %0 */ , "=&r" (tmp) /* %1 */
++                 	: "r" (&_q_value) /* %2 */
++                 	: "r62", "r63", "memory");
++
++    return old != -1;
++}
++
++inline bool QBasicAtomicInt::deref()
++{
++    	register int old, tmp;
++
++    	asm volatile(	"	call $r63 = 1f 		\n"
++			"	;; 			\n"
++		 	"1:	ldw %0 = 0[%2] 		\n" /* old = *_q_value */
++		 	"    	mov $r62 = $r63		\n"
++		 	"    	or  $r12 = $r12, 1 	\n"
++		 	"	;; 			\n"
++		 	"	add %1 = %0, -1 	\n" /* tmp = old - 1 */
++		 	"	;; 			\n"
++		 	"	stw 0[%2] = %1 		\n" /* *_q_value = tmp */
++		 	"	and $r12 = $r12, ~1 	\n"
++                 	: "=&r" (old) /* %0 */ , "=&r" (tmp) /* %1 */
++                 	: "r" (&_q_value) /* %2 */
++                 	: "r62", "r63", "memory");
++
++    return old != 1;
++}
++
++inline bool QBasicAtomicInt::testAndSetOrdered(int expectedValue, int newValue)
++{
++	register int tmp, ret;
++
++	asm volatile(	"	call $r63 = 1f 		\n"
++			"	;; 			\n"
++			"1: 	ldw %0 = 0[%2] 		\n" /* tmp = *_q_value) */
++	   		"	mov $r62 = $r63 	\n"
++			"	or $r12 = $r12, 1 	\n"
++			"	;;			\n"
++			"	cmpeq $b7 = %0, %3 	\n"
++	      		"	cmpeq %1 = %0, %3 	\n"
++			"	;; 			\n"
++			"	slct  %0 = $b7, %4, %0 	\n"
++			"	;; 			\n"
++			"	stw 0[%2] = %0		\n"
++			"	and $r12 = $r12, ~1 	\n"
++		 	: "=&r" (tmp) /* %0 */ , "=&r" (ret) /* %1 */
++		 	: "r" (&_q_value) /* %2 */ , "r" (expectedValue) /* %3 */, "r" (newValue) /* %4 */
++                 	: "r62", "r63", "b7", "memory");
++	return ret;
++}
++
++
++inline bool QBasicAtomicInt::testAndSetRelaxed(int expectedValue, int newValue)
++{
++    return testAndSetOrdered(expectedValue,newValue);
++}
++
++inline bool QBasicAtomicInt::testAndSetAcquire(int expectedValue, int newValue)
++{
++    return testAndSetOrdered(expectedValue,newValue);
++}
++
++inline bool QBasicAtomicInt::testAndSetRelease(int expectedValue, int newValue)
++{
++    return testAndSetOrdered(expectedValue,newValue);
++}
++
++inline int QBasicAtomicInt::fetchAndStoreOrdered(int newValue)
++{
++	register int old;
++
++	asm volatile("		call $r63 = 1f 		\n"
++		     "		;; 			\n"
++		     "1:	ldw %0 = 0[%1] 		\n" /* prev = *_q_value */
++		     "		mov $r62 = $r63 	\n"
++		     "		or  $r12 = $r12, 1	\n"
++		     "		;; 			\n"
++		     "		stw 0[%1] = %2		\n"
++		     "		and $r12 = $r12, ~1 	\n"
++		     :	"=&r" (old) /* %0 */
++		     :	"r" (&_q_value) /* %1 */ , "r" (newValue) /* %2 */
++		     : "r62", "r63", "memory");
++
++	return old;
++}
++
++inline int QBasicAtomicInt::fetchAndStoreRelaxed(int newValue)
++{
++	return fetchAndStoreOrdered(newValue);
++}
++
++inline int QBasicAtomicInt::fetchAndStoreAcquire(int newValue)
++{
++	return fetchAndStoreOrdered(newValue);
++}
++
++inline int QBasicAtomicInt::fetchAndStoreRelease(int newValue)
++{
++	return fetchAndStoreOrdered(newValue);
++}
++
++inline int QBasicAtomicInt::fetchAndAddOrdered(int valueToAdd)
++{
++	register int old, tmp;
++
++	asm volatile   ("	call $r63 = 1f 		\n"
++			"	;; 			\n"
++	 		"1: 	ldw %0 = 0[%2] 		\n"
++	 		"	mov $r62 = $r63 	\n"
++	 		"	or $r12 = $r12, 1 	\n"
++	 		"	;; 			\n"
++	 		"	add %1  = %0, %3 	\n"
++	 		"	;; 			\n"
++	 		"	stw 0[%2] = %1 		\n"
++		 	"	and $r12 = $r12, ~1 	\n"
++		 	: "=&r" (old) /* %0 */, "=&r" (tmp) /* %1 */
++		 	: "r" (&_q_value) /* %2 */, "r" (valueToAdd) /* %3 */
++		 	: "r62", "r63", "memory"
++			);
++
++    return old;
++}
++
++inline int QBasicAtomicInt::fetchAndAddRelaxed(int valueToAdd)
++{
++	return fetchAndAddOrdered(valueToAdd);
++}
++
++inline int QBasicAtomicInt::fetchAndAddAcquire(int valueToAdd)
++{
++	return fetchAndAddOrdered(valueToAdd);
++}
++
++inline int QBasicAtomicInt::fetchAndAddRelease(int valueToAdd)
++{
++	return fetchAndAddOrdered(valueToAdd);
++}
++
++template <typename T>
++Q_INLINE_TEMPLATE bool QBasicAtomicPointer<T>::testAndSetOrdered(T *expectedValue, T *newValue)
++{
++    register int tmp, ret;
++
++    asm volatile("	call $r63 = 1f 		\n"
++   		 "	;; 			\n"
++		 "1: 	ldw %0 = 0[%2] 		\n" /* tmp = *_q_value) */
++	   	 "	mov $r62 = $r63 	\n"
++		 "	or $r12 = $r12, 1 	\n"
++		 "	;; 			\n"
++		 "	cmpeq $b7 = %0, %3 	\n"
++	      	 "	cmpeq %1 = %0, %3 	\n"
++		 "	;; 			\n"
++		 "	slct  %0 = $b7, %4, %0 	\n"
++		 "	;; 			\n"
++		 "	stw 0[%2] = %0		\n"
++		 "	and $r12 = $r12, ~1 	\n"
++		 : "=&r" (tmp) /* %0 */ , "=&r" (ret) /* %1 */
++		 : "r" (&_q_value) /* %2 */ , "r" (expectedValue) /* %3 */, "r" (newValue) /* %4 */
++                 : "r62", "r63", "b7", "memory");
++
++    return ret;
++}
++
++template <typename T>
++Q_INLINE_TEMPLATE bool QBasicAtomicPointer<T>::testAndSetRelaxed(T *expectedValue, T *newValue)
++{
++	return testAndSetOrdered(expectedValue, newValue);
++}
++
++template <typename T>
++Q_INLINE_TEMPLATE bool QBasicAtomicPointer<T>::testAndSetAcquire(T *expectedValue, T *newValue)
++{
++	return testAndSetOrdered(expectedValue, newValue);
++}
++
++template <typename T>
++Q_INLINE_TEMPLATE bool QBasicAtomicPointer<T>::testAndSetRelease(T *expectedValue, T *newValue)
++{
++	return testAndSetOrdered(expectedValue, newValue);
++}
++
++template <typename T>
++Q_INLINE_TEMPLATE T *QBasicAtomicPointer<T>::fetchAndStoreOrdered(T *newValue)
++{
++	T * old;
++
++	asm volatile("		call $r63 = 1f 		\n"
++		     "		;; 			\n"
++		     "1:	ldw %0 = 0[%1] 		\n" /* prev = *_q_value */
++		     "		mov $r62 = $r63 	\n"
++		     "		or  $r12 = $r12, 1	\n"
++		     "		;; 			\n"
++		     "		stw 0[%1] = %2 		\n"
++		     "		and $r12 = $r12, ~1 	\n"
++		     :	"=&r" (old) /* %0 */
++		     :	"r" (&_q_value) /* %1 */ , "r" (newValue) /* %2 */
++		     : "r62", "r63", "memory");
++	return old;
++}
++
++
++template <typename T>
++Q_INLINE_TEMPLATE T *QBasicAtomicPointer<T>::fetchAndStoreRelaxed(T *newValue)
++{
++	return fetchAndStoreOrdered(newValue);
++}
++
++template <typename T>
++Q_INLINE_TEMPLATE T *QBasicAtomicPointer<T>::fetchAndStoreAcquire(T *newValue)
++{
++	return fetchAndStoreOrdered(newValue);
++}
++
++template <typename T>
++Q_INLINE_TEMPLATE T *QBasicAtomicPointer<T>::fetchAndStoreRelease(T *newValue)
++{
++	return fetchAndStoreOrdered(newValue);
++}
++
++template <typename T>
++Q_INLINE_TEMPLATE T *QBasicAtomicPointer<T>::fetchAndAddOrdered(qptrdiff valueToAdd)
++{
++    T *old, *tmp;
++
++    asm volatile("	call $r63 = 1f 		\n"
++		 "	;; 			\n"
++		 "1: 	ldw %0 = 0[%2] 		\n"
++		 "	mov $r62 = $r63 	\n"
++		 "	or $r12 = $r12, 1	\n"
++		 "	;; 			\n"
++		 "	add %1  = %0, %3 	\n"
++		 "	;;			\n"
++		 "	stw 0[%2] = %1 		\n"
++		 "	and $r12 = $r12, ~1 	\n"
++		 : "=&r" (old) /* %0 */, "=&r" (tmp) /* %1 */
++		 : "r" (&_q_value) /* %2 */, "r" (valueToAdd) /* %3 */
++		 : "r62", "r63", "memory"
++		);
++
++    return old;
++}
++
++template <typename T>
++Q_INLINE_TEMPLATE T *QBasicAtomicPointer<T>::fetchAndAddRelaxed(qptrdiff valueToAdd)
++{
++	return fetchAndAddOrdered(valueToAdd);
++}
++
++template <typename T>
++Q_INLINE_TEMPLATE T *QBasicAtomicPointer<T>::fetchAndAddAcquire(qptrdiff valueToAdd)
++{
++	return fetchAndAddOrdered(valueToAdd);
++}
++
++template <typename T>
++Q_INLINE_TEMPLATE T *QBasicAtomicPointer<T>::fetchAndAddRelease(qptrdiff valueToAdd)
++{
++	return fetchAndAddOrdered(valueToAdd);
++}
++
++QT_END_NAMESPACE
++
++QT_END_HEADER
++
++#endif // QATOMIC_ST231_H
+Index: qt-everywhere-opensource-src-4.6.0/src/corelib/arch/st231/arch.pri
+===================================================================
+--- /dev/null
++++ qt-everywhere-opensource-src-4.6.0/src/corelib/arch/st231/arch.pri
+@@ -0,0 +1,4 @@
++#
++# ST231 architecture
++#
++
+Index: qt-everywhere-opensource-src-4.6.0/src/corelib/global/qglobal.h
+===================================================================
+--- qt-everywhere-opensource-src-4.6.0.orig/src/corelib/global/qglobal.h
++++ qt-everywhere-opensource-src-4.6.0/src/corelib/global/qglobal.h
+@@ -1060,7 +1060,7 @@ redefine to built-in booleans to make au
+ 
+ typedef int QNoImplicitBoolCast;
+ 
+-#if defined(QT_ARCH_ARM) || defined(QT_ARCH_ARMV6) || defined(QT_ARCH_AVR32) || (defined(QT_ARCH_MIPS) && (defined(Q_WS_QWS) || defined(Q_OS_WINCE))) || defined(QT_ARCH_SH) || defined(QT_ARCH_SH4A)
++#if defined(QT_ARCH_ARM) || defined(QT_ARCH_ARMV6) || defined(QT_ARCH_AVR32) || (defined(QT_ARCH_MIPS) && (defined(Q_WS_QWS) || defined(Q_OS_WINCE))) || defined(QT_ARCH_SH) || defined(QT_ARCH_SH4A) || defined(QT_ARCH_ST231)
+ #define QT_NO_FPU
+ #endif
+ 

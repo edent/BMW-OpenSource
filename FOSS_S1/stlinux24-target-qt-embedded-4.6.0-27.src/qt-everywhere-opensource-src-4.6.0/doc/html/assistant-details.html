@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- assistant-manual.qdoc -->
+<head>
+  <title>Qt 4.6: Qt Assistant in More Detail</title>
+  <link rel="prev" href="assistant-manual.html" />
+  <link rel="contents" href="assistant-manual.html" />
+  <link rel="next" href="assistant-custom-help-viewer.html" />
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><p>
+[Previous: <a href="assistant-manual.html">Qt Assistant Manual</a>]
+[<a href="assistant-manual.html">Contents</a>]
+[Next: <a href="assistant-custom-help-viewer.html">Using Qt Assistant as a Custom Help Viewer</a>]
+</p>
+<h1 class="title">Qt Assistant in More Detail<br /><span class="subtitle"></span>
+</h1>
+<ul><li><a href="#command-line-options">Command Line Options</a></li>
+<li><a href="#tool-windows">Tool Windows</a></li>
+<li><a href="#documentation-window">Documentation Window</a></li>
+<li><a href="#toolbars">Toolbars</a></li>
+<li><a href="#menus">Menus</a></li>
+<ul><li><a href="#file-menu">File Menu</a></li>
+<li><a href="#edit-menu">Edit Menu</a></li>
+<li><a href="#view-menu">View Menu</a></li>
+<li><a href="#go-menu">Go Menu</a></li>
+<li><a href="#bookmarks-menu">Bookmarks Menu</a></li>
+</ul>
+<li><a href="#dialogs">Dialogs</a></li>
+<ul><li><a href="#print-dialog">Print Dialog</a></li>
+<li><a href="#preferences-dialog">Preferences Dialog</a></li>
+</ul>
+<li><a href="#find-text-control">Find Text Control</a></li>
+<li><a href="#filtering-help-contents">Filtering Help Contents</a></li>
+<li><a href="#full-text-searching">Full Text Searching</a></li>
+</ul>
+<p align="center"><img src="images/assistant-assistant.png" /></p><a name="command-line-options"></a>
+<h2>Command Line Options</h2>
+<p><i>Qt Assistant</i> handles the following command line options:</p>
+<p><table class="generic" align="center" cellpadding="2" cellspacing="1" border="0">
+<thead><tr valign="top" class="qt-style"><th>Command Line Option</th><th>Brief Description</th></tr></thead>
+<tr valign="top" class="odd"><td>-collectionFile &lt;file.qhc&gt;</td><td>Uses the specified collection file instead of the default one.</td></tr>
+<tr valign="top" class="even"><td>-showUrl URL</td><td>Shows the document referenced by URL.</td></tr>
+<tr valign="top" class="odd"><td>-enableRemoteControl</td><td>Enables <i>Qt Assistant</i> to be remotly controlled.</td></tr>
+<tr valign="top" class="even"><td>-show &lt;widget&gt;</td><td>Shows the specified dockwidget which can be &quot;contents&quot;, &quot;index&quot;, &quot;bookmarks&quot; or &quot;search&quot;.</td></tr>
+<tr valign="top" class="odd"><td>-hide &lt;widget&gt;</td><td>Hides the specified dockwidget which can be &quot;contents&quot;, &quot;index&quot;, &quot;bookmarks&quot; or &quot;search.</td></tr>
+<tr valign="top" class="even"><td>-activate &lt;widget&gt;</td><td>Activates the specified dockwidget which can be &quot;contents&quot;, &quot;index&quot;, &quot;bookmarks&quot; or &quot;search.</td></tr>
+<tr valign="top" class="odd"><td>-register &lt;doc.qch&gt;</td><td>Registers the specified compressed help file in the given help collection.</td></tr>
+<tr valign="top" class="even"><td>-unregister &lt;doc.qch&gt;</td><td>Unregisters the specified compressed help file from the given collection file.</td></tr>
+<tr valign="top" class="odd"><td>-setCurrentFilter filter</td><td>Sets the given filter as the active filter.</td></tr>
+<tr valign="top" class="even"><td>-quiet</td><td>Doesn't show any error, warning or success messages.</td></tr>
+</table></p>
+<a name="tool-windows"></a>
+<h2>Tool Windows</h2>
+<p align="center"><img src="images/assistant-dockwidgets.png" /></p><p>The tool windows provide four ways to navigate the documentation:</p>
+<ul>
+<li>The <b>Contents</b> window presents a table of contents implemented as a tree view for the documentation that is available. If you click an item, its documentation will appear in the <i>Documentation</i> window. If you double click an item or click on the control to the left of it, the item's sub-items will appear. Click a sub-item to make its page appear in the <i>Documentation</i> window. Click on the control next to an open item to hide its sub-items.</li>
+<li>The <b>Index</b> window is used to look up key words or phrases. See <a href="assistant-manual.html#the-one-minute-guide-to-using-qt-assistant">The One-Minute Guide to Using Qt Assistant</a> for how to use this window.</li>
+<li>The <b>Bookmarks</b> window lists any bookmarks you have made. Double click a bookmark to make its page appear in the <i>Documentation</i> window. The <b>Bookmarks</b> window provides a context menu with <b>Show Item</b>, <b>Delete Item</b> as well as <b>Rename Item</b>. Click in the main menu <b>Bookmark|Add Bookmark..&#x2e;</b> (or press <b>Ctrl+B</b>) to bookmark the page that is currently showing in the <i>Documentation</i> window. Right click a bookmark in the list to rename or delete the highlighted bookmark.</li>
+</ul>
+<p>If you want the <b>Documentation</b> window to use as much space as possible, you can easily group, move or hide the tool windows. To group the windows, drag one on top of the other and release the mouse. If one or all tool windows are not shown, press <b>Alt+C</b>, <b>Alt+I</b> or <b>Alt+O</b> to show the required window.</p>
+<p>The tool windows can be docked into the main window, so you can drag them to the top, left, right or bottom of <i>Qt Assistant's</i> window, or you can drag them outside <i>Qt Assistant</i> to float them as independent windows.</p>
+<a name="documentation-window"></a>
+<h2>Documentation Window</h2>
+<p align="center"><img src="images/assistant-docwindow.png" /></p><p>The <b>Documentation</b> window lets you create a tab for each documentation page that you view. Click the <b>Add Tab</b> button and a new tab will appear with the page name as the tab's caption. This makes it convenient to switch between pages when you are working with different documentation. You can delete a tab by clicking the <b>Close Tab</b> button located on the right side of the <b>Documentation</b> window.</p>
+<a name="toolbars"></a>
+<h2>Toolbars</h2>
+<p align="center"><img src="images/assistant-toolbar.png" /></p><p>The main toolbar provides fast access to the most common actions.</p>
+<p><table class="generic" align="center" cellpadding="2" cellspacing="1" border="0">
+<thead><tr valign="top" class="qt-style"><th>Action</th><th>Description</th><th>Menu Item</th><th>Shortcut</th></tr></thead>
+<tr valign="top" class="odd"><td><b>Previous</b></td><td>Takes you to the previous page in the history.</td><td><b>Go|Previous</b></td><td><b>Alt+Left Arrow</b></td></tr>
+<tr valign="top" class="even"><td><b>Next</b></td><td>Takes you to the next page in the history.</td><td><b>Go|Next</b></td><td><b>Alt+Right Arrow</b></td></tr>
+<tr valign="top" class="odd"><td><b>Home</b></td><td>Takes you to the home page as specified in the Preferences Dialog.</td><td><b>Go|Home</b></td><td><b>Ctrl+Home</b>.</td></tr>
+<tr valign="top" class="even"><td><b>Sync with Table of Contents</b></td><td>Synchronizes the <b>Contents</b> tool window with the page currently shown in the <b>Documentation</b> window.</td><td><b>Go|Sync with Table of Contents</b></td><td></td></tr>
+<tr valign="top" class="odd"><td><b>Copy</b></td><td>Copies any selected text to the clipboard.</td><td><b>Edit|Copy</b></td><td><b>Ctrl+C</b></td></tr>
+<tr valign="top" class="even"><td><b>Print</b></td><td>Opens the <b>Print</b> dialog.</td><td><b>File|Print</b></td><td><b>Ctrl+P</b></td></tr>
+<tr valign="top" class="odd"><td><b>Find in Text</b></td><td>Opens the <b>Find Text</b> dialog.</td><td><b>Edit|Find in Text</b></td><td><b>Ctrl+F</b></td></tr>
+<tr valign="top" class="even"><td><b>Zoom in</b></td><td>Increases the font size used to display text in the current tab.</td><td><b>View|Zoom in</b></td><td><b>Ctrl++</b></td></tr>
+<tr valign="top" class="odd"><td><b>Zoom out</b></td><td>Decreases the font size used to display text in the current tab.</td><td><b>View|Zoom out</b></td><td><b>Ctrl+-</b></td></tr>
+<tr valign="top" class="even"><td><b>Normal Size</b></td><td>Resets the font size to its normal size in the current tab.</td><td><b>View|Normal Size</b></td><td><b>Ctrl+0</b></td></tr>
+</table></p>
+<p align="center"><img src="images/assistant-address-toolbar.png" /></p><p>The address toolbar provides a fast way to enter a specific URL for a documentation file. By default, the address toolbar is not shown, so it has to be activated via <b>View|Toolbars|Address Toolbar</b>.</p>
+<p align="center"><img src="images/assistant-filter-toolbar.png" /></p><p>The filter toolbar allows you to apply a filter to the currently installed documentation. As with the address toolbar, the filter toolbar is not visible by default and has to be activated via <b>View|Toolbars|Filter Toolbar</b>.</p>
+<a name="menus"></a>
+<h2>Menus</h2>
+<a name="file-menu"></a>
+<h3>File Menu</h3>
+<ul>
+<li><b>File|Page Setup..&#x2e;</b> invokes a dialog allowing you to define page layout properties, such as margin sizes, page orientation and paper size.</li>
+<li><b>File|Print Preview..&#x2e;</b> provides a preview of the printed pages.</li>
+<li><b>File|Print..&#x2e;</b> opens the <a href="#print-dialog"><b>Print</b> dialog</a>.</li>
+<li><b>File|New Tab</b> opens a new empty tab in the <b>Documentation</b> window.</li>
+<li><b>File|Close Tab</b> closes the current tab of the <b>Documentation</b> window.</li>
+<li><b>File|Exit</b> closes the <i>Qt Assistant</i> application.</li>
+</ul>
+<a name="edit-menu"></a>
+<h3>Edit Menu</h3>
+<ul>
+<li><b>Edit|Copy</b> copies any selected text to the clipboard.</li>
+<li><b>Edit|Find in Text</b> invokes the <a href="#find-text-control"><b>Find Text</b> control</a> at the lower end of the <b>Documentation</b> window.</li>
+<li><b>Edit|Find Next</b> looks for the next occurance of the specified text in the <b>Find Text</b> control.</li>
+<li><b>Edit|Find Previous</b> looks for the previous occurance of the specified text in the <a href="#find-text-control"><b>Find Text</b> control</a>.</li>
+<li><b>Edit|Preferences</b> invokes the <a href="#preferences-dialog"><b>Preferences</b> dialog</a>.</li>
+</ul>
+<a name="view-menu"></a>
+<h3>View Menu</h3>
+<ul>
+<li><b>View|Zoom in</b> increases the font size in the current tab.</li>
+<li><b>View|Zoom out</b> decreases the font size in the current tab.</li>
+<li><b>View|Normal Size</b> resets the font size in the current tab.</li>
+<li><b>View|Contents</b> toggles the display of the <b>Contents</b> tool window.</li>
+<li><b>View|Index</b> toggles the display of the <b>Index</b> tool window.</li>
+<li><b>View|Bookmarks</b> toggles the display of the <b>Bookmarks</b> tool window.</li>
+<li><b>View|Search</b> toggles the display of the Search in the <b>Documentation</b> window.</li>
+</ul>
+<a name="go-menu"></a>
+<h3>Go Menu</h3>
+<ul>
+<li><b>Go|Home</b> goes to the home page.</li>
+<li><b>Go|Back</b> displays the previous page in the history.</li>
+<li><b>Go|Forward</b> displays the next page in the history.</li>
+<li><b>Go|Sync with Table of Contents</b> syncs the <b>Contents</b> tool window to the currently shown page.</li>
+<li><b>Go|Next Page</b> selects the next tab in the <b>Documentation</b> window.</li>
+<li><b>Go|Previous Page</b> selects the previous tab in the <b>Documentation</b> window.</li>
+</ul>
+<a name="bookmarks-menu"></a>
+<h3>Bookmarks Menu</h3>
+<ul>
+<li><b>Bookmarks|Add</b> adds the current page to the list of bookmarks.</li>
+</ul>
+<a name="dialogs"></a>
+<h2>Dialogs</h2>
+<a name="print-dialog"></a>
+<h3>Print Dialog</h3>
+<p>This dialog is platform-specific. It gives access to various printer options and can be used to print the document shown in the current tab.</p>
+<a name="preferences-dialog"></a>
+<h3>Preferences Dialog</h3>
+<p align="center"><img src="images/assistant-preferences-fonts.png" /></p><p>The <b>Fonts</b> page allows you to change the font family and font sizes of the browser window displaying the documentation or the application itself.</p>
+<p align="center"><img src="images/assistant-preferences-filters.png" /></p><p>The <b>Filters</b> page lets you create and remove documentation filters. To add a new filter, click the <b>Add</b> button, specify a filter name in the pop-up dialog and click <b>OK</b>, then select the filter attributes in the list box on the right hand side. You can delete a filter by selecting it and clicking the <b>Remove</b> button.</p>
+<p align="center"><img src="images/assistant-preferences-documentation.png" /></p><p>The <b>Documentation</b> page lets you install and remove compressed help files. Click the <b>Install</b> button and choose the path of the compressed help file (*.qch) you would like to install. To delete a help file, select a documentation set in the list and click <b>Remove</b>.</p>
+<p align="center"><img src="images/assistant-preferences-options.png" /></p><p>The <b>Options</b> page lets you specify the homepage <i>Qt Assistant</i> will display when you click the <b>Home</b> button in <i>Qt Assistant</i>'s main user interface. You can specify the hompage by typing it here or clicking on one of the buttons below the textbox. <b>Current Page</b> sets the currently displayed page as your home page while <b>Restore to default</b> will reset your home page to the default home page.</p>
+<a name="find-text-control"></a>
+<h2>Find Text Control</h2>
+<p>This control is used to find text in the current page. Enter the text you want to find in the line edit. The search is incremental, meaning that the most relevant result is shown as you enter characters into the line edit.</p>
+<p>If you check the <b>Whole words only</b> checkbox, the search will only consider whole words; for example, if you search for &quot;spin&quot; with this checkbox checked it will not match &quot;spinbox&quot;, but will match &quot;spin&quot;. If you check the <b>Case sensitive</b> checkbox then, for example, &quot;spin&quot; will match &quot;spin&quot; but not &quot;Spin&quot;. You can search forwards or backwards from your current position in the page by clicking the <b>Previous</b> or <b>Next</b> buttons. To hide the find control, either click the <b>Close</b> button or hit the <b>Esc</b> key.</p>
+<a name="filtering-help-contents"></a>
+<h2>Filtering Help Contents</h2>
+<p><i>Qt Assistant</i> allows you to install any kind of documentation as long as it is organized in Qt compressed help files (*.qch). For example, it is possible to install the Qt reference documentation for Qt 4.4&#x2e;0 and Qt 4.4&#x2e;1 at the same time. In many respects, this is very convenient since only one version of <i>Qt Assistant</i> is needed. However, at the same time it becomes more complicated when performing tasks like searching the index because nearly every keyword is defined in Qt 4.4&#x2e;0 as well as in Qt 4.4&#x2e;1&#x2e; This means that <i>Qt Assistant</i> will always ask the user to choose which one should be displayed.</p>
+<p>We use documentation filters to solve this issue. A filter is identified by its name, and contains a list of filter attributes. An attribute is just a string and can be freely chosen. Attributes are defined by the documentation itself, this means that every documentation set usually has one or more attributes.</p>
+<p>For example, the Qt 4.4&#x2e;0 <i>Qt Assistant</i> documentation defines the attributes <tt>assistant</tt>, <tt>tools</tt> and <tt>4.4.0</tt>, <i>Qt Designer</i> defines <tt>designer</tt>, <tt>tools</tt> and <tt>4.4.0</tt>. The filter to display all tools would then define only the attribute <tt>tools</tt> since this attribute is part of both documentation sets. Adding the attribute <tt>assistant</tt> to the filter would then only show <i>Qt Assistant</i> documentation since the <i>Qt Designer</i> documentation does not contain this attribute. Having an empty list of attributes in a filter will match all documentation; i.e&#x2e;, it is equivalent to requesting unfiltered documentation.</p>
+<a name="full-text-searching"></a>
+<h2>Full Text Searching</h2>
+<p align="center"><img src="images/assistant-search.png" /></p><p><i>Qt Assistant</i> provides a powerful full text search engine. To search for certain words or text, click the <b>Search</b> tab in the <b>Documentation</b> window. Then enter the text you want to look for and press <b>Enter</b> or click the <b>Search</b> button. The search is not case sensitive, so, for example, Foo, fOo and FOO are all treated as the same. The following are examples of common search patterns:</p>
+<ul>
+<li><tt>deep</tt> -- lists all the documents that contain the word 'deep'</li>
+<li><tt>deep*</tt> -- lists all the documents that contain a word beginning with 'deep'</li>
+<li><tt>deep copy</tt> -- lists all documents that contain both 'deep' <i>and</i> 'copy'</li>
+<li><tt>&quot;deep copy&quot;</tt> -- list all documents that contain the phrase 'deep copy'</li>
+</ul>
+<p>It is also possible to use the <b>Advanced search</b> to get more flexibility. You can specify some words so that hits containing these are excluded from the result, or you can search for an exact phrase. Searching for similar words will give results like these:</p>
+<ul>
+<li><tt>QStin</tt> -- lists all the documents with titles that are similar, such as <tt>QString</tt></li>
+<li><tt>QSting</tt> -- lists all the documents with titles that are similar, such as <tt>QString</tt></li>
+<li><tt>QStrin</tt> -- lists all the documents with titles that are similar, such as <tt>QString</tt></li>
+</ul>
+<p>Options can be combined to improve the search results.</p>
+<p>The list of documents found is ordered according to the number of occurrences of the search text which they contain, with those containing the highest number of occurrences appearing first. Simply click any document in the list to display it in the <b>Documentation</b> window.</p>
+<p>If the documentation has changed &mdash; for example, if documents have been added or removed &mdash; <i>Qt Assistant</i> will index them again.</p>
+<p>
+[Previous: <a href="assistant-manual.html">Qt Assistant Manual</a>]
+[<a href="assistant-manual.html">Contents</a>]
+[Next: <a href="assistant-custom-help-viewer.html">Using Qt Assistant as a Custom Help Viewer</a>]
+</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

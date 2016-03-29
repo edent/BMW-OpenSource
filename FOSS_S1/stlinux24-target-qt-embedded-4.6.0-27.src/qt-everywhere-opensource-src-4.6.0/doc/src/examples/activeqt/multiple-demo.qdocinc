@@ -1,0 +1,39 @@
+\raw HTML
+//! [0]
+<script language="javascript">
+function setColor( form )
+{
+    Ax1.fillColor = form.colorEdit.value;
+}
+
+function setWidth( form )
+{
+    Ax2.lineWidth = form.widthEdit.value;
+}
+</script>
+
+<p />
+This is one QWidget subclass:<br />
+<object ID="Ax1" CLASSID="CLSID:1D9928BD-4453-4bdd-903D-E525ED17FDE5"
+CODEBASE="http://qt.nokia.com/demos/multipleax.cab">
+[Object not available! Did you forget to build and register the server?]
+</object><br />
+<form>
+Fill Color: <input type="edit" ID="colorEdit" value = "red" />
+<input type="button" value = "Set" onClick="setColor(this.form)" />
+<input type="button" value = "Hide" onClick="Ax1.hide()" />
+<input type="button" value = "Show" onClick="Ax1.show()" />
+</form>
+
+<p />
+This is another QWidget subclass:<br />
+<object ID="Ax2" CLASSID="CLSID:58139D56-6BE9-4b17-937D-1B1EDEDD5B71"
+CODEBASE="http://qt.nokia.com/demos/multipleax.cab">
+[Object not available! Did you forget to build and register the server?]
+</object><br />
+<form>
+Line width: <input type="edit" ID="widthEdit" value = "1" />
+<input type="button" value = "Set" onClick="setWidth(this.form)" />
+</form>
+//! [0]
+\endraw

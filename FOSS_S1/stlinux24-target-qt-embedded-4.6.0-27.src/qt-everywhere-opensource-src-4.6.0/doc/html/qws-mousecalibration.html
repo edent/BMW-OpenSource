@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- mousecalibration.qdoc -->
+<head>
+  <title>Qt 4.6: Mouse Calibration Example</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">Mouse Calibration Example<br /><span class="subtitle"></span>
+</h1>
+<p>Files:</p>
+<ul>
+<li><a href="qws-mousecalibration-calibration-cpp.html">qws/mousecalibration/calibration.cpp</a></li>
+<li><a href="qws-mousecalibration-calibration-h.html">qws/mousecalibration/calibration.h</a></li>
+<li><a href="qws-mousecalibration-scribblewidget-cpp.html">qws/mousecalibration/scribblewidget.cpp</a></li>
+<li><a href="qws-mousecalibration-scribblewidget-h.html">qws/mousecalibration/scribblewidget.h</a></li>
+<li><a href="qws-mousecalibration-main-cpp.html">qws/mousecalibration/main.cpp</a></li>
+<li><a href="qws-mousecalibration-mousecalibration-pro.html">qws/mousecalibration/mousecalibration.pro</a></li>
+</ul>
+<p>The Mouse Calibration example demonstrates how to write a simple program using the mechanisms provided by the <a href="qwsmousehandler.html">QWSMouseHandler</a> class to calibrate the mouse handler in <a href="qt-embedded-linux.html">Qt for Embedded Linux</a>.</p>
+<p>Calibration is the process of mapping between physical (i.e&#x2e; device) coordinates and logical coordinates.</p>
+<p>The example consists of two classes in addition to the main program:</p>
+<ul>
+<li><tt>Calibration</tt> is a dialog widget that retrieves the device coordinates.</li>
+<li><tt>ScribbleWidget</tt> is a minimal drawing program used to let the user test the new mouse settings.</li>
+</ul>
+<p>First we will review the main program, then we will take a look at the <tt>Calibration</tt> class. The <tt>ScribbleWidget</tt> class is only a help tool in this context, and will not be covered here.</p>
+<a name="the-main-program"></a>
+<h2>The Main Program</h2>
+<p>The program starts by presenting a message box informing the user of what is going to happen:</p>
+<pre> int main(int argc, char **argv)
+ {
+     QApplication app(argc, argv, QApplication::GuiServer);
+
+     if (!QWSServer::mouseHandler())
+         qFatal(&quot;No mouse handler installed&quot;);
+
+     {
+         QMessageBox message;
+         message.setText(&quot;&lt;p&gt;Please press once at each of the marks &quot;
+                         &quot;shown in the next screen.&lt;/p&gt;&quot;
+                         &quot;&lt;p&gt;This messagebox will timout after 10 seconds &quot;
+                         &quot;if you are unable to close it.&lt;/p&gt;&quot;);
+         QTimer::singleShot(10 * 1000, &amp;message, SLOT(accept()));
+         message.exec();
+     }</pre>
+<p>The <a href="qmessagebox.html">QMessageBox</a> class provides a modal dialog with a range of different messages, roughly arranged along two axes: severity and complexity. The message box has a different icon for each of the severity levels, but the icon must be specified explicitly. In our case we use the default <a href="qmessagebox.html#Icon-enum">QMessageBox::NoIcon</a> value. In addition we use the default complexity, i.e&#x2e; a message box showing the given text and an <b>OK</b> button.</p>
+<p>At this stage in the program, the mouse could be completely uncalibrated, making the user unable to press the <b>OK</b> button. For that reason we use the static <a href="qtimer.html#singleShot">QTimer::singleShot</a>() function to make the message box disappear after 10 seconds. The <a href="qtimer.html">QTimer</a> class provides repetitive and single-shot timers: The single shot function calls the given slot after the specified interval.</p>
+<pre>     Calibration cal;
+     cal.exec();</pre>
+<p>Next, we create an instance of the <tt>Calibration</tt> class which is a dialog widget retrieving the required sample coordinates: The dialog sequentially presents five marks for the user to press, storing the device coordinates for the mouse press events.</p>
+<pre>     {
+         QMessageBox message;
+         message.setText(&quot;&lt;p&gt;The next screen will let you test the calibration &quot;
+                         &quot;by drawing into a widget.&lt;/p&gt;&lt;p&gt;This program will &quot;
+                         &quot;automatically close after 20 seconds.&lt;p&gt;&quot;);
+         QTimer::singleShot(10 * 1000, &amp;message, SLOT(accept()));
+         message.exec();
+     }
+
+     ScribbleWidget scribble;
+     scribble.showMaximized();
+     scribble.show();
+
+     app.setActiveWindow(&amp;scribble);
+     QTimer::singleShot(20 * 1000, &amp;app, SLOT(quit()));
+
+     return app.exec();
+ }</pre>
+<p>When the calibration dialog returns, we let the user test the new mouse settings by drawing onto a <tt>ScribbleWidget</tt> object. Since the mouse still can be uncalibrated, we continue to use the <a href="qmessagebox.html">QMessageBox</a> and <a href="qtimer.html">QTimer</a> classes to inform the user about the program's progress.</p>
+<p>An improved calibration tool would let the user choose between accepting the new calibration, reverting to the old one, and restarting the calibration.</p>
+<a name="calibration-class-definition"></a>
+<h2>Calibration Class Definition</h2>
+<p>The <tt>Calibration</tt> class inherits from <a href="qdialog.html">QDialog</a> and is responsible for retrieving the device coordinates from the user.</p>
+<pre> class Calibration : public QDialog
+ {
+ public:
+     Calibration();
+     ~Calibration();
+     int exec();
+
+ protected:
+     void paintEvent(QPaintEvent*);
+     void mouseReleaseEvent(QMouseEvent*);
+     void accept();
+
+ private:
+     QWSPointerCalibrationData data;
+     int pressCount;
+ };</pre>
+<p>We reimplement <a href="qdialog.html">QDialog</a>'s <a href="qdialog.html#exec">exec()</a> and <a href="qdialog.html#accept">accept()</a> slots, and <a href="qwidget.html">QWidget</a>'s <a href="qwidget.html#paintEvent">paintEvent()</a> and <a href="qwidget.html#mouseReleaseEvent">mouseReleaseEvent()</a> functions.</p>
+<p>In addition, we declare a couple of private variables, <tt>data</tt> and <tt>pressCount</tt>, holding the <tt>Calibration</tt> object's number of mouse press events and current calibration data. The <tt>pressCount</tt> variable is a convenience variable, while the <tt>data</tt> is a <a href="qwspointercalibrationdata.html">QWSPointerCalibrationData</a> object (storing the physical and logical coordinates) that is passed to the mouse handler. The <a href="qwspointercalibrationdata.html">QWSPointerCalibrationData</a> class is simply a container for calibration data.</p>
+<a name="calibration-class-implementation"></a>
+<h2>Calibration Class Implementation</h2>
+<p>In the constructor we first ensure that the <tt>Calibration</tt> dialog fills up the entire screen, has focus and will receive mouse events (the latter by making the dialog modal):</p>
+<pre> Calibration::Calibration()
+ {
+     QRect desktop = QApplication::desktop()-&gt;geometry();
+     desktop.moveTo(QPoint(0, 0));
+     setGeometry(desktop);
+
+     setFocusPolicy(Qt::StrongFocus);
+     setFocus();
+     setModal(true);</pre>
+<p>Then we initialize the <a href="qwspointercalibrationdata.html#screenPoints-var">screenPoints</a> array:</p>
+<pre>     int width = qt_screen-&gt;deviceWidth();
+     int height = qt_screen-&gt;deviceHeight();
+
+     int dx = width / 10;
+     int dy = height / 10;
+
+     QPoint *points = data.screenPoints;
+     points[QWSPointerCalibrationData::TopLeft] = QPoint(dx, dy);
+     points[QWSPointerCalibrationData::BottomLeft] = QPoint(dx, height - dy);
+     points[QWSPointerCalibrationData::BottomRight] = QPoint(width - dx, height - dy);
+     points[QWSPointerCalibrationData::TopRight] = QPoint(width - dx, dy);
+     points[QWSPointerCalibrationData::Center] = QPoint(width / 2, height / 2);</pre>
+<p>In order to specify the calibration, the <a href="qwspointercalibrationdata.html#screenPoints-var">screenPoints</a> array must contain the screen coordinates for the logical positions represented by the <a href="qwspointercalibrationdata.html#Location-enum">QWSPointerCalibrationData::Location</a> enum (e.g&#x2e; <a href="qwspointercalibrationdata.html#Location-enum">QWSPointerCalibrationData::TopLeft</a>). Since non-linearity is expected to increase on the edge of the screen, all points are kept 10 percent within the screen. The <tt>qt_screen</tt> pointer is a reference to the screen device. There can only be one screen device per application.</p>
+<pre>     pressCount = 0;
+ }</pre>
+<p>Finally, we initialize the variable which keeps track of the number of mouse press events we have received.</p>
+<pre> Calibration::~Calibration()
+ {
+ }</pre>
+<p>The destructor is trivial.</p>
+<pre> int Calibration::exec()
+ {
+     QWSServer::mouseHandler()-&gt;clearCalibration();
+     grabMouse();
+     activateWindow();
+     int ret = QDialog::exec();
+     releaseMouse();
+     return ret;
+ }</pre>
+<p>The reimplementation of the <a href="qdialog.html#exec">QDialog::exec</a>() slot is called from the main program.</p>
+<p>First we clear the current calibration making the following mouse event delivered in raw device coordinates. Then we call the <a href="qwidget.html#grabMouse">QWidget::grabMouse</a>() function to make sure no mouse events are lost, and the <a href="qwidget.html#activateWindow">QWidget::activateWindow</a>() function to make the top-level widget containing this dialog, the active window. When the call to the <a href="qdialog.html#exec">QDialog::exec</a>() base function returns, we call <a href="qwidget.html#releaseMouse">QWidget::releaseMouse</a>() to release the mouse grab before the function returns.</p>
+<pre> void Calibration::paintEvent(QPaintEvent*)
+ {
+     QPainter p(this);
+     p.fillRect(rect(), Qt::white);
+
+     QPoint point = data.screenPoints[pressCount];
+
+     <span class="comment">// Map to logical coordinates in case the screen is transformed</span>
+     QSize screenSize(qt_screen-&gt;deviceWidth(), qt_screen-&gt;deviceHeight());
+     point = qt_screen-&gt;mapFromDevice(point, screenSize);
+
+     p.fillRect(point.x() - 6, point.y() - 1, 13, 3, Qt::black);
+     p.fillRect(point.x() - 1, point.y() - 6, 3, 13, Qt::black);
+ }</pre>
+<p>The <a href="qwidget.html#paintEvent">QWidget::paintEvent</a>() function is reimplemented to receive the widget's paint events. A paint event is a request to repaint all or parts of the widget. It can happen as a result of <a href="qwidget.html#repaint">QWidget::repaint</a>() or <a href="qwidget.html#update">QWidget::update</a>(), or because the widget was obscured and has now been uncovered, or for many other reasons. In our reimplementation of the function we simply draw a cross at the next point the user should press.</p>
+<pre> void Calibration::mouseReleaseEvent(QMouseEvent *event)
+ {
+     <span class="comment">// Map from device coordinates in case the screen is transformed</span>
+     QSize screenSize(qt_screen-&gt;width(), qt_screen-&gt;height());
+     QPoint p = qt_screen-&gt;mapToDevice(event-&gt;pos(), screenSize);
+
+     data.devPoints[pressCount] = p;
+
+     if (++pressCount &lt; 5)
+         repaint();
+     else
+         accept();
+ }</pre>
+<p>We then reimplement the <a href="qwidget.html#mouseReleaseEvent">QWidget::mouseReleaseEvent</a>() function to receive the widget's move events, using the <a href="qmouseevent.html">QMouseEvent</a> object passed as parameter to find the coordinates the user pressed, and update the <a href="qwspointercalibrationdata.html#devPoints-var">QWSPointerCalibrationData::devPoints</a> array.</p>
+<p>In order to complete the mapping between logical and physical coordinates, the <a href="qwspointercalibrationdata.html#devPoints-var">devPoints</a> array must contain the raw device coordinates for the logical positions represented by the <a href="qwspointercalibrationdata.html#Location-enum">QWSPointerCalibrationData::Location</a> enum (e.g&#x2e; <a href="qwspointercalibrationdata.html#Location-enum">QWSPointerCalibrationData::TopLeft</a>)</p>
+<p>We continue by drawing the next cross, or close the dialog by calling the <a href="qdialog.html#accept">QDialog::accept</a>() slot if we have collected all the required coordinate samples.</p>
+<pre> void Calibration::accept()
+ {
+     Q_ASSERT(pressCount == 5);
+     QWSServer::mouseHandler()-&gt;calibrate(&amp;data);
+     QDialog::accept();
+ }</pre>
+<p>Our reimplementation of the <a href="qdialog.html#accept">QDialog::accept</a>() slot simply activate the new calibration data using the <a href="qwsmousehandler.html#calibrate">QWSMouseHandler::calibrate</a>() function. We also use the <a href="qtglobal.html#Q_ASSERT">Q_ASSERT</a>() macro to ensure that the number of required samples are present.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

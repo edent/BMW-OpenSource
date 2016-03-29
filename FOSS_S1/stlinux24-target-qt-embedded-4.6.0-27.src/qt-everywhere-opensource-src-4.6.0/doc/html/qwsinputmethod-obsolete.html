@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qwindowsystem_qws.cpp -->
+<head>
+  <title>Qt 4.6: Obsolete Members for QWSInputMethod</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">Obsolete Members for QWSInputMethod</h1>
+<p><b>The following class members are obsolete.</b> They are provided to keep old source code working. We strongly advise against using them in new code.</p>
+<p><ul><li><a href="qwsinputmethod.html">QWSInputMethod class reference</a></li></ul></p>
+<h2>Protected Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qwsinputmethod-obsolete.html#sendIMEvent">sendIMEvent</a></b> ( QWSServer::IMState <i>state</i>, const QString &amp; <i>text</i>, int <i>cursorPosition</i>, int <i>selectionLength</i> = 0 )&nbsp;&nbsp;<tt> (obsolete)</tt></td></tr>
+</table>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QWSInputMethod/sendIMEvent" />
+<h3 class="fn"><a name="sendIMEvent"></a>void QWSInputMethod::sendIMEvent ( <a href="qwsserver-obsolete.html#IMState-enum">QWSServer::IMState</a> <i>state</i>, const <a href="qstring.html">QString</a> &amp; <i>text</i>, int <i>cursorPosition</i>, int <i>selectionLength</i> = 0 )&nbsp;&nbsp;<tt> [protected]</tt></h3>
+<p>Sends a <a href="qinputmethodevent.html">QInputMethodEvent</a> object to the focus widget.</p>
+<p>If the specified <i>state</i> is <a href="qwsserver-obsolete.html#IMState-enum">QWSServer::IMCompose</a>, <i>text</i> is a preedit string, <i>cursorPosition</i> is the cursor's position within the preedit string, and <i>selectionLength</i> is the number of characters (starting at <i>cursorPosition</i>) that should be marked as selected by the input widget receiving the event. If the specified <i>state</i> is <a href="qwsserver-obsolete.html#IMState-enum">QWSServer::IMEnd</a>, <i>text</i> is a commit string.</p>
+<p>Use <a href="qwsinputmethod.html#sendEvent">sendEvent</a>(), <a href="qwsinputmethod.html#sendPreeditString">sendPreeditString</a>() or <a href="qwsinputmethod.html#sendCommitString">sendCommitString</a>() instead.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

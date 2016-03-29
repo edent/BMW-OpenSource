@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- widgets-tutorial.qdoc -->
+<head>
+  <title>Qt 4.6: Widgets Tutorial - Using Layouts</title>
+  <link rel="prev" href="tutorials-widgets-childwidget.html" />
+  <link rel="contents" href="widgets-tutorial.html" />
+  <link rel="next" href="tutorials-widgets-nestedlayouts.html" />
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><p>
+[Previous: <a href="tutorials-widgets-childwidget.html">Widgets Tutorial - Child Widgets</a>]
+[<a href="widgets-tutorial.html">Contents</a>]
+[Next: <a href="tutorials-widgets-nestedlayouts.html">Widgets Tutorial - Nested Layouts</a>]
+</p>
+<h1 class="title">Widgets Tutorial - Using Layouts<br /><span class="subtitle"></span>
+</h1>
+<p>Files:</p>
+<ul>
+<li><a href="tutorials-widgets-windowlayout-main-cpp.html">tutorials/widgets/windowlayout/main.cpp</a></li>
+<li><a href="tutorials-widgets-windowlayout-windowlayout-pro.html">tutorials/widgets/windowlayout/windowlayout.pro</a></li>
+</ul>
+<p>Usually, child widgets are arranged inside a window using layout objects rather than by specifying positions and sizes explicitly. Here, we construct a label and line edit widget that we would like to arrange side-by-side.</p>
+    <table align="left" width="100%">
+    <tr class="qt-code"><td>
+    <pre> #include &lt;QtGui&gt;
+
+ int main(int argc, char *argv[])
+ {
+     QApplication app(argc, argv);
+     QWidget window;
+     QLabel *label = new QLabel(QApplication::translate(&quot;windowlayout&quot;, &quot;Name:&quot;));
+     QLineEdit *lineEdit = new QLineEdit();
+
+     QHBoxLayout *layout = new QHBoxLayout();
+     layout-&gt;addWidget(label);
+     layout-&gt;addWidget(lineEdit);
+     window.setLayout(layout);
+     window.setWindowTitle(
+         QApplication::translate(&quot;windowlayout&quot;, &quot;Window layout&quot;));
+     window.show();
+     return app.exec();
+ }</pre>
+    </td><td align="right">
+    <p><img src="images/widgets-tutorial-windowlayout.png" /></p>
+    </td></tr>
+    </table>
+    <p>The <tt>layout</tt> object we construct manages the positions and sizes of widgets supplied to it with the <a href="qboxlayout.html#addWidget">addWidget()</a> function. The layout itself is supplied to the window itself in the call to <a href="qwidget.html#setLayout">setLayout()</a>. Layouts are only visible through the effects they have on the widgets (and other layouts) they are responsible for managing.</p>
+<p>In the example above, the ownership of each widget is not immediately clear. Since we construct the widgets and the layout without parent objects, we would expect to see an empty window and two separate windows containing a label and a line edit. However, when we tell the layout to manage the label and line edit and set the layout on the window, both the widgets and the layout itself are ''reparented'' to become children of the window.</p>
+<p>
+[Previous: <a href="tutorials-widgets-childwidget.html">Widgets Tutorial - Child Widgets</a>]
+[<a href="widgets-tutorial.html">Contents</a>]
+[Next: <a href="tutorials-widgets-nestedlayouts.html">Widgets Tutorial - Nested Layouts</a>]
+</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

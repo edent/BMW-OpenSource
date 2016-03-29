@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- ipc.qdoc -->
+<head>
+  <title>Qt 4.6: Inter-Process Communication in Qt</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">Inter-Process Communication in Qt<br /><span class="subtitle"></span>
+</h1>
+<p>Qt provides several ways to implement Inter-Process Communication (IPC) in Qt applications.</p>
+<a name="tcp-ip"></a>
+<h3>TCP/IP</h3>
+<p>The cross-platform <a href="qtnetwork.html">QtNetwork</a> module provides classes that make network programming portable and easy. It offers high-level classes (e.g&#x2e;, <a href="qnetworkaccessmanager.html">QNetworkAccessManager</a>, <a href="qftp.html">QFtp</a>) that communicate using specific application-level protocols, and lower-level classes (e.g&#x2e;, <a href="qtcpsocket.html">QTcpSocket</a>, <a href="qtcpserver.html">QTcpServer</a>, <a href="qsslsocket.html">QSslSocket</a>) for implementing protocols.</p>
+<a name="shared-memory"></a>
+<h3>Shared Memory</h3>
+<p>The cross-platform shared memory class, <a href="qsharedmemory.html">QSharedMemory</a>, provides access to the operating system's shared memory implementation. It allows safe access to shared memory segments by multiple threads and processes. Additionally, <a href="qsystemsemaphore.html">QSystemSemaphore</a> can be used to control access to resources shared by the system, as well as to communicate between processes.</p>
+<a name="d-bus"></a>
+<h3>D-Bus</h3>
+<p>The <a href="qtdbus.html">QtDBus</a> module is a Unix-only library you can use to implement IPC using the D-Bus protocol. It extends Qt's <a href="signalsandslots.html">Signals and Slots</a> mechanism to the IPC level, allowing a signal emitted by one process to be connected to a slot in another process. This <a href="intro-to-dbus.html">Introduction to D-Bus</a> page has detailed information on how to use the <a href="qtdbus.html">QtDBus</a> module.</p>
+<a name="qt-communications-protocol-qcop"></a>
+<h3>Qt COmmunications Protocol (QCOP)</h3>
+<p>The <a href="qcopchannel.html">QCopChannel</a> class implements a protocol for transferring messages between client processes across named channels. <a href="qcopchannel.html">QCopChannel</a> is only available in <a href="qt-embedded-linux.html">Qt for Embedded Linux</a>. Like the <a href="qtdbus.html">QtDBus</a> module, QCOP extends Qt's <a href="signalsandslots.html">Signals and Slots</a> mechanism to the IPC level, allowing a signal emitted by one process to be connected to a slot in another process, but unlike <a href="qtdbus.html">QtDBus</a>, QCOP does not depend on a third party library.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

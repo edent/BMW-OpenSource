@@ -1,0 +1,261 @@
+/****************************************************************************
+**
+** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+** All rights reserved.
+** Contact: Nokia Corporation (qt-info@nokia.com)
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:LGPL$
+** Commercial Usage
+** Licensees holding valid Qt Commercial licenses may use this file in
+** accordance with the Qt Commercial License Agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and Nokia.
+**
+** GNU Lesser General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU Lesser
+** General Public License version 2.1 as published by the Free Software
+** Foundation and appearing in the file LICENSE.LGPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU Lesser General Public License version 2.1 requirements
+** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+**
+** In addition, as a special exception, Nokia gives you certain additional
+** rights.  These rights are described in the Nokia Qt LGPL Exception
+** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+**
+** GNU General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU
+** General Public License version 3.0 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU General Public License version 3.0 requirements will be
+** met: http://www.gnu.org/copyleft/gpl.html.
+**
+** If you have questions regarding the use of this file, please contact
+** Nokia at qt-info@nokia.com.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \page platform-notes-vxworks.html
+    \title Platform Notes - VxWorks
+    \contentspage Platform Notes
+    \target VxWorks
+
+    \note VxWorks is a community supported platform. See the
+    \l{Supported Platforms} page for more information.
+
+    This page contains information about the Qt for VxWorks port. More
+    information about the combinations of platforms and compilers supported
+    by Qt can be found on the \l{Supported Platforms} page.
+
+    \tableofcontents
+
+    \section1 Supported Versions
+
+    Qt has been tested on WindRiver VxWorks 6.7 in kernel mode using the
+    vendor supplied GCC compiler, targetting both the x86 simulator
+    (simpentium) and Power-PC devices (ppc).
+    VxWorks' RTP mode is currently not supported.
+
+    \section1 Limitations
+
+    The VxWorks kernel has an optional POSIX compatibility layer, but this
+    layer does not implement all POSIX functionality needed for a complete
+    Qt port.
+
+    \table
+    \header \o Function \o Notes
+    \row \o QProcess
+         \o Not available - VxWorks has no concept of processes.
+    \row \o QSharedMemory
+         \o Not available - VxWorks has only a global, flat address space.
+    \row \o QSystemSemaphore
+         \o Not available - VxWorks has no concept of processes.
+    \row \o QLibrary
+         \o QLibrary is only a small stub to make it possible to build
+            static plugins.
+    \row \o QCoreApplication
+         \o Can only be instantiated once. Qt's Q(CoreE)Application is
+            tightly coupled to one address space and process, while VxWorks
+            only supports one global address space and has no concept of
+            processes.
+    \row \o Phonon
+         \o There is no standard audio backend, which could be integrated into Phonon.
+    \row \o Qt3Support
+         \o The Qt3Support library is not available on VxWorks.
+
+    \endtable
+
+    \section1 Build Instructions
+
+    Qt for VxWorks needs to be \l{Cross-Compiling Qt for Embedded Linux
+    Applications}{cross-compiled} on a Linux host.  \c configure and \c make
+    the build like you would with a standard \l{Cross-Compiling Qt for
+    Embedded Linux Applications}{embedded Linux cross build}.  Building the
+    VxWorks simulator would be done like this:
+
+    \code
+    <path/to/qt/sources>/configure -xplatform unsupported/vxworks-simpentium-g++ -embedded vxworks -exceptions -no-gfx-linuxfb -no-mouse-linuxtp -no-mouse-pc -no-kbd-tty
+    make
+    \endcode
+
+    \list
+    \o \c{-xplatform unsupported/qws/vxworks-simpentium-g++} - selects the x86 simulator mkspec for VxWorks
+    \o \c{-embedded vxworks} - builds the embedded version of Qt and sets the architecture to VxWorks
+    \o \c{-exceptions} - see General Notes below
+    \o \c{-no-gfx-linuxfb}, \c{-no-mouse-linuxtp}, \c{-no-mouse-pc} and \c{-no-kbd-tty} are Linux specific and won't work on VxWorks
+    \endlist
+
+    \section1 General Notes
+
+    \list
+
+    \o Configuring with \c{-exceptions} is necessary, because the VxWorks
+    6.7 g++ headers require exceptions to be enabled when compiling C++
+    code.
+
+    \o Configure's \c{-xplatform} can be any of
+    \c{unsupported/vxworks-(simpentium|ppc)-(g++|dcc)}, but \c{dcc}
+    (WindRiver DIAB compiler) has not yet tested been tested with Qt 4.6 and
+    VxWorks 6.7.
+
+    \o Building shared libraries with \c{-shared} (the default) doesn't
+    really build shared libraries, like e.g.  on Linux, since these are not
+    supported by VxWorks.  Instead, qmake will created partially linked
+    objects, that can be loaded at runtime with \c{ld}.
+
+    \o Creating static builds with \c{-static} is fully supported.
+
+    \o "Munching" (generating constructors/destructors for static C++
+    objects) is done automatically by a special qmake extension (for both
+    shared libraries and executables)
+
+    \o VxWorks does not have a file system layer, but the low level storage
+    drivers have to supply a file system like interface to the applications.
+    Since each driver implements a different subset of the functionality
+    supported by this interface, Qt's file system auto-tests show wildly
+    differing results running on different "file systems".  The best results
+    can be achieved when running on a (writable) NFS mount, since that
+    provides the most Unix-ish interface.  The worst results come from the
+    FTP file system driver, which may crash when accessed by a
+    \c{QFileInfo}.
+
+    \o Keep in mind that VxWorks doesn't call your \c{main()} function with
+    the standard \c{argc}/\c{argv} parameters.  So either add a special
+    \c{vxmain()} function or use a tool like \c{callmain} to translate
+    VxWorks' commandline arguments to an \c{argc}/\c{argv} array.
+
+    \o Some example will fail to build, due to some missing dependencies
+    (e.g. shared memory) - this will be fixed in a later release.
+
+    \endlist
+*/
+
+/*!
+    \page platform-notes-qnx.html
+    \title Platform Notes - QNX
+    \contentspage Platform Notes
+    \target QNX
+
+    \note QNX is a community supported platform. See the
+    \l{Supported Platforms} page for more information.
+
+    This page contains information about the Qt for QNX port. More
+    information about the combinations of platforms and compilers supported
+    by Qt can be found on the \l{Supported Platforms} page.
+
+    Note that Qt for QNX is currently based on \l{Qt for Embedded Linux}, which
+    contains its own windowing system. Mixing QNX's Photon environment with
+    Qt for QNX is currently not possible. Building Qt for QNX with Photon's
+    X11 embedded server is not recommended due to missing support for X11 extensions,
+    resulting in poor rendering quality.
+
+    Qt for QNX contains experimental screen and input drivers based on QNX's
+    \c devi-hid and \c io-display. For more information, check the class documentation
+    for QQnxScreen, QWSQnxKeyboardHandler and QQnxMouseHandler. See the
+    \l{Porting Qt for Embedded Linux to a New Architecture} document for information
+    on how to add custom screen or input drivers.
+
+    \tableofcontents
+
+    \section1 Supported Versions
+
+    Qt has been tested on QNX 6.4 on i386 and PowerPC targets with QNX's default
+    gcc compiler.
+
+    \section1 Limitations
+
+    Some of Qt's functionality is currently not available on QNX:
+
+    \table
+    \header \o Function \o Notes
+    \row \o QProcess
+         \o Not available - QNX doesn't support mixing threads and processes.
+    \row \o QSharedMemory
+         \o Not available - QNX doesn't support SYSV style shared memory.
+    \row \o QSystemSemaphore
+         \o Not available - QNX doesn't support SYSV style system semaphores.
+    \row \o QWS Multi Process
+         \o QT_NO_QWS_MULTIPROCESS is always on due to missing shared memory support.
+    \row \o Phonon
+         \o There is no standard audio backend, which could be integrated into Phonon.
+    \row \o Qt3Support
+         \o The Qt3Support library is not available on QNX.
+    \endtable
+
+    \section1 Build Instructions
+
+    Qt for QNX needs to be built either on a QNX system, or \l{Cross-Compiling Qt
+    for Embedded Linux Applications}{cross-compiled} on a Linux host. In either
+    case, The QNX Software Development Platform must be installed.
+
+    Example configure line for cross-compiling Qt for QNX on a Linux host for an
+    i386 QNX target:
+
+    \code
+    configure -xplatform unsupported/qws/qnx-i386-g++ -embedded i386 -no-gfx-linuxfb -no-mouse-linuxtp -no-kbd-tty -no-qt3support -qt-gfx-qnx -qt-mouse-qnx -qt-kbd-qnx -no-exceptions
+    \endcode
+
+    \list
+    \o \c{-xplatform unsupported/qws/qnx-i386-g++} - selects the i386-g++ mkspec for QNX
+    \o \c{-embedded i386} - builds the embedded version of Qt and sets the architecture to i386
+    \o \c{-no-gfx-linuxfb},  \c{-no-mouse-linuxtp} and \c{-no-kbd-tty} are Linux specific and won't work on QNX
+    \o \c{-no-qt3support} - required since the Qt3 support classes are not supported on QNX
+    \o \c{-no-exceptions} - reduces the size of the library by disabling exception support
+    \o \c{-qt-gfx-qnx} - enables the experimental \c{io-graphics} based display driver
+    \o \c{-qt-mouse-qnx} - enables the experimental \c{devi-hig} based mouse driver
+    \o \c{-qt-kbd-qnx} - enables the experimental \c{devi-hig} based keyboard driver
+    \endlist
+
+    \section1 General Notes
+
+    \list
+    \o To enable the experimental QNX display and input drivers, \c{io-display} needs to be
+       up and running. The \c devi-hid based Qt input drivers require \c devi-hid to run
+       in resource mode without Photon support. To enable a standard mouse and keyboard
+       combination, run \c devi-hid as follows: \c{/usr/photon/bin/devi-hid -Pr kbd mouse}.
+       Note that your current shell will not accept keyboard and mouse input anymore after
+       running that command, so run it either from a script that launches a Qt application
+       afterwards, or make sure to have remote login available to launch a Qt application.
+       In addition, the \c QWS_DISPLAY, \c QWS_MOUSE_PROTO and \c QWS_KEYBOARD environment
+       variables should all be set to \c{qnx} before running a Qt application.
+
+    \o The 3rd party TIFF library currently doesn't build due to the missing \c inflateSync
+       symbol from QNX's \c{libz.so.2}. Workarounds would be to manually replace QNX's libz
+       with a newer version, or disable the TIFF plugin entierly by appending
+       \c{QT_CONFIG += no-tiff} to \c{.qmake.cache} after configuring Qt.
+
+    \o Some of the tools, examples and demos do not compile due to dependencies on QProcess
+       or other classes that are not available on QNX.
+    \endlist
+
+    \section1 Platform Regressions
+
+    Qt for QNX's behavior is mostly identical with \l{Qt for Embedded Linux}. However,
+    some regressions were spotted in QDateTime computation around year 0 and year 1970,
+    which have been tracked back to faulty time zone data on some QNX versions.
+*/

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qtdesigner.qdoc -->
+<head>
+  <title>Qt 4.6: Creating and Using Components for Qt Designer</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">Creating and Using Components for Qt Designer<br /><span class="subtitle"></span>
+</h1>
+<ul><li><a href="#creating-custom-widget-plugins">Creating Custom Widget Plugins</a></li>
+<li><a href="#retrieving-access-to-qt-designer-components">Retrieving Access to <i>Qt Designer</i> Components</a></li>
+<li><a href="#creating-user-interfaces-at-run-time">Creating User Interfaces at Run-Time</a></li>
+</ul>
+<a name="creating-custom-widget-plugins"></a>
+<h2>Creating Custom Widget Plugins</h2>
+<p>When implementing a custom widget plugin for <i>Qt Designer</i>, you must subclass <a href="qdesignercustomwidgetinterface.html">QDesignerCustomWidgetInterface</a> to expose your custom widget to <i>Qt Designer</i>. A single custom widget plugin is built as a separate library. If you want to include several custom widget plugins in the same library, you must in addition subclass <a href="qdesignercustomwidgetcollectioninterface.html">QDesignerCustomWidgetCollectionInterface</a>.</p>
+<p>To provide your custom widget plugin with the expected behavior and functionality within <i>Qt Designer</i>'s workspace you can subclass the associated extension classes:</p>
+<p>The <a href="qdesignercontainerextension.html">QDesignerContainerExtension</a> class allows you to add pages to a custom multi-page container. The <a href="qdesignertaskmenuextension.html">QDesignerTaskMenuExtension</a> class allows you to add custom menu entries to <i>Qt Designer</i>'s task menu. The <a href="qdesignermembersheetextension.html">QDesignerMemberSheetExtension</a> class allows you to manipulate a widget's member functions which is displayed when configuring connections using <i>Qt Designer</i>'s mode for editing signals and slots. And finally, the <a href="qdesignerpropertysheetextension.html">QDesignerPropertySheetExtension</a> class allows you to manipulate a widget's properties which is displayed in <i>Qt Designer</i>'s property editor.</p>
+<p align="center"><img src="images/qtdesignerextensions.png" /></p><p>In <i>Qt Designer</i> the extensions are not created until they are required. For that reason, when implementing extensions, you must also subclass <a href="qextensionfactory.html">QExtensionFactory</a>, i.e create a class that is able to make instances of your extensions. In addition, you must make <i>Qt Designer</i>'s extension manager register your factory; the extension manager controls the construction of extensions as they are required, and you can access it through <a href="qdesignerformeditorinterface.html">QDesignerFormEditorInterface</a> and <a href="qextensionmanager.html">QExtensionManager</a>.</p>
+<p>For a complete example creating a custom widget plugin with an extension, see the <a href="designer-taskmenuextension.html">Task Menu Extension</a> or <a href="designer-containerextension.html">Container Extension</a> examples.</p>
+<a name="retrieving-access-to-qt-designer-components"></a>
+<h2>Retrieving Access to <i>Qt Designer</i> Components</h2>
+<p>The purpose of the classes mentioned in this section is to provide access to <i>Qt Designer</i>'s components, managers and workspace, and they are not intended to be instantiated directly.</p>
+<p><i>Qt Designer</i> is composed by several components. It has an action editor, a property editor, widget box and object inspector which you can view in its workspace.</p>
+<p align="center"><img src="images/qtdesignerscreenshot.png" /></p><p><i>Qt Designer</i> also has an object that works behind the scene; it contains the logic that integrates all of <i>Qt Designer</i>'s components into a coherent application. You can access this object, using the <a href="qdesignerformeditorinterface.html">QDesignerFormEditorInterface</a>, to retrieve interfaces to <i>Qt Designer</i>'s components:</p>
+<ul>
+<li><a href="qdesigneractioneditorinterface.html">QDesignerActionEditorInterface</a></li>
+<li><a href="qdesignerobjectinspectorinterface.html">QDesignerObjectInspectorInterface</a></li>
+<li><a href="qdesignerpropertyeditorinterface.html">QDesignerPropertyEditorInterface</a></li>
+<li><a href="qdesignerwidgetboxinterface.html">QDesignerWidgetBoxInterface</a></li>
+</ul>
+<p>In addition, you can use <a href="qdesignerformeditorinterface.html">QDesignerFormEditorInterface</a> to retrieve interfaces to <i>Qt Designer</i>'s extension manager (<a href="qextensionmanager.html">QExtensionManager</a>) and form window manager (<a href="qdesignerformwindowmanagerinterface.html">QDesignerFormWindowManagerInterface</a>). The extension manager controls the construction of extensions as they are required, while the form window manager controls the form windows appearing in <i>Qt Designer</i>'s workspace.</p>
+<p>Once you have an interface to <i>Qt Designer</i>'s form window manager (<a href="qdesignerformwindowmanagerinterface.html">QDesignerFormWindowManagerInterface</a>), you also have access to all the form windows currently appearing in <i>Qt Designer</i>'s workspace: The <a href="qdesignerformwindowinterface.html">QDesignerFormWindowInterface</a> class allows you to query and manipulate the form windows, and it provides an interface to the form windows' cursors. <a href="qdesignerformwindowcursorinterface.html">QDesignerFormWindowCursorInterface</a> is a convenience class allowing you to query and modify a given form window's widget selection, and in addition modify the properties of all the form's widgets.</p>
+<a name="creating-user-interfaces-at-run-time"></a>
+<h2>Creating User Interfaces at Run-Time</h2>
+<p>The <tt>QtDesigner</tt> module contains the <a href="qformbuilder.html">QFormBuilder</a> class that provides a mechanism for dynamically creating user interfaces at run-time, based on UI files created with <i>Qt Designer</i>. This class is typically used by custom components and applications that embed <i>Qt Designer</i>. Standalone applications that need to dynamically generate user interfaces at run-time use the <a href="quiloader.html">QUiLoader</a> class, found in the <a href="qtuitools.html">QtUiTools</a> module.</p>
+<p>For a complete example using <a href="quiloader.html">QUiLoader</a>, see the <a href="designer-calculatorbuilder.html">Calculator Builder example</a>.</p>
+<p>See also <a href="designer-manual.html">Qt Designer Manual</a> and <a href="qtuitools.html">QtUiTools Module</a>.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

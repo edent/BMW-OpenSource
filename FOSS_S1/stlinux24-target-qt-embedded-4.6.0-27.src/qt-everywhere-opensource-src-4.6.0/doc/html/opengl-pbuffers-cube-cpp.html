@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: cube.cpp Example File (opengl/pbuffers/cube.cpp)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">cube.cpp Example File<br /><span class="small-subtitle">opengl/pbuffers/cube.cpp</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the examples of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+
+ #include &quot;cube.h&quot;
+ #include &quot;glwidget.h&quot;
+
+ #include &lt;QtGui/QImage&gt;
+ #include &lt;QtCore/QPropertyAnimation&gt;
+
+ static const qreal FACE_SIZE = 0.4;
+
+ static const qreal speeds[] = { 1.8f, 2.4f, 3.6f };
+ static const qreal amplitudes[] = { 2.0f, 2.5f, 3.0f };
+
+ static inline void qSetColor(float colorVec[], QColor c)
+ {
+     colorVec[0] = c.redF();
+     colorVec[1] = c.greenF();
+     colorVec[2] = c.blueF();
+     colorVec[3] = c.alphaF();
+ }
+
+ int Geometry::append(const QVector3D &amp;a, const QVector3D &amp;n, const QVector2D &amp;t)
+ {
+     int v = vertices.count();
+     vertices.append(a);
+     normals.append(n);
+     texCoords.append(t);
+     faces.append(v);
+     colors.append(QVector4D(0.6f, 0.6f, 0.6f, 1.0f));
+     return v;
+ }
+
+ void Geometry::addQuad(const QVector3D &amp;a, const QVector3D &amp;b,
+                            const QVector3D &amp;c, const QVector3D &amp;d,
+                            const QVector&lt;QVector2D&gt; &amp;tex)
+ {
+     QVector3D norm = QVector3D::normal(a, b, c);
+     <span class="comment">// append first triangle</span>
+     int aref = append(a, norm, tex[0]);
+     append(b, norm, tex[1]);
+     int cref = append(c, norm, tex[2]);
+     <span class="comment">// append second triangle</span>
+     faces.append(aref);
+     faces.append(cref);
+     append(d, norm, tex[3]);
+ }
+
+ void Geometry::loadArrays() const
+ {
+     glEnableClientState(GL_VERTEX_ARRAY);
+     glEnableClientState(GL_NORMAL_ARRAY);
+     glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+     glEnableClientState(GL_COLOR_ARRAY);
+     glVertexPointer(3, GL_FLOAT, 0, vertices.constData());
+     glNormalPointer(GL_FLOAT, 0, normals.constData());
+     glTexCoordPointer(2, GL_FLOAT, 0, texCoords.constData());
+     glColorPointer(4, GL_FLOAT, 0, colors.constData());
+ }
+
+ void Geometry::setColors(int start, GLfloat colorArray[4][4])
+ {
+     int off = faces[start];
+     for (int i = 0; i &lt; 4; ++i)
+         colors[i + off] = QVector4D(colorArray[i][0],
+                                       colorArray[i][1],
+                                       colorArray[i][2],
+                                       colorArray[i][3]);
+ }
+
+ Tile::Tile(const QVector3D &amp;loc)
+     : location(loc)
+     , start(0)
+     , count(0)
+     , useFlatColor(false)
+     , geom(0)
+ {
+     qSetColor(faceColor, QColor(Qt::darkGray));
+ }
+
+ void Tile::setColors(GLfloat colorArray[4][4])
+ {
+     useFlatColor = true;
+     geom-&gt;setColors(start, colorArray);
+ }
+
+ static inline void qMultMatrix(const QMatrix4x4 &amp;mat)
+ {
+     if (sizeof(qreal) == sizeof(GLfloat))
+         glMultMatrixf((GLfloat*)mat.constData());
+ #ifndef QT_OPENGL_ES
+     else if (sizeof(qreal) == sizeof(GLdouble))
+         glMultMatrixd((GLdouble*)mat.constData());
+ #endif
+     else
+     {
+         GLfloat fmat[16];
+         qreal const *r = mat.constData();
+         for (int i = 0; i &lt; 16; ++i)
+             fmat[i] = r[i];
+         glMultMatrixf(fmat);
+     }
+ }
+
+ void Tile::draw() const
+ {
+     QMatrix4x4 mat;
+     mat.translate(location);
+     mat.rotate(orientation);
+     glMatrixMode(GL_MODELVIEW);
+     glPushMatrix();
+     qMultMatrix(mat);
+     glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, faceColor);
+     glDrawElements(GL_TRIANGLES, count, GL_UNSIGNED_SHORT, geom-&gt;indices() + start);
+     glPopMatrix();
+ }
+
+ TileBuilder::TileBuilder(Geometry *g, qreal depth, qreal size)
+     : verts(4)
+     , tex(4)
+     , start(g-&gt;count())
+     , count(0)
+     , geom(g)
+ {
+     <span class="comment">// front face - make a square with bottom-left at origin</span>
+     verts[br].setX(size);
+     verts[tr].setX(size);
+     verts[tr].setY(size);
+     verts[tl].setY(size);
+
+     <span class="comment">// these vert numbers are good for the tex-coords</span>
+     for (int i = 0; i &lt; 4; ++i)
+         tex[i] = verts[i].toVector2D();
+
+     <span class="comment">// now move verts half cube width across so cube is centered on origin</span>
+     for (int i = 0; i &lt; 4; ++i)
+         verts[i] -= QVector3D(size / 2.0f, size / 2.0f, -depth);
+
+     <span class="comment">// add the front face</span>
+     g-&gt;addQuad(verts[bl], verts[br], verts[tr], verts[tl], tex);
+
+     count = g-&gt;count() - start;
+ }
+
+ void TileBuilder::initialize(Tile *tile) const
+ {
+     tile-&gt;start = start;
+     tile-&gt;count = count;
+     tile-&gt;geom = geom;
+     qSetColor(tile-&gt;faceColor, color);
+ }
+
+ Tile *TileBuilder::newTile(const QVector3D &amp;loc) const
+ {
+     Tile *tile = new Tile(loc);
+     initialize(tile);
+     return tile;
+ }
+
+ Cube::Cube(const QVector3D &amp;loc)
+     : Tile(loc)
+     , rot(0.0f)
+     , r(0), a(0)
+ {
+ }
+
+ Cube::~Cube()
+ {
+ }
+
+ void Cube::setAltitude(qreal a)
+ {
+     if (location.y() != a)
+     {
+         location.setY(a);
+         emit changed();
+     }
+ }
+
+ void Cube::setRange(qreal r)
+ {
+     if (location.x() != r)
+     {
+         location.setX(r);
+         emit changed();
+     }
+ }
+
+ void Cube::setRotation(qreal r)
+ {
+     if (r != rot)
+     {
+         orientation = QQuaternion::fromAxisAndAngle(QVector3D(1.0f, 1.0f, 1.0f), r);
+         emit changed();
+     }
+ }
+
+ void Cube::removeBounce()
+ {
+     delete a;
+     a = 0;
+     delete r;
+     r = 0;
+ }
+
+ void Cube::startAnimation()
+ {
+     if (r)
+     {
+         r-&gt;start();
+         r-&gt;setCurrentTime(startx);
+     }
+     if (a)
+         a-&gt;start();
+     if (rtn)
+         rtn-&gt;start();
+ }
+
+ void Cube::setAnimationPaused(bool paused)
+ {
+     if (paused)
+     {
+         if (r)
+             r-&gt;pause();
+         if (a)
+             a-&gt;pause();
+         if (rtn)
+             rtn-&gt;pause();
+     }
+     else
+     {
+         if (r)
+             r-&gt;resume();
+         if (a)
+             a-&gt;resume();
+         if (rtn)
+             rtn-&gt;resume();
+     }
+ }
+
+ CubeBuilder::CubeBuilder(Geometry *g, qreal depth, qreal size)
+     : TileBuilder(g, depth)
+     , ix(0)
+ {
+     for (int i = 0; i &lt; 4; ++i)
+         verts[i].setZ(size / 2.0f);
+     <span class="comment">// back face - &quot;extrude&quot; verts down</span>
+     QVector&lt;QVector3D&gt; back(verts);
+     for (int i = 0; i &lt; 4; ++i)
+         back[i].setZ(-size / 2.0f);
+
+     <span class="comment">// add the back face</span>
+     g-&gt;addQuad(back[br], back[bl], back[tl], back[tr], tex);
+
+     <span class="comment">// add the sides</span>
+     g-&gt;addQuad(back[bl], back[br], verts[br], verts[bl], tex);
+     g-&gt;addQuad(back[br], back[tr], verts[tr], verts[br], tex);
+     g-&gt;addQuad(back[tr], back[tl], verts[tl], verts[tr], tex);
+     g-&gt;addQuad(back[tl], back[bl], verts[bl], verts[tl], tex);
+
+     count = g-&gt;count() - start;
+ }
+
+ Cube *CubeBuilder::newCube(const QVector3D &amp;loc) const
+ {
+     Cube *c = new Cube(loc);
+     initialize(c);
+     qreal d = 4000.0f;
+     qreal d3 = d / 3.0f;
+     <span class="comment">// Animate movement from left to right</span>
+     c-&gt;r = new QPropertyAnimation(c, &quot;range&quot;);
+     c-&gt;r-&gt;setStartValue(-1.3f);
+     c-&gt;r-&gt;setEndValue(1.3f);
+     c-&gt;startx = ix * d3 * 3.0f;
+     c-&gt;r-&gt;setDuration(d * 4.0f);
+     c-&gt;r-&gt;setLoopCount(-1);
+     c-&gt;r-&gt;setEasingCurve(QEasingCurve(QEasingCurve::CosineCurve));
+     <span class="comment">// Animate movement from bottom to top</span>
+     c-&gt;a = new QPropertyAnimation(c, &quot;altitude&quot;);
+     c-&gt;a-&gt;setEndValue(loc.y());
+     c-&gt;a-&gt;setStartValue(loc.y() + amplitudes[ix]);
+     c-&gt;a-&gt;setDuration(d / speeds[ix]);
+     c-&gt;a-&gt;setLoopCount(-1);
+     c-&gt;a-&gt;setEasingCurve(QEasingCurve(QEasingCurve::CosineCurve));
+     <span class="comment">// Animate rotation</span>
+     c-&gt;rtn = new QPropertyAnimation(c, &quot;rotation&quot;);
+     c-&gt;rtn-&gt;setStartValue(c-&gt;rot);
+     c-&gt;rtn-&gt;setEndValue(359.0f);
+     c-&gt;rtn-&gt;setDuration(d * 2.0f);
+     c-&gt;rtn-&gt;setLoopCount(-1);
+     c-&gt;rtn-&gt;setDuration(d / 2);
+     ix = (ix + 1) % 3;
+     return c;
+ }</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

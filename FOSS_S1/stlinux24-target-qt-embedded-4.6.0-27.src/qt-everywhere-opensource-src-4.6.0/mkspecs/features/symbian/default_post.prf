@@ -1,0 +1,31 @@
+load(default_post)
+
+contains(TEMPLATE, ".*app") {
+    contains(CONFIG, stdbinary) {
+        QMAKE_LIBS +=
+    } else:contains(QT, gui):contains(CONFIG,qt) {
+        S60MAIN_LIBS = -leuser
+        QMAKE_LIBS += -lqtmain.lib $$S60MAIN_LIBS
+    } else {
+        QMAKE_LIBS += $$QMAKE_LIBS_QT_ENTRY
+    }
+}
+contains(TEMPLATE, lib): {
+    contains(CONFIG, staticlib)|contains(CONFIG, static): {
+        # Static libs should not have LIBRARY statements in S60
+        QMAKE_LIBS =
+        # Static libs do not need def files
+        MMP_RULES -= EXPORTUNFROZEN
+    }
+    contains(CONFIG, plugin):!contains(CONFIG, stdbinary): {
+        # Plugins based on normal libraries have predefined def file
+        MMP_RULES -= EXPORTUNFROZEN
+    }
+} else {
+    # Applications don't need this
+    MMP_RULES -= EXPORTUNFROZEN
+}
+
+contains(TEMPLATE, ".*app"):contains(QT, gui):contains(CONFIG,qt) {
+    load(application_icon.prf)
+}

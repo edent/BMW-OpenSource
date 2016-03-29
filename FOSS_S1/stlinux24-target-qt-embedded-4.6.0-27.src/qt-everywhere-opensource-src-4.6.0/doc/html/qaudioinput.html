@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qaudioinput.cpp -->
+<head>
+  <title>Qt 4.6: QAudioInput Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QAudioInput" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QAudioInput Class Reference<br /><span class="small-subtitle">[<a href="qtmultimedia.html">QtMultimedia</a> module]</span>
+</h1>
+<p>The QAudioInput class provides an interface for receiving audio data from an audio input device. <a href="#details">More...</a></p>
+<pre> #include &lt;QAudioInput&gt;</pre><p><b>This class is not part of the Qt GUI Framework Edition.</b></p>
+<p>Inherits <a href="qobject.html">QObject</a>.</p>
+<p>This class was introduced in Qt 4.6.</p>
+<ul>
+<li><a href="qaudioinput-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qaudioinput.html#QAudioInput">QAudioInput</a></b> ( const QAudioFormat &amp; <i>format</i> = QAudioFormat(), QObject * <i>parent</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qaudioinput.html#QAudioInput-2">QAudioInput</a></b> ( const QAudioDeviceInfo &amp; <i>audioDevice</i>, const QAudioFormat &amp; <i>format</i> = QAudioFormat(), QObject * <i>parent</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qaudioinput.html#dtor.QAudioInput">~QAudioInput</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qaudioinput.html#bufferSize">bufferSize</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qaudioinput.html#bytesReady">bytesReady</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">qint64 </td><td class="memItemRight" valign="bottom"><b><a href="qaudioinput.html#elapsedUSecs">elapsedUSecs</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QAudio::Error </td><td class="memItemRight" valign="bottom"><b><a href="qaudioinput.html#error">error</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QAudioFormat </td><td class="memItemRight" valign="bottom"><b><a href="qaudioinput.html#format">format</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qaudioinput.html#notifyInterval">notifyInterval</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qaudioinput.html#periodSize">periodSize</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">qint64 </td><td class="memItemRight" valign="bottom"><b><a href="qaudioinput.html#processedUSecs">processedUSecs</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qaudioinput.html#reset">reset</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qaudioinput.html#resume">resume</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qaudioinput.html#setBufferSize">setBufferSize</a></b> ( int <i>value</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qaudioinput.html#setNotifyInterval">setNotifyInterval</a></b> ( int <i>ms</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qaudioinput.html#start">start</a></b> ( QIODevice * <i>device</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QIODevice * </td><td class="memItemRight" valign="bottom"><b><a href="qaudioinput.html#start-2">start</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QAudio::State </td><td class="memItemRight" valign="bottom"><b><a href="qaudioinput.html#state">state</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qaudioinput.html#stop">stop</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qaudioinput.html#suspend">suspend</a></b> ()</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>29 public functions inherited from <a href="qobject.html#public-functions">QObject</a></li>
+</ul>
+<hr />
+<a name="signals"></a>
+<h2>Signals</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qaudioinput.html#notify">notify</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qaudioinput.html#stateChanged">stateChanged</a></b> ( QAudio::State <i>state</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>1 signal inherited from <a href="qobject.html#signals">QObject</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li><div class="fn"></div>1 property inherited from <a href="qobject.html#properties">QObject</a></li>
+<li><div class="fn"></div>1 public slot inherited from <a href="qobject.html#public-slots">QObject</a></li>
+<li><div class="fn"></div>5 static public members inherited from <a href="qobject.html#static-public-members">QObject</a></li>
+<li><div class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QAudioInput class provides an interface for receiving audio data from an audio input device.</p>
+<p>You can construct an audio input with the system's <a href="qaudiodeviceinfo.html#defaultInputDevice">default audio input device</a>. It is also possible to create QAudioInput with a specific <a href="qaudiodeviceinfo.html">QAudioDeviceInfo</a>. When you create the audio input, you should also send in the <a href="qaudioformat.html">QAudioFormat</a> to be used for the recording (see the <a href="qaudioformat.html">QAudioFormat</a> class description for details).</p>
+<p>To record to a file:</p>
+<p>QAudioInput lets you record audio with an audio input device. The default constructor of this class will use the systems default audio device, but you can also specify a <a href="qaudiodeviceinfo.html">QAudioDeviceInfo</a> for a specific device. You also need to pass in the <a href="qaudioformat.html">QAudioFormat</a> in which you wish to record.</p>
+<p>Starting up the QAudioInput is simply a matter of calling <a href="qaudioinput.html#start">start</a>() with a <a href="qiodevice.html">QIODevice</a> opened for writing. For instance, to record to a file, you can:</p>
+<pre> {
+   QFile outputFile;
+   outputFile.setFileName(&quot;/tmp/test.raw&quot;);
+   outputFile.open( QIODevice::WriteOnly | QIODevice::Truncate );
+
+   QAudioFormat format;
+   <span class="comment">// set up the format you want, eg.</span>
+   format.setFrequency(8000);
+   format.setChannels(1);
+   format.setSampleSize(8);
+   format.setCodec(&quot;audio/pcm&quot;);
+   format.setByteOrder(QAudioFormat::LittleEndian);
+   format.setSampleType(QAudioFormat::UnSignedInt);
+
+   QAudioInput *audio = new QAudioInput(format, this);
+   QTimer::singleShot(3000, this, SLOT(stopRecording()));
+   audio-&gt;start(outputFile);
+   <span class="comment">// Records audio for 3000ms</span>
+ }</pre>
+<p>This will start recording if the format specified is supported by the input device (you can check this with <a href="qaudiodeviceinfo.html#isFormatSupported">QAudioDeviceInfo::isFormatSupported</a>(). In case there are any snags, use the <a href="qaudioinput.html#error">error</a>() function to check what went wrong. We stop recording in the <tt>stopRecording()</tt> slot.</p>
+<pre> void stopRecording()
+ {
+   audio-&gt;stop();
+   outputFile-&gt;close();
+ }</pre>
+<p>At any point in time, QAudioInput will be in one of four states: active, suspended, stopped, or idle. These states are specified by the <a href="qaudio.html#State-enum">QAudio::State</a> enum. You can request a state change directly through <a href="qaudioinput.html#suspend">suspend</a>(), <a href="qaudioinput.html#resume">resume</a>(), <a href="qaudioinput.html#stop">stop</a>(), <a href="qaudioinput.html#reset">reset</a>(), and <a href="qaudioinput.html#start">start</a>(). The current state is reported by <a href="qaudioinput.html#state">state</a>(). <a href="qaudiooutput.html">QAudioOutput</a> will also signal you when the state changes (<a href="qaudioinput.html#stateChanged">stateChanged</a>()).</p>
+<p>QAudioInput provides several ways of measuring the time that has passed since the <a href="qaudioinput.html#start">start</a>() of the recording. The <tt>processedUSecs()</tt> function returns the length of the stream in microseconds written, i.e&#x2e;, it leaves out the times the audio input was suspended or idle. The <a href="qaudioinput.html#elapsedUSecs">elapsedUSecs</a>() function returns the time elapsed since <a href="qaudioinput.html#start">start</a>() was called regardless of which states the QAudioInput has been in.</p>
+<p>If an error should occur, you can fetch its reason with <a href="qaudioinput.html#error">error</a>(). The possible error reasons are described by the <a href="qaudio.html#Error-enum">QAudio::Error</a> enum. The QAudioInput will enter the <a href="qaudio.html#State-enum">StoppedState</a> when an error is encountered. Connect to the <a href="qaudioinput.html#stateChanged">stateChanged</a>() signal to handle the error:</p>
+<pre>     void stateChanged(QAudio::State newState)
+     {
+         switch(newState) {
+             case QAudio::StopState:
+             if (input-&gt;error() != QAudio::NoError) {
+                 <span class="comment">// Error handling</span>
+             } else {
+
+             }
+             break;</pre>
+<p>See also <a href="qaudiooutput.html">QAudioOutput</a> and <a href="qaudiodeviceinfo.html">QAudioDeviceInfo</a>.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QAudioInput/QAudioInput" />
+<h3 class="fn"><a name="QAudioInput"></a>QAudioInput::QAudioInput ( const <a href="qaudioformat.html">QAudioFormat</a> &amp; <i>format</i> = QAudioFormat(), <a href="qobject.html">QObject</a> * <i>parent</i> = 0 )</h3>
+<p>Construct a new audio input and attach it to <i>parent</i>. The default audio input device is used with the output <i>format</i> parameters.</p>
+<h3 class="fn"><a name="QAudioInput-2"></a>QAudioInput::QAudioInput ( const <a href="qaudiodeviceinfo.html">QAudioDeviceInfo</a> &amp; <i>audioDevice</i>, const <a href="qaudioformat.html">QAudioFormat</a> &amp; <i>format</i> = QAudioFormat(), <a href="qobject.html">QObject</a> * <i>parent</i> = 0 )</h3>
+<p>Construct a new audio input and attach it to <i>parent</i>. The device referenced by <i>audioDevice</i> is used with the input <i>format</i> parameters.</p>
+<a name="//apple_ref/cpp/instm/QAudioInput/~QAudioInput" />
+<h3 class="fn"><a name="dtor.QAudioInput"></a>QAudioInput::~QAudioInput ()</h3>
+<p>Destroy this audio input.</p>
+<a name="//apple_ref/cpp/instm/QAudioInput/bufferSize" />
+<h3 class="fn"><a name="bufferSize"></a>int QAudioInput::bufferSize () const</h3>
+<p>Returns the audio buffer size in milliseconds.</p>
+<p>If called before <a href="qaudioinput.html#start">start</a>(), returns platform default value. If called before <a href="qaudioinput.html#start">start</a>() but <a href="qaudioinput.html#setBufferSize">setBufferSize</a>() was called prior, returns value set by <a href="qaudioinput.html#setBufferSize">setBufferSize</a>(). If called after <a href="qaudioinput.html#start">start</a>(), returns the actual buffer size being used. This may not be what was set previously by <a href="qaudioinput.html#setBufferSize">setBufferSize</a>().</p>
+<p>See also <a href="qaudioinput.html#setBufferSize">setBufferSize</a>().</p>
+<a name="//apple_ref/cpp/instm/QAudioInput/bytesReady" />
+<h3 class="fn"><a name="bytesReady"></a>int QAudioInput::bytesReady () const</h3>
+<p>Returns the amount of audio data available to read in bytes.</p>
+<a name="//apple_ref/cpp/instm/QAudioInput/elapsedUSecs" />
+<h3 class="fn"><a name="elapsedUSecs"></a><a href="qtglobal.html#qint64-typedef">qint64</a> QAudioInput::elapsedUSecs () const</h3>
+<p>Returns the microseconds since <a href="qaudioinput.html#start">start</a>() was called, including time in Idle and Suspend states.</p>
+<a name="//apple_ref/cpp/instm/QAudioInput/error" />
+<h3 class="fn"><a name="error"></a><a href="qaudio.html#Error-enum">QAudio::Error</a> QAudioInput::error () const</h3>
+<p>Returns the error state.</p>
+<a name="//apple_ref/cpp/instm/QAudioInput/format" />
+<h3 class="fn"><a name="format"></a><a href="qaudioformat.html">QAudioFormat</a> QAudioInput::format () const</h3>
+<p>Returns the <a href="qaudioformat.html">QAudioFormat</a> being used.</p>
+<a name="//apple_ref/cpp/instm/QAudioInput/notify" />
+<h3 class="fn"><a name="notify"></a>void QAudioInput::notify ()&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted when x ms of audio data has been processed the interval set by setNotifyInterval(x).</p>
+<a name="//apple_ref/cpp/instm/QAudioInput/notifyInterval" />
+<h3 class="fn"><a name="notifyInterval"></a>int QAudioInput::notifyInterval () const</h3>
+<p>Returns the notify interval in milliseconds.</p>
+<p>See also <a href="qaudioinput.html#setNotifyInterval">setNotifyInterval</a>().</p>
+<a name="//apple_ref/cpp/instm/QAudioInput/periodSize" />
+<h3 class="fn"><a name="periodSize"></a>int QAudioInput::periodSize () const</h3>
+<p>Returns the period size in bytes.</p>
+<p>Note: This is the recommended read size in bytes.</p>
+<a name="//apple_ref/cpp/instm/QAudioInput/processedUSecs" />
+<h3 class="fn"><a name="processedUSecs"></a><a href="qtglobal.html#qint64-typedef">qint64</a> QAudioInput::processedUSecs () const</h3>
+<p>Returns the amount of audio data processed since <a href="qaudioinput.html#start">start</a>() was called in microseconds.</p>
+<a name="//apple_ref/cpp/instm/QAudioInput/reset" />
+<h3 class="fn"><a name="reset"></a>void QAudioInput::reset ()</h3>
+<p>Drops all audio data in the buffers, resets buffers to zero.</p>
+<a name="//apple_ref/cpp/instm/QAudioInput/resume" />
+<h3 class="fn"><a name="resume"></a>void QAudioInput::resume ()</h3>
+<p>Resumes processing audio data after a <a href="qaudioinput.html#suspend">suspend</a>().</p>
+<a name="//apple_ref/cpp/instm/QAudioInput/setBufferSize" />
+<h3 class="fn"><a name="setBufferSize"></a>void QAudioInput::setBufferSize ( int <i>value</i> )</h3>
+<p>Sets the audio buffer size to <i>value</i> milliseconds.</p>
+<p>Note: This function can be called anytime before <a href="qaudioinput.html#start">start</a>(), calls to this are ignored after <a href="qaudioinput.html#start">start</a>(). It should not be assumed that the buffer size set is the actual buffer size used, calling <a href="qaudioinput.html#bufferSize">bufferSize</a>() anytime after <a href="qaudioinput.html#start">start</a>() will return the actual buffer size being used.</p>
+<p>See also <a href="qaudioinput.html#bufferSize">bufferSize</a>().</p>
+<a name="//apple_ref/cpp/instm/QAudioInput/setNotifyInterval" />
+<h3 class="fn"><a name="setNotifyInterval"></a>void QAudioInput::setNotifyInterval ( int <i>ms</i> )</h3>
+<p>Sets the interval for <a href="qaudioinput.html#notify">notify</a>() signal to be emitted. This is based on the <i>ms</i> of audio data processed not on actual real-time. The resolution of the timer is platform specific.</p>
+<p>See also <a href="qaudioinput.html#notifyInterval">notifyInterval</a>().</p>
+<a name="//apple_ref/cpp/instm/QAudioInput/start" />
+<h3 class="fn"><a name="start"></a>void QAudioInput::start ( <a href="qiodevice.html">QIODevice</a> * <i>device</i> )</h3>
+<p>Uses the <i>device</i> as the <a href="qiodevice.html">QIODevice</a> to transfer data. Passing a <a href="qiodevice.html">QIODevice</a> allows the data to be transfered without any extra code. All that is required is to open the <a href="qiodevice.html">QIODevice</a>.</p>
+<p>See also <a href="qiodevice.html">QIODevice</a>.</p>
+<h3 class="fn"><a name="start-2"></a><a href="qiodevice.html">QIODevice</a> * QAudioInput::start ()</h3>
+<p>Returns a pointer to the <a href="qiodevice.html">QIODevice</a> being used to handle the data transfer. This <a href="qiodevice.html">QIODevice</a> can be used to read() audio data directly.</p>
+<p>See also <a href="qiodevice.html">QIODevice</a>.</p>
+<a name="//apple_ref/cpp/instm/QAudioInput/state" />
+<h3 class="fn"><a name="state"></a><a href="qaudio.html#State-enum">QAudio::State</a> QAudioInput::state () const</h3>
+<p>Returns the state of audio processing.</p>
+<a name="//apple_ref/cpp/instm/QAudioInput/stateChanged" />
+<h3 class="fn"><a name="stateChanged"></a>void QAudioInput::stateChanged ( <a href="qaudio.html#State-enum">QAudio::State</a> <i>state</i> )&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted when the device <i>state</i> has changed.</p>
+<a name="//apple_ref/cpp/instm/QAudioInput/stop" />
+<h3 class="fn"><a name="stop"></a>void QAudioInput::stop ()</h3>
+<p>Stops the audio input.</p>
+<a name="//apple_ref/cpp/instm/QAudioInput/suspend" />
+<h3 class="fn"><a name="suspend"></a>void QAudioInput::suspend ()</h3>
+<p>Stops processing audio data, preserving buffered audio data.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

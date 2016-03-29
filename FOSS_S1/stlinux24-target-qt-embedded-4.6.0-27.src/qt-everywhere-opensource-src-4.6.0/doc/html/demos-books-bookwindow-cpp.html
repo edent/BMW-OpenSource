@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: bookwindow.cpp Example File (demos/books/bookwindow.cpp)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">bookwindow.cpp Example File<br /><span class="small-subtitle">demos/books/bookwindow.cpp</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the demonstration applications of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+
+ #include &quot;bookwindow.h&quot;
+ #include &quot;bookdelegate.h&quot;
+ #include &quot;initdb.h&quot;
+
+ #include &lt;QtSql&gt;
+
+ BookWindow::BookWindow()
+ {
+     ui.setupUi(this);
+
+     if (!QSqlDatabase::drivers().contains(&quot;QSQLITE&quot;))
+         QMessageBox::critical(this, &quot;Unable to load database&quot;, &quot;This demo needs the SQLITE driver&quot;);
+
+     <span class="comment">// initialize the database</span>
+     QSqlError err = initDb();
+     if (err.type() != QSqlError::NoError) {
+         showError(err);
+         return;
+     }
+
+     <span class="comment">// Create the data model</span>
+     model = new QSqlRelationalTableModel(ui.bookTable);
+     model-&gt;setEditStrategy(QSqlTableModel::OnManualSubmit);
+     model-&gt;setTable(&quot;books&quot;);
+
+     <span class="comment">// Remeber the indexes of the columns</span>
+     authorIdx = model-&gt;fieldIndex(&quot;author&quot;);
+     genreIdx = model-&gt;fieldIndex(&quot;genre&quot;);
+
+     <span class="comment">// Set the relations to the other database tables</span>
+     model-&gt;setRelation(authorIdx, QSqlRelation(&quot;authors&quot;, &quot;id&quot;, &quot;name&quot;));
+     model-&gt;setRelation(genreIdx, QSqlRelation(&quot;genres&quot;, &quot;id&quot;, &quot;name&quot;));
+
+     <span class="comment">// Set the localized header captions</span>
+     model-&gt;setHeaderData(authorIdx, Qt::Horizontal, tr(&quot;Author Name&quot;));
+     model-&gt;setHeaderData(genreIdx, Qt::Horizontal, tr(&quot;Genre&quot;));
+     model-&gt;setHeaderData(model-&gt;fieldIndex(&quot;title&quot;), Qt::Horizontal, tr(&quot;Title&quot;));
+     model-&gt;setHeaderData(model-&gt;fieldIndex(&quot;year&quot;), Qt::Horizontal, tr(&quot;Year&quot;));
+     model-&gt;setHeaderData(model-&gt;fieldIndex(&quot;rating&quot;), Qt::Horizontal, tr(&quot;Rating&quot;));
+
+     <span class="comment">// Populate the model</span>
+     if (!model-&gt;select()) {
+         showError(model-&gt;lastError());
+         return;
+     }
+
+     <span class="comment">// Set the model and hide the ID column</span>
+     ui.bookTable-&gt;setModel(model);
+     ui.bookTable-&gt;setItemDelegate(new BookDelegate(ui.bookTable));
+     ui.bookTable-&gt;setColumnHidden(model-&gt;fieldIndex(&quot;id&quot;), true);
+     ui.bookTable-&gt;setSelectionMode(QAbstractItemView::SingleSelection);
+
+     <span class="comment">// Initialize the Author combo box</span>
+     ui.authorEdit-&gt;setModel(model-&gt;relationModel(authorIdx));
+     ui.authorEdit-&gt;setModelColumn(model-&gt;relationModel(authorIdx)-&gt;fieldIndex(&quot;name&quot;));
+
+     ui.genreEdit-&gt;setModel(model-&gt;relationModel(genreIdx));
+     ui.genreEdit-&gt;setModelColumn(model-&gt;relationModel(genreIdx)-&gt;fieldIndex(&quot;name&quot;));
+
+     QDataWidgetMapper *mapper = new QDataWidgetMapper(this);
+     mapper-&gt;setModel(model);
+     mapper-&gt;setItemDelegate(new BookDelegate(this));
+     mapper-&gt;addMapping(ui.titleEdit, model-&gt;fieldIndex(&quot;title&quot;));
+     mapper-&gt;addMapping(ui.yearEdit, model-&gt;fieldIndex(&quot;year&quot;));
+     mapper-&gt;addMapping(ui.authorEdit, authorIdx);
+     mapper-&gt;addMapping(ui.genreEdit, genreIdx);
+     mapper-&gt;addMapping(ui.ratingEdit, model-&gt;fieldIndex(&quot;rating&quot;));
+
+     connect(ui.bookTable-&gt;selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)),
+             mapper, SLOT(setCurrentModelIndex(QModelIndex)));
+
+     ui.bookTable-&gt;setCurrentIndex(model-&gt;index(0, 0));
+ }
+
+ void BookWindow::showError(const QSqlError &amp;err)
+ {
+     QMessageBox::critical(this, &quot;Unable to initialize Database&quot;,
+                 &quot;Error initializing database: &quot; + err.text());
+ }</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

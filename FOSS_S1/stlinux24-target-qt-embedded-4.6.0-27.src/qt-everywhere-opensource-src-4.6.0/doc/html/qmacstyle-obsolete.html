@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qmacstyle.qdoc -->
+<head>
+  <title>Qt 4.6: Obsolete Members for QMacStyle</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">Obsolete Members for QMacStyle</h1>
+<p><b>The following class members are obsolete.</b> They are provided to keep old source code working. We strongly advise against using them in new code.</p>
+<p><ul><li><a href="qmacstyle.html">QMacStyle class reference</a></li></ul></p>
+<h2>Static Public Members</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">FocusRectPolicy </td><td class="memItemRight" valign="bottom"><b><a href="qmacstyle-obsolete.html#focusRectPolicy">focusRectPolicy</a></b> ( const QWidget * <i>w</i> )&nbsp;&nbsp;<tt> (obsolete)</tt></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qmacstyle-obsolete.html#setFocusRectPolicy">setFocusRectPolicy</a></b> ( QWidget * <i>w</i>, FocusRectPolicy <i>policy</i> )&nbsp;&nbsp;<tt> (obsolete)</tt></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qmacstyle-obsolete.html#setWidgetSizePolicy">setWidgetSizePolicy</a></b> ( const QWidget * <i>widget</i>, WidgetSizePolicy <i>policy</i> )&nbsp;&nbsp;<tt> (obsolete)</tt></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">WidgetSizePolicy </td><td class="memItemRight" valign="bottom"><b><a href="qmacstyle-obsolete.html#widgetSizePolicy">widgetSizePolicy</a></b> ( const QWidget * <i>widget</i> )&nbsp;&nbsp;<tt> (obsolete)</tt></td></tr>
+</table>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/clm/QMacStyle/focusRectPolicy" />
+<h3 class="fn"><a name="focusRectPolicy"></a><a href="qmacstyle.html#FocusRectPolicy-enum">FocusRectPolicy</a> QMacStyle::focusRectPolicy ( const <a href="qwidget.html">QWidget</a> * <i>w</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Returns the focus rectangle policy for the widget <i>w</i>.</p>
+<p>The focus rectangle policy can be one of <a href="qmacstyle.html#FocusRectPolicy-enum">QMacStyle::FocusRectPolicy</a>.</p>
+<p>In 4.3 and up this function will simply test for the <a href="qt.html#WidgetAttribute-enum">Qt::WA_MacShowFocusRect</a> attribute and will never return <a href="qmacstyle.html#FocusRectPolicy-enum">QMacStyle::FocusDefault</a>.</p>
+<p>See also <a href="qmacstyle-obsolete.html#setFocusRectPolicy">setFocusRectPolicy</a>() and <a href="qwidget.html#testAttribute">QWidget::testAttribute</a>().</p>
+<a name="//apple_ref/cpp/clm/QMacStyle/setFocusRectPolicy" />
+<h3 class="fn"><a name="setFocusRectPolicy"></a>void QMacStyle::setFocusRectPolicy ( <a href="qwidget.html">QWidget</a> * <i>w</i>, <a href="qmacstyle.html#FocusRectPolicy-enum">FocusRectPolicy</a> <i>policy</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Sets the focus rectangle policy of <i>w</i>. The <i>policy</i> can be one of <a href="qmacstyle.html#FocusRectPolicy-enum">QMacStyle::FocusRectPolicy</a>.</p>
+<p>This is now simply an interface to the <a href="qt.html#WidgetAttribute-enum">Qt::WA_MacShowFocusRect</a> attribute and the <a href="qmacstyle.html#FocusRectPolicy-enum">FocusDefault</a> value does nothing anymore. If you want to set a widget back to its default value, you must save the old value of the attribute before you change it.</p>
+<p>See also <a href="qmacstyle-obsolete.html#focusRectPolicy">focusRectPolicy</a>() and <a href="qwidget.html#setAttribute">QWidget::setAttribute</a>().</p>
+<a name="//apple_ref/cpp/clm/QMacStyle/setWidgetSizePolicy" />
+<h3 class="fn"><a name="setWidgetSizePolicy"></a>void QMacStyle::setWidgetSizePolicy ( const <a href="qwidget.html">QWidget</a> * <i>widget</i>, <a href="qmacstyle.html#WidgetSizePolicy-enum">WidgetSizePolicy</a> <i>policy</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Call <a href="qwidget.html#setAttribute">QWidget::setAttribute</a>() with <a href="qt.html#WidgetAttribute-enum">Qt::WA_MacMiniSize</a>, <a href="qt.html#WidgetAttribute-enum">Qt::WA_MacSmallSize</a>, or <a href="qt.html#WidgetAttribute-enum">Qt::WA_MacNormalSize</a> instead.</p>
+<p>See also <a href="qmacstyle-obsolete.html#widgetSizePolicy">widgetSizePolicy</a>().</p>
+<a name="//apple_ref/cpp/clm/QMacStyle/widgetSizePolicy" />
+<h3 class="fn"><a name="widgetSizePolicy"></a><a href="qmacstyle.html#WidgetSizePolicy-enum">WidgetSizePolicy</a> QMacStyle::widgetSizePolicy ( const <a href="qwidget.html">QWidget</a> * <i>widget</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Call <a href="qwidget.html#testAttribute">QWidget::testAttribute</a>() with <a href="qt.html#WidgetAttribute-enum">Qt::WA_MacMiniSize</a>, <a href="qt.html#WidgetAttribute-enum">Qt::WA_MacSmallSize</a>, or <a href="qt.html#WidgetAttribute-enum">Qt::WA_MacNormalSize</a> instead.</p>
+<p>See also <a href="qmacstyle-obsolete.html#setWidgetSizePolicy">setWidgetSizePolicy</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- trafficinfo.qdoc -->
+<head>
+  <title>Qt 4.6: TrafficInfo Example</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">TrafficInfo Example<br /><span class="subtitle"></span>
+</h1>
+<p>Files:</p>
+<ul>
+<li><a href="xmlpatterns-trafficinfo-mainwindow-cpp.html">xmlpatterns/trafficinfo/mainwindow.cpp</a></li>
+<li><a href="xmlpatterns-trafficinfo-mainwindow-h.html">xmlpatterns/trafficinfo/mainwindow.h</a></li>
+<li><a href="xmlpatterns-trafficinfo-stationdialog-cpp.html">xmlpatterns/trafficinfo/stationdialog.cpp</a></li>
+<li><a href="xmlpatterns-trafficinfo-stationdialog-h.html">xmlpatterns/trafficinfo/stationdialog.h</a></li>
+<li><a href="xmlpatterns-trafficinfo-stationdialog-ui.html">xmlpatterns/trafficinfo/stationdialog.ui</a></li>
+<li><a href="xmlpatterns-trafficinfo-stationquery-cpp.html">xmlpatterns/trafficinfo/stationquery.cpp</a></li>
+<li><a href="xmlpatterns-trafficinfo-stationquery-h.html">xmlpatterns/trafficinfo/stationquery.h</a></li>
+<li><a href="xmlpatterns-trafficinfo-timequery-cpp.html">xmlpatterns/trafficinfo/timequery.cpp</a></li>
+<li><a href="xmlpatterns-trafficinfo-timequery-h.html">xmlpatterns/trafficinfo/timequery.h</a></li>
+<li><a href="xmlpatterns-trafficinfo-main-cpp.html">xmlpatterns/trafficinfo/main.cpp</a></li>
+<li><a href="xmlpatterns-trafficinfo-trafficinfo-pro.html">xmlpatterns/trafficinfo/trafficinfo.pro</a></li>
+</ul>
+<p>Shows how XQuery can be used extract information from WML documents provided by a WAP service.</p>
+<a name="overview"></a>
+<h2>Overview</h2>
+<p>The WAP service used in this example is <a href="http://wap.trafikanten.no">wap.trafikanten.no</a> that is run by the Norwegian governmental agency for public transport in Oslo. The service provides real time information about the departure of busses, trams and undergrounds for every station in the city area.</p>
+<p>This example application displays the departure information for a specific station and provides the feature to filter for a special bus or tram line.</p>
+<p align="center"><img src="images/trafficinfo-example.png" /></p><a name="retrieving-the-data"></a>
+<h2>Retrieving the Data</h2>
+<p>Without the knowledge of XQuery, one would use <a href="qnetworkaccessmanager.html">QNetworkAccessManager</a> to query the WML document from the WAP service and then using the QDom classes or <a href="qxmlstreamreader.html">QXmlStreamReader</a> classes to iterate over the document and extract the needed information. However this approach results in a lot of glue code and consumes valuable developer time, so we are looking for something that can access XML documents locally or over the network and extract data according to given filter rules. That's the point where XQuery enters the stage!</p>
+<p>If we want to know when the underground number 6 in direction &Aring;<tt></tt>sjordet is passing the underground station in Nydalen on November 14th 2008 after 1pm, we use the following URL:</p>
+<p><tt>http:<span class="comment">//wap.trafikanten.no/F.asp?f=03012130&amp;t=13&amp;m=00&amp;d=14.11.2008&amp;start=1</span></tt></p>
+<p>The parameters have the following meanings:</p>
+<ul>
+<li><i>f</i> The unique station ID of Nydalen.</li>
+<li><i>t</i> The hour in 0-23 format.</li>
+<li><i>m</i> The minute in 0-59 format.</li>
+<li><i>d</i> The date in dd.mm.yyyy format.</li>
+<li><i>start</i> Not interesting for our use but should be passed.</li>
+</ul>
+<p>As a result we get the following document:</p>
+<pre> &lt;?xml version=&quot;1.0&quot; encoding=&quot;iso-8859-1&quot;?&gt;
+ &lt;!DOCTYPE wml PUBLIC &quot;-//WAPFORUM//DTD WML 1.1//EN&quot; &quot;http://www.wapforum.org/DTD/wml_1.1.xml&quot;&gt;
+ &lt;wml&gt;
+ &lt;template&gt;
+     &lt;do type=&quot;prev&quot; name=&quot;b&quot; label=&quot;Tilbake&quot;&gt;&lt;prev/&gt;&lt;/do&gt;
+     &lt;do type=&quot;options&quot; name=&quot;n&quot; label=&quot;Nytt sk&quot;&gt;&lt;go href=&quot;velkommen.wml&quot;/&gt;&lt;/do&gt;
+ &lt;/template&gt;
+ &lt;card id=&quot;Liste&quot; title=&quot;Trafikanten&quot;&gt;
+ &lt;p&gt;
+ &lt;small&gt;
+ Fra Nydalen [T-bane]:&lt;br /&gt;
+
+     &lt;a href=&quot;Rute.asp?d=3011030&amp;amp;t=21832&amp;amp;l=4&amp;amp;Start=1&quot;&gt;13.00&lt;/a&gt;
+      4 Bergkrystallen [T-bane]&lt;br /&gt;
+
+     &lt;a href=&quot;Rute.asp?d=3012585&amp;amp;t=22543&amp;amp;l=6&amp;amp;Start=1&quot;&gt;13.05&lt;/a&gt;
+      6 sjordet&lt;br /&gt;
+
+     &lt;a href=&quot;Rute.asp?d=3011730&amp;amp;t=22264&amp;amp;l=5&amp;amp;Start=1&quot;&gt;13.09&lt;/a&gt;
+      5 Vestli [T-bane]&lt;br /&gt;
+
+     &lt;a href=&quot;Rute.asp?d=3012120&amp;amp;t=22080&amp;amp;l=5&amp;amp;Start=1&quot;&gt;13.13&lt;/a&gt;
+      5 Storo [T-bane]&lt;br /&gt;
+
+     &lt;a href=&quot;Rute.asp?d=3011030&amp;amp;t=21831&amp;amp;l=4&amp;amp;Start=1&quot;&gt;13.15&lt;/a&gt;
+      4 Bergkrystallen [T-bane]&lt;br /&gt;
+
+     &lt;a href=&quot;Rute.asp?d=3012585&amp;amp;t=22542&amp;amp;l=6&amp;amp;Start=1&quot;&gt;13.20&lt;/a&gt;
+      6 sjordet&lt;br /&gt;
+
+     &lt;a href=&quot;Rute.asp?d=3011730&amp;amp;t=22263&amp;amp;l=5&amp;amp;Start=1&quot;&gt;13.24&lt;/a&gt;
+      5 Vestli [T-bane]&lt;br /&gt;
+
+     &lt;a href=&quot;Rute.asp?d=3012120&amp;amp;t=22079&amp;amp;l=5&amp;amp;Start=1&quot;&gt;13.28&lt;/a&gt;
+      5 Storo [T-bane]&lt;br /&gt;
+
+     &lt;a href=&quot;Rute.asp?d=3011030&amp;amp;t=21830&amp;amp;l=4&amp;amp;Start=1&quot;&gt;13.30&lt;/a&gt;
+      4 Bergkrystallen [T-bane]&lt;br /&gt;
+
+     &lt;a href=&quot;Rute.asp?d=3012585&amp;amp;t=22541&amp;amp;l=6&amp;amp;Start=1&quot;&gt;13.35&lt;/a&gt;
+      6 sjordet&lt;br /&gt;
+
+     &lt;br /&gt;
+     &lt;a title=&quot;Neste 10&quot; href=&quot;F.asp?f=03012130&amp;amp;t=13&amp;amp;m=35&amp;amp;d=14.11.2008&amp;amp;Start=11&quot;&gt;Neste 10 avganger&lt;/a&gt;
+
+ &lt;br/&gt;
+ &lt;a href=&quot;F.asp?f=03012130&amp;amp;t=14&amp;amp;d=14.11.2008&amp;amp;Start=1&quot;&gt;Neste timeintervall&lt;/a&gt;
+ &lt;br/&gt;
+ &lt;a href=&quot;F.asp?f=03012130&amp;amp;t=12&amp;amp;d=14.11.2008&amp;amp;Start=1&quot;&gt;Forrige timeintervall&lt;/a&gt;
+ &lt;br/&gt;
+ &lt;a href=&quot;Velkommen.wml&quot;&gt;&quot;Nytt sk&quot;&lt;/a&gt;
+ &lt;br/&gt;
+ &lt;/small&gt;
+ &lt;/p&gt;
+ &lt;/card&gt;
+ &lt;/wml&gt;</pre>
+<p>So for every departure we have a <tt>&lt;a&gt;</tt> tag that contains the time as a text element, and the following text element contains the line number and direction.</p>
+<p>To encapsulate the XQuery code in the example application, we create a custom <tt>TimeQuery</tt> class. This provides the <tt>queryInternal()</tt> function that takes a station ID and date/time as input and returns the list of times and directions:</p>
+<pre> TimeInformation::List TimeQuery::queryInternal(const QString &amp;stationId, const QDateTime &amp;dateTime)
+ {
+     const QString timesQueryUrl = QString(&quot;doc('http:<span class="comment">//wap.trafikanten.no/F.asp?f=%1&amp;amp;t=%2&amp;amp;m=%3&amp;amp;d=%4&amp;amp;start=1')/wml/card/p/small/a[fn:starts-with(@href, 'Rute')]/string()&quot;)</span>
+                                          .arg(stationId)
+                                          .arg(dateTime.time().hour())
+                                          .arg(dateTime.time().minute())
+                                          .arg(dateTime.toString(&quot;dd.MM.yyyy&quot;));
+     const QString directionsQueryUrl = QString(&quot;doc('http:<span class="comment">//wap.trafikanten.no/F.asp?f=%1&amp;amp;t=%2&amp;amp;m=%3&amp;amp;d=%4&amp;amp;start=1')/wml/card/p/small/text()[matches(., '[0-9].*')]/string()&quot;)</span>
+                                               .arg(stationId)
+                                               .arg(dateTime.time().hour())
+                                               .arg(dateTime.time().minute())
+                                               .arg(dateTime.toString(&quot;dd.MM.yyyy&quot;));
+
+     QStringList times;
+     QStringList directions;
+
+     QXmlQuery query;
+     query.setQuery(timesQueryUrl);
+     query.evaluateTo(&amp;times);
+
+     query.setQuery(directionsQueryUrl);
+     query.evaluateTo(&amp;directions);
+
+     if (times.count() != directions.count()) <span class="comment">// something went wrong...</span>
+         return TimeInformation::List();
+
+     TimeInformation::List information;
+     for (int i = 0; i &lt; times.count(); ++i)
+         information.append(TimeInformation(times.at(i).simplified(), directions.at(i).simplified()));
+
+     return information;
+ }</pre>
+<p>The first lines of this function synthesize the XQuery strings that fetch the document and extract the data. For better readability, two separated queries are used here: the first one fetches the times and the second fetches the line numbers and directions.</p>
+<p>The <tt>doc()</tt> XQuery method opens a local or remote XML document and returns it, so the <tt>/wml/card/p/small/</tt> statement behind it selects all XML nodes that can be reached by the path, <tt>wml</tt> &rarr; <tt>card</tt> &rarr; <tt>p</tt> &rarr; <tt>small</tt>. Now we are on the node that contains all the XML nodes we are interested in.</p>
+<p>In the first query we select all <tt>a</tt> nodes that have a <tt>href</tt> attribute starting with the string &quot;Rute&quot; and return the text of these nodes.</p>
+<p>In the second query we select all text nodes that are children of the <tt>small</tt> node which start with a number. These two queries are passed to the <a href="qxmlquery.html">QXmlQuery</a> instance and are evaluated to string lists. After some sanity checking, we have collected all the information we need.</p>
+<p>In the section above we have seen that an unique station ID must be passed as an argument to the URL for retrieving the time, so how to find out which is the right station ID to use? The WAP service provides a page for that as well, so the URL</p>
+<p><tt>http:<span class="comment">//wap.trafikanten.no/FromLink1.asp?fra=Nydalen</span></tt></p>
+<p>will return the following document:</p>
+<pre> &lt;?xml version=&quot;1.0&quot; encoding=&quot;iso-8859-1&quot;?&gt;
+ &lt;!DOCTYPE wml PUBLIC &quot;-//WAPFORUM//DTD WML 1.1//EN&quot; &quot;http://www.wapforum.org/DTD/wml_1.1.xml&quot;&gt;
+ &lt;wml&gt;
+ &lt;template&gt;
+     &lt;do type=&quot;prev&quot; name=&quot;b&quot; label=&quot;Tilbake&quot;&gt;&lt;prev/&gt;&lt;/do&gt;
+     &lt;do type=&quot;options&quot; label=&quot;Nytt sk&quot;&gt;&lt;go href=&quot;velkommen.wml&quot;/&gt;&lt;/do&gt;
+ &lt;/template&gt;
+ &lt;card id=&quot;Liste&quot; title=&quot;Trafikanten&quot;&gt;
+ &lt;p&gt;
+ &lt;small&gt;
+ Velg stoppsted: &lt;br /&gt;
+
+    &lt;a title=&quot;Velg&quot; href=&quot;DateLink.asp?fra=05280320&quot;&gt;Nydalen (stre Toten) (-T)&lt;/a&gt;&lt;br /&gt;
+
+    &lt;a title=&quot;Velg&quot; href=&quot;DateLink.asp?fra=03012126&quot;&gt;Nydalen st. (i Store ringvei) (OSL)&lt;/a&gt;&lt;br /&gt;
+
+    &lt;a title=&quot;Velg&quot; href=&quot;DateLink.asp?fra=03012131&quot;&gt;Nydalen T [buss] (OSL)&lt;/a&gt;&lt;br /&gt;
+
+    &lt;a title=&quot;Velg&quot; href=&quot;DateLink.asp?fra=03012130&quot;&gt;Nydalen [T-bane] (OSL)&lt;/a&gt;&lt;br /&gt;
+
+    &lt;a title=&quot;Velg&quot; href=&quot;DateLink.asp?fra=03012125&quot;&gt;Nydalen [tog] (OSL)&lt;/a&gt;&lt;br /&gt;
+
+ &lt;br/&gt;
+ &lt;a title=&quot;Nytt sk&quot; href=&quot;Velkommen.wml&quot;&gt;&quot;Nytt sk&quot;&lt;/a&gt;
+ &lt;br/&gt;
+ &lt;/small&gt;
+ &lt;/p&gt;
+ &lt;/card&gt;
+ &lt;/wml&gt;</pre>
+<p>The names of the available stations are listed as separate text elements and the station ID is part of the <tt>href</tt> attribute of the parent <tt>a</tt> (anchor) element. In our example, the <tt>StationQuery</tt> class encapsulates the action of querying the stations that match the given name pattern with the following code:</p>
+<pre> StationInformation::List StationQuery::query(const QString &amp;name)
+ {
+     const QString stationIdQueryUrl = QString(&quot;doc(concat('http:<span class="comment">//wap.trafikanten.no/FromLink1.asp?fra=', $station))/wml/card/p/small/a[@title='Velg']/substring(@href,18)&quot;);</span>
+     const QString stationNameQueryUrl = QString(&quot;doc(concat('http:<span class="comment">//wap.trafikanten.no/FromLink1.asp?fra=', $station))/wml/card/p/small/a[@title='Velg']/string()&quot;);</span>
+
+     QStringList stationIds;
+     QStringList stationNames;
+
+     QXmlQuery query;
+
+     query.bindVariable(&quot;station&quot;, QVariant(QString::fromLatin1(QUrl::toPercentEncoding(name))));
+     query.setQuery(stationIdQueryUrl);
+     query.evaluateTo(&amp;stationIds);
+
+     query.bindVariable(&quot;station&quot;, QVariant(QString::fromLatin1(QUrl::toPercentEncoding(name))));
+     query.setQuery(stationNameQueryUrl);
+     query.evaluateTo(&amp;stationNames);
+
+     if (stationIds.count() != stationNames.count()) <span class="comment">// something went wrong...</span>
+         return StationInformation::List();
+
+     StationInformation::List information;
+     for (int i = 0; i &lt; stationIds.count(); ++i)
+         information.append(StationInformation(stationIds.at(i), stationNames.at(i)));
+
+     return information;
+ }</pre>
+<p>Just as in the <tt>TimeQuery</tt> implementation, the first step is to synthesize the XQuery strings for selecting the station names and the station IDs. As the station name that we pass in the URL will be input from the user, we should protect the XQuery from code injection by using the <a href="qxmlquery.html#bindVariable">QXmlQuery::bindVariable</a>() method to do proper quoting of the variable content for us instead of concatenating the two strings manually.</p>
+<p>So, we define a XQuery <tt>$station</tt> variable that is bound to the user input. This variable is concatenated inside the XQuery code with the <tt>concat</tt> method. To extract the station IDs, we select all <tt>a</tt> elements that have an <tt>title</tt> attribute with the content &quot;Velg&quot;, and from these elements we take the substring of the <tt>href</tt> attribute that starts at the 18th character.</p>
+<p>The station name can be extracted a bit more easily by just taking the text elements of the selected <i>elements</i>.</p>
+<p>After some sanity checks we have all the station IDs and the corresponding names available.</p>
+<p>The rest of the code in this example is just for representing the time and station information to the user, and uses techniques described in the <a href="examples-widgets.html">Widgets Examples</a>.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

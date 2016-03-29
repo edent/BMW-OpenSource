@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- htmlinfo.qdoc -->
+<head>
+  <title>Qt 4.6: XML HTML Info Example</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">XML HTML Info Example<br /><span class="subtitle"></span>
+</h1>
+<p>Files:</p>
+<ul>
+<li><a href="xml-htmlinfo-main-cpp.html">xml/htmlinfo/main.cpp</a></li>
+<li><a href="xml-htmlinfo-htmlinfo-pro.html">xml/htmlinfo/htmlinfo.pro</a></li>
+</ul>
+<p>The XML HTML Info example provides a simple command line utility that scans the current directory for HTML files and prints statistics about them to standard out.</p>
+<p><b>Note:</b> Standard out is redirected on some platforms. On Symbian using Open C <tt>stdout</tt> is by default directed to the console window, but this window may not always be visible. To redirect to a file instead, locate the <tt>c:\\system\\data\\config.ini</tt> file (on either the emulator or the device) and change <tt>STDOUT</tt> to point to <tt>MEDIA4</tt>. This will redirect the console to <tt>c:\\system\\data\\out.txt</tt>.</p>
+<p>The files are parsed using a <a href="qxmlstreamreader.html">QXmlStreamReader</a> object. If the file does not contain a well-formed XML document, a description of the error is printed to the standard error console.</p>
+<a name="basic-operation"></a>
+<h2>Basic Operation</h2>
+<p>The main function of the example uses <a href="qdir.html">QDir</a> to access files in the current directory that match either &quot;*.htm&quot; or &quot;*.html&quot;. For each file found, the <tt>parseHtmlFile()</tt> function is called.</p>
+<p>Reading XML is handled by an instance of the <a href="qxmlstreamreader.html">QXmlStreamReader</a> class, which operates on the input file object:</p>
+<pre>     QXmlStreamReader reader(&amp;file);</pre>
+<p>The work of parsing and the XML and extracting statistics is done in a while loop, and is driven by input from the reader:</p>
+<pre>     int paragraphCount = 0;
+     QStringList links;
+     QString title;
+     while (!reader.atEnd()) {
+         reader.readNext();
+         if (reader.isStartElement()) {
+             if (reader.name() == &quot;title&quot;)
+                 title = reader.readElementText();
+             else if(reader.name() == &quot;a&quot;)
+                 links.append(reader.attributes().value(&quot;href&quot;).toString());
+             else if(reader.name() == &quot;p&quot;)
+                 ++paragraphCount;
+         }
+     }</pre>
+<p>If more input is available, the next token from the input file is read and parsed. The program then looks for the specific element types, &quot;title&quot;, &quot;a&quot;, and &quot;p&quot;, and stores information about them.</p>
+<p>When there is no more input, the loop terminates. If an error occurred, information is written to the standard out file via a stream, and the example exits:</p>
+<pre>     if (reader.hasError()) {
+         out &lt;&lt; &quot;  The HTML file isn't well-formed: &quot; &lt;&lt; reader.errorString()
+             &lt;&lt; endl &lt;&lt; endl &lt;&lt; endl;
+         return;
+     }</pre>
+<p>If no error occurred, the example prints some statistics from the data gathered in the loop, and then exits.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

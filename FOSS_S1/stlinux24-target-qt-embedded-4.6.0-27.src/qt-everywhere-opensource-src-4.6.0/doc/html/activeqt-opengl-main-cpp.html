@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: main.cpp Example File (activeqt/opengl/main.cpp)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">main.cpp Example File<br /><span class="small-subtitle">activeqt/opengl/main.cpp</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the examples of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+<span class="comment"> //</span>
+<span class="comment"> // Qt OpenGL example: Box</span>
+<span class="comment"> //</span>
+<span class="comment"> // A small example showing how a GLWidget can be used just as any Qt widget</span>
+<span class="comment"> //</span>
+<span class="comment"> // File: main.cpp</span>
+<span class="comment"> //</span>
+<span class="comment"> // The main() function</span>
+<span class="comment"> //</span>
+
+ #include &quot;globjwin.h&quot;
+ #include &quot;glbox.h&quot;
+ #include &lt;QApplication&gt;
+ #include &lt;QtOpenGL&gt;
+ #include &lt;QAxFactory&gt;
+
+ QAXFACTORY_DEFAULT( GLBox,
+                     &quot;{5fd9c22e-ed45-43fa-ba13-1530bb6b03e0}&quot;,
+                     &quot;{33b051af-bb25-47cf-a390-5cfd2987d26a}&quot;,
+                     &quot;{8c996c29-eafa-46ac-a6f9-901951e765b5}&quot;,
+                     &quot;{2c3c183a-eeda-41a4-896e-3d9c12c3577d}&quot;,
+                     &quot;{83e16271-6480-45d5-aaf1-3f40b7661ae4}&quot;
+                   )
+
+<span class="comment"> /*
+   The main program is here.
+ */</span>
+
+ int main( int argc, char **argv )
+ {
+     QApplication::setColorSpec( QApplication::CustomColor );
+     QApplication a(argc,argv);
+
+     if ( !QGLFormat::hasOpenGL() ) {
+         qWarning( &quot;This system has no OpenGL support. Exiting.&quot; );
+         return -1;
+     }
+
+     if ( !QAxFactory::isServer() ) {
+         GLObjectWindow w;
+         w.resize( 400, 350 );
+         w.show();
+         return a.exec();
+     }
+     return a.exec();
+ }</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

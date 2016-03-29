@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: glbuffers.h Example File (demos/boxes/glbuffers.h)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">glbuffers.h Example File<br /><span class="small-subtitle">demos/boxes/glbuffers.h</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the demonstration applications of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+
+ #ifndef GLBUFFERS_H
+ #define GLBUFFERS_H
+
+<span class="comment"> //#include &lt;GL/glew.h&gt;</span>
+ #include &quot;glextensions.h&quot;
+
+ #include &lt;QtGui&gt;
+ #include &lt;QtOpenGL&gt;
+
+ #define BUFFER_OFFSET(i) ((char*)0 + (i))
+ #define SIZE_OF_MEMBER(cls, member) sizeof(static_cast&lt;cls *&gt;(0)-&gt;member)
+
+ #define GLBUFFERS_ASSERT_OPENGL(prefix, assertion, returnStatement)                         \
+ if (m_failed || !(assertion)) {                                                             \
+     if (!m_failed) qCritical(prefix &quot;: The necessary OpenGL functions are not available.&quot;); \
+     m_failed = true;                                                                        \
+     returnStatement;                                                                        \
+ }
+
+ class QMatrix4x4;
+
+ class GLTexture
+ {
+ public:
+     GLTexture();
+     virtual ~GLTexture();
+     virtual void bind() = 0;
+     virtual void unbind() = 0;
+     virtual bool failed() const {return m_failed;}
+ protected:
+     GLuint m_texture;
+     bool m_failed;
+ };
+
+ class GLFrameBufferObject
+ {
+ public:
+     friend class GLRenderTargetCube;
+     <span class="comment">// friend class GLRenderTarget2D;</span>
+
+     GLFrameBufferObject(int width, int height);
+     virtual ~GLFrameBufferObject();
+     bool isComplete();
+     virtual bool failed() const {return m_failed;}
+ protected:
+     void setAsRenderTarget(bool state = true);
+     GLuint m_fbo;
+     GLuint m_depthBuffer;
+     int m_width, m_height;
+     bool m_failed;
+ };
+
+ class GLTexture2D : public GLTexture
+ {
+ public:
+     GLTexture2D(int width, int height);
+     GLTexture2D(const QString&amp; fileName, int width = 0, int height = 0);
+     void load(int width, int height, QRgb *data);
+     virtual void bind();
+     virtual void unbind();
+ };
+
+ class GLTexture3D : public GLTexture
+ {
+ public:
+     GLTexture3D(int width, int height, int depth);
+     <span class="comment">// TODO: Implement function below</span>
+     <span class="comment">//GLTexture3D(const QString&amp; fileName, int width = 0, int height = 0);</span>
+     void load(int width, int height, int depth, QRgb *data);
+     virtual void bind();
+     virtual void unbind();
+ };
+
+ class GLTextureCube : public GLTexture
+ {
+ public:
+     GLTextureCube(int size);
+     GLTextureCube(const QStringList&amp; fileNames, int size = 0);
+     void load(int size, int face, QRgb *data);
+     virtual void bind();
+     virtual void unbind();
+ };
+
+<span class="comment"> // TODO: Define and implement class below</span>
+<span class="comment"> //class GLRenderTarget2D : public GLTexture2D</span>
+
+ class GLRenderTargetCube : public GLTextureCube
+ {
+ public:
+     GLRenderTargetCube(int size);
+     <span class="comment">// begin rendering to one of the cube's faces. 0 &lt;= face &lt; 6</span>
+     void begin(int face);
+     <span class="comment">// end rendering</span>
+     void end();
+     virtual bool failed() {return m_failed || m_fbo.failed();}
+
+     static void getViewMatrix(QMatrix4x4&amp; mat, int face);
+     static void getProjectionMatrix(QMatrix4x4&amp; mat, float nearZ, float farZ);
+ private:
+     GLFrameBufferObject m_fbo;
+ };
+
+ struct VertexDescription
+ {
+     enum
+     {
+         Null = 0, <span class="comment">// Terminates a VertexDescription array</span>
+         Position,
+         TexCoord,
+         Normal,
+         Color,
+     };
+     int field; <span class="comment">// Position, TexCoord, Normal, Color</span>
+     int type; <span class="comment">// GL_FLOAT, GL_UNSIGNED_BYTE</span>
+     int count; <span class="comment">// number of elements</span>
+     int offset; <span class="comment">// field's offset into vertex struct</span>
+     int index; <span class="comment">// 0 (unused at the moment)</span>
+ };
+
+<span class="comment"> // Implementation of interleaved buffers.</span>
+<span class="comment"> // 'T' is a struct which must include a null-terminated static array</span>
+<span class="comment"> // 'VertexDescription* description'.</span>
+<span class="comment"> // Example:</span>
+<span class="comment"> /*
+ struct Vertex
+ {
+     GLfloat position[3];
+     GLfloat texCoord[2];
+     GLfloat normal[3];
+     GLbyte color[4];
+     static VertexDescription description[];
+ };
+
+ VertexDescription Vertex::description[] = {
+     {VertexDescription::Position, GL_FLOAT, SIZE_OF_MEMBER(Vertex, position) / sizeof(GLfloat), offsetof(Vertex, position), 0},
+     {VertexDescription::TexCoord, GL_FLOAT, SIZE_OF_MEMBER(Vertex, texCoord) / sizeof(GLfloat), offsetof(Vertex, texCoord), 0},
+     {VertexDescription::Normal, GL_FLOAT, SIZE_OF_MEMBER(Vertex, normal) / sizeof(GLfloat), offsetof(Vertex, normal), 0},
+     {VertexDescription::Color, GL_BYTE, SIZE_OF_MEMBER(Vertex, color) / sizeof(GLbyte), offsetof(Vertex, color), 0},
+     {VertexDescription::Null, 0, 0, 0, 0},
+ };
+ */</span>
+ template&lt;class T&gt;
+ class GLVertexBuffer
+ {
+ public:
+     GLVertexBuffer(int length, const T *data = 0, int mode = GL_STATIC_DRAW)
+         : m_length(0)
+         , m_mode(mode)
+         , m_buffer(0)
+         , m_failed(false)
+     {
+         GLBUFFERS_ASSERT_OPENGL(&quot;GLVertexBuffer::GLVertexBuffer&quot;, glGenBuffers &amp;&amp; glBindBuffer &amp;&amp; glBufferData, return)
+
+                 glGenBuffers(1, &amp;m_buffer);
+                 glBindBuffer(GL_ARRAY_BUFFER, m_buffer);
+                 glBufferData(GL_ARRAY_BUFFER, (m_length = length) * sizeof(T), data, mode);
+     }
+
+     ~GLVertexBuffer()
+     {
+         GLBUFFERS_ASSERT_OPENGL(&quot;GLVertexBuffer::~GLVertexBuffer&quot;, glDeleteBuffers, return)
+
+         glDeleteBuffers(1, &amp;m_buffer);
+     }
+
+     void bind()
+     {
+         GLBUFFERS_ASSERT_OPENGL(&quot;GLVertexBuffer::bind&quot;, glBindBuffer, return)
+
+         glBindBuffer(GL_ARRAY_BUFFER, m_buffer);
+         for (VertexDescription *desc = T::description; desc-&gt;field != VertexDescription::Null; ++desc) {
+             switch (desc-&gt;field) {
+             case VertexDescription::Position:
+                 glVertexPointer(desc-&gt;count, desc-&gt;type, sizeof(T), BUFFER_OFFSET(desc-&gt;offset));
+                 glEnableClientState(GL_VERTEX_ARRAY);
+                 break;
+             case VertexDescription::TexCoord:
+                 glTexCoordPointer(desc-&gt;count, desc-&gt;type, sizeof(T), BUFFER_OFFSET(desc-&gt;offset));
+                 glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+                 break;
+             case VertexDescription::Normal:
+                 glNormalPointer(desc-&gt;type, sizeof(T), BUFFER_OFFSET(desc-&gt;offset));
+                 glEnableClientState(GL_NORMAL_ARRAY);
+                 break;
+             case VertexDescription::Color:
+                 glColorPointer(desc-&gt;count, desc-&gt;type, sizeof(T), BUFFER_OFFSET(desc-&gt;offset));
+                 glEnableClientState(GL_COLOR_ARRAY);
+                 break;
+             default:
+                 break;
+             }
+         }
+     }
+
+     void unbind()
+     {
+         GLBUFFERS_ASSERT_OPENGL(&quot;GLVertexBuffer::unbind&quot;, glBindBuffer, return)
+
+         glBindBuffer(GL_ARRAY_BUFFER, 0);
+         for (VertexDescription *desc = T::description; desc-&gt;field != VertexDescription::Null; ++desc) {
+             switch (desc-&gt;field) {
+             case VertexDescription::Position:
+                 glDisableClientState(GL_VERTEX_ARRAY);
+                 break;
+             case VertexDescription::TexCoord:
+                 glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+                 break;
+             case VertexDescription::Normal:
+                 glDisableClientState(GL_NORMAL_ARRAY);
+                 break;
+             case VertexDescription::Color:
+                 glDisableClientState(GL_COLOR_ARRAY);
+                 break;
+             default:
+                 break;
+             }
+         }
+     }
+
+     int length() const {return m_length;}
+
+     T *lock()
+     {
+         GLBUFFERS_ASSERT_OPENGL(&quot;GLVertexBuffer::lock&quot;, glBindBuffer &amp;&amp; glMapBuffer, return 0)
+
+         glBindBuffer(GL_ARRAY_BUFFER, m_buffer);
+         <span class="comment">//glBufferData(GL_ARRAY_BUFFER, m_length, NULL, m_mode);</span>
+         GLvoid* buffer = glMapBuffer(GL_ARRAY_BUFFER, GL_READ_WRITE);
+         m_failed = (buffer == 0);
+         return reinterpret_cast&lt;T *&gt;(buffer);
+     }
+
+     void unlock()
+     {
+         GLBUFFERS_ASSERT_OPENGL(&quot;GLVertexBuffer::unlock&quot;, glBindBuffer &amp;&amp; glUnmapBuffer, return)
+
+         glBindBuffer(GL_ARRAY_BUFFER, m_buffer);
+         glUnmapBuffer(GL_ARRAY_BUFFER);
+     }
+
+     bool failed()
+     {
+         return m_failed;
+     }
+
+ private:
+     int m_length, m_mode;
+     GLuint m_buffer;
+     bool m_failed;
+ };
+
+ template&lt;class T&gt;
+ class GLIndexBuffer
+ {
+ public:
+     GLIndexBuffer(int length, const T *data = 0, int mode = GL_STATIC_DRAW)
+         : m_length(0)
+         , m_mode(mode)
+         , m_buffer(0)
+         , m_failed(false)
+     {
+         GLBUFFERS_ASSERT_OPENGL(&quot;GLIndexBuffer::GLIndexBuffer&quot;, glGenBuffers &amp;&amp; glBindBuffer &amp;&amp; glBufferData, return)
+
+         glGenBuffers(1, &amp;m_buffer);
+         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_buffer);
+         glBufferData(GL_ELEMENT_ARRAY_BUFFER, (m_length = length) * sizeof(T), data, mode);
+     }
+
+     ~GLIndexBuffer()
+     {
+         GLBUFFERS_ASSERT_OPENGL(&quot;GLIndexBuffer::~GLIndexBuffer&quot;, glDeleteBuffers, return)
+
+         glDeleteBuffers(1, &amp;m_buffer);
+     }
+
+     void bind()
+     {
+         GLBUFFERS_ASSERT_OPENGL(&quot;GLIndexBuffer::bind&quot;, glBindBuffer, return)
+
+         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_buffer);
+     }
+
+     void unbind()
+     {
+         GLBUFFERS_ASSERT_OPENGL(&quot;GLIndexBuffer::unbind&quot;, glBindBuffer, return)
+
+         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+     }
+
+     int length() const {return m_length;}
+
+     T *lock()
+     {
+         GLBUFFERS_ASSERT_OPENGL(&quot;GLIndexBuffer::lock&quot;, glBindBuffer &amp;&amp; glMapBuffer, return 0)
+
+         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_buffer);
+         GLvoid* buffer = glMapBuffer(GL_ELEMENT_ARRAY_BUFFER, GL_READ_WRITE);
+         m_failed = (buffer == 0);
+         return reinterpret_cast&lt;T *&gt;(buffer);
+     }
+
+     void unlock()
+     {
+         GLBUFFERS_ASSERT_OPENGL(&quot;GLIndexBuffer::unlock&quot;, glBindBuffer &amp;&amp; glUnmapBuffer, return)
+
+         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_buffer);
+         glUnmapBuffer(GL_ELEMENT_ARRAY_BUFFER);
+     }
+
+     bool failed()
+     {
+         return m_failed;
+     }
+
+ private:
+     int m_length, m_mode;
+     GLuint m_buffer;
+     bool m_failed;
+ };
+
+ #endif</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

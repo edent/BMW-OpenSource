@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qeventtransition.cpp -->
+<head>
+  <title>Qt 4.6: QEventTransition Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QEventTransition" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QEventTransition Class Reference<br /><span class="small-subtitle">[<a href="qtcore.html">QtCore</a> module]</span>
+</h1>
+<p>The QEventTransition class provides a <a href="qobject.html">QObject</a>-specific transition for Qt events. <a href="#details">More...</a></p>
+<pre> #include &lt;QEventTransition&gt;</pre><p>Inherits <a href="qabstracttransition.html">QAbstractTransition</a>.</p>
+<p>Inherited by <a href="qkeyeventtransition.html">QKeyEventTransition</a> and <a href="qmouseeventtransition.html">QMouseEventTransition</a>.</p>
+<p>This class was introduced in Qt 4.6.</p>
+<ul>
+<li><a href="qeventtransition-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="properties"></a>
+<h2>Properties</h2>
+<ul>
+<li><div class="fn"><b><a href="qeventtransition.html#eventSource-prop">eventSource</a></b> : QObject *</div></li>
+<li><div class="fn"><b><a href="qeventtransition.html#eventType-prop">eventType</a></b> : QEvent::Type</div></li>
+</ul>
+<ul>
+<li><div bar="2" class="fn"></div>3 properties inherited from <a href="qabstracttransition.html#properties">QAbstractTransition</a></li>
+<li><div bar="2" class="fn"></div>1 property inherited from <a href="qobject.html#properties">QObject</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qeventtransition.html#QEventTransition">QEventTransition</a></b> ( QState * <i>sourceState</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qeventtransition.html#QEventTransition-2">QEventTransition</a></b> ( QObject * <i>object</i>, QEvent::Type <i>type</i>, QState * <i>sourceState</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qeventtransition.html#dtor.QEventTransition">~QEventTransition</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QObject * </td><td class="memItemRight" valign="bottom"><b><a href="qeventtransition.html#eventSource-prop">eventSource</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QEvent::Type </td><td class="memItemRight" valign="bottom"><b><a href="qeventtransition.html#eventType-prop">eventType</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qeventtransition.html#eventSource-prop">setEventSource</a></b> ( QObject * <i>object</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qeventtransition.html#eventType-prop">setEventType</a></b> ( QEvent::Type <i>type</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>9 public functions inherited from <a href="qabstracttransition.html#public-functions">QAbstractTransition</a></li>
+<li><div bar="2" class="fn"></div>29 public functions inherited from <a href="qobject.html#public-functions">QObject</a></li>
+</ul>
+<hr />
+<a name="reimplemented-protected-functions"></a>
+<h2>Reimplemented Protected Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qeventtransition.html#event">event</a></b> ( QEvent * <i>e</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qeventtransition.html#eventTest">eventTest</a></b> ( QEvent * <i>event</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qeventtransition.html#onTransition">onTransition</a></b> ( QEvent * <i>event</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>3 protected functions inherited from <a href="qabstracttransition.html#protected-functions">QAbstractTransition</a></li>
+<li><div bar="2" class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li><div class="fn"></div>1 public slot inherited from <a href="qobject.html#public-slots">QObject</a></li>
+<li><div class="fn"></div>1 signal inherited from <a href="qabstracttransition.html#signals">QAbstractTransition</a></li>
+<li><div class="fn"></div>1 signal inherited from <a href="qobject.html#signals">QObject</a></li>
+<li><div class="fn"></div>5 static public members inherited from <a href="qobject.html#static-public-members">QObject</a></li>
+<li><div class="fn"></div>3 protected functions inherited from <a href="qabstracttransition.html#protected-functions">QAbstractTransition</a></li>
+<li><div class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QEventTransition class provides a <a href="qobject.html">QObject</a>-specific transition for Qt events.</p>
+<p>A QEventTransition object binds an event to a particular <a href="qobject.html">QObject</a>. QEventTransition is part of <a href="statemachine-api.html">The State Machine Framework</a>.</p>
+<p>Example:</p>
+<pre> QPushButton *button = ...;
+ QState *s1 = ...;
+ QState *s2 = ...;
+<span class="comment"> // If in s1 and the button receives an Enter event, transition to s2</span>
+ QEventTransition *enterTransition = new QEventTransition(button, QEvent::Enter);
+ enterTransition-&gt;setTargetState(s2);
+ s1-&gt;addTransition(enterTransition);
+<span class="comment"> // If in s2 and the button receives an Exit event, transition back to s1</span>
+ QEventTransition *leaveTransition = new QEventTransition(button, QEvent::Leave);
+ leaveTransition-&gt;setTargetState(s1);
+ s2-&gt;addTransition(leaveTransition);</pre>
+<a name="subclassing"></a>
+<h3>Subclassing</h3>
+<p>When reimplementing the <a href="qeventtransition.html#eventTest">eventTest</a>() function, you should first call the base implementation to verify that the event is a <a href="qstatemachine-wrappedevent.html">QStateMachine::WrappedEvent</a> for the proper object and event type. You may then cast the event to a <a href="qstatemachine-wrappedevent.html">QStateMachine::WrappedEvent</a> and get the original event by calling <a href="qstatemachine-wrappedevent.html#event">QStateMachine::WrappedEvent::event</a>(), and perform additional checks on that object.</p>
+<p>See also <a href="qstate.html#addTransition">QState::addTransition</a>().</p>
+<hr />
+<h2>Property Documentation</h2>
+<a name="//apple_ref/cpp/instm/QEventTransition/eventSource" />
+<a name="//apple_ref/cpp/instm/QEventTransition/setEventSource" />
+<h3 class="fn"><a name="eventSource-prop"></a>eventSource : <a href="qobject.html">QObject</a> *</h3>
+<p>This property holds the event source that this event transition is associated with.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">QObject * </td><td class="memItemRight" valign="bottom"><b>eventSource</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setEventSource</b> ( QObject * <i>object</i> )</td></tr>
+</table>
+<a name="//apple_ref/cpp/instm/QEventTransition/eventType" />
+<a name="//apple_ref/cpp/instm/QEventTransition/setEventType" />
+<h3 class="fn"><a name="eventType-prop"></a>eventType : <a href="qevent.html#Type-enum">QEvent::Type</a></h3>
+<p>This property holds the type of event that this event transition is associated with.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">QEvent::Type </td><td class="memItemRight" valign="bottom"><b>eventType</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setEventType</b> ( QEvent::Type <i>type</i> )</td></tr>
+</table>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QEventTransition/QEventTransition" />
+<h3 class="fn"><a name="QEventTransition"></a>QEventTransition::QEventTransition ( <a href="qstate.html">QState</a> * <i>sourceState</i> = 0 )</h3>
+<p>Constructs a new <a href="qeventtransition.html">QEventTransition</a> object with the given <i>sourceState</i>.</p>
+<h3 class="fn"><a name="QEventTransition-2"></a>QEventTransition::QEventTransition ( <a href="qobject.html">QObject</a> * <i>object</i>, <a href="qevent.html#Type-enum">QEvent::Type</a> <i>type</i>, <a href="qstate.html">QState</a> * <i>sourceState</i> = 0 )</h3>
+<p>Constructs a new <a href="qeventtransition.html">QEventTransition</a> object associated with events of the given <i>type</i> for the given <i>object</i>, and with the given <i>sourceState</i>.</p>
+<a name="//apple_ref/cpp/instm/QEventTransition/~QEventTransition" />
+<h3 class="fn"><a name="dtor.QEventTransition"></a>QEventTransition::~QEventTransition ()</h3>
+<p>Destroys this <a href="qobject.html">QObject</a> event transition.</p>
+<a name="//apple_ref/cpp/instm/QEventTransition/event" />
+<h3 class="fn"><a name="event"></a>bool QEventTransition::event ( <a href="qevent.html">QEvent</a> * <i>e</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qobject.html#event">QObject::event</a>().</p>
+<a name="//apple_ref/cpp/instm/QEventTransition/eventTest" />
+<h3 class="fn"><a name="eventTest"></a>bool QEventTransition::eventTest ( <a href="qevent.html">QEvent</a> * <i>event</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qabstracttransition.html#eventTest">QAbstractTransition::eventTest</a>().</p>
+<a name="//apple_ref/cpp/instm/QEventTransition/onTransition" />
+<h3 class="fn"><a name="onTransition"></a>void QEventTransition::onTransition ( <a href="qevent.html">QEvent</a> * <i>event</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qabstracttransition.html#onTransition">QAbstractTransition::onTransition</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

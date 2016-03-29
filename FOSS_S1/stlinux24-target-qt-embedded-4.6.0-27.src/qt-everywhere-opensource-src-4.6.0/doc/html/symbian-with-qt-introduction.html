@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- symbian-introduction.qdoc -->
+<head>
+  <title>Qt 4.6: The Symbian platform - Introduction to Qt</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">The Symbian platform - Introduction to Qt<br /><span class="subtitle"></span>
+</h1>
+<ul><li><a href="#required-tools">Required tools</a></li>
+<li><a href="#installing-qt-and-running-demos">Installing Qt and running demos</a></li>
+<li><a href="#building-your-own-applications">Building your own applications</a></li>
+<li><a href="#installing-your-own-applications">Installing your own applications</a></li>
+</ul>
+<a name="required-tools"></a>
+<h3>Required tools</h3>
+<p>See <a href="requirements-symbian.html">Qt for the Symbian platform Requirements</a> to see what tools are required to use Qt for the Symbian platform.</p>
+<a name="installing-qt-and-running-demos"></a>
+<h3>Installing Qt and running demos</h3>
+<p>Follow the instructions found in <a href="install-symbian-installer.html">Installing Qt on the Symbian platform from a Binary Package</a> to learn how to install Qt using a binary package and how to build and run Qt demos.</p>
+<p>Follow the instructions found in <a href="install-symbian.html">Installing Qt on the Symbian platform</a> to learn how to install Qt using using source package and how to build and run the Qt demos.</p>
+<a name="building-your-own-applications"></a>
+<h3>Building your own applications</h3>
+<p>If you are new to Qt development, have a look at <a href="how-to-learn-qt.html">How to Learn Qt</a>. In general, the difference between developing a Qt application on the Symbian platform compared to any of the other platforms supported by Qt is not that big.</p>
+<p>Once you have created a <tt>.pro</tt> file for your project, generate the Symbian specific <tt>Bld.inf</tt> and <tt>.mmp</tt> files this way:</p>
+<pre>     qmake</pre>
+<p>For more information on how to use qmake have a look at the <a href="qmake-tutorial.html">qmake Tutorial</a>.</p>
+<p>Now you can build the Qt for the Symbian platform application with standard build tools. By default, running <tt>make</tt> will produce binaries for the emulator. However, the Symbian platform comes with several alternative build targets, as shown in the table below:</p>
+<p><table class="generic" align="center" cellpadding="2" cellspacing="1" border="0">
+<tr valign="top" class="odd"><td><tt>debug-winscw</tt></td><td>Build debug binaries for the emulator (default). It is currently not possible to build release binaries for the emulator.</td></tr>
+<tr valign="top" class="even"><td><tt>debug-gcce</tt></td><td>Build debug binaries for hardware using GCCE.</td></tr>
+<tr valign="top" class="odd"><td><tt>release-gcce</tt></td><td>Build release binaries for hardware using GCCE.</td></tr>
+<tr valign="top" class="even"><td><tt>debug-armv5</tt></td><td>Build debug binaries for hardware using RVCT.</td></tr>
+<tr valign="top" class="odd"><td><tt>release-armv5</tt></td><td>Build release binaries for hardware using RVCT.</td></tr>
+<tr valign="top" class="even"><td><tt>run</tt></td><td>Run the emulator binaries from the build directory.</td></tr>
+<tr valign="top" class="odd"><td><tt>sis</tt></td><td>Create signed <tt>.sis</tt> file for project.</td></tr>
+</table></p>
+<p>The following lines perform a debug build for the emulator and deploy all the needed files:</p>
+<pre>     make debug-winscw</pre>
+<p>To work on your project in Carbide, simply import the <tt>.pro</tt> file by right clicking on the project explorer and executing &quot;Import..&#x2e;&quot;&#x2e;</p>
+<a name="installing-your-own-applications"></a>
+<h3>Installing your own applications</h3>
+<p>To install your own applications on hardware, you need a signed <tt>.sis</tt> file. (Refer to the <a href="http://developer.symbian.org/wiki/index.php/Platform_Security_%28Fundamentals_of_Symbian_C%2B%2B%29#Self-Signed_Applications">Platform Security Article</a> for more informations about self-signing.) The signed <tt>.sis</tt> file can be created with <tt>make</tt> <tt>sis</tt> target. <tt>sis</tt> target is only supported for executables or projects with <tt>DEPLOYMENT</tt> statements. By default the <tt>sis</tt> target will create signed <tt>.sis</tt> file for last build target. For example, the following sequence will generate the needed makefiles, build the project for <tt>debug-winscw</tt> and <tt>release-armv5</tt>, and create self-signed <tt>.sis</tt> file for <tt>release-armv5</tt> target:</p>
+<pre>     qmake
+     make debug-winscw release-armv5
+     make sis</pre>
+<p>If you want to use different certificate information or override the default target for <tt>.sis</tt> file creation you can use the environment variables as shown in the table below:</p>
+<p><table class="generic" align="center" cellpadding="2" cellspacing="1" border="0">
+<tr valign="top" class="odd"><td><tt>QT_SIS_OPTIONS</tt></td><td>Options accepted by <tt>.sis</tt> creation. See <a href="#supported-options-for-qt-sis-options">Supported options</a> below. By default no otions are given.</td></tr>
+<tr valign="top" class="even"><td><tt>QT_SIS_TARGET</tt></td><td>Target for which <tt>.sis</tt> file is created. Accepted values are build targets listed in previous table. By default last build target.</td></tr>
+<tr valign="top" class="odd"><td><tt>QT_SIS_CERTIFICATE</tt></td><td>The certificate file used for signing. By default self-signed certificate.</td></tr>
+<tr valign="top" class="even"><td><tt>QT_SIS_KEY</tt></td><td>The certificate's private key file. By default key is associated to self-signed certificate.</td></tr>
+<tr valign="top" class="odd"><td><tt>QT_SIS_PASSPHRASE</tt></td><td>The certificate's private key file's passphrase. By default empty.</td></tr>
+</table></p>
+<p>The suppported options for <tt>QT_SIS_OPTIONS</tt>:</p>
+<a name="supported-options-for-qt-sis-options"></a><p><table class="generic" align="center" cellpadding="2" cellspacing="1" border="0">
+<tr valign="top" class="odd"><td>-i</td><td>Install the package right away using PC suite.</td></tr>
+<tr valign="top" class="even"><td>-p</td><td>Only preprocess the template <tt>.pkg</tt> file.</td></tr>
+<tr valign="top" class="odd"><td>-c=&lt;file&gt;</td><td>Read certificate information from a file.</td></tr>
+</table></p>
+<p>Execute the <tt>createpackage.pl</tt> script without any parameters for detailed information about options. By default no otions are given.</p>
+<p>For example:</p>
+<pre>    set QT_SIS_TARGET=debug-armv5
+    make sis</pre>
+<p>The environment variables for <tt>make</tt> can also be given as parameters:</p>
+<pre>    make sis QT_SIS_TARGET=debug-armv5</pre>
+<p>If you want to install the program immediately, make sure that the device is connected to the computer in &quot;PC Suite&quot; mode, and run <tt>sis</tt> target with the <tt>QT_SIS_OPTIONS=-i</tt>, like this:</p>
+<pre>    set QT_SIS_OPTIONS=-i
+    make sis</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

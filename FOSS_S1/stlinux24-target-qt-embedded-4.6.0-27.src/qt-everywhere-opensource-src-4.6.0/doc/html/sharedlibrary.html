@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- sharedlibrary.qdoc -->
+<head>
+  <title>Qt 4.6: Creating Shared Libraries</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">Creating Shared Libraries<br /><span class="subtitle"></span>
+</h1>
+<p>The following sections list certain things that should be taken into account when creating shared libraries.</p>
+<a name="using-symbols-from-shared-libraries"></a>
+<h2>Using Symbols from Shared Libraries</h2>
+<p>Symbols - functions, variables or classes - contained in shared libraries intended to be used by <i>clients</i>, such as applications or other libraries, must be marked in a special way. These symbols are called <i>public symbols</i> that are <i>exported</i> or made publicly visible.</p>
+<p>The remaining symbols should not be visible from the outside. On most platforms, compilers will hide them by default. On some platforms, a special compiler option is required to hide these symbols.</p>
+<p>When compiling a shared library, it must be marked for <i>export</i>. To use the shared library from a client, some platforms may require a special <i>import</i> declaration as well.</p>
+<p>Depending on your target platform, Qt provides special macros that contain the necessary definitions:</p>
+<ul>
+<li><tt>Q_DECL_EXPORT</tt> must be added to the declarations of symbols used when compiling a shared library.</li>
+<li><tt>Q_DECL_IMPORT</tt> must be added to the declarations of symbols used when compiling a client that uses the shared library.</li>
+</ul>
+<p>Now, we need to ensure that the right macro is invoked -- whether we compile a share library itself, or just the client using the shared library. Typically, this can be solved by adding a special header.</p>
+<p>Let us assume we want to create a shared library called <i>mysharedlib</i>. A special header for this library, <tt>mysharedlib_global.h</tt>, looks like this:</p>
+<pre> #include &lt;QtCore/QtGlobal&gt;
+
+ #if defined(MYSHAREDLIB_LIBRARY)
+ #  define MYSHAREDLIB_EXPORT Q_DECL_EXPORT
+ #else
+ #  define MYSHAREDLIB_EXPORT Q_DECL_IMPORT
+ #endif</pre>
+<p>In the <tt>.pro</tt> file of the shared library, we add:</p>
+<pre> DEFINES += MYSHAREDLIB_LIBRARY</pre>
+<p>In each header of the library, we specify the following:</p>
+<pre> #include &quot;mysharedlib_global.h&quot;
+
+ MYSHAREDLIB_EXPORT void foo();
+ class MYSHAREDLIB_EXPORT MyClass...</pre>
+<p>This ensures that the right macro is seen by both library and clients. We also use this technique in Qt's sources.</p>
+<a name="header-file-considerations"></a>
+<h2>Header File Considerations</h2>
+<p>Typically, clients will include only the public header files of shared libraries. These libraries might be installed in a different location, when deployed. Therefore, it is important to exclude other internal header files that were used when building the shared library.</p>
+<p>For example, the library might provide a class that wraps a hardware device and contains a handle to that device, provided by some 3rd-party library:</p>
+<pre> #include &lt;footronics/device.h&gt;
+
+ class MyDevice {
+ private:
+     FOOTRONICS_DEVICE_HANDLE handle;
+ };</pre>
+<p>A similar situation arises with forms created by Qt Designer when using aggregation or multiple inheritance:</p>
+<pre> #include &quot;ui_widget.h&quot;
+
+ class MyWidget : public QWidget {
+ private:
+     Ui::MyWidget m_ui;
+ };</pre>
+<p>When deploying the library, there should be no dependency to the internal headers <tt>footronics/device.h</tt> or <tt>ui_widget.h</tt>.</p>
+<p>This can be avoided by making use of the <i>Pointer to implementation</i> idiom described in various C++ programming books. For classes with <i>value semantics</i>, consider using <a href="qshareddatapointer.html">QSharedDataPointer</a>.</p>
+<a name="binary-compatibility"></a>
+<h2>Binary compatibility</h2>
+<p>For clients loading a shared library, to work correctly, the memory layout of the classes being used must match exactly the memory layout of the library version that was used to compile the client. In other words, the library found by the client at runtime must be <i>binary compatible</i> with the version used at compile time.</p>
+<p>This is usually not a problem if the client is a self-contained software package that ships all the libraries it needs.</p>
+<p>However, if the client application relies on a shared library that belongs to a different installation package or to the operating system, then we need to think of a versioning scheme for shared libraries and decide at which level <i>Binary compatibility</i> is to be maintained. For example, Qt libraries of the same <i>major version number</i> are guaranteed to be binary compatible.</p>
+<p>Maintaining <i>Binary compatibility</i> places some restrictions on the changes you can make to the classes. A good explanation can be found at <a href="http://techbase.kde.org/Policies/Binary_Compatibility_Issues_With_C++">KDE - Policies/Binary Compatibility Issues With C++</a>. These issues should be considered right from the start of library design. We recommend that the principle of <i>Information hiding</i> and the <i>Pointer to implementation</i> technique be used wherever possible.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

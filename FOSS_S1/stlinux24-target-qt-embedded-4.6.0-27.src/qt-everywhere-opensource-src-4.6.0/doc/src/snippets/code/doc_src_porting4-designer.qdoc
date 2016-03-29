@@ -1,0 +1,200 @@
+/****************************************************************************
+**
+** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+** All rights reserved.
+** Contact: Nokia Corporation (qt-info@nokia.com)
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:LGPL$
+** Commercial Usage
+** Licensees holding valid Qt Commercial licenses may use this file in
+** accordance with the Qt Commercial License Agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and Nokia.
+**
+** GNU Lesser General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU Lesser
+** General Public License version 2.1 as published by the Free Software
+** Foundation and appearing in the file LICENSE.LGPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU Lesser General Public License version 2.1 requirements
+** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+**
+** In addition, as a special exception, Nokia gives you certain additional
+** rights.  These rights are described in the Nokia Qt LGPL Exception
+** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+**
+** GNU General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU
+** General Public License version 3.0 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU General Public License version 3.0 requirements will be
+** met: http://www.gnu.org/copyleft/gpl.html.
+**
+** If you have questions regarding the use of this file, please contact
+** Nokia at qt-info@nokia.com.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+//! [0]
+namespace Ui {
+
+class HelloWorld
+{
+public:
+    QVBoxLayout *vboxLayout;
+    QPushButton *pushButton;
+
+    void setupUi(QWidget *HelloWorld)
+    {
+        HelloWorld->setObjectName(QString::fromUtf8("HelloWorld"));
+
+        vboxLayout = new QVBoxLayout(HelloWorld);
+        vboxLayout->setObjectName(QString::fromUtf8("vboxLayout"));
+
+        pushButton = new QPushButton(HelloWorld);
+        pushButton->setObjectName(QString::fromUtf8("pushButton"));
+
+        vboxLayout->addWidget(pushButton);
+
+        retranslateUi(HelloWorld);
+    }
+};
+
+}
+//! [0]
+
+
+//! [1]
+#include <QApplication>
+#include <QWidget>
+
+#include "ui_helloworld.h"   // defines Ui::HelloWorld
+
+int main(int argc, char *argv[])
+{
+    QApplication app(argc, argv);
+
+    QWidget w;
+    Ui::HelloWorld ui;
+    ui.setupUi(&w);
+
+    w.show();
+    return app.exec();
+}
+//! [1]
+
+
+//! [2]
+#include <QApplication>
+#include <QWidget>
+
+#include "ui_helloworld.h"   // defines Ui::HelloWorld
+
+class HelloWorldWidget : public QWidget, public Ui::HelloWorld
+{
+    Q_OBJECT
+
+public:
+    HelloWorldWidget(QWidget *parent = 0)
+        : QWidget(parent)
+    { setupUi(this); }
+};
+
+int main(int argc, char *argv[])
+{
+    QApplication app(argc, argv);
+    HelloWorldWidget w;
+    w.show();
+    return app.exec();
+}
+//! [2]
+
+
+//! [3]
+uic3 myform.ui > myform.h
+uic3 -impl myform.h myform.ui > myform.cpp
+//! [3]
+
+
+//! [4]
+uic3 -convert myform3.ui > myform4.ui
+//! [4]
+
+
+//! [5]
+class HelloWorldWidget : public QWidget, public Ui::HelloWorld
+{
+    Q_OBJECT
+
+public:
+    HelloWorldWidget(QWidget *parent = 0);
+
+public slots:
+    void mySlot();
+};
+
+HelloWorldWidget::HelloWorldWidget(QWidget *parent)
+    : QWidget(parent)
+{
+    setupUi(this);
+
+    QObject::connect(pushButton, SIGNAL(clicked()),
+                     this, SLOT(mySlot()));
+}
+
+void HelloWorldWidget::mySlot()
+{
+    ...
+}
+//! [5]
+
+
+//! [6]
+class HelloWorldWidget : public QWidget, public Ui::HelloWorld
+{
+    Q_OBJECT
+
+public:
+    HelloWorldWidget(QWidget *parent = 0);
+
+public slots:
+    void on_pushButton_clicked();
+};
+
+HelloWorldWidget::HelloWorldWidget(QWidget *parent)
+    : QWidget(parent)
+{
+    setupUi(this);
+}
+
+void HelloWorldWidget::on_pushButton_clicked()
+{
+    ...
+}
+//! [6]
+
+
+//! [7]
+<RCC version="1.0">
+    <qresource prefix="/icons">
+        <file>yes.png</file>
+        <file>no.png</file>
+    </qresource>
+</RCC>
+//! [7]
+
+
+//! [8]
+RESOURCES += icons.qrc
+//! [8]
+
+
+//! [9]
+QFile file(":/icons/yes.png");
+QIcon icon(":/icons/no.png");
+QPixmap pixmap(":/icons/no.png");
+//! [9]

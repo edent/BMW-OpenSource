@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qwindowsystem_qws.cpp -->
+<head>
+  <title>Qt 4.6: QWSInputMethod Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QWSInputMethod" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QWSInputMethod Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QWSInputMethod class provides international input methods in Qt for Embedded Linux. <a href="#details">More...</a></p>
+<pre> #include &lt;QWSInputMethod&gt;</pre><p><b>This class is under development and is subject to change.</b></p>
+<p>Inherits <a href="qobject.html">QObject</a>.</p>
+<ul>
+<li><a href="qwsinputmethod-members.html">List of all members, including inherited members</a></li>
+<li><a href="qwsinputmethod-obsolete.html">Obsolete members</a></li>
+</ul>
+<hr />
+<a name="public-types"></a>
+<h2>Public Types</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qwsinputmethod.html#UpdateType-enum">UpdateType</a></b> { Update, FocusIn, FocusOut, Reset, Destroyed }</td></tr>
+</table>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qwsinputmethod.html#QWSInputMethod">QWSInputMethod</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual </td><td class="memItemRight" valign="bottom"><b><a href="qwsinputmethod.html#dtor.QWSInputMethod">~QWSInputMethod</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qwsinputmethod.html#filter">filter</a></b> ( int <i>unicode</i>, int <i>keycode</i>, int <i>modifiers</i>, bool <i>isPress</i>, bool <i>autoRepeat</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qwsinputmethod.html#filter-2">filter</a></b> ( const QPoint &amp; <i>position</i>, int <i>state</i>, int <i>wheel</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qwsinputmethod.html#mouseHandler">mouseHandler</a></b> ( int <i>offset</i>, int <i>state</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qwsinputmethod.html#queryResponse">queryResponse</a></b> ( int <i>property</i>, const QVariant &amp; <i>result</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qwsinputmethod.html#reset">reset</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qwsinputmethod.html#updateHandler">updateHandler</a></b> ( int <i>type</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>29 public functions inherited from <a href="qobject.html#public-functions">QObject</a></li>
+</ul>
+<hr />
+<a name="protected-functions"></a>
+<h2>Protected Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">uint </td><td class="memItemRight" valign="bottom"><b><a href="qwsinputmethod.html#inputResolutionShift">inputResolutionShift</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qwsinputmethod.html#sendCommitString">sendCommitString</a></b> ( const QString &amp; <i>commitString</i>, int <i>replaceFromPosition</i> = 0, int <i>replaceLength</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qwsinputmethod.html#sendEvent">sendEvent</a></b> ( const QInputMethodEvent * <i>event</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qwsinputmethod.html#sendMouseEvent">sendMouseEvent</a></b> ( const QPoint &amp; <i>position</i>, int <i>state</i>, int <i>wheel</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qwsinputmethod.html#sendPreeditString">sendPreeditString</a></b> ( const QString &amp; <i>preeditString</i>, int <i>cursorPosition</i>, int <i>selectionLength</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qwsinputmethod.html#sendQuery">sendQuery</a></b> ( int <i>property</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">uint </td><td class="memItemRight" valign="bottom"><b><a href="qwsinputmethod.html#setInputResolution">setInputResolution</a></b> ( bool <i>isHigh</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li><div class="fn"></div>1 property inherited from <a href="qobject.html#properties">QObject</a></li>
+<li><div class="fn"></div>1 public slot inherited from <a href="qobject.html#public-slots">QObject</a></li>
+<li><div class="fn"></div>1 signal inherited from <a href="qobject.html#signals">QObject</a></li>
+<li><div class="fn"></div>5 static public members inherited from <a href="qobject.html#static-public-members">QObject</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QWSInputMethod class provides international input methods in Qt for Embedded Linux.</p>
+<p>Note that this class is only available in <a href="qt-embedded-linux.html">Qt for Embedded Linux</a>.</p>
+<p>A <a href="qt-embedded-linux.html">Qt for Embedded Linux</a> application requires a server application to be running, or to be the server application itself. All system generated events, including keyboard and mouse events, are passed to the server application which then propagates the event to the appropriate client.</p>
+<p>An input method consists of a filter and optionally a graphical interface, and is used to filter input events between the server and the client application.</p>
+<ul><li><a href="#creating-custom-input-methods">Creating Custom Input Methods</a></li>
+<li><a href="#using-input-methods">Using Input Methods</a></li>
+</ul>
+<a name="creating-custom-input-methods"></a>
+<h3>Creating Custom Input Methods</h3>
+<p>To implement a custom input method, derive from the QWSInputMethod class, and use the server's <a href="qwsserver.html#setCurrentInputMethod">setCurrentInputMethod()</a> function to install it.</p>
+<p>When subclassing QWSInputMethod, you can reimplement the <a href="qwsinputmethod.html#filter">filter</a>() functions to handle input from both physical and virtual keyboards as well as mouse devices. Note that the default implementations do nothing. Use the <a href="qwsinputmethod.html#setInputResolution">setInputResolution</a>() function to control the number of bits shifted when filtering mouse input, i.e&#x2e;, when going from pointer resolution to screen resolution (the current resolution can be retrieved using the <a href="qwsinputmethod.html#inputResolutionShift">inputResolutionShift</a>() function).</p>
+<p>Reimplement the <a href="qwsinputmethod.html#reset">reset</a>() function to restore the state of the input method. Note that the default implementation calls the <a href="qwsinputmethod.html#sendEvent">sendEvent</a>() function with empty preedit and commit strings if the input method is in compose mode (i.e&#x2e;, if the input method is actively composing a preedit string).</p>
+<p>To receive replies to an input method query (sent using the <a href="qwsinputmethod.html#sendQuery">sendQuery</a>() function), you must reimplement the <a href="qwsinputmethod.html#queryResponse">queryResponse</a>() function, while the <a href="qwsinputmethod.html#mouseHandler">mouseHandler</a>() function must be reimplemented if you want to handle mouse events within the preedit text. Reimplement the <a href="qwsinputmethod.html#updateHandler">updateHandler</a>() function to handle update events including resets and focus changes. The <a href="qwsinputmethod.html#UpdateType-enum">UpdateType</a> enum describes the various types of update events recognized by the input method.</p>
+<a name="using-input-methods"></a>
+<h3>Using Input Methods</h3>
+<p>In addition to the <a href="qwsinputmethod.html#filter">filter</a>(), <a href="qwsinputmethod.html#reset">reset</a>(), <a href="qwsinputmethod.html#queryResponse">queryResponse</a>(), <a href="qwsinputmethod.html#mouseHandler">mouseHandler</a>() and <a href="qwsinputmethod.html#updateHandler">updateHandler</a>() function mentioned in the previous section, the QWSInputMethod provides several other functions helping the window system to manage the installed input methods.</p>
+<p>The <a href="qwsinputmethod.html#sendEvent">sendEvent</a>() function sends the given event to the focus widget, while the <a href="qwsinputmethod.html#sendPreeditString">sendPreeditString</a>() function sends the given preedit text (encapsulated by an event). QWSInputMethod also provides the <a href="qwsinputmethod.html#sendCommitString">sendCommitString</a>() convenience function which sends an event encapsulating the given commit string to the current focus widget, and the <a href="qwsinputmethod.html#sendMouseEvent">sendMouseEvent</a>() function which sends the given mouse event.</p>
+<p>Finally, the QWSInputMethod class provides the <a href="qwsinputmethod.html#sendQuery">sendQuery</a>() function for sending input method queries. This function encapsulates the event with a <a href="qwsevent.html">QWSEvent</a> instance of the <a href="qwsevent.html#Type-enum">IMQuery</a> type.</p>
+<p>See also <a href="qwsserver.html">QWSServer</a> and <a href="qt-embedded-architecture.html">Qt for Embedded Linux Architecture</a>.</p>
+<hr />
+<h2>Member Type Documentation</h2>
+<a name="//apple_ref/cpp/tag/QWSInputMethod/UpdateType" />
+<a name="//apple_ref/cpp/econst/QWSInputMethod/Update" />
+<a name="//apple_ref/cpp/econst/QWSInputMethod/FocusIn" />
+<a name="//apple_ref/cpp/econst/QWSInputMethod/FocusOut" />
+<a name="//apple_ref/cpp/econst/QWSInputMethod/Reset" />
+<a name="//apple_ref/cpp/econst/QWSInputMethod/Destroyed" />
+<h3 class="fn"><a name="UpdateType-enum"></a>enum QWSInputMethod::UpdateType</h3>
+<p>This enum describes the various types of update events recognized by the input method.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QWSInputMethod::Update</tt></td><td align="center" valign="top"><tt>0</tt></td><td valign="top">The input widget is updated in some way; use <a href="qwsinputmethod.html#sendQuery">sendQuery</a>() with <a href="qt.html#InputMethodQuery-enum">Qt::ImMicroFocus</a> as an argument for more information.</td></tr>
+<tr><td valign="top"><tt>QWSInputMethod::FocusIn</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">A new input widget receives focus.</td></tr>
+<tr><td valign="top"><tt>QWSInputMethod::FocusOut</tt></td><td align="center" valign="top"><tt>2</tt></td><td valign="top">The input widget loses focus.</td></tr>
+<tr><td valign="top"><tt>QWSInputMethod::Reset</tt></td><td align="center" valign="top"><tt>3</tt></td><td valign="top">The input method should be reset.</td></tr>
+<tr><td valign="top"><tt>QWSInputMethod::Destroyed</tt></td><td align="center" valign="top"><tt>4</tt></td><td valign="top">The input widget is destroyed.</td></tr>
+</table></p>
+<p>See also <a href="qwsinputmethod.html#updateHandler">updateHandler</a>().</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QWSInputMethod/QWSInputMethod" />
+<h3 class="fn"><a name="QWSInputMethod"></a>QWSInputMethod::QWSInputMethod ()</h3>
+<p>Constructs a new input method.</p>
+<p>Use the <a href="qwsserver.html#setCurrentInputMethod">QWSServer::setCurrentInputMethod</a>() function to install it.</p>
+<a name="//apple_ref/cpp/instm/QWSInputMethod/~QWSInputMethod" />
+<h3 class="fn"><a name="dtor.QWSInputMethod"></a>QWSInputMethod::~QWSInputMethod ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Destroys this input method, uninstalling it if it is installed.</p>
+<a name="//apple_ref/cpp/instm/QWSInputMethod/filter" />
+<h3 class="fn"><a name="filter"></a>bool QWSInputMethod::filter ( int <i>unicode</i>, int <i>keycode</i>, int <i>modifiers</i>, bool <i>isPress</i>, bool <i>autoRepeat</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Filters the key input identified by the given <i>unicode</i>, <i>keycode</i>, <i>modifiers</i>, <i>isPress</i> and <i>autoRepeat</i> parameters.</p>
+<p>Note that the default implementation does nothing; reimplement this function to handle input from both physical and virtual devices.</p>
+<p>The <i>keycode</i> is a <a href="qt.html#Key-enum">Qt::Key</a> value, and the <i>modifiers</i> is an OR combination of <a href="qt.html#KeyboardModifier-enum">Qt::KeyboardModifiers</a>. The <i>isPress</i> parameter is telling whether the input is a key press or key release, and the <i>autoRepeat</i> parameter determines whether the input is autorepeated ( i.e&#x2e;, in which case the <a href="qwskeyboardhandler.html#beginAutoRepeat">QWSKeyboardHandler::beginAutoRepeat</a>() function has been called).</p>
+<p>To block the event from further processing, return true when reimplementing this function; the default implementation returns false.</p>
+<p>See also <a href="qwsinputmethod.html#setInputResolution">setInputResolution</a>() and <a href="qwsinputmethod.html#inputResolutionShift">inputResolutionShift</a>().</p>
+<h3 class="fn"><a name="filter-2"></a>bool QWSInputMethod::filter ( const <a href="qpoint.html">QPoint</a> &amp; <i>position</i>, int <i>state</i>, int <i>wheel</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>This is an overloaded function.</p>
+<p>Filters the mouse input identified by the given <i>position</i>, <i>state</i>, and <i>wheel</i> parameters.</p>
+<a name="//apple_ref/cpp/instm/QWSInputMethod/inputResolutionShift" />
+<h3 class="fn"><a name="inputResolutionShift"></a><a href="qtglobal.html#uint-typedef">uint</a> QWSInputMethod::inputResolutionShift () const&nbsp;&nbsp;<tt> [protected]</tt></h3>
+<p>Returns the number of bits shifted to go from pointer resolution to screen resolution when filtering mouse input.</p>
+<p>See also <a href="qwsinputmethod.html#setInputResolution">setInputResolution</a>() and <a href="qwsinputmethod.html#filter">filter</a>().</p>
+<a name="//apple_ref/cpp/instm/QWSInputMethod/mouseHandler" />
+<h3 class="fn"><a name="mouseHandler"></a>void QWSInputMethod::mouseHandler ( int <i>offset</i>, int <i>state</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Handles mouse events within the preedit text.</p>
+<p>Note that the default implementation resets the input method on all mouse presses; reimplement this function to alter this behavior.</p>
+<p>The <i>offset</i> parameter specifies the position of the mouse event within the string, and <i>state</i> specifies the type of the mouse event as described by the <a href="qwsserver.html#IMMouse-enum">QWSServer::IMMouse</a> enum. If <i>state</i> is less than 0, the mouse event is inside the associated widget, but outside the preedit text. When clicking in a different widget, the <i>state</i> is <a href="qwsserver.html#IMMouse-enum">QWSServer::MouseOutside</a>.</p>
+<p>See also <a href="qwsinputmethod.html#sendPreeditString">sendPreeditString</a>() and <a href="qwsinputmethod.html#reset">reset</a>().</p>
+<a name="//apple_ref/cpp/instm/QWSInputMethod/queryResponse" />
+<h3 class="fn"><a name="queryResponse"></a>void QWSInputMethod::queryResponse ( int <i>property</i>, const <a href="qvariant.html">QVariant</a> &amp; <i>result</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Receive replies to an input method query.</p>
+<p>Note that the default implementation does nothing; reimplement this function to receive such replies.</p>
+<p>Internally, an input method query is passed encapsulated by an <a href="qwsevent.html#Type-enum">IMQuery</a> event generated by the <a href="qwsinputmethod.html#sendQuery">sendQuery</a>() function. The queried property and the result is passed in the <i>property</i> and <i>result</i> parameters.</p>
+<p>See also <a href="qwsinputmethod.html#sendQuery">sendQuery</a>() and <a href="qwsserver.html#sendIMQuery">QWSServer::sendIMQuery</a>().</p>
+<a name="//apple_ref/cpp/instm/QWSInputMethod/reset" />
+<h3 class="fn"><a name="reset"></a>void QWSInputMethod::reset ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Resets the state of the input method.</p>
+<p>If the input method is in compose mode, i.e&#x2e;, the input method is actively composing a preedit string, the default implementation calls <a href="qwsinputmethod.html#sendEvent">sendEvent</a>() with empty preedit and commit strings; otherwise it does nothing. Reimplement this function to alter this behavior.</p>
+<p>See also <a href="qwsinputmethod.html#sendEvent">sendEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QWSInputMethod/sendCommitString" />
+<h3 class="fn"><a name="sendCommitString"></a>void QWSInputMethod::sendCommitString ( const <a href="qstring.html">QString</a> &amp; <i>commitString</i>, int <i>replaceFromPosition</i> = 0, int <i>replaceLength</i> = 0 )&nbsp;&nbsp;<tt> [protected]</tt></h3>
+<p>Sends an event encapsulating the given <i>commitString</i>, to the focus widget.</p>
+<p>Note that this will cause the input method to leave compose mode, i.e&#x2e;, the input method will no longer be actively composing the preedit string.</p>
+<p>If the specified <i>replaceLength</i> is greater than 0, the commit string will replace the given number of characters of the receiving widget's previous text, starting at the given <i>replaceFromPosition</i> relative to the start of the current preedit string.</p>
+<p>Internally, the event is represented by a <a href="qwsevent.html">QWSEvent</a> object of the <a href="qwsevent.html#Type-enum">IMEvent</a> type.</p>
+<p>See also <a href="qwsinputmethod.html#sendEvent">sendEvent</a>() and <a href="qwsinputmethod.html#sendPreeditString">sendPreeditString</a>().</p>
+<a name="//apple_ref/cpp/instm/QWSInputMethod/sendEvent" />
+<h3 class="fn"><a name="sendEvent"></a>void QWSInputMethod::sendEvent ( const <a href="qinputmethodevent.html">QInputMethodEvent</a> * <i>event</i> )&nbsp;&nbsp;<tt> [protected]</tt></h3>
+<p>Sends the given <i>event</i> to the focus widget.</p>
+<p>The <tt>QInputMethodEvent</tt> class is derived from <a href="qwsevent.html">QWSEvent</a>, i.e&#x2e;, the given <i>event</i> is a <a href="qwsevent.html">QWSEvent</a> object of the <a href="qwsevent.html#Type-enum">IMEvent</a> type.</p>
+<p>See also <a href="qwsinputmethod.html#sendPreeditString">sendPreeditString</a>(), <a href="qwsinputmethod.html#sendCommitString">sendCommitString</a>(), and <a href="qwsinputmethod.html#reset">reset</a>().</p>
+<a name="//apple_ref/cpp/instm/QWSInputMethod/sendMouseEvent" />
+<h3 class="fn"><a name="sendMouseEvent"></a>void QWSInputMethod::sendMouseEvent ( const <a href="qpoint.html">QPoint</a> &amp; <i>position</i>, int <i>state</i>, int <i>wheel</i> )&nbsp;&nbsp;<tt> [protected]</tt></h3>
+<p>Sends a mouse event specified by the given <i>position</i>, <i>state</i> and <i>wheel</i> parameters.</p>
+<p>The given <i>position</i> will be transformed if the screen coordinates do not match the pointer device coordinates.</p>
+<p>Note that the event will be not be tested by the active input method, but calling the QWSServer::sendMouseEvent() function will make the current input method filter the event.</p>
+<p>See also <a href="qwsinputmethod.html#mouseHandler">mouseHandler</a>() and <a href="qwsinputmethod.html#sendEvent">sendEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QWSInputMethod/sendPreeditString" />
+<h3 class="fn"><a name="sendPreeditString"></a>void QWSInputMethod::sendPreeditString ( const <a href="qstring.html">QString</a> &amp; <i>preeditString</i>, int <i>cursorPosition</i>, int <i>selectionLength</i> = 0 )&nbsp;&nbsp;<tt> [protected]</tt></h3>
+<p>Sends an event encapsulating the given <i>preeditString</i>, to the focus widget.</p>
+<p>The specified <i>selectionLength</i> is the number of characters to be marked as selected (starting at the given <i>cursorPosition</i>). If <i>selectionLength</i> is negative, the text <i>before</i> <i>cursorPosition</i> is marked.</p>
+<p>The preedit string is marked with <a href="qinputcontext.html#StandardFormat-enum">QInputContext::PreeditFormat</a>, and the selected part is marked with <a href="qinputcontext.html#StandardFormat-enum">QInputContext::SelectionFormat</a>.</p>
+<p>Sending an input method event with a non-empty preedit string will cause the input method to enter compose mode. Sending an input method event with an empty preedit string will cause the input method to leave compose mode, i.e&#x2e;, the input method will no longer be actively composing the preedit string.</p>
+<p>Internally, the event is represented by a <a href="qwsevent.html">QWSEvent</a> object of the <a href="qwsevent.html#Type-enum">IMEvent</a> type.</p>
+<p>See also <a href="qwsinputmethod.html#sendEvent">sendEvent</a>() and <a href="qwsinputmethod.html#sendCommitString">sendCommitString</a>().</p>
+<a name="//apple_ref/cpp/instm/QWSInputMethod/sendQuery" />
+<h3 class="fn"><a name="sendQuery"></a>void QWSInputMethod::sendQuery ( int <i>property</i> )&nbsp;&nbsp;<tt> [protected]</tt></h3>
+<p>Sends an input method query (internally encapsulated by a <a href="qwsevent.html">QWSEvent</a> of the <a href="qwsevent.html#Type-enum">IMQuery</a> type) for the specified <i>property</i>.</p>
+<p>To receive responses to input method queries, the virtual <a href="qwsinputmethod.html#queryResponse">queryResponse</a>() function must be reimplemented.</p>
+<p>See also <a href="qwsinputmethod.html#queryResponse">queryResponse</a>() and <a href="qwsserver.html#sendIMQuery">QWSServer::sendIMQuery</a>().</p>
+<a name="//apple_ref/cpp/instm/QWSInputMethod/setInputResolution" />
+<h3 class="fn"><a name="setInputResolution"></a><a href="qtglobal.html#uint-typedef">uint</a> QWSInputMethod::setInputResolution ( bool <i>isHigh</i> )&nbsp;&nbsp;<tt> [protected]</tt></h3>
+<p>Sets and returns the number of bits shifted to go from pointer resolution to screen resolution when filtering mouse input.</p>
+<p>If <i>isHigh</i> is true and the device has a pointer device resolution twice or more of the screen resolution, the positions passed to the <a href="qwsinputmethod.html#filter">filter</a>() function will be presented at the higher resolution; otherwise the resolution will be equal to that of the screen resolution.</p>
+<p>See also <a href="qwsinputmethod.html#inputResolutionShift">inputResolutionShift</a>() and <a href="qwsinputmethod.html#filter">filter</a>().</p>
+<a name="//apple_ref/cpp/instm/QWSInputMethod/updateHandler" />
+<h3 class="fn"><a name="updateHandler"></a>void QWSInputMethod::updateHandler ( int <i>type</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Handles update events including resets and focus changes. The update events are specified by the given <i>type</i> which is one of the <a href="qwsinputmethod.html#UpdateType-enum">UpdateType</a> enum values.</p>
+<p>Note that reimplementations of this function must call the base implementation for all cases that it does not handle itself.</p>
+<p>See also <a href="qwsinputmethod.html#UpdateType-enum">UpdateType</a>.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

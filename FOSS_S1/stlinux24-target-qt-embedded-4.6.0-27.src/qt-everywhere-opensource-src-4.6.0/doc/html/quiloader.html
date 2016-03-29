@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- quiloader.cpp -->
+<head>
+  <title>Qt 4.6: QUiLoader Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QUiLoader" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QUiLoader Class Reference<br /><span class="small-subtitle">[<a href="qtuitools.html">QtUiTools</a> module]</span>
+</h1>
+<p>The QUiLoader class enables standalone applications to dynamically create user interfaces at run-time using the information stored in UI files or specified in plugin paths. <a href="#details">More...</a></p>
+<pre> #include &lt;QUiLoader&gt;</pre><p><b>This class is not part of the Qt GUI Framework Edition.</b></p>
+<p>Inherits <a href="qobject.html">QObject</a>.</p>
+<ul>
+<li><a href="quiloader-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="quiloader.html#QUiLoader">QUiLoader</a></b> ( QObject * <i>parent</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual </td><td class="memItemRight" valign="bottom"><b><a href="quiloader.html#dtor.QUiLoader">~QUiLoader</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="quiloader.html#addPluginPath">addPluginPath</a></b> ( const QString &amp; <i>path</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QStringList </td><td class="memItemRight" valign="bottom"><b><a href="quiloader.html#availableLayouts">availableLayouts</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QStringList </td><td class="memItemRight" valign="bottom"><b><a href="quiloader.html#availableWidgets">availableWidgets</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="quiloader.html#clearPluginPaths">clearPluginPaths</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QAction * </td><td class="memItemRight" valign="bottom"><b><a href="quiloader.html#createAction">createAction</a></b> ( QObject * <i>parent</i> = 0, const QString &amp; <i>name</i> = QString() )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QActionGroup * </td><td class="memItemRight" valign="bottom"><b><a href="quiloader.html#createActionGroup">createActionGroup</a></b> ( QObject * <i>parent</i> = 0, const QString &amp; <i>name</i> = QString() )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QLayout * </td><td class="memItemRight" valign="bottom"><b><a href="quiloader.html#createLayout">createLayout</a></b> ( const QString &amp; <i>className</i>, QObject * <i>parent</i> = 0, const QString &amp; <i>name</i> = QString() )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QWidget * </td><td class="memItemRight" valign="bottom"><b><a href="quiloader.html#createWidget">createWidget</a></b> ( const QString &amp; <i>className</i>, QWidget * <i>parent</i> = 0, const QString &amp; <i>name</i> = QString() )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="quiloader.html#isLanguageChangeEnabled">isLanguageChangeEnabled</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QWidget * </td><td class="memItemRight" valign="bottom"><b><a href="quiloader.html#load">load</a></b> ( QIODevice * <i>device</i>, QWidget * <i>parentWidget</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QStringList </td><td class="memItemRight" valign="bottom"><b><a href="quiloader.html#pluginPaths">pluginPaths</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="quiloader.html#setLanguageChangeEnabled">setLanguageChangeEnabled</a></b> ( bool <i>enabled</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="quiloader.html#setWorkingDirectory">setWorkingDirectory</a></b> ( const QDir &amp; <i>dir</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QDir </td><td class="memItemRight" valign="bottom"><b><a href="quiloader.html#workingDirectory">workingDirectory</a></b> () const</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>29 public functions inherited from <a href="qobject.html#public-functions">QObject</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li><div class="fn"></div>1 property inherited from <a href="qobject.html#properties">QObject</a></li>
+<li><div class="fn"></div>1 public slot inherited from <a href="qobject.html#public-slots">QObject</a></li>
+<li><div class="fn"></div>1 signal inherited from <a href="qobject.html#signals">QObject</a></li>
+<li><div class="fn"></div>5 static public members inherited from <a href="qobject.html#static-public-members">QObject</a></li>
+<li><div class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QUiLoader class enables standalone applications to dynamically create user interfaces at run-time using the information stored in UI files or specified in plugin paths.</p>
+<p>In addition, you can customize or create your own user interface by deriving your own loader class.</p>
+<p>If you have a custom component or an application that embeds <i>Qt Designer</i>, you can also use the <a href="qformbuilder.html">QFormBuilder</a> class provided by the <a href="qtdesigner.html">QtDesigner</a> module to create user interfaces from UI files.</p>
+<p>The QUiLoader class provides a collection of functions allowing you to create widgets based on the information stored in UI files (created with <i>Qt Designer</i>) or available in the specified plugin paths. The specified plugin paths can be retrieved using the <a href="quiloader.html#pluginPaths">pluginPaths</a>() function. Similarly, the contents of a UI file can be retrieved using the <a href="quiloader.html#load">load</a>() function. For example:</p>
+<pre> MyWidget::MyWidget(QWidget *parent)
+     : QWidget(parent)
+ {
+     QUiLoader loader;
+     QFile file(&quot;:/forms/myform.ui&quot;);
+     file.open(QFile::ReadOnly);
+     QWidget *myWidget = loader.load(&amp;file, this);
+     file.close();
+
+     QVBoxLayout *layout = new QVBoxLayout;
+     layout-&gt;addWidget(myWidget);
+     setLayout(layout);
+ }</pre>
+<p>By including the user interface in the form's resources (<tt>myform.qrc</tt>), we ensure that it will be present at run-time:</p>
+<pre> &lt;!DOCTYPE RCC&gt;&lt;RCC version=&quot;1.0&quot;&gt;
+ &lt;qresource prefix=&quot;/forms&quot;&gt;
+ &lt;file&gt;myform.ui&lt;/file&gt;
+ &lt;/qresource&gt;
+ &lt;/RCC&gt;</pre>
+<p>The <a href="quiloader.html#availableWidgets">availableWidgets</a>() function returns a <a href="qstringlist.html">QStringList</a> with the class names of the widgets available in the specified plugin paths. To create these widgets, simply use the <a href="quiloader.html#createWidget">createWidget</a>() function. For example:</p>
+<pre> QWidget *loadCustomWidget(QWidget *parent)
+ {
+     QUiLoader loader;
+     QWidget *myWidget;
+
+     QStringList availableWidgets = loader.availableWidgets();
+
+     if (availableWidgets.contains(&quot;AnalogClock&quot;))
+         myWidget = loader.createWidget(&quot;AnalogClock&quot;, parent);
+
+     return myWidget;
+ }</pre>
+<p>To make a custom widget available to the loader, you can use the <a href="quiloader.html#addPluginPath">addPluginPath</a>() function; to remove all available widgets, you can call the <a href="quiloader.html#clearPluginPaths">clearPluginPaths</a>() function.</p>
+<p>The <a href="quiloader.html#createAction">createAction</a>(), <a href="quiloader.html#createActionGroup">createActionGroup</a>(), <a href="quiloader.html#createLayout">createLayout</a>(), and <a href="quiloader.html#createWidget">createWidget</a>() functions are used internally by the QUiLoader class whenever it has to create an action, action group, layout, or widget respectively. For that reason, you can subclass the QUiLoader class and reimplement these functions to intervene the process of constructing a user interface. For example, you might want to have a list of the actions created when loading a form or creating a custom widget.</p>
+<p>For a complete example using the QUiLoader class, see the <a href="designer-calculatorbuilder.html">Calculator Builder Example</a>.</p>
+<p>See also <a href="qtuitools.html">QtUiTools</a> and <a href="qformbuilder.html">QFormBuilder</a>.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QUiLoader/QUiLoader" />
+<h3 class="fn"><a name="QUiLoader"></a>QUiLoader::QUiLoader ( <a href="qobject.html">QObject</a> * <i>parent</i> = 0 )</h3>
+<p>Creates a form loader with the given <i>parent</i>.</p>
+<a name="//apple_ref/cpp/instm/QUiLoader/~QUiLoader" />
+<h3 class="fn"><a name="dtor.QUiLoader"></a>QUiLoader::~QUiLoader ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Destroys the loader.</p>
+<a name="//apple_ref/cpp/instm/QUiLoader/addPluginPath" />
+<h3 class="fn"><a name="addPluginPath"></a>void QUiLoader::addPluginPath ( const <a href="qstring.html">QString</a> &amp; <i>path</i> )</h3>
+<p>Adds the given <i>path</i> to the list of paths in which the loader will search when locating plugins.</p>
+<p>See also <a href="quiloader.html#pluginPaths">pluginPaths</a>() and <a href="quiloader.html#clearPluginPaths">clearPluginPaths</a>().</p>
+<a name="//apple_ref/cpp/instm/QUiLoader/availableLayouts" />
+<h3 class="fn"><a name="availableLayouts"></a><a href="qstringlist.html">QStringList</a> QUiLoader::availableLayouts () const</h3>
+<p>Returns a list naming all available layouts that can be built using the <a href="quiloader.html#createLayout">createLayout</a>() function</p>
+<p>This function was introduced in Qt 4.5.</p>
+<p>See also <a href="quiloader.html#createLayout">createLayout</a>().</p>
+<a name="//apple_ref/cpp/instm/QUiLoader/availableWidgets" />
+<h3 class="fn"><a name="availableWidgets"></a><a href="qstringlist.html">QStringList</a> QUiLoader::availableWidgets () const</h3>
+<p>Returns a list naming all available widgets that can be built using the <a href="quiloader.html#createWidget">createWidget</a>() function, i.e all the widgets specified within the given plugin paths.</p>
+<p>See also <a href="quiloader.html#pluginPaths">pluginPaths</a>() and <a href="quiloader.html#createWidget">createWidget</a>().</p>
+<a name="//apple_ref/cpp/instm/QUiLoader/clearPluginPaths" />
+<h3 class="fn"><a name="clearPluginPaths"></a>void QUiLoader::clearPluginPaths ()</h3>
+<p>Clears the list of paths in which the loader will search when locating plugins.</p>
+<p>See also <a href="quiloader.html#addPluginPath">addPluginPath</a>() and <a href="quiloader.html#pluginPaths">pluginPaths</a>().</p>
+<a name="//apple_ref/cpp/instm/QUiLoader/createAction" />
+<h3 class="fn"><a name="createAction"></a><a href="qaction.html">QAction</a> * QUiLoader::createAction ( <a href="qobject.html">QObject</a> * <i>parent</i> = 0, const <a href="qstring.html">QString</a> &amp; <i>name</i> = QString() )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Creates a new action with the given <i>parent</i> and <i>name</i>.</p>
+<p>The function is also used internally by the <a href="quiloader.html">QUiLoader</a> class whenever it creates a widget. Hence, you can subclass <a href="quiloader.html">QUiLoader</a> and reimplement this function to intervene process of constructing a user interface or widget. However, in your implementation, ensure that you call <a href="quiloader.html">QUiLoader</a>'s version first.</p>
+<p>See also <a href="quiloader.html#createActionGroup">createActionGroup</a>(), <a href="quiloader.html#createWidget">createWidget</a>(), and <a href="quiloader.html#load">load</a>().</p>
+<a name="//apple_ref/cpp/instm/QUiLoader/createActionGroup" />
+<h3 class="fn"><a name="createActionGroup"></a><a href="qactiongroup.html">QActionGroup</a> * QUiLoader::createActionGroup ( <a href="qobject.html">QObject</a> * <i>parent</i> = 0, const <a href="qstring.html">QString</a> &amp; <i>name</i> = QString() )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Creates a new action group with the given <i>parent</i> and <i>name</i>.</p>
+<p>The function is also used internally by the <a href="quiloader.html">QUiLoader</a> class whenever it creates a widget. Hence, you can subclass <a href="quiloader.html">QUiLoader</a> and reimplement this function to intervene process of constructing a user interface or widget. However, in your implementation, ensure that you call <a href="quiloader.html">QUiLoader</a>'s version first.</p>
+<p>See also <a href="quiloader.html#createAction">createAction</a>(), <a href="quiloader.html#createWidget">createWidget</a>(), and <a href="quiloader.html#load">load</a>().</p>
+<a name="//apple_ref/cpp/instm/QUiLoader/createLayout" />
+<h3 class="fn"><a name="createLayout"></a><a href="qlayout.html">QLayout</a> * QUiLoader::createLayout ( const <a href="qstring.html">QString</a> &amp; <i>className</i>, <a href="qobject.html">QObject</a> * <i>parent</i> = 0, const <a href="qstring.html">QString</a> &amp; <i>name</i> = QString() )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Creates a new layout with the given <i>parent</i> and <i>name</i> using the class specified by <i>className</i>.</p>
+<p>The function is also used internally by the <a href="quiloader.html">QUiLoader</a> class whenever it creates a widget. Hence, you can subclass <a href="quiloader.html">QUiLoader</a> and reimplement this function to intervene process of constructing a user interface or widget. However, in your implementation, ensure that you call <a href="quiloader.html">QUiLoader</a>'s version first.</p>
+<p>See also <a href="quiloader.html#createWidget">createWidget</a>() and <a href="quiloader.html#load">load</a>().</p>
+<a name="//apple_ref/cpp/instm/QUiLoader/createWidget" />
+<h3 class="fn"><a name="createWidget"></a><a href="qwidget.html">QWidget</a> * QUiLoader::createWidget ( const <a href="qstring.html">QString</a> &amp; <i>className</i>, <a href="qwidget.html">QWidget</a> * <i>parent</i> = 0, const <a href="qstring.html">QString</a> &amp; <i>name</i> = QString() )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Creates a new widget with the given <i>parent</i> and <i>name</i> using the class specified by <i>className</i>. You can use this function to create any of the widgets returned by the <a href="quiloader.html#availableWidgets">availableWidgets</a>() function.</p>
+<p>The function is also used internally by the <a href="quiloader.html">QUiLoader</a> class whenever it creates a widget. Hence, you can subclass <a href="quiloader.html">QUiLoader</a> and reimplement this function to intervene process of constructing a user interface or widget. However, in your implementation, ensure that you call <a href="quiloader.html">QUiLoader</a>'s version first.</p>
+<p>See also <a href="quiloader.html#availableWidgets">availableWidgets</a>() and <a href="quiloader.html#load">load</a>().</p>
+<a name="//apple_ref/cpp/instm/QUiLoader/isLanguageChangeEnabled" />
+<h3 class="fn"><a name="isLanguageChangeEnabled"></a>bool QUiLoader::isLanguageChangeEnabled () const</h3>
+<p>Returns true if dynamic retranslation on language change is enabled; returns false otherwise.</p>
+<p>This function was introduced in Qt 4.5.</p>
+<p>See also <a href="quiloader.html#setLanguageChangeEnabled">setLanguageChangeEnabled</a>().</p>
+<a name="//apple_ref/cpp/instm/QUiLoader/load" />
+<h3 class="fn"><a name="load"></a><a href="qwidget.html">QWidget</a> * QUiLoader::load ( <a href="qiodevice.html">QIODevice</a> * <i>device</i>, <a href="qwidget.html">QWidget</a> * <i>parentWidget</i> = 0 )</h3>
+<p>Loads a form from the given <i>device</i> and creates a new widget with the given <i>parentWidget</i> to hold its contents.</p>
+<p>See also <a href="quiloader.html#createWidget">createWidget</a>().</p>
+<a name="//apple_ref/cpp/instm/QUiLoader/pluginPaths" />
+<h3 class="fn"><a name="pluginPaths"></a><a href="qstringlist.html">QStringList</a> QUiLoader::pluginPaths () const</h3>
+<p>Returns a list naming the paths in which the loader will search when locating custom widget plugins.</p>
+<p>See also <a href="quiloader.html#addPluginPath">addPluginPath</a>() and <a href="quiloader.html#clearPluginPaths">clearPluginPaths</a>().</p>
+<a name="//apple_ref/cpp/instm/QUiLoader/setLanguageChangeEnabled" />
+<h3 class="fn"><a name="setLanguageChangeEnabled"></a>void QUiLoader::setLanguageChangeEnabled ( bool <i>enabled</i> )</h3>
+<p>If <i>enabled</i> is true, user interfaces loaded by this loader will automatically retranslate themselves upon receiving a language change event. Otherwise, the user interfaces will not be retranslated.</p>
+<p>This function was introduced in Qt 4.5.</p>
+<p>See also <a href="quiloader.html#isLanguageChangeEnabled">isLanguageChangeEnabled</a>().</p>
+<a name="//apple_ref/cpp/instm/QUiLoader/setWorkingDirectory" />
+<h3 class="fn"><a name="setWorkingDirectory"></a>void QUiLoader::setWorkingDirectory ( const <a href="qdir.html">QDir</a> &amp; <i>dir</i> )</h3>
+<p>Sets the working directory of the loader to <i>dir</i>. The loader will look for other resources, such as icons and resource files, in paths relative to this directory.</p>
+<p>See also <a href="quiloader.html#workingDirectory">workingDirectory</a>().</p>
+<a name="//apple_ref/cpp/instm/QUiLoader/workingDirectory" />
+<h3 class="fn"><a name="workingDirectory"></a><a href="qdir.html">QDir</a> QUiLoader::workingDirectory () const</h3>
+<p>Returns the working directory of the loader.</p>
+<p>See also <a href="quiloader.html#setWorkingDirectory">setWorkingDirectory</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

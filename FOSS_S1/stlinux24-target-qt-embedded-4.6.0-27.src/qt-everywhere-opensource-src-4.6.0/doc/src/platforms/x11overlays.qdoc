@@ -1,0 +1,98 @@
+/****************************************************************************
+**
+** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+** All rights reserved.
+** Contact: Nokia Corporation (qt-info@nokia.com)
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:LGPL$
+** Commercial Usage
+** Licensees holding valid Qt Commercial licenses may use this file in
+** accordance with the Qt Commercial License Agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and Nokia.
+**
+** GNU Lesser General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU Lesser
+** General Public License version 2.1 as published by the Free Software
+** Foundation and appearing in the file LICENSE.LGPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU Lesser General Public License version 2.1 requirements
+** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+**
+** In addition, as a special exception, Nokia gives you certain additional
+** rights.  These rights are described in the Nokia Qt LGPL Exception
+** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+**
+** GNU General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU
+** General Public License version 3.0 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU General Public License version 3.0 requirements will be
+** met: http://www.gnu.org/copyleft/gpl.html.
+**
+** If you have questions regarding the use of this file, please contact
+** Nokia at qt-info@nokia.com.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \page x11overlays.html
+    \title How to Use X11 Overlays with Qt
+
+    X11 overlays are a powerful mechanism for drawing
+    annotations etc., on top of an image without destroying it, thus saving
+    a great deal of image rendering time. For more information, see the highly
+    recommended book \e{OpenGL Programming for the X Window System} (Mark
+    Kilgard, Addison Wesley Developers Press 1996).
+
+    \warning The Qt OpenGL Extension includes direct support for the
+    use of OpenGL overlays. For many uses of overlays, this makes the
+    technique described below redundant. The following is a discussion
+    on how to use non-QGL widgets in overlay planes.
+
+    In the typical case, X11 overlays can easily be used together with the
+    current version of Qt and the Qt OpenGL Extension. The following
+    requirements apply:
+
+    \list 1
+    \i Your X server and graphics card/hardware must support overlays.
+       For many X servers, overlay support can be turned on with
+       a configuration option; consult your X server installation
+       documentation.
+
+    \i Your X server must (be configured to) use an overlay visual as the
+       default visual. Most modern X servers do this, since this has the
+       added advantage that pop-up menus, overlapping windows etc., will
+       \e not affect underlying images in the main plane, thereby
+       avoiding expensive redraws.
+
+    \i The best (deepest) visual for OpenGL rendering is in the main
+       plane. This is the normal case. Typically, X servers that support
+       overlays provide a 24-bit \c TrueColor visual in the main plane,
+       and an 8-bit \c PseudoColor (default) visual in the overlay plane.
+    \endlist
+
+    Assuming that the requirements mentioned above are met, a
+    QGLWidget will default to using the main plane visual, while all
+    other widgets will use the overlay visual. Thus, we can place a
+    normal widget on top of the QGLWidget, and do drawing on it,
+    without affecting the image in the OpenGL window. In other words,
+    we can use all the drawing capabilities of QPainter to draw
+    annotations, rubberbands, etc. For the typical use of overlays,
+    this is much easier than using OpenGL for rendering annotations.
+
+    An overlay plane has a specific color called the transparent
+    color. Pixels drawn in this color will not be visible; instead
+    the underlying OpenGL image will show through.
+
+    To use this technique, you must not use the
+    QApplication::ManyColor or QApplication::TrueColor color
+    specification for QApplication, because this will force the
+    normal Qt widgets to use a \c TrueColor visual, which will
+    typically be in the main plane, not in the overlay plane as
+    desired.
+*/

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- q3canvas.cpp -->
+<head>
+  <title>Qt 4.6: Q3CanvasPolygon Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//Q3CanvasPolygon" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">Q3CanvasPolygon Class Reference<br /><span class="small-subtitle">[<a href="qt3support.html">Qt3Support</a> module]</span>
+</h1>
+<p>The Q3CanvasPolygon class provides a polygon on a <a href="q3canvas.html">Q3Canvas</a>. <a href="#details">More...</a></p>
+<pre> #include &lt;Q3CanvasPolygon&gt;</pre><p><b>This class is part of the Qt 3 support library.</b> It is provided to keep old source code working. We strongly advise against using it in new code. See <a href="porting4.html">Porting to Qt 4</a> for more information.</p>
+<p><b>This class is not part of the Qt GUI Framework Edition.</b></p>
+<p>Inherits <a href="q3canvaspolygonalitem.html">Q3CanvasPolygonalItem</a>.</p>
+<p>Inherited by <a href="q3canvasspline.html">Q3CanvasSpline</a>.</p>
+<ul>
+<li><a href="q3canvaspolygon-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="q3canvaspolygon.html#Q3CanvasPolygon">Q3CanvasPolygon</a></b> ( Q3Canvas * <i>canvas</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="q3canvaspolygon.html#dtor.Q3CanvasPolygon">~Q3CanvasPolygon</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Q3PointArray </td><td class="memItemRight" valign="bottom"><b><a href="q3canvaspolygon.html#points">points</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="q3canvaspolygon.html#setPoints">setPoints</a></b> ( Q3PointArray <i>pa</i> )</td></tr>
+</table>
+<hr />
+<a name="reimplemented-public-functions"></a>
+<h2>Reimplemented Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual Q3PointArray </td><td class="memItemRight" valign="bottom"><b><a href="q3canvaspolygon.html#areaPoints">areaPoints</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="q3canvaspolygon.html#moveBy">moveBy</a></b> ( double <i>dx</i>, double <i>dy</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual int </td><td class="memItemRight" valign="bottom"><b><a href="q3canvaspolygon.html#rtti">rtti</a></b> () const</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>9 public functions inherited from <a href="q3canvaspolygonalitem.html#public-functions">Q3CanvasPolygonalItem</a></li>
+<li><div bar="2" class="fn"></div>34 public functions inherited from <a href="q3canvasitem.html#public-functions">Q3CanvasItem</a></li>
+</ul>
+<hr />
+<a name="reimplemented-protected-functions"></a>
+<h2>Reimplemented Protected Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="q3canvaspolygon.html#drawShape">drawShape</a></b> ( QPainter &amp; <i>p</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>6 protected functions inherited from <a href="q3canvaspolygonalitem.html#protected-functions">Q3CanvasPolygonalItem</a></li>
+<li><div bar="2" class="fn"></div>1 protected function inherited from <a href="q3canvasitem.html#protected-functions">Q3CanvasItem</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The Q3CanvasPolygon class provides a polygon on a <a href="q3canvas.html">Q3Canvas</a>.</p>
+<p>Paints a polygon with a <a href="qbrush.html">QBrush</a>. The polygon's points can be set in the constructor or set or changed later using <a href="q3canvaspolygon.html#setPoints">setPoints</a>(). Use <a href="q3canvaspolygon.html#points">points</a>() to retrieve the points, or <a href="q3canvaspolygon.html#areaPoints">areaPoints</a>() to retrieve the points relative to the canvas's origin.</p>
+<p>The polygon can be drawn on a painter with <a href="q3canvaspolygon.html#drawShape">drawShape</a>().</p>
+<p>Like any other canvas item polygons can be moved with <a href="q3canvasitem.html#move">Q3CanvasItem::move</a>() and <a href="q3canvasitem.html#moveBy">Q3CanvasItem::moveBy</a>(), or by setting coordinates with <a href="q3canvasitem.html#setX">Q3CanvasItem::setX</a>(), <a href="q3canvasitem.html#setY">Q3CanvasItem::setY</a>() and <a href="q3canvasitem.html#setZ">Q3CanvasItem::setZ</a>().</p>
+<p>Note: Q3CanvasPolygon does not use the pen.</p>
+<p>See also <a href="http://qt.nokia.com/doc/qtcanvas">QtCanvas</a> and <a href="graphicsview-porting.html">Porting to Graphics View</a>.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/Q3CanvasPolygon/Q3CanvasPolygon" />
+<h3 class="fn"><a name="Q3CanvasPolygon"></a>Q3CanvasPolygon::Q3CanvasPolygon ( <a href="q3canvas.html">Q3Canvas</a> * <i>canvas</i> )</h3>
+<p>Constructs a point-less polygon on the canvas <i>canvas</i>. You should call <a href="q3canvaspolygon.html#setPoints">setPoints</a>() before using it further.</p>
+<a name="//apple_ref/cpp/instm/Q3CanvasPolygon/~Q3CanvasPolygon" />
+<h3 class="fn"><a name="dtor.Q3CanvasPolygon"></a>Q3CanvasPolygon::~Q3CanvasPolygon ()</h3>
+<p>Destroys the polygon.</p>
+<a name="//apple_ref/cpp/instm/Q3CanvasPolygon/areaPoints" />
+<h3 class="fn"><a name="areaPoints"></a><a href="q3pointarray.html">Q3PointArray</a> Q3CanvasPolygon::areaPoints () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="q3canvaspolygonalitem.html#areaPoints">Q3CanvasPolygonalItem::areaPoints</a>().</p>
+<p>Returns the vertices of the polygon translated by the polygon's current <a href="q3canvasitem.html#x">x</a>(), <a href="q3canvasitem.html#y">y</a>() position, i.e&#x2e; relative to the canvas's origin.</p>
+<p>See also <a href="q3canvaspolygon.html#setPoints">setPoints</a>() and <a href="q3canvaspolygon.html#points">points</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3CanvasPolygon/drawShape" />
+<h3 class="fn"><a name="drawShape"></a>void Q3CanvasPolygon::drawShape ( <a href="qpainter.html">QPainter</a> &amp; <i>p</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="q3canvaspolygonalitem.html#drawShape">Q3CanvasPolygonalItem::drawShape</a>().</p>
+<p>Draws the polygon using the painter <i>p</i>.</p>
+<p>Note that <a href="q3canvaspolygon.html" class="compat">Q3CanvasPolygon</a> does not support an outline (the pen is always NoPen).</p>
+<a name="//apple_ref/cpp/instm/Q3CanvasPolygon/moveBy" />
+<h3 class="fn"><a name="moveBy"></a>void Q3CanvasPolygon::moveBy ( double <i>dx</i>, double <i>dy</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="q3canvasitem.html#moveBy">Q3CanvasItem::moveBy</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3CanvasPolygon/points" />
+<h3 class="fn"><a name="points"></a><a href="q3pointarray.html">Q3PointArray</a> Q3CanvasPolygon::points () const</h3>
+<p>Returns the vertices of the polygon, not translated by the position.</p>
+<p>See also <a href="q3canvaspolygon.html#setPoints">setPoints</a>() and <a href="q3canvaspolygon.html#areaPoints">areaPoints</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3CanvasPolygon/rtti" />
+<h3 class="fn"><a name="rtti"></a>int Q3CanvasPolygon::rtti () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="q3canvasitem.html#rtti">Q3CanvasItem::rtti</a>().</p>
+<p>Returns 4 (<a href="q3canvasitem.html#RttiValues-enum">Q3CanvasItem::Rtti_Polygon</a>).</p>
+<p>See also <a href="q3canvasitem.html#rtti">Q3CanvasItem::rtti</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3CanvasPolygon/setPoints" />
+<h3 class="fn"><a name="setPoints"></a>void Q3CanvasPolygon::setPoints ( <a href="q3pointarray.html">Q3PointArray</a> <i>pa</i> )</h3>
+<p>Sets the points of the polygon to be <i>pa</i>. These points will have their x and y coordinates automatically translated by <a href="q3canvasitem.html#x">x</a>(), <a href="q3canvasitem.html#y">y</a>() as the polygon is moved.</p>
+<p>See also <a href="q3canvaspolygon.html#points">points</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

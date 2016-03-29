@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- threads.qdoc -->
+<head>
+  <title>Qt 4.6: Concurrent Programming</title>
+  <link rel="prev" href="threads-qobject.html" />
+  <link rel="contents" href="threads.html" />
+  <link rel="next" href="threads-modules.html" />
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><p>
+[Previous: <a href="threads-qobject.html">Threads and QObjects</a>]
+[<a href="threads.html">Thread Support in Qt</a>]
+[Next: <a href="threads-modules.html">Thread-Support in Qt Modules</a>]
+</p>
+<h1 class="title">Concurrent Programming<br /><span class="subtitle"></span>
+</h1>
+<a name="qtconcurrent-intro"></a><p>The <a href="qtconcurrent.html">QtConcurrent</a> namespace provides high-level APIs that make it possible to write multi-threaded programs without using low-level threading primitives such as mutexes, read-write locks, wait conditions, or semaphores. Programs written with <a href="qtconcurrent.html">QtConcurrent</a> automatically adjust the number of threads used according to the number of processor cores available. This means that applications written today will continue to scale when deployed on multi-core systems in the future.</p>
+<p><a href="qtconcurrent.html">QtConcurrent</a> includes functional programming style APIs for parallel list processing, including a MapReduce and FilterReduce implementation for shared-memory (non-distributed) systems, and classes for managing asynchronous computations in GUI applications:</p>
+<ul>
+<li><a href="qtconcurrentmap.html#map">QtConcurrent::map</a>() applies a function to every item in a container, modifying the items in-place.</li>
+<li><a href="qtconcurrentmap.html#mapped">QtConcurrent::mapped</a>() is like map(), except that it returns a new container with the modifications.</li>
+<li><a href="qtconcurrentmap.html#mappedReduced">QtConcurrent::mappedReduced</a>() is like mapped(), except that the modified results are reduced or folded into a single result.</li>
+<li><a href="qtconcurrentfilter.html#filter">QtConcurrent::filter</a>() removes all items from a container based on the result of a filter function.</li>
+<li><a href="qtconcurrentfilter.html#filtered">QtConcurrent::filtered</a>() is like filter(), except that it returns a new container with the filtered results.</li>
+<li><a href="qtconcurrentfilter.html#filteredReduced">QtConcurrent::filteredReduced</a>() is like filtered(), except that the filtered results are reduced or folded into a single result.</li>
+<li><a href="qtconcurrentrun.html#run">QtConcurrent::run</a>() runs a function in another thread.</li>
+<li><a href="qfuture.html">QFuture</a> represents the result of an asynchronous computation.</li>
+<li><a href="qfutureiterator.html">QFutureIterator</a> allows iterating through results available via <a href="qfuture.html">QFuture</a>.</li>
+<li><a href="qfuturewatcher.html">QFutureWatcher</a> allows monitoring a <a href="qfuture.html">QFuture</a> using signals-and-slots.</li>
+<li><a href="qfuturesynchronizer.html">QFutureSynchronizer</a> is a convenience class that automatically synchronizes several QFutures.</li>
+</ul>
+<p>Qt Concurrent supports several STL-compatible container and iterator types, but works best with Qt containers that have random-access iterators, such as <a href="qlist.html">QList</a> or <a href="qvector.html">QVector</a>. The map and filter functions accept both containers and begin/end iterators.</p>
+<p>STL Iterator support overview:</p>
+<p><table class="generic" align="center" cellpadding="2" cellspacing="1" border="0">
+<thead><tr valign="top" class="qt-style"><th>Iterator Type</th><th>Example classes</th><th>Support status</th></tr></thead>
+<tr valign="top" class="odd"><td>Input Iterator</td><td></td><td>Not Supported</td></tr>
+<tr valign="top" class="even"><td>Output Iterator</td><td></td><td>Not Supported</td></tr>
+<tr valign="top" class="odd"><td>Forward Iterator</td><td>std::slist</td><td>Supported</td></tr>
+<tr valign="top" class="even"><td>Bidirectional Iterator</td><td><a href="qlinkedlist.html">QLinkedList</a>, std::list</td><td>Supported</td></tr>
+<tr valign="top" class="odd"><td>Random Access Iterator</td><td><a href="qlist.html">QList</a>, <a href="qvector.html">QVector</a>, std::vector</td><td>Supported and Recommended</td></tr>
+</table></p>
+<p>Random access iterators can be faster in cases where Qt Concurrent is iterating over a large number of lightweight items, since they allow skipping to any point in the container. In addition, using random access iterators allows Qt Concurrent to provide progress information trough <a href="qfuture.html#progressValue">QFuture::progressValue</a>() and QFutureWatcher:: progressValueChanged().</p>
+<p>The non in-place modifying functions such as mapped() and filtered() makes a copy of the container when called. If you are using STL containers this copy operation might take some time, in this case we recommend specifying the begin and end iterators for the container instead.</p>
+<p>
+[Previous: <a href="threads-qobject.html">Threads and QObjects</a>]
+[<a href="threads.html">Thread Support in Qt</a>]
+[Next: <a href="threads-modules.html">Thread-Support in Qt Modules</a>]
+</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

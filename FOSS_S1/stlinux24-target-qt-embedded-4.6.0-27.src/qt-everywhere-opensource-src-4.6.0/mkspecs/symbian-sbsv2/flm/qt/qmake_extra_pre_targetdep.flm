@@ -1,0 +1,35 @@
+# /****************************************************************************
+# **
+# ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+# ** Contact: Nokia Corporation (qt-info@nokia.com)
+# **
+# ** This file is part of symbian-sbsv2 mkspec.
+# **
+# ****************************************************************************/
+
+include $(FLMHOME)/metaflm.mk
+
+SINGLETON:=$(call sanitise,TARGET_$(PREDEP_TARGET))
+
+define qmake_extra_pre_targetdep
+$(ALLTARGET):: $(PREDEP_TARGET)
+EXPORT:: $(PREDEP_TARGET)
+LIBRARY:: $(PREDEP_TARGET)
+TARGET:: $(PREDEP_TARGET)
+
+# Prevent duplicate targets from being created
+$(SINGLETON):=1
+
+$(PREDEP_TARGET): $(DEPS) 
+	$(call startrule,qmake_extra_pre_targetdep) \
+	$(COMMAND) \
+	$(call endrule,qmake_extra_pre_targetdep)
+endef
+
+ifeq ($($(SINGLETON)),)
+$(eval $(qmake_extra_pre_targetdep))
+$(eval $(call GenerateStandardCleanTarget,$(PREDEP_TARGET),''))
+endif	
+
+
+

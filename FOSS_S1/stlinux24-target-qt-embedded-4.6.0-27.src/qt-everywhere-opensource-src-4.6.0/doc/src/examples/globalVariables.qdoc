@@ -1,0 +1,238 @@
+/****************************************************************************
+**
+** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+** All rights reserved.
+** Contact: Nokia Corporation (qt-info@nokia.com)
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:LGPL$
+** Commercial Usage
+** Licensees holding valid Qt Commercial licenses may use this file in
+** accordance with the Qt Commercial License Agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and Nokia.
+**
+** GNU Lesser General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU Lesser
+** General Public License version 2.1 as published by the Free Software
+** Foundation and appearing in the file LICENSE.LGPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU Lesser General Public License version 2.1 requirements
+** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+**
+** In addition, as a special exception, Nokia gives you certain additional
+** rights.  These rights are described in the Nokia Qt LGPL Exception
+** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+**
+** GNU General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU
+** General Public License version 3.0 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU General Public License version 3.0 requirements will be
+** met: http://www.gnu.org/copyleft/gpl.html.
+**
+** If you have questions regarding the use of this file, please contact
+** Nokia at qt-info@nokia.com.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \example xmlpatterns/xquery/globalVariables
+    \title C++ Source Code Analyzer Example
+
+    This example uses XQuery and the \c xmlpatterns command line utility to
+    query C++ source code.
+
+    \tableofcontents
+
+    \section1 Introduction
+
+    Suppose we want to analyze C++ source code to find coding standard
+    violations and instances of bad or inefficient patterns. We can do
+    it using the common searching and pattern matching utilities to
+    process the C++ files (e.g., \c{grep}, \c{sed}, and \c{awk}). Now
+    we can also use XQuery with the QtXmlPatterns module.
+
+    An extension to the \c{g++} open source C++ compiler
+    (\l{http://public.kitware.com/GCC_XML/HTML/Index.html} {GCC-XML})
+    generates an XML description of C++ source code declarations. This
+    XML description can then be processed by QtXmlPatterns using
+    XQueries to navigate the XML description of the C++ source and
+    produce a report. Consider the problem of finding mutable global
+    variables:
+
+    \section2 Reporting Uses of Mutable Global Variables
+
+    Suppose we want to introduce threading to a C++ application that
+    was originally written without threading. In a threaded program,
+    mutable global variables can cause bugs, because one thread might
+    change a global variable that other threads are reading, or two
+    threads might try to set the same global variable. So when
+    converting our program to use threading, one of the things we must
+    do is protect the global variables to prevent the bugs described
+    above. How can we use XQuery and
+    \l{http://public.kitware.com/GCC_XML/HTML/Index.html} {GCC-XML} to
+    find the variables that need protecting? 
+
+    \section3 A C++ application
+
+    Consider the declarations in this hypothetical C++ application:
+
+    \snippet examples/xmlpatterns/xquery/globalVariables/globals.cpp 0
+
+    \section3 The XML description of the C++ application
+
+    Submitting this C++ source to  
+    \l{http://public.kitware.com/GCC_XML/HTML/Index.html} {GCC-XML}
+    produces this XML description:
+
+    \quotefromfile examples/xmlpatterns/xquery/globalVariables/globals.gccxml
+    \printuntil
+
+    \section3 The XQuery for finding global variables
+
+    We need an XQuery to find the global variables in the XML
+    description. Here is our XQuery source. We walk through it in
+    \l{XQuery Code Walk-Through}.
+
+    \quotefromfile examples/xmlpatterns/xquery/globalVariables/reportGlobals.xq
+    \printuntil
+
+    \section3 Running the XQuery
+
+    To run the XQuery using the \c xmlpatterns command line utility,
+    enter the following command:
+
+    \code
+    xmlpatterns reportGlobals.xq -param fileToOpen=globals.gccxml -output globals.html
+    \endcode
+
+    \section3 The XQuery output
+
+    The \c xmlpatterns command loads and parses \c globals.gccxml,
+    runs the XQuery \c reportGlobals.xq, and generates this report:
+
+    \raw HTML
+<html xmlns="http://www.w3.org/1999/xhtml/" xml:lang="en" lang="en">
+    <head>
+        <title>Global variables report for globals.gccxml</title>
+    </head>
+    <style type="text/css">
+        .details
+        {
+            text-align: left;
+            font-size: 80%;
+            color: blue
+        }
+        .variableName
+        {
+            font-family: courier;
+	    color: blue
+        }
+    </style>
+    <body>
+        <p class="details">Start report: 2008-12-16T13:43:49.65Z</p>
+        <p>Global variables with complex types:</p>
+        <ol>
+            <li>
+                <span class="variableName">mutableComplex1</span> in globals.cpp at line 14</li>
+            <li>
+                <span class="variableName">mutableComplex2</span> in globals.cpp at line 15</li>
+            <li>
+                <span class="variableName">constComplex1</span> in globals.cpp at line 16</li>
+            <li>
+                <span class="variableName">constComplex2</span> in globals.cpp at line 17</li>
+        </ol>
+        <p>Mutable global variables with primitives types:</p>
+        <ol>
+            <li>
+                <span class="variableName">mutablePrimitive1</span> in globals.cpp at line 1</li>
+            <li>
+                <span class="variableName">mutablePrimitive2</span> in globals.cpp at line 2</li>
+        </ol>
+        <p class="details">End report: 2008-12-16T13:43:49.65Z</p>
+    </body>
+</html>
+    \endraw
+
+    \section1 XQuery Code Walk-Through  
+
+    The XQuery source is in
+    \c{examples/xmlpatterns/xquery/globalVariables/reportGlobals.xq}
+    It begins with two variable declarations that begin the XQuery:
+
+    \quotefromfile examples/xmlpatterns/xquery/globalVariables/reportGlobals.xq
+    \skipto declare variable
+    \printto (:
+
+    The first variable, \c{$fileToOpen}, appears in the \c xmlpatterns
+    command shown earlier, as \c{-param fileToOpen=globals.gccxml}.
+    This binds the variable name to the file name. This variable is
+    then used in the declaration of the second variable, \c{$inDoc},
+    as the parameter to the
+    \l{http://www.w3.org/TR/xpath-functions/#func-doc} {doc()}
+    function. The \c{doc()} function returns the document node of
+    \c{globals.gccxml}, which is assigned to \c{$inDoc} to be used
+    later in the XQuery as the root node of our searches for global
+    variables.
+
+    Next skip to the end of the XQuery, where the \c{<html>} element
+    is constructed. The \c{<html>} will contain a \c{<head>} element
+    to specify a heading for the html page, followed by some style
+    instructions for displaying the text, and then the \c{<body>}
+    element.
+
+    \quotefromfile examples/xmlpatterns/xquery/globalVariables/reportGlobals.xq
+    \skipto <html xmlns
+    \printuntil
+
+    The \c{<body>} element contains a call to the \c{local:report()}
+    function, which is where the query does the "heavy lifting."  Note
+    the two \c{return} clauses separated by the \e {comma operator}
+    about halfway down:
+
+    \quotefromfile examples/xmlpatterns/xquery/globalVariables/reportGlobals.xq
+    \skipto declare function local:report()
+    \printuntil };
+
+    The \c{return} clauses are like two separate queries. The comma
+    operator separating them means that both \c{return} clauses are
+    executed and both return their results, or, rather, both output
+    their results. The first \c{return} clause searches for global
+    variables with complex types, and the second searches for mutable
+    global variables with primitive types.
+
+    Here is the html generated for the \c{<body>} element. Compare
+    it with the XQuery code above:
+
+    \quotefromfile examples/xmlpatterns/xquery/globalVariables/globals.html
+    \skipto <body>
+    \printuntil </body>
+     
+    The XQuery declares three more local functions that are called in
+    turn by the \c{local:report()} function. \c{isComplexType()}
+    returns true if the variable has a complex type. The variable can
+    be mutable or const.
+    
+    \quotefromfile examples/xmlpatterns/xquery/globalVariables/reportGlobals.xq
+    \skipto declare function local:isComplexType
+    \printuntil };
+
+    \c{isPrimitive()} returns true if the variable has a primitive
+    type. The variable must be mutable.
+
+    \quotefromfile examples/xmlpatterns/xquery/globalVariables/reportGlobals.xq
+    \skipto declare function local:isPrimitive
+    \printuntil };
+
+    \c{location()} returns a text constructed from the variable's file
+    and line number attributes.
+
+    \quotefromfile examples/xmlpatterns/xquery/globalVariables/reportGlobals.xq
+    \skipto declare function local:location
+    \printuntil };
+
+ */

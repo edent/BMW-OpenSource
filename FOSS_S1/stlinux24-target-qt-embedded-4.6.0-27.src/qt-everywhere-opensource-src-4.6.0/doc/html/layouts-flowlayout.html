@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- flowlayout.qdoc -->
+<head>
+  <title>Qt 4.6: Flow Layout Example</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">Flow Layout Example<br /><span class="subtitle"></span>
+</h1>
+<p>Files:</p>
+<ul>
+<li><a href="layouts-flowlayout-flowlayout-cpp.html">layouts/flowlayout/flowlayout.cpp</a></li>
+<li><a href="layouts-flowlayout-flowlayout-h.html">layouts/flowlayout/flowlayout.h</a></li>
+<li><a href="layouts-flowlayout-window-cpp.html">layouts/flowlayout/window.cpp</a></li>
+<li><a href="layouts-flowlayout-window-h.html">layouts/flowlayout/window.h</a></li>
+<li><a href="layouts-flowlayout-main-cpp.html">layouts/flowlayout/main.cpp</a></li>
+<li><a href="layouts-flowlayout-flowlayout-pro.html">layouts/flowlayout/flowlayout.pro</a></li>
+</ul>
+<p>The Flow Layout example demonstrates a custom layout that arranges child widgets from left to right and top to bottom in a top-level widget.</p>
+<p align="center"><img src="images/flowlayout-example.png" alt="Screenshot of the Flow Layout example" /></p><p>The items are first laid out horizontally and then vertically when each line in the layout runs out of space.</p>
+<p>The Flowlayout class mainly uses <a href="qlayout.html">QLayout</a> and <a href="qwidgetitem.html">QWidgetItem</a>, while the Window uses <a href="qwidget.html">QWidget</a> and <a href="qlabel.html">QLabel</a>. We will only document the definition and implementation of <tt>FlowLayout</tt> below.</p>
+<a name="flowlayout-class-definition"></a>
+<h2>FlowLayout Class Definition</h2>
+<p>The <tt>FlowLayout</tt> class inherits <a href="qlayout.html">QLayout</a>. It is a custom layout class that arranges its child widgets horizontally and vertically.</p>
+<pre> class FlowLayout : public QLayout
+ {
+ public:
+     FlowLayout(QWidget *parent, int margin = -1, int hSpacing = -1, int vSpacing = -1);
+     FlowLayout(int margin = -1, int hSpacing = -1, int vSpacing = -1);
+     ~FlowLayout();
+
+     void addItem(QLayoutItem *item);
+     int horizontalSpacing() const;
+     int verticalSpacing() const;
+     Qt::Orientations expandingDirections() const;
+     bool hasHeightForWidth() const;
+     int heightForWidth(int) const;
+     int count() const;
+     QLayoutItem *itemAt(int index) const;
+     QSize minimumSize() const;
+     void setGeometry(const QRect &amp;rect);
+     QSize sizeHint() const;
+     QLayoutItem *takeAt(int index);
+
+ private:
+     int doLayout(const QRect &amp;rect, bool testOnly) const;
+     int smartSpacing(QStyle::PixelMetric pm) const;
+
+     QList&lt;QLayoutItem *&gt; itemList;
+     int m_hSpace;
+     int m_vSpace;
+ };</pre>
+<p>We reimplement functions inherited from <a href="qlayout.html">QLayout</a>. These functions add items to the layout and handle their orientation and geometry.</p>
+<p>We also declare two private methods, <tt>doLayout()</tt> and <tt>smartSpacing()</tt>. <tt>doLayout()</tt> lays out the layout items, while the <tt>smartSpacing()</tt> function calculates the spacing between them.</p>
+<a name="flowlayout-class-implementation"></a>
+<h2>FlowLayout Class Implementation</h2>
+<p>We start off by looking at the constructor:</p>
+<pre> FlowLayout::FlowLayout(QWidget *parent, int margin, int hSpacing, int vSpacing)
+     : QLayout(parent), m_hSpace(hSpacing), m_vSpace(vSpacing)
+ {
+     setContentsMargins(margin, margin, margin, margin);
+ }
+
+ FlowLayout::FlowLayout(int margin, int hSpacing, int vSpacing)
+     : m_hSpace(hSpacing), m_vSpace(vSpacing)
+ {
+     setContentsMargins(margin, margin, margin, margin);
+ }</pre>
+<p>In the constructor we call <tt>setContentsMargins()</tt> to set the left, top, right and bottom margin. By default, <a href="qlayout.html">QLayout</a> uses values provided by the current style (see <a href="qstyle.html#PixelMetric-enum">QStyle::PixelMetric</a>).</p>
+<pre> FlowLayout::~FlowLayout()
+ {
+     QLayoutItem *item;
+     while ((item = takeAt(0)))
+         delete item;
+ }</pre>
+<p>In this example we reimplement <tt>addItem()</tt>, which is a pure virtual function. When using <tt>addItem()</tt> the ownership of the layout items is transferred to the layout, and it is therefore the layout's responsibility to delete them.</p>
+<pre> void FlowLayout::addItem(QLayoutItem *item)
+ {
+     itemList.append(item);
+ }</pre>
+<p><tt>addItem()</tt> is implemented to add items to the layout.</p>
+<pre> int FlowLayout::horizontalSpacing() const
+ {
+     if (m_hSpace &gt;= 0) {
+         return m_hSpace;
+     } else {
+         return smartSpacing(QStyle::PM_LayoutHorizontalSpacing);
+     }
+ }
+
+ int FlowLayout::verticalSpacing() const
+ {
+     if (m_vSpace &gt;= 0) {
+         return m_vSpace;
+     } else {
+         return smartSpacing(QStyle::PM_LayoutVerticalSpacing);
+     }
+ }</pre>
+<p>We implement <tt>horizontalSpacing()</tt> and <tt>verticalSpacing()</tt> to get hold of the spacing between the widgets inside the layout. If the value is less than or equal to 0, this value will be used. If not, <tt>smartSpacing()</tt> will be called to calculate the spacing.</p>
+<pre> int FlowLayout::count() const
+ {
+     return itemList.size();
+ }
+
+ QLayoutItem *FlowLayout::itemAt(int index) const
+ {
+     return itemList.value(index);
+ }
+
+ QLayoutItem *FlowLayout::takeAt(int index)
+ {
+     if (index &gt;= 0 &amp;&amp; index &lt; itemList.size())
+         return itemList.takeAt(index);
+     else
+         return 0;
+ }</pre>
+<p>We then implement <tt>count()</tt> to return the number of items in the layout. To navigate the list of items we use <tt>itemAt()</tt> and takeAt() to remove and return items from the list. If an item is removed, the remaining items will be renumbered. All three functions are pure virtual functions from <a href="qlayout.html">QLayout</a>.</p>
+<pre> Qt::Orientations FlowLayout::expandingDirections() const
+ {
+     return 0;
+ }</pre>
+<p><tt>expandingDirections()</tt> returns the <a href="qt.html#Orientation-enum">Qt::Orientation</a>s in which the layout can make use of more space than its <tt>sizeHint()</tt>.</p>
+<pre> bool FlowLayout::hasHeightForWidth() const
+ {
+     return true;
+ }
+
+ int FlowLayout::heightForWidth(int width) const
+ {
+     int height = doLayout(QRect(0, 0, width, 0), true);
+     return height;
+ }</pre>
+<p>To adjust to widgets of which height is dependent on width, we implement <tt>heightForWidth()</tt>. The function <tt>hasHeightForWidth()</tt> is used to test for this dependency, and <tt>heightForWidth()</tt> passes the width on to <tt>doLayout()</tt> which in turn uses the width as an argument for the layout rect, i.e&#x2e;, the bounds in which the items are laid out. This rect does not include the layout margin().</p>
+<pre> void FlowLayout::setGeometry(const QRect &amp;rect)
+ {
+     QLayout::setGeometry(rect);
+     doLayout(rect, false);
+ }
+
+ QSize FlowLayout::sizeHint() const
+ {
+     return minimumSize();
+ }
+
+ QSize FlowLayout::minimumSize() const
+ {
+     QSize size;
+     QLayoutItem *item;
+     foreach (item, itemList)
+         size = size.expandedTo(item-&gt;minimumSize());
+
+     size += QSize(2*margin(), 2*margin());
+     return size;
+ }</pre>
+<p><tt>setGeometry()</tt> is normally used to do the actual layout, i.e&#x2e;, calculate the geometry of the layout's items. In this example, it calls <tt>doLayout()</tt> and passes the layout rect.</p>
+<p><tt>sizeHint()</tt> returns the preferred size of the layout and <tt>minimumSize()</tt> returns the minimum size of the layout.</p>
+<pre> int FlowLayout::doLayout(const QRect &amp;rect, bool testOnly) const
+ {
+     int left, top, right, bottom;
+     getContentsMargins(&amp;left, &amp;top, &amp;right, &amp;bottom);
+     QRect effectiveRect = rect.adjusted(+left, +top, -right, -bottom);
+     int x = effectiveRect.x();
+     int y = effectiveRect.y();
+     int lineHeight = 0;</pre>
+<p><tt>doLayout()</tt> handles the layout if <tt>horizontalSpacing()</tt> or <tt>verticalSpacing()</tt> don't return the default value. It uses <tt>getContentsMargins()</tt> to calculate the area available to the layout items.</p>
+<pre>     QLayoutItem *item;
+     foreach (item, itemList) {
+         QWidget *wid = item-&gt;widget();
+         int spaceX = horizontalSpacing();
+         if (spaceX == -1)
+             spaceX = wid-&gt;style()-&gt;layoutSpacing(
+                 QSizePolicy::PushButton, QSizePolicy::PushButton, Qt::Horizontal);
+         int spaceY = verticalSpacing();
+         if (spaceY == -1)
+             spaceY = wid-&gt;style()-&gt;layoutSpacing(
+                 QSizePolicy::PushButton, QSizePolicy::PushButton, Qt::Vertical);</pre>
+<p>It then sets the proper amount of spacing for each widget in the layout, based on the current style.</p>
+<pre>         int nextX = x + item-&gt;sizeHint().width() + spaceX;
+         if (nextX - spaceX &gt; effectiveRect.right() &amp;&amp; lineHeight &gt; 0) {
+             x = effectiveRect.x();
+             y = y + lineHeight + spaceY;
+             nextX = x + item-&gt;sizeHint().width() + spaceX;
+             lineHeight = 0;
+         }
+
+         if (!testOnly)
+             item-&gt;setGeometry(QRect(QPoint(x, y), item-&gt;sizeHint()));
+
+         x = nextX;
+         lineHeight = qMax(lineHeight, item-&gt;sizeHint().height());
+     }
+     return y + lineHeight - rect.y() + bottom;
+ }</pre>
+<p>The position of each item in the layout is then calculated by adding the items width and the line height to the initial x and y coordinates. This in turn lets us find out whether the next item will fit on the current line or if it must be moved down to the next. We also find the height of the current line based on the widgets height.</p>
+<pre> int FlowLayout::smartSpacing(QStyle::PixelMetric pm) const
+ {
+     QObject *parent = this-&gt;parent();
+     if (!parent) {
+         return -1;
+     } else if (parent-&gt;isWidgetType()) {
+         QWidget *pw = static_cast&lt;QWidget *&gt;(parent);
+         return pw-&gt;style()-&gt;pixelMetric(pm, 0, pw);
+     } else {
+         return static_cast&lt;QLayout *&gt;(parent)-&gt;spacing();
+     }
+ }</pre>
+<p><tt>smartSpacing()</tt> is designed to get the default spacing for either the top-level layouts or the sublayouts. The default spacing for top-level layouts, when the parent is a <a href="qwidget.html">QWidget</a>, will be determined by querying the style. The default spacing for sublayouts, when the parent is a <a href="qlayout.html">QLayout</a>, will be determined by querying the spacing of the parent layout.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

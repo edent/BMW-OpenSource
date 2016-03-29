@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- developing-on-mac.qdoc -->
+<head>
+  <title>Qt 4.6: Developing Qt Applications on Mac OS X</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">Developing Qt Applications on Mac OS X<br /><span class="subtitle"></span>
+</h1>
+<ul><li><a href="#what-versions-of-mac-os-x-are-supported">What Versions of Mac OS X are Supported?</a></li>
+<ul><li><a href="#carbon-or-cocoa">Carbon or Cocoa?</a></li>
+<li><a href="#which-one-should-i-use">Which One Should I Use?</a></li>
+</ul>
+<li><a href="#universal-binaries">Universal Binaries</a></li>
+<li><a href="#day-to-day-application-development-on-os-x">Day-to-Day Application Development on OS X</a></li>
+<li><a href="#deployment-compile-once-deploy-everywhere">Deployment - &quot;Compile once, deploy everywhere&quot;</a></li>
+</ul>
+<p>Mac OS X is a UNIX platform and behaves similar to other Unix-like platforms. The main difference is X11 is not used as the primary windowing system. Instead, Mac OS X uses its own native windowing system that is accessible through the Carbon and Cocoa APIs. Application development on Mac OS X is done using Xcode Tools, an optional install included on every Mac with updates available from <a href="http://developer.apple.com">Apple's developer website</a>. Xcode Tools includes Apple-modified versions of the GCC compiler.</p>
+<a name="what-versions-of-mac-os-x-are-supported"></a>
+<h3>What Versions of Mac OS X are Supported?</h3>
+<p>As of Qt 4.6, Qt supports Mac OS X versions 10.4 and up. It is usually in the best interest of the developer and user to be running the latest updates to any version. We test internally against Mac OS X 10.4&#x2e;11 as well as the updated release of Mac OS X 10.5 and Mac OS X 10.6&#x2e;</p>
+<a name="carbon-or-cocoa"></a>
+<h4>Carbon or Cocoa?</h4>
+<p>Historically, Qt has used the Carbon toolkit, which supports 32-bit applications on Mac OS X 10.4 and up. Qt 4.5 and up has support for the Cocoa toolkit, which requires 10.5 and provides 64-bit support.</p>
+<p>This detail is typically not important to Qt application developers. Qt is cross-platform across Carbon and Cocoa, and Qt applications behave the same way when configured for either one. Eventually, the Carbon version will be discontinued. This is something to keep in mind when you consider writing code directly against native APIs.</p>
+<p>The current binary for Qt is built in two flavors, 32-bit Carbon and full universal Cocoa (32-bit and 64-bit). If you want a different setup for Qt will use, you must build from scratch. Carbon or Cocoa is chosen when configuring the package for building. The configure process selects Carbon by default, to specify Cocoa use the <tt>-cocoa</tt> flag. configure for a 64-bit architecture using one of the <tt>-arch</tt> flags (see <a href="#universal-binaries">Universal Binaries</a>).</p>
+<p>Currently, Apple's default GCC compiler is used by default (GCC 4.0&#x2e;1 on 10.4 and 10.5, GCC 4.2 on 10.6). You can specify alternate compilers though. For example, on Mac OS X 10.5, Apple's GCC 4.2 is also available and selectable with the configure flag: <tt>-platform macx-g++42</tt>. LLVM-GCC support is available by passing in the <tt>-platform macx-llvm</tt> flag. GCC 3.x will <i>not</i> work. Though they may work, We do not support custom-built GCC's.</p>
+<p>The following table summarizes the different versions of Mac OS X and what capabilities are used by Qt.</p>
+<p><table class="generic" align="center" cellpadding="2" cellspacing="1" border="0">
+<thead><tr valign="top" class="qt-style"><th>Mac OS X Version</th><th>Cat Name</th><th>Native API Used by Qt</th><th>Bits available to address memory</th><th>CPU Architecture Supported</th><th>Development Platform</th></tr></thead>
+<tr valign="top" class="odd"><td>10.4</td><td>Tiger</td><td>Carbon</td><td>32</td><td>PPC/Intel</td><td>Yes</td></tr>
+<tr valign="top" class="even"><td>10.5</td><td>Leopard</td><td>Carbon</td><td>32</td><td>PPC/Intel</td><td>Yes</td></tr>
+<tr valign="top" class="odd"><td>10.5</td><td>Leopard</td><td>Cocoa</td><td>32/64</td><td>PPC/Intel</td><td>Yes</td></tr>
+<tr valign="top" class="even"><td>10.6</td><td>Snow Leopard</td><td>Cocoa/Carbon</td><td>32</td><td>PPC/Intel</td><td>Yes</td></tr>
+<tr valign="top" class="odd"><td>10.6</td><td>Snow Leopard</td><td>Cocoa</td><td>64</td><td>Intel</td><td>Yes</td></tr>
+</table></p>
+<p>Note that building for ppc-64 is not supported on 10.6&#x2e;</p>
+<a name="which-one-should-i-use"></a>
+<h4>Which One Should I Use?</h4>
+<p>Carbon and Cocoa both have their advantages and disadvantages. Probably the easiest way to determine is to look at the version of Mac OS X you are targetting. If you are starting a new application and can target 10.5 and up, then please consider Cocoa only. If you have an existing application or need to target earlier versions of the operating system and do not need access to 64-bit or newer Apple technologies, then Carbon is a good fit. If your needs fall in between, you can go with a 64-bit Cocoa and 32-bit Carbon universal application with the appropriate checks in your code to choose the right path based on where you are running the application.</p>
+<p>For Mac OS X 10.6, Apple has started recommending developers to build their applications 64-bit. The main reason is that there is a small speed increase due to the extra registers on Intel CPU's, all their machine offerings have been 64-bit since 2007, and there is a cost for reading all the 32-bit libraries into memory if everything else is 64-bit. If you want to follow this advice, there is only one choice, 64-bit Cocoa.</p>
+<a name="universal-binaries"></a><a name="universal-binaries"></a>
+<h3>Universal Binaries</h3>
+<p>In 2006, Apple begin transitioning from PowerPC (PPC) to Intel (x86) systems. Both architectures are supported by Qt. The release of Mac OS X 10.5 in October 2007 added the possibility of writing and deploying 64-bit GUI applications. Qt 4.5 and up supports both the 32-bit (PPC and x86) and 64-bit (PPC64 and x86-64) versions of PowerPC and Intel-based systems.</p>
+<p>Universal binaries are used to bundle binaries for more than one architecture into a single package, simplifying deployment and distribution. When running an application the operating system will select the most appropriate architecture. Universal binaries support the following architectures; they can be added to the build at configure time using the <tt>-arch</tt> arguments:</p>
+<p><table class="generic" align="center" cellpadding="2" cellspacing="1" border="0">
+<thead><tr valign="top" class="qt-style"><th>Architecture</th><th>Flag</th></tr></thead>
+<tr valign="top" class="odd"><td>Intel, 32-bit</td><td><tt>-arch x86</tt></td></tr>
+<tr valign="top" class="even"><td>Intel, 64-bit</td><td><tt>-arch x86_64</tt></td></tr>
+<tr valign="top" class="odd"><td>PPC, 32-bit</td><td><tt>-arch ppc</tt></td></tr>
+<tr valign="top" class="even"><td>PPC, 64-bit</td><td><tt>-arch ppc64</tt></td></tr>
+</table></p>
+<p>If there are no <tt>-arch</tt> flags specified, configure builds for the 32-bit architecture, if you are currently on one. Universal binaries were initially used to simplify the PPC to Intel migration. You can use <tt>-universal</tt> to build for both the 32-bit Intel and PPC architectures.</p>
+<p><b>Note:</b> The <tt>-arch</tt> flags at configure time only affect how Qt is built. Applications are by default built for the 32-bit architecture you are currently on. To build a universal binary, add the architectures to the CONFIG variable in the .pro file:</p>
+<pre> CONFIG += x86 ppc x86_64 ppc64</pre>
+<a name="day-to-day-application-development-on-os-x"></a>
+<h3>Day-to-Day Application Development on OS X</h3>
+<p>On the command-line, applications can be built using <tt>qmake</tt> and <tt>make</tt>. Optionally, <tt>qmake</tt> can generate project files for Xcode with <tt>-spec macx-xcode</tt>. If you are using the binary package, <tt>qmake</tt> generates Xcode projects by default; use <tt>-spec macx-gcc</tt> to generate makefiles.</p>
+<p>The result of the build process is an application bundle, which is a directory structure that contains the actual application executable. The application can be launched by double-clicking it in Finder, or by referring directly to its executable from the command line, i. e. <tt>myApp.app/Contents/MacOS/myApp</tt>.</p>
+<p>If you wish to have a command-line tool that does not use the GUI (e.g&#x2e;, <tt>moc</tt>, <tt>uic</tt> or <tt>ls</tt>), you can tell <tt>qmake</tt> not to execute the bundle creating steps by removing it from the <tt>CONFIG</tt> in your <tt>.pro</tt> file:</p>
+<pre> CONFIG -= app_bundle</pre>
+<a name="deployment-compile-once-deploy-everywhere"></a>
+<h3>Deployment - &quot;Compile once, deploy everywhere&quot;</h3>
+<p>In general, Qt supports building on one Mac OS X version and deploying on all others, both forward and backwards. You can build on 10.4 Tiger and run the same binary on 10.5 and up.</p>
+<p>Some restrictions apply:</p>
+<ul>
+<li>Some functions and optimization paths that exist in later versions of Mac OS X will not be available if you build on an earlier version of Mac OS X.</li>
+<li>The CPU architecture should match.</li>
+<li>Cocoa support is only available for Mac OS X 10.5 and up.</li>
+</ul>
+<p>Universal binaries can be used to provide a smorgasbord of configurations catering to all possible architectures.</p>
+<p>Mac applications are typically deployed as self-contained application bundles. The application bundle contains the application executable as well as dependencies such as the Qt libraries, plugins, translations and other resources you may need. Third party libraries like Qt are normally not installed system-wide; each application provides its own copy.</p>
+<p>The most common way to distribute applications is to provide a compressed disk image (.dmg file) that the user can mount in Finder. The Mac deployment tool (macdeployqt) can be used to create the self-contained bundles, and optionally also create a .dmg archive. See the <a href="deployment-mac.html">Mac deployment guide</a> for more information about deployment. It is also possible to use an installer wizard. More information on this option can be found in <a href="http://developer.apple.com/mac/">Apple's documentation</a>.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

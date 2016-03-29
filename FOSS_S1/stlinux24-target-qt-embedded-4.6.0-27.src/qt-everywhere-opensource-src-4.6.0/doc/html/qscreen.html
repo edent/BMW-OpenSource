@@ -1,0 +1,585 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qscreen_qws.cpp -->
+<head>
+  <title>Qt 4.6: QScreen Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QScreen" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QScreen Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QScreen class is a base class for screen drivers in Qt for Embedded Linux. <a href="#details">More...</a></p>
+<pre> #include &lt;QScreen&gt;</pre><p>Inherited by <a href="qproxyscreen.html">QProxyScreen</a>.</p>
+<ul>
+<li><a href="qscreen-members.html">List of all members, including inherited members</a></li>
+<li><a href="qscreen-qt3.html">Qt 3 support members</a></li>
+</ul>
+<hr />
+<a name="public-types"></a>
+<h2>Public Types</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#ClassId-enum">ClassId</a></b> { LinuxFBClass, TransformedClass, VNCClass, MultiClass, ..., CustomClass }</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#PixelType-enum">PixelType</a></b> { NormalPixel, BGRPixel }</td></tr>
+</table>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#QScreen">QScreen</a></b> ( int <i>display_id</i>, ClassId <i>classId</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#QScreen-2">QScreen</a></b> ( int <i>displayId</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#dtor.QScreen">~QScreen</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual int </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#alloc">alloc</a></b> ( unsigned int <i>red</i>, unsigned int <i>green</i>, unsigned int <i>blue</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">uchar * </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#base">base</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#blank">blank</a></b> ( bool <i>on</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#blit">blit</a></b> ( const QImage &amp; <i>image</i>, const QPoint &amp; <i>topLeft</i>, const QRegion &amp; <i>region</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">ClassId </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#classId">classId</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QRgb * </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#clut">clut</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#colorCount">colorCount</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#connect">connect</a></b> ( const QString &amp; <i>displaySpec</i> ) = 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QWSWindowSurface * </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#createSurface">createSurface</a></b> ( const QString &amp; <i>key</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QWSWindowSurface * </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#createSurface-2">createSurface</a></b> ( QWidget * <i>widget</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#depth">depth</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#deviceHeight">deviceHeight</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#deviceWidth">deviceWidth</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#disconnect">disconnect</a></b> () = 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#exposeRegion">exposeRegion</a></b> ( QRegion <i>region</i>, int <i>windowIndex</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#height">height</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#initDevice">initDevice</a></b> () = 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#isInterlaced">isInterlaced</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#isTransformed">isTransformed</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#linestep">linestep</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QSize </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#mapFromDevice">mapFromDevice</a></b> ( const QSize &amp; <i>size</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QPoint </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#mapFromDevice-2">mapFromDevice</a></b> ( const QPoint &amp; <i>point</i>, const QSize &amp; <i>screenSize</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QRect </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#mapFromDevice-3">mapFromDevice</a></b> ( const QRect &amp; <i>rectangle</i>, const QSize &amp; <i>screenSize</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QImage </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#mapFromDevice-4">mapFromDevice</a></b> ( const QImage &amp; <i>image</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QRegion </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#mapFromDevice-5">mapFromDevice</a></b> ( const QRegion &amp; <i>region</i>, const QSize &amp; <i>screenSize</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QSize </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#mapToDevice">mapToDevice</a></b> ( const QSize &amp; <i>size</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QPoint </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#mapToDevice-2">mapToDevice</a></b> ( const QPoint &amp; <i>point</i>, const QSize &amp; <i>screenSize</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QRect </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#mapToDevice-3">mapToDevice</a></b> ( const QRect &amp; <i>rectangle</i>, const QSize &amp; <i>screenSize</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QImage </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#mapToDevice-4">mapToDevice</a></b> ( const QImage &amp; <i>image</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QRegion </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#mapToDevice-5">mapToDevice</a></b> ( const QRegion &amp; <i>region</i>, const QSize &amp; <i>screenSize</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QPoint </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#offset">offset</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#onCard">onCard</a></b> ( const unsigned char * <i>buffer</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#onCard-2">onCard</a></b> ( const unsigned char * <i>buffer</i>, ulong &amp; <i>offset</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#physicalHeight">physicalHeight</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#physicalWidth">physicalWidth</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QImage::Format </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#pixelFormat">pixelFormat</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">PixelType </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#pixelType">pixelType</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual int </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#pixmapDepth">pixmapDepth</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual int </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#pixmapLinestepAlignment">pixmapLinestepAlignment</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual int </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#pixmapOffsetAlignment">pixmapOffsetAlignment</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QRegion </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#region">region</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#restore">restore</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#save">save</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#screenSize">screenSize</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#setDirty">setDirty</a></b> ( const QRect &amp; <i>rectangle</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#setMode">setMode</a></b> ( int <i>width</i>, int <i>height</i>, int <i>depth</i> ) = 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#shutdownDevice">shutdownDevice</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#solidFill">solidFill</a></b> ( const QColor &amp; <i>color</i>, const QRegion &amp; <i>region</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#subScreenIndexAt">subScreenIndexAt</a></b> ( const QPoint &amp; <i>position</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QList&lt;QScreen *&gt; </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#subScreens">subScreens</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#supportsDepth">supportsDepth</a></b> ( int <i>depth</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#totalSize">totalSize</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual int </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#transformOrientation">transformOrientation</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#width">width</a></b> () const</td></tr>
+</table>
+<hr />
+<a name="static-public-members"></a>
+<h2>Static Public Members</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">QScreen * </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#instance">instance</a></b> ()</td></tr>
+</table>
+<hr />
+<a name="protected-functions"></a>
+<h2>Protected Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#setPixelFormat">setPixelFormat</a></b> ( QImage::Format <i>format</i> )</td></tr>
+</table>
+<hr />
+<a name="protected-variables"></a>
+<h2>Protected Variables</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#d-var">d</a></b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">uchar * </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#data-var">data</a></b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#dh-var">dh</a></b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#dw-var">dw</a></b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#grayscale-var">grayscale</a></b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#h-var">h</a></b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#lstep-var">lstep</a></b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#mapsize-var">mapsize</a></b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#physHeight-var">physHeight</a></b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#physWidth-var">physWidth</a></b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">PixelType </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#pixeltype-var">pixeltype</a></b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QRgb </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#screenclut-var">screenclut</a></b>[256]</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#screencols-var">screencols</a></b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#size-var">size</a></b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#w-var">w</a></b></td></tr>
+</table>
+<hr />
+<a name="related-non-members"></a>
+<h2>Related Non-Members</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qscreen.html#setTransformation">setTransformation</a></b> ( int <i>transformation</i>, int <i>screenNo</i> = -1 )</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QScreen class is a base class for screen drivers in Qt for Embedded Linux.</p>
+<p>Note that this class is only available in <a href="qt-embedded-linux.html">Qt for Embedded Linux</a>.</p>
+<p><a href="qt-embedded-linux.html">Qt for Embedded Linux</a> provides ready-made drivers for several screen protocols, see the <a href="qt-embedded-displaymanagement.html">display management</a> documentation for details. Custom screen drivers can be implemented by subclassing the QScreen class and creating a screen driver plugin (derived from <a href="qscreendriverplugin.html">QScreenDriverPlugin</a>). The default implementation of the <a href="qscreendriverfactory.html">QScreenDriverFactory</a> class will automatically detect the plugin, and load the driver into the server application at run-time using Qt's <a href="plugins-howto.html">plugin system</a>.</p>
+<p>When rendering, the default behavior is for each client to render its widgets as well as its decorations into memory, while the server copies the memory content to the device's framebuffer using the screen driver. See the <a href="qt-embedded-architecture.html">Qt for Embedded Linux Architecture</a> overview for details (note that it is possible for the clients to manipulate and control the underlying hardware directly as well).</p>
+<p>Starting with Qt 4.2, it is also possible to add an accelerated graphics driver to take advantage of available hardware resources. See the <a href="qt-embedded-accel.html">Adding an Accelerated Graphics Driver to Qt for Embedded Linux</a> documentation for details.</p>
+<ul><li><a href="#framebuffer-management">Framebuffer Management</a></li>
+<li><a href="#palette-management">Palette Management</a></li>
+<li><a href="#drawing-on-screen">Drawing on Screen</a></li>
+<li><a href="#properties">Properties</a></li>
+<li><a href="#subclassing-and-initial-values">Subclassing and Initial Values</a></li>
+</ul>
+<a name="framebuffer-management"></a>
+<h3>Framebuffer Management</h3>
+<p>When a <a href="qt-embedded-linux.html">Qt for Embedded Linux</a> application starts running, it calls the screen driver's <a href="qscreen.html#connect">connect</a>() function to map the framebuffer and the accelerated drivers that the graphics card control registers. The <a href="qscreen.html#connect">connect</a>() function should then read out the parameters of the framebuffer and use them as required to set this class's protected variables.</p>
+<p>The <a href="qscreen.html#initDevice">initDevice</a>() function can be reimplemented to initialize the graphics card. Note, however, that <a href="qscreen.html#connect">connect</a>() is called <i>before</i> the <a href="qscreen.html#initDevice">initDevice</a>() function, so, for some hardware configurations, some of the initialization that would normally be done in the <a href="qscreen.html#initDevice">initDevice</a>() function might have to be done in the <a href="qscreen.html#connect">connect</a>() function.</p>
+<p>Likewise, just before a <a href="qt-embedded-linux.html">Qt for Embedded Linux</a> application exits, it calls the screen driver's <a href="qscreen.html#disconnect">disconnect</a>() function. The server application will in addition call the <a href="qscreen.html#shutdownDevice">shutdownDevice</a>() function before it calls <a href="qscreen.html#disconnect">disconnect</a>(). Note that the default implementation of the <a href="qscreen.html#shutdownDevice">shutdownDevice</a>() function only hides the mouse cursor.</p>
+<p>QScreen also provides the <a href="qscreen.html#save">save</a>() and <a href="qscreen.html#restore">restore</a>() functions, making it possible to save and restore the state of the graphics card. Note that the default implementations do nothing. Hardware screen drivers should reimplement these functions to save (and restore) its registers, enabling switching between virtual consoles.</p>
+<p>In addition, you can use the <a href="qscreen.html#base">base</a>() function to retrieve a pointer to the beginning of the framebuffer, and the <a href="qscreen.html#region">region</a>() function to retrieve the framebuffer's region. Use the <a href="qscreen.html#onCard">onCard</a>() function to determine whether the framebuffer is within the graphics card's memory, and the <a href="qscreen.html#totalSize">totalSize</a>() function to determine the size of the available graphics card memory (including the screen). Finally, you can use the <a href="qscreen.html#offset">offset</a>() function to retrieve the offset between the framebuffer's coordinates and the application's coordinate system.</p>
+<a name="palette-management"></a>
+<h3>Palette Management</h3>
+<p>QScreen provides several functions to retrieve information about the color palette: The <a href="qscreen.html#clut">clut</a>() function returns a pointer to the color lookup table (i.e&#x2e; its color palette). Use the <a href="qscreen.html#colorCount">colorCount</a>() function to determine the number of entries in this table, and the <a href="qscreen.html#alloc">alloc</a>() function to retrieve the palette index of the color that is the closest match to a given RGB value.</p>
+<p>To determine if the screen driver supports a given color depth, use the <a href="qscreen.html#supportsDepth">supportsDepth</a>() function that returns true of the specified depth is supported.</p>
+<a name="drawing-on-screen"></a>
+<h3>Drawing on Screen</h3>
+<p>When a screen update is required, the <a href="qt-embedded-linux.html">Qt for Embedded Linux</a> server runs through all the top-level windows that intersect with the region that is about to be updated, and ensures that the associated clients have updated their memory buffer. Then the server calls the <a href="qscreen.html#exposeRegion">exposeRegion</a>() function that composes the window surfaces and copies the content of memory to screen by calling the <a href="qscreen.html#blit">blit</a>() and <a href="qscreen.html#solidFill">solidFill</a>() functions.</p>
+<p>The <a href="qscreen.html#blit">blit</a>() function copies a given region in a given image to a specified point using device coordinates, while the <a href="qscreen.html#solidFill">solidFill</a>() function fills the given region of the screen with the specified color. Note that normally there is no need to call either of these functions explicitly.</p>
+<p>In addition, QScreen provides the <a href="qscreen.html#blank">blank</a>() function that can be reimplemented to prevent any contents from being displayed on the screen, and the <a href="qscreen.html#setDirty">setDirty</a>() function that can be reimplemented to indicate that a given rectangle of the screen has been altered. Note that the default implementations of these functions do nothing.</p>
+<p>Reimplement the <a href="qscreen.html#mapFromDevice">mapFromDevice</a>() and <a href="qscreen.html#mapToDevice">mapToDevice</a>() functions to map objects from the framebuffer coordinate system to the coordinate space used by the application, and vice versa. Be aware that the default implementations simply return the given objects as they are.</p>
+<a name="properties"></a>
+<h3>Properties</h3>
+<p><table class="generic" align="center" cellpadding="2" cellspacing="1" border="0">
+<thead><tr valign="top" class="qt-style"><th>Property</th><th>Functions</th></tr></thead>
+<tr valign="top" class="odd"><td>Size</td><td>The size of the screen can be retrieved using the <a href="qscreen.html#screenSize">screenSize</a>() function. The size is returned in bytes.<p>The framebuffer's logical width and height can be retrieved using <a href="qscreen.html#width">width</a>() and <a href="qscreen.html#height">height</a>(), respectively. These functions return values are given in pixels. Alternatively, the <a href="qscreen.html#physicalWidth">physicalWidth</a>() and <a href="qscreen.html#physicalHeight">physicalHeight</a>() function returns the same metrics in millimeters. QScreen also provides the <a href="qscreen.html#deviceWidth">deviceWidth</a>() and <a href="qscreen.html#deviceHeight">deviceHeight</a>() functions returning the physical width and height of the device in pixels. Note that the latter metrics can differ from the ones used if the display is centered within the framebuffer.</p>
+</td></tr>
+<tr valign="top" class="even"><td>Resolution</td><td>Reimplement the <a href="qscreen.html#setMode">setMode</a>() function to be able to set the framebuffer to a new resolution (width and height) and bit depth.<p>The current depth of the framebuffer can be always be retrieved using the <a href="qscreen.html#depth">depth</a>() function. Use the <a href="qscreen.html#pixmapDepth">pixmapDepth</a>() function to obtain the preferred depth for pixmaps.</p>
+</td></tr>
+<tr valign="top" class="odd"><td>Pixmap Alignment</td><td>Use the <a href="qscreen.html#pixmapOffsetAlignment">pixmapOffsetAlignment</a>() function to retrieve the value to which the start address of pixmaps held in the graphics card's memory, should be aligned.<p>Use the <a href="qscreen.html#pixmapLinestepAlignment">pixmapLinestepAlignment</a>() to retrieve the value to which the <i>individual scanlines</i> of pixmaps should be aligned.</p>
+</td></tr>
+<tr valign="top" class="even"><td>Image Display</td><td>The <a href="qscreen.html#isInterlaced">isInterlaced</a>() function tells whether the screen is displaying images progressively, and the <a href="qscreen.html#isTransformed">isTransformed</a>() function whether it is rotated. The <a href="qscreen.html#transformOrientation">transformOrientation</a>() function can be reimplemented to return the current rotation.</td></tr>
+<tr valign="top" class="odd"><td>Scanlines</td><td>Use the <a href="qscreen.html#linestep">linestep</a>() function to retrieve the length of each scanline of the framebuffer.</td></tr>
+<tr valign="top" class="even"><td>Pixel Type</td><td>The <a href="qscreen.html#pixelType">pixelType</a>() function returns the screen's pixel storage format as described by the <a href="qscreen.html#PixelType-enum">PixelType</a> enum.</td></tr>
+</table></p>
+<a name="subclassing-and-initial-values"></a>
+<h3>Subclassing and Initial Values</h3>
+<p>You need to set the following members when implementing a subclass of QScreen:</p>
+<p><table class="generic" align="center" cellpadding="2" cellspacing="1" border="0">
+<thead><tr valign="top" class="qt-style"><th>Member</th><th>Initial Value</th></tr></thead>
+<tr valign="top" class="odd"><td><a href="qscreen.html#data-var">data</a></td><td>A pointer to the framebuffer if possible; 0 otherwise.</td></tr>
+<tr valign="top" class="even"><td><a href="qscreen.html#lstep-var">lstep</a></td><td>The number of bytes between each scanline in the framebuffer.</td></tr>
+<tr valign="top" class="odd"><td><a href="qscreen.html#w-var">w</a></td><td>The logical screen width in pixels.</td></tr>
+<tr valign="top" class="even"><td><a href="qscreen.html#h-var">h</a></td><td>The logical screen height in pixels.</td></tr>
+<tr valign="top" class="odd"><td><a href="qscreen.html#dw-var">dw</a></td><td>The real screen width in pixels.</td></tr>
+<tr valign="top" class="even"><td><a href="qscreen.html#dh-var">dh</a></td><td>The real screen height in pixels.</td></tr>
+<tr valign="top" class="odd"><td><a href="qscreen.html#d-var">d</a></td><td>The number of bits per pixel.</td></tr>
+<tr valign="top" class="even"><td><a href="qscreen.html#physWidth-var">physWidth</a></td><td>The screen width in millimeters.</td></tr>
+<tr valign="top" class="odd"><td><a href="qscreen.html#physHeight-var">physHeight</a></td><td>The screen height in millimeters.</td></tr>
+</table></p>
+<p>The logical screen values are the same as the real screen values unless the screen is transformed in some way; e.g&#x2e;, rotated.</p>
+<p>See also the <a href="qws-svgalib.html">Accelerated Graphics Driver Example</a> for an example that shows how to initialize these values.</p>
+<p>See also <a href="qscreendriverplugin.html">QScreenDriverPlugin</a>, <a href="qscreendriverfactory.html">QScreenDriverFactory</a>, and <a href="qt-embedded-displaymanagement.html">Qt for Embedded Linux Display Management</a>.</p>
+<hr />
+<h2>Member Type Documentation</h2>
+<a name="//apple_ref/cpp/tag/QScreen/ClassId" />
+<a name="//apple_ref/cpp/econst/QScreen/LinuxFBClass" />
+<a name="//apple_ref/cpp/econst/QScreen/TransformedClass" />
+<a name="//apple_ref/cpp/econst/QScreen/VNCClass" />
+<a name="//apple_ref/cpp/econst/QScreen/MultiClass" />
+<a name="//apple_ref/cpp/econst/QScreen/VFbClass" />
+<a name="//apple_ref/cpp/econst/QScreen/DirectFBClass" />
+<a name="//apple_ref/cpp/econst/QScreen/SvgalibClass" />
+<a name="//apple_ref/cpp/econst/QScreen/ProxyClass" />
+<a name="//apple_ref/cpp/econst/QScreen/GLClass" />
+<a name="//apple_ref/cpp/econst/QScreen/CustomClass" />
+<h3 class="fn"><a name="ClassId-enum"></a>enum QScreen::ClassId</h3>
+<p>This enum defines the class identifiers for the known screen subclasses.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QScreen::LinuxFBClass</tt></td><td align="center" valign="top"><tt>0</tt></td><td valign="top">QLinuxFBScreen</td></tr>
+<tr><td valign="top"><tt>QScreen::TransformedClass</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">QTransformedScreen</td></tr>
+<tr><td valign="top"><tt>QScreen::VNCClass</tt></td><td align="center" valign="top"><tt>2</tt></td><td valign="top">QVNCScreen</td></tr>
+<tr><td valign="top"><tt>QScreen::MultiClass</tt></td><td align="center" valign="top"><tt>3</tt></td><td valign="top">QMultiScreen</td></tr>
+<tr><td valign="top"><tt>QScreen::VFbClass</tt></td><td align="center" valign="top"><tt>4</tt></td><td valign="top">QVFbScreen</td></tr>
+<tr><td valign="top"><tt>QScreen::DirectFBClass</tt></td><td align="center" valign="top"><tt>5</tt></td><td valign="top">QDirectFBScreen</td></tr>
+<tr><td valign="top"><tt>QScreen::SvgalibClass</tt></td><td align="center" valign="top"><tt>6</tt></td><td valign="top">QSvgalibScreen</td></tr>
+<tr><td valign="top"><tt>QScreen::ProxyClass</tt></td><td align="center" valign="top"><tt>7</tt></td><td valign="top"><a href="qproxyscreen.html">QProxyScreen</a></td></tr>
+<tr><td valign="top"><tt>QScreen::GLClass</tt></td><td align="center" valign="top"><tt>8</tt></td><td valign="top">QGLScreen</td></tr>
+<tr><td valign="top"><tt>QScreen::CustomClass</tt></td><td align="center" valign="top"><tt>1024</tt></td><td valign="top">Unknown <a href="qscreen.html">QScreen</a> subclass</td></tr>
+</table></p>
+<p>See also <a href="qscreen.html#classId">classId</a>().</p>
+<a name="//apple_ref/cpp/tag/QScreen/PixelType" />
+<a name="//apple_ref/cpp/econst/QScreen/NormalPixel" />
+<a name="//apple_ref/cpp/econst/QScreen/BGRPixel" />
+<h3 class="fn"><a name="PixelType-enum"></a>enum QScreen::PixelType</h3>
+<p>This enum describes the pixel storage format of the screen, i.e&#x2e; the order of the red (R), green (G) and blue (B) components of a pixel.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QScreen::NormalPixel</tt></td><td align="center" valign="top"><tt>0</tt></td><td valign="top">Red-green-blue (RGB)</td></tr>
+<tr><td valign="top"><tt>QScreen::BGRPixel</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">Blue-green-red (BGR)</td></tr>
+</table></p>
+<p>See also <a href="qscreen.html#pixelType">pixelType</a>().</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QScreen/QScreen" />
+<h3 class="fn"><a name="QScreen"></a>QScreen::QScreen ( int <i>display_id</i>, <a href="qscreen.html#ClassId-enum">ClassId</a> <i>classId</i> )</h3>
+<p>Constructs a new screen driver.</p>
+<p>The <i>display_id</i> identifies the <a href="qt-embedded-linux.html">Qt for Embedded Linux</a> server to connect to. The <i>classId</i> specifies the class identifier.</p>
+<p>This function was introduced in Qt 4.4.</p>
+<h3 class="fn"><a name="QScreen-2"></a>QScreen::QScreen ( int <i>displayId</i> )</h3>
+<p>Constructs a new screen driver.</p>
+<p>The <i>displayId</i> identifies the <a href="qt-embedded-linux.html">Qt for Embedded Linux</a> server to connect to.</p>
+<a name="//apple_ref/cpp/instm/QScreen/~QScreen" />
+<h3 class="fn"><a name="dtor.QScreen"></a>QScreen::~QScreen ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Destroys this screen driver.</p>
+<a name="//apple_ref/cpp/instm/QScreen/alloc" />
+<h3 class="fn"><a name="alloc"></a>int QScreen::alloc ( unsigned int <i>red</i>, unsigned int <i>green</i>, unsigned int <i>blue</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Returns the index in the screen's palette which is the closest match to the given RGB value (<i>red</i>, <i>green</i>, <i>blue</i>).</p>
+<p>Note that this function only apply in paletted modes like 8-bit, i.e&#x2e; in modes where only the palette indexes (and not the actual color values) are stored in memory.</p>
+<p>See also <a href="qscreen.html#clut">clut</a>() and <a href="qscreen.html#colorCount">colorCount</a>().</p>
+<a name="//apple_ref/cpp/instm/QScreen/base" />
+<h3 class="fn"><a name="base"></a><a href="qtglobal.html#uchar-typedef">uchar</a> * QScreen::base () const</h3>
+<p>Returns a pointer to the beginning of the framebuffer.</p>
+<p>See also <a href="qscreen.html#onCard">onCard</a>(), <a href="qscreen.html#region">region</a>(), and <a href="qscreen.html#totalSize">totalSize</a>().</p>
+<a name="//apple_ref/cpp/instm/QScreen/blank" />
+<h3 class="fn"><a name="blank"></a>void QScreen::blank ( bool <i>on</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Prevents the screen driver form displaying any content on the screen.</p>
+<p>Note that the default implementation does nothing.</p>
+<p>Reimplement this function to prevent the screen driver from displaying any contents on the screen if <i>on</i> is true; otherwise the contents is expected to be shown.</p>
+<p>See also <a href="qscreen.html#blit">blit</a>().</p>
+<a name="//apple_ref/cpp/instm/QScreen/blit" />
+<h3 class="fn"><a name="blit"></a>void QScreen::blit ( const <a href="qimage.html">QImage</a> &amp; <i>image</i>, const <a href="qpoint.html">QPoint</a> &amp; <i>topLeft</i>, const <a href="qregion.html">QRegion</a> &amp; <i>region</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Copies the given <i>region</i> in the given <i>image</i> to the point specified by <i>topLeft</i> using device coordinates.</p>
+<p>This function is called from the <a href="qscreen.html#exposeRegion">exposeRegion</a>() function; it is not intended to be called explicitly.</p>
+<p>Reimplement this function to make use of <a href="qt-embedded-accel.html">accelerated hardware</a>. Note that this function must be reimplemented if the framebuffer format is not supported by <a href="qt-embedded-linux.html">Qt for Embedded Linux</a> (See the <a href="qt-embedded-displaymanagement.html">Display Management</a> documentation for more details).</p>
+<p>See also <a href="qscreen.html#exposeRegion">exposeRegion</a>(), <a href="qscreen.html#solidFill">solidFill</a>(), and <a href="qscreen.html#blank">blank</a>().</p>
+<a name="//apple_ref/cpp/instm/QScreen/classId" />
+<h3 class="fn"><a name="classId"></a><a href="qscreen.html#ClassId-enum">ClassId</a> QScreen::classId () const</h3>
+<p>Returns the class identifier for the screen object.</p>
+<p>This function was introduced in Qt 4.4.</p>
+<a name="//apple_ref/cpp/instm/QScreen/clut" />
+<h3 class="fn"><a name="clut"></a><a href="qcolor.html#QRgb-typedef">QRgb</a> * QScreen::clut ()</h3>
+<p>Returns a pointer to the screen's color lookup table (i.e&#x2e; its color palette).</p>
+<p>Note that this function only apply in paletted modes like 8-bit, i.e&#x2e; in modes where only the palette indexes (and not the actual color values) are stored in memory.</p>
+<p>See also <a href="qscreen.html#alloc">alloc</a>(), <a href="qscreen.html#depth">depth</a>(), and <a href="qscreen.html#colorCount">colorCount</a>().</p>
+<a name="//apple_ref/cpp/instm/QScreen/colorCount" />
+<h3 class="fn"><a name="colorCount"></a>int QScreen::colorCount ()</h3>
+<p>Returns the number of entries in the screen's color lookup table (i.e&#x2e; its color palette). A pointer to the color table can be retrieved using the <a href="qscreen.html#clut">clut</a>() function.</p>
+<p>This function was introduced in Qt 4.6.</p>
+<p>See also <a href="qscreen.html#clut">clut</a>() and <a href="qscreen.html#alloc">alloc</a>().</p>
+<a name="//apple_ref/cpp/instm/QScreen/connect" />
+<h3 class="fn"><a name="connect"></a>bool QScreen::connect ( const <a href="qstring.html">QString</a> &amp; <i>displaySpec</i> )&nbsp;&nbsp;<tt> [pure virtual]</tt></h3>
+<p>This function is called by every <a href="qt-embedded-linux.html">Qt for Embedded Linux</a> application on startup, and must be implemented to map in the framebuffer and the accelerated drivers that the graphics card control registers. Note that coonnect must be called <i>before</i> the <a href="qscreen.html#initDevice">initDevice</a>() function.</p>
+<p>Ensure that true is returned if a connection to the screen device is made. Otherwise, return false. Upon making the connection, the function should read out the parameters of the framebuffer and use them as required to set this class's protected variables.</p>
+<p>The <i>displaySpec</i> argument is passed by the <a href="qt-embedded-envvars.html#qws-display">QWS_DISPLAY</a> environment variable or the -display command line parameter, and has the following syntax:</p>
+<pre> [screen driver][:driver specific options][:display number]</pre>
+<p>For example, to use the mach64 driver on fb1 as display 2:</p>
+<pre> Mach64:/dev/fb1:2</pre>
+<p>See <a href="qt-embedded-displaymanagement.html">Qt for Embedded Linux Display Management</a> for more details.</p>
+<p>See also <a href="qscreen.html#disconnect">disconnect</a>(), <a href="qscreen.html#initDevice">initDevice</a>(), and <a href="qt-embedded-running.html">Running Qt for Embedded Linux Applications</a>.</p>
+<a name="//apple_ref/cpp/instm/QScreen/createSurface" />
+<h3 class="fn"><a name="createSurface"></a>QWSWindowSurface * QScreen::createSurface ( const <a href="qstring.html">QString</a> &amp; <i>key</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Creates and returns a new window surface matching the given <i>key</i>.</p>
+<p>The server application will call this function whenever it needs to create a server side representation of a window, e.g&#x2e; when copying the content of memory to the screen using the screen driver.</p>
+<p>Note that this function must be reimplemented when adding an accelerated graphics driver. See the <a href="qt-embedded-accel.html">Adding an Accelerated Graphics Driver</a> documentation for details.</p>
+<p>This function was introduced in Qt 4.2.</p>
+<p>See also <a href="qt-embedded-architecture.html">Qt for Embedded Linux Architecture</a>.</p>
+<h3 class="fn"><a name="createSurface-2"></a>QWSWindowSurface * QScreen::createSurface ( <a href="qwidget.html">QWidget</a> * <i>widget</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>This is an overloaded function.</p>
+<p>Creates and returns a new window surface for the given <i>widget</i>.</p>
+<a name="//apple_ref/cpp/instm/QScreen/depth" />
+<h3 class="fn"><a name="depth"></a>int QScreen::depth () const</h3>
+<p>Returns the depth of the framebuffer, in bits per pixel.</p>
+<p>Note that the returned depth is the number of bits each pixel fills rather than the number of significant bits, so 24bpp and 32bpp express the same range of colors (8 bits of red, green and blue).</p>
+<p>See also <a href="qscreen.html#clut">clut</a>() and <a href="qscreen.html#pixmapDepth">pixmapDepth</a>().</p>
+<a name="//apple_ref/cpp/instm/QScreen/deviceHeight" />
+<h3 class="fn"><a name="deviceHeight"></a>int QScreen::deviceHeight () const</h3>
+<p>Returns the full height of the framebuffer device in pixels.</p>
+<p>Note that the returned height can differ from the height which <a href="qt-embedded-linux.html">Qt for Embedded Linux</a> will actually use, that is if the display is centered within the framebuffer.</p>
+<p>See also <a href="qscreen.html#height">height</a>(), <a href="qscreen.html#physicalHeight">physicalHeight</a>(), and <a href="qscreen.html#deviceWidth">deviceWidth</a>().</p>
+<a name="//apple_ref/cpp/instm/QScreen/deviceWidth" />
+<h3 class="fn"><a name="deviceWidth"></a>int QScreen::deviceWidth () const</h3>
+<p>Returns the physical width of the framebuffer device in pixels.</p>
+<p>Note that the returned width can differ from the width which <a href="qt-embedded-linux.html">Qt for Embedded Linux</a> will actually use, that is if the display is centered within the framebuffer.</p>
+<p>See also <a href="qscreen.html#width">width</a>(), <a href="qscreen.html#physicalWidth">physicalWidth</a>(), and <a href="qscreen.html#deviceHeight">deviceHeight</a>().</p>
+<a name="//apple_ref/cpp/instm/QScreen/disconnect" />
+<h3 class="fn"><a name="disconnect"></a>void QScreen::disconnect ()&nbsp;&nbsp;<tt> [pure virtual]</tt></h3>
+<p>This function is called by every <a href="qt-embedded-linux.html">Qt for Embedded Linux</a> application before exiting, and must be implemented to unmap the framebuffer. Note that a server application will call the <a href="qscreen.html#shutdownDevice">shutdownDevice</a>() function prior to this function.</p>
+<p>See also <a href="qscreen.html#connect">connect</a>(), <a href="qscreen.html#shutdownDevice">shutdownDevice</a>(), and <a href="qt-embedded-running.html">Running Qt for Embedded Linux Applications</a>.</p>
+<a name="//apple_ref/cpp/instm/QScreen/exposeRegion" />
+<h3 class="fn"><a name="exposeRegion"></a>void QScreen::exposeRegion ( <a href="qregion.html">QRegion</a> <i>region</i>, int <i>windowIndex</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>This function is called by the <a href="qt-embedded-linux.html">Qt for Embedded Linux</a> server whenever a screen update is required. <i>region</i> is the area on the screen that must be updated, and <i>windowIndex</i> is the index into <a href="qwsserver.html#clientWindows">QWSServer::clientWindows</a>() of the window that required the update. <a href="qwswindow.html#state">QWSWindow::state</a>() gives more information about the cause.</p>
+<p>The default implementation composes the affected windows and paints the given <i>region</i> on screen by calling the <a href="qscreen.html#blit">blit</a>() and <a href="qscreen.html#solidFill">solidFill</a>() functions</p>
+<p>This function can be reimplemented to perform composition in hardware, or to perform transition effects. For simpler hardware acceleration, or to interface with this is typically done by reimplementing the <a href="qscreen.html#blit">blit</a>() and <a href="qscreen.html#solidFill">solidFill</a>() functions instead.</p>
+<p>Note that there is no need to call this function explicitly.</p>
+<p>See also <a href="qscreen.html#blit">blit</a>(), <a href="qscreen.html#solidFill">solidFill</a>(), and <a href="qscreen.html#blank">blank</a>().</p>
+<a name="//apple_ref/cpp/instm/QScreen/height" />
+<h3 class="fn"><a name="height"></a>int QScreen::height () const</h3>
+<p>Returns the logical height of the framebuffer in pixels.</p>
+<p>See also <a href="qscreen.html#deviceHeight">deviceHeight</a>(), <a href="qscreen.html#physicalHeight">physicalHeight</a>(), and <a href="qscreen.html#width">width</a>().</p>
+<a name="//apple_ref/cpp/instm/QScreen/initDevice" />
+<h3 class="fn"><a name="initDevice"></a>bool QScreen::initDevice ()&nbsp;&nbsp;<tt> [pure virtual]</tt></h3>
+<p>This function is called by the <a href="qt-embedded-linux.html">Qt for Embedded Linux</a> server to initialize the framebuffer. Note that a server application will call the <a href="qscreen.html#connect">connect</a>() function prior to this function.</p>
+<p>Implement this function to make accelerated drivers set up the graphics card. Return true to indicate success and false to indicate failure.</p>
+<p>See also <a href="qscreen.html#shutdownDevice">shutdownDevice</a>() and <a href="qscreen.html#connect">connect</a>().</p>
+<a name="//apple_ref/cpp/clm/QScreen/instance" />
+<h3 class="fn"><a name="instance"></a>QScreen * QScreen::instance ()&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Returns a pointer to the application's <a href="qscreen.html">QScreen</a> instance.</p>
+<p>If this screen consists of several subscreens, operations to the returned instance will affect all its subscreens. Use the subscreens() function to retrieve access to a particular subscreen.</p>
+<p>See also <a href="qscreen.html#subScreens">subScreens</a>() and <a href="qscreen.html#subScreenIndexAt">subScreenIndexAt</a>().</p>
+<a name="//apple_ref/cpp/instm/QScreen/isInterlaced" />
+<h3 class="fn"><a name="isInterlaced"></a>bool QScreen::isInterlaced () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Returns true if the display is interlaced (i.e&#x2e; is displaying images progressively like a television screen); otherwise returns false.</p>
+<p>If the display is interlaced, the drawing is altered to look better.</p>
+<p>See also <a href="qscreen.html#isTransformed">isTransformed</a>() and <a href="qscreen.html#linestep">linestep</a>().</p>
+<a name="//apple_ref/cpp/instm/QScreen/isTransformed" />
+<h3 class="fn"><a name="isTransformed"></a>bool QScreen::isTransformed () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Returns true if the screen is transformed (for instance, rotated 90 degrees); otherwise returns false.</p>
+<p>See also <a href="qscreen.html#transformOrientation">transformOrientation</a>() and <a href="qscreen.html#isInterlaced">isInterlaced</a>().</p>
+<a name="//apple_ref/cpp/instm/QScreen/linestep" />
+<h3 class="fn"><a name="linestep"></a>int QScreen::linestep () const</h3>
+<p>Returns the length of each scanline of the framebuffer in bytes.</p>
+<p>See also <a href="qscreen.html#isInterlaced">isInterlaced</a>().</p>
+<a name="//apple_ref/cpp/instm/QScreen/mapFromDevice" />
+<h3 class="fn"><a name="mapFromDevice"></a><a href="qsize.html">QSize</a> QScreen::mapFromDevice ( const <a href="qsize.html">QSize</a> &amp; <i>size</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Maps the given <i>size</i> from the framebuffer coordinate system to the coordinate space used by the application. Note that the default implementation simply returns the given <i>size</i> as it is.</p>
+<p>Reimplement this function to use the given device's coordinate system when mapping.</p>
+<p>See also <a href="qscreen.html#mapToDevice">mapToDevice</a>().</p>
+<h3 class="fn"><a name="mapFromDevice-2"></a><a href="qpoint.html">QPoint</a> QScreen::mapFromDevice ( const <a href="qpoint.html">QPoint</a> &amp; <i>point</i>, const <a href="qsize.html">QSize</a> &amp; <i>screenSize</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>This is an overloaded function.</p>
+<p>Maps the given <i>point</i> from the framebuffer coordinate system to the coordinate space used by the application, passing the device's <i>screenSize</i> as argument. Note that the default implementation simply returns the given <i>point</i> as it is.</p>
+<h3 class="fn"><a name="mapFromDevice-3"></a><a href="qrect.html">QRect</a> QScreen::mapFromDevice ( const <a href="qrect.html">QRect</a> &amp; <i>rectangle</i>, const <a href="qsize.html">QSize</a> &amp; <i>screenSize</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>This is an overloaded function.</p>
+<p>Maps the given <i>rectangle</i> from the framebuffer coordinate system to the coordinate space used by the application, passing the device's <i>screenSize</i> as argument. Note that the default implementation simply returns the given <i>rectangle</i> as it is.</p>
+<h3 class="fn"><a name="mapFromDevice-4"></a><a href="qimage.html">QImage</a> QScreen::mapFromDevice ( const <a href="qimage.html">QImage</a> &amp; <i>image</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>This is an overloaded function.</p>
+<p>Maps the given <i>image</i> from the framebuffer coordinate system to the coordinate space used by the application. Note that the default implementation simply returns the given <i>image</i> as it is.</p>
+<h3 class="fn"><a name="mapFromDevice-5"></a><a href="qregion.html">QRegion</a> QScreen::mapFromDevice ( const <a href="qregion.html">QRegion</a> &amp; <i>region</i>, const <a href="qsize.html">QSize</a> &amp; <i>screenSize</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>This is an overloaded function.</p>
+<p>Maps the given <i>region</i> from the framebuffer coordinate system to the coordinate space used by the application, passing the device's <i>screenSize</i> as argument. Note that the default implementation simply returns the given <i>region</i> as it is.</p>
+<a name="//apple_ref/cpp/instm/QScreen/mapToDevice" />
+<h3 class="fn"><a name="mapToDevice"></a><a href="qsize.html">QSize</a> QScreen::mapToDevice ( const <a href="qsize.html">QSize</a> &amp; <i>size</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Maps the given <i>size</i> from the coordinate space used by the application to the framebuffer coordinate system. Note that the default implementation simply returns the given <i>size</i> as it is.</p>
+<p>Reimplement this function to use the given device's coordinate system when mapping.</p>
+<p>See also <a href="qscreen.html#mapFromDevice">mapFromDevice</a>().</p>
+<h3 class="fn"><a name="mapToDevice-2"></a><a href="qpoint.html">QPoint</a> QScreen::mapToDevice ( const <a href="qpoint.html">QPoint</a> &amp; <i>point</i>, const <a href="qsize.html">QSize</a> &amp; <i>screenSize</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>This is an overloaded function.</p>
+<p>Maps the given <i>point</i> from the coordinate space used by the application to the framebuffer coordinate system, passing the device's <i>screenSize</i> as argument. Note that the default implementation returns the given <i>point</i> as it is.</p>
+<h3 class="fn"><a name="mapToDevice-3"></a><a href="qrect.html">QRect</a> QScreen::mapToDevice ( const <a href="qrect.html">QRect</a> &amp; <i>rectangle</i>, const <a href="qsize.html">QSize</a> &amp; <i>screenSize</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>This is an overloaded function.</p>
+<p>Maps the given <i>rectangle</i> from the coordinate space used by the application to the framebuffer coordinate system, passing the device's <i>screenSize</i> as argument. Note that the default implementation returns the given <i>rectangle</i> as it is.</p>
+<h3 class="fn"><a name="mapToDevice-4"></a><a href="qimage.html">QImage</a> QScreen::mapToDevice ( const <a href="qimage.html">QImage</a> &amp; <i>image</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>This is an overloaded function.</p>
+<p>Maps the given <i>image</i> from the coordinate space used by the application to the framebuffer coordinate system. Note that the default implementation returns the given <i>image</i> as it is.</p>
+<h3 class="fn"><a name="mapToDevice-5"></a><a href="qregion.html">QRegion</a> QScreen::mapToDevice ( const <a href="qregion.html">QRegion</a> &amp; <i>region</i>, const <a href="qsize.html">QSize</a> &amp; <i>screenSize</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>This is an overloaded function.</p>
+<p>Maps the given <i>region</i> from the coordinate space used by the application to the framebuffer coordinate system, passing the device's <i>screenSize</i> as argument. Note that the default implementation returns the given <i>region</i> as it is.</p>
+<a name="//apple_ref/cpp/instm/QScreen/offset" />
+<h3 class="fn"><a name="offset"></a><a href="qpoint.html">QPoint</a> QScreen::offset () const</h3>
+<p>Returns the logical offset of the screen, i.e&#x2e;, the offset between (0,0) in screen coordinates and the application coordinate system.</p>
+<p>This function was introduced in Qt 4.2.</p>
+<a name="//apple_ref/cpp/instm/QScreen/onCard" />
+<h3 class="fn"><a name="onCard"></a>bool QScreen::onCard ( const unsigned char * <i>buffer</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Returns true if the specified <i>buffer</i> is within the graphics card's memory; otherwise returns false (i.e&#x2e; if it's in main RAM).</p>
+<p>See also <a href="qscreen.html#base">base</a>() and <a href="qscreen.html#totalSize">totalSize</a>().</p>
+<h3 class="fn"><a name="onCard-2"></a>bool QScreen::onCard ( const unsigned char * <i>buffer</i>, <a href="qtglobal.html#ulong-typedef">ulong</a> &amp; <i>offset</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>This is an overloaded function.</p>
+<p>If the specified <i>buffer</i> is within the graphics card's memory, this function stores the offset from the start of graphics card memory (in bytes), in the location specified by the <i>offset</i> parameter.</p>
+<a name="//apple_ref/cpp/instm/QScreen/physicalHeight" />
+<h3 class="fn"><a name="physicalHeight"></a>int QScreen::physicalHeight () const</h3>
+<p>Returns the physical height of the screen in millimeters.</p>
+<p>This function was introduced in Qt 4.2.</p>
+<p>See also <a href="qscreen.html#height">height</a>(), <a href="qscreen.html#deviceHeight">deviceHeight</a>(), and <a href="qscreen.html#physicalWidth">physicalWidth</a>().</p>
+<a name="//apple_ref/cpp/instm/QScreen/physicalWidth" />
+<h3 class="fn"><a name="physicalWidth"></a>int QScreen::physicalWidth () const</h3>
+<p>Returns the physical width of the screen in millimeters.</p>
+<p>This function was introduced in Qt 4.2.</p>
+<p>See also <a href="qscreen.html#width">width</a>(), <a href="qscreen.html#deviceWidth">deviceWidth</a>(), and <a href="qscreen.html#physicalHeight">physicalHeight</a>().</p>
+<a name="//apple_ref/cpp/instm/QScreen/pixelFormat" />
+<h3 class="fn"><a name="pixelFormat"></a><a href="qimage.html#Format-enum">QImage::Format</a> QScreen::pixelFormat () const</h3>
+<p>Returns the pixel format of the screen, or <tt>QImage::Format_Invalid</tt> if the pixel format is not a supported image format.</p>
+<p>See also <a href="qscreen.html#setPixelFormat">setPixelFormat</a>().</p>
+<a name="//apple_ref/cpp/instm/QScreen/pixelType" />
+<h3 class="fn"><a name="pixelType"></a><a href="qscreen.html#PixelType-enum">PixelType</a> QScreen::pixelType () const</h3>
+<p>Returns the pixel storage format of the screen.</p>
+<a name="//apple_ref/cpp/instm/QScreen/pixmapDepth" />
+<h3 class="fn"><a name="pixmapDepth"></a>int QScreen::pixmapDepth () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Returns the preferred depth for pixmaps, in bits per pixel.</p>
+<p>See also <a href="qscreen.html#depth">depth</a>().</p>
+<a name="//apple_ref/cpp/instm/QScreen/pixmapLinestepAlignment" />
+<h3 class="fn"><a name="pixmapLinestepAlignment"></a>int QScreen::pixmapLinestepAlignment ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Returns the value (in bits) to which individual scanlines of pixmaps held in the graphics card's memory, should be aligned.</p>
+<p>Note that the default implementation returns 64; reimplement this function to override the return value, e.g&#x2e;, when implementing an accelerated driver (see the <a href="qt-embedded-accel.html">Adding an Accelerated Graphics Driver</a> documentation for details).</p>
+<p>See also <a href="qscreen.html#pixmapOffsetAlignment">pixmapOffsetAlignment</a>().</p>
+<a name="//apple_ref/cpp/instm/QScreen/pixmapOffsetAlignment" />
+<h3 class="fn"><a name="pixmapOffsetAlignment"></a>int QScreen::pixmapOffsetAlignment ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Returns the value (in bits) to which the start address of pixmaps held in the graphics card's memory, should be aligned.</p>
+<p>Note that the default implementation returns 64; reimplement this function to override the return value, e.g&#x2e;, when implementing an accelerated driver (see the <a href="qt-embedded-accel.html">Adding an Accelerated Graphics Driver</a> documentation for details).</p>
+<p>See also <a href="qscreen.html#pixmapLinestepAlignment">pixmapLinestepAlignment</a>().</p>
+<a name="//apple_ref/cpp/instm/QScreen/region" />
+<h3 class="fn"><a name="region"></a><a href="qregion.html">QRegion</a> QScreen::region () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Returns the region covered by this screen driver.</p>
+<p>This function was introduced in Qt 4.2.</p>
+<p>See also <a href="qscreen.html#base">base</a>() and <a href="qscreen.html#screenSize">screenSize</a>().</p>
+<a name="//apple_ref/cpp/instm/QScreen/restore" />
+<h3 class="fn"><a name="restore"></a>void QScreen::restore ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Restores the previously saved state of the graphics card.</p>
+<p>For example, hardware screen drivers should reimplement the <a href="qscreen.html#save">save</a>() and restore() functions to save and restore its registers, enabling swintching between virtual consoles.</p>
+<p>Note that the default implementation does nothing.</p>
+<p>See also <a href="qscreen.html#save">save</a>().</p>
+<a name="//apple_ref/cpp/instm/QScreen/save" />
+<h3 class="fn"><a name="save"></a>void QScreen::save ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Saves the current state of the graphics card.</p>
+<p>For example, hardware screen drivers should reimplement the save() and <a href="qscreen.html#restore">restore</a>() functions to save and restore its registers, enabling swintching between virtual consoles.</p>
+<p>Note that the default implementation does nothing.</p>
+<p>See also <a href="qscreen.html#restore">restore</a>().</p>
+<a name="//apple_ref/cpp/instm/QScreen/screenSize" />
+<h3 class="fn"><a name="screenSize"></a>int QScreen::screenSize () const</h3>
+<p>Returns the size of the screen in bytes.</p>
+<p>The screen size is always located at the beginning of framebuffer memory, i.e&#x2e; it can also be retrieved using the <a href="qscreen.html#base">base</a>() function.</p>
+<p>See also <a href="qscreen.html#base">base</a>() and <a href="qscreen.html#region">region</a>().</p>
+<a name="//apple_ref/cpp/instm/QScreen/setDirty" />
+<h3 class="fn"><a name="setDirty"></a>void QScreen::setDirty ( const <a href="qrect.html">QRect</a> &amp; <i>rectangle</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Marks the given <i>rectangle</i> as dirty.</p>
+<p>Note that the default implementation does nothing; reimplement this function to indicate that the given <i>rectangle</i> has been altered.</p>
+<a name="//apple_ref/cpp/instm/QScreen/setMode" />
+<h3 class="fn"><a name="setMode"></a>void QScreen::setMode ( int <i>width</i>, int <i>height</i>, int <i>depth</i> )&nbsp;&nbsp;<tt> [pure virtual]</tt></h3>
+<p>Implement this function to reset the framebuffer's resolution (<i>width</i> and <i>height</i>) and bit <i>depth</i>.</p>
+<p>After the resolution has been set, existing paint engines will be invalid and the framebuffer should be completely redrawn. In a multiple-process situation, all other applications must be notified to reset their mode and update themselves accordingly.</p>
+<a name="//apple_ref/cpp/instm/QScreen/setPixelFormat" />
+<h3 class="fn"><a name="setPixelFormat"></a>void QScreen::setPixelFormat ( <a href="qimage.html#Format-enum">QImage::Format</a> <i>format</i> )&nbsp;&nbsp;<tt> [protected]</tt></h3>
+<p>Sets the screen's pixel format to <i>format</i>.</p>
+<p>See also <a href="qscreen.html#pixelFormat">pixelFormat</a>().</p>
+<a name="//apple_ref/cpp/instm/QScreen/shutdownDevice" />
+<h3 class="fn"><a name="shutdownDevice"></a>void QScreen::shutdownDevice ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>This function is called by the <a href="qt-embedded-linux.html">Qt for Embedded Linux</a> server before it calls the <a href="qscreen.html#disconnect">disconnect</a>() function when exiting.</p>
+<p>Note that the default implementation only hides the mouse cursor; reimplement this function to do the necessary graphics card specific cleanup.</p>
+<p>See also <a href="qscreen.html#initDevice">initDevice</a>() and <a href="qscreen.html#disconnect">disconnect</a>().</p>
+<a name="//apple_ref/cpp/instm/QScreen/solidFill" />
+<h3 class="fn"><a name="solidFill"></a>void QScreen::solidFill ( const <a href="qcolor.html">QColor</a> &amp; <i>color</i>, const <a href="qregion.html">QRegion</a> &amp; <i>region</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Fills the given <i>region</i> of the screen with the specified <i>color</i>.</p>
+<p>This function is called from the <a href="qscreen.html#exposeRegion">exposeRegion</a>() function; it is not intended to be called explicitly.</p>
+<p>Reimplement this function to make use of <a href="qt-embedded-accel.html">accelerated hardware</a>. Note that this function must be reimplemented if the framebuffer format is not supported by <a href="qt-embedded-linux.html">Qt for Embedded Linux</a> (See the <a href="qt-embedded-displaymanagement.html">Display Management</a> documentation for more details).</p>
+<p>See also <a href="qscreen.html#exposeRegion">exposeRegion</a>(), <a href="qscreen.html#blit">blit</a>(), and <a href="qscreen.html#blank">blank</a>().</p>
+<a name="//apple_ref/cpp/instm/QScreen/subScreenIndexAt" />
+<h3 class="fn"><a name="subScreenIndexAt"></a>int QScreen::subScreenIndexAt ( const <a href="qpoint.html">QPoint</a> &amp; <i>position</i> ) const</h3>
+<p>Returns the index of the subscreen at the given <i>position</i>; returns -1 if no screen is found.</p>
+<p>The index identifies the subscreen in the list of pointers returned by the <a href="qscreen.html#subScreens">subScreens</a>() function.</p>
+<p>This function was introduced in Qt 4.2.</p>
+<p>See also <a href="qscreen.html#instance">instance</a>() and <a href="qscreen.html#subScreens">subScreens</a>().</p>
+<a name="//apple_ref/cpp/instm/QScreen/subScreens" />
+<h3 class="fn"><a name="subScreens"></a><a href="qlist.html">QList</a>&lt;QScreen *&gt; QScreen::subScreens () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Returns a list of this screen's subscreens. Use the <a href="qscreen.html#subScreenIndexAt">subScreenIndexAt</a>() function to retrieve the index of a screen at a given position.</p>
+<p>Note that if <i>this</i> screen consists of several subscreens, operations to <i>this</i> instance will affect all subscreens by default.</p>
+<p>This function was introduced in Qt 4.2.</p>
+<p>See also <a href="qscreen.html#instance">instance</a>() and <a href="qscreen.html#subScreenIndexAt">subScreenIndexAt</a>().</p>
+<a name="//apple_ref/cpp/instm/QScreen/supportsDepth" />
+<h3 class="fn"><a name="supportsDepth"></a>bool QScreen::supportsDepth ( int <i>depth</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Returns true if the screen supports the specified color <i>depth</i>; otherwise returns false.</p>
+<p>See also <a href="qscreen.html#clut">clut</a>().</p>
+<a name="//apple_ref/cpp/instm/QScreen/totalSize" />
+<h3 class="fn"><a name="totalSize"></a>int QScreen::totalSize () const</h3>
+<p>Returns the size of the available graphics card memory (including the screen) in bytes.</p>
+<p>See also <a href="qscreen.html#onCard">onCard</a>().</p>
+<a name="//apple_ref/cpp/instm/QScreen/transformOrientation" />
+<h3 class="fn"><a name="transformOrientation"></a>int QScreen::transformOrientation () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Returns the current rotation as an integer value.</p>
+<p>Note that the default implementation returns 0; reimplement this function to override this value.</p>
+<p>See also <a href="qscreen.html#isTransformed">isTransformed</a>().</p>
+<a name="//apple_ref/cpp/instm/QScreen/width" />
+<h3 class="fn"><a name="width"></a>int QScreen::width () const</h3>
+<p>Returns the logical width of the framebuffer in pixels.</p>
+<p>See also <a href="qscreen.html#deviceWidth">deviceWidth</a>(), <a href="qscreen.html#physicalWidth">physicalWidth</a>(), and <a href="qscreen.html#height">height</a>().</p>
+<hr />
+<h2>Member Variable Documentation</h2>
+<a name="//apple_ref/cpp/data/QScreen/d" />
+<h3 class="fn"><a name="d-var"></a>int QScreen::d</h3>
+<p>This variable holds the pixel depth.</p>
+<p>This is the number of significant bits used to set a pixel color. This variable <i>must</i> be initialized by a subclass.</p>
+<a name="//apple_ref/cpp/data/QScreen/data" />
+<h3 class="fn"><a name="data-var"></a><a href="qtglobal.html#uchar-typedef">uchar</a> * QScreen::data</h3>
+<p>This variable holds points to the first visible pixel in the frame buffer.</p>
+<p>You must initialize this variable if you are using the default implementation of non-buffered painting <a href="qt.html#WidgetAttribute-enum">Qt::WA_PaintOnScreen</a>, <a href="qpixmap.html#grabWindow">QPixmap::grabWindow</a>() or <a href="qdirectpainter.html#frameBuffer">QDirectPainter::frameBuffer</a>(). If you initialize this variable, you must also initialize <a href="qscreen.html#size-var">QScreen::size</a> and <a href="qscreen.html#mapsize-var">QScreen::mapsize</a>.</p>
+<p>See also <a href="qscreen.html#size-var">QScreen::size</a> and <a href="qscreen.html#mapsize-var">QScreen::mapsize</a>.</p>
+<a name="//apple_ref/cpp/data/QScreen/dh" />
+<h3 class="fn"><a name="dh-var"></a>int QScreen::dh</h3>
+<p>This variable holds the device height.</p>
+<p>This is the number of pixels in a column of the physical screen. It <i>must</i> be initialized by a subclass. Normally, it should be set to the logical height <a href="qscreen.html#h-var">QScreen::h</a>, but it might be different, e.g&#x2e;, if you are doing rotations in software.</p>
+<p>See also <a href="qscreen.html#h-var">QScreen::h</a>.</p>
+<a name="//apple_ref/cpp/data/QScreen/dw" />
+<h3 class="fn"><a name="dw-var"></a>int QScreen::dw</h3>
+<p>This variable holds the device width.</p>
+<p>This is the number of pixels in a row of the physical screen. It <i>must</i> be initialized by a subclass. Normally, it should be set to the logical width <a href="qscreen.html#w-var">QScreen::w</a>, but it might be different, e.g&#x2e;, if you are doing rotations in software.</p>
+<p>See also <a href="qscreen.html#w-var">QScreen::w</a>.</p>
+<a name="//apple_ref/cpp/data/QScreen/grayscale" />
+<h3 class="fn"><a name="grayscale-var"></a>bool QScreen::grayscale</h3>
+<p>This variable holds the gray scale screen mode flag.</p>
+<p>Set this variable to true in a subclass, if you are using a grayscale screen mode. e.g&#x2e;, in an 8-bit mode where you don't want to use the palette, but you want to use the grayscales.</p>
+<a name="//apple_ref/cpp/data/QScreen/h" />
+<h3 class="fn"><a name="h-var"></a>int QScreen::h</h3>
+<p>This variable holds the logical height of the screen.</p>
+<p>This variable <i>must</i> be initialized by a subclass.</p>
+<a name="//apple_ref/cpp/data/QScreen/lstep" />
+<h3 class="fn"><a name="lstep-var"></a>int QScreen::lstep</h3>
+<p>This variable holds the number of bytes representing a line in the frame buffer.</p>
+<p>i.e&#x2e;, <i>line step</i>. <tt>data[lstep * 2]</tt> is the address of the first visible pixel in the third line of the frame buffer.</p>
+<p>See also <a href="qscreen.html#data-var">data</a>.</p>
+<a name="//apple_ref/cpp/data/QScreen/mapsize" />
+<h3 class="fn"><a name="mapsize-var"></a>int QScreen::mapsize</h3>
+<p>This variable holds the total number of bytes in the frame buffer.</p>
+<p>This is the total number of bytes in the block pointed to by the <a href="qscreen.html#data-var">QScreen::data</a> pointer. You must initialize this variable if you initialize the <a href="qscreen.html#data-var">QScreen::data</a> pointer.</p>
+<p>See also <a href="qscreen.html#data-var">QScreen::data</a> and <a href="qscreen.html#size-var">QScreen::size</a>.</p>
+<a name="//apple_ref/cpp/data/QScreen/physHeight" />
+<h3 class="fn"><a name="physHeight-var"></a>int QScreen::physHeight</h3>
+<p>This variable holds the physical height of the screen in millimeters.</p>
+<p>Currently, this variable is used when calculating the screen DPI, which in turn is used when deciding the actual font size Qt is using.</p>
+<a name="//apple_ref/cpp/data/QScreen/physWidth" />
+<h3 class="fn"><a name="physWidth-var"></a>int QScreen::physWidth</h3>
+<p>This variable holds the physical width of the screen in millimeters.</p>
+<p>Currently, this variable is used when calculating the screen DPI, which in turn is used when deciding the actual font size Qt is using.</p>
+<a name="//apple_ref/cpp/data/QScreen/pixeltype" />
+<h3 class="fn"><a name="pixeltype-var"></a><a href="qscreen.html#PixelType-enum">PixelType</a> QScreen::pixeltype</h3>
+<p>This variable holds set to BGRPixel.</p>
+<p>Set this variable to <a href="qscreen.html#PixelType-enum">BGRPixel</a> in a subclass, if the screen pixel format is a BGR type and you have used <a href="qscreen.html#setPixelFormat">setPixelFormat</a>() to set the pixel format to the corresponding RGB format. e.g&#x2e;, you have set the pixel format to <a href="qimage.html#Format-enum">QImage::Format_RGB555</a>, but your screen really uses BGR, not RGB.</p>
+<a name="//apple_ref/cpp/data/QScreen/screenclut" />
+<h3 class="fn"><a name="screenclut-var"></a><a href="qcolor.html#QRgb-typedef">QRgb</a> QScreen::screenclut[256]</h3>
+<p>This variable holds the color table.</p>
+<p>Initialize this variable in a subclass using a paletted screen mode, and initialize its partner, <a href="qscreen.html#screencols-var">QScreen::screencols</a>.</p>
+<p>See also <a href="qscreen.html#screencols-var">screencols</a>.</p>
+<a name="//apple_ref/cpp/data/QScreen/screencols" />
+<h3 class="fn"><a name="screencols-var"></a>int QScreen::screencols</h3>
+<p>This variable holds the number of entries in the color table.</p>
+<p>Initialize this variable in a subclass using a paletted screen mode, and initialize its partner, <a href="qscreen.html#screenclut-var">QScreen::screenclut</a>.</p>
+<p>See also <a href="qscreen.html#screenclut-var">screenclut</a>.</p>
+<a name="//apple_ref/cpp/data/QScreen/size" />
+<h3 class="fn"><a name="size-var"></a>int QScreen::size</h3>
+<p>This variable holds the number of bytes in the visible region of the frame buffer.</p>
+<p>This is the number of bytes in the visible part of the block pointed to by the <a href="qscreen.html#data-var">QScreen::data</a> pointer. You must initialize this variable if you initialize the <a href="qscreen.html#data-var">QScreen::data</a> pointer.</p>
+<p>See also <a href="qscreen.html#data-var">QScreen::data</a> and <a href="qscreen.html#mapsize-var">QScreen::mapsize</a>.</p>
+<a name="//apple_ref/cpp/data/QScreen/w" />
+<h3 class="fn"><a name="w-var"></a>int QScreen::w</h3>
+<p>This variable holds the logical width of the screen.</p>
+<p>This variable <i>must</i> be initialized by a subclass.</p>
+<hr />
+<h2>Related Non-Members</h2>
+<a name="//apple_ref/cpp/clm/QWSDisplay/setTransformation" />
+<h3 class="fn"><a name="setTransformation"></a>void QWSDisplay::setTransformation ( int <i>transformation</i>, int <i>screenNo</i> = -1 )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Here it is. <i>transformation</i> and <i>screenNo</i></p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

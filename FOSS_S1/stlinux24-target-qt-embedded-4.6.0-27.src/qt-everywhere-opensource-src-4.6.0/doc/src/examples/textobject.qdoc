@@ -1,0 +1,170 @@
+/****************************************************************************
+**
+** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+** All rights reserved.
+** Contact: Nokia Corporation (qt-info@nokia.com)
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:LGPL$
+** Commercial Usage
+** Licensees holding valid Qt Commercial licenses may use this file in
+** accordance with the Qt Commercial License Agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and Nokia.
+**
+** GNU Lesser General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU Lesser
+** General Public License version 2.1 as published by the Free Software
+** Foundation and appearing in the file LICENSE.LGPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU Lesser General Public License version 2.1 requirements
+** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+**
+** In addition, as a special exception, Nokia gives you certain additional
+** rights.  These rights are described in the Nokia Qt LGPL Exception
+** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+**
+** GNU General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU
+** General Public License version 3.0 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU General Public License version 3.0 requirements will be
+** met: http://www.gnu.org/copyleft/gpl.html.
+**
+** If you have questions regarding the use of this file, please contact
+** Nokia at qt-info@nokia.com.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \example richtext/textobject
+    \title Text Object Example
+    
+    The Text Object example shows how to insert an SVG file into a
+    QTextDocument.
+
+    \image textobject-example.png
+
+    A QTextDocument consists of a hierarchy of elements, such as text blocks and
+    frames. A text object describes the structure or format of one or more of these
+    elements. For instance, images imported from HTML are implemented using text
+    objects. Text objects are used by the document's
+    \l{QAbstractTextDocumentLayout}{layout} to lay out and render (paint) the
+    document. Each object knows how to paint the elements they govern, and
+    calculates their size. 
+
+    To be able to insert an SVG image into a text document, we create
+    a text object, and implement painting for that object. This object
+    can then be \l{QTextCharFormat::setObjectType()}{set} on a
+    QTextCharFormat. We also register the text object with the layout
+    of the document, enabling it to draw \l{QTextCharFormat}s governed
+    by our text object. We can summarize the procedure with the
+    following steps:
+
+    \list
+        \o Implement the text object.
+        \o Register the text object with the layout of the text
+           document.
+        \o Set the text object on a QTextCharFormat.
+        \o Insert a QChar::ObjectReplacementCharacter with that
+           text char format into the document.
+    \endlist
+
+    The example consists of the following classes:
+
+    \list
+        \o \c{SvgTextObject} implements the text object.
+        \o \c{Window} shows a QTextEdit into which SVG images can be
+           inserted.
+    \endlist
+
+    \section1 SvgTextObject Class Definition
+
+    Let's take a look at the header file of \c {SvgTextObject}:
+
+    \snippet examples/richtext/textobject/svgtextobject.h 0
+
+    A text object is a QObject that implements QTextObjectInterface.
+    Note that the first class inherited must be QObject, and that
+    you must use Q_INTERFACES to let Qt know that your class
+    implements QTextObjectInterface.
+
+    The document layout keeps a collection of text objects stored as
+    \l{QObject}s, each of which has an associated object type. The
+    layout casts the QObject for the associated object type into the
+    QTextObjectInterface.
+
+    The \l{QTextObjectInterface::}{intrinsicSize()} and
+    \l{QTextObjectInterface::}{drawObject()} functions are then used
+    to calculate the size of the text object and draw it.
+
+    \section1 SvgTextObject Class Implementation
+
+    We start of by taking a look at the
+    \l{QTextObjectInterface::}{intrinsicSize()} function:
+
+    \snippet examples/richtext/textobject/svgtextobject.cpp 0
+
+    \c intrinsicSize() is called by the layout to calculate the size
+    of the text object. Notice that we have drawn the SVG image on a
+    QImage. This is because SVG rendering is quite expensive. The
+    example would lag seriously for large images if we drew them
+    with a QSvgRenderer each time.
+
+    \snippet examples/richtext/textobject/svgtextobject.cpp 1
+
+    In \c drawObject(), we paint the SVG image using the QPainter
+    provided by the layout.
+
+    \section1 Window Class Definition
+
+    The \c Window class is a self-contained window that has a
+    QTextEdit in which SVG images can be inserted.
+
+    \snippet examples/richtext/textobject/window.h 0
+
+    The \c insertTextObject() slot inserts an SVG image at the current
+    cursor position, while \c setupTextObject() creates and registers
+    the SvgTextObject with the layout of the text edit's document.
+
+    The constructor simply calls \c setupTextObject() and \c
+    setupGui(), which creates and lays out the widgets of the \c
+    Window.
+
+    \section1 Window Class Implementation
+
+    We will now take a closer look at the functions that are relevant
+    to our text object, starting with the \c setupTextObject()
+    function.
+    
+    \snippet examples/richtext/textobject/window.cpp 3
+
+    \c {SvgTextFormat}'s value is the number of our object type. It is
+    used to identify object types by the document layout. 
+
+    Note that we only create one SvgTextObject instance; it will be
+    used for all QTextCharFormat's with the \c SvgTextFormat object
+    type.
+
+    Let's move on to the \c insertTextObject() function:
+
+    \snippet examples/richtext/textobject/window.cpp 1
+
+    First, the \c .svg file is opened and its contents are read
+    into the \c svgData array. 
+
+    \snippet examples/richtext/textobject/window.cpp 2
+
+    To speed things up, we buffer the SVG image in a QImage.  We use
+    \l{QTextFormat::}{setProperty()} to store the QImage in the in the
+    QTextCharFormat. We can retrieve it later with
+    \l{QTextCharFormat::}{property()}.
+
+    We insert the char format in the standard way - using a
+    QTextCursor. Notice that we use the special QChar
+    \l{QChar::}{ObjectReplacementCharacter}.
+*/
+

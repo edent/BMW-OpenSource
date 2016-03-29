@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qmake-manual.qdoc -->
+<head>
+  <title>Qt 4.6: qmake Platform Notes</title>
+  <link rel="prev" href="qmake-running.html" />
+  <link rel="contents" href="qmake-manual.html" />
+  <link rel="next" href="qmake-advanced-usage.html" />
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><p>
+[Previous: <a href="qmake-running.html">Running qmake</a>]
+[<a href="qmake-manual.html">Contents</a>]
+[Next: <a href="qmake-advanced-usage.html">qmake Advanced Usage</a>]
+</p>
+<h1 class="title">qmake Platform Notes<br /><span class="subtitle"></span>
+</h1>
+<p>Many cross-platform projects can be handled by the <tt>qmake</tt>'s basic configuration features. On some platforms, it is sometimes useful, or even necessary, to take advantage of platform-specific features. <tt>qmake</tt> knows about many of these features, and these can be accessed via specific variables that only have an effect on the platforms where they are relevant.</p>
+<ul><li><a href="#mac-os-x">Mac OS X</a></li>
+<ul><li><a href="#source-and-binary-packages">Source and Binary Packages</a></li>
+<li><a href="#using-frameworks">Using Frameworks</a></li>
+<li><a href="#creating-frameworks">Creating Frameworks</a></li>
+<li><a href="#creating-universal-binaries">Creating Universal Binaries</a></li>
+<li><a href="#creating-and-moving-xcode-projects">Creating and Moving Xcode Projects</a></li>
+<li><a href="#on-supporting-two-build-targets-simultaneously">On supporting two build targets simultaneously</a></li>
+</ul>
+<li><a href="#windows">Windows</a></li>
+<ul><li><a href="#creating-visual-studio-project-files">Creating Visual Studio Project Files</a></li>
+<li><a href="#visual-studio-2005-manifest-files">Visual Studio 2005 Manifest Files</a></li>
+</ul>
+<li><a href="#symbian-platform">Symbian platform</a></li>
+<ul><li><a href="#handling-of-static-data">Handling of static data</a></li>
+<li><a href="#stack-and-heap-size">Stack and heap size</a></li>
+<li><a href="#compiler-specific-options">Compiler specific options</a></li>
+<li><a href="#unique-identifiers">Unique identifiers</a></li>
+<li><a href="#capabilities">Capabilities</a></li>
+</ul>
+</ul>
+<a name="mac-os-x"></a>
+<h2>Mac OS X</h2>
+<p>Features specific to this platform include support for creating universal binaries, frameworks and bundles.</p>
+<a name="source-and-binary-packages"></a>
+<h3>Source and Binary Packages</h3>
+<p>The version of <tt>qmake</tt> supplied in source packages is configured slightly differently to that supplied in binary packages in that it uses a different feature specification. Where the source package typically uses the <tt>macx-g++</tt> specification, the binary package is typically configured to use the <tt>macx-xcode</tt> specification.</p>
+<p>Users of each package can override this configuration by invoking <tt>qmake</tt> with the <tt>-spec</tt> option (see <a href="qmake-running.html">Running qmake</a> for more information). This makes it possible, for example, to use <tt>qmake</tt> from a binary package to create a Makefile in a project directory with the following command line invocation:</p>
+<pre> qmake -spec macx-g++</pre>
+<a name="using-frameworks"></a>
+<h3>Using Frameworks</h3>
+<p><tt>qmake</tt> is able to automatically generate build rules for linking against frameworks in the standard framework directory on Mac OS X, located at <tt>/Library/Frameworks/</tt>.</p>
+<p>Directories other than the standard framework directory need to be specified to the build system, and this is achieved by appending linker options to the <a href="qmake-variable-reference.html#qmake-lflags">QMAKE_LFLAGS</a> variable, as shown in the following example:</p>
+<pre> QMAKE_LFLAGS += -F/path/to/framework/directory/</pre>
+<p>The framework itself is linked in by appending the <tt>-framework</tt> options and the name of the framework to the <a href="qmake-variable-reference.html#libs">LIBS</a> variable:</p>
+<pre> LIBS += -framework TheFramework</pre>
+<a name="creating-frameworks"></a>
+<h3>Creating Frameworks</h3>
+<p>Any given library project can be configured so that the resulting library file is placed in a <a href="http://developer.apple.com/documentation/MacOSX/Conceptual/BPFrameworks/Concepts/WhatAreFrameworks.html">framework</a>, ready for deployment. To do this, set up the project to use the <a href="qmake-variable-reference.html#template"><tt>lib</tt> template</a> and add the <tt>lib_bundle</tt> option to the <a href="qmake-variable-reference.html#config">CONFIG</a> variable:</p>
+<pre> TEMPLATE = lib
+ CONFIG += lib_bundle</pre>
+<p>The data associated with the library is specified using the <a href="qmake-variable-reference.html#qmake-bundle-data">QMAKE_BUNDLE_DATA</a> variable. This holds items that will be installed with a library bundle, and is often used to specify a collection of header files, as in the following example:</p>
+<pre> FRAMEWORK_HEADERS.version = Versions
+ FRAMEWORK_HEADERS.files = path/to/header_one.h path/to/header_two.h
+ FRAMEWORK_HEADERS.path = Headers
+ QMAKE_BUNDLE_DATA += FRAMEWORK_HEADERS</pre>
+<p>Here, the <tt>FRAMEWORK_HEADERS</tt> variable is a user-defined variable that is used to define the headers required to use a particular framework. Appending it to the <tt>QMAKE_BUNDLE_DATA</tt> variable ensures that the information about these headers are added to the collection of resources that will be installed with the library bundle. Also, the framework's name and version are specified by <a href="qmake-variable-reference.html#qmake-framework-bundle-name">QMAKE_FRAMEWORK_BUNDLE_NAME</a> and <a href="qmake-variable-reference.html#qmake-framework-version">QMAKE_FRAMEWORK_VERSION</a> variables. By default, the values used for these are obtained from the <a href="qmake-variable-reference.html#target">TARGET</a> and <a href="qmake-variable-reference.html#version">VERSION</a> variables.</p>
+<p>See <a href="deployment-mac.html">Deploying an Application on Mac OS X</a> for more information about deploying applications and libraries.</p>
+<a name="creating-universal-binaries"></a>
+<h3>Creating Universal Binaries</h3>
+<p>To create a universal binary for your application, you need to be using a version of Qt that has been configured with the <tt>-universal</tt> option.</p>
+<p>The architectures to be supported in the binary are specified with the <a href="qmake-variable-reference.html#config">CONFIG</a> variable. For example, the following assignment causes <tt>qmake</tt> to generate build rules to create a universal binary for both PowerPC and x86 architectures:</p>
+<pre> CONFIG += x86 ppc</pre>
+<p>Additionally, developers using a PowerPC-based platform need to set the <a href="qmake-variable-reference.html#qmake-mac-sdk">QMAKE_MAC_SDK</a> variable. This process is discussed in more detail in the <a href="deployment-mac.html#architecture-dependencies">deployment guide for Mac OS X</a>.</p>
+<a name="creating-and-moving-xcode-projects"></a>
+<h3>Creating and Moving Xcode Projects</h3>
+<p>Developers on Mac OS X can take advantage of <tt>qmake</tt>'s support for Xcode project files, as described in <a href="qtmac-as-native.html#development-tools">Qt is Mac OS X Native</a>, by running <tt>qmake</tt> to generate an Xcode project from an existing <tt>qmake</tt> project files. For example:</p>
+<pre> qmake -spec macx-xcode project.pro</pre>
+<p>Note that, if a project is later moved on the disk, <tt>qmake</tt> must be run again to process the project file and create a new Xcode project file.</p>
+<a name="on-supporting-two-build-targets-simultaneously"></a>
+<h3>On supporting two build targets simultaneously</h3>
+<p>Implementing this is currently not feasible, because the <a href="deployment-mac.html#xcode">XCode</a> concept of Active Build Configurations is conceptually different from the qmake idea of build targets.</p>
+<p>The <a href="deployment-mac.html#xcode">XCode</a> Active Build Configurations settings are for modifying xcode configurations, compiler flags and similar build options. Unlike Visual Studio, <a href="deployment-mac.html#xcode">XCode</a> does not allow for the selection of specific library files based on whether debug or release build configurations are selected. The qmake debug and release settings control which library files are linked to the executable.</p>
+<p>It is currently not possible to set files in <a href="deployment-mac.html#xcode">XCode</a> configuration settings from the qmake generated xcode project file. The way the libraries are linked in the &quot;Frameworks &amp; Libraries&quot; phase in the <a href="deployment-mac.html#xcode">XCode</a> build system.</p>
+<p>Furthermore, The selected &quot;Active Build Configuration&quot; is stored in a .pbxuser file, which is generated by xcode on first load, not created by qmake.</p>
+<a name="windows"></a>
+<h2>Windows</h2>
+<p>Features specific to this platform include support for creating Visual Studio project files and handling manifest files when deploying Qt applications developed using Visual Studio 2005.</p>
+<a name="creating-visual-studio-project-files"></a>
+<h3>Creating Visual Studio Project Files</h3>
+<p>Developers using Visual Studio to write Qt applications can use the Visual Studio integration facilities provided with the <a href="commercialeditions.html">Qt Commercial Editions</a> and do not need to worry about how project dependencies are managed.</p>
+<p>However, some developers may need to import an existing <tt>qmake</tt> project into Visual Studio. <tt>qmake</tt> is able to take a project file and create a Visual Studio project that contains all the necessary information required by the development environment. This is achieved by setting the <tt>qmake</tt> <a href="qmake-variable-reference.html#template">project template</a> to either <tt>vcapp</tt> (for application projects) or <tt>vclib</tt> (for library projects).</p>
+<p>This can also be set using a command line option, for example:</p>
+<pre> qmake -tp vc</pre>
+<p>It is possible to recursively generate <tt>.vcproj</tt> files in subdirectories and a <tt>.sln</tt> file in the main directory, by typing:</p>
+<pre> qmake -tp vc -r</pre>
+<p>Each time you update the project file, you need to run <tt>qmake</tt> to generate an updated Visual Studio project.</p>
+<p><b>Note:</b> If you are using the Visual Studio Add-in, you can import <tt>.pro</tt> files via the <b>Qt-&gt;Import from .pro file</b> menu item.</p>
+<a name="visual-studio-2005-manifest-files"></a>
+<h3>Visual Studio 2005 Manifest Files</h3>
+<p>When deploying Qt applications built using Visual Studio 2005, it is necessary to ensure that the manifest file, created when the application was linked, is handled correctly. This is handled automatically for projects that generate DLLs.</p>
+<p>Removing manifest embedding for application executables can be done with the following assignment to the <a href="qmake-variable-reference.html#config">CONFIG</a> variable:</p>
+<pre> CONFIG -= embed_manifest_exe</pre>
+<p>Also, the manifest embedding for DLLs can be removed with the following assignment to the <a href="qmake-variable-reference.html#config">CONFIG</a> variable:</p>
+<pre> CONFIG -= embed_manifest_dll</pre>
+<p>This is discussed in more detail in the <a href="deployment-windows.html#visual-studio-2005-onwards">deployment guide for Windows</a>.</p>
+<a name="symbian-platform"></a>
+<h2>Symbian platform</h2>
+<p>Features specific to this platform include handling of static data, capabilities, stack and heap size, compiler specific options, and unique identifiers for the application or library.</p>
+<a name="handling-of-static-data"></a>
+<h3>Handling of static data</h3>
+<p>If the application uses any static data, the build system needs to be informed about it. This is because Symbian tries to save memory if no static data is in use.</p>
+<p>To specify that static data support is desired, add this to the project file:</p>
+<pre> TARGET.EPOCALLOWDLLDATA = 1</pre>
+<p>The default value is zero.</p>
+<a name="stack-and-heap-size"></a>
+<h3>Stack and heap size</h3>
+<p>The Symbian platform uses predefined sizes for stacks and heaps. If an application exceeds either limit, it may crash or fail to complete its task. Crashes that seem to have no reason can often be traced back to insufficient stack and/or heap sizes.</p>
+<p>The stack size has a maximum value, whereas the heap size has a minimum and a maximum value, all specified in bytes. The minimum value prevents the application from starting if that amount of memory is not available. The minimum and maximum values are separated by a space. For example:</p>
+<pre> TARGET.EPOCHEAPSIZE = 10000 10000000
+ TARGET.EPOCSTACKSIZE = 0x8000</pre>
+<p>The default values depend on the version of the Symbian SDK you're using.</p>
+<a name="compiler-specific-options"></a>
+<h3>Compiler specific options</h3>
+<p>General compiler options can as usual be set using <tt>QMAKE_CFLAGS</tt> and <tt>QMAKE_CXXFLAGS</tt>. In order to set specific compiler options, <tt>QMAKE_CFLAGS.&lt;compiler&gt;</tt> and <tt>QMAKE_CXXFLAGS.&lt;compiler&gt;</tt> can be used. <tt>&lt;compiler&gt;</tt> can be either <tt>CW</tt> for the WINSCW architecture (emulator), or <tt>ARMCC</tt> for the ARMv5 architecture (hardware), or <tt>GCCE</tt> for the ARMv5 architecture (hardware).</p>
+<p>Here is an example:</p>
+<pre> QMAKE_CXXFLAGS.CW += -O2
+ QMAKE_CXXFLAGS.ARMCC += -O0</pre>
+<a name="unique-identifiers"></a>
+<h3>Unique identifiers</h3>
+<p>Symbian applications may have unique identifiers attached to them. Here is how to define them in a project file:</p>
+<p>There are four types of IDs supported: <tt>UID2</tt>, <tt>UID3</tt>, <tt>SID</tt>, and <tt>VID</tt>. They are specified like this:</p>
+<pre> TARGET.UID2 = 0x00000001
+ TARGET.UID3 = 0x00000002
+ TARGET.SID = 0x00000003
+ TARGET.VID = 0x00000004</pre>
+<p>If <tt>UID2</tt> is not specified, it defaults to the same value as <tt>UID3</tt>. If <tt>UID3</tt> is not specified, qmake will automatically generate a <tt>UID3</tt> suitable for development and debugging. This value should be manually specified for applications that are to be released. In order to optain an official UID, please contact Nokia. Both <tt>SID</tt> and <tt>VID</tt> default to empty values.</p>
+<p>For more information about unique identifiers and their meaning for Symbian applications, please refer to the Symbian SDK documentation.</p>
+<a name="capabilities"></a>
+<h3>Capabilities</h3>
+<p>Capabilities define extra priviledges for the application, such as the ability to list all files on the file system. Capabilities are defined in the project file like this:</p>
+<pre> TARGET.CAPABILITY += AllFiles</pre>
+<p>It is also possible to specify which capabilities <i>not</i> to have, by first specifying <tt>ALL</tt> and then list the unwanted capabilities with a minus in front of them, like this:</p>
+<pre> TARGET.CAPABILITY = ALL -TCB</pre>
+<p>For more information about capabilities, please refer to the Symbian SDK documentation.</p>
+<p>
+[Previous: <a href="qmake-running.html">Running qmake</a>]
+[<a href="qmake-manual.html">Contents</a>]
+[Next: <a href="qmake-advanced-usage.html">qmake Advanced Usage</a>]
+</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

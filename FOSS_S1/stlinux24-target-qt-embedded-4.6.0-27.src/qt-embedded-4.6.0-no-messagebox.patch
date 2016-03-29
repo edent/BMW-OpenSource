@@ -1,0 +1,18 @@
+Disables the timeout when running javascript on a webpage.
+This can be useful when benchmarking e.g. using sunspider benchmarks, since some of
+those can exceed the timeout on our platforms.
+This patch is not intended to be applied for a release build.
+
+Signed-off-by: Stephen Clarke <stephen.clarke@st.com>
+
+--- qt-everywhere-opensource-src-4.6.0/src/3rdparty/webkit/WebKit/qt/Api/qwebpage.cpp.orig	2009-12-21 13:46:35.000000000 +0000
++++ qt-everywhere-opensource-src-4.6.0/src/3rdparty/webkit/WebKit/qt/Api/qwebpage.cpp	2009-12-21 13:46:42.000000000 +0000
+@@ -1875,7 +1875,7 @@
+ */
+ bool QWebPage::shouldInterruptJavaScript()
+ {
+-#ifdef QT_NO_MESSAGEBOX
++#if 1 // def QT_NO_MESSAGEBOX
+     return false;
+ #else
+     return QMessageBox::Yes == QMessageBox::information(view(), tr("JavaScript Problem - %1").arg(mainFrame()->url().host()), tr("The script on this page appears to have a problem. Do you want to stop the script?"), QMessageBox::Yes, QMessageBox::No);

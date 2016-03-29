@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: graphicsscene.cpp Example File (demos/sub-attaq/graphicsscene.cpp)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">graphicsscene.cpp Example File<br /><span class="small-subtitle">demos/sub-attaq/graphicsscene.cpp</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the QtCore module of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+
+<span class="comment"> //Own</span>
+ #include &quot;graphicsscene.h&quot;
+ #include &quot;states.h&quot;
+ #include &quot;boat.h&quot;
+ #include &quot;submarine.h&quot;
+ #include &quot;torpedo.h&quot;
+ #include &quot;bomb.h&quot;
+ #include &quot;pixmapitem.h&quot;
+ #include &quot;animationmanager.h&quot;
+ #include &quot;qanimationstate.h&quot;
+ #include &quot;progressitem.h&quot;
+ #include &quot;textinformationitem.h&quot;
+
+<span class="comment"> //Qt</span>
+ #include &lt;QtCore/QPropertyAnimation&gt;
+ #include &lt;QtCore/QSequentialAnimationGroup&gt;
+ #include &lt;QtCore/QParallelAnimationGroup&gt;
+ #include &lt;QtCore/QStateMachine&gt;
+ #include &lt;QtCore/QFinalState&gt;
+ #include &lt;QtCore/QPauseAnimation&gt;
+ #include &lt;QtGui/QAction&gt;
+ #include &lt;QtCore/QDir&gt;
+ #include &lt;QtGui/QApplication&gt;
+ #include &lt;QtGui/QMessageBox&gt;
+ #include &lt;QtGui/QGraphicsView&gt;
+ #include &lt;QtGui/QGraphicsSceneMouseEvent&gt;
+ #include &lt;QtCore/QXmlStreamReader&gt;
+
+ GraphicsScene::GraphicsScene(int x, int y, int width, int height, Mode mode)
+     : QGraphicsScene(x , y, width, height), mode(mode), boat(new Boat)
+ {
+     PixmapItem *backgroundItem = new PixmapItem(QString(&quot;background&quot;),mode);
+     backgroundItem-&gt;setZValue(1);
+     backgroundItem-&gt;setPos(0,0);
+     addItem(backgroundItem);
+
+     PixmapItem *surfaceItem = new PixmapItem(QString(&quot;surface&quot;),mode);
+     surfaceItem-&gt;setZValue(3);
+     surfaceItem-&gt;setPos(0,sealLevel() - surfaceItem-&gt;boundingRect().height()/2);
+     addItem(surfaceItem);
+
+     <span class="comment">//The item that display score and level</span>
+     progressItem = new ProgressItem(backgroundItem);
+
+     textInformationItem = new TextInformationItem(backgroundItem);
+     textInformationItem-&gt;hide();
+     <span class="comment">//We create the boat</span>
+     addItem(boat);
+     boat-&gt;setPos(this-&gt;width()/2, sealLevel() - boat-&gt;size().height());
+     boat-&gt;hide();
+
+     <span class="comment">//parse the xml that contain all data of the game</span>
+     QXmlStreamReader reader;
+     QFile file(&quot;:data.xml&quot;);
+     file.open(QIODevice::ReadOnly);
+     reader.setDevice(&amp;file);
+     LevelDescription currentLevel;
+     while (!reader.atEnd()) {
+          reader.readNext();
+          if (reader.tokenType() == QXmlStreamReader::StartElement) {
+              if (reader.name() == &quot;submarine&quot;) {
+                  SubmarineDescription desc;
+                  desc.name = reader.attributes().value(&quot;name&quot;).toString();
+                  desc.points = reader.attributes().value(&quot;points&quot;).toString().toInt();
+                  desc.type = reader.attributes().value(&quot;type&quot;).toString().toInt();
+                  submarinesData.append(desc);
+              } else if (reader.name() == &quot;level&quot;) {
+                  currentLevel.id = reader.attributes().value(&quot;id&quot;).toString().toInt();
+                  currentLevel.name = reader.attributes().value(&quot;name&quot;).toString();
+              } else if (reader.name() == &quot;subinstance&quot;) {
+                  currentLevel.submarines.append(qMakePair(reader.attributes().value(&quot;type&quot;).toString().toInt(), reader.attributes().value(&quot;nb&quot;).toString().toInt()));
+              }
+          } else if (reader.tokenType() == QXmlStreamReader::EndElement) {
+             if (reader.name() == &quot;level&quot;) {
+                 levelsData.insert(currentLevel.id, currentLevel);
+                 currentLevel.submarines.clear();
+             }
+          }
+    }
+ }
+
+ qreal GraphicsScene::sealLevel() const
+ {
+     return (mode == Big) ? 220 : 160;
+ }
+
+ void GraphicsScene::setupScene(QAction *newAction, QAction *quitAction)
+ {
+     static const int nLetters = 10;
+     static struct {
+         char const *pix;
+         qreal initX, initY;
+         qreal destX, destY;
+     } logoData[nLetters] = {
+         {&quot;s&quot;,   -1000, -1000, 300, 150 },
+         {&quot;u&quot;,    -800, -1000, 350, 150 },
+         {&quot;b&quot;,    -600, -1000, 400, 120 },
+         {&quot;dash&quot;, -400, -1000, 460, 150 },
+         {&quot;a&quot;,    1000,  2000, 350, 250 },
+         {&quot;t&quot;,     800,  2000, 400, 250 },
+         {&quot;t2&quot;,    600,  2000, 430, 250 },
+         {&quot;a2&quot;,    400,  2000, 465, 250 },
+         {&quot;q&quot;,     200,  2000, 510, 250 },
+         {&quot;excl&quot;,    0,  2000, 570, 220 } };
+
+     QSequentialAnimationGroup * lettersGroupMoving = new QSequentialAnimationGroup(this);
+     QParallelAnimationGroup * lettersGroupFading = new QParallelAnimationGroup(this);
+
+     for (int i = 0; i &lt; nLetters; ++i) {
+         PixmapItem *logo = new PixmapItem(QLatin1String(&quot;:/logo-&quot;) + logoData[i].pix, this);
+         logo-&gt;setPos(logoData[i].initX, logoData[i].initY);
+         logo-&gt;setZValue(i + 3);
+         <span class="comment">//creation of the animations for moving letters</span>
+         QPropertyAnimation *moveAnim = new QPropertyAnimation(logo, &quot;pos&quot;, lettersGroupMoving);
+         moveAnim-&gt;setEndValue(QPointF(logoData[i].destX, logoData[i].destY));
+         moveAnim-&gt;setDuration(200);
+         moveAnim-&gt;setEasingCurve(QEasingCurve::OutElastic);
+         lettersGroupMoving-&gt;addPause(50);
+         <span class="comment">//creation of the animations for fading out the letters</span>
+         QPropertyAnimation *fadeAnim = new QPropertyAnimation(logo, &quot;opacity&quot;, lettersGroupFading);
+         fadeAnim-&gt;setDuration(800);
+         fadeAnim-&gt;setEndValue(0);
+         fadeAnim-&gt;setEasingCurve(QEasingCurve::OutQuad);
+     }
+
+     QStateMachine *machine = new QStateMachine(this);
+
+     <span class="comment">//This state is when the player is playing</span>
+     PlayState *gameState = new PlayState(this, machine);
+
+     <span class="comment">//Final state</span>
+     QFinalState *final = new QFinalState(machine);
+
+     <span class="comment">//Animation when the player enter in the game</span>
+     QAnimationState *lettersMovingState = new QAnimationState(machine);
+     lettersMovingState-&gt;setAnimation(lettersGroupMoving);
+
+     <span class="comment">//Animation when the welcome screen disappear</span>
+     QAnimationState *lettersFadingState = new QAnimationState(machine);
+     lettersFadingState-&gt;setAnimation(lettersGroupFading);
+
+     <span class="comment">//if new game then we fade out the welcome screen and start playing</span>
+     lettersMovingState-&gt;addTransition(newAction, SIGNAL(triggered()), lettersFadingState);
+     lettersFadingState-&gt;addTransition(lettersFadingState, SIGNAL(animationFinished()), gameState);
+
+     <span class="comment">//New Game is triggered then player start playing</span>
+     gameState-&gt;addTransition(newAction, SIGNAL(triggered()), gameState);
+
+     <span class="comment">//Wanna quit, then connect to CTRL+Q</span>
+     gameState-&gt;addTransition(quitAction, SIGNAL(triggered()), final);
+     lettersMovingState-&gt;addTransition(quitAction, SIGNAL(triggered()), final);
+
+     <span class="comment">//Welcome screen is the initial state</span>
+     machine-&gt;setInitialState(lettersMovingState);
+
+     machine-&gt;start();
+
+     <span class="comment">//We reach the final state, then we quit</span>
+     connect(machine, SIGNAL(finished()), qApp, SLOT(quit()));
+ }
+
+ void GraphicsScene::addItem(Bomb *bomb)
+ {
+     bombs.insert(bomb);
+     connect(bomb,SIGNAL(bombExecutionFinished()),this, SLOT(onBombExecutionFinished()));
+     QGraphicsScene::addItem(bomb);
+ }
+
+ void GraphicsScene::addItem(Torpedo *torpedo)
+ {
+     torpedos.insert(torpedo);
+     connect(torpedo,SIGNAL(torpedoExecutionFinished()),this, SLOT(onTorpedoExecutionFinished()));
+     QGraphicsScene::addItem(torpedo);
+ }
+
+ void GraphicsScene::addItem(SubMarine *submarine)
+ {
+     submarines.insert(submarine);
+     connect(submarine,SIGNAL(subMarineExecutionFinished()),this, SLOT(onSubMarineExecutionFinished()));
+     QGraphicsScene::addItem(submarine);
+ }
+
+ void GraphicsScene::addItem(QGraphicsItem *item)
+ {
+     QGraphicsScene::addItem(item);
+ }
+
+ void GraphicsScene::onBombExecutionFinished()
+ {
+     Bomb *bomb = qobject_cast&lt;Bomb *&gt;(sender());
+     bombs.remove(bomb);
+     bomb-&gt;deleteLater();
+     if (boat)
+         boat-&gt;setBombsLaunched(boat-&gt;bombsLaunched() - 1);
+ }
+
+ void GraphicsScene::onTorpedoExecutionFinished()
+ {
+     Torpedo *torpedo = qobject_cast&lt;Torpedo *&gt;(sender());
+     torpedos.remove(torpedo);
+     torpedo-&gt;deleteLater();
+ }
+
+ void GraphicsScene::onSubMarineExecutionFinished()
+ {
+     SubMarine *submarine = qobject_cast&lt;SubMarine *&gt;(sender());
+     submarines.remove(submarine);
+     if (submarines.count() == 0)
+         emit allSubMarineDestroyed(submarine-&gt;points());
+     else
+         emit subMarineDestroyed(submarine-&gt;points());
+     submarine-&gt;deleteLater();
+ }
+
+ void GraphicsScene::clearScene()
+ {
+     foreach (SubMarine *sub, submarines) {
+         sub-&gt;destroy();
+         sub-&gt;deleteLater();
+     }
+
+     foreach (Torpedo *torpedo, torpedos) {
+         torpedo-&gt;destroy();
+         torpedo-&gt;deleteLater();
+     }
+
+     foreach (Bomb *bomb, bombs) {
+         bomb-&gt;destroy();
+         bomb-&gt;deleteLater();
+     }
+
+     submarines.clear();
+     bombs.clear();
+     torpedos.clear();
+
+     AnimationManager::self()-&gt;unregisterAllAnimations();
+
+     boat-&gt;stop();
+     boat-&gt;hide();
+     boat-&gt;setEnabled(true);
+ }</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

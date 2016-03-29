@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: mydecoration.cpp Example File (qws/simpledecoration/mydecoration.cpp)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">mydecoration.cpp Example File<br /><span class="small-subtitle">qws/simpledecoration/mydecoration.cpp</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the examples of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+
+ #include &lt;QtGui&gt;
+ #include &quot;mydecoration.h&quot;
+
+<span class="comment"> /* XPM */</span>
+ static const char * const _close_button[] = {
+ &quot;16 16 3 1&quot;,
+ &quot;  c none&quot;,
+ &quot;. c #ffafaf&quot;,
+ &quot;x c #000000&quot;,
+ &quot;                &quot;,
+ &quot; xxxxxxxxxxxxxx &quot;,
+ &quot; x............x &quot;,
+ &quot; x.x........x.x &quot;,
+ &quot; x..x......x..x &quot;,
+ &quot; x...x....x...x &quot;,
+ &quot; x....x..x....x &quot;,
+ &quot; x.....xx.....x &quot;,
+ &quot; x.....xx.....x &quot;,
+ &quot; x....x..x....x &quot;,
+ &quot; x...x....x...x &quot;,
+ &quot; x..x......x..x &quot;,
+ &quot; x.x........x.x &quot;,
+ &quot; x............x &quot;,
+ &quot; xxxxxxxxxxxxxx &quot;,
+ &quot;                &quot;};
+
+ static const char * const _normalize_button[] = {
+ &quot;16 16 4 1&quot;,
+ &quot;  c none&quot;,
+ &quot;. c #dfdfff&quot;,
+ &quot;o c #7f7f7f&quot;,
+ &quot;x c #000000&quot;,
+ &quot;                &quot;,
+ &quot; xxxxxxxxxxxxxx &quot;,
+ &quot; xx...........x &quot;,
+ &quot; x.x..........x &quot;,
+ &quot; x..x..x......x &quot;,
+ &quot; x...xxx......x &quot;,
+ &quot; x...xxx......x &quot;,
+ &quot; x..xxxx......x &quot;,
+ &quot; x............x &quot;,
+ &quot; x.......xxxx.x &quot;,
+ &quot; x.......x..x.x &quot;,
+ &quot; x.......x..x.x &quot;,
+ &quot; x.......xxxx.x &quot;,
+ &quot; x............x &quot;,
+ &quot; xxxxxxxxxxxxxx &quot;,
+ &quot;                &quot;};
+
+ static const char * const _maximize_button[] = {
+ &quot;16 16 4 1&quot;,
+ &quot;  c none&quot;,
+ &quot;. c #dfdfff&quot;,
+ &quot;o c #7f7f7f&quot;,
+ &quot;x c #000000&quot;,
+ &quot;                &quot;,
+ &quot; xxxxxxxxxxxxxx &quot;,
+ &quot; x............x &quot;,
+ &quot; x.......xxxx.x &quot;,
+ &quot; x........xxx.x &quot;,
+ &quot; x........xxx.x &quot;,
+ &quot; x.......x..x.x &quot;,
+ &quot; x......x.....x &quot;,
+ &quot; x.....x......x &quot;,
+ &quot; x.oooo.......x &quot;,
+ &quot; x.o..o.......x &quot;,
+ &quot; x.o..o.......x &quot;,
+ &quot; x.oooo.......x &quot;,
+ &quot; x............x &quot;,
+ &quot; xxxxxxxxxxxxxx &quot;,
+ &quot;                &quot;};
+
+ static const char * const _help_button[] = {
+ &quot;16 16 3 1&quot;,
+ &quot;  c none&quot;,
+ &quot;. c #afffdf&quot;,
+ &quot;x c #000000&quot;,
+ &quot;                &quot;,
+ &quot; xxxxxxxxxxxxxx &quot;,
+ &quot; x............x &quot;,
+ &quot; x....xxxx....x &quot;,
+ &quot; x..xx....xx..x &quot;,
+ &quot; x.xx......xx.x &quot;,
+ &quot; x.xx......xx.x &quot;,
+ &quot; x........xx..x &quot;,
+ &quot; x......xx....x &quot;,
+ &quot; x.....xx.....x &quot;,
+ &quot; x.....xx.....x &quot;,
+ &quot; x............x &quot;,
+ &quot; x.....xx.....x &quot;,
+ &quot; x............x &quot;,
+ &quot; xxxxxxxxxxxxxx &quot;,
+ &quot;                &quot;};
+
+ MyDecoration::MyDecoration()
+     : QDecorationDefault()
+ {
+     border = 4;
+     titleHeight = 24;
+     buttonWidth = 20;
+     buttonHeight = 20;
+     buttonMargin = 2;
+     buttonHints &lt;&lt; Qt::Window
+                 &lt;&lt; Qt::WindowMaximizeButtonHint
+                 &lt;&lt; Qt::WindowContextHelpButtonHint;
+     //! [constructor start]
+
+     //! [map window flags to decoration regions]
+     buttonHintMap[Qt::Window] = Close;
+     buttonHintMap[Qt::WindowMaximizeButtonHint] = Maximize;
+     buttonHintMap[Qt::WindowContextHelpButtonHint] = Help;
+     //! [map window flags to decoration regions]
+
+     //! [map decoration regions to pixmaps]
+     normalButtonPixmaps[Close] = QPixmap(_close_button);
+     normalButtonPixmaps[Maximize] = QPixmap(_maximize_button);
+     normalButtonPixmaps[Normalize] = QPixmap(_normalize_button);
+     normalButtonPixmaps[Help] = QPixmap(_help_button);
+
+     maximizedButtonPixmaps[Close] = QPixmap(_close_button);
+     maximizedButtonPixmaps[Maximize] = QPixmap(_normalize_button);
+     maximizedButtonPixmaps[Normalize] = QPixmap(_normalize_button);
+     maximizedButtonPixmaps[Help] = QPixmap(_help_button);
+     //! [map decoration regions to pixmaps]
+
+     //! [constructor end]
+     stateRegions &lt;&lt; Close &lt;&lt; Maximize &lt;&lt; Help;
+ }
+
+ QRegion MyDecoration::region(const QWidget *widget, const QRect &amp;insideRect,
+                              int decorationRegion)
+ {
+     //! [region start]
+     //! [calculate the positions of buttons based on the window flags used]
+     QHash&lt;DecorationRegion, int&gt; buttons;
+     Qt::WindowFlags flags = widget-&gt;windowFlags();
+     int dx = -buttonMargin - buttonWidth;
+
+     foreach (Qt::WindowType button, buttonHints) {
+         if (flags &amp; button) {
+             int x = (buttons.size() + 1) * dx;
+             buttons[buttonHintMap[button]] = x;
+         }
+     }
+     //! [calculate the positions of buttons based on the window flags used]
+
+     //! [calculate the extent of the title]
+     int titleRightMargin = buttons.size() * dx;
+
+     QRect outsideRect(insideRect.left() - border,
+                       insideRect.top() - titleHeight - border,
+                       insideRect.width() + 2 * border,
+                       insideRect.height() + titleHeight + 2 * border);
+     //! [calculate the extent of the title]
+
+     //! [check for all regions]
+     QRegion region;
+
+     if (decorationRegion == All) {
+         region += QRegion(outsideRect) - QRegion(insideRect);
+         return region;
+     }
+     //! [check for all regions]
+
+     //! [compose a region based on the decorations specified]
+     if (decorationRegion &amp; Title) {
+         QRect rect = outsideRect.adjusted(border, border, -border, 0);
+         rect.setHeight(titleHeight);
+
+         <span class="comment">// Adjust the width to accommodate buttons.</span>
+         rect.setWidth(qMax(0, rect.width() + titleRightMargin));
+         region += rect;
+     }
+     if (decorationRegion &amp; Top) {
+         QRect rect = outsideRect.adjusted(border, 0, -border, 0);
+         rect.setHeight(border);
+         region += rect;
+     }
+     if (decorationRegion &amp; Left) {
+         QRect rect = outsideRect.adjusted(0, border, 0, -border);
+         rect.setWidth(border);
+         region += rect;
+     }
+     if (decorationRegion &amp; Right) {
+         QRect rect = outsideRect.adjusted(0, border, 0, -border);
+         rect.setLeft(rect.right() + 1 - border);
+         region += rect;
+     }
+     if (decorationRegion &amp; Bottom) {
+         QRect rect = outsideRect.adjusted(border, 0, -border, 0);
+         rect.setTop(rect.bottom() + 1 - border);
+         region += rect;
+     }
+     if (decorationRegion &amp; TopLeft) {
+         QRect rect = outsideRect;
+         rect.setWidth(border);
+         rect.setHeight(border);
+         region += rect;
+     }
+     if (decorationRegion &amp; TopRight) {
+         QRect rect = outsideRect;
+         rect.setLeft(rect.right() + 1 - border);
+         rect.setHeight(border);
+         region += rect;
+     }
+     if (decorationRegion &amp; BottomLeft) {
+         QRect rect = outsideRect;
+         rect.setWidth(border);
+         rect.setTop(rect.bottom() + 1 - border);
+         region += rect;
+     }
+     if (decorationRegion &amp; BottomRight) {
+         QRect rect = outsideRect;
+         rect.setLeft(rect.right() + 1 - border);
+         rect.setTop(rect.bottom() + 1 - border);
+         region += rect;
+     }
+     //! [compose a region based on the decorations specified]
+
+     //! [add a region for each button only if it is present]
+     foreach (QDecoration::DecorationRegion testRegion, stateRegions) {
+         if (decorationRegion &amp; testRegion and buttons.contains(testRegion)) {
+             <span class="comment">// Inside the title rectangle</span>
+             QRect rect = outsideRect.adjusted(border, border, -border, 0);
+             rect.setHeight(titleHeight);
+
+             dx = buttons[testRegion];
+             rect.setLeft(rect.right() + 1 + dx);
+             rect.setWidth(buttonWidth + buttonMargin);
+             region += rect;
+         }
+     }
+     //! [add a region for each button only if it is present]
+
+     //! [region end]
+     return region;
+ }
+
+ bool MyDecoration::paint(QPainter *painter, const QWidget *widget,
+                          int decorationRegion, DecorationState state)
+ {
+     if (decorationRegion == None)
+         return false;
+     //! [paint start]
+
+     //! [paint different regions]
+     bool handled = false;
+
+     QPalette palette = QApplication::palette();
+     QHash&lt;DecorationRegion, QPixmap&gt; buttonPixmaps;
+
+     if (widget-&gt;windowState() == Qt::WindowMaximized)
+         buttonPixmaps = maximizedButtonPixmaps;
+     else
+         buttonPixmaps = normalButtonPixmaps;
+
+     if (decorationRegion &amp; Title) {
+         QRect rect = QDecoration::region(widget, Title).boundingRect();
+         painter-&gt;fillRect(rect, palette.brush(QPalette::Base));
+         painter-&gt;save();
+         painter-&gt;setPen(QPen(palette.color(QPalette::Text)));
+         painter-&gt;drawText(rect, Qt::AlignCenter, widget-&gt;windowTitle());
+         painter-&gt;restore();
+         handled = true;
+     }
+     if (decorationRegion &amp; Top) {
+         QRect rect = QDecoration::region(widget, Top).boundingRect();
+         painter-&gt;fillRect(rect, palette.brush(QPalette::Dark));
+         handled = true;
+     }
+     if (decorationRegion &amp; Left) {
+         QRect rect = QDecoration::region(widget, Left).boundingRect();
+         painter-&gt;fillRect(rect, palette.brush(QPalette::Dark));
+         handled = true;
+     }
+     if (decorationRegion &amp; Right) {
+         QRect rect = QDecoration::region(widget, Right).boundingRect();
+         painter-&gt;fillRect(rect, palette.brush(QPalette::Dark));
+         handled = true;
+     }
+     if (decorationRegion &amp; Bottom) {
+         QRect rect = QDecoration::region(widget, Bottom).boundingRect();
+         painter-&gt;fillRect(rect, palette.brush(QPalette::Dark));
+         handled = true;
+     }
+     if (decorationRegion &amp; TopLeft) {
+         QRect rect = QDecoration::region(widget, TopLeft).boundingRect();
+         painter-&gt;fillRect(rect, palette.brush(QPalette::Dark));
+         handled = true;
+     }
+     if (decorationRegion &amp; TopRight) {
+         QRect rect = QDecoration::region(widget, TopRight).boundingRect();
+         painter-&gt;fillRect(rect, palette.brush(QPalette::Dark));
+         handled = true;
+     }
+     if (decorationRegion &amp; BottomLeft) {
+         QRect rect = QDecoration::region(widget, BottomLeft).boundingRect();
+         painter-&gt;fillRect(rect, palette.brush(QPalette::Dark));
+         handled = true;
+     }
+     if (decorationRegion &amp; BottomRight) {
+         QRect rect = QDecoration::region(widget, BottomRight).boundingRect();
+         painter-&gt;fillRect(rect, palette.brush(QPalette::Dark));
+         handled = true;
+     }
+     //! [paint different regions]
+
+     //! [paint buttons]
+     int margin = (titleHeight - 16) / 2;
+     Qt::WindowFlags flags = widget-&gt;windowFlags();
+
+     foreach (DecorationRegion testRegion, stateRegions) {
+         if (decorationRegion &amp; testRegion &amp;&amp; flags &amp; buttonHintMap.key(testRegion)) {
+             QRect rect = QDecoration::region(
+                 widget, testRegion).boundingRect();
+             painter-&gt;fillRect(rect, palette.brush(QPalette::Base));
+
+             QRect buttonRect = rect.adjusted(0, margin, -buttonMargin - margin,
+                                              -buttonMargin);
+             painter-&gt;drawPixmap(buttonRect.topLeft(), buttonPixmaps[testRegion]);
+             handled = true;
+         }
+     }
+     //! [paint buttons]
+
+     //! [paint end]
+     return handled;
+ }</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

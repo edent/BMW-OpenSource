@@ -1,0 +1,535 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: sym_iap_util.h Example File (network/qftp/sym_iap_util.h)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">sym_iap_util.h Example File<br /><span class="small-subtitle">network/qftp/sym_iap_util.h</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the examples of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+ #ifndef QSYM_IAP_UTIL_H
+ #define QSYM_IAP_UTIL_H
+
+<span class="comment"> // Symbian</span>
+ #include &lt;utf.h&gt;
+ #include &lt;es_sock.h&gt;
+ #include &lt;in_sock.h&gt;
+ #include &lt;es_enum.h&gt;
+ #include &lt;in_iface.h&gt;
+ #include &lt;commdbconnpref.h&gt;
+ #include &lt;e32cmn.h&gt;
+
+<span class="comment"> // OpenC</span>
+ #include &lt;sys/socket.h&gt;
+ #include &lt;net/if.h&gt;
+
+<span class="comment"> //Qt</span>
+ #include &lt;QSettings&gt;
+ #include &lt;QStringList&gt;
+<span class="comment"> //#include &lt;QTextCodec&gt;</span>
+
+ _LIT(KIapNameSetting, &quot;IAP\\Name&quot;);             <span class="comment">// text - mandatory</span>
+ _LIT(KIapDialogPref, &quot;IAP\\DialogPref&quot;);        <span class="comment">// TUnit32 - optional</span>
+ _LIT(KIapService, &quot;IAP\\IAPService&quot;);           <span class="comment">// TUnit32 - mandatory</span>
+ _LIT(KIapServiceType, &quot;IAP\\IAPServiceType&quot;);   <span class="comment">// text - mandatory</span>
+ _LIT(KIapBearer, &quot;IAP\\IAPBearer&quot;);             <span class="comment">// TUint32 - optional</span>
+ _LIT(KIapBearerType, &quot;IAP\\IAPBearerType&quot;);     <span class="comment">// text - optional</span>
+ _LIT(KIapNetwork, &quot;IAP\\IAPNetwork&quot;);           <span class="comment">// TUint32 - optional</span>
+
+ const QLatin1String qtOrganizationTag(&quot;Trolltech&quot;);
+ const QLatin1String qtNetworkModuleTag(&quot;QtNetwork&quot;);
+ const QLatin1String iapGroupTag(&quot;IAP&quot;);
+ const QLatin1String iapNamesArrayTag(&quot;Names&quot;);
+ const QLatin1String iapNameItemTag(&quot;Name&quot;);
+
+ static QTextCodec *utf16LETextCodec = 0;
+
+ void clearIapNamesSettings(QSettings &amp;settings) {
+     settings.beginGroup(qtNetworkModuleTag);
+         settings.beginGroup(iapGroupTag);
+            settings.remove(iapNamesArrayTag);
+         settings.endGroup();
+     settings.endGroup();
+ }
+
+ void writeIapNamesSettings(QSettings &amp;settings, const QStringList&amp; iapNames) {
+     clearIapNamesSettings(settings);
+     settings.beginGroup(qtNetworkModuleTag);
+         settings.beginGroup(iapGroupTag);
+             settings.beginWriteArray(iapNamesArrayTag);
+             for (int index = 0; index &lt; iapNames.size(); ++index) {
+                 settings.setArrayIndex(index);
+                 settings.setValue(iapNameItemTag, iapNames.at(index));
+             }
+             settings.endArray();
+         settings.endGroup();
+     settings.endGroup();
+ }
+
+ void readIapNamesSettings(QSettings &amp;settings, QStringList&amp; iapNames) {
+     settings.beginGroup(qtNetworkModuleTag);
+         settings.beginGroup(iapGroupTag);
+             int last = settings.beginReadArray(iapNamesArrayTag);
+             for (int index = 0; index &lt; last; ++index) {
+                 settings.setArrayIndex(index);
+                 iapNames.append(settings.value(iapNameItemTag).toString());
+             }
+             settings.endArray();
+         settings.endGroup();
+     settings.endGroup();
+ }
+
+ static QString qt_TNameToQString(TName data) {
+     if(utf16LETextCodec == 0)
+         utf16LETextCodec = QTextCodec::codecForName(&quot;UTF-16LE&quot;);
+
+     QByteArray tmpByteArray = QByteArray::fromRawData((char*)(data.PtrZ()), data.Length() * 2);
+     return utf16LETextCodec-&gt;toUnicode(tmpByteArray);
+ }
+
+ static QString qt_InterfaceInfoL()
+ {
+     QString output;
+
+     TBuf8&lt;512&gt; buffer;
+     TBuf&lt;128&gt; t;
+     TAutoClose&lt;RSocketServ&gt; ss;
+     User::LeaveIfError(ss.iObj.Connect());
+     ss.PushL();
+
+     TAutoClose&lt;RSocket&gt; sock;
+     User::LeaveIfError(sock.iObj.Open(ss.iObj, _L(&quot;udp&quot;)));
+     sock.PushL();
+
+     User::LeaveIfError(sock.iObj.SetOpt(KSoInetEnumInterfaces, KSolInetIfCtrl));
+
+     TProtocolDesc in;
+     User::LeaveIfError(sock.iObj.Info(in));
+     printf(&quot;EPOC32 IP Configuration TCPIP Version %d.%d.%d\n&quot;, in.iVersion.iMajor, in.iVersion.iMinor, in.iVersion.iBuild);
+
+     TPckgBuf&lt;TSoInetInterfaceInfo&gt; info, next;
+
+     TInt res=sock.iObj.GetOpt(KSoInetNextInterface, KSolInetIfCtrl, info);
+     if(res!=KErrNone)
+         User::Leave(res);
+     TInt count = 0;
+     while(res==KErrNone) {
+         res=sock.iObj.GetOpt(KSoInetNextInterface, KSolInetIfCtrl, next);
+
+         if(info().iName != _L(&quot;&quot;) &amp;&amp; info().iName != _L(&quot;loop6&quot;) &amp;&amp; info().iName != _L(&quot;loop4&quot;)) {
+             printf(&quot;Interface %d\n&quot;, count++);
+
+             printf(&quot;Name \&quot;%s\&quot;\n&quot;, qt_TNameToQString(info().iName).toLatin1().data());
+             printf(&quot;NIF tag \&quot;%s\&quot;\n&quot;, qt_TNameToQString(info().iTag).toLatin1().data());
+
+             printf(&quot;State &quot;);
+             switch (info().iState)
+             {
+                 case EIfPending:
+                     printf(&quot;pending\n&quot;);
+                     break;
+                 case EIfUp:
+                     printf(&quot;up\n&quot;);
+                     break;
+                 case EIfBusy:
+                     printf(&quot;busy\n&quot;);
+                     break;
+                 default:
+                     printf(&quot;down\n&quot;);
+                     break;
+             }
+
+             printf(&quot;Mtu %d\n&quot;, info().iMtu);
+             printf(&quot;Speed Metric %d\n&quot;, info().iSpeedMetric);
+
+             printf(&quot;Features:&quot;);
+             info().iFeatures &amp; KIfIsLoopback         ? printf(&quot; loopback&quot;) : printf(&quot;&quot;);
+             info().iFeatures &amp; KIfIsDialup           ? printf(&quot; dialup&quot;) : printf(&quot;&quot;);
+             info().iFeatures &amp; KIfIsPointToPoint     ? printf(&quot; pointtopoint&quot;) : printf(&quot;&quot;);
+             info().iFeatures &amp; KIfCanBroadcast       ? printf(&quot; canbroadcast&quot;) : printf(&quot;&quot;);
+             info().iFeatures &amp; KIfCanMulticast       ? printf(&quot; canmulticast&quot;) : printf(&quot;&quot;);
+             info().iFeatures &amp; KIfCanSetMTU          ? printf(&quot; cansetmtu&quot;) : printf(&quot;&quot;);
+             info().iFeatures &amp; KIfHasHardwareAddr    ? printf(&quot; hardwareaddr&quot;) : printf(&quot;&quot;);
+             info().iFeatures &amp; KIfCanSetHardwareAddr ? printf(&quot; cansethardwareaddr&quot;) : printf(&quot;&quot;);
+             printf(&quot;\n&quot;);
+
+             TName address;
+             info().iAddress.Output(address);
+             printf(&quot;Addr: %s\n&quot;, qt_TNameToQString(address).toLatin1().data());
+
+             if(info().iAddress.IsLinkLocal()) {
+                 printf(&quot;  -link local\n&quot;);
+             } else if(info().iAddress.IsSiteLocal()) {
+                 printf(&quot;  -site local\n&quot;);
+             } else {
+                 printf(&quot;  -global\n&quot;);
+             }
+
+             info().iNetMask.Output(address);
+             printf(&quot;Netmask %s\n&quot;, qt_TNameToQString(address).toLatin1().data());
+
+             info().iBrdAddr.Output(address);
+             printf(&quot;Broadcast address %s\n&quot;, qt_TNameToQString(address).toLatin1().data());
+
+             info().iDefGate.Output(address);
+             printf(&quot;Gatew: %s\n&quot;, qt_TNameToQString(address).toLatin1().data());
+
+             info().iNameSer1.Output(address);
+             printf(&quot;DNS 1: %s\n&quot;, qt_TNameToQString(address).toLatin1().data());
+
+             info().iNameSer2.Output(address);
+             printf(&quot;DNS 2: %s\n&quot;, qt_TNameToQString(address).toLatin1().data());
+
+             if (info().iHwAddr.Family() != KAFUnspec) {
+                 printf(&quot;Hardware address &quot;);
+                 TUint j;
+                 for(j = sizeof(SSockAddr) ; j &lt; sizeof(SSockAddr) + 6 ; ++j) {
+                     if(j &lt; (TUint)info().iHwAddr.Length()) {
+                         printf(&quot;%02X&quot;, info().iHwAddr[j]);
+                     } else {
+                         printf(&quot;??&quot;);
+                     }
+                     if(j &lt; sizeof(SSockAddr) + 5)
+                         printf(&quot;-&quot;);
+                     else
+                         printf(&quot;\n&quot;);
+                     }
+                 }
+             }
+         if(res == KErrNone) {
+             info = next;
+             printf(&quot;\n&quot;);
+         } else {
+             printf(&quot;\n&quot;);
+         }
+     }
+
+     sock.Pop();
+     ss.Pop();
+
+     return output;
+ }
+
+ static QString qt_RouteInfoL() {
+     QString output;
+     TAutoClose&lt;RSocketServ&gt; ss;
+     User::LeaveIfError(ss.iObj.Connect());
+     ss.PushL();
+
+     TAutoClose&lt;RSocket&gt; sock;
+     User::LeaveIfError(sock.iObj.Open(ss.iObj, _L(&quot;udp&quot;)));
+     sock.PushL();
+
+     TSoInetRouteInfo routeInfo;
+     TPckg&lt;TSoInetRouteInfo&gt; routeInfoPkg(routeInfo);
+
+     TName destAddr;
+     TName netMask;
+     TName gateway;
+     TName ifAddr;
+
+     <span class="comment">// Begins enumeration of routes by setting this option</span>
+     User::LeaveIfError(sock.iObj.SetOpt(KSoInetEnumRoutes, KSolInetRtCtrl));
+
+     <span class="comment">// The TSoInetRouteInfo contains information for a new route each time GetOpt returns KErrNone</span>
+     for(TInt i = 0; sock.iObj.GetOpt(KSoInetNextRoute, KSolInetRtCtrl, routeInfoPkg) == KErrNone ; i++)
+     {
+       <span class="comment">// Extract the destination and netmask</span>
+       routeInfo.iDstAddr.Output(destAddr);
+       routeInfo.iNetMask.Output(netMask);
+       routeInfo.iGateway.Output(gateway);
+       routeInfo.iIfAddr.Output(ifAddr);
+<span class="comment"> /*
+       if(destAddr.Length() &lt;= 2)
+           continue;
+
+       if(netMask.Find(_L(&quot;255.255.255.255&quot;)) != KErrNotFound
+               || netMask.Find(_L(&quot;0.0.0.0&quot;)) != KErrNotFound
+               || netMask.Find(_L(&quot;ffff:ffff:ffff:ffff&quot;)) != KErrNotFound)
+           continue;
+ */</span>
+       printf(&quot;Route Info #[%i]\n&quot;, i);
+       printf(&quot;DstAddr %s\n&quot;, qt_TNameToQString(destAddr).toLatin1().data());
+       printf(&quot;NetMask %s\n&quot;, qt_TNameToQString(netMask).toLatin1().data());
+       printf(&quot;Gateway %s\n&quot;, qt_TNameToQString(gateway).toLatin1().data());
+       printf(&quot;IfAddr %s\n&quot;, qt_TNameToQString(ifAddr).toLatin1().data());
+       printf(&quot;\n&quot;);
+     }
+
+     sock.Pop();
+     ss.Pop();
+
+     return output;
+ }
+
+ QString qt_TDesC2QStringL(const TDesC&amp; aDescriptor)
+ {
+ #ifdef QT_NO_UNICODE
+     return QString::fromLocal8Bit(aDescriptor.Ptr(), aDescriptor.Length());
+ #else
+     return QString::fromUtf16(aDescriptor.Ptr(), aDescriptor.Length());
+ #endif
+ }
+
+ static bool qt_SetDefaultIapName(const QString &amp;iapName, int &amp;error) {
+     struct ifreq ifReq;
+     <span class="comment">// clear structure</span>
+     memset(&amp;ifReq, 0, sizeof(struct ifreq));
+     <span class="comment">// set IAP name value</span>
+     <span class="comment">// make sure it is in UTF8</span>
+     strcpy(ifReq.ifr_name, iapName.toUtf8().data());
+
+     if(setdefaultif(&amp;ifReq) == 0) {
+         <span class="comment">// OK</span>
+         error = 0;
+         return true;
+     } else {
+         error = errno;
+         return false;
+     }
+
+ }
+ static bool qt_SetDefaultSnapId(const int snapId, int &amp;error) {
+     struct ifreq ifReq;
+     <span class="comment">// clear structure</span>
+     memset(&amp;ifReq, 0, sizeof(struct ifreq));
+     <span class="comment">// set SNAP ID value</span>
+     ifReq.ifr_ifru.snap_id = snapId;
+
+     if(setdefaultif(&amp;ifReq) == 0) {
+         <span class="comment">// OK</span>
+         error = 0;
+         return true;
+     } else {
+         error = errno;
+         return false;
+     }
+
+ }
+
+ static void qt_SaveIapName(QSettings&amp; settings, QStringList&amp; iapNames, QString&amp; iapNameValue) {
+     if(iapNames.contains(iapNameValue) &amp;&amp; iapNames.first() == iapNameValue) {
+         <span class="comment">// no need to update</span>
+     } else {
+         if(iapNameValue != QString(&quot;Easy WLAN&quot;)) {
+             <span class="comment">// new selection alway on top</span>
+             iapNames.removeAll(iapNameValue);
+             iapNames.prepend(iapNameValue);
+             writeIapNamesSettings(settings, iapNames);
+         } else {
+             <span class="comment">// Unbeliveable ... if IAP dodn't exist before</span>
+             <span class="comment">// no matter what you choose from IAP selection list</span>
+             <span class="comment">// you will get &quot;Easy WLAN&quot; as IAP name value</span>
+
+             <span class="comment">// somehow commsdb is not in sync</span>
+         }
+     }
+ }
+
+ static QString qt_OfferIapDialog() {
+     TBuf8&lt;256&gt; iapName;
+
+     RSocketServ socketServ;
+     CleanupClosePushL(socketServ);
+
+     RConnection connection;
+     CleanupClosePushL(connection);
+
+     socketServ.Connect();
+     connection.Open(socketServ);
+     connection.Start();
+
+     connection.GetDesSetting(TPtrC(KIapNameSetting), iapName);
+
+     <span class="comment">//connection.Stop();</span>
+
+     iapName.ZeroTerminate();
+     QString strIapName((char*)iapName.Ptr());
+
+     int error = 0;
+     if(!qt_SetDefaultIapName(strIapName, error)) {
+         <span class="comment">//printf(&quot;failed setdefaultif @ %i with %s and errno = %d \n&quot;, __LINE__, strIapName.toUtf8().data(), error);</span>
+         strIapName = QString(&quot;&quot;);
+     }
+
+     CleanupStack::PopAndDestroy(&amp;connection);
+     CleanupStack::PopAndDestroy(&amp;socketServ);
+
+     return strIapName;
+ }
+
+ static QString qt_CheckForActiveConnection() {
+     TUint count;
+
+     RSocketServ serv;
+     CleanupClosePushL(serv);
+
+     RConnection conn;
+     CleanupClosePushL(conn);
+
+     serv.Connect();
+     conn.Open(serv);
+
+     TConnectionInfoBuf connInfo;
+
+     TBuf8&lt;256&gt; iapName;
+     TBuf8&lt;256&gt; iapServiceType;
+
+     QString strIapName;
+
+     if (conn.EnumerateConnections(count) == KErrNone) {
+         if(count &gt; 0) {
+             for (TUint i = 1; i &lt;= count; i++) {
+                 if (conn.GetConnectionInfo(i, connInfo) == KErrNone) {
+                     RConnection tempConn;
+                     CleanupClosePushL(tempConn);
+                     tempConn.Open(serv);
+                     if (tempConn.Attach(connInfo, RConnection::EAttachTypeNormal) == KErrNone) {
+                        tempConn.GetDesSetting(TPtrC(KIapNameSetting), iapName);
+                        tempConn.GetDesSetting(TPtrC(KIapServiceType), iapServiceType);
+                        <span class="comment">//tempConn.Stop();</span>
+                        iapName.ZeroTerminate();
+                                iapServiceType.ZeroTerminate();
+
+<span class="comment"> //                        if(iapServiceType.Find(_L8(&quot;LANService&quot;)) </span>!= KErrNotFound) {
+<span class="comment"> //                            activeLanConnectionFound = ETrue;</span>
+<span class="comment"> //                            break;</span>
+<span class="comment"> //                        }</span>
+                                     strIapName = QString((char*)iapName.Ptr());
+                         int error = 0;
+                         if(!qt_SetDefaultIapName(strIapName, error)) {
+                             <span class="comment">//printf(&quot;failed setdefaultif @ %i with %s and errno = %d \n&quot;, __LINE__, strIapName.toUtf8().data(), error);</span>
+                             strIapName = QString(&quot;&quot;);
+                         }
+
+                         CleanupStack::PopAndDestroy(&amp;tempConn);
+                         break;
+                     }
+                 }
+             }
+         }
+     }
+
+     <span class="comment">//conn.Stop();</span>
+
+     CleanupStack::PopAndDestroy(&amp;conn);
+     CleanupStack::PopAndDestroy(&amp;serv);
+
+     return strIapName;
+ }
+
+ static QString qt_CheckSettingsForConnection(QStringList&amp; iapNames) {
+     QString strIapName;
+     for(int index = 0; index &lt; iapNames.size(); ++index) {
+         strIapName = iapNames.at(index);
+         int error = 0;
+         if(!qt_SetDefaultIapName(strIapName, error)) {
+             <span class="comment">//printf(&quot;failed setdefaultif @ %i with %s and errno = %d \n&quot;, __LINE__, strIapName.toUtf8().data(), error);</span>
+             strIapName = QString(&quot;&quot;);
+         } else {
+             return strIapName;
+         }
+     }
+     return strIapName;
+ }
+
+ static void qt_SetDefaultIapL()
+ {
+     <span class="comment">// settings @ /c/data/.config/Trolltech.com</span>
+     QSettings settings(QSettings::UserScope, qtOrganizationTag);
+     <span class="comment">// populate iap name list</span>
+     QStringList iapNames;
+     readIapNamesSettings(settings, iapNames);
+
+     QString iapNameValue;
+
+     iapNameValue = qt_CheckForActiveConnection();
+
+     if(!iapNameValue.isEmpty()) {
+         qt_SaveIapName(settings, iapNames, iapNameValue);
+         return;
+     }
+
+     iapNameValue = qt_CheckSettingsForConnection(iapNames);
+
+     if(!iapNameValue.isEmpty()) {
+         qt_SaveIapName(settings, iapNames, iapNameValue);
+         return;
+     }
+
+     <span class="comment">/*
+      * no active LAN connections yet
+      * no IAP in settings
+      * offer IAP dialog to user
+      */</span>
+     iapNameValue = qt_OfferIapDialog();
+     qt_SaveIapName(settings, iapNames, iapNameValue);
+     return;
+
+ }
+
+ static int qt_SetDefaultIap()
+ {
+ #ifndef __WINS__
+     TRAPD(err1, qt_SetDefaultIapL());
+<span class="comment"> //    TRAPD(err2, qt_InterfaceInfoL());</span>
+<span class="comment"> //    TRAPD(err3, qt_RouteInfoL());</span>
+     return err1;
+ #else
+     return 0; <span class="comment">// IAP dialog not required for emulator</span>
+ #endif
+ }
+
+ #endif <span class="comment">// QSYM_IAP_UTIL_H</span></pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

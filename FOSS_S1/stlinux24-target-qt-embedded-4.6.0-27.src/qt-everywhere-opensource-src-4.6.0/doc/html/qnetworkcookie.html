@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qnetworkcookie.cpp -->
+<head>
+  <title>Qt 4.6: QNetworkCookie Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QNetworkCookie" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QNetworkCookie Class Reference<br /><span class="small-subtitle">[<a href="qtnetwork.html">QtNetwork</a> module]</span>
+</h1>
+<p>The QNetworkCookie class holds one network cookie. <a href="#details">More...</a></p>
+<pre> #include &lt;QNetworkCookie&gt;</pre><p><b>This class is not part of the Qt GUI Framework Edition.</b></p>
+<p>This class was introduced in Qt 4.4.</p>
+<ul>
+<li><a href="qnetworkcookie-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-types"></a>
+<h2>Public Types</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qnetworkcookie.html#RawForm-enum">RawForm</a></b> { NameAndValueOnly, Full }</td></tr>
+</table>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qnetworkcookie.html#QNetworkCookie">QNetworkCookie</a></b> ( const QByteArray &amp; <i>name</i> = QByteArray(), const QByteArray &amp; <i>value</i> = QByteArray() )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qnetworkcookie.html#QNetworkCookie-2">QNetworkCookie</a></b> ( const QNetworkCookie &amp; <i>other</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qnetworkcookie.html#dtor.QNetworkCookie">~QNetworkCookie</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qnetworkcookie.html#domain">domain</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QDateTime </td><td class="memItemRight" valign="bottom"><b><a href="qnetworkcookie.html#expirationDate">expirationDate</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qnetworkcookie.html#isHttpOnly">isHttpOnly</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qnetworkcookie.html#isSecure">isSecure</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qnetworkcookie.html#isSessionCookie">isSessionCookie</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QByteArray </td><td class="memItemRight" valign="bottom"><b><a href="qnetworkcookie.html#name">name</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qnetworkcookie.html#pathx">path</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qnetworkcookie.html#setDomain">setDomain</a></b> ( const QString &amp; <i>domain</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qnetworkcookie.html#setExpirationDate">setExpirationDate</a></b> ( const QDateTime &amp; <i>date</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qnetworkcookie.html#setHttpOnly">setHttpOnly</a></b> ( bool <i>enable</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qnetworkcookie.html#setName">setName</a></b> ( const QByteArray &amp; <i>cookieName</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qnetworkcookie.html#setPath">setPath</a></b> ( const QString &amp; <i>path</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qnetworkcookie.html#setSecure">setSecure</a></b> ( bool <i>enable</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qnetworkcookie.html#setValue">setValue</a></b> ( const QByteArray &amp; <i>value</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QByteArray </td><td class="memItemRight" valign="bottom"><b><a href="qnetworkcookie.html#toRawForm">toRawForm</a></b> ( RawForm <i>form</i> = Full ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QByteArray </td><td class="memItemRight" valign="bottom"><b><a href="qnetworkcookie.html#value">value</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qnetworkcookie.html#operator-not-eq">operator!=</a></b> ( const QNetworkCookie &amp; <i>other</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QNetworkCookie &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qnetworkcookie.html#operator-eq">operator=</a></b> ( const QNetworkCookie &amp; <i>other</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qnetworkcookie.html#operator-eq-eq">operator==</a></b> ( const QNetworkCookie &amp; <i>other</i> ) const</td></tr>
+</table>
+<hr />
+<a name="static-public-members"></a>
+<h2>Static Public Members</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">QList&lt;QNetworkCookie&gt; </td><td class="memItemRight" valign="bottom"><b><a href="qnetworkcookie.html#parseCookies">parseCookies</a></b> ( const QByteArray &amp; <i>cookieString</i> )</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QNetworkCookie class holds one network cookie.</p>
+<p>Cookies are small bits of information that stateless protocols like HTTP use to maintain some persistent information across requests.</p>
+<p>A cookie is set by a remote server when it replies to a request and it expects the same cookie to be sent back when further requests are sent.</p>
+<p>QNetworkCookie holds one such cookie as received from the network. A cookie has a name and a value, but those are opaque to the application (that is, the information stored in them has no meaning to the application). A cookie has an associated path name and domain, which indicate when the cookie should be sent again to the server.</p>
+<p>A cookie can also have an expiration date, indicating its validity. If the expiration date is not present, the cookie is considered a &quot;session cookie&quot; and should be discarded when the application exits (or when its concept of session is over).</p>
+<p>QNetworkCookie provides a way of parsing a cookie from the HTTP header format using the <a href="qnetworkcookie.html#parseCookies">QNetworkCookie::parseCookies</a>() function. However, when received in a <a href="qnetworkreply.html">QNetworkReply</a>, the cookie is already parsed.</p>
+<p>This class implements cookies as described by the <a href="http://cgi.netscape.com/newsref/std/cookie_spec.html">initial cookie specification by Netscape</a>, which is somewhat similar to the <a href="http://www.rfc-editor.org/rfc/rfc2109.txt">RFC 2109</a> specification, plus the <a href="http://msdn.microsoft.com/en-us/library/ms533046(VS.85).aspx">&quot;HttpOnly&quot; extension</a>. The more recent <a href="http://www.rfc-editor.org/rfc/rfc2965.txt">RFC 2965</a> specification (which uses the Set-Cookie2 header) is not supported.</p>
+<p>See also <a href="qnetworkcookiejar.html">QNetworkCookieJar</a>, <a href="qnetworkrequest.html">QNetworkRequest</a>, and <a href="qnetworkreply.html">QNetworkReply</a>.</p>
+<hr />
+<h2>Member Type Documentation</h2>
+<a name="//apple_ref/cpp/tag/QNetworkCookie/RawForm" />
+<a name="//apple_ref/cpp/econst/QNetworkCookie/NameAndValueOnly" />
+<a name="//apple_ref/cpp/econst/QNetworkCookie/Full" />
+<h3 class="fn"><a name="RawForm-enum"></a>enum QNetworkCookie::RawForm</h3>
+<p>This enum is used with the <a href="qnetworkcookie.html#toRawForm">toRawForm</a>() function to declare which form of a cookie shall be returned.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QNetworkCookie::NameAndValueOnly</tt></td><td align="center" valign="top"><tt>0</tt></td><td valign="top">makes <a href="qnetworkcookie.html#toRawForm">toRawForm</a>() return only the &quot;NAME=VALUE&quot; part of the cookie, as suitable for sending back to a server in a client request's &quot;Cookie:&quot; header. Multiple cookies are separated by a semi-colon in the &quot;Cookie:&quot; header field.</td></tr>
+<tr><td valign="top"><tt>QNetworkCookie::Full</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">makes <a href="qnetworkcookie.html#toRawForm">toRawForm</a>() return the full cookie contents, as suitable for sending to a client in a server's &quot;Set-Cookie:&quot; header. Multiple cookies are separated by commas in a &quot;Set-Cookie:&quot; header.</td></tr>
+</table></p>
+<p>Note that only the Full form of the cookie can be parsed back into its original contents.</p>
+<p>See also <a href="qnetworkcookie.html#toRawForm">toRawForm</a>() and <a href="qnetworkcookie.html#parseCookies">parseCookies</a>().</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QNetworkCookie/QNetworkCookie" />
+<h3 class="fn"><a name="QNetworkCookie"></a>QNetworkCookie::QNetworkCookie ( const <a href="qbytearray.html">QByteArray</a> &amp; <i>name</i> = QByteArray(), const <a href="qbytearray.html">QByteArray</a> &amp; <i>value</i> = QByteArray() )</h3>
+<p>Create a new <a href="qnetworkcookie.html">QNetworkCookie</a> object, initializing the cookie name to <i>name</i> and its value to <i>value</i>.</p>
+<p>A cookie is only valid if it has a name. However, the value is opaque to the application and being empty may have significance to the remote server.</p>
+<h3 class="fn"><a name="QNetworkCookie-2"></a>QNetworkCookie::QNetworkCookie ( const QNetworkCookie &amp; <i>other</i> )</h3>
+<p>Creates a new <a href="qnetworkcookie.html">QNetworkCookie</a> object by copying the contents of <i>other</i>.</p>
+<a name="//apple_ref/cpp/instm/QNetworkCookie/~QNetworkCookie" />
+<h3 class="fn"><a name="dtor.QNetworkCookie"></a>QNetworkCookie::~QNetworkCookie ()</h3>
+<p>Destroys this <a href="qnetworkcookie.html">QNetworkCookie</a> object.</p>
+<a name="//apple_ref/cpp/instm/QNetworkCookie/domain" />
+<h3 class="fn"><a name="domain"></a><a href="qstring.html">QString</a> QNetworkCookie::domain () const</h3>
+<p>Returns the domain this cookie is associated with. This corresponds to the &quot;domain&quot; field of the cookie string.</p>
+<p>Note that the domain here may start with a dot, which is not a valid hostname. However, it means this cookie matches all hostnames ending with that domain name.</p>
+<p>See also <a href="qnetworkcookie.html#setDomain">setDomain</a>().</p>
+<a name="//apple_ref/cpp/instm/QNetworkCookie/expirationDate" />
+<h3 class="fn"><a name="expirationDate"></a><a href="qdatetime.html">QDateTime</a> QNetworkCookie::expirationDate () const</h3>
+<p>Returns the expiration date for this cookie. If this cookie is a session cookie, the <a href="qdatetime.html">QDateTime</a> returned will not be valid. If the date is in the past, this cookie has already expired and should not be sent again back to a remote server.</p>
+<p>The expiration date corresponds to the parameters of the &quot;expires&quot; entry in the cookie string.</p>
+<p>See also <a href="qnetworkcookie.html#isSessionCookie">isSessionCookie</a>() and <a href="qnetworkcookie.html#setExpirationDate">setExpirationDate</a>().</p>
+<a name="//apple_ref/cpp/instm/QNetworkCookie/isHttpOnly" />
+<h3 class="fn"><a name="isHttpOnly"></a>bool QNetworkCookie::isHttpOnly () const</h3>
+<p>Returns true if the &quot;HttpOnly&quot; flag is enabled for this cookie.</p>
+<p>A cookie that is &quot;HttpOnly&quot; is only set and retrieved by the network requests and replies; i.e&#x2e;, the HTTP protocol. It is not accessible from scripts running on browsers.</p>
+<p>This function was introduced in Qt 4.5.</p>
+<p>See also <a href="qnetworkcookie.html#isSecure">isSecure</a>().</p>
+<a name="//apple_ref/cpp/instm/QNetworkCookie/isSecure" />
+<h3 class="fn"><a name="isSecure"></a>bool QNetworkCookie::isSecure () const</h3>
+<p>Returns true if the &quot;secure&quot; option was specified in the cookie string, false otherwise.</p>
+<p>Secure cookies may contain private information and should not be resent over unencrypted connections.</p>
+<p>See also <a href="qnetworkcookie.html#setSecure">setSecure</a>().</p>
+<a name="//apple_ref/cpp/instm/QNetworkCookie/isSessionCookie" />
+<h3 class="fn"><a name="isSessionCookie"></a>bool QNetworkCookie::isSessionCookie () const</h3>
+<p>Returns true if this cookie is a session cookie. A session cookie is a cookie which has no expiration date, which means it should be discarded when the application's concept of session is over (usually, when the application exits).</p>
+<p>See also <a href="qnetworkcookie.html#expirationDate">expirationDate</a>() and <a href="qnetworkcookie.html#setExpirationDate">setExpirationDate</a>().</p>
+<a name="//apple_ref/cpp/instm/QNetworkCookie/name" />
+<h3 class="fn"><a name="name"></a><a href="qbytearray.html">QByteArray</a> QNetworkCookie::name () const</h3>
+<p>Returns the name of this cookie. The only mandatory field of a cookie is its name, without which it is not considered valid.</p>
+<p>See also <a href="qnetworkcookie.html#setName">setName</a>() and <a href="qnetworkcookie.html#value">value</a>().</p>
+<a name="//apple_ref/cpp/clm/QNetworkCookie/parseCookies" />
+<h3 class="fn"><a name="parseCookies"></a><a href="qlist.html">QList</a>&lt;QNetworkCookie&gt; QNetworkCookie::parseCookies ( const <a href="qbytearray.html">QByteArray</a> &amp; <i>cookieString</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Parses the cookie string <i>cookieString</i> as received from a server response in the &quot;Set-Cookie:&quot; header. If there's a parsing error, this function returns an empty list.</p>
+<p>Since the HTTP header can set more than one cookie at the same time, this function returns a <a href="qlist.html">QList</a>&lt;<a href="qnetworkcookie.html">QNetworkCookie</a>&gt;, one for each cookie that is parsed.</p>
+<p>See also <a href="qnetworkcookie.html#toRawForm">toRawForm</a>().</p>
+<a name="//apple_ref/cpp/instm/QNetworkCookie/path" />
+<h3 class="fn"><a name="pathx"></a><a href="qstring.html">QString</a> QNetworkCookie::path () const</h3>
+<p>Returns the path associated with this cookie. This corresponds to the &quot;path&quot; field of the cookie string.</p>
+<p>See also <a href="qnetworkcookie.html#setPath">setPath</a>().</p>
+<a name="//apple_ref/cpp/instm/QNetworkCookie/setDomain" />
+<h3 class="fn"><a name="setDomain"></a>void QNetworkCookie::setDomain ( const <a href="qstring.html">QString</a> &amp; <i>domain</i> )</h3>
+<p>Sets the domain associated with this cookie to be <i>domain</i>.</p>
+<p>See also <a href="qnetworkcookie.html#domain">domain</a>().</p>
+<a name="//apple_ref/cpp/instm/QNetworkCookie/setExpirationDate" />
+<h3 class="fn"><a name="setExpirationDate"></a>void QNetworkCookie::setExpirationDate ( const <a href="qdatetime.html">QDateTime</a> &amp; <i>date</i> )</h3>
+<p>Sets the expiration date of this cookie to <i>date</i>. Setting an invalid expiration date to this cookie will mean it's a session cookie.</p>
+<p>See also <a href="qnetworkcookie.html#isSessionCookie">isSessionCookie</a>() and <a href="qnetworkcookie.html#expirationDate">expirationDate</a>().</p>
+<a name="//apple_ref/cpp/instm/QNetworkCookie/setHttpOnly" />
+<h3 class="fn"><a name="setHttpOnly"></a>void QNetworkCookie::setHttpOnly ( bool <i>enable</i> )</h3>
+<p>Sets this cookie's &quot;HttpOnly&quot; flag to <i>enable</i>.</p>
+<p>This function was introduced in Qt 4.5.</p>
+<p>See also <a href="qnetworkcookie.html#isHttpOnly">isHttpOnly</a>().</p>
+<a name="//apple_ref/cpp/instm/QNetworkCookie/setName" />
+<h3 class="fn"><a name="setName"></a>void QNetworkCookie::setName ( const <a href="qbytearray.html">QByteArray</a> &amp; <i>cookieName</i> )</h3>
+<p>Sets the name of this cookie to be <i>cookieName</i>. Note that setting a cookie name to an empty <a href="qbytearray.html">QByteArray</a> will make this cookie invalid.</p>
+<p>See also <a href="qnetworkcookie.html#name">name</a>() and <a href="qnetworkcookie.html#value">value</a>().</p>
+<a name="//apple_ref/cpp/instm/QNetworkCookie/setPath" />
+<h3 class="fn"><a name="setPath"></a>void QNetworkCookie::setPath ( const <a href="qstring.html">QString</a> &amp; <i>path</i> )</h3>
+<p>Sets the path associated with this cookie to be <i>path</i>.</p>
+<p>See also <a href="qnetworkcookie.html#pathx">path</a>().</p>
+<a name="//apple_ref/cpp/instm/QNetworkCookie/setSecure" />
+<h3 class="fn"><a name="setSecure"></a>void QNetworkCookie::setSecure ( bool <i>enable</i> )</h3>
+<p>Sets the secure flag of this cookie to <i>enable</i>.</p>
+<p>Secure cookies may contain private information and should not be resent over unencrypted connections.</p>
+<p>See also <a href="qnetworkcookie.html#isSecure">isSecure</a>().</p>
+<a name="//apple_ref/cpp/instm/QNetworkCookie/setValue" />
+<h3 class="fn"><a name="setValue"></a>void QNetworkCookie::setValue ( const <a href="qbytearray.html">QByteArray</a> &amp; <i>value</i> )</h3>
+<p>Sets the value of this cookie to be <i>value</i>.</p>
+<p>See also <a href="qnetworkcookie.html#value">value</a>() and <a href="qnetworkcookie.html#name">name</a>().</p>
+<a name="//apple_ref/cpp/instm/QNetworkCookie/toRawForm" />
+<h3 class="fn"><a name="toRawForm"></a><a href="qbytearray.html">QByteArray</a> QNetworkCookie::toRawForm ( <a href="qnetworkcookie.html#RawForm-enum">RawForm</a> <i>form</i> = Full ) const</h3>
+<p>Returns the raw form of this <a href="qnetworkcookie.html">QNetworkCookie</a>. The <a href="qbytearray.html">QByteArray</a> returned by this function is suitable for an HTTP header, either in a server response (the Set-Cookie header) or the client request (the Cookie header). You can choose from one of two formats, using <i>form</i>.</p>
+<p>See also <a href="qnetworkcookie.html#parseCookies">parseCookies</a>().</p>
+<a name="//apple_ref/cpp/instm/QNetworkCookie/value" />
+<h3 class="fn"><a name="value"></a><a href="qbytearray.html">QByteArray</a> QNetworkCookie::value () const</h3>
+<p>Returns this cookies value, as specified in the cookie string. Note that a cookie is still valid if its value is empty.</p>
+<p>Cookie name-value pairs are considered opaque to the application: that is, their values don't mean anything.</p>
+<p>See also <a href="qnetworkcookie.html#setValue">setValue</a>() and <a href="qnetworkcookie.html#name">name</a>().</p>
+<a name="//apple_ref/cpp/instm/QNetworkCookie/operator!=" />
+<h3 class="fn"><a name="operator-not-eq"></a>bool QNetworkCookie::operator!= ( const QNetworkCookie &amp; <i>other</i> ) const</h3>
+<p>Returns true if this cookie is not equal to <i>other</i>.</p>
+<p>See also <a href="qnetworkcookie.html#operator-eq-eq">operator==</a>().</p>
+<a name="//apple_ref/cpp/instm/QNetworkCookie/operator=" />
+<h3 class="fn"><a name="operator-eq"></a>QNetworkCookie &amp; QNetworkCookie::operator= ( const QNetworkCookie &amp; <i>other</i> )</h3>
+<p>Copies the contents of the <a href="qnetworkcookie.html">QNetworkCookie</a> object <i>other</i> to this object.</p>
+<a name="//apple_ref/cpp/instm/QNetworkCookie/operator==" />
+<h3 class="fn"><a name="operator-eq-eq"></a>bool QNetworkCookie::operator== ( const QNetworkCookie &amp; <i>other</i> ) const</h3>
+<p>Returns true if this cookie is equal to <i>other</i>. This function only returns true if all fields of the cookie are the same.</p>
+<p>However, in some contexts, two cookies of the same name could be considered equal.</p>
+<p>See also <a href="qnetworkcookie.html#operator-not-eq">operator!=</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

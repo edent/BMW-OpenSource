@@ -1,0 +1,748 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: textedit.cpp Example File (demos/textedit/textedit.cpp)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">textedit.cpp Example File<br /><span class="small-subtitle">demos/textedit/textedit.cpp</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the demonstration applications of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+
+ #include &quot;textedit.h&quot;
+
+ #include &lt;QAction&gt;
+ #include &lt;QApplication&gt;
+ #include &lt;QClipboard&gt;
+ #include &lt;QColorDialog&gt;
+ #include &lt;QComboBox&gt;
+ #include &lt;QFontComboBox&gt;
+ #include &lt;QFile&gt;
+ #include &lt;QFileDialog&gt;
+ #include &lt;QFileInfo&gt;
+ #include &lt;QFontDatabase&gt;
+ #include &lt;QMenu&gt;
+ #include &lt;QMenuBar&gt;
+ #include &lt;QPrintDialog&gt;
+ #include &lt;QPrinter&gt;
+ #include &lt;QTextCodec&gt;
+ #include &lt;QTextEdit&gt;
+ #include &lt;QToolBar&gt;
+ #include &lt;QTextCursor&gt;
+ #include &lt;QTextDocumentWriter&gt;
+ #include &lt;QTextList&gt;
+ #include &lt;QtDebug&gt;
+ #include &lt;QCloseEvent&gt;
+ #include &lt;QMessageBox&gt;
+ #include &lt;QPrintPreviewDialog&gt;
+
+ #ifdef Q_WS_MAC
+ const QString rsrcPath = &quot;:/images/mac&quot;;
+ #else
+ const QString rsrcPath = &quot;:/images/win&quot;;
+ #endif
+
+ TextEdit::TextEdit(QWidget *parent)
+     : QMainWindow(parent)
+ {
+     setToolButtonStyle(Qt::ToolButtonFollowStyle);
+     setupFileActions();
+     setupEditActions();
+     setupTextActions();
+
+     {
+         QMenu *helpMenu = new QMenu(tr(&quot;Help&quot;), this);
+         menuBar()-&gt;addMenu(helpMenu);
+         helpMenu-&gt;addAction(tr(&quot;About&quot;), this, SLOT(about()));
+         helpMenu-&gt;addAction(tr(&quot;About &amp;Qt&quot;), qApp, SLOT(aboutQt()));
+     }
+
+     textEdit = new QTextEdit(this);
+     connect(textEdit, SIGNAL(currentCharFormatChanged(const QTextCharFormat &amp;)),
+             this, SLOT(currentCharFormatChanged(const QTextCharFormat &amp;)));
+     connect(textEdit, SIGNAL(cursorPositionChanged()),
+             this, SLOT(cursorPositionChanged()));
+
+     setCentralWidget(textEdit);
+     textEdit-&gt;setFocus();
+     setCurrentFileName(QString());
+
+     fontChanged(textEdit-&gt;font());
+     colorChanged(textEdit-&gt;textColor());
+     alignmentChanged(textEdit-&gt;alignment());
+
+     connect(textEdit-&gt;document(), SIGNAL(modificationChanged(bool)),
+             actionSave, SLOT(setEnabled(bool)));
+     connect(textEdit-&gt;document(), SIGNAL(modificationChanged(bool)),
+             this, SLOT(setWindowModified(bool)));
+     connect(textEdit-&gt;document(), SIGNAL(undoAvailable(bool)),
+             actionUndo, SLOT(setEnabled(bool)));
+     connect(textEdit-&gt;document(), SIGNAL(redoAvailable(bool)),
+             actionRedo, SLOT(setEnabled(bool)));
+
+     setWindowModified(textEdit-&gt;document()-&gt;isModified());
+     actionSave-&gt;setEnabled(textEdit-&gt;document()-&gt;isModified());
+     actionUndo-&gt;setEnabled(textEdit-&gt;document()-&gt;isUndoAvailable());
+     actionRedo-&gt;setEnabled(textEdit-&gt;document()-&gt;isRedoAvailable());
+
+     connect(actionUndo, SIGNAL(triggered()), textEdit, SLOT(undo()));
+     connect(actionRedo, SIGNAL(triggered()), textEdit, SLOT(redo()));
+
+     actionCut-&gt;setEnabled(false);
+     actionCopy-&gt;setEnabled(false);
+
+     connect(actionCut, SIGNAL(triggered()), textEdit, SLOT(cut()));
+     connect(actionCopy, SIGNAL(triggered()), textEdit, SLOT(copy()));
+     connect(actionPaste, SIGNAL(triggered()), textEdit, SLOT(paste()));
+
+     connect(textEdit, SIGNAL(copyAvailable(bool)), actionCut, SLOT(setEnabled(bool)));
+     connect(textEdit, SIGNAL(copyAvailable(bool)), actionCopy, SLOT(setEnabled(bool)));
+
+ #ifndef QT_NO_CLIPBOARD
+     connect(QApplication::clipboard(), SIGNAL(dataChanged()), this, SLOT(clipboardDataChanged()));
+ #endif
+
+     QString initialFile = &quot;:/example.html&quot;;
+     const QStringList args = QCoreApplication::arguments();
+     if (args.count() == 2)
+         initialFile = args.at(1);
+
+     if (!load(initialFile))
+         fileNew();
+ }
+
+ void TextEdit::closeEvent(QCloseEvent *e)
+ {
+     if (maybeSave())
+         e-&gt;accept();
+     else
+         e-&gt;ignore();
+ }
+
+ void TextEdit::setupFileActions()
+ {
+     QToolBar *tb = new QToolBar(this);
+     tb-&gt;setWindowTitle(tr(&quot;File Actions&quot;));
+     addToolBar(tb);
+
+     QMenu *menu = new QMenu(tr(&quot;&amp;File&quot;), this);
+     menuBar()-&gt;addMenu(menu);
+
+     QAction *a;
+
+     QIcon newIcon = QIcon::fromTheme(&quot;document-new&quot;, QIcon(rsrcPath + &quot;/filenew.png&quot;));
+     a = new QAction( newIcon, tr(&quot;&amp;New&quot;), this);
+     a-&gt;setPriority(QAction::LowPriority);
+     a-&gt;setShortcut(QKeySequence::New);
+     connect(a, SIGNAL(triggered()), this, SLOT(fileNew()));
+     tb-&gt;addAction(a);
+     menu-&gt;addAction(a);
+
+     a = new QAction(QIcon::fromTheme(&quot;document-open&quot;, QIcon(rsrcPath + &quot;/fileopen.png&quot;)),
+                     tr(&quot;&amp;Open...&quot;), this);
+     a-&gt;setShortcut(QKeySequence::Open);
+     connect(a, SIGNAL(triggered()), this, SLOT(fileOpen()));
+     tb-&gt;addAction(a);
+     menu-&gt;addAction(a);
+
+     menu-&gt;addSeparator();
+
+     actionSave = a = new QAction(QIcon::fromTheme(&quot;document-save&quot;, QIcon(rsrcPath + &quot;/filesave.png&quot;)),
+                                  tr(&quot;&amp;Save&quot;), this);
+     a-&gt;setShortcut(QKeySequence::Save);
+     connect(a, SIGNAL(triggered()), this, SLOT(fileSave()));
+     a-&gt;setEnabled(false);
+     tb-&gt;addAction(a);
+     menu-&gt;addAction(a);
+
+     a = new QAction(tr(&quot;Save &amp;As...&quot;), this);
+     a-&gt;setPriority(QAction::LowPriority);
+     connect(a, SIGNAL(triggered()), this, SLOT(fileSaveAs()));
+     menu-&gt;addAction(a);
+     menu-&gt;addSeparator();
+
+ #ifndef QT_NO_PRINTER
+     a = new QAction(QIcon::fromTheme(&quot;document-print&quot;, QIcon(rsrcPath + &quot;/fileprint.png&quot;)),
+                     tr(&quot;&amp;Print...&quot;), this);
+     a-&gt;setPriority(QAction::LowPriority);
+     a-&gt;setShortcut(QKeySequence::Print);
+     connect(a, SIGNAL(triggered()), this, SLOT(filePrint()));
+     tb-&gt;addAction(a);
+     menu-&gt;addAction(a);
+
+     a = new QAction(QIcon::fromTheme(&quot;fileprint&quot;, QIcon(rsrcPath + &quot;/fileprint.png&quot;)),
+                     tr(&quot;Print Preview...&quot;), this);
+     connect(a, SIGNAL(triggered()), this, SLOT(filePrintPreview()));
+     menu-&gt;addAction(a);
+
+     a = new QAction(QIcon::fromTheme(&quot;exportpdf&quot;, QIcon(rsrcPath + &quot;/exportpdf.png&quot;)),
+     tr(&quot;&amp;Export PDF...&quot;), this);
+     a-&gt;setPriority(QAction::LowPriority);
+     a-&gt;setShortcut(Qt::CTRL + Qt::Key_D);
+     connect(a, SIGNAL(triggered()), this, SLOT(filePrintPdf()));
+     tb-&gt;addAction(a);
+     menu-&gt;addAction(a);
+
+     menu-&gt;addSeparator();
+ #endif
+
+     a = new QAction(tr(&quot;&amp;Quit&quot;), this);
+     a-&gt;setShortcut(Qt::CTRL + Qt::Key_Q);
+     connect(a, SIGNAL(triggered()), this, SLOT(close()));
+     menu-&gt;addAction(a);
+ }
+
+ void TextEdit::setupEditActions()
+ {
+     QToolBar *tb = new QToolBar(this);
+     tb-&gt;setWindowTitle(tr(&quot;Edit Actions&quot;));
+     addToolBar(tb);
+     QMenu *menu = new QMenu(tr(&quot;&amp;Edit&quot;), this);
+     menuBar()-&gt;addMenu(menu);
+
+     QAction *a;
+     a = actionUndo = new QAction(QIcon::fromTheme(&quot;edit-undo&quot;, QIcon(rsrcPath + &quot;/editundo.png&quot;)),
+                                               tr(&quot;&amp;Undo&quot;), this);
+     a-&gt;setShortcut(QKeySequence::Undo);
+     tb-&gt;addAction(a);
+     menu-&gt;addAction(a);
+     a = actionRedo = new QAction(QIcon::fromTheme(&quot;edit-redo&quot;, QIcon(rsrcPath + &quot;/editredo.png&quot;)),
+                                               tr(&quot;&amp;Redo&quot;), this);
+     a-&gt;setPriority(QAction::LowPriority);
+     a-&gt;setShortcut(QKeySequence::Redo);
+     tb-&gt;addAction(a);
+     menu-&gt;addAction(a);
+     menu-&gt;addSeparator();
+     a = actionCut = new QAction(QIcon::fromTheme(&quot;edit-cut&quot;, QIcon(rsrcPath + &quot;/editcut.png&quot;)),
+                                              tr(&quot;Cu&amp;t&quot;), this);
+     a-&gt;setPriority(QAction::LowPriority);
+     a-&gt;setShortcut(QKeySequence::Cut);
+     tb-&gt;addAction(a);
+     menu-&gt;addAction(a);
+     a = actionCopy = new QAction(QIcon::fromTheme(&quot;edit-copy&quot;, QIcon(rsrcPath + &quot;/editcopy.png&quot;)),
+                                  tr(&quot;&amp;Copy&quot;), this);
+     a-&gt;setPriority(QAction::LowPriority);
+     a-&gt;setShortcut(QKeySequence::Copy);
+     tb-&gt;addAction(a);
+     menu-&gt;addAction(a);
+     a = actionPaste = new QAction(QIcon::fromTheme(&quot;edit-paste&quot;, QIcon(rsrcPath + &quot;/editpaste.png&quot;)),
+                                   tr(&quot;&amp;Paste&quot;), this);
+     a-&gt;setPriority(QAction::LowPriority);
+     a-&gt;setShortcut(QKeySequence::Paste);
+     tb-&gt;addAction(a);
+     menu-&gt;addAction(a);
+ #ifndef QT_NO_CLIPBOARD
+     actionPaste-&gt;setEnabled(!QApplication::clipboard()-&gt;text().isEmpty());
+ #endif
+ }
+
+ void TextEdit::setupTextActions()
+ {
+     QToolBar *tb = new QToolBar(this);
+     tb-&gt;setWindowTitle(tr(&quot;Format Actions&quot;));
+     addToolBar(tb);
+
+     QMenu *menu = new QMenu(tr(&quot;F&amp;ormat&quot;), this);
+     menuBar()-&gt;addMenu(menu);
+
+     actionTextBold = new QAction(QIcon::fromTheme(&quot;format-text-bold&quot;, QIcon(rsrcPath + &quot;/textbold.png&quot;)),
+                                  tr(&quot;&amp;Bold&quot;), this);
+     actionTextBold-&gt;setShortcut(Qt::CTRL + Qt::Key_B);
+     actionTextBold-&gt;setPriority(QAction::LowPriority);
+         QFont bold;
+     bold.setBold(true);
+     actionTextBold-&gt;setFont(bold);
+     connect(actionTextBold, SIGNAL(triggered()), this, SLOT(textBold()));
+     tb-&gt;addAction(actionTextBold);
+     menu-&gt;addAction(actionTextBold);
+     actionTextBold-&gt;setCheckable(true);
+
+     actionTextItalic = new QAction(QIcon::fromTheme(&quot;format-text-italic&quot;, QIcon(rsrcPath + &quot;/textitalic.png&quot;)),
+                                    tr(&quot;&amp;Italic&quot;), this);
+     actionTextItalic-&gt;setPriority(QAction::LowPriority);
+     actionTextItalic-&gt;setShortcut(Qt::CTRL + Qt::Key_I);
+     QFont italic;
+     italic.setItalic(true);
+     actionTextItalic-&gt;setFont(italic);
+     connect(actionTextItalic, SIGNAL(triggered()), this, SLOT(textItalic()));
+     tb-&gt;addAction(actionTextItalic);
+     menu-&gt;addAction(actionTextItalic);
+     actionTextItalic-&gt;setCheckable(true);
+
+     actionTextUnderline = new QAction(QIcon::fromTheme(&quot;format-text-underline&quot;, QIcon(rsrcPath + &quot;/textunder.png&quot;)),
+                                       tr(&quot;&amp;Underline&quot;), this);
+     actionTextUnderline-&gt;setShortcut(Qt::CTRL + Qt::Key_U);
+     actionTextUnderline-&gt;setPriority(QAction::LowPriority);
+     QFont underline;
+     underline.setUnderline(true);
+     actionTextUnderline-&gt;setFont(underline);
+     connect(actionTextUnderline, SIGNAL(triggered()), this, SLOT(textUnderline()));
+     tb-&gt;addAction(actionTextUnderline);
+     menu-&gt;addAction(actionTextUnderline);
+     actionTextUnderline-&gt;setCheckable(true);
+
+     menu-&gt;addSeparator();
+
+     QActionGroup *grp = new QActionGroup(this);
+     connect(grp, SIGNAL(triggered(QAction *)), this, SLOT(textAlign(QAction *)));
+
+     <span class="comment">// Make sure the alignLeft  is always left of the alignRight</span>
+     if (QApplication::isLeftToRight()) {
+         actionAlignLeft = new QAction(QIcon::fromTheme(&quot;format-justify-left&quot;, QIcon(rsrcPath + &quot;/textleft.png&quot;)),
+                                       tr(&quot;&amp;Left&quot;), grp);
+         actionAlignCenter = new QAction(QIcon::fromTheme(&quot;format-justify-center&quot;, QIcon(rsrcPath + &quot;/textcenter.png&quot;)), tr(&quot;C&amp;enter&quot;), grp);
+         actionAlignRight = new QAction(QIcon::fromTheme(&quot;format-justify-right&quot;, QIcon(rsrcPath + &quot;/textright.png&quot;)), tr(&quot;&amp;Right&quot;), grp);
+     } else {
+         actionAlignRight = new QAction(QIcon::fromTheme(&quot;format-justify-right&quot;, QIcon(rsrcPath + &quot;/textright.png&quot;)), tr(&quot;&amp;Right&quot;), grp);
+         actionAlignCenter = new QAction(QIcon::fromTheme(&quot;format-justify-center&quot;, QIcon(rsrcPath + &quot;/textcenter.png&quot;)), tr(&quot;C&amp;enter&quot;), grp);
+         actionAlignLeft = new QAction(QIcon::fromTheme(&quot;format-justify-left&quot;, QIcon(rsrcPath + &quot;/textleft.png&quot;)), tr(&quot;&amp;Left&quot;), grp);
+     }
+     actionAlignJustify = new QAction(QIcon::fromTheme(&quot;format-justify-fill&quot;, QIcon(rsrcPath + &quot;/textjustify.png&quot;)), tr(&quot;&amp;Justify&quot;), grp);
+
+     actionAlignLeft-&gt;setShortcut(Qt::CTRL + Qt::Key_L);
+     actionAlignLeft-&gt;setCheckable(true);
+     actionAlignLeft-&gt;setPriority(QAction::LowPriority);
+     actionAlignCenter-&gt;setShortcut(Qt::CTRL + Qt::Key_E);
+     actionAlignCenter-&gt;setCheckable(true);
+     actionAlignCenter-&gt;setPriority(QAction::LowPriority);
+     actionAlignRight-&gt;setShortcut(Qt::CTRL + Qt::Key_R);
+     actionAlignRight-&gt;setCheckable(true);
+     actionAlignRight-&gt;setPriority(QAction::LowPriority);
+     actionAlignJustify-&gt;setShortcut(Qt::CTRL + Qt::Key_J);
+     actionAlignJustify-&gt;setCheckable(true);
+     actionAlignJustify-&gt;setPriority(QAction::LowPriority);
+
+     tb-&gt;addActions(grp-&gt;actions());
+     menu-&gt;addActions(grp-&gt;actions());
+
+     menu-&gt;addSeparator();
+
+     QPixmap pix(16, 16);
+     pix.fill(Qt::black);
+     actionTextColor = new QAction(pix, tr(&quot;&amp;Color...&quot;), this);
+     connect(actionTextColor, SIGNAL(triggered()), this, SLOT(textColor()));
+     tb-&gt;addAction(actionTextColor);
+     menu-&gt;addAction(actionTextColor);
+
+     tb = new QToolBar(this);
+     tb-&gt;setAllowedAreas(Qt::TopToolBarArea | Qt::BottomToolBarArea);
+     tb-&gt;setWindowTitle(tr(&quot;Format Actions&quot;));
+     addToolBarBreak(Qt::TopToolBarArea);
+     addToolBar(tb);
+
+     comboStyle = new QComboBox(tb);
+     tb-&gt;addWidget(comboStyle);
+     comboStyle-&gt;addItem(&quot;Standard&quot;);
+     comboStyle-&gt;addItem(&quot;Bullet List (Disc)&quot;);
+     comboStyle-&gt;addItem(&quot;Bullet List (Circle)&quot;);
+     comboStyle-&gt;addItem(&quot;Bullet List (Square)&quot;);
+     comboStyle-&gt;addItem(&quot;Ordered List (Decimal)&quot;);
+     comboStyle-&gt;addItem(&quot;Ordered List (Alpha lower)&quot;);
+     comboStyle-&gt;addItem(&quot;Ordered List (Alpha upper)&quot;);
+     comboStyle-&gt;addItem(&quot;Ordered List (Roman lower)&quot;);
+     comboStyle-&gt;addItem(&quot;Ordered List (Roman upper)&quot;);
+     connect(comboStyle, SIGNAL(activated(int)),
+             this, SLOT(textStyle(int)));
+
+     comboFont = new QFontComboBox(tb);
+     tb-&gt;addWidget(comboFont);
+     connect(comboFont, SIGNAL(activated(const QString &amp;)),
+             this, SLOT(textFamily(const QString &amp;)));
+
+     comboSize = new QComboBox(tb);
+     comboSize-&gt;setObjectName(&quot;comboSize&quot;);
+     tb-&gt;addWidget(comboSize);
+     comboSize-&gt;setEditable(true);
+
+     QFontDatabase db;
+     foreach(int size, db.standardSizes())
+         comboSize-&gt;addItem(QString::number(size));
+
+     connect(comboSize, SIGNAL(activated(const QString &amp;)),
+             this, SLOT(textSize(const QString &amp;)));
+     comboSize-&gt;setCurrentIndex(comboSize-&gt;findText(QString::number(QApplication::font()
+                                                                    .pointSize())));
+ }
+
+ bool TextEdit::load(const QString &amp;f)
+ {
+     if (!QFile::exists(f))
+         return false;
+     QFile file(f);
+     if (!file.open(QFile::ReadOnly))
+         return false;
+
+     QByteArray data = file.readAll();
+     QTextCodec *codec = Qt::codecForHtml(data);
+     QString str = codec-&gt;toUnicode(data);
+     if (Qt::mightBeRichText(str)) {
+         textEdit-&gt;setHtml(str);
+     } else {
+         str = QString::fromLocal8Bit(data);
+         textEdit-&gt;setPlainText(str);
+     }
+
+     setCurrentFileName(f);
+     return true;
+ }
+
+ bool TextEdit::maybeSave()
+ {
+     if (!textEdit-&gt;document()-&gt;isModified())
+         return true;
+     if (fileName.startsWith(QLatin1String(&quot;:/&quot;)))
+         return true;
+     QMessageBox::StandardButton ret;
+     ret = QMessageBox::warning(this, tr(&quot;Application&quot;),
+                                tr(&quot;The document has been modified.\n&quot;
+                                   &quot;Do you want to save your changes?&quot;),
+                                QMessageBox::Save | QMessageBox::Discard
+                                | QMessageBox::Cancel);
+     if (ret == QMessageBox::Save)
+         return fileSave();
+     else if (ret == QMessageBox::Cancel)
+         return false;
+     return true;
+ }
+
+ void TextEdit::setCurrentFileName(const QString &amp;fileName)
+ {
+     this-&gt;fileName = fileName;
+     textEdit-&gt;document()-&gt;setModified(false);
+
+     QString shownName;
+     if (fileName.isEmpty())
+         shownName = &quot;untitled.txt&quot;;
+     else
+         shownName = QFileInfo(fileName).fileName();
+
+     setWindowTitle(tr(&quot;%1[*] - %2&quot;).arg(shownName).arg(tr(&quot;Rich Text&quot;)));
+     setWindowModified(false);
+ }
+
+ void TextEdit::fileNew()
+ {
+     if (maybeSave()) {
+         textEdit-&gt;clear();
+         setCurrentFileName(QString());
+     }
+ }
+
+ void TextEdit::fileOpen()
+ {
+     QString fn = QFileDialog::getOpenFileName(this, tr(&quot;Open File...&quot;),
+                                               QString(), tr(&quot;HTML-Files (*.htm *.html);;All Files (*)&quot;));
+     if (!fn.isEmpty())
+         load(fn);
+ }
+
+ bool TextEdit::fileSave()
+ {
+     if (fileName.isEmpty())
+         return fileSaveAs();
+
+     QTextDocumentWriter writer(fileName);
+     bool success = writer.write(textEdit-&gt;document());
+     if (success)
+         textEdit-&gt;document()-&gt;setModified(false);
+     return success;
+ }
+
+ bool TextEdit::fileSaveAs()
+ {
+     QString fn = QFileDialog::getSaveFileName(this, tr(&quot;Save as...&quot;),
+                                               QString(), tr(&quot;ODF files (*.odt);;HTML-Files (*.htm *.html);;All Files (*)&quot;));
+     if (fn.isEmpty())
+         return false;
+     if (! (fn.endsWith(&quot;.odt&quot;, Qt::CaseInsensitive) || fn.endsWith(&quot;.htm&quot;, Qt::CaseInsensitive) || fn.endsWith(&quot;.html&quot;, Qt::CaseInsensitive)) )
+         fn += &quot;.odt&quot;; <span class="comment">// default</span>
+     setCurrentFileName(fn);
+     return fileSave();
+ }
+
+ void TextEdit::filePrint()
+ {
+ #ifndef QT_NO_PRINTER
+     QPrinter printer(QPrinter::HighResolution);
+     QPrintDialog *dlg = new QPrintDialog(&amp;printer, this);
+     if (textEdit-&gt;textCursor().hasSelection())
+         dlg-&gt;addEnabledOption(QAbstractPrintDialog::PrintSelection);
+     dlg-&gt;setWindowTitle(tr(&quot;Print Document&quot;));
+     if (dlg-&gt;exec() == QDialog::Accepted) {
+         textEdit-&gt;print(&amp;printer);
+     }
+     delete dlg;
+ #endif
+ }
+
+ void TextEdit::filePrintPreview()
+ {
+ #ifndef QT_NO_PRINTER
+     QPrinter printer(QPrinter::HighResolution);
+     QPrintPreviewDialog preview(&amp;printer, this);
+     connect(&amp;preview, SIGNAL(paintRequested(QPrinter *)), SLOT(printPreview(QPrinter *)));
+     preview.exec();
+ #endif
+ }
+
+ void TextEdit::printPreview(QPrinter *printer)
+ {
+ #ifdef QT_NO_PRINTER
+     Q_UNUSED(printer);
+ #else
+     textEdit-&gt;print(printer);
+ #endif
+ }
+
+ void TextEdit::filePrintPdf()
+ {
+ #ifndef QT_NO_PRINTER
+     QString fileName = QFileDialog::getSaveFileName(this, &quot;Export PDF&quot;,
+                                                     QString(), &quot;*.pdf&quot;);
+     if (!fileName.isEmpty()) {
+         if (QFileInfo(fileName).suffix().isEmpty())
+             fileName.append(&quot;.pdf&quot;);
+         QPrinter printer(QPrinter::HighResolution);
+         printer.setOutputFormat(QPrinter::PdfFormat);
+         printer.setOutputFileName(fileName);
+         textEdit-&gt;document()-&gt;print(&amp;printer);
+     }
+ #endif
+ }
+
+ void TextEdit::textBold()
+ {
+     QTextCharFormat fmt;
+     fmt.setFontWeight(actionTextBold-&gt;isChecked() ? QFont::Bold : QFont::Normal);
+     mergeFormatOnWordOrSelection(fmt);
+ }
+
+ void TextEdit::textUnderline()
+ {
+     QTextCharFormat fmt;
+     fmt.setFontUnderline(actionTextUnderline-&gt;isChecked());
+     mergeFormatOnWordOrSelection(fmt);
+ }
+
+ void TextEdit::textItalic()
+ {
+     QTextCharFormat fmt;
+     fmt.setFontItalic(actionTextItalic-&gt;isChecked());
+     mergeFormatOnWordOrSelection(fmt);
+ }
+
+ void TextEdit::textFamily(const QString &amp;f)
+ {
+     QTextCharFormat fmt;
+     fmt.setFontFamily(f);
+     mergeFormatOnWordOrSelection(fmt);
+ }
+
+ void TextEdit::textSize(const QString &amp;p)
+ {
+     qreal pointSize = p.toFloat();
+     if (p.toFloat() &gt; 0) {
+         QTextCharFormat fmt;
+         fmt.setFontPointSize(pointSize);
+         mergeFormatOnWordOrSelection(fmt);
+     }
+ }
+
+ void TextEdit::textStyle(int styleIndex)
+ {
+     QTextCursor cursor = textEdit-&gt;textCursor();
+
+     if (styleIndex != 0) {
+         QTextListFormat::Style style = QTextListFormat::ListDisc;
+
+         switch (styleIndex) {
+             default:
+             case 1:
+                 style = QTextListFormat::ListDisc;
+                 break;
+             case 2:
+                 style = QTextListFormat::ListCircle;
+                 break;
+             case 3:
+                 style = QTextListFormat::ListSquare;
+                 break;
+             case 4:
+                 style = QTextListFormat::ListDecimal;
+                 break;
+             case 5:
+                 style = QTextListFormat::ListLowerAlpha;
+                 break;
+             case 6:
+                 style = QTextListFormat::ListUpperAlpha;
+                 break;
+             case 7:
+                 style = QTextListFormat::ListLowerRoman;
+                 break;
+             case 8:
+                 style = QTextListFormat::ListUpperRoman;
+                 break;
+         }
+
+         cursor.beginEditBlock();
+
+         QTextBlockFormat blockFmt = cursor.blockFormat();
+
+         QTextListFormat listFmt;
+
+         if (cursor.currentList()) {
+             listFmt = cursor.currentList()-&gt;format();
+         } else {
+             listFmt.setIndent(blockFmt.indent() + 1);
+             blockFmt.setIndent(0);
+             cursor.setBlockFormat(blockFmt);
+         }
+
+         listFmt.setStyle(style);
+
+         cursor.createList(listFmt);
+
+         cursor.endEditBlock();
+     } else {
+         <span class="comment">// ####</span>
+         QTextBlockFormat bfmt;
+         bfmt.setObjectIndex(-1);
+         cursor.mergeBlockFormat(bfmt);
+     }
+ }
+
+ void TextEdit::textColor()
+ {
+     QColor col = QColorDialog::getColor(textEdit-&gt;textColor(), this);
+     if (!col.isValid())
+         return;
+     QTextCharFormat fmt;
+     fmt.setForeground(col);
+     mergeFormatOnWordOrSelection(fmt);
+     colorChanged(col);
+ }
+
+ void TextEdit::textAlign(QAction *a)
+ {
+     if (a == actionAlignLeft)
+         textEdit-&gt;setAlignment(Qt::AlignLeft | Qt::AlignAbsolute);
+     else if (a == actionAlignCenter)
+         textEdit-&gt;setAlignment(Qt::AlignHCenter);
+     else if (a == actionAlignRight)
+         textEdit-&gt;setAlignment(Qt::AlignRight | Qt::AlignAbsolute);
+     else if (a == actionAlignJustify)
+         textEdit-&gt;setAlignment(Qt::AlignJustify);
+ }
+
+ void TextEdit::currentCharFormatChanged(const QTextCharFormat &amp;format)
+ {
+     fontChanged(format.font());
+     colorChanged(format.foreground().color());
+ }
+
+ void TextEdit::cursorPositionChanged()
+ {
+     alignmentChanged(textEdit-&gt;alignment());
+ }
+
+ void TextEdit::clipboardDataChanged()
+ {
+ #ifndef QT_NO_CLIPBOARD
+     actionPaste-&gt;setEnabled(!QApplication::clipboard()-&gt;text().isEmpty());
+ #endif
+ }
+
+ void TextEdit::about()
+ {
+     QMessageBox::about(this, tr(&quot;About&quot;), tr(&quot;This example demonstrates Qt's &quot;
+         &quot;rich text editing facilities in action, providing an example &quot;
+         &quot;document for you to experiment with.&quot;));
+ }
+
+ void TextEdit::mergeFormatOnWordOrSelection(const QTextCharFormat &amp;format)
+ {
+     QTextCursor cursor = textEdit-&gt;textCursor();
+     if (!cursor.hasSelection())
+         cursor.select(QTextCursor::WordUnderCursor);
+     cursor.mergeCharFormat(format);
+     textEdit-&gt;mergeCurrentCharFormat(format);
+ }
+
+ void TextEdit::fontChanged(const QFont &amp;f)
+ {
+     comboFont-&gt;setCurrentIndex(comboFont-&gt;findText(QFontInfo(f).family()));
+     comboSize-&gt;setCurrentIndex(comboSize-&gt;findText(QString::number(f.pointSize())));
+     actionTextBold-&gt;setChecked(f.bold());
+     actionTextItalic-&gt;setChecked(f.italic());
+     actionTextUnderline-&gt;setChecked(f.underline());
+ }
+
+ void TextEdit::colorChanged(const QColor &amp;c)
+ {
+     QPixmap pix(16, 16);
+     pix.fill(c);
+     actionTextColor-&gt;setIcon(pix);
+ }
+
+ void TextEdit::alignmentChanged(Qt::Alignment a)
+ {
+     if (a &amp; Qt::AlignLeft) {
+         actionAlignLeft-&gt;setChecked(true);
+     } else if (a &amp; Qt::AlignHCenter) {
+         actionAlignCenter-&gt;setChecked(true);
+     } else if (a &amp; Qt::AlignRight) {
+         actionAlignRight-&gt;setChecked(true);
+     } else if (a &amp; Qt::AlignJustify) {
+         actionAlignJustify-&gt;setChecked(true);
+     }
+ }</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

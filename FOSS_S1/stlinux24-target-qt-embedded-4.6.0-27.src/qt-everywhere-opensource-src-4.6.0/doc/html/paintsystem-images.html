@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- paintsystem.qdoc -->
+<head>
+  <title>Qt 4.6: Reading and Writing Image Files</title>
+  <link rel="prev" href="coordsys.html" />
+  <link rel="contents" href="paintsystem.html" />
+  <link rel="next" href="paintsystem-styling.html" />
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><p>
+[Previous: <a href="coordsys.html">The Coordinate System</a>]
+[<a href="paintsystem.html">The Paint System</a>]
+[Next: <a href="paintsystem-styling.html">Styling</a>]
+</p>
+<h1 class="title">Reading and Writing Image Files<br /><span class="subtitle"></span>
+</h1>
+<p>The most common way to read images is through <a href="qimage.html">QImage</a> and <a href="qpixmap.html">QPixmap</a>'s constructors, or by calling the <a href="qimage.html#load">QImage::load</a>() and <a href="qpixmap.html#load">QPixmap::load</a>() functions. In addition, Qt provides the <a href="qimagereader.html">QImageReader</a> class which gives more control over the process. Depending on the underlying support in the image format, the functions provided by the class can save memory and speed up loading of images.</p>
+<p>Likewise, Qt provides the <a href="qimagewriter.html">QImageWriter</a> class which supports setting format specific options, such as the gamma level, compression level and quality, prior to storing the image. If you do not need such options, you can use <a href="qimage.html#save">QImage::save</a>() or <a href="qpixmap.html#save">QPixmap::save</a>() instead.</p>
+<p><table class="generic" width="100%" align="center" cellpadding="2" cellspacing="1" border="0">
+<tr valign="top" class="odd"><td><b>QMovie</b><p><a href="qmovie.html">QMovie</a> is a convenience class for displaying animations, using the <a href="qimagereader.html">QImageReader</a> class internally. Once created, the <a href="qmovie.html">QMovie</a> class provides various functions for both running and controlling the given animation.</p>
+</td><td><p align="center"><img src="images/paintsystem-movie.png" /></p></td></tr>
+</table></p>
+<p>The <a href="qimagereader.html">QImageReader</a> and <a href="qimagewriter.html">QImageWriter</a> classes rely on the <a href="qimageiohandler.html">QImageIOHandler</a> class which is the common image I/O interface for all image formats in Qt. <a href="qimageiohandler.html">QImageIOHandler</a> objects are used internally by <a href="qimagereader.html">QImageReader</a> and <a href="qimagewriter.html">QImageWriter</a> to add support for different image formats to Qt.</p>
+<p>A list of the supported file formats are available through the <a href="qimagereader.html#supportedImageFormats">QImageReader::supportedImageFormats</a>() and <a href="qimagewriter.html#supportedImageFormats">QImageWriter::supportedImageFormats</a>() functions. Qt supports several file formats by default, and in addition new formats can be added as plugins. The currently supported formats are listed in the <a href="qimagereader.html">QImageReader</a> and <a href="qimagewriter.html">QImageWriter</a> class documentation.</p>
+<p>Qt's plugin mechanism can also be used to write a custom image format handler. This is done by deriving from the <a href="qimageiohandler.html">QImageIOHandler</a> class, and creating a <a href="qimageioplugin.html">QImageIOPlugin</a> object which is a factory for creating <a href="qimageiohandler.html">QImageIOHandler</a> objects. When the plugin is installed, <a href="qimagereader.html">QImageReader</a> and <a href="qimagewriter.html">QImageWriter</a> will automatically load the plugin and start using it.</p>
+<a name="rendering-svg-files"></a>
+<h2>Rendering SVG files</h2>
+<p><table class="generic" width="100%" align="center" cellpadding="2" cellspacing="1" border="0">
+<tr valign="top" class="odd"><td><p align="center"><img src="images/paintsystem-svg.png" /></p></td><td><b>SVG Rendering</b><p>Scalable Vector Graphics (SVG) is a language for describing two-dimensional graphics and graphical applications in XML. SVG 1.1 is a W3C Recommendation and forms the core of the current SVG developments in Qt. SVG 1.2 is the specification currently being developed by the <a href="http://www.w3.org/Graphics/SVG/">SVG Working Group</a>, and it is <a href="http://www.w3.org/TR/SVG12/">available in draft form</a>. The <a href="http://www.w3.org/TR/SVGMobile/">Mobile SVG Profiles</a> (SVG Basic and SVG Tiny) are aimed at resource-limited devices and are part of the 3GPP platform for third generation mobile phones. You can read more about SVG at <a href="http://www.w3.org/Graphics/SVG/About.html">About SVG</a>.</p>
+<p>Qt supports the <a href="http://www.w3.org/Graphics/SVG/feature/1.2/#SVG-static">static features</a> of <a href="http://www.w3.org/TR/SVGMobile12/">SVG 1.2 Tiny</a>. ECMA scripts and DOM manipulation are currently not supported.</p>
+<p>SVG drawings can be rendered onto any <a href="qpaintdevice.html">QPaintDevice</a> subclass. This approach gives developers the flexibility to experiment, in order to find the best solution for each application.</p>
+<p>The easiest way to render SVG files is to construct a <a href="qsvgwidget.html">QSvgWidget</a> and load an SVG file using one of the <a href="qsvgwidget.html#load">QSvgWidget::load</a>() functions.</p>
+<p><a href="qsvgrenderer.html">QSvgRenderer</a> is the class responsible for rendering SVG files for <a href="qsvgwidget.html">QSvgWidget</a>, and it can be used directly to provide SVG support for custom widgets. To load an SVG file, construct a <a href="qsvgrenderer.html">QSvgRenderer</a> with a file name or the contents of a file, or call <a href="qsvgrenderer.html#load">QSvgRenderer::load</a>() on an existing renderer. If the SVG file has been loaded successfully the <a href="qsvgrenderer.html#isValid">QSvgRenderer::isValid</a>() will return true.</p>
+<p>Once you have loaded the SVG file successfully, you can render it with the <a href="qsvgrenderer.html#render">QSvgRenderer::render</a>() function. Note that this scheme allows you to render SVG files on all paint devices supported by Qt, including <a href="qwidget.html">QWidget</a>, <a href="qglwidget.html">QGLWidget</a>, and <a href="qimage.html">QImage</a>. See the <a href="painting-svgviewer.html">SVG Viewer</a> example for more details.</p>
+</td></tr>
+</table></p>
+<p>
+[Previous: <a href="coordsys.html">The Coordinate System</a>]
+[<a href="paintsystem.html">The Paint System</a>]
+[Next: <a href="paintsystem-styling.html">Styling</a>]
+</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

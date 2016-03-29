@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- installation.qdoc -->
+<head>
+  <title>Qt 4.6: Qt for X11 Requirements</title>
+  <link rel="prev" href="requirements.html" />
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><p>
+[Previous: <a href="requirements.html">General Qt Requirements</a>]
+</p>
+<h1 class="title">Qt for X11 Requirements<br /><span class="subtitle"></span>
+</h1>
+<ul><li><a href="#qtgui-dependencies">QtGui Dependencies</a></li>
+<li><a href="#opengl-dependencies">OpenGL Dependencies</a></li>
+<li><a href="#phonon-dependencies">Phonon Dependencies</a></li>
+</ul>
+<a name="qtgui-dependencies"></a>
+<h3>QtGui Dependencies</h3>
+<p align="center"><img src="images/x11_dependencies.png" alt="Qt for X11 Dependencies" /></p>    <style type="text/css" id="colorstyles">
+     #QtGuiColor { background-color: #98fd00; color: black }
+     #QtCoreColor { background-color: #9c9cff; color: black }
+     #DefaultColor { background-color: #f6f6dc; color: black }
+     #FreetypeColor { background-color: #e6e6fa; color: black }
+     #GLColor { background-color: #ffc0cb; color: black }
+     #PthreadColor { background-color: #bdb76b; color: black }
+     #OptionalColor { background-color: #cae1ff; color: black }
+     #SMColor { background-color: #c2fafa; color: black }
+     #MiscColor { background-color: #f0f9ff; color: black }
+     #GlibColor { background-color: #b3b3b3; color: black }
+    </style>
+    <p>The <a href="qtgui.html">QtGui</a> module and the <a href="qtcore.html">QtCore</a> module, which provides the non-GUI features required by <a href="qtgui.html">QtGui</a>, depend on the libraries described in the following table. To build Qt from its source code, you will also need to install the development packages for these libraries for your system.</p>
+<p><table class="generic" width="90%" align="center" cellpadding="2" cellspacing="1" border="0">
+<thead><tr valign="top" class="qt-style"><th>Name</th><th>Library</th><th>Notes</th><th>Configuration options</th><th>Minimum working version    <tr id="OptionalColor">
+    <td> XRender </td><td> libXrender </td><td> X Rendering Extension; used for anti-aliasing</td>
+    <td><tt>-xrender</tt> or auto-detected</td><td>0.9.0</td>
+    </tr><tr id="OptionalColor">
+    <td> Xrandr </td><td> libXrandr </td><td> X Resize and Rotate Extension</td>
+    <td><tt>-xrandr</tt> or auto-detected</td><td>1.0.2</td>
+    </tr><tr id="OptionalColor">
+    <td> Xcursor </td><td> libXcursor </td><td> X Cursor Extension</td>
+    <td><tt>-xcursor</tt> or auto-detected</td><td>1.1.4</td>
+    </tr><tr id="OptionalColor">
+    <td> Xfixes </td><td> libXfixes </td><td> X Fixes Extension</td>
+    <td><tt>-xfixes</tt> or auto-detected</td><td>3.0.0</td>
+    </tr><tr id="OptionalColor">
+    <td> Xinerama </td><td> libXinerama </td><td> Multi-head support</td>
+    <td><tt>-xinerama</tt> or auto-detected</td><td>1.1.0</td>
+
+    </tr><tr id="OptionalColor">
+    <td> Fontconfig </td><td> libfontconfig </td><td> Font customization and configuration</td>
+    <td><tt>-fontconfig</tt> or auto-detected</td><td>2.1</td>
+    </tr><tr id="OptionalColor">
+    <td> FreeType </td><td> libfreetype </td><td> Font engine</td>
+    <td></td><td>2.1.3</td>
+
+    </tr><tr id="DefaultColor">
+    <td> Xi </td><td> libXi </td><td> X11 Input Extensions</td>
+    <td><tt>-xinput</tt> or auto-detected</td><td>1.3.0</td>
+    </tr><tr id="DefaultColor">
+    <td> Xt </td><td> libXt </td><td> Xt Intrinsics</td><td></td><td>0.99</td>
+    </tr><tr id="DefaultColor">
+    <td> Xext </td><td> libXext </td><td> X Extensions</td><td></td><td>6.4.3</td>
+    </tr><tr id="DefaultColor">
+    <td> X11 </td><td> libX11 </td><td> X11 Client-Side Library</td><td></td><td>6.2.1</td>
+
+    </tr><tr id="SMColor">
+    <td> SM </td><td> libSM </td><td> X Session Management</td>
+    <td><tt>-sm</tt> or auto-detected</td><td>6.0.4</td>
+    </tr><tr id="SMColor">
+    <td> ICE </td><td> libICE </td><td> Inter-Client Exchange</td>
+    <td><tt>-sm</tt> or auto-detected</td><td>6.3.5</td>
+
+    </tr><tr id="GlibColor">
+    <td> glib </td><td> libglib-2.0 </td><td> Common event loop handling</td>
+    <td><tt>-glib</tt> or auto-detected</td><td>2.8.3</td>
+    </tr><tr id="PthreadColor">
+    <td> pthread </td><td> libpthread </td><td> Multithreading</td>
+    <td></td><td>2.3.5</td>
+    </tr>
+    </th></tr></thead>
+</table></p>
+<p><b>Note:</b> You must compile with XRender support to get alpha transparency support for pixmaps and images.</p>
+<p>Development packages for these libraries contain header files that are used when building Qt from its source code. On Debian-based GNU/Linux systems, for example, we recommend that you install the following development packages:</p>
+<ul>
+<li>libfontconfig1-dev</li>
+<li>libfreetype6-dev</li>
+<li>libx11-dev</li>
+<li>libxcursor-dev</li>
+<li>libxext-dev</li>
+<li>libxfixes-dev</li>
+<li>libxft-dev</li>
+<li>libxi-dev</li>
+<li>libxrandr-dev</li>
+<li>libxrender-dev</li>
+</ul>
+<p>Some of these packages depend on others in this list, so installing one may cause others to be automatically installed. Other distributions may provide system packages with similar names.</p>
+<a name="opengl-dependencies"></a>
+<h3>OpenGL Dependencies</h3>
+<p>The configure script will autodetect if OpenGL headers and libraries are installed on your system, and if so, it will include the <a href="qtopengl.html">QtOpenGL</a> module in the Qt library.</p>
+<p>If your OpenGL headers or libraries are placed in a non-standard directory, you may need to change the <tt>QMAKE_INCDIR_OPENGL</tt> and/or <tt>QMAKE_LIBDIR_OPENGL</tt> in the config file for your system.</p>
+<p>The QGL documentation assumes that you are familiar with OpenGL programming. If you're new to the subject a good starting point is <a href="http://www.opengl.org/">http://www.opengl.org/</a>.</p>
+<a name="phonon-dependencies"></a>
+<h3>Phonon Dependencies</h3>
+<p>As described in the <a href="phonon-overview.html">Phonon Overview</a>, Phonon uses the GStreamer multimedia framework as the backend for audio and video playback on X11. The minimum required version of GStreamer is 0.10.</p>
+<p>To build Phonon, you need the GStreamer library, base plugins, and development files for your system. The package names for GStreamer vary between Linux distributions; try searching for <tt>gstreamer</tt> or <tt>libgstreamer</tt> in your distribution's package repository to find suitable packages.</p>
+<p>See also <a href="known-issues.html">Known Issues in 4.6&#x2e;0</a>.</p>
+<p>
+[Previous: <a href="requirements.html">General Qt Requirements</a>]
+</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

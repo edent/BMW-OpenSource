@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- threads.qdoc -->
+<head>
+  <title>Qt 4.6: Thread-Support in Qt Modules</title>
+  <link rel="prev" href="threads-qtconcurrent.html" />
+  <link rel="contents" href="threads.html" />
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><p>
+[Previous: <a href="threads-qtconcurrent.html">Concurrent Programming</a>]
+[<a href="threads.html">Thread Support in Qt</a>]
+</p>
+<h1 class="title">Thread-Support in Qt Modules<br /><span class="subtitle"></span>
+</h1>
+<a name="threads-and-the-sql-module"></a>
+<h2>Threads and the SQL Module</h2>
+<p>A connection can only be used from within the thread that created it. Moving connections between threads or creating queries from a different thread is not supported.</p>
+<p>In addition, the third party libraries used by the QSqlDrivers can impose further restrictions on using the SQL Module in a multithreaded program. Consult the manual of your database client for more information</p>
+<a name="painting-in-threads"></a>
+<h2>Painting in Threads</h2>
+<p><a href="qpainter.html">QPainter</a> can be used in a thread to paint onto <a href="qimage.html">QImage</a>, <a href="qprinter.html">QPrinter</a>, and <a href="qpicture.html">QPicture</a> paint devices. Painting onto QPixmaps and QWidgets is <i>not</i> supported. On Mac OS X the automatic progress dialog will not be displayed if you are printing from outside the GUI thread.</p>
+<p>Any number of threads can paint at any given time, however only one thread at a time can paint on a given paint device. In other words, two threads can paint at the same time if each paints onto separate QImages, but the two threads cannot paint onto the same <a href="qimage.html">QImage</a> at the same time.</p>
+<p>Note that on X11 systems without FontConfig support, Qt cannot render text outside of the GUI thread. You can use the <a href="qfontdatabase.html#supportsThreadedFontRendering">QFontDatabase::supportsThreadedFontRendering</a>() function to detect whether or not font rendering can be used outside the GUI thread.</p>
+<a name="threads-and-rich-text-processing"></a>
+<h2>Threads and Rich Text Processing</h2>
+<p>The <a href="qtextdocument.html">QTextDocument</a>, <a href="qtextcursor.html">QTextCursor</a>, and <a href="richtext.html">all related classes</a> are reentrant.</p>
+<p>Note that a <a href="qtextdocument.html">QTextDocument</a> instance created in the GUI thread may contain <a href="qpixmap.html">QPixmap</a> image resources. Use <a href="qtextdocument.html#clone">QTextDocument::clone</a>() to create a copy of the document, and pass the copy to another thread for further processing (such as printing).</p>
+<a name="threads-and-the-svg-module"></a>
+<h2>Threads and the SVG module</h2>
+<p>The <a href="qsvggenerator.html">QSvgGenerator</a> and <a href="qsvgrenderer.html">QSvgRenderer</a> classes in the <a href="qtsvg.html">QtSvg</a> module are reentrant.</p>
+<a name="threads-and-implicitly-shared-classes"></a>
+<h2>Threads and Implicitly Shared Classes</h2>
+<p>Qt uses an optimization called <a href="implicit-sharing.html">implicit sharing</a> for many of its value class, notably <a href="qimage.html">QImage</a> and <a href="qstring.html">QString</a>. Beginning with Qt 4, implicit shared classes can safely be copied across threads, like any other value classes. They are fully <a href="threads-reentrancy.html">reentrant</a>. The implicit sharing is really <i>implicit</i>.</p>
+<p>In many people's minds, implicit sharing and multithreading are incompatible concepts, because of the way the reference counting is typically done. Qt, however, uses atomic reference counting to ensure the integrity of the shared data, avoiding potential corruption of the reference counter.</p>
+<p>Note that atomic reference counting does not guarantee <a href="threads-reentrancy.html">thread-safety</a>. Proper locking should be used when sharing an instance of an implicitly shared class between threads. This is the same requirement placed on all <a href="threads-reentrancy.html">reentrant</a> classes, shared or not. Atomic reference counting does, however, guarantee that a thread working on its own, local instance of an implicitly shared class is safe. We recommend using <a href="threads-qobject.html#signals-and-slots-across-threads">signals and slots</a> to pass data between threads, as this can be done without the need for any explicit locking.</p>
+<p>To sum it up, implicitly shared classes in Qt 4 are really <i>implicitly</i> shared. Even in multithreaded applications, you can safely use them as if they were plain, non-shared, reentrant value-based classes.</p>
+<p>
+[Previous: <a href="threads-qtconcurrent.html">Concurrent Programming</a>]
+[<a href="threads.html">Thread Support in Qt</a>]
+</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

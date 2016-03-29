@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: submarine_p.h Example File (demos/sub-attaq/submarine_p.h)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">submarine_p.h Example File<br /><span class="small-subtitle">demos/sub-attaq/submarine_p.h</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the examples of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+
+ #ifndef SUBMARINE_P_H
+ #define SUBMARINE_P_H
+
+<span class="comment"> //</span>
+<span class="comment"> //  W A R N I N G</span>
+<span class="comment"> //  -------------</span>
+<span class="comment"> //</span>
+<span class="comment"> // This file is not part of the Qt API.  It exists purely as an</span>
+<span class="comment"> // implementation detail.  This header file may change from version to</span>
+<span class="comment"> // version without notice, or even be removed.</span>
+<span class="comment"> //</span>
+<span class="comment"> // We mean it.</span>
+<span class="comment"> //</span>
+
+<span class="comment"> //Own</span>
+ #include &quot;animationmanager.h&quot;
+ #include &quot;submarine.h&quot;
+ #include &quot;qanimationstate.h&quot;
+
+<span class="comment"> //Qt</span>
+ #include &lt;QtCore/QPropertyAnimation&gt;
+ #include &lt;QtGui/QGraphicsScene&gt;
+
+<span class="comment"> //This state is describing when the boat is moving right</span>
+ class MovementState : public QAnimationState
+ {
+ Q_OBJECT
+ public:
+     MovementState(SubMarine *submarine, QState *parent = 0) : QAnimationState(parent)
+     {
+         movementAnimation = new QPropertyAnimation(submarine, &quot;pos&quot;);
+         connect(movementAnimation,SIGNAL(valueChanged(const QVariant &amp;)),this,SLOT(onAnimationMovementValueChanged(const QVariant &amp;)));
+         setAnimation(movementAnimation);
+         AnimationManager::self()-&gt;registerAnimation(movementAnimation);
+         this-&gt;submarine = submarine;
+     }
+
+ protected slots:
+     void onAnimationMovementValueChanged(const QVariant &amp;)
+     {
+         if (qrand() % 200 + 1 == 3)
+             submarine-&gt;launchTorpedo(qrand() % 3 + 1);
+     }
+
+ protected:
+     void onEntry(QEvent *e)
+     {
+         if (submarine-&gt;currentDirection() == SubMarine::Left) {
+             movementAnimation-&gt;setEndValue(QPointF(0,submarine-&gt;y()));
+             movementAnimation-&gt;setDuration(submarine-&gt;x()/submarine-&gt;currentSpeed()*12);
+         }
+         else <span class="comment">/*if (submarine-&gt;currentDirection() == SubMarine::Right)*/</span> {
+             movementAnimation-&gt;setEndValue(QPointF(submarine-&gt;scene()-&gt;width()-submarine-&gt;size().width(),submarine-&gt;y()));
+             movementAnimation-&gt;setDuration((submarine-&gt;scene()-&gt;width()-submarine-&gt;size().width()-submarine-&gt;x())/submarine-&gt;currentSpeed()*12);
+         }
+         QAnimationState::onEntry(e);
+     }
+
+ private:
+     SubMarine *submarine;
+     QPropertyAnimation *movementAnimation;
+ };
+
+<span class="comment"> //This state is describing when the boat is moving right</span>
+ class ReturnState : public QAnimationState
+ {
+ public:
+     ReturnState(SubMarine *submarine, QState *parent = 0) : QAnimationState(parent)
+     {
+         returnAnimation = new QPropertyAnimation(submarine-&gt;rotation(), &quot;angle&quot;);
+         returnAnimation-&gt;setDuration(500);
+         AnimationManager::self()-&gt;registerAnimation(returnAnimation);
+         setAnimation(returnAnimation);
+         this-&gt;submarine = submarine;
+     }
+
+ protected:
+     void onEntry(QEvent *e)
+     {
+         returnAnimation-&gt;stop();
+         returnAnimation-&gt;setEndValue(submarine-&gt;currentDirection() == SubMarine::Right ? 360. : 180.);
+         QAnimationState::onEntry(e);
+     }
+
+     void onExit(QEvent *e)
+     {
+         submarine-&gt;currentDirection() == SubMarine::Right ? submarine-&gt;setCurrentDirection(SubMarine::Left) : submarine-&gt;setCurrentDirection(SubMarine::Right);
+         QAnimationState::onExit(e);
+     }
+
+ private:
+     SubMarine *submarine;
+     QPropertyAnimation *returnAnimation;
+ };
+
+ #endif <span class="comment">// SUBMARINE_P_H</span></pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qsqlrelationaltablemodel.cpp -->
+<head>
+  <title>Qt 4.6: QSqlRelation Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QSqlRelation" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QSqlRelation Class Reference<br /><span class="small-subtitle">[<a href="qtsql.html">QtSql</a> module]</span>
+</h1>
+<p>The QSqlRelation class stores information about an SQL foreign key. <a href="#details">More...</a></p>
+<pre> #include &lt;QSqlRelation&gt;</pre><p><b>This class is not part of the Qt GUI Framework Edition.</b></p>
+<ul>
+<li><a href="qsqlrelation-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qsqlrelation.html#QSqlRelation">QSqlRelation</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qsqlrelation.html#QSqlRelation-2">QSqlRelation</a></b> ( const QString &amp; <i>tableName</i>, const QString &amp; <i>indexColumn</i>, const QString &amp; <i>displayColumn</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qsqlrelation.html#displayColumn">displayColumn</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qsqlrelation.html#indexColumn">indexColumn</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qsqlrelation.html#isValid">isValid</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qsqlrelation.html#tableName">tableName</a></b> () const</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QSqlRelation class stores information about an SQL foreign key.</p>
+<p>QSqlRelation is a helper class for <a href="qsqlrelationaltablemodel.html">QSqlRelationalTableModel</a>. See <a href="qsqlrelationaltablemodel.html#setRelation">QSqlRelationalTableModel::setRelation</a>() and <a href="qsqlrelationaltablemodel.html#relation">QSqlRelationalTableModel::relation</a>() for details.</p>
+<p>See also <a href="qsqlrelationaltablemodel.html">QSqlRelationalTableModel</a>, <a href="qsqlrelationaldelegate.html">QSqlRelationalDelegate</a>, and <a href="sql-relationaltablemodel.html">Relational Table Model Example</a>.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QSqlRelation/QSqlRelation" />
+<h3 class="fn"><a name="QSqlRelation"></a>QSqlRelation::QSqlRelation ()</h3>
+<p>Constructs an invalid <a href="qsqlrelation.html">QSqlRelation</a> object.</p>
+<p>For such an object, the <a href="qsqlrelation.html#tableName">tableName</a>(), <a href="qsqlrelation.html#indexColumn">indexColumn</a>(), and <a href="qsqlrelation.html#displayColumn">displayColumn</a>() functions return an empty string.</p>
+<p>See also <a href="qsqlrelation.html#isValid">isValid</a>().</p>
+<h3 class="fn"><a name="QSqlRelation-2"></a>QSqlRelation::QSqlRelation ( const <a href="qstring.html">QString</a> &amp; <i>tableName</i>, const <a href="qstring.html">QString</a> &amp; <i>indexColumn</i>, const <a href="qstring.html">QString</a> &amp; <i>displayColumn</i> )</h3>
+<p>Constructs a <a href="qsqlrelation.html">QSqlRelation</a> object, where <i>tableName</i> is the SQL table name to which a foreign key refers, <i>indexColumn</i> is the foreign key, and <i>displayColumn</i> is the field that should be presented to the user.</p>
+<p>See also <a href="qsqlrelation.html#tableName">tableName</a>(), <a href="qsqlrelation.html#indexColumn">indexColumn</a>(), and <a href="qsqlrelation.html#displayColumn">displayColumn</a>().</p>
+<a name="//apple_ref/cpp/instm/QSqlRelation/displayColumn" />
+<h3 class="fn"><a name="displayColumn"></a><a href="qstring.html">QString</a> QSqlRelation::displayColumn () const</h3>
+<p>Returns the column from table <a href="qsqlrelation.html#tableName">tableName</a>() that should be presented to the user instead of a foreign key.</p>
+<a name="//apple_ref/cpp/instm/QSqlRelation/indexColumn" />
+<h3 class="fn"><a name="indexColumn"></a><a href="qstring.html">QString</a> QSqlRelation::indexColumn () const</h3>
+<p>Returns the index column from table <a href="qsqlrelation.html#tableName">tableName</a>() to which a foreign key refers.</p>
+<a name="//apple_ref/cpp/instm/QSqlRelation/isValid" />
+<h3 class="fn"><a name="isValid"></a>bool QSqlRelation::isValid () const</h3>
+<p>Returns true if the <a href="qsqlrelation.html">QSqlRelation</a> object is valid; otherwise returns false.</p>
+<a name="//apple_ref/cpp/instm/QSqlRelation/tableName" />
+<h3 class="fn"><a name="tableName"></a><a href="qstring.html">QString</a> QSqlRelation::tableName () const</h3>
+<p>Returns the name of the table to which a foreign key refers.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qcopchannel_qws.cpp -->
+<head>
+  <title>Qt 4.6: QCopChannel Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QCopChannel" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QCopChannel Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QCopChannel class provides communication capabilities between clients in <a href="qt-embedded-linux.html">Qt for Embedded Linux</a>. <a href="#details">More...</a></p>
+<pre> #include &lt;QCopChannel&gt;</pre><p>Inherits <a href="qobject.html">QObject</a>.</p>
+<ul>
+<li><a href="qcopchannel-members.html">List of all members, including inherited members</a></li>
+<li><a href="qcopchannel-qt3.html">Qt 3 support members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qcopchannel.html#QCopChannel">QCopChannel</a></b> ( const QString &amp; <i>channel</i>, QObject * <i>parent</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual </td><td class="memItemRight" valign="bottom"><b><a href="qcopchannel.html#dtor.QCopChannel">~QCopChannel</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qcopchannel.html#channel">channel</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qcopchannel.html#receive">receive</a></b> ( const QString &amp; <i>message</i>, const QByteArray &amp; <i>data</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>29 public functions inherited from <a href="qobject.html#public-functions">QObject</a></li>
+</ul>
+<hr />
+<a name="signals"></a>
+<h2>Signals</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qcopchannel.html#received">received</a></b> ( const QString &amp; <i>message</i>, const QByteArray &amp; <i>data</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>1 signal inherited from <a href="qobject.html#signals">QObject</a></li>
+</ul>
+<hr />
+<a name="static-public-members"></a>
+<h2>Static Public Members</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qcopchannel.html#flush">flush</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qcopchannel.html#isRegistered">isRegistered</a></b> ( const QString &amp; <i>channel</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qcopchannel.html#send">send</a></b> ( const QString &amp; <i>channel</i>, const QString &amp; <i>message</i>, const QByteArray &amp; <i>data</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qcopchannel.html#send-2">send</a></b> ( const QString &amp; <i>channel</i>, const QString &amp; <i>message</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>5 static public members inherited from <a href="qobject.html#static-public-members">QObject</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li><div class="fn"></div>1 property inherited from <a href="qobject.html#properties">QObject</a></li>
+<li><div class="fn"></div>1 public slot inherited from <a href="qobject.html#public-slots">QObject</a></li>
+<li><div class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QCopChannel class provides communication capabilities between clients in <a href="qt-embedded-linux.html">Qt for Embedded Linux</a>.</p>
+<p>Note that this class is only available in <a href="qt-embedded-linux.html">Qt for Embedded Linux</a>.</p>
+<p>The Qt COmmunication Protocol (QCOP) is a many-to-many protocol for transferring messages across registered channels. A channel is registered by name, and anyone who wants to can listen to the channel as well as send messages through it. The QCOP protocol allows clients to communicate both within the same address space and between different processes.</p>
+<p>To send messages to a given channel, QCopChannel provides the static <a href="qcopchannel.html#send">send</a>() function. Using this function alone, the messages are queued until Qt re-enters the event loop. To immediately flush all queued messages to the registered listeners, call the static <a href="qcopchannel.html#flush">flush</a>() function.</p>
+<p>To listen to the traffic on a given channel, you typically instantiate a QCopChannel object for the given channel and connect to its <a href="qcopchannel.html#received">received</a>() signal that is emitted whenever there is incoming data. Use the static <a href="qcopchannel.html#isRegistered">isRegistered</a>() function to query the server for the existence of a given channel. QCopChannel provides the <a href="qcopchannel.html#channel">channel</a>() function returning the name of this QCopChannel object's channel.</p>
+<p>In additon, QCopChannel provides the virtual <a href="qcopchannel.html#receive">receive</a>() function that can be reimplemented to filter the incoming messages and data. The default implementation simply emits the <a href="qcopchannel.html#received">received</a>() signal.</p>
+<p>See also <a href="qwsserver.html">QWSServer</a>, <a href="qwsclient.html">QWSClient</a>, and <a href="qt-embedded-architecture.html">Qt for Embedded Linux Architecture</a>.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QCopChannel/QCopChannel" />
+<h3 class="fn"><a name="QCopChannel"></a>QCopChannel::QCopChannel ( const <a href="qstring.html">QString</a> &amp; <i>channel</i>, <a href="qobject.html">QObject</a> * <i>parent</i> = 0 )</h3>
+<p>Constructs a <a href="qcopchannel.html">QCopChannel</a> object for the specified <i>channel</i>, with the given <i>parent</i>. Once created, the channel is registered by the server.</p>
+<p>See also <a href="qcopchannel.html#isRegistered">isRegistered</a>() and <a href="qcopchannel.html#channel">channel</a>().</p>
+<a name="//apple_ref/cpp/instm/QCopChannel/~QCopChannel" />
+<h3 class="fn"><a name="dtor.QCopChannel"></a>QCopChannel::~QCopChannel ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Destroys this <a href="qcopchannel.html">QCopChannel</a> object.</p>
+<p>The server is notified that this particular listener has closed its connection. The server will keep the channel open until the last registered listener detaches.</p>
+<p>See also <a href="qcopchannel.html#isRegistered">isRegistered</a>() and <a href="qcopchannel.html#channel">channel</a>().</p>
+<a name="//apple_ref/cpp/instm/QCopChannel/channel" />
+<h3 class="fn"><a name="channel"></a><a href="qstring.html">QString</a> QCopChannel::channel () const</h3>
+<p>Returns the name of this object's channel.</p>
+<p>See also <a href="qcopchannel.html#isRegistered">isRegistered</a>().</p>
+<a name="//apple_ref/cpp/clm/QCopChannel/flush" />
+<h3 class="fn"><a name="flush"></a>bool QCopChannel::flush ()&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Flushes all queued messages to the registered listeners.</p>
+<p>Note that this function returns false if no <a href="qapplication.html">QApplication</a> has been constructed, otherwise it returns true.</p>
+<p>This function was introduced in Qt 4.2.</p>
+<p>See also <a href="qcopchannel.html#send">send</a>().</p>
+<a name="//apple_ref/cpp/clm/QCopChannel/isRegistered" />
+<h3 class="fn"><a name="isRegistered"></a>bool QCopChannel::isRegistered ( const <a href="qstring.html">QString</a> &amp; <i>channel</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Queries the server for the existence of the given <i>channel</i>. Returns true if the channel is registered; otherwise returns false.</p>
+<p>See also <a href="qcopchannel.html#channel">channel</a>() and <a href="qcopchannel.html#send">send</a>().</p>
+<a name="//apple_ref/cpp/instm/QCopChannel/receive" />
+<h3 class="fn"><a name="receive"></a>void QCopChannel::receive ( const <a href="qstring.html">QString</a> &amp; <i>message</i>, const <a href="qbytearray.html">QByteArray</a> &amp; <i>data</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Processes the incoming <i>message</i> and <i>data</i>.</p>
+<p>This function is called by the server when this object's channel receives new messages. Note that the default implementation simply emits the <a href="qcopchannel.html#received">received</a>() signal; reimplement this function to process the incoming <i>message</i> and <i>data</i>.</p>
+<p>Note that the format of the given <i>data</i> has to be well defined in order to extract the information it contains. In addition, it is recommended to use the DCOP convention. This is not a requirement, but you must ensure that the sender and receiver agree on the argument types. For example:</p>
+<pre> void MyClass::receive(const QString &amp;message, const QByteArray &amp;data)
+ {
+     QDataStream in(data);
+     if (message == &quot;execute(QString,QString)&quot;) {
+         QString cmd;
+         QString arg;
+         in &gt;&gt; cmd &gt;&gt; arg;
+         ...
+     } else if (message == &quot;delete(QString)&quot;) {
+         QString fileName;
+         in &gt;&gt; fileName;
+         ...
+     } else {
+         ...
+     }
+ }</pre>
+<p>The above code assumes that the <tt>message</tt> is a DCOP-style function signature and the <tt>data</tt> contains the function's arguments.</p>
+<p>See also <a href="qcopchannel.html#send">send</a>(), <a href="qcopchannel.html#channel">channel</a>(), and <a href="qcopchannel.html#received">received</a>().</p>
+<a name="//apple_ref/cpp/instm/QCopChannel/received" />
+<h3 class="fn"><a name="received"></a>void QCopChannel::received ( const <a href="qstring.html">QString</a> &amp; <i>message</i>, const <a href="qbytearray.html">QByteArray</a> &amp; <i>data</i> )&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted whenever this object's channel receives new messages (i.e&#x2e;, it is emitted by the <a href="qcopchannel.html#receive">receive</a>() function), passing the incoming <i>message</i> and <i>data</i> as parameters.</p>
+<p>See also <a href="qcopchannel.html#receive">receive</a>() and <a href="qcopchannel.html#channel">channel</a>().</p>
+<a name="//apple_ref/cpp/clm/QCopChannel/send" />
+<h3 class="fn"><a name="send"></a>bool QCopChannel::send ( const <a href="qstring.html">QString</a> &amp; <i>channel</i>, const <a href="qstring.html">QString</a> &amp; <i>message</i>, const <a href="qbytearray.html">QByteArray</a> &amp; <i>data</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Sends the given <i>message</i> on the specified <i>channel</i> with the given <i>data</i>. The message will be distributed to all clients subscribed to the channel. Returns true if the message is sent successfully; otherwise returns false.</p>
+<p>It is recommended to use the DCOP convention. This is not a requirement, but you must ensure that the sender and receiver agree on the argument types.</p>
+<p>Note that <a href="qdatastream.html">QDataStream</a> provides a convenient way to fill the byte array with auxiliary data. For example:</p>
+<pre> QByteArray data;
+ QDataStream out(&amp;data, QIODevice::WriteOnly);
+ out &lt;&lt; QString(&quot;cat&quot;) &lt;&lt; QString(&quot;file.txt&quot;);
+ QCopChannel::send(&quot;System/Shell&quot;, &quot;execute(QString,QString)&quot;, data);</pre>
+<p>In the code above the channel is <tt>&quot;System/Shell&quot;</tt>. The <tt>message</tt> is an arbitrary string, but in the example we've used the DCOP convention of passing a function signature. Such a signature is formatted as <tt>&quot;functionname(types)&quot;</tt> where <tt>types</tt> is a list of zero or more comma-separated type names, with no whitespace, no consts and no pointer or reference marks, i.e&#x2e; no &quot;*&quot; or &quot;&amp;&quot;.</p>
+<p>See also <a href="qcopchannel.html#receive">receive</a>() and <a href="qcopchannel.html#isRegistered">isRegistered</a>().</p>
+<h3 class="fn"><a name="send-2"></a>bool QCopChannel::send ( const <a href="qstring.html">QString</a> &amp; <i>channel</i>, const <a href="qstring.html">QString</a> &amp; <i>message</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>This is an overloaded function.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

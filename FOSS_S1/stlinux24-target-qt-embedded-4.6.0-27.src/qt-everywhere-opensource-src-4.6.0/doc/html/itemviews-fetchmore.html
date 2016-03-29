@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- fetchmore.qdoc -->
+<head>
+  <title>Qt 4.6: Fetch More Example</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">Fetch More Example<br /><span class="subtitle"></span>
+</h1>
+<p>Files:</p>
+<ul>
+<li><a href="itemviews-fetchmore-filelistmodel-cpp.html">itemviews/fetchmore/filelistmodel.cpp</a></li>
+<li><a href="itemviews-fetchmore-filelistmodel-h.html">itemviews/fetchmore/filelistmodel.h</a></li>
+<li><a href="itemviews-fetchmore-window-cpp.html">itemviews/fetchmore/window.cpp</a></li>
+<li><a href="itemviews-fetchmore-window-h.html">itemviews/fetchmore/window.h</a></li>
+<li><a href="itemviews-fetchmore-main-cpp.html">itemviews/fetchmore/main.cpp</a></li>
+<li><a href="itemviews-fetchmore-fetchmore-pro.html">itemviews/fetchmore/fetchmore.pro</a></li>
+</ul>
+<p>The Fetch More example shows how two add items to an item view model on demand.</p>
+<p align="center"><img src="images/fetchmore-example.png" /></p><p>The user of the example can enter a directory in the <b>Directory</b> line edit. The contents of the directory will be listed in the list view below.</p>
+<p>When you have large - or perhaps even infinite - data sets, you will need to add items to the model in batches, and preferably only when the items are needed by the view (i.e&#x2e;, when they are visible in the view).</p>
+<p>In this example, we implement <tt>FileListModel</tt> - an item view model containing the entries of a directory. We also have <tt>Window</tt>, which sets up the GUI and feeds the model with directories.</p>
+<p>Let's take a tour of <tt>FileListModel</tt>'s code.</p>
+<a name="filelistmodel-class-definition"></a>
+<h2>FileListModel Class Definition</h2>
+<p>The <tt>FileListModel</tt> inherits <a href="qabstractlistmodel.html">QAbstractListModel</a> and contains the contents of a directory. It will add items to itself only when requested to do so by the view.</p>
+<pre> class FileListModel : public QAbstractListModel
+ {
+     Q_OBJECT
+
+ public:
+     FileListModel(QObject *parent = 0);
+
+     int rowCount(const QModelIndex &amp;parent = QModelIndex()) const;
+     QVariant data(const QModelIndex &amp;index, int role = Qt::DisplayRole) const;
+
+ signals:
+     void numberPopulated(int number);
+
+ public slots:
+     void setDirPath(const QString &amp;path);
+
+ protected:
+     bool canFetchMore(const QModelIndex &amp;parent) const;
+     void fetchMore(const QModelIndex &amp;parent);
+
+ private:
+     QStringList fileList;
+     int fileCount;
+ };</pre>
+<p>The secret lies in the reimplementation of <a href="qabstractitemmodel.html#fetchMore">fetchMore()</a> and <a href="qabstractitemmodel.html#canFetchMore">canFetchMore()</a> from <a href="qabstractitemmodel.html">QAbstractItemModel</a>. These functions are called by the item view when it needs more items.</p>
+<p>The <tt>setDirPath()</tt> function sets the directory the model will work on. We emit <tt>numberPopulated()</tt> each time we add a batch of items to the model.</p>
+<p>We keep all directory entries in <tt>fileList</tt>. <tt>fileCount</tt> is the number of items that have been added to the model.</p>
+<a name="filelistmodel-class-implementation"></a>
+<h2>FileListModel Class Implementation</h2>
+<p>We start by checking out the <tt>setDirPath()</tt>.</p>
+<pre> void FileListModel::setDirPath(const QString &amp;path)
+ {
+     QDir dir(path);
+
+     fileList = dir.entryList();
+     fileCount = 0;
+     reset();
+ }</pre>
+<p>We use a <a href="qdir.html">QDir</a> to get the contents of the directory. We need to inform <a href="qabstractitemmodel.html">QAbstractItemModel</a> that we want to remove all items - if any - from the model.</p>
+<pre> bool FileListModel::canFetchMore(const QModelIndex &amp; <span class="comment">/* index */</span>) const
+ {
+     if (fileCount &lt; fileList.size())
+         return true;
+     else
+         return false;
+ }</pre>
+<p>The <tt>canFetchMore()</tt> function is called by the view when it needs more items. We return true if there still are entries that we have not added to the model; otherwise, we return false.</p>
+<p>And now, the <tt>fetchMore()</tt> function itself:</p>
+<pre> void FileListModel::fetchMore(const QModelIndex &amp; <span class="comment">/* index */</span>)
+ {
+     int remainder = fileList.size() - fileCount;
+     int itemsToFetch = qMin(100, remainder);
+
+     beginInsertRows(QModelIndex(), fileCount, fileCount+itemsToFetch);
+
+     fileCount += itemsToFetch;
+
+     endInsertRows();
+
+     emit numberPopulated(itemsToFetch);
+ }</pre>
+<p>We first calculate the number of items to fetch. <a href="qabstractitemmodel.html#beginInsertRows">beginInsertRows()</a> and <a href="qabstractitemmodel.html#endInsertRows">endInsertRows()</a> are mandatory for <a href="qabstractitemmodel.html">QAbstractItemModel</a> to keep up with the row insertions. Finally, we emit <tt>numberPopulated()</tt>, which is picked up by <tt>Window</tt>.</p>
+<p>To complete the tour, we also look at <tt>rowCount()</tt> and <tt>data()</tt>.</p>
+<pre> int FileListModel::rowCount(const QModelIndex &amp; <span class="comment">/* parent */</span>) const
+ {
+     return fileCount;
+ }
+
+ QVariant FileListModel::data(const QModelIndex &amp;index, int role) const
+ {
+     if (!index.isValid())
+         return QVariant();
+
+     if (index.row() &gt;= fileList.size() || index.row() &lt; 0)
+         return QVariant();
+
+     if (role == Qt::DisplayRole)
+         return fileList.at(index.row());
+     else if (role == Qt::BackgroundRole) {
+         int batch = (index.row() / 100) % 2;
+         if (batch == 0)
+             return qApp-&gt;palette().base();
+         else
+             return qApp-&gt;palette().alternateBase();
+     }
+     return QVariant();
+ }</pre>
+<p>Notice that the row count is only the items we have added so far, i.e&#x2e;, not the number of entries in the directory.</p>
+<p>In <tt>data()</tt>, we return the appropriate entry from the <tt>fileList</tt>. We also separate the batches with a different background color.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

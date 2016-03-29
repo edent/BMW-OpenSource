@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: videoplayer.cpp Example File (multimedia/videowidget/videoplayer.cpp)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">videoplayer.cpp Example File<br /><span class="small-subtitle">multimedia/videowidget/videoplayer.cpp</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the examples of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+
+ #include &quot;videoplayer.h&quot;
+
+ #include &quot;videowidget.h&quot;
+
+ #include &lt;QtMultimedia&gt;
+
+ VideoPlayer::VideoPlayer(QWidget *parent)
+     : QWidget(parent)
+     , surface(0)
+     , playButton(0)
+     , positionSlider(0)
+ {
+     connect(&amp;movie, SIGNAL(stateChanged(QMovie::MovieState)),
+             this, SLOT(movieStateChanged(QMovie::MovieState)));
+     connect(&amp;movie, SIGNAL(frameChanged(int)),
+             this, SLOT(frameChanged(int)));
+
+     VideoWidget *videoWidget = new VideoWidget;
+     surface = videoWidget-&gt;videoSurface();
+
+     QAbstractButton *openButton = new QPushButton(tr(&quot;Open...&quot;));
+     connect(openButton, SIGNAL(clicked()), this, SLOT(openFile()));
+
+     playButton = new QPushButton;
+     playButton-&gt;setEnabled(false);
+     playButton-&gt;setIcon(style()-&gt;standardIcon(QStyle::SP_MediaPlay));
+
+     connect(playButton, SIGNAL(clicked()),
+             this, SLOT(play()));
+
+     positionSlider = new QSlider(Qt::Horizontal);
+     positionSlider-&gt;setRange(0, 0);
+
+     connect(positionSlider, SIGNAL(sliderMoved(int)),
+             this, SLOT(setPosition(int)));
+
+     connect(&amp;movie, SIGNAL(frameChanged(int)),
+             positionSlider, SLOT(setValue(int)));
+
+     QBoxLayout *controlLayout = new QHBoxLayout;
+     controlLayout-&gt;setMargin(0);
+     controlLayout-&gt;addWidget(openButton);
+     controlLayout-&gt;addWidget(playButton);
+     controlLayout-&gt;addWidget(positionSlider);
+
+     QBoxLayout *layout = new QVBoxLayout;
+     layout-&gt;addWidget(videoWidget);
+     layout-&gt;addLayout(controlLayout);
+
+     setLayout(layout);
+ }
+
+ VideoPlayer::~VideoPlayer()
+ {
+ }
+
+ void VideoPlayer::openFile()
+ {
+     QString fileName = QFileDialog::getOpenFileName(this, tr(&quot;Open Movie&quot;));
+
+     if (!fileName.isEmpty()) {
+         surface-&gt;stop();
+
+         movie.setFileName(fileName);
+
+         playButton-&gt;setEnabled(true);
+         positionSlider-&gt;setMaximum(movie.frameCount());
+
+         movie.jumpToFrame(0);
+     }
+ }
+
+ void VideoPlayer::play()
+ {
+     switch(movie.state()) {
+     case QMovie::NotRunning:
+         movie.start();
+         break;
+     case QMovie::Paused:
+         movie.setPaused(false);
+         break;
+     case QMovie::Running:
+         movie.setPaused(true);
+         break;
+     }
+ }
+
+ void VideoPlayer::movieStateChanged(QMovie::MovieState state)
+ {
+     switch(state) {
+     case QMovie::NotRunning:
+     case QMovie::Paused:
+         playButton-&gt;setIcon(style()-&gt;standardIcon(QStyle::SP_MediaPlay));
+         break;
+     case QMovie::Running:
+         playButton-&gt;setIcon(style()-&gt;standardIcon(QStyle::SP_MediaPause));
+         break;
+     }
+ }
+
+ void VideoPlayer::frameChanged(int frame)
+ {
+     if (!presentImage(movie.currentImage())) {
+         movie.stop();
+         playButton-&gt;setEnabled(false);
+         positionSlider-&gt;setMaximum(0);
+     } else {
+         positionSlider-&gt;setValue(frame);
+     }
+ }
+
+ void VideoPlayer::setPosition(int frame)
+ {
+     movie.jumpToFrame(frame);
+ }
+
+ bool VideoPlayer::presentImage(const QImage &amp;image)
+ {
+     QVideoFrame frame(image);
+
+     if (!frame.isValid())
+         return false;
+
+     QVideoSurfaceFormat currentFormat = surface-&gt;surfaceFormat();
+
+     if (frame.pixelFormat() != currentFormat.pixelFormat()
+             || frame.size() != currentFormat.frameSize()) {
+         QVideoSurfaceFormat format(frame.size(), frame.pixelFormat());
+
+         if (!surface-&gt;start(format))
+             return false;
+     }
+
+     if (!surface-&gt;present(frame)) {
+         surface-&gt;stop();
+
+         return false;
+     } else {
+         return true;
+     }
+ }</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

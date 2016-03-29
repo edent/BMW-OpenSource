@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qmdisubwindow.cpp -->
+<head>
+  <title>Qt 4.6: QMdiSubWindow Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QMdiSubWindow" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QMdiSubWindow Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QMdiSubWindow class provides a subwindow class for <a href="qmdiarea.html">QMdiArea</a>. <a href="#details">More...</a></p>
+<pre> #include &lt;QMdiSubWindow&gt;</pre><p>Inherits <a href="qwidget.html">QWidget</a>.</p>
+<p>This class was introduced in Qt 4.3.</p>
+<ul>
+<li><a href="qmdisubwindow-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-types"></a>
+<h2>Public Types</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qmdisubwindow.html#SubWindowOption-enum">SubWindowOption</a></b> { RubberBandResize, RubberBandMove }</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">flags </td><td class="memItemRight" valign="bottom"><b><a href="qmdisubwindow.html#SubWindowOption-enum">SubWindowOptions</a></b></td></tr>
+</table>
+<hr />
+<a name="properties"></a>
+<h2>Properties</h2>
+<ul>
+<li><div class="fn"><b><a href="qmdisubwindow.html#keyboardPageStep-prop">keyboardPageStep</a></b> : int</div></li>
+<li><div class="fn"><b><a href="qmdisubwindow.html#keyboardSingleStep-prop">keyboardSingleStep</a></b> : int</div></li>
+</ul>
+<ul>
+<li><div bar="2" class="fn"></div>58 properties inherited from <a href="qwidget.html#properties">QWidget</a></li>
+<li><div bar="2" class="fn"></div>1 property inherited from <a href="qobject.html#properties">QObject</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qmdisubwindow.html#QMdiSubWindow">QMdiSubWindow</a></b> ( QWidget * <i>parent</i> = 0, Qt::WindowFlags <i>flags</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qmdisubwindow.html#dtor.QMdiSubWindow">~QMdiSubWindow</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qmdisubwindow.html#isShaded">isShaded</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qmdisubwindow.html#keyboardPageStep-prop">keyboardPageStep</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qmdisubwindow.html#keyboardSingleStep-prop">keyboardSingleStep</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QMdiArea * </td><td class="memItemRight" valign="bottom"><b><a href="qmdisubwindow.html#mdiArea">mdiArea</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qmdisubwindow.html#keyboardPageStep-prop">setKeyboardPageStep</a></b> ( int <i>step</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qmdisubwindow.html#keyboardSingleStep-prop">setKeyboardSingleStep</a></b> ( int <i>step</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qmdisubwindow.html#setOption">setOption</a></b> ( SubWindowOption <i>option</i>, bool <i>on</i> = true )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qmdisubwindow.html#setSystemMenu">setSystemMenu</a></b> ( QMenu * <i>systemMenu</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qmdisubwindow.html#setWidget">setWidget</a></b> ( QWidget * <i>widget</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QMenu * </td><td class="memItemRight" valign="bottom"><b><a href="qmdisubwindow.html#systemMenu">systemMenu</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qmdisubwindow.html#testOption">testOption</a></b> ( SubWindowOption <i>option</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QWidget * </td><td class="memItemRight" valign="bottom"><b><a href="qmdisubwindow.html#widget">widget</a></b> () const</td></tr>
+</table>
+<hr />
+<a name="reimplemented-public-functions"></a>
+<h2>Reimplemented Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual QSize </td><td class="memItemRight" valign="bottom"><b><a href="qmdisubwindow.html#minimumSizeHint">minimumSizeHint</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QSize </td><td class="memItemRight" valign="bottom"><b><a href="qmdisubwindow.html#sizeHint">sizeHint</a></b> () const</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>216 public functions inherited from <a href="qwidget.html#public-functions">QWidget</a></li>
+<li><div bar="2" class="fn"></div>29 public functions inherited from <a href="qobject.html#public-functions">QObject</a></li>
+<li><div bar="2" class="fn"></div>12 public functions inherited from <a href="qpaintdevice.html#public-functions">QPaintDevice</a></li>
+</ul>
+<hr />
+<a name="public-slots"></a>
+<h2>Public Slots</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qmdisubwindow.html#showShaded">showShaded</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qmdisubwindow.html#showSystemMenu">showSystemMenu</a></b> ()</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>19 public slots inherited from <a href="qwidget.html#public-slots">QWidget</a></li>
+<li><div bar="2" class="fn"></div>1 public slot inherited from <a href="qobject.html#public-slots">QObject</a></li>
+</ul>
+<hr />
+<a name="signals"></a>
+<h2>Signals</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qmdisubwindow.html#aboutToActivate">aboutToActivate</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qmdisubwindow.html#windowStateChanged">windowStateChanged</a></b> ( Qt::WindowStates <i>oldState</i>, Qt::WindowStates <i>newState</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>1 signal inherited from <a href="qwidget.html#signals">QWidget</a></li>
+<li><div bar="2" class="fn"></div>1 signal inherited from <a href="qobject.html#signals">QObject</a></li>
+</ul>
+<hr />
+<a name="reimplemented-protected-functions"></a>
+<h2>Reimplemented Protected Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qmdisubwindow.html#changeEvent">changeEvent</a></b> ( QEvent * <i>changeEvent</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qmdisubwindow.html#childEvent">childEvent</a></b> ( QChildEvent * <i>childEvent</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qmdisubwindow.html#closeEvent">closeEvent</a></b> ( QCloseEvent * <i>closeEvent</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qmdisubwindow.html#contextMenuEvent">contextMenuEvent</a></b> ( QContextMenuEvent * <i>contextMenuEvent</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qmdisubwindow.html#event">event</a></b> ( QEvent * <i>event</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qmdisubwindow.html#eventFilter">eventFilter</a></b> ( QObject * <i>object</i>, QEvent * <i>event</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qmdisubwindow.html#focusInEvent">focusInEvent</a></b> ( QFocusEvent * <i>focusInEvent</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qmdisubwindow.html#focusOutEvent">focusOutEvent</a></b> ( QFocusEvent * <i>focusOutEvent</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qmdisubwindow.html#hideEvent">hideEvent</a></b> ( QHideEvent * <i>hideEvent</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qmdisubwindow.html#keyPressEvent">keyPressEvent</a></b> ( QKeyEvent * <i>keyEvent</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qmdisubwindow.html#leaveEvent">leaveEvent</a></b> ( QEvent * <i>leaveEvent</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qmdisubwindow.html#mouseDoubleClickEvent">mouseDoubleClickEvent</a></b> ( QMouseEvent * <i>mouseEvent</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qmdisubwindow.html#mouseMoveEvent">mouseMoveEvent</a></b> ( QMouseEvent * <i>mouseEvent</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qmdisubwindow.html#mousePressEvent">mousePressEvent</a></b> ( QMouseEvent * <i>mouseEvent</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qmdisubwindow.html#mouseReleaseEvent">mouseReleaseEvent</a></b> ( QMouseEvent * <i>mouseEvent</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qmdisubwindow.html#moveEvent">moveEvent</a></b> ( QMoveEvent * <i>moveEvent</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qmdisubwindow.html#paintEvent">paintEvent</a></b> ( QPaintEvent * <i>paintEvent</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qmdisubwindow.html#resizeEvent">resizeEvent</a></b> ( QResizeEvent * <i>resizeEvent</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qmdisubwindow.html#showEvent">showEvent</a></b> ( QShowEvent * <i>showEvent</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qmdisubwindow.html#timerEvent">timerEvent</a></b> ( QTimerEvent * <i>timerEvent</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>37 protected functions inherited from <a href="qwidget.html#protected-functions">QWidget</a></li>
+<li><div bar="2" class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+<li><div bar="2" class="fn"></div>1 protected function inherited from <a href="qpaintdevice.html#protected-functions">QPaintDevice</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li><div class="fn"></div>4 static public members inherited from <a href="qwidget.html#static-public-members">QWidget</a></li>
+<li><div class="fn"></div>5 static public members inherited from <a href="qobject.html#static-public-members">QObject</a></li>
+<li><div class="fn"></div>37 protected functions inherited from <a href="qwidget.html#protected-functions">QWidget</a></li>
+<li><div class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+<li><div class="fn"></div>1 protected function inherited from <a href="qpaintdevice.html#protected-functions">QPaintDevice</a></li>
+<li><div class="fn"></div>1 protected slot inherited from <a href="qwidget.html#protected-slots">QWidget</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QMdiSubWindow class provides a subwindow class for <a href="qmdiarea.html">QMdiArea</a>.</p>
+<p>QMdiSubWindow represents a top-level window in a <a href="qmdiarea.html">QMdiArea</a>, and consists of a title bar with window decorations, an internal widget, and (depending on the current style) a window frame and a size grip. QMdiSubWindow has its own layout, which consists of the title bar and a center area for the internal widget.</p>
+<p align="center"><img src="images/qmdisubwindowlayout.png" /></p><p>The most common way to construct a QMdiSubWindow is to call <a href="qmdiarea.html#addSubWindow">QMdiArea::addSubWindow</a>() with the internal widget as the argument. You can also create a subwindow yourself, and set an internal widget by calling <a href="qmdisubwindow.html#setWidget">setWidget</a>().</p>
+<p>You use the same API when programming with subwindows as with regular top-level windows (e.g&#x2e;, you can call functions such as <a href="qwidget.html#show">show</a>(), <a href="qwidget.html#hide">hide</a>(), <a href="qwidget.html#showMaximized">showMaximized</a>(), and <a href="qwidget.html#windowTitle-prop">setWindowTitle</a>()).</p>
+<a name="subwindow-handling"></a>
+<h3>Subwindow Handling</h3>
+<p>QMdiSubWindow also supports behavior specific to subwindows in an MDI area.</p>
+<p>By default, each QMdiSubWindow is visible inside the MDI area viewport when moved around, but it is also possible to specify transparent window movement and resizing behavior, where only the outline of a subwindow is updated during these operations. The <a href="qmdisubwindow.html#setOption">setOption</a>() function is used to enable this behavior.</p>
+<p>The <a href="qmdisubwindow.html#isShaded">isShaded</a>() function detects whether the subwindow is currently shaded (i.e&#x2e;, the window is collapsed so that only the title bar is visible). To enter shaded mode, call <a href="qmdisubwindow.html#showShaded">showShaded</a>(). QMdiSubWindow emits the <a href="qmdisubwindow.html#windowStateChanged">windowStateChanged</a>() signal whenever the window state has changed (e.g&#x2e;, when the window becomes minimized, or is restored). It also emits <a href="qmdisubwindow.html#aboutToActivate">aboutToActivate</a>() before it is activated.</p>
+<p>In keyboard-interactive mode, the windows are moved and resized with the keyboard. You can enter this mode through the system menu of the window. The <a href="qmdisubwindow.html#keyboardSingleStep-prop">keyboardSingleStep</a> and <a href="qmdisubwindow.html#keyboardPageStep-prop">keyboardPageStep</a> properties control the distance the widget is moved or resized for each keypress event. When shift is pressed down page step is used; otherwise single step is used.</p>
+<p>You can also change the active window with the keyboard. By pressing the control and tab keys at the same time, the next (using the current <a href="qmdiarea.html#WindowOrder-enum">WindowOrder</a>) subwindow will be activated. By pressing control, shift, and tab, you will activate the previous window. This is equivalent to calling <a href="qmdiarea.html#activateNextSubWindow">activateNextSubWindow()</a> and <a href="qmdiarea.html#activatePreviousSubWindow">activatePreviousSubWindow()</a>. Note that these shortcuts overrides global shortcuts, but not the <a href="qmdiarea.html">QMdiArea</a>s shortcuts.</p>
+<p>See also <a href="qmdiarea.html">QMdiArea</a>.</p>
+<hr />
+<h2>Member Type Documentation</h2>
+<a name="//apple_ref/cpp/tag/QMdiSubWindow/SubWindowOption" />
+<a name="//apple_ref/cpp/econst/QMdiSubWindow/AllowOutsideAreaHorizontally" />
+<a name="//apple_ref/cpp/econst/QMdiSubWindow/AllowOutsideAreaVertically" />
+<a name="//apple_ref/cpp/econst/QMdiSubWindow/RubberBandResize" />
+<a name="//apple_ref/cpp/econst/QMdiSubWindow/RubberBandMove" />
+<a name="//apple_ref/cpp/tdef/QMdiSubWindow/SubWindowOptions" />
+<h3 class="flags"><a name="SubWindowOption-enum"></a>enum QMdiSubWindow::SubWindowOption<br />flags QMdiSubWindow::SubWindowOptions</h3>
+<p>This enum describes options that customize the behavior of <a href="qmdisubwindow.html">QMdiSubWindow</a>.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QMdiSubWindow::RubberBandResize</tt></td><td align="center" valign="top"><tt>0x4</tt></td><td valign="top">If you enable this option, a rubber band control is used to represent the subwindow's outline, and the user resizes this instead of the subwindow itself. As a result, the subwindow maintains its original position and size until the resize operation has been completed, at which time it will receive a single <a href="qresizeevent.html">QResizeEvent</a>. By default, this option is disabled.</td></tr>
+<tr><td valign="top"><tt>QMdiSubWindow::RubberBandMove</tt></td><td align="center" valign="top"><tt>0x8</tt></td><td valign="top">If you enable this option, a rubber band control is used to represent the subwindow's outline, and the user moves this instead of the subwindow itself. As a result, the subwindow remains in its original position until the move operation has completed, at which time a <a href="qmoveevent.html">QMoveEvent</a> is sent to the window. By default, this option is disabled.</td></tr>
+</table></p>
+<p>The SubWindowOptions type is a typedef for <a href="qflags.html">QFlags</a>&lt;SubWindowOption&gt;. It stores an OR combination of SubWindowOption values.</p>
+<hr />
+<h2>Property Documentation</h2>
+<a name="//apple_ref/cpp/instm/QMdiSubWindow/keyboardPageStep" />
+<a name="//apple_ref/cpp/instm/QMdiSubWindow/setKeyboardPageStep" />
+<h3 class="fn"><a name="keyboardPageStep-prop"></a>keyboardPageStep : int</h3>
+<p>This property holds sets how far a widget should move or resize when using the keyboard page keys.</p>
+<p>When in keyboard-interactive mode, you can use the arrow and page keys to either move or resize the window. This property controls the page keys. The common way to enter keyboard interactive mode is to enter the subwindow menu, and select either &quot;resize&quot; or &quot;move&quot;.</p>
+<p>The default keyboard page step value is 20 pixels.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b>keyboardPageStep</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setKeyboardPageStep</b> ( int <i>step</i> )</td></tr>
+</table>
+<p>See also <a href="qmdisubwindow.html#keyboardSingleStep-prop">keyboardSingleStep</a>.</p>
+<a name="//apple_ref/cpp/instm/QMdiSubWindow/keyboardSingleStep" />
+<a name="//apple_ref/cpp/instm/QMdiSubWindow/setKeyboardSingleStep" />
+<h3 class="fn"><a name="keyboardSingleStep-prop"></a>keyboardSingleStep : int</h3>
+<p>This property holds sets how far a widget should move or resize when using the keyboard arrow keys.</p>
+<p>When in keyboard-interactive mode, you can use the arrow and page keys to either move or resize the window. This property controls the arrow keys. The common way to enter keyboard interactive mode is to enter the subwindow menu, and select either &quot;resize&quot; or &quot;move&quot;.</p>
+<p>The default keyboard single step value is 5 pixels.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b>keyboardSingleStep</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setKeyboardSingleStep</b> ( int <i>step</i> )</td></tr>
+</table>
+<p>See also <a href="qmdisubwindow.html#keyboardPageStep-prop">keyboardPageStep</a>.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QMdiSubWindow/QMdiSubWindow" />
+<h3 class="fn"><a name="QMdiSubWindow"></a>QMdiSubWindow::QMdiSubWindow ( <a href="qwidget.html">QWidget</a> * <i>parent</i> = 0, <a href="qt.html#WindowType-enum">Qt::WindowFlags</a> <i>flags</i> = 0 )</h3>
+<p>Constructs a new <a href="qmdisubwindow.html">QMdiSubWindow</a> widget. The <i>parent</i> and <i>flags</i> arguments are passed to <a href="qwidget.html">QWidget</a>'s constructor.</p>
+<p>Instead of using addSubWindow(), it is also simply possible to use <a href="qwidget.html#setParent">setParent</a>() when you add the subwindow to a <a href="qmdiarea.html">QMdiArea</a>.</p>
+<p>Note that only <a href="qmdisubwindow.html">QMdiSubWindow</a>s can be set as children of <a href="qmdiarea.html">QMdiArea</a>; you cannot, for instance, write:</p>
+<pre><font color="#404040"> QMdiArea mdiArea;
+ QTextEdit editor(&amp;mdiArea); // invalid child widget</font></pre>
+<p>See also <a href="qmdiarea.html#addSubWindow">QMdiArea::addSubWindow</a>().</p>
+<a name="//apple_ref/cpp/instm/QMdiSubWindow/~QMdiSubWindow" />
+<h3 class="fn"><a name="dtor.QMdiSubWindow"></a>QMdiSubWindow::~QMdiSubWindow ()</h3>
+<p>Destroys the subwindow.</p>
+<p>See also <a href="qmdiarea.html#removeSubWindow">QMdiArea::removeSubWindow</a>().</p>
+<a name="//apple_ref/cpp/instm/QMdiSubWindow/aboutToActivate" />
+<h3 class="fn"><a name="aboutToActivate"></a>void QMdiSubWindow::aboutToActivate ()&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p><a href="qmdisubwindow.html">QMdiSubWindow</a> emits this signal immediately before it is activated. After the subwindow has been activated, the <a href="qmdiarea.html">QMdiArea</a> that manages the subwindow will also emit the <a href="qmdiarea.html#subWindowActivated">subWindowActivated()</a> signal.</p>
+<p>See also <a href="qmdiarea.html#subWindowActivated">QMdiArea::subWindowActivated</a>().</p>
+<a name="//apple_ref/cpp/instm/QMdiSubWindow/changeEvent" />
+<h3 class="fn"><a name="changeEvent"></a>void QMdiSubWindow::changeEvent ( <a href="qevent.html">QEvent</a> * <i>changeEvent</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#changeEvent">QWidget::changeEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QMdiSubWindow/childEvent" />
+<h3 class="fn"><a name="childEvent"></a>void QMdiSubWindow::childEvent ( <a href="qchildevent.html">QChildEvent</a> * <i>childEvent</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qobject.html#childEvent">QObject::childEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QMdiSubWindow/closeEvent" />
+<h3 class="fn"><a name="closeEvent"></a>void QMdiSubWindow::closeEvent ( <a href="qcloseevent.html">QCloseEvent</a> * <i>closeEvent</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#closeEvent">QWidget::closeEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QMdiSubWindow/contextMenuEvent" />
+<h3 class="fn"><a name="contextMenuEvent"></a>void QMdiSubWindow::contextMenuEvent ( <a href="qcontextmenuevent.html">QContextMenuEvent</a> * <i>contextMenuEvent</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#contextMenuEvent">QWidget::contextMenuEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QMdiSubWindow/event" />
+<h3 class="fn"><a name="event"></a>bool QMdiSubWindow::event ( <a href="qevent.html">QEvent</a> * <i>event</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qobject.html#event">QObject::event</a>().</p>
+<a name="//apple_ref/cpp/instm/QMdiSubWindow/eventFilter" />
+<h3 class="fn"><a name="eventFilter"></a>bool QMdiSubWindow::eventFilter ( <a href="qobject.html">QObject</a> * <i>object</i>, <a href="qevent.html">QEvent</a> * <i>event</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qobject.html#eventFilter">QObject::eventFilter</a>().</p>
+<a name="//apple_ref/cpp/instm/QMdiSubWindow/focusInEvent" />
+<h3 class="fn"><a name="focusInEvent"></a>void QMdiSubWindow::focusInEvent ( <a href="qfocusevent.html">QFocusEvent</a> * <i>focusInEvent</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#focusInEvent">QWidget::focusInEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QMdiSubWindow/focusOutEvent" />
+<h3 class="fn"><a name="focusOutEvent"></a>void QMdiSubWindow::focusOutEvent ( <a href="qfocusevent.html">QFocusEvent</a> * <i>focusOutEvent</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#focusOutEvent">QWidget::focusOutEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QMdiSubWindow/hideEvent" />
+<h3 class="fn"><a name="hideEvent"></a>void QMdiSubWindow::hideEvent ( <a href="qhideevent.html">QHideEvent</a> * <i>hideEvent</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#hideEvent">QWidget::hideEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QMdiSubWindow/isShaded" />
+<h3 class="fn"><a name="isShaded"></a>bool QMdiSubWindow::isShaded () const</h3>
+<p>Returns true if this window is shaded; otherwise returns false.</p>
+<p>A window is shaded if it is collapsed so that only the title bar is visible.</p>
+<a name="//apple_ref/cpp/instm/QMdiSubWindow/keyPressEvent" />
+<h3 class="fn"><a name="keyPressEvent"></a>void QMdiSubWindow::keyPressEvent ( <a href="qkeyevent.html">QKeyEvent</a> * <i>keyEvent</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#keyPressEvent">QWidget::keyPressEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QMdiSubWindow/leaveEvent" />
+<h3 class="fn"><a name="leaveEvent"></a>void QMdiSubWindow::leaveEvent ( <a href="qevent.html">QEvent</a> * <i>leaveEvent</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#leaveEvent">QWidget::leaveEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QMdiSubWindow/mdiArea" />
+<h3 class="fn"><a name="mdiArea"></a><a href="qmdiarea.html">QMdiArea</a> * QMdiSubWindow::mdiArea () const</h3>
+<p>Returns the area containing this sub-window, or 0 if there is none.</p>
+<p>This function was introduced in Qt 4.4.</p>
+<p>See also <a href="qmdiarea.html#addSubWindow">QMdiArea::addSubWindow</a>().</p>
+<a name="//apple_ref/cpp/instm/QMdiSubWindow/minimumSizeHint" />
+<h3 class="fn"><a name="minimumSizeHint"></a><a href="qsize.html">QSize</a> QMdiSubWindow::minimumSizeHint () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#minimumSizeHint-prop">QWidget::minimumSizeHint</a>().</p>
+<a name="//apple_ref/cpp/instm/QMdiSubWindow/mouseDoubleClickEvent" />
+<h3 class="fn"><a name="mouseDoubleClickEvent"></a>void QMdiSubWindow::mouseDoubleClickEvent ( <a href="qmouseevent.html">QMouseEvent</a> * <i>mouseEvent</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#mouseDoubleClickEvent">QWidget::mouseDoubleClickEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QMdiSubWindow/mouseMoveEvent" />
+<h3 class="fn"><a name="mouseMoveEvent"></a>void QMdiSubWindow::mouseMoveEvent ( <a href="qmouseevent.html">QMouseEvent</a> * <i>mouseEvent</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#mouseMoveEvent">QWidget::mouseMoveEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QMdiSubWindow/mousePressEvent" />
+<h3 class="fn"><a name="mousePressEvent"></a>void QMdiSubWindow::mousePressEvent ( <a href="qmouseevent.html">QMouseEvent</a> * <i>mouseEvent</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#mousePressEvent">QWidget::mousePressEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QMdiSubWindow/mouseReleaseEvent" />
+<h3 class="fn"><a name="mouseReleaseEvent"></a>void QMdiSubWindow::mouseReleaseEvent ( <a href="qmouseevent.html">QMouseEvent</a> * <i>mouseEvent</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#mouseReleaseEvent">QWidget::mouseReleaseEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QMdiSubWindow/moveEvent" />
+<h3 class="fn"><a name="moveEvent"></a>void QMdiSubWindow::moveEvent ( <a href="qmoveevent.html">QMoveEvent</a> * <i>moveEvent</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#moveEvent">QWidget::moveEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QMdiSubWindow/paintEvent" />
+<h3 class="fn"><a name="paintEvent"></a>void QMdiSubWindow::paintEvent ( <a href="qpaintevent.html">QPaintEvent</a> * <i>paintEvent</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#paintEvent">QWidget::paintEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QMdiSubWindow/resizeEvent" />
+<h3 class="fn"><a name="resizeEvent"></a>void QMdiSubWindow::resizeEvent ( <a href="qresizeevent.html">QResizeEvent</a> * <i>resizeEvent</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#resizeEvent">QWidget::resizeEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QMdiSubWindow/setOption" />
+<h3 class="fn"><a name="setOption"></a>void QMdiSubWindow::setOption ( <a href="qmdisubwindow.html#SubWindowOption-enum">SubWindowOption</a> <i>option</i>, bool <i>on</i> = true )</h3>
+<p>If <i>on</i> is true, <i>option</i> is enabled on the subwindow; otherwise it is disabled. See <a href="qmdisubwindow.html#SubWindowOption-enum">SubWindowOption</a> for the effect of each option.</p>
+<p>See also <a href="qmdisubwindow.html#SubWindowOption-enum">SubWindowOption</a> and <a href="qmdisubwindow.html#testOption">testOption</a>().</p>
+<a name="//apple_ref/cpp/instm/QMdiSubWindow/setSystemMenu" />
+<h3 class="fn"><a name="setSystemMenu"></a>void QMdiSubWindow::setSystemMenu ( <a href="qmenu.html">QMenu</a> * <i>systemMenu</i> )</h3>
+<p>Sets <i>systemMenu</i> as the current system menu for this subwindow.</p>
+<p>By default, each <a href="qmdisubwindow.html">QMdiSubWindow</a> has a standard system menu.</p>
+<p>QActions for the system menu created by <a href="qmdisubwindow.html">QMdiSubWindow</a> will automatically be updated depending on the current window state; e.g&#x2e;, the minimize action will be disabled after the window is minimized.</p>
+<p>QActions added by the user are not updated by <a href="qmdisubwindow.html">QMdiSubWindow</a>.</p>
+<p><a href="qmdisubwindow.html">QMdiSubWindow</a> takes ownership of <i>systemMenu</i>; you do not have to delete it. Any existing menus will be deleted.</p>
+<p>See also <a href="qmdisubwindow.html#systemMenu">systemMenu</a>() and <a href="qmdisubwindow.html#showSystemMenu">showSystemMenu</a>().</p>
+<a name="//apple_ref/cpp/instm/QMdiSubWindow/setWidget" />
+<h3 class="fn"><a name="setWidget"></a>void QMdiSubWindow::setWidget ( <a href="qwidget.html">QWidget</a> * <i>widget</i> )</h3>
+<p>Sets <i>widget</i> as the internal widget of this subwindow. The internal widget is displayed in the center of the subwindow beneath the title bar.</p>
+<p><a href="qmdisubwindow.html">QMdiSubWindow</a> takes temporary ownership of <i>widget</i>; you do not have to delete it. Any existing internal widget will be removed and reparented to the root window.</p>
+<p>See also <a href="qmdisubwindow.html#widget">widget</a>().</p>
+<a name="//apple_ref/cpp/instm/QMdiSubWindow/showEvent" />
+<h3 class="fn"><a name="showEvent"></a>void QMdiSubWindow::showEvent ( <a href="qshowevent.html">QShowEvent</a> * <i>showEvent</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#showEvent">QWidget::showEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QMdiSubWindow/showShaded" />
+<h3 class="fn"><a name="showShaded"></a>void QMdiSubWindow::showShaded ()&nbsp;&nbsp;<tt> [slot]</tt></h3>
+<p>Calling this function makes the subwindow enter the shaded mode. When the subwindow is shaded, only the title bar is visible.</p>
+<p>Although shading is not supported by all styles, this function will still show the subwindow as shaded, regardless of whether support for shading is available. However, when used with styles without shading support, the user will be unable to return from shaded mode through the user interface (e.g&#x2e;, through a shade button in the title bar).</p>
+<p>See also <a href="qmdisubwindow.html#isShaded">isShaded</a>().</p>
+<a name="//apple_ref/cpp/instm/QMdiSubWindow/showSystemMenu" />
+<h3 class="fn"><a name="showSystemMenu"></a>void QMdiSubWindow::showSystemMenu ()&nbsp;&nbsp;<tt> [slot]</tt></h3>
+<p>Shows the system menu below the system menu icon in the title bar.</p>
+<p>See also <a href="qmdisubwindow.html#setSystemMenu">setSystemMenu</a>() and <a href="qmdisubwindow.html#systemMenu">systemMenu</a>().</p>
+<a name="//apple_ref/cpp/instm/QMdiSubWindow/sizeHint" />
+<h3 class="fn"><a name="sizeHint"></a><a href="qsize.html">QSize</a> QMdiSubWindow::sizeHint () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#sizeHint-prop">QWidget::sizeHint</a>().</p>
+<a name="//apple_ref/cpp/instm/QMdiSubWindow/systemMenu" />
+<h3 class="fn"><a name="systemMenu"></a><a href="qmenu.html">QMenu</a> * QMdiSubWindow::systemMenu () const</h3>
+<p>Returns a pointer to the current system menu, or zero if no system menu is set. <a href="qmdisubwindow.html">QMdiSubWindow</a> provides a default system menu, but you can also set the menu with <a href="qmdisubwindow.html#setSystemMenu">setSystemMenu</a>().</p>
+<p>See also <a href="qmdisubwindow.html#setSystemMenu">setSystemMenu</a>() and <a href="qmdisubwindow.html#showSystemMenu">showSystemMenu</a>().</p>
+<a name="//apple_ref/cpp/instm/QMdiSubWindow/testOption" />
+<h3 class="fn"><a name="testOption"></a>bool QMdiSubWindow::testOption ( <a href="qmdisubwindow.html#SubWindowOption-enum">SubWindowOption</a> <i>option</i> ) const</h3>
+<p>Returns true if <i>option</i> is enabled; otherwise returns false.</p>
+<p>See also <a href="qmdisubwindow.html#SubWindowOption-enum">SubWindowOption</a> and <a href="qmdisubwindow.html#setOption">setOption</a>().</p>
+<a name="//apple_ref/cpp/instm/QMdiSubWindow/timerEvent" />
+<h3 class="fn"><a name="timerEvent"></a>void QMdiSubWindow::timerEvent ( <a href="qtimerevent.html">QTimerEvent</a> * <i>timerEvent</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qobject.html#timerEvent">QObject::timerEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QMdiSubWindow/widget" />
+<h3 class="fn"><a name="widget"></a><a href="qwidget.html">QWidget</a> * QMdiSubWindow::widget () const</h3>
+<p>Returns the current internal widget.</p>
+<p>See also <a href="qmdisubwindow.html#setWidget">setWidget</a>().</p>
+<a name="//apple_ref/cpp/instm/QMdiSubWindow/windowStateChanged" />
+<h3 class="fn"><a name="windowStateChanged"></a>void QMdiSubWindow::windowStateChanged ( <a href="qt.html#WindowState-enum">Qt::WindowStates</a> <i>oldState</i>, <a href="qt.html#WindowState-enum">Qt::WindowStates</a> <i>newState</i> )&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p><a href="qmdisubwindow.html">QMdiSubWindow</a> emits this signal after the window state changes. <i>oldState</i> is the window state before it changed, and <i>newState</i> is the new, current state.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

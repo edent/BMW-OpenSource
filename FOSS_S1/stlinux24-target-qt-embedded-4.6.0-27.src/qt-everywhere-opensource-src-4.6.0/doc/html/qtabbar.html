@@ -1,0 +1,585 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qtabbar.cpp -->
+<head>
+  <title>Qt 4.6: QTabBar Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QTabBar" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QTabBar Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QTabBar class provides a tab bar, e.g&#x2e; for use in tabbed dialogs. <a href="#details">More...</a></p>
+<pre> #include &lt;QTabBar&gt;</pre><p>Inherits <a href="qwidget.html">QWidget</a>.</p>
+<ul>
+<li><a href="qtabbar-members.html">List of all members, including inherited members</a></li>
+<li><a href="qtabbar-qt3.html">Qt 3 support members</a></li>
+</ul>
+<hr />
+<a name="public-types"></a>
+<h2>Public Types</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#ButtonPosition-enum">ButtonPosition</a></b> { LeftSide, RightSide }</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#SelectionBehavior-enum">SelectionBehavior</a></b> { SelectLeftTab, SelectRightTab, SelectPreviousTab }</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#Shape-enum">Shape</a></b> { RoundedNorth, RoundedSouth, RoundedWest, RoundedEast, ..., TriangularEast }</td></tr>
+</table>
+<hr />
+<a name="properties"></a>
+<h2>Properties</h2>
+<p><table class="propsummary" width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr><td width="45%" valign="top"><ul>
+<li><div class="fn"><b><a href="qtabbar.html#count-prop">count</a></b> : const int</div></li>
+<li><div class="fn"><b><a href="qtabbar.html#currentIndex-prop">currentIndex</a></b> : int</div></li>
+<li><div class="fn"><b><a href="qtabbar.html#documentMode-prop">documentMode</a></b> : bool</div></li>
+<li><div class="fn"><b><a href="qtabbar.html#drawBase-prop">drawBase</a></b> : bool</div></li>
+<li><div class="fn"><b><a href="qtabbar.html#elideMode-prop">elideMode</a></b> : Qt::TextElideMode</div></li>
+<li><div class="fn"><b><a href="qtabbar.html#expanding-prop">expanding</a></b> : bool</div></li>
+</ul></td><td valign="top"><ul>
+<li><div class="fn"><b><a href="qtabbar.html#iconSize-prop">iconSize</a></b> : QSize</div></li>
+<li><div class="fn"><b><a href="qtabbar.html#movable-prop">movable</a></b> : bool</div></li>
+<li><div class="fn"><b><a href="qtabbar.html#selectionBehaviorOnRemove-prop">selectionBehaviorOnRemove</a></b> : SelectionBehavior</div></li>
+<li><div class="fn"><b><a href="qtabbar.html#shape-prop">shape</a></b> : Shape</div></li>
+<li><div class="fn"><b><a href="qtabbar.html#tabsClosable-prop">tabsClosable</a></b> : bool</div></li>
+<li><div class="fn"><b><a href="qtabbar.html#usesScrollButtons-prop">usesScrollButtons</a></b> : bool</div></li>
+</ul>
+</td></tr>
+</table></p>
+<ul>
+<li><div bar="2" class="fn"></div>58 properties inherited from <a href="qwidget.html#properties">QWidget</a></li>
+<li><div bar="2" class="fn"></div>1 property inherited from <a href="qobject.html#properties">QObject</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#QTabBar">QTabBar</a></b> ( QWidget * <i>parent</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#dtor.QTabBar">~QTabBar</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#addTab">addTab</a></b> ( const QString &amp; <i>text</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#addTab-2">addTab</a></b> ( const QIcon &amp; <i>icon</i>, const QString &amp; <i>text</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#count-prop">count</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#currentIndex-prop">currentIndex</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#documentMode-prop">documentMode</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#drawBase-prop">drawBase</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Qt::TextElideMode </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#elideMode-prop">elideMode</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#expanding-prop">expanding</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QSize </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#iconSize-prop">iconSize</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#insertTab">insertTab</a></b> ( int <i>index</i>, const QString &amp; <i>text</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#insertTab-2">insertTab</a></b> ( int <i>index</i>, const QIcon &amp; <i>icon</i>, const QString &amp; <i>text</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#movable-prop">isMovable</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#isTabEnabled">isTabEnabled</a></b> ( int <i>index</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#moveTab">moveTab</a></b> ( int <i>from</i>, int <i>to</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#removeTab">removeTab</a></b> ( int <i>index</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">SelectionBehavior </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#selectionBehaviorOnRemove-prop">selectionBehaviorOnRemove</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#documentMode-prop">setDocumentMode</a></b> ( bool <i>set</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#drawBase-prop">setDrawBase</a></b> ( bool <i>drawTheBase</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#elideMode-prop">setElideMode</a></b> ( Qt::TextElideMode )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#expanding-prop">setExpanding</a></b> ( bool <i>enabled</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#iconSize-prop">setIconSize</a></b> ( const QSize &amp; <i>size</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#movable-prop">setMovable</a></b> ( bool <i>movable</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#selectionBehaviorOnRemove-prop">setSelectionBehaviorOnRemove</a></b> ( SelectionBehavior <i>behavior</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#shape-prop">setShape</a></b> ( Shape <i>shape</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#setTabButton">setTabButton</a></b> ( int <i>index</i>, ButtonPosition <i>position</i>, QWidget * <i>widget</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#setTabData">setTabData</a></b> ( int <i>index</i>, const QVariant &amp; <i>data</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#setTabEnabled">setTabEnabled</a></b> ( int <i>index</i>, bool <i>enabled</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#setTabIcon">setTabIcon</a></b> ( int <i>index</i>, const QIcon &amp; <i>icon</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#setTabText">setTabText</a></b> ( int <i>index</i>, const QString &amp; <i>text</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#setTabTextColor">setTabTextColor</a></b> ( int <i>index</i>, const QColor &amp; <i>color</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#setTabToolTip">setTabToolTip</a></b> ( int <i>index</i>, const QString &amp; <i>tip</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#setTabWhatsThis">setTabWhatsThis</a></b> ( int <i>index</i>, const QString &amp; <i>text</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#tabsClosable-prop">setTabsClosable</a></b> ( bool <i>closable</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#usesScrollButtons-prop">setUsesScrollButtons</a></b> ( bool <i>useButtons</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Shape </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#shape-prop">shape</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#tabAt">tabAt</a></b> ( const QPoint &amp; <i>position</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QWidget * </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#tabButton">tabButton</a></b> ( int <i>index</i>, ButtonPosition <i>position</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QVariant </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#tabData">tabData</a></b> ( int <i>index</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QIcon </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#tabIcon">tabIcon</a></b> ( int <i>index</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QRect </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#tabRect">tabRect</a></b> ( int <i>index</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#tabText">tabText</a></b> ( int <i>index</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QColor </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#tabTextColor">tabTextColor</a></b> ( int <i>index</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#tabToolTip">tabToolTip</a></b> ( int <i>index</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#tabWhatsThis">tabWhatsThis</a></b> ( int <i>index</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#tabsClosable-prop">tabsClosable</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#usesScrollButtons-prop">usesScrollButtons</a></b> () const</td></tr>
+</table>
+<hr />
+<a name="reimplemented-public-functions"></a>
+<h2>Reimplemented Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual QSize </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#minimumSizeHint">minimumSizeHint</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QSize </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#sizeHint">sizeHint</a></b> () const</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>216 public functions inherited from <a href="qwidget.html#public-functions">QWidget</a></li>
+<li><div bar="2" class="fn"></div>29 public functions inherited from <a href="qobject.html#public-functions">QObject</a></li>
+<li><div bar="2" class="fn"></div>12 public functions inherited from <a href="qpaintdevice.html#public-functions">QPaintDevice</a></li>
+</ul>
+<hr />
+<a name="public-slots"></a>
+<h2>Public Slots</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#currentIndex-prop">setCurrentIndex</a></b> ( int <i>index</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>19 public slots inherited from <a href="qwidget.html#public-slots">QWidget</a></li>
+<li><div bar="2" class="fn"></div>1 public slot inherited from <a href="qobject.html#public-slots">QObject</a></li>
+</ul>
+<hr />
+<a name="signals"></a>
+<h2>Signals</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#currentChanged">currentChanged</a></b> ( int <i>index</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#tabCloseRequested">tabCloseRequested</a></b> ( int <i>index</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#tabMoved">tabMoved</a></b> ( int <i>from</i>, int <i>to</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>1 signal inherited from <a href="qwidget.html#signals">QWidget</a></li>
+<li><div bar="2" class="fn"></div>1 signal inherited from <a href="qobject.html#signals">QObject</a></li>
+</ul>
+<hr />
+<a name="protected-functions"></a>
+<h2>Protected Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#initStyleOption">initStyleOption</a></b> ( QStyleOptionTab * <i>option</i>, int <i>tabIndex</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#tabInserted">tabInserted</a></b> ( int <i>index</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#tabLayoutChange">tabLayoutChange</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#tabRemoved">tabRemoved</a></b> ( int <i>index</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QSize </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#tabSizeHint">tabSizeHint</a></b> ( int <i>index</i> ) const</td></tr>
+</table>
+<hr />
+<a name="reimplemented-protected-functions"></a>
+<h2>Reimplemented Protected Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#changeEvent">changeEvent</a></b> ( QEvent * <i>event</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#event">event</a></b> ( QEvent * <i>event</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#hideEvent">hideEvent</a></b> ( QHideEvent * )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#keyPressEvent">keyPressEvent</a></b> ( QKeyEvent * <i>event</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#mouseMoveEvent">mouseMoveEvent</a></b> ( QMouseEvent * <i>event</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#mousePressEvent">mousePressEvent</a></b> ( QMouseEvent * <i>event</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#mouseReleaseEvent">mouseReleaseEvent</a></b> ( QMouseEvent * <i>event</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#paintEvent">paintEvent</a></b> ( QPaintEvent * )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#resizeEvent">resizeEvent</a></b> ( QResizeEvent * )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#showEvent">showEvent</a></b> ( QShowEvent * )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#wheelEvent">wheelEvent</a></b> ( QWheelEvent * <i>event</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>37 protected functions inherited from <a href="qwidget.html#protected-functions">QWidget</a></li>
+<li><div bar="2" class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+<li><div bar="2" class="fn"></div>1 protected function inherited from <a href="qpaintdevice.html#protected-functions">QPaintDevice</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li><div class="fn"></div>4 static public members inherited from <a href="qwidget.html#static-public-members">QWidget</a></li>
+<li><div class="fn"></div>5 static public members inherited from <a href="qobject.html#static-public-members">QObject</a></li>
+<li><div class="fn"></div>1 protected slot inherited from <a href="qwidget.html#protected-slots">QWidget</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QTabBar class provides a tab bar, e.g&#x2e; for use in tabbed dialogs.</p>
+<p>QTabBar is straightforward to use; it draws the tabs using one of the predefined <a href="qtabbar.html#Shape-enum">shapes</a>, and emits a signal when a tab is selected. It can be subclassed to tailor the look and feel. Qt also provides a ready-made <a href="qtabwidget.html">QTabWidget</a>.</p>
+<p>Each tab has a <a href="qtabbar.html#tabText">tabText</a>(), an optional <a href="qtabbar.html#tabIcon">tabIcon</a>(), an optional <a href="qtabbar.html#tabToolTip">tabToolTip</a>(), optional <a href="qtabbar.html#tabWhatsThis">tabWhatsThis</a>() and optional <a href="qtabbar.html#tabData">tabData</a>(). The tabs's attributes can be changed with <a href="qtabbar.html#setTabText">setTabText</a>(), <a href="qtabbar.html#setTabIcon">setTabIcon</a>(), <a href="qtabbar.html#setTabToolTip">setTabToolTip</a>(), setTabWhatsThis and <a href="qtabbar.html#setTabData">setTabData</a>(). Each tabs can be enabled or disabled individually with <a href="qtabbar.html#setTabEnabled">setTabEnabled</a>().</p>
+<p>Each tab can display text in a distinct color. The current text color for a tab can be found with the <a href="qtabbar.html#tabTextColor">tabTextColor</a>() function. Set the text color for a particular tab with <a href="qtabbar.html#setTabTextColor">setTabTextColor</a>().</p>
+<p>Tabs are added using <a href="qtabbar.html#addTab">addTab</a>(), or inserted at particular positions using <a href="qtabbar.html#insertTab">insertTab</a>(). The total number of tabs is given by <a href="qtabbar.html#count-prop">count</a>(). Tabs can be removed from the tab bar with <a href="qtabbar.html#removeTab">removeTab</a>(). Combining <a href="qtabbar.html#removeTab">removeTab</a>() and <a href="qtabbar.html#insertTab">insertTab</a>() allows you to move tabs to different positions.</p>
+<p>The <a href="qtabbar.html#shape-prop">shape</a> property defines the tabs' appearance. The choice of shape is a matter of taste, although tab dialogs (for preferences and similar) invariably use <a href="qtabbar.html#Shape-enum">RoundedNorth</a>. Tab controls in windows other than dialogs almost always use either <a href="qtabbar.html#Shape-enum">RoundedSouth</a> or <a href="qtabbar.html#Shape-enum">TriangularSouth</a>. Many spreadsheets and other tab controls in which all the pages are essentially similar use <a href="qtabbar.html#Shape-enum">TriangularSouth</a>, whereas <a href="qtabbar.html#Shape-enum">RoundedSouth</a> is used mostly when the pages are different (e.g&#x2e; a multi-page tool palette). The default in QTabBar is <a href="qtabbar.html#Shape-enum">RoundedNorth</a>.</p>
+<p>The most important part of QTabBar's API is the <a href="qtabbar.html#currentChanged">currentChanged</a>() signal. This is emitted whenever the current tab changes (even at startup, when the current tab changes from 'none'). There is also a slot, <a href="qtabbar.html#currentIndex-prop">setCurrentIndex</a>(), which can be used to select a tab programmatically. The function <a href="qtabbar.html#currentIndex-prop">currentIndex</a>() returns the index of the current tab, <a href="qtabbar.html#count-prop">count</a> holds the number of tabs.</p>
+<p>QTabBar creates automatic mnemonic keys in the manner of <a href="qabstractbutton.html">QAbstractButton</a>; e.g&#x2e; if a tab's label is &quot;&amp;Graphics&quot;, Alt+G becomes a shortcut key for switching to that tab.</p>
+<p>The following virtual functions may need to be reimplemented in order to tailor the look and feel or store extra data with each tab:</p>
+<ul>
+<li><a href="qtabbar.html#tabSizeHint">tabSizeHint</a>() calcuates the size of a tab.</li>
+<li><a href="qtabbar.html#tabInserted">tabInserted</a>() notifies that a new tab was added.</li>
+<li><a href="qtabbar.html#tabRemoved">tabRemoved</a>() notifies that a tab was removed.</li>
+<li><a href="qtabbar.html#tabLayoutChange">tabLayoutChange</a>() notifies that the tabs have been re-laid out.</li>
+<li><a href="qtabbar.html#paintEvent">paintEvent</a>() paints all tabs.</li>
+</ul>
+<p>For subclasses, you might also need the <a href="qtabbar.html#tabRect">tabRect</a>() functions which returns the visual geometry of a single tab.</p>
+<p><table class="generic" width="100%" align="center" cellpadding="2" cellspacing="1" border="0">
+<tr valign="top" class="odd"><td><img src="images/plastique-tabbar.png" alt="Screenshot of a Plastique style tab bar" /></td><td>A tab bar shown in the Plastique widget style.</td></tr>
+<tr valign="top" class="even"><td><img src="images/plastique-tabbar-truncated.png" alt="Screenshot of a truncated Plastique tab bar" /></td><td>A truncated tab bar shown in the Plastique widget style.</td></tr>
+</table></p>
+<p>See also <a href="qtabwidget.html">QTabWidget</a>.</p>
+<hr />
+<h2>Member Type Documentation</h2>
+<a name="//apple_ref/cpp/tag/QTabBar/ButtonPosition" />
+<a name="//apple_ref/cpp/econst/QTabBar/LeftSide" />
+<a name="//apple_ref/cpp/econst/QTabBar/RightSide" />
+<h3 class="fn"><a name="ButtonPosition-enum"></a>enum QTabBar::ButtonPosition</h3>
+<p>This enum type lists the location of the widget on a tab.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QTabBar::LeftSide</tt></td><td align="center" valign="top"><tt>0</tt></td><td valign="top">Left side of the tab.</td></tr>
+<tr><td valign="top"><tt>QTabBar::RightSide</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">Right side of the tab.</td></tr>
+</table></p>
+<p>This enum was introduced in Qt 4.5.</p>
+<a name="//apple_ref/cpp/tag/QTabBar/SelectionBehavior" />
+<a name="//apple_ref/cpp/econst/QTabBar/SelectLeftTab" />
+<a name="//apple_ref/cpp/econst/QTabBar/SelectRightTab" />
+<a name="//apple_ref/cpp/econst/QTabBar/SelectPreviousTab" />
+<h3 class="fn"><a name="SelectionBehavior-enum"></a>enum QTabBar::SelectionBehavior</h3>
+<p>This enum type lists the behavior of <a href="qtabbar.html">QTabBar</a> when a tab is removed and the tab being removed is also the current tab.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QTabBar::SelectLeftTab</tt></td><td align="center" valign="top"><tt>0</tt></td><td valign="top">Select the tab to the left of the one being removed.</td></tr>
+<tr><td valign="top"><tt>QTabBar::SelectRightTab</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">Select the tab to the right of the one being removed.</td></tr>
+<tr><td valign="top"><tt>QTabBar::SelectPreviousTab</tt></td><td align="center" valign="top"><tt>2</tt></td><td valign="top">Select the previously selected tab.</td></tr>
+</table></p>
+<p>This enum was introduced in Qt 4.5.</p>
+<a name="//apple_ref/cpp/tag/QTabBar/Shape" />
+<a name="//apple_ref/cpp/econst/QTabBar/RoundedNorth" />
+<a name="//apple_ref/cpp/econst/QTabBar/RoundedSouth" />
+<a name="//apple_ref/cpp/econst/QTabBar/RoundedWest" />
+<a name="//apple_ref/cpp/econst/QTabBar/RoundedEast" />
+<a name="//apple_ref/cpp/econst/QTabBar/TriangularNorth" />
+<a name="//apple_ref/cpp/econst/QTabBar/TriangularSouth" />
+<a name="//apple_ref/cpp/econst/QTabBar/TriangularWest" />
+<a name="//apple_ref/cpp/econst/QTabBar/TriangularEast" />
+<a name="//apple_ref/cpp/econst/QTabBar/RoundedAbove" />
+<a name="//apple_ref/cpp/econst/QTabBar/RoundedBelow" />
+<a name="//apple_ref/cpp/econst/QTabBar/TriangularAbove" />
+<a name="//apple_ref/cpp/econst/QTabBar/TriangularBelow" />
+<h3 class="fn"><a name="Shape-enum"></a>enum QTabBar::Shape</h3>
+<p>This enum type lists the built-in shapes supported by <a href="qtabbar.html">QTabBar</a>. Treat these as hints as some styles may not render some of the shapes. However, position should be honored.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QTabBar::RoundedNorth</tt></td><td align="center" valign="top"><tt>0</tt></td><td valign="top">The normal rounded look above the pages</td></tr>
+<tr><td valign="top"><tt>QTabBar::RoundedSouth</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">The normal rounded look below the pages</td></tr>
+<tr><td valign="top"><tt>QTabBar::RoundedWest</tt></td><td align="center" valign="top"><tt>2</tt></td><td valign="top">The normal rounded look on the left side of the pages</td></tr>
+<tr><td valign="top"><tt>QTabBar::RoundedEast</tt></td><td align="center" valign="top"><tt>3</tt></td><td valign="top">The normal rounded look on the right side the pages</td></tr>
+<tr><td valign="top"><tt>QTabBar::TriangularNorth</tt></td><td align="center" valign="top"><tt>4</tt></td><td valign="top">Triangular tabs above the pages.</td></tr>
+<tr><td valign="top"><tt>QTabBar::TriangularSouth</tt></td><td align="center" valign="top"><tt>5</tt></td><td valign="top">Triangular tabs similar to those used in the Excel spreadsheet, for example</td></tr>
+<tr><td valign="top"><tt>QTabBar::TriangularWest</tt></td><td align="center" valign="top"><tt>6</tt></td><td valign="top">Triangular tabs on the left of the pages.</td></tr>
+<tr><td valign="top"><tt>QTabBar::TriangularEast</tt></td><td align="center" valign="top"><tt>7</tt></td><td valign="top">Triangular tabs on the right of the pages.</td></tr>
+</table></p>
+<hr />
+<h2>Property Documentation</h2>
+<a name="//apple_ref/cpp/instm/QTabBar/count" />
+<h3 class="fn"><a name="count-prop"></a>count : const int</h3>
+<p>This property holds the number of tabs in the tab bar.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b>count</b> () const</td></tr>
+</table>
+<a name="//apple_ref/cpp/instm/QTabBar/currentIndex" />
+<a name="//apple_ref/cpp/instm/QTabBar/setCurrentIndex" />
+<a name="//apple_ref/cpp/instm/QTabBar/currentChanged" />
+<h3 class="fn"><a name="currentIndex-prop"></a>currentIndex : int</h3>
+<p>This property holds the index of the tab bar's visible tab.</p>
+<p>The current index is -1 if there is no current tab.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b>currentIndex</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setCurrentIndex</b> ( int <i>index</i> )</td></tr>
+</table>
+<p><b>Notifier signal:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qtabbar.html#currentChanged">currentChanged</a></b> ( int <i>index</i> )</td></tr>
+</table>
+<a name="//apple_ref/cpp/instm/QTabBar/documentMode" />
+<a name="//apple_ref/cpp/instm/QTabBar/setDocumentMode" />
+<h3 class="fn"><a name="documentMode-prop"></a>documentMode : bool</h3>
+<p>This property holds whether or not the tab bar is rendered in a mode suitable for the main window.</p>
+<p>This property is used as a hint for styles to draw the tabs in a different way then they would normally look in a tab widget. On Mac OS X this will look similar to the tabs in Safari or Leopard's Terminal.app.</p>
+<p>This property was introduced in Qt 4.5.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b>documentMode</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setDocumentMode</b> ( bool <i>set</i> )</td></tr>
+</table>
+<p>See also <a href="qtabwidget.html#documentMode-prop">QTabWidget::documentMode</a>.</p>
+<a name="//apple_ref/cpp/instm/QTabBar/drawBase" />
+<a name="//apple_ref/cpp/instm/QTabBar/setDrawBase" />
+<h3 class="fn"><a name="drawBase-prop"></a>drawBase : bool</h3>
+<p>This property defines whether or not tab bar should draw its base.</p>
+<p>If true then <a href="qtabbar.html">QTabBar</a> draws a base in relation to the styles overlab. Otherwise only the tabs are drawn.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b>drawBase</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setDrawBase</b> ( bool <i>drawTheBase</i> )</td></tr>
+</table>
+<p>See also <a href="qstyle.html#pixelMetric">QStyle::pixelMetric</a>(), <a href="qstyle.html#PixelMetric-enum">QStyle::PM_TabBarBaseOverlap</a>, and <a href="qstyleoptiontabbarbasev2.html">QStyleOptionTabBarBaseV2</a>.</p>
+<a name="//apple_ref/cpp/instm/QTabBar/elideMode" />
+<a name="//apple_ref/cpp/instm/QTabBar/setElideMode" />
+<h3 class="fn"><a name="elideMode-prop"></a>elideMode : <a href="qt.html#TextElideMode-enum">Qt::TextElideMode</a></h3>
+<p>This property holds how to elide text in the tab bar.</p>
+<p>This property controls how items are elided when there is not enough space to show them for a given tab bar size.</p>
+<p>By default the value is style dependent.</p>
+<p>This property was introduced in Qt 4.2.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">Qt::TextElideMode </td><td class="memItemRight" valign="bottom"><b>elideMode</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setElideMode</b> ( Qt::TextElideMode )</td></tr>
+</table>
+<p>See also <a href="qtabwidget.html#elideMode-prop">QTabWidget::elideMode</a>, <a href="qtabbar.html#usesScrollButtons-prop">usesScrollButtons</a>, and <a href="qstyle.html#StyleHint-enum">QStyle::SH_TabBar_ElideMode</a>.</p>
+<a name="//apple_ref/cpp/instm/QTabBar/expanding" />
+<a name="//apple_ref/cpp/instm/QTabBar/setExpanding" />
+<h3 class="fn"><a name="expanding-prop"></a>expanding : bool</h3>
+<p>This property holds when expanding is true QTabBar will expand the tabs to use the empty space.</p>
+<p>By default the value is true.</p>
+<p>This property was introduced in Qt 4.5.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b>expanding</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setExpanding</b> ( bool <i>enabled</i> )</td></tr>
+</table>
+<p>See also <a href="qtabwidget.html#documentMode-prop">QTabWidget::documentMode</a>.</p>
+<a name="//apple_ref/cpp/instm/QTabBar/iconSize" />
+<a name="//apple_ref/cpp/instm/QTabBar/setIconSize" />
+<h3 class="fn"><a name="iconSize-prop"></a>iconSize : <a href="qsize.html">QSize</a></h3>
+<p>This property holds the size for icons in the tab bar.</p>
+<p>The default value is style-dependent. <tt>iconSize</tt> is a maximum size; icons that are smaller are not scaled up.</p>
+<p>This property was introduced in Qt 4.1.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">QSize </td><td class="memItemRight" valign="bottom"><b>iconSize</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setIconSize</b> ( const QSize &amp; <i>size</i> )</td></tr>
+</table>
+<p>See also <a href="qtabwidget.html#iconSize-prop">QTabWidget::iconSize</a>.</p>
+<a name="//apple_ref/cpp/instm/QTabBar/isMovable" />
+<a name="//apple_ref/cpp/instm/QTabBar/setMovable" />
+<h3 class="fn"><a name="movable-prop"></a>movable : bool</h3>
+<p>This property holds this property holds whether the user can move the tabs within the tabbar area.</p>
+<p>By default, this property is false;</p>
+<p>This property was introduced in Qt 4.5.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b>isMovable</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setMovable</b> ( bool <i>movable</i> )</td></tr>
+</table>
+<a name="//apple_ref/cpp/instm/QTabBar/selectionBehaviorOnRemove" />
+<a name="//apple_ref/cpp/instm/QTabBar/setSelectionBehaviorOnRemove" />
+<h3 class="fn"><a name="selectionBehaviorOnRemove-prop"></a>selectionBehaviorOnRemove : <a href="qtabbar.html#SelectionBehavior-enum">SelectionBehavior</a></h3>
+<p>This property holds what tab should be set as current when removeTab is called if the removed tab is also the current tab.</p>
+<p>By default the value is <a href="qtabbar.html#SelectionBehavior-enum">SelectRightTab</a>.</p>
+<p>This property was introduced in Qt 4.5.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">SelectionBehavior </td><td class="memItemRight" valign="bottom"><b>selectionBehaviorOnRemove</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setSelectionBehaviorOnRemove</b> ( SelectionBehavior <i>behavior</i> )</td></tr>
+</table>
+<p>See also <a href="qtabbar.html#removeTab">removeTab</a>().</p>
+<a name="//apple_ref/cpp/instm/QTabBar/shape" />
+<a name="//apple_ref/cpp/instm/QTabBar/setShape" />
+<h3 class="fn"><a name="shape-prop"></a>shape : <a href="qtabbar.html#Shape-enum">Shape</a></h3>
+<p>This property holds the shape of the tabs in the tab bar.</p>
+<p>Possible values for this property are described by the Shape enum.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">Shape </td><td class="memItemRight" valign="bottom"><b>shape</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setShape</b> ( Shape <i>shape</i> )</td></tr>
+</table>
+<a name="//apple_ref/cpp/instm/QTabBar/tabsClosable" />
+<a name="//apple_ref/cpp/instm/QTabBar/setTabsClosable" />
+<h3 class="fn"><a name="tabsClosable-prop"></a>tabsClosable : bool</h3>
+<p>This property holds whether or not a tab bar should place close buttons on each tab.</p>
+<p>When tabsClosable is set to true a close button will appear on the tab on either the left or right hand side depending upon the style. When the button is clicked the tab the signal tabCloseRequested will be emitted.</p>
+<p>By default the value is false.</p>
+<p>This property was introduced in Qt 4.5.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b>tabsClosable</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setTabsClosable</b> ( bool <i>closable</i> )</td></tr>
+</table>
+<p>See also <a href="qtabbar.html#setTabButton">setTabButton</a>() and <a href="qtabbar.html#tabRemoved">tabRemoved</a>().</p>
+<a name="//apple_ref/cpp/instm/QTabBar/usesScrollButtons" />
+<a name="//apple_ref/cpp/instm/QTabBar/setUsesScrollButtons" />
+<h3 class="fn"><a name="usesScrollButtons-prop"></a>usesScrollButtons : bool</h3>
+<p>This property holds whether or not a tab bar should use buttons to scroll tabs when it has many tabs.</p>
+<p>When there are too many tabs in a tab bar for its size, the tab bar can either choose to expand its size or to add buttons that allow you to scroll through the tabs.</p>
+<p>By default the value is style dependant.</p>
+<p>This property was introduced in Qt 4.2.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b>usesScrollButtons</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setUsesScrollButtons</b> ( bool <i>useButtons</i> )</td></tr>
+</table>
+<p>See also <a href="qtabbar.html#elideMode-prop">elideMode</a>, <a href="qtabwidget.html#usesScrollButtons-prop">QTabWidget::usesScrollButtons</a>, and <a href="qstyle.html#StyleHint-enum">QStyle::SH_TabBar_PreferNoArrows</a>.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QTabBar/QTabBar" />
+<h3 class="fn"><a name="QTabBar"></a>QTabBar::QTabBar ( <a href="qwidget.html">QWidget</a> * <i>parent</i> = 0 )</h3>
+<p>Creates a new tab bar with the given <i>parent</i>.</p>
+<a name="//apple_ref/cpp/instm/QTabBar/~QTabBar" />
+<h3 class="fn"><a name="dtor.QTabBar"></a>QTabBar::~QTabBar ()</h3>
+<p>Destroys the tab bar.</p>
+<a name="//apple_ref/cpp/instm/QTabBar/addTab" />
+<h3 class="fn"><a name="addTab"></a>int QTabBar::addTab ( const <a href="qstring.html">QString</a> &amp; <i>text</i> )</h3>
+<p>Adds a new tab with text <i>text</i>. Returns the new tab's index.</p>
+<h3 class="fn"><a name="addTab-2"></a>int QTabBar::addTab ( const <a href="qicon.html">QIcon</a> &amp; <i>icon</i>, const <a href="qstring.html">QString</a> &amp; <i>text</i> )</h3>
+<p>This is an overloaded function.</p>
+<p>Adds a new tab with icon <i>icon</i> and text <i>text</i>. Returns the new tab's index.</p>
+<a name="//apple_ref/cpp/instm/QTabBar/changeEvent" />
+<h3 class="fn"><a name="changeEvent"></a>void QTabBar::changeEvent ( <a href="qevent.html">QEvent</a> * <i>event</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#changeEvent">QWidget::changeEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QTabBar/currentChanged" />
+<h3 class="fn"><a name="currentChanged"></a>void QTabBar::currentChanged ( int <i>index</i> )&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted when the tab bar's current tab changes. The new current has the given <i>index</i>, or -1 if there isn't a new one (for example, if there are no tab in the <a href="qtabbar.html">QTabBar</a>)</p>
+<a name="//apple_ref/cpp/instm/QTabBar/event" />
+<h3 class="fn"><a name="event"></a>bool QTabBar::event ( <a href="qevent.html">QEvent</a> * <i>event</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qobject.html#event">QObject::event</a>().</p>
+<a name="//apple_ref/cpp/instm/QTabBar/hideEvent" />
+<h3 class="fn"><a name="hideEvent"></a>void QTabBar::hideEvent ( <a href="qhideevent.html">QHideEvent</a> * )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#hideEvent">QWidget::hideEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QTabBar/initStyleOption" />
+<h3 class="fn"><a name="initStyleOption"></a>void QTabBar::initStyleOption ( <a href="qstyleoptiontab.html">QStyleOptionTab</a> * <i>option</i>, int <i>tabIndex</i> ) const&nbsp;&nbsp;<tt> [protected]</tt></h3>
+<p>Initialize <i>option</i> with the values from the tab at <i>tabIndex</i>. This method is useful for subclasses when they need a <a href="qstyleoptiontab.html">QStyleOptionTab</a>, <a href="qstyleoptiontabv2.html">QStyleOptionTabV2</a>, or <a href="qstyleoptiontabv3.html">QStyleOptionTabV3</a> but don't want to fill in all the information themselves. This function will check the version of the <a href="qstyleoptiontab.html">QStyleOptionTab</a> and fill in the additional values for a <a href="qstyleoptiontabv2.html">QStyleOptionTabV2</a> and <a href="qstyleoptiontabv3.html">QStyleOptionTabV3</a>.</p>
+<p>See also <a href="qstyleoption.html#initFrom">QStyleOption::initFrom</a>() and <a href="qtabwidget.html#initStyleOption">QTabWidget::initStyleOption</a>().</p>
+<a name="//apple_ref/cpp/instm/QTabBar/insertTab" />
+<h3 class="fn"><a name="insertTab"></a>int QTabBar::insertTab ( int <i>index</i>, const <a href="qstring.html">QString</a> &amp; <i>text</i> )</h3>
+<p>Inserts a new tab with text <i>text</i> at position <i>index</i>. If <i>index</i> is out of range, the new tab is appened. Returns the new tab's index.</p>
+<h3 class="fn"><a name="insertTab-2"></a>int QTabBar::insertTab ( int <i>index</i>, const <a href="qicon.html">QIcon</a> &amp; <i>icon</i>, const <a href="qstring.html">QString</a> &amp; <i>text</i> )</h3>
+<p>This is an overloaded function.</p>
+<p>Inserts a new tab with icon <i>icon</i> and text <i>text</i> at position <i>index</i>. If <i>index</i> is out of range, the new tab is appended. Returns the new tab's index.</p>
+<p>If the <a href="qtabbar.html">QTabBar</a> was empty before this function is called, the inserted tab becomes the current tab.</p>
+<p>Inserting a new tab at an index less than or equal to the current index will increment the current index, but keep the current tab.</p>
+<a name="//apple_ref/cpp/instm/QTabBar/isTabEnabled" />
+<h3 class="fn"><a name="isTabEnabled"></a>bool QTabBar::isTabEnabled ( int <i>index</i> ) const</h3>
+<p>Returns true if the tab at position <i>index</i> is enabled; otherwise returns false.</p>
+<a name="//apple_ref/cpp/instm/QTabBar/keyPressEvent" />
+<h3 class="fn"><a name="keyPressEvent"></a>void QTabBar::keyPressEvent ( <a href="qkeyevent.html">QKeyEvent</a> * <i>event</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#keyPressEvent">QWidget::keyPressEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QTabBar/minimumSizeHint" />
+<h3 class="fn"><a name="minimumSizeHint"></a><a href="qsize.html">QSize</a> QTabBar::minimumSizeHint () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#minimumSizeHint-prop">QWidget::minimumSizeHint</a>().</p>
+<a name="//apple_ref/cpp/instm/QTabBar/mouseMoveEvent" />
+<h3 class="fn"><a name="mouseMoveEvent"></a>void QTabBar::mouseMoveEvent ( <a href="qmouseevent.html">QMouseEvent</a> * <i>event</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#mouseMoveEvent">QWidget::mouseMoveEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QTabBar/mousePressEvent" />
+<h3 class="fn"><a name="mousePressEvent"></a>void QTabBar::mousePressEvent ( <a href="qmouseevent.html">QMouseEvent</a> * <i>event</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#mousePressEvent">QWidget::mousePressEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QTabBar/mouseReleaseEvent" />
+<h3 class="fn"><a name="mouseReleaseEvent"></a>void QTabBar::mouseReleaseEvent ( <a href="qmouseevent.html">QMouseEvent</a> * <i>event</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#mouseReleaseEvent">QWidget::mouseReleaseEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QTabBar/moveTab" />
+<h3 class="fn"><a name="moveTab"></a>void QTabBar::moveTab ( int <i>from</i>, int <i>to</i> )</h3>
+<p>Moves the item at index position <i>from</i> to index position <i>to</i>.</p>
+<p>This function was introduced in Qt 4.5.</p>
+<p>See also <a href="qtabbar.html#tabMoved">tabMoved</a>() and <a href="qtabbar.html#tabLayoutChange">tabLayoutChange</a>().</p>
+<a name="//apple_ref/cpp/instm/QTabBar/paintEvent" />
+<h3 class="fn"><a name="paintEvent"></a>void QTabBar::paintEvent ( <a href="qpaintevent.html">QPaintEvent</a> * )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#paintEvent">QWidget::paintEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QTabBar/removeTab" />
+<h3 class="fn"><a name="removeTab"></a>void QTabBar::removeTab ( int <i>index</i> )</h3>
+<p>Removes the tab at position <i>index</i>.</p>
+<p>See also <a href="qtabbar.html#SelectionBehavior-enum">SelectionBehavior</a>.</p>
+<a name="//apple_ref/cpp/instm/QTabBar/resizeEvent" />
+<h3 class="fn"><a name="resizeEvent"></a>void QTabBar::resizeEvent ( <a href="qresizeevent.html">QResizeEvent</a> * )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#resizeEvent">QWidget::resizeEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QTabBar/setTabButton" />
+<h3 class="fn"><a name="setTabButton"></a>void QTabBar::setTabButton ( int <i>index</i>, <a href="qtabbar.html#ButtonPosition-enum">ButtonPosition</a> <i>position</i>, <a href="qwidget.html">QWidget</a> * <i>widget</i> )</h3>
+<p>Sets <i>widget</i> on the tab <i>index</i>. The widget is placed on the left or right hand side depending upon the <i>position</i>.</p>
+<p>Any previously set widget in <i>position</i> is hidden.</p>
+<p>The tab bar will take ownership of the widget and so all widgets set here will be deleted by the tab bar when it is destroyed unless you separately reparent the widget after setting some other widget (or 0).</p>
+<p>This function was introduced in Qt 4.5.</p>
+<p>See also <a href="qtabbar.html#tabButton">tabButton</a>() and <a href="qtabbar.html#tabsClosable-prop">tabsClosable</a>().</p>
+<a name="//apple_ref/cpp/instm/QTabBar/setTabData" />
+<h3 class="fn"><a name="setTabData"></a>void QTabBar::setTabData ( int <i>index</i>, const <a href="qvariant.html">QVariant</a> &amp; <i>data</i> )</h3>
+<p>Sets the data of the tab at position <i>index</i> to <i>data</i>.</p>
+<p>See also <a href="qtabbar.html#tabData">tabData</a>().</p>
+<a name="//apple_ref/cpp/instm/QTabBar/setTabEnabled" />
+<h3 class="fn"><a name="setTabEnabled"></a>void QTabBar::setTabEnabled ( int <i>index</i>, bool <i>enabled</i> )</h3>
+<p>If <i>enabled</i> is true then the tab at position <i>index</i> is enabled; otherwise the item at position <i>index</i> is disabled.</p>
+<p>See also <a href="qtabbar.html#isTabEnabled">isTabEnabled</a>().</p>
+<a name="//apple_ref/cpp/instm/QTabBar/setTabIcon" />
+<h3 class="fn"><a name="setTabIcon"></a>void QTabBar::setTabIcon ( int <i>index</i>, const <a href="qicon.html">QIcon</a> &amp; <i>icon</i> )</h3>
+<p>Sets the icon of the tab at position <i>index</i> to <i>icon</i>.</p>
+<p>See also <a href="qtabbar.html#tabIcon">tabIcon</a>().</p>
+<a name="//apple_ref/cpp/instm/QTabBar/setTabText" />
+<h3 class="fn"><a name="setTabText"></a>void QTabBar::setTabText ( int <i>index</i>, const <a href="qstring.html">QString</a> &amp; <i>text</i> )</h3>
+<p>Sets the text of the tab at position <i>index</i> to <i>text</i>.</p>
+<p>See also <a href="qtabbar.html#tabText">tabText</a>().</p>
+<a name="//apple_ref/cpp/instm/QTabBar/setTabTextColor" />
+<h3 class="fn"><a name="setTabTextColor"></a>void QTabBar::setTabTextColor ( int <i>index</i>, const <a href="qcolor.html">QColor</a> &amp; <i>color</i> )</h3>
+<p>Sets the color of the text in the tab with the given <i>index</i> to the specified <i>color</i>.</p>
+<p>If an invalid color is specified, the tab will use the <a href="qtabbar.html">QTabBar</a> foreground role instead.</p>
+<p>See also <a href="qtabbar.html#tabTextColor">tabTextColor</a>().</p>
+<a name="//apple_ref/cpp/instm/QTabBar/setTabToolTip" />
+<h3 class="fn"><a name="setTabToolTip"></a>void QTabBar::setTabToolTip ( int <i>index</i>, const <a href="qstring.html">QString</a> &amp; <i>tip</i> )</h3>
+<p>Sets the tool tip of the tab at position <i>index</i> to <i>tip</i>.</p>
+<p>See also <a href="qtabbar.html#tabToolTip">tabToolTip</a>().</p>
+<a name="//apple_ref/cpp/instm/QTabBar/setTabWhatsThis" />
+<h3 class="fn"><a name="setTabWhatsThis"></a>void QTabBar::setTabWhatsThis ( int <i>index</i>, const <a href="qstring.html">QString</a> &amp; <i>text</i> )</h3>
+<p>Sets the What's This help text of the tab at position <i>index</i> to <i>text</i>.</p>
+<p>This function was introduced in Qt 4.1.</p>
+<p>See also <a href="qtabbar.html#tabWhatsThis">tabWhatsThis</a>().</p>
+<a name="//apple_ref/cpp/instm/QTabBar/showEvent" />
+<h3 class="fn"><a name="showEvent"></a>void QTabBar::showEvent ( <a href="qshowevent.html">QShowEvent</a> * )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#showEvent">QWidget::showEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QTabBar/sizeHint" />
+<h3 class="fn"><a name="sizeHint"></a><a href="qsize.html">QSize</a> QTabBar::sizeHint () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#sizeHint-prop">QWidget::sizeHint</a>().</p>
+<a name="//apple_ref/cpp/instm/QTabBar/tabAt" />
+<h3 class="fn"><a name="tabAt"></a>int QTabBar::tabAt ( const <a href="qpoint.html">QPoint</a> &amp; <i>position</i> ) const</h3>
+<p>Returns the index of the tab that covers <i>position</i> or -1 if no tab covers <i>position</i>;</p>
+<p>This function was introduced in Qt 4.3.</p>
+<a name="//apple_ref/cpp/instm/QTabBar/tabButton" />
+<h3 class="fn"><a name="tabButton"></a><a href="qwidget.html">QWidget</a> * QTabBar::tabButton ( int <i>index</i>, <a href="qtabbar.html#ButtonPosition-enum">ButtonPosition</a> <i>position</i> ) const</h3>
+<p>Returns the widget set a tab <i>index</i> and <i>position</i> or 0 if one is not set.</p>
+<p>See also <a href="qtabbar.html#setTabButton">setTabButton</a>().</p>
+<a name="//apple_ref/cpp/instm/QTabBar/tabCloseRequested" />
+<h3 class="fn"><a name="tabCloseRequested"></a>void QTabBar::tabCloseRequested ( int <i>index</i> )&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted when the close button on a tab is clicked. The <i>index</i> is the index that should be removed.</p>
+<p>This function was introduced in Qt 4.5.</p>
+<p>See also <a href="qtabbar.html#tabsClosable-prop">setTabsClosable</a>().</p>
+<a name="//apple_ref/cpp/instm/QTabBar/tabData" />
+<h3 class="fn"><a name="tabData"></a><a href="qvariant.html">QVariant</a> QTabBar::tabData ( int <i>index</i> ) const</h3>
+<p>Returns the data of the tab at position <i>index</i>, or a null variant if <i>index</i> is out of range.</p>
+<p>See also <a href="qtabbar.html#setTabData">setTabData</a>().</p>
+<a name="//apple_ref/cpp/instm/QTabBar/tabIcon" />
+<h3 class="fn"><a name="tabIcon"></a><a href="qicon.html">QIcon</a> QTabBar::tabIcon ( int <i>index</i> ) const</h3>
+<p>Returns the icon of the tab at position <i>index</i>, or a null icon if <i>index</i> is out of range.</p>
+<p>See also <a href="qtabbar.html#setTabIcon">setTabIcon</a>().</p>
+<a name="//apple_ref/cpp/instm/QTabBar/tabInserted" />
+<h3 class="fn"><a name="tabInserted"></a>void QTabBar::tabInserted ( int <i>index</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>This virtual handler is called after a new tab was added or inserted at position <i>index</i>.</p>
+<p>See also <a href="qtabbar.html#tabRemoved">tabRemoved</a>().</p>
+<a name="//apple_ref/cpp/instm/QTabBar/tabLayoutChange" />
+<h3 class="fn"><a name="tabLayoutChange"></a>void QTabBar::tabLayoutChange ()&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>This virtual handler is called whenever the tab layout changes.</p>
+<p>See also <a href="qtabbar.html#tabRect">tabRect</a>().</p>
+<a name="//apple_ref/cpp/instm/QTabBar/tabMoved" />
+<h3 class="fn"><a name="tabMoved"></a>void QTabBar::tabMoved ( int <i>from</i>, int <i>to</i> )&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted when the tab has moved the tab at index position <i>from</i> to index position <i>to</i>.</p>
+<p>note: <a href="qtabwidget.html">QTabWidget</a> will automatically move the page when this signal is emitted from its tab bar.</p>
+<p>This function was introduced in Qt 4.5.</p>
+<p>See also <a href="qtabbar.html#moveTab">moveTab</a>().</p>
+<a name="//apple_ref/cpp/instm/QTabBar/tabRect" />
+<h3 class="fn"><a name="tabRect"></a><a href="qrect.html">QRect</a> QTabBar::tabRect ( int <i>index</i> ) const</h3>
+<p>Returns the visual rectangle of the tab at position <i>index</i>, or a null rectangle if <i>index</i> is out of range.</p>
+<a name="//apple_ref/cpp/instm/QTabBar/tabRemoved" />
+<h3 class="fn"><a name="tabRemoved"></a>void QTabBar::tabRemoved ( int <i>index</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>This virtual handler is called after a tab was removed from position <i>index</i>.</p>
+<p>See also <a href="qtabbar.html#tabInserted">tabInserted</a>().</p>
+<a name="//apple_ref/cpp/instm/QTabBar/tabSizeHint" />
+<h3 class="fn"><a name="tabSizeHint"></a><a href="qsize.html">QSize</a> QTabBar::tabSizeHint ( int <i>index</i> ) const&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Returns the size hint for the tab at position <i>index</i>.</p>
+<a name="//apple_ref/cpp/instm/QTabBar/tabText" />
+<h3 class="fn"><a name="tabText"></a><a href="qstring.html">QString</a> QTabBar::tabText ( int <i>index</i> ) const</h3>
+<p>Returns the text of the tab at position <i>index</i>, or an empty string if <i>index</i> is out of range.</p>
+<p>See also <a href="qtabbar.html#setTabText">setTabText</a>().</p>
+<a name="//apple_ref/cpp/instm/QTabBar/tabTextColor" />
+<h3 class="fn"><a name="tabTextColor"></a><a href="qcolor.html">QColor</a> QTabBar::tabTextColor ( int <i>index</i> ) const</h3>
+<p>Returns the text color of the tab with the given <i>index</i>, or a invalid color if <i>index</i> is out of range.</p>
+<p>See also <a href="qtabbar.html#setTabTextColor">setTabTextColor</a>().</p>
+<a name="//apple_ref/cpp/instm/QTabBar/tabToolTip" />
+<h3 class="fn"><a name="tabToolTip"></a><a href="qstring.html">QString</a> QTabBar::tabToolTip ( int <i>index</i> ) const</h3>
+<p>Returns the tool tip of the tab at position <i>index</i>, or an empty string if <i>index</i> is out of range.</p>
+<p>See also <a href="qtabbar.html#setTabToolTip">setTabToolTip</a>().</p>
+<a name="//apple_ref/cpp/instm/QTabBar/tabWhatsThis" />
+<h3 class="fn"><a name="tabWhatsThis"></a><a href="qstring.html">QString</a> QTabBar::tabWhatsThis ( int <i>index</i> ) const</h3>
+<p>Returns the What's This help text of the tab at position <i>index</i>, or an empty string if <i>index</i> is out of range.</p>
+<p>This function was introduced in Qt 4.1.</p>
+<p>See also <a href="qtabbar.html#setTabWhatsThis">setTabWhatsThis</a>().</p>
+<a name="//apple_ref/cpp/instm/QTabBar/wheelEvent" />
+<h3 class="fn"><a name="wheelEvent"></a>void QTabBar::wheelEvent ( <a href="qwheelevent.html">QWheelEvent</a> * <i>event</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#wheelEvent">QWidget::wheelEvent</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: googlechat.cpp Example File (webkit/googlechat/googlechat.cpp)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">googlechat.cpp Example File<br /><span class="small-subtitle">webkit/googlechat/googlechat.cpp</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the examples of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+
+ #include &lt;QtGui&gt;
+ #include &lt;QtWebKit&gt;
+ #include &lt;QSslSocket&gt;
+
+ #include &quot;googlechat.h&quot;
+
+ #define GOOGLECHAT_URL &quot;http:<span class="comment">//talkgadget.google.com/talkgadget/m&quot;</span>
+
+ GoogleChat::GoogleChat(): QWidget() {
+     form.setupUi(this);
+     setFixedSize(320, 480);
+
+     form.userNameEdit-&gt;setFocus();
+     connect(form.userNameEdit, SIGNAL(textChanged(QString)), SLOT(adjustLoginButton()));
+     connect(form.userNameEdit, SIGNAL(returnPressed()), SLOT(inputPassword()));
+
+     connect(form.passwordEdit, SIGNAL(textChanged(QString)), SLOT(adjustLoginButton()));
+     connect(form.passwordEdit, SIGNAL(returnPressed()), SLOT(doLogin()));
+
+     form.loginButton-&gt;setEnabled(false);
+     connect(form.loginButton, SIGNAL(clicked()), SLOT(doLogin()));
+
+     connect(form.webView, SIGNAL(loadFinished(bool)), SLOT(initialPage(bool)));
+     connect(form.webView, SIGNAL(loadProgress(int)),
+             form.progressBar, SLOT(setValue(int)));
+     form.webView-&gt;setUrl((QUrl(GOOGLECHAT_URL)));
+     form.webView-&gt;setContextMenuPolicy(Qt::PreventContextMenu);
+
+     showStatus(&quot;Wait...&quot;);
+ }
+
+ void GoogleChat::showStatus(const QString &amp;msg) {
+     form.statusLabel-&gt;setText(msg);
+     form.stackedWidget-&gt;setCurrentIndex(0);
+ }
+
+ void GoogleChat::showError(const QString &amp;msg) {
+     form.progressBar-&gt;hide();
+     showStatus(QString(&quot;Error: %1&quot;).arg(msg));
+ }
+
+ QString GoogleChat::evalJS(const QString &amp;js) {
+     QWebFrame *frame = form.webView-&gt;page()-&gt;mainFrame();
+     return frame-&gt;evaluateJavaScript(js).toString();
+ }
+
+ void GoogleChat::adjustLoginButton() {
+     userName = form.userNameEdit-&gt;text();
+     password = form.passwordEdit-&gt;text();
+     bool ok = !userName.isEmpty() &amp;&amp; !password.isEmpty();
+     form.loginButton-&gt;setEnabled(ok);
+ }
+
+ void GoogleChat::inputPassword() {
+     if (!form.userNameEdit-&gt;text().isEmpty())
+         form.passwordEdit-&gt;setFocus();
+ }
+
+ void GoogleChat::doLogin() {
+     userName = form.userNameEdit-&gt;text();
+     password = form.passwordEdit-&gt;text();
+     bool ok = !userName.isEmpty() &amp;&amp; !password.isEmpty();
+     if (!ok)
+         return;
+
+     form.progressBar-&gt;setValue(0);
+     form.progressBar-&gt;show();
+     connect(form.webView, SIGNAL(loadFinished(bool)), SLOT(loginPage(bool)));
+     connect(form.webView, SIGNAL(loadProgress(int)),
+             form.progressBar, SLOT(setValue(int)));
+     showStatus(&quot;Logging in...&quot;);
+
+     QString userEmail = userName + &quot;@gmail.com&quot;;
+     evalJS(QString(&quot;document.getElementById('Email').value = \&quot;%1\&quot;;&quot;).arg(userEmail));
+     evalJS(QString(&quot;document.getElementById('Passwd').value = \&quot;%1\&quot;;&quot;).arg(password));
+     evalJS(&quot;document.getElementById('gaia_loginform').submit();&quot;);
+ }
+
+ void GoogleChat::initialPage(bool ok) {
+     if (!QSslSocket::supportsSsl()) {
+         showError(&quot;This example requires SSL support.&quot;);
+         return;
+     }
+
+     if (ok) {
+         QString s1 = evalJS(&quot;document.getElementById('Email').name&quot;);
+         QString s2 = evalJS(&quot;document.getElementById('Passwd').name&quot;);
+         QString s3 = evalJS(&quot;document.getElementById('gaia_loginform').id&quot;);
+         if (s1 == &quot;Email&quot; &amp;&amp; s2 == &quot;Passwd&quot; &amp;&amp; s3 == &quot;gaia_loginform&quot;) {
+             form.stackedWidget-&gt;setCurrentIndex(1);
+             form.webView-&gt;disconnect();
+             return;
+         }
+     }
+
+     showError(&quot;SERVICE unavailable.&quot;);
+ }
+
+ void GoogleChat::hideElements()
+ {
+     evalJS(&quot;var e = document.getElementsByClassName('footer-footer')[0]; e.parentElement.removeChild(e)&quot;);
+     evalJS(&quot;var e = document.getElementsByClassName('title-bar-bg title-bar')[0]; e.parentElement.removeChild(e)&quot;);
+     QTimer::singleShot(2000, this, SLOT(hideElements()));
+ }
+
+ void GoogleChat::loginPage(bool ok) {
+     QString location = form.webView-&gt;url().toString();
+     if (!ok) {
+         if (location.indexOf(&quot;CheckCookie&quot;))
+             return;
+         showError(&quot;Service unavailable&quot;);
+     } else {
+         <span class="comment">// check for any error message</span>
+         QString c = evalJS(&quot;document.getElementsByClassName('errormsg').length&quot;);
+         if (c == &quot;0&quot;) {
+             form.stackedWidget-&gt;setCurrentIndex(2);
+             QTimer::singleShot(500, this, SLOT(hideElements()));
+             return;
+         }
+
+         QString err = &quot;Unknown login failure.&quot;;
+         if (c == &quot;1&quot;) {
+             err = evalJS(&quot;document.getElementsByClassName('errormsg')[0].textContent&quot;);
+             err = err.simplified();
+         }
+         showError(err);
+     }
+ }</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

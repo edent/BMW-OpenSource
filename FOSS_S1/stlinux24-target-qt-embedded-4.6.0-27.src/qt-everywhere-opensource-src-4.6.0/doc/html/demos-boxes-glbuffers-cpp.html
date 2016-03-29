@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: glbuffers.cpp Example File (demos/boxes/glbuffers.cpp)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">glbuffers.cpp Example File<br /><span class="small-subtitle">demos/boxes/glbuffers.cpp</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the demonstration applications of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+
+ #include &quot;glbuffers.h&quot;
+ #include &lt;QtGui/qmatrix4x4.h&gt;
+
+<span class="comment"> //============================================================================//</span>
+<span class="comment"> //                                  GLTexture                                 //</span>
+<span class="comment"> //============================================================================//</span>
+
+ GLTexture::GLTexture() : m_texture(0), m_failed(false)
+ {
+     glGenTextures(1, &amp;m_texture);
+ }
+
+ GLTexture::~GLTexture()
+ {
+     glDeleteTextures(1, &amp;m_texture);
+ }
+
+<span class="comment"> //============================================================================//</span>
+<span class="comment"> //                                 GLTexture2D                                //</span>
+<span class="comment"> //============================================================================//</span>
+
+ GLTexture2D::GLTexture2D(int width, int height)
+ {
+     glBindTexture(GL_TEXTURE_2D, m_texture);
+     glTexImage2D(GL_TEXTURE_2D, 0, 4, width, height, 0,
+         GL_BGRA, GL_UNSIGNED_BYTE, 0);
+
+     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+     <span class="comment">//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);</span>
+     <span class="comment">//glTexParameteri(GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_TRUE);</span>
+     glBindTexture(GL_TEXTURE_2D, 0);
+ }
+
+ GLTexture2D::GLTexture2D(const QString&amp; fileName, int width, int height)
+ {
+     <span class="comment">// TODO: Add error handling.</span>
+     QImage image(fileName);
+
+     if (image.isNull()) {
+         m_failed = true;
+         return;
+     }
+
+     image = image.convertToFormat(QImage::Format_ARGB32);
+
+     <span class="comment">//qDebug() &lt;&lt; &quot;Image size:&quot; &lt;&lt; image.width() &lt;&lt; &quot;x&quot; &lt;&lt; image.height();</span>
+     if (width &lt;= 0)
+         width = image.width();
+     if (height &lt;= 0)
+         height = image.height();
+     if (width != image.width() || height != image.height())
+         image = image.scaled(width, height, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+
+     glBindTexture(GL_TEXTURE_2D, m_texture);
+
+     <span class="comment">// Works on x86, so probably works on all little-endian systems.</span>
+     <span class="comment">// Does it work on big-endian systems?</span>
+     glTexImage2D(GL_TEXTURE_2D, 0, 4, image.width(), image.height(), 0,
+         GL_BGRA, GL_UNSIGNED_BYTE, image.bits());
+
+     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+     <span class="comment">//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);</span>
+     <span class="comment">//glTexParameteri(GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_TRUE);</span>
+     glBindTexture(GL_TEXTURE_2D, 0);
+ }
+
+ void GLTexture2D::load(int width, int height, QRgb *data)
+ {
+     glBindTexture(GL_TEXTURE_2D, m_texture);
+     glTexImage2D(GL_TEXTURE_2D, 0, 4, width, height, 0,
+         GL_BGRA, GL_UNSIGNED_BYTE, data);
+     glBindTexture(GL_TEXTURE_2D, 0);
+ }
+
+ void GLTexture2D::bind()
+ {
+     glBindTexture(GL_TEXTURE_2D, m_texture);
+     glEnable(GL_TEXTURE_2D);
+ }
+
+ void GLTexture2D::unbind()
+ {
+     glBindTexture(GL_TEXTURE_2D, 0);
+     glDisable(GL_TEXTURE_2D);
+ }
+
+<span class="comment"> //============================================================================//</span>
+<span class="comment"> //                                 GLTexture3D                                //</span>
+<span class="comment"> //============================================================================//</span>
+
+ GLTexture3D::GLTexture3D(int width, int height, int depth)
+ {
+     GLBUFFERS_ASSERT_OPENGL(&quot;GLTexture3D::GLTexture3D&quot;, glTexImage3D, return)
+
+     glBindTexture(GL_TEXTURE_3D, m_texture);
+     glTexImage3D(GL_TEXTURE_3D, 0, 4, width, height, depth, 0,
+         GL_BGRA, GL_UNSIGNED_BYTE, 0);
+
+     glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+     glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+     glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_R, GL_REPEAT);
+     glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+     glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+     <span class="comment">//glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);</span>
+     <span class="comment">//glTexParameteri(GL_TEXTURE_3D, GL_GENERATE_MIPMAP, GL_TRUE);</span>
+     glBindTexture(GL_TEXTURE_3D, 0);
+ }
+
+ void GLTexture3D::load(int width, int height, int depth, QRgb *data)
+ {
+     GLBUFFERS_ASSERT_OPENGL(&quot;GLTexture3D::load&quot;, glTexImage3D, return)
+
+     glBindTexture(GL_TEXTURE_3D, m_texture);
+     glTexImage3D(GL_TEXTURE_3D, 0, 4, width, height, depth, 0,
+         GL_BGRA, GL_UNSIGNED_BYTE, data);
+     glBindTexture(GL_TEXTURE_3D, 0);
+ }
+
+ void GLTexture3D::bind()
+ {
+     glBindTexture(GL_TEXTURE_3D, m_texture);
+     glEnable(GL_TEXTURE_3D);
+ }
+
+ void GLTexture3D::unbind()
+ {
+     glBindTexture(GL_TEXTURE_3D, 0);
+     glDisable(GL_TEXTURE_3D);
+ }
+
+<span class="comment"> //============================================================================//</span>
+<span class="comment"> //                                GLTextureCube                               //</span>
+<span class="comment"> //============================================================================//</span>
+
+ GLTextureCube::GLTextureCube(int size)
+ {
+     glBindTexture(GL_TEXTURE_CUBE_MAP, m_texture);
+
+     for (int i = 0; i &lt; 6; ++i)
+         glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, 4, size, size, 0,
+             GL_BGRA, GL_UNSIGNED_BYTE, 0);
+
+     glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+     glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+     glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+     glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+     glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+     <span class="comment">//glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);</span>
+     <span class="comment">//glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_GENERATE_MIPMAP, GL_TRUE);</span>
+     glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
+ }
+
+ GLTextureCube::GLTextureCube(const QStringList&amp; fileNames, int size)
+ {
+     <span class="comment">// TODO: Add error handling.</span>
+
+     glBindTexture(GL_TEXTURE_CUBE_MAP, m_texture);
+
+     int index = 0;
+     foreach (QString file, fileNames) {
+         QImage image(file);
+         if (image.isNull()) {
+             m_failed = true;
+             break;
+         }
+
+         image = image.convertToFormat(QImage::Format_ARGB32);
+
+         <span class="comment">//qDebug() &lt;&lt; &quot;Image size:&quot; &lt;&lt; image.width() &lt;&lt; &quot;x&quot; &lt;&lt; image.height();</span>
+         if (size &lt;= 0)
+             size = image.width();
+         if (size != image.width() || size != image.height())
+             image = image.scaled(size, size, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+
+         <span class="comment">// Works on x86, so probably works on all little-endian systems.</span>
+         <span class="comment">// Does it work on big-endian systems?</span>
+         glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + index, 0, 4, image.width(), image.height(), 0,
+             GL_BGRA, GL_UNSIGNED_BYTE, image.bits());
+
+         if (++index == 6)
+             break;
+     }
+
+     <span class="comment">// Clear remaining faces.</span>
+     while (index &lt; 6) {
+         glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + index, 0, 4, size, size, 0,
+             GL_BGRA, GL_UNSIGNED_BYTE, 0);
+         ++index;
+     }
+
+     glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+     glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+     glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+     glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+     glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+     <span class="comment">//glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);</span>
+     <span class="comment">//glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_GENERATE_MIPMAP, GL_TRUE);</span>
+     glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
+ }
+
+ void GLTextureCube::load(int size, int face, QRgb *data)
+ {
+     glBindTexture(GL_TEXTURE_CUBE_MAP, m_texture);
+         glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + face, 0, 4, size, size, 0,
+             GL_BGRA, GL_UNSIGNED_BYTE, data);
+     glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
+ }
+
+ void GLTextureCube::bind()
+ {
+     glBindTexture(GL_TEXTURE_CUBE_MAP, m_texture);
+     glEnable(GL_TEXTURE_CUBE_MAP);
+ }
+
+ void GLTextureCube::unbind()
+ {
+     glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
+     glDisable(GL_TEXTURE_CUBE_MAP);
+ }
+
+<span class="comment"> //============================================================================//</span>
+<span class="comment"> //                            GLFrameBufferObject                             //</span>
+<span class="comment"> //============================================================================//</span>
+
+ GLFrameBufferObject::GLFrameBufferObject(int width, int height)
+     : m_fbo(0)
+     , m_depthBuffer(0)
+     , m_width(width)
+     , m_height(height)
+     , m_failed(false)
+ {
+     GLBUFFERS_ASSERT_OPENGL(&quot;GLFrameBufferObject::GLFrameBufferObject&quot;,
+         glGenFramebuffersEXT &amp;&amp; glGenRenderbuffersEXT &amp;&amp; glBindRenderbufferEXT &amp;&amp; glRenderbufferStorageEXT, return)
+
+     <span class="comment">// TODO: share depth buffers of same size</span>
+     glGenFramebuffersEXT(1, &amp;m_fbo);
+     <span class="comment">//glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_fbo);</span>
+     glGenRenderbuffersEXT(1, &amp;m_depthBuffer);
+     glBindRenderbufferEXT(GL_RENDERBUFFER_EXT, m_depthBuffer);
+     glRenderbufferStorageEXT(GL_RENDERBUFFER_EXT, GL_DEPTH_COMPONENT, m_width, m_height);
+     <span class="comment">//glFramebufferRenderbufferEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_ATTACHMENT_EXT, GL_RENDERBUFFER_EXT, m_depthBuffer);</span>
+     <span class="comment">//glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);</span>
+ }
+
+ GLFrameBufferObject::~GLFrameBufferObject()
+ {
+     GLBUFFERS_ASSERT_OPENGL(&quot;GLFrameBufferObject::~GLFrameBufferObject&quot;,
+         glDeleteFramebuffersEXT &amp;&amp; glDeleteRenderbuffersEXT, return)
+
+     glDeleteFramebuffersEXT(1, &amp;m_fbo);
+     glDeleteRenderbuffersEXT(1, &amp;m_depthBuffer);
+ }
+
+ void GLFrameBufferObject::setAsRenderTarget(bool state)
+ {
+     GLBUFFERS_ASSERT_OPENGL(&quot;GLFrameBufferObject::setAsRenderTarget&quot;, glBindFramebufferEXT, return)
+
+     if (state) {
+         glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_fbo);
+         glPushAttrib(GL_VIEWPORT_BIT);
+         glViewport(0, 0, m_width, m_height);
+     } else {
+         glPopAttrib();
+         glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
+     }
+ }
+
+ bool GLFrameBufferObject::isComplete()
+ {
+     GLBUFFERS_ASSERT_OPENGL(&quot;GLFrameBufferObject::isComplete&quot;, glCheckFramebufferStatusEXT, return false)
+
+     return GL_FRAMEBUFFER_COMPLETE_EXT == glCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
+ }
+
+<span class="comment"> //============================================================================//</span>
+<span class="comment"> //                             GLRenderTargetCube                             //</span>
+<span class="comment"> //============================================================================//</span>
+
+ GLRenderTargetCube::GLRenderTargetCube(int size)
+     : GLTextureCube(size)
+     , m_fbo(size, size)
+ {
+ }
+
+ void GLRenderTargetCube::begin(int face)
+ {
+     GLBUFFERS_ASSERT_OPENGL(&quot;GLRenderTargetCube::begin&quot;,
+         glFramebufferTexture2DEXT &amp;&amp; glFramebufferRenderbufferEXT, return)
+
+     m_fbo.setAsRenderTarget(true);
+     glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT,
+         GL_TEXTURE_CUBE_MAP_POSITIVE_X + face, m_texture, 0);
+     glFramebufferRenderbufferEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_ATTACHMENT_EXT, GL_RENDERBUFFER_EXT, m_fbo.m_depthBuffer);
+ }
+
+ void GLRenderTargetCube::end()
+ {
+     m_fbo.setAsRenderTarget(false);
+ }
+
+ void GLRenderTargetCube::getViewMatrix(QMatrix4x4&amp; mat, int face)
+ {
+     if (face &lt; 0 || face &gt;= 6) {
+         qWarning(&quot;GLRenderTargetCube::getViewMatrix: 'face' must be in the range [0, 6). (face == %d)&quot;, face);
+         return;
+     }
+
+     static int perm[6][3] = {
+         {2, 1, 0},
+         {2, 1, 0},
+         {0, 2, 1},
+         {0, 2, 1},
+         {0, 1, 2},
+         {0, 1, 2},
+     };
+
+     static float signs[6][3] = {
+         {-1.0f, -1.0f, -1.0f},
+         {+1.0f, -1.0f, +1.0f},
+         {+1.0f, +1.0f, -1.0f},
+         {+1.0f, -1.0f, +1.0f},
+         {+1.0f, -1.0f, -1.0f},
+         {-1.0f, -1.0f, +1.0f},
+     };
+
+     mat.fill(0.0f);
+     for (int i = 0; i &lt; 3; ++i)
+         mat(i, perm[face][i]) = signs[face][i];
+     mat(3, 3) = 1.0f;
+ }
+
+ void GLRenderTargetCube::getProjectionMatrix(QMatrix4x4&amp; mat, float nearZ, float farZ)
+ {
+     static const QMatrix4x4 reference(
+             1.0f, 0.0f, 0.0f, 0.0f,
+             0.0f, 1.0f, 0.0f, 0.0f,
+             0.0f, 0.0f, 0.0f, 0.0f,
+             0.0f, 0.0f, -1.0f, 0.0f);
+
+     mat = reference;
+     mat(2, 2) = (nearZ+farZ)/(nearZ-farZ);
+     mat(2, 3) = 2.0f*nearZ*farZ/(nearZ-farZ);
+ }</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

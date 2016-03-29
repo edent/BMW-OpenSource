@@ -1,0 +1,102 @@
+/****************************************************************************
+**
+** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+** All rights reserved.
+** Contact: Nokia Corporation (qt-info@nokia.com)
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:LGPL$
+** Commercial Usage
+** Licensees holding valid Qt Commercial licenses may use this file in
+** accordance with the Qt Commercial License Agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and Nokia.
+**
+** GNU Lesser General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU Lesser
+** General Public License version 2.1 as published by the Free Software
+** Foundation and appearing in the file LICENSE.LGPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU Lesser General Public License version 2.1 requirements
+** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+**
+** In addition, as a special exception, Nokia gives you certain additional
+** rights.  These rights are described in the Nokia Qt LGPL Exception
+** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+**
+** GNU General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU
+** General Public License version 3.0 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU General Public License version 3.0 requirements will be
+** met: http://www.gnu.org/copyleft/gpl.html.
+**
+** If you have questions regarding the use of this file, please contact
+** Nokia at qt-info@nokia.com.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*! 
+    \page qaxserver-demo-hierarchy.html
+    \title Qt Widget Hierarchy
+
+    \input examples/activeqt/hierarchy-demo.qdocinc
+*/
+
+/*!
+    \example activeqt/hierarchy
+    \title Hierarchy Example (ActiveQt)
+
+    The Hierarchy example is shows how to write an in-process ActiveX
+    control. The control is a QWidget subclass with child widgets
+    that are accessible as sub-types.
+
+    \snippet examples/activeqt/hierarchy/objects.h 0
+    The \c QParentWidget class provides slots to create a widget
+    with a name, and to return a pointer to a named widget. The class
+    declaration uses \c Q_CLASSINFO() to provide the COM identifiers for
+    this class.
+
+    \snippet examples/activeqt/hierarchy/objects.cpp 0
+    The constructor of QParentWidget creates a vertical box layout.
+    New child widgets are automatically added to the layout.
+
+    \snippet examples/activeqt/hierarchy/objects.cpp 1
+    The \c createSubWidget slot creates a new \c QSubWidget with
+    the name provided in the parameter, and sets the label to that
+    name. The widget is also shown explicitly.
+
+    \snippet examples/activeqt/hierarchy/objects.cpp 2
+    The \c subWidget slot uses the \c QObject::child() function and
+    returns the first child of type \c QSubWidget that has the requested
+    name.
+
+     \snippet examples/activeqt/hierarchy/objects.h 1
+    The \c QSubWidget class has a single string-property \c label,
+    and implements the paintEvent to draw the label. The class uses
+    again \c Q_CLASSINFO to provide the COM identifiers, and also sets
+    the \e ToSuperClass attribute to \e QSubWidget, to ensure that only
+    no slots of any superclasses (i.e. QWidget) are exposed.
+
+    \snippet examples/activeqt/hierarchy/objects.cpp 3
+    \snippet examples/activeqt/hierarchy/objects.cpp 4
+    The implementation of the QSubWidget class is self-explanatory.
+
+    \snippet examples/activeqt/hierarchy/main.cpp 0
+    The classes are then exported using a QAxFactory. \c QParentWidget is
+    exported as a full class (which can be created ), while \c QSubWidget is
+    only exported as a type, which can only be created indirectly through
+    APIs of \c QParentWidget.
+
+    To build the example you must first build the QAxServer library.
+    Then run qmake and your make tool in \c examples/activeqt/hierarchy.
+
+    The \l{qaxserver-demo-hierarchy.html}{demonstration} requires
+    your WebBrowser to support ActiveX controls, and scripting to be
+    enabled.
+
+    \snippet examples/activeqt/hierarchy-demo.qdocinc 0
+*/

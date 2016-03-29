@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qwebdatabase.cpp -->
+<head>
+  <title>Qt 4.6: QWebDatabase Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QWebDatabase" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QWebDatabase Class Reference<br /><span class="small-subtitle">[<a href="qtwebkit.html">QtWebKit</a> module]</span>
+</h1>
+<p>The QWebDatabase class provides access to HTML 5 databases created with JavaScript. <a href="#details">More...</a></p>
+<pre> #include &lt;QWebDatabase&gt;</pre><p><b>This class is not part of the Qt GUI Framework Edition.</b></p>
+<p>This class was introduced in Qt 4.5.</p>
+<ul>
+<li><a href="qwebdatabase-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qwebdatabase.html#QWebDatabase">QWebDatabase</a></b> ( const QWebDatabase &amp; <i>other</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qwebdatabase.html#dtor.QWebDatabase">~QWebDatabase</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qwebdatabase.html#displayName">displayName</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">qint64 </td><td class="memItemRight" valign="bottom"><b><a href="qwebdatabase.html#expectedSize">expectedSize</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qwebdatabase.html#fileName">fileName</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qwebdatabase.html#name">name</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QWebSecurityOrigin </td><td class="memItemRight" valign="bottom"><b><a href="qwebdatabase.html#origin">origin</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">qint64 </td><td class="memItemRight" valign="bottom"><b><a href="qwebdatabase.html#size">size</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QWebDatabase &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qwebdatabase.html#operator-eq">operator=</a></b> ( const QWebDatabase &amp; <i>other</i> )</td></tr>
+</table>
+<hr />
+<a name="static-public-members"></a>
+<h2>Static Public Members</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qwebdatabase.html#removeAllDatabases">removeAllDatabases</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qwebdatabase.html#removeDatabase">removeDatabase</a></b> ( const QWebDatabase &amp; <i>db</i> )</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QWebDatabase class provides access to HTML 5 databases created with JavaScript.</p>
+<p>The upcoming HTML 5 standard includes support for SQL databases that web sites can create and access on a local computer through JavaScript. QWebDatabase is the C++ interface to these databases.</p>
+<p>To get access to all databases defined by a security origin, use <a href="qwebsecurityorigin.html#databases">QWebSecurityOrigin::databases</a>(). Each database has an internal <a href="qwebdatabase.html#name">name</a>(), as well as a user-friendly name, provided by <a href="qwebdatabase.html#displayName">displayName</a>().</p>
+<p>WebKit uses SQLite to create and access the local SQL databases. The location of the database file in the local file system is returned by <a href="qwebdatabase.html#fileName">fileName</a>(). You can access the database directly through the <a href="qtsql.html">QtSql</a> database module.</p>
+<p>For each database the web site can define an <a href="qwebdatabase.html#expectedSize">expectedSize</a>(). The current size of the database in bytes is returned by <a href="qwebdatabase.html#size">size</a>().</p>
+<p>For more information refer to the <a href="http://dev.w3.org/html5/webdatabase/">HTML 5 Draft Standard</a>.</p>
+<p>See also <a href="qwebsecurityorigin.html">QWebSecurityOrigin</a>.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QWebDatabase/QWebDatabase" />
+<h3 class="fn"><a name="QWebDatabase"></a>QWebDatabase::QWebDatabase ( const QWebDatabase &amp; <i>other</i> )</h3>
+<p>Constructs a web database from <i>other</i>.</p>
+<a name="//apple_ref/cpp/instm/QWebDatabase/~QWebDatabase" />
+<h3 class="fn"><a name="dtor.QWebDatabase"></a>QWebDatabase::~QWebDatabase ()</h3>
+<p>Destroys the web database object. The data within this database is \b not destroyed.</p>
+<a name="//apple_ref/cpp/instm/QWebDatabase/displayName" />
+<h3 class="fn"><a name="displayName"></a><a href="qstring.html">QString</a> QWebDatabase::displayName () const</h3>
+<p>Returns the name of the database as seen by the user.</p>
+<a name="//apple_ref/cpp/instm/QWebDatabase/expectedSize" />
+<h3 class="fn"><a name="expectedSize"></a><a href="qtglobal.html#qint64-typedef">qint64</a> QWebDatabase::expectedSize () const</h3>
+<p>Returns the expected size of the database in bytes as defined by the web author.</p>
+<a name="//apple_ref/cpp/instm/QWebDatabase/fileName" />
+<h3 class="fn"><a name="fileName"></a><a href="qstring.html">QString</a> QWebDatabase::fileName () const</h3>
+<p>Returns the file name of the web database.</p>
+<p>The name can be used to access the database through the <a href="qtsql.html">QtSql</a> database module, for example:</p>
+<pre> QWebDatabase webdb = ...
+ QSqlDatabase sqldb = QSqlDatabase::addDatabase(&quot;QSQLITE&quot;, &quot;myconnection&quot;);
+ sqldb.setDatabaseName(webdb.fileName());
+ if (sqldb.open()) {
+     QStringList tables = sqldb.tables();
+     ...
+ }</pre>
+<p><b>Note:</b> Concurrent access to a database from multiple threads or processes is not very efficient because SQLite is used as WebKit's database backend.</p>
+<a name="//apple_ref/cpp/instm/QWebDatabase/name" />
+<h3 class="fn"><a name="name"></a><a href="qstring.html">QString</a> QWebDatabase::name () const</h3>
+<p>Returns the name of the database.</p>
+<a name="//apple_ref/cpp/instm/QWebDatabase/origin" />
+<h3 class="fn"><a name="origin"></a><a href="qwebsecurityorigin.html">QWebSecurityOrigin</a> QWebDatabase::origin () const</h3>
+<p>Returns the databases's security origin.</p>
+<a name="//apple_ref/cpp/clm/QWebDatabase/removeAllDatabases" />
+<h3 class="fn"><a name="removeAllDatabases"></a>void QWebDatabase::removeAllDatabases ()&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Deletes all web databases in the configured offline storage path.</p>
+<p>This function was introduced in Qt 4.6.</p>
+<p>See also <a href="qwebsettings.html#setOfflineStoragePath">QWebSettings::setOfflineStoragePath</a>().</p>
+<a name="//apple_ref/cpp/clm/QWebDatabase/removeDatabase" />
+<h3 class="fn"><a name="removeDatabase"></a>void QWebDatabase::removeDatabase ( const QWebDatabase &amp; <i>db</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Removes the database <i>db</i> from its security origin. All data stored in the database <i>db</i> will be destroyed.</p>
+<a name="//apple_ref/cpp/instm/QWebDatabase/size" />
+<h3 class="fn"><a name="size"></a><a href="qtglobal.html#qint64-typedef">qint64</a> QWebDatabase::size () const</h3>
+<p>Returns the current size of the database in bytes.</p>
+<a name="//apple_ref/cpp/instm/QWebDatabase/operator=" />
+<h3 class="fn"><a name="operator-eq"></a>QWebDatabase &amp; QWebDatabase::operator= ( const QWebDatabase &amp; <i>other</i> )</h3>
+<p>Assigns the <i>other</i> web database to this.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

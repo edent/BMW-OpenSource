@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qsqlindex.cpp -->
+<head>
+  <title>Qt 4.6: QSqlIndex Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QSqlIndex" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QSqlIndex Class Reference<br /><span class="small-subtitle">[<a href="qtsql.html">QtSql</a> module]</span>
+</h1>
+<p>The QSqlIndex class provides functions to manipulate and describe database indexes. <a href="#details">More...</a></p>
+<pre> #include &lt;QSqlIndex&gt;</pre><p><b>This class is not part of the Qt GUI Framework Edition.</b></p>
+<p>Inherits <a href="qsqlrecord.html">QSqlRecord</a>.</p>
+<ul>
+<li><a href="qsqlindex-members.html">List of all members, including inherited members</a></li>
+<li><a href="qsqlindex-qt3.html">Qt 3 support members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qsqlindex.html#QSqlIndex">QSqlIndex</a></b> ( const QString &amp; <i>cursorname</i> = QString(), const QString &amp; <i>name</i> = QString() )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qsqlindex.html#QSqlIndex-2">QSqlIndex</a></b> ( const QSqlIndex &amp; <i>other</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qsqlindex.html#dtor.QSqlIndex">~QSqlIndex</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qsqlindex.html#append">append</a></b> ( const QSqlField &amp; <i>field</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qsqlindex.html#append-2">append</a></b> ( const QSqlField &amp; <i>field</i>, bool <i>desc</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qsqlindex.html#cursorName">cursorName</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qsqlindex.html#isDescending">isDescending</a></b> ( int <i>i</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qsqlindex.html#name">name</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qsqlindex.html#setCursorName">setCursorName</a></b> ( const QString &amp; <i>cursorName</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qsqlindex.html#setDescending">setDescending</a></b> ( int <i>i</i>, bool <i>desc</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qsqlindex.html#setName">setName</a></b> ( const QString &amp; <i>name</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QSqlIndex &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qsqlindex.html#operator-eq">operator=</a></b> ( const QSqlIndex &amp; <i>other</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>28 public functions inherited from <a href="qsqlrecord.html#public-functions">QSqlRecord</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QSqlIndex class provides functions to manipulate and describe database indexes.</p>
+<p>An <i>index</i> refers to a single table or view in a database. Information about the fields that comprise the index can be used to generate SQL statements.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QSqlIndex/QSqlIndex" />
+<h3 class="fn"><a name="QSqlIndex"></a>QSqlIndex::QSqlIndex ( const <a href="qstring.html">QString</a> &amp; <i>cursorname</i> = QString(), const <a href="qstring.html">QString</a> &amp; <i>name</i> = QString() )</h3>
+<p>Constructs an empty index using the cursor name <i>cursorname</i> and index name <i>name</i>.</p>
+<h3 class="fn"><a name="QSqlIndex-2"></a>QSqlIndex::QSqlIndex ( const QSqlIndex &amp; <i>other</i> )</h3>
+<p>Constructs a copy of <i>other</i>.</p>
+<a name="//apple_ref/cpp/instm/QSqlIndex/~QSqlIndex" />
+<h3 class="fn"><a name="dtor.QSqlIndex"></a>QSqlIndex::~QSqlIndex ()</h3>
+<p>Destroys the object and frees any allocated resources.</p>
+<a name="//apple_ref/cpp/instm/QSqlIndex/append" />
+<h3 class="fn"><a name="append"></a>void QSqlIndex::append ( const <a href="qsqlfield.html">QSqlField</a> &amp; <i>field</i> )</h3>
+<p>Appends the field <i>field</i> to the list of indexed fields. The field is appended with an ascending sort order.</p>
+<h3 class="fn"><a name="append-2"></a>void QSqlIndex::append ( const <a href="qsqlfield.html">QSqlField</a> &amp; <i>field</i>, bool <i>desc</i> )</h3>
+<p>This is an overloaded function.</p>
+<p>Appends the field <i>field</i> to the list of indexed fields. The field is appended with an ascending sort order, unless <i>desc</i> is true.</p>
+<a name="//apple_ref/cpp/instm/QSqlIndex/cursorName" />
+<h3 class="fn"><a name="cursorName"></a><a href="qstring.html">QString</a> QSqlIndex::cursorName () const</h3>
+<p>Returns the name of the cursor which the index is associated with.</p>
+<p>See also <a href="qsqlindex.html#setCursorName">setCursorName</a>().</p>
+<a name="//apple_ref/cpp/instm/QSqlIndex/isDescending" />
+<h3 class="fn"><a name="isDescending"></a>bool QSqlIndex::isDescending ( int <i>i</i> ) const</h3>
+<p>Returns true if field <i>i</i> in the index is sorted in descending order; otherwise returns false.</p>
+<a name="//apple_ref/cpp/instm/QSqlIndex/name" />
+<h3 class="fn"><a name="name"></a><a href="qstring.html">QString</a> QSqlIndex::name () const</h3>
+<p>Returns the name of the index.</p>
+<p>See also <a href="qsqlindex.html#setName">setName</a>().</p>
+<a name="//apple_ref/cpp/instm/QSqlIndex/setCursorName" />
+<h3 class="fn"><a name="setCursorName"></a>void QSqlIndex::setCursorName ( const <a href="qstring.html">QString</a> &amp; <i>cursorName</i> )</h3>
+<p>Sets the name of the cursor that the index is associated with to <i>cursorName</i>.</p>
+<p>See also <a href="qsqlindex.html#cursorName">cursorName</a>().</p>
+<a name="//apple_ref/cpp/instm/QSqlIndex/setDescending" />
+<h3 class="fn"><a name="setDescending"></a>void QSqlIndex::setDescending ( int <i>i</i>, bool <i>desc</i> )</h3>
+<p>If <i>desc</i> is true, field <i>i</i> is sorted in descending order. Otherwise, field <i>i</i> is sorted in ascending order (the default). If the field does not exist, nothing happens.</p>
+<p>See also <a href="qsqlindex.html#isDescending">isDescending</a>().</p>
+<a name="//apple_ref/cpp/instm/QSqlIndex/setName" />
+<h3 class="fn"><a name="setName"></a>void QSqlIndex::setName ( const <a href="qstring.html">QString</a> &amp; <i>name</i> )</h3>
+<p>Sets the name of the index to <i>name</i>.</p>
+<p>See also <a href="qsqlindex.html#name">name</a>().</p>
+<a name="//apple_ref/cpp/instm/QSqlIndex/operator=" />
+<h3 class="fn"><a name="operator-eq"></a>QSqlIndex &amp; QSqlIndex::operator= ( const QSqlIndex &amp; <i>other</i> )</h3>
+<p>Sets the index equal to <i>other</i>.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

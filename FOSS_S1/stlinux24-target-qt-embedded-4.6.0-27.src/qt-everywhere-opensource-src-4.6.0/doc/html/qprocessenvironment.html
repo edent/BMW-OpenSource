@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qprocess.cpp -->
+<head>
+  <title>Qt 4.6: QProcessEnvironment Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QProcessEnvironment" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QProcessEnvironment Class Reference<br /><span class="small-subtitle">[<a href="qtcore.html">QtCore</a> module]</span>
+</h1>
+<p>The QProcessEnvironment class holds the environment variables that can be passed to a program. <a href="#details">More...</a></p>
+<pre> #include &lt;QProcessEnvironment&gt;</pre><p><b>Note:</b> All functions in this class are <a href="threads-reentrancy.html#reentrant">reentrant</a>.</p>
+<p>This class was introduced in Qt 4.6.</p>
+<ul>
+<li><a href="qprocessenvironment-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qprocessenvironment.html#QProcessEnvironment">QProcessEnvironment</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qprocessenvironment.html#QProcessEnvironment-2">QProcessEnvironment</a></b> ( const QProcessEnvironment &amp; <i>other</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qprocessenvironment.html#dtor.QProcessEnvironment">~QProcessEnvironment</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qprocessenvironment.html#clear">clear</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qprocessenvironment.html#contains">contains</a></b> ( const QString &amp; <i>name</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qprocessenvironment.html#insert">insert</a></b> ( const QString &amp; <i>name</i>, const QString &amp; <i>value</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qprocessenvironment.html#isEmpty">isEmpty</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qprocessenvironment.html#remove">remove</a></b> ( const QString &amp; <i>name</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QStringList </td><td class="memItemRight" valign="bottom"><b><a href="qprocessenvironment.html#toStringList">toStringList</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qprocessenvironment.html#value">value</a></b> ( const QString &amp; <i>name</i>, const QString &amp; <i>defaultValue</i> = QString() ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qprocessenvironment.html#operator-not-eq">operator!=</a></b> ( const QProcessEnvironment &amp; <i>other</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QProcessEnvironment &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qprocessenvironment.html#operator-eq">operator=</a></b> ( const QProcessEnvironment &amp; <i>other</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qprocessenvironment.html#operator-eq-eq">operator==</a></b> ( const QProcessEnvironment &amp; <i>other</i> ) const</td></tr>
+</table>
+<hr />
+<a name="static-public-members"></a>
+<h2>Static Public Members</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">QProcessEnvironment </td><td class="memItemRight" valign="bottom"><b><a href="qprocessenvironment.html#systemEnvironment">systemEnvironment</a></b> ()</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QProcessEnvironment class holds the environment variables that can be passed to a program.</p>
+<p>A process's environment is composed of a set of key=value pairs known as environment variables. The QProcessEnvironment class wraps that concept and allows easy manipulation of those variables. It's meant to be used along with <a href="qprocess.html">QProcess</a>, to set the environment for child processes. It cannot be used to change the current process's environment.</p>
+<p>The environment of the calling process can be obtained using <a href="qprocessenvironment.html#systemEnvironment">QProcessEnvironment::systemEnvironment</a>().</p>
+<p>On Unix systems, the variable names are case-sensitive. For that reason, this class will not touch the names of the variables. Note as well that Unix environment allows both variable names and contents to contain arbitrary binary data (except for the NUL character), but this is not supported by QProcessEnvironment. This class only supports names and values that are encodable by the current locale settings (see QTextCodec::codecForLocale).</p>
+<p>On Windows, the variable names are case-insensitive. Therefore, QProcessEnvironment will always uppercase the names and do case-insensitive comparisons.</p>
+<p>On Windows CE, the concept of environment does not exist. This class will keep the values set for compatibility with other platforms, but the values set will have no effect on the processes being created.</p>
+<p>See also <a href="qprocess.html">QProcess</a>, <a href="qprocess.html#systemEnvironment">QProcess::systemEnvironment</a>(), and <a href="qprocess.html#setProcessEnvironment">QProcess::setProcessEnvironment</a>().</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QProcessEnvironment/QProcessEnvironment" />
+<h3 class="fn"><a name="QProcessEnvironment"></a>QProcessEnvironment::QProcessEnvironment ()</h3>
+<p>Creates a new <a href="qprocessenvironment.html">QProcessEnvironment</a> object. This constructor creates an empty environment. If set on a <a href="qprocess.html">QProcess</a>, this will cause the current environment variables to be removed.</p>
+<h3 class="fn"><a name="QProcessEnvironment-2"></a>QProcessEnvironment::QProcessEnvironment ( const QProcessEnvironment &amp; <i>other</i> )</h3>
+<p>Creates a <a href="qprocessenvironment.html">QProcessEnvironment</a> object that is a copy of <i>other</i>.</p>
+<a name="//apple_ref/cpp/instm/QProcessEnvironment/~QProcessEnvironment" />
+<h3 class="fn"><a name="dtor.QProcessEnvironment"></a>QProcessEnvironment::~QProcessEnvironment ()</h3>
+<p>Frees the resources associated with this <a href="qprocessenvironment.html">QProcessEnvironment</a> object.</p>
+<a name="//apple_ref/cpp/instm/QProcessEnvironment/clear" />
+<h3 class="fn"><a name="clear"></a>void QProcessEnvironment::clear ()</h3>
+<p>Removes all key=value pairs from this <a href="qprocessenvironment.html">QProcessEnvironment</a> object, making it empty.</p>
+<p>See also <a href="qprocessenvironment.html#isEmpty">isEmpty</a>() and <a href="qprocessenvironment.html#systemEnvironment">systemEnvironment</a>().</p>
+<a name="//apple_ref/cpp/instm/QProcessEnvironment/contains" />
+<h3 class="fn"><a name="contains"></a>bool QProcessEnvironment::contains ( const <a href="qstring.html">QString</a> &amp; <i>name</i> ) const</h3>
+<p>Returns true if the environment variable of name <i>name</i> is found in this <a href="qprocessenvironment.html">QProcessEnvironment</a> object.</p>
+<p>On Windows, variable names are case-insensitive, so the key is converted to uppercase before searching. On other systems, names are case-sensitive so no trasformation is applied.</p>
+<p>See also <a href="qprocessenvironment.html#insert">insert</a>() and <a href="qprocessenvironment.html#value">value</a>().</p>
+<a name="//apple_ref/cpp/instm/QProcessEnvironment/insert" />
+<h3 class="fn"><a name="insert"></a>void QProcessEnvironment::insert ( const <a href="qstring.html">QString</a> &amp; <i>name</i>, const <a href="qstring.html">QString</a> &amp; <i>value</i> )</h3>
+<p>Inserts the environment variable of name <i>name</i> and contents <i>value</i> into this <a href="qprocessenvironment.html">QProcessEnvironment</a> object. If that variable already existed, it is replaced by the new value.</p>
+<p>On Windows, variable names are case-insensitive, so this function always uppercases the variable name before inserting. On other systems, names are case-sensitive, so no transformation is applied.</p>
+<p>On most systems, inserting a variable with no contents will have the same effect for applications as if the variable had not been set at all. However, to guarantee that there are no incompatibilities, to remove a variable, please use the <a href="qprocessenvironment.html#remove">remove</a>() function.</p>
+<p>See also <a href="qprocessenvironment.html#contains">contains</a>(), <a href="qprocessenvironment.html#remove">remove</a>(), and <a href="qprocessenvironment.html#value">value</a>().</p>
+<a name="//apple_ref/cpp/instm/QProcessEnvironment/isEmpty" />
+<h3 class="fn"><a name="isEmpty"></a>bool QProcessEnvironment::isEmpty () const</h3>
+<p>Returns true if this <a href="qprocessenvironment.html">QProcessEnvironment</a> object is empty: that is there are no key=value pairs set.</p>
+<p>See also <a href="qprocessenvironment.html#clear">clear</a>(), <a href="qprocessenvironment.html#systemEnvironment">systemEnvironment</a>(), and <a href="qprocessenvironment.html#insert">insert</a>().</p>
+<a name="//apple_ref/cpp/instm/QProcessEnvironment/remove" />
+<h3 class="fn"><a name="remove"></a>void QProcessEnvironment::remove ( const <a href="qstring.html">QString</a> &amp; <i>name</i> )</h3>
+<p>Removes the environment variable identified by <i>name</i> from this <a href="qprocessenvironment.html">QProcessEnvironment</a> object. If that variable did not exist before, nothing happens.</p>
+<p>On Windows, variable names are case-insensitive, so the key is converted to uppercase before searching. On other systems, names are case-sensitive so no trasformation is applied.</p>
+<p>See also <a href="qprocessenvironment.html#contains">contains</a>(), <a href="qprocessenvironment.html#insert">insert</a>(), and <a href="qprocessenvironment.html#value">value</a>().</p>
+<a name="//apple_ref/cpp/clm/QProcessEnvironment/systemEnvironment" />
+<h3 class="fn"><a name="systemEnvironment"></a>QProcessEnvironment QProcessEnvironment::systemEnvironment ()&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>The systemEnvironment function returns the environment of the calling process.</p>
+<p>It is returned as a <a href="qprocessenvironment.html">QProcessEnvironment</a>. This function does not cache the system environment. Therefore, it's possible to obtain an updated version of the environment if low-level C library functions like <tt>setenv</tt> ot <tt>putenv</tt> have been called.</p>
+<p>However, note that repeated calls to this function will recreate the <a href="qprocessenvironment.html">QProcessEnvironment</a> object, which is a non-trivial operation.</p>
+<p>This function was introduced in Qt 4.6.</p>
+<p>See also <a href="qprocess.html#systemEnvironment">QProcess::systemEnvironment</a>().</p>
+<a name="//apple_ref/cpp/instm/QProcessEnvironment/toStringList" />
+<h3 class="fn"><a name="toStringList"></a><a href="qstringlist.html">QStringList</a> QProcessEnvironment::toStringList () const</h3>
+<p>Converts this <a href="qprocessenvironment.html">QProcessEnvironment</a> object into a list of strings, one for each environment variable that is set. The environment variable's name and its value are separated by an equal character ('=').</p>
+<p>The <a href="qstringlist.html">QStringList</a> contents returned by this function are suitable for use with the QProcess::setEnvironment function. However, it is recommended to use QProcess::setProcessEnvironment instead since that will avoid unnecessary copying of the data.</p>
+<p>See also <a href="qprocessenvironment.html#systemEnvironment">systemEnvironment</a>(), <a href="qprocess.html#systemEnvironment">QProcess::systemEnvironment</a>(), <a href="qprocess.html#environment">QProcess::environment</a>(), and <a href="qprocess.html#setEnvironment">QProcess::setEnvironment</a>().</p>
+<a name="//apple_ref/cpp/instm/QProcessEnvironment/value" />
+<h3 class="fn"><a name="value"></a><a href="qstring.html">QString</a> QProcessEnvironment::value ( const <a href="qstring.html">QString</a> &amp; <i>name</i>, const <a href="qstring.html">QString</a> &amp; <i>defaultValue</i> = QString() ) const</h3>
+<p>Searches this <a href="qprocessenvironment.html">QProcessEnvironment</a> object for a variable identified by <i>name</i> and returns its value. If the variable is not found in this object, then <i>defaultValue</i> is returned instead.</p>
+<p>On Windows, variable names are case-insensitive, so the key is converted to uppercase before searching. On other systems, names are case-sensitive so no trasformation is applied.</p>
+<p>See also <a href="qprocessenvironment.html#contains">contains</a>(), <a href="qprocessenvironment.html#insert">insert</a>(), and <a href="qprocessenvironment.html#remove">remove</a>().</p>
+<a name="//apple_ref/cpp/instm/QProcessEnvironment/operator!=" />
+<h3 class="fn"><a name="operator-not-eq"></a>bool QProcessEnvironment::operator!= ( const QProcessEnvironment &amp; <i>other</i> ) const</h3>
+<p>Returns true if this and the <i>other</i> <a href="qprocessenvironment.html">QProcessEnvironment</a> objects are different.</p>
+<p>See also <a href="qprocessenvironment.html#operator-eq-eq">operator==</a>().</p>
+<a name="//apple_ref/cpp/instm/QProcessEnvironment/operator=" />
+<h3 class="fn"><a name="operator-eq"></a>QProcessEnvironment &amp; QProcessEnvironment::operator= ( const QProcessEnvironment &amp; <i>other</i> )</h3>
+<p>Copies the contents of the <i>other</i> <a href="qprocessenvironment.html">QProcessEnvironment</a> object into this one.</p>
+<a name="//apple_ref/cpp/instm/QProcessEnvironment/operator==" />
+<h3 class="fn"><a name="operator-eq-eq"></a>bool QProcessEnvironment::operator== ( const QProcessEnvironment &amp; <i>other</i> ) const</h3>
+<p>Returns true if this and the <i>other</i> <a href="qprocessenvironment.html">QProcessEnvironment</a> objects are equal.</p>
+<p>Two <a href="qprocessenvironment.html">QProcessEnvironment</a> objects are considered equal if they have the same set of key=value pairs. The comparison of keys is done case-sensitive on platforms where the environment is case-sensitive.</p>
+<p>See also <a href="qprocessenvironment.html#operator-not-eq">operator!=</a>() and <a href="qprocessenvironment.html#contains">contains</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

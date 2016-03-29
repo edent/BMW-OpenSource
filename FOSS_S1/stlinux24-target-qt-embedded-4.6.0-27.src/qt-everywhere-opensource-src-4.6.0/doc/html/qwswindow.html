@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qwindowsystem_qws.cpp -->
+<head>
+  <title>Qt 4.6: QWSWindow Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QWSWindow" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QWSWindow Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QWSWindow class encapsulates a top-level window in Qt for Embedded Linux. <a href="#details">More...</a></p>
+<pre> #include &lt;QWSWindow&gt;</pre><ul>
+<li><a href="qwswindow-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-types"></a>
+<h2>Public Types</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qwswindow.html#State-enum">State</a></b> { NoState, Hidden, Showing, Visible, ..., Destroyed }</td></tr>
+</table>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">const QString &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qwswindow.html#caption">caption</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QWSClient * </td><td class="memItemRight" valign="bottom"><b><a href="qwswindow.html#client">client</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QRegion </td><td class="memItemRight" valign="bottom"><b><a href="qwswindow.html#dirtyOnScreen">dirtyOnScreen</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qwswindow.html#isFullyObscured">isFullyObscured</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qwswindow.html#isOpaque">isOpaque</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qwswindow.html#isVisible">isVisible</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const QString &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qwswindow.html#name">name</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">uint </td><td class="memItemRight" valign="bottom"><b><a href="qwswindow.html#opacity">opacity</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const QRegion &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qwswindow.html#requestedRegion">requestedRegion</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">State </td><td class="memItemRight" valign="bottom"><b><a href="qwswindow.html#state">state</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qwswindow.html#winId">winId</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Qt::WindowFlags </td><td class="memItemRight" valign="bottom"><b><a href="qwswindow.html#windowFlags">windowFlags</a></b> () const</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QWSWindow class encapsulates a top-level window in Qt for Embedded Linux.</p>
+<p>When you run a <a href="qt-embedded-linux.html">Qt for Embedded Linux</a> application, it either runs as a server or connects to an existing server. As applications add and remove windows, the server process maintains information about each window. In <a href="qt-embedded-linux.html">Qt for Embedded Linux</a>, top-level windows are encapsulated as QWSWindow objects. Note that you should never construct the QWSWindow class yourself; the current top-level windows can be retrieved using the <a href="qwsserver.html#clientWindows">QWSServer::clientWindows</a>() function.</p>
+<p>With a window at hand, you can retrieve its caption, name, opacity and ID using the <a href="qwswindow.html#caption">caption</a>(), <a href="qwswindow.html#name">name</a>(), <a href="qwswindow.html#opacity">opacity</a>() and <a href="qwswindow.html#winId">winId</a>() functions, respectively. Use the <a href="qwswindow.html#client">client</a>() function to retrieve a pointer to the client that owns the window.</p>
+<p>Use the <a href="qwswindow.html#isVisible">isVisible</a>() function to find out if the window is visible. You can find out if the window is completely obscured by another window or by the bounds of the screen, using the <a href="qwswindow.html#isFullyObscured">isFullyObscured</a>() function. The <a href="qwswindow.html#isOpaque">isOpaque</a>() function returns true if the window has an alpha channel equal to 255. Finally, the <a href="qwswindow.html#requestedRegion">requestedRegion</a>() function returns the region of the display the window wants to draw on.</p>
+<p>See also <a href="qwsserver.html">QWSServer</a>, <a href="qwsclient.html">QWSClient</a>, and <a href="qt-embedded-architecture.html">Qt for Embedded Linux Architecture</a>.</p>
+<hr />
+<h2>Member Type Documentation</h2>
+<a name="//apple_ref/cpp/tag/QWSWindow/State" />
+<a name="//apple_ref/cpp/econst/QWSWindow/NoState" />
+<a name="//apple_ref/cpp/econst/QWSWindow/Hidden" />
+<a name="//apple_ref/cpp/econst/QWSWindow/Showing" />
+<a name="//apple_ref/cpp/econst/QWSWindow/Visible" />
+<a name="//apple_ref/cpp/econst/QWSWindow/Hiding" />
+<a name="//apple_ref/cpp/econst/QWSWindow/Raising" />
+<a name="//apple_ref/cpp/econst/QWSWindow/Lowering" />
+<a name="//apple_ref/cpp/econst/QWSWindow/Moving" />
+<a name="//apple_ref/cpp/econst/QWSWindow/ChangingGeometry" />
+<a name="//apple_ref/cpp/econst/QWSWindow/Destroyed" />
+<h3 class="fn"><a name="State-enum"></a>enum QWSWindow::State</h3>
+<p>This enum describes the state of a window. Most of the transitional states are set just before a call to <a href="qscreen.html#exposeRegion">QScreen::exposeRegion</a>() and reset immediately afterwards.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QWSWindow::NoState</tt></td><td align="center" valign="top"><tt>0</tt></td><td valign="top">Initial state before the window is properly initialized.</td></tr>
+<tr><td valign="top"><tt>QWSWindow::Hidden</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">The window is not visible.</td></tr>
+<tr><td valign="top"><tt>QWSWindow::Showing</tt></td><td align="center" valign="top"><tt>2</tt></td><td valign="top">The window is being shown.</td></tr>
+<tr><td valign="top"><tt>QWSWindow::Visible</tt></td><td align="center" valign="top"><tt>3</tt></td><td valign="top">The window is visible, and not in a transition.</td></tr>
+<tr><td valign="top"><tt>QWSWindow::Hiding</tt></td><td align="center" valign="top"><tt>4</tt></td><td valign="top">The window is being hidden.</td></tr>
+<tr><td valign="top"><tt>QWSWindow::Raising</tt></td><td align="center" valign="top"><tt>5</tt></td><td valign="top">The windoe is being raised.</td></tr>
+<tr><td valign="top"><tt>QWSWindow::Lowering</tt></td><td align="center" valign="top"><tt>6</tt></td><td valign="top">The window is being raised.</td></tr>
+<tr><td valign="top"><tt>QWSWindow::Moving</tt></td><td align="center" valign="top"><tt>7</tt></td><td valign="top">The window is being moved.</td></tr>
+<tr><td valign="top"><tt>QWSWindow::ChangingGeometry</tt></td><td align="center" valign="top"><tt>8</tt></td><td valign="top">The window's geometry is being changed.</td></tr>
+<tr><td valign="top"><tt>QWSWindow::Destroyed</tt></td><td align="center" valign="top"><tt>9</tt></td><td valign="top">The window is destroyed.</td></tr>
+</table></p>
+<p>See also <a href="qwswindow.html#state">state</a>() and <a href="qscreen.html#exposeRegion">QScreen::exposeRegion</a>().</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QWSWindow/caption" />
+<h3 class="fn"><a name="caption"></a>const <a href="qstring.html">QString</a> &amp; QWSWindow::caption () const</h3>
+<p>Returns the window's caption.</p>
+<p>See also <a href="qwswindow.html#name">name</a>() and <a href="qwswindow.html#winId">winId</a>().</p>
+<a name="//apple_ref/cpp/instm/QWSWindow/client" />
+<h3 class="fn"><a name="client"></a><a href="qwsclient.html">QWSClient</a> * QWSWindow::client () const</h3>
+<p>Returns a reference to the <a href="qwsclient.html">QWSClient</a> object that owns this window.</p>
+<p>See also <a href="qwswindow.html#requestedRegion">requestedRegion</a>().</p>
+<a name="//apple_ref/cpp/instm/QWSWindow/dirtyOnScreen" />
+<h3 class="fn"><a name="dirtyOnScreen"></a><a href="qregion.html">QRegion</a> QWSWindow::dirtyOnScreen () const</h3>
+<p>Returns the region that has been repainted since the previous <a href="qscreen.html#exposeRegion">QScreen::exposeRegion</a>(), and needs to be copied to the screen.</p>
+<p>This function was introduced in Qt 4.3.</p>
+<a name="//apple_ref/cpp/instm/QWSWindow/isFullyObscured" />
+<h3 class="fn"><a name="isFullyObscured"></a>bool QWSWindow::isFullyObscured () const</h3>
+<p>Returns true if the window is completely obsured by another window or by the bounds of the screen; otherwise returns false.</p>
+<p>See also <a href="qwswindow.html#isVisible">isVisible</a>().</p>
+<a name="//apple_ref/cpp/instm/QWSWindow/isOpaque" />
+<h3 class="fn"><a name="isOpaque"></a>bool QWSWindow::isOpaque () const</h3>
+<p>Returns true if the window is opaque, i.e&#x2e;, if its alpha channel equals 255; otherwise returns false.</p>
+<p>See also <a href="qwswindow.html#opacity">opacity</a>().</p>
+<a name="//apple_ref/cpp/instm/QWSWindow/isVisible" />
+<h3 class="fn"><a name="isVisible"></a>bool QWSWindow::isVisible () const</h3>
+<p>Returns true if the window is visible; otherwise returns false.</p>
+<p>See also <a href="qwswindow.html#isFullyObscured">isFullyObscured</a>().</p>
+<a name="//apple_ref/cpp/instm/QWSWindow/name" />
+<h3 class="fn"><a name="name"></a>const <a href="qstring.html">QString</a> &amp; QWSWindow::name () const</h3>
+<p>Returns the window's name, which is taken from the <a href="qobject.html#objectName-prop">objectName()</a> at the time of <a href="qwidget.html#show">show()</a>.</p>
+<p>See also <a href="qwswindow.html#caption">caption</a>() and <a href="qwswindow.html#winId">winId</a>().</p>
+<a name="//apple_ref/cpp/instm/QWSWindow/opacity" />
+<h3 class="fn"><a name="opacity"></a><a href="qtglobal.html#uint-typedef">uint</a> QWSWindow::opacity () const</h3>
+<p>Returns the window's alpha channel value.</p>
+<p>See also <a href="qwswindow.html#isOpaque">isOpaque</a>().</p>
+<a name="//apple_ref/cpp/instm/QWSWindow/requestedRegion" />
+<h3 class="fn"><a name="requestedRegion"></a>const <a href="qregion.html">QRegion</a> &amp; QWSWindow::requestedRegion () const</h3>
+<p>Returns the region that the window has requested to draw onto, including any window decorations.</p>
+<p>See also <a href="qwswindow.html#client">client</a>().</p>
+<a name="//apple_ref/cpp/instm/QWSWindow/state" />
+<h3 class="fn"><a name="state"></a><a href="qwswindow.html#State-enum">State</a> QWSWindow::state () const</h3>
+<p>Returns the current state of the window.</p>
+<p>This function was introduced in Qt 4.3.</p>
+<a name="//apple_ref/cpp/instm/QWSWindow/winId" />
+<h3 class="fn"><a name="winId"></a>int QWSWindow::winId () const</h3>
+<p>Returns the window's ID.</p>
+<p>See also <a href="qwswindow.html#name">name</a>() and <a href="qwswindow.html#caption">caption</a>().</p>
+<a name="//apple_ref/cpp/instm/QWSWindow/windowFlags" />
+<h3 class="fn"><a name="windowFlags"></a><a href="qt.html#WindowType-enum">Qt::WindowFlags</a> QWSWindow::windowFlags () const</h3>
+<p>Returns the window flags of the window. This value is only available after the first paint event.</p>
+<p>This function was introduced in Qt 4.3.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

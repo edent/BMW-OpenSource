@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- modules.qdoc -->
+<head>
+  <title>Qt 4.6: QtOpenVG Module</title>
+  <link rel="prev" href="qtopengl.html" />
+  <link rel="contents" href="modules.html" />
+  <link rel="next" href="qtscript.html" />
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><p>
+[Previous: <a href="qtopengl.html">QtOpenGL Module</a>]
+[<a href="modules.html">All Qt Modules</a>]
+[Next: <a href="qtscript.html">QtScript Module</a>]
+</p>
+<h1 class="title">QtOpenVG Module<br /><span class="subtitle"></span>
+</h1>
+<p>The QtOpenVG module is a plugin that provides support for OpenVG painting. <a href="#details">More...</a></p>
+<a name="details"></a>
+<h2>Detailed Description</h2>
+<p>OpenVG is a standard API from the <a href="http://www.khronos.org/openvg">Khronos Group</a> for accelerated 2D vector graphics that is appearing in an increasing number of embedded devices.</p>
+<p>OpenVG support can be enabled by passing the <tt>-openvg</tt> option to configure. It is assumed that the following qmake variables are set to appropriate values in the qmake.conf file for your platform:</p>
+<ul>
+<li><a href="qmake-variable-reference.html#qmake-incdir-openvg">QMAKE_INCDIR_OPENVG</a></li>
+<li><a href="qmake-variable-reference.html#qmake-libdir-openvg">QMAKE_LIBDIR_OPENVG</a></li>
+<li><a href="qmake-variable-reference.html#qmake-libs-openvg">QMAKE_LIBS_OPENVG</a></li>
+</ul>
+<p>Most OpenVG implementations are based on EGL, so the following variables may also need to be set:</p>
+<ul>
+<li><a href="qmake-variable-reference.html#qmake-incdir-egl">QMAKE_INCDIR_EGL</a></li>
+<li><a href="qmake-variable-reference.html#qmake-libdir-egl">QMAKE_LIBDIR_EGL</a></li>
+<li><a href="qmake-variable-reference.html#qmake-libs-egl">QMAKE_LIBS_EGL</a></li>
+</ul>
+<p>See <a href="qmake-variable-reference.html">qmake Variable Reference</a> for more information on these variables.</p>
+<p>Two kinds of OpenVG engines are currently supported: EGL based, and engines built on top of OpenGL such as <a href="http://sourceforge.net/projects/shivavg">ShivaVG</a>. EGL based engines are preferred.</p>
+<p>Once the graphics system plugin has been built and installed, applications can be run as follows to use the plugin:</p>
+<pre> app -graphicssystem OpenVG</pre>
+<p>If ShivaVG is being used, then substitute <tt>ShivaVG</tt> instead of <tt>OpenVG</tt> in the line above.</p>
+<p>
+[Previous: <a href="qtopengl.html">QtOpenGL Module</a>]
+[<a href="modules.html">All Qt Modules</a>]
+[Next: <a href="qtscript.html">QtScript Module</a>]
+</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

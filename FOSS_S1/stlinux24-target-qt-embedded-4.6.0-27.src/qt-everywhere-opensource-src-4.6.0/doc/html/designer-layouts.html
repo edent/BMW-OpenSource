@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- designer-manual.qdoc -->
+<head>
+  <title>Qt 4.6: Using Layouts in Qt Designer</title>
+  <link rel="prev" href="designer-widget-mode.html" />
+  <link rel="contents" href="" />
+  <link rel="next" href="designer-connection-mode.html" />
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><p>
+[Previous: <a href="designer-widget-mode.html">Qt Designer's Widget Editing Mode</a>]
+[<a href=""></a>]
+[Next: <a href="designer-connection-mode.html">Qt Designer's Signals and Slots Editing Mode</a>]
+</p>
+<h1 class="title">Using Layouts in Qt Designer<br /><span class="subtitle"></span>
+</h1>
+<p>Before a form can be used, the objects on the form need to be placed into layouts. This ensures that the objects will be displayed properly when the form is previewed or used in an application. Placing objects in a layout also ensures that they will be resized correctly when the form is resized.</p>
+<ul><li><a href="#applying-and-breaking-layouts">Applying and Breaking Layouts</a></li>
+<ul><li><a href="#setting-a-top-level-layout">Setting A Top Level Layout</a></li>
+<li><a href="#horizontal-and-vertical-layouts">Horizontal and Vertical Layouts</a></li>
+<ul><li><a href="#the-grid-layout">The Grid Layout</a></li>
+<li><a href="#splitter-layouts">Splitter Layouts</a></li>
+<li><a href="#the-form-layout">The Form Layout</a></li>
+</ul>
+<li><a href="#shortcut-keys">Shortcut Keys</a></li>
+</ul>
+</ul>
+<a name="applying-and-breaking-layouts"></a>
+<h2>Applying and Breaking Layouts</h2>
+<p>The simplest way to manage objects is to apply a layout to a group of existing objects. This is achieved by selecting the objects that you need to manage and applying one of the standard layouts using the main toolbar, the <b>Form</b> menu, or the form's context menu.</p>
+<p>Once widgets have been inserted into a layout, it is not possible to move and resize them individually because the layout itself controls the geometry of each widget within it, taking account of the hints provided by spacers. Instead, you must either break the layout and adjust each object's geometry manually, or you can influence the widget's geometry by resizing the layout.</p>
+<p>To break the layout, press <b>Ctrl+0</b> or choose <b>Break Layout</b> from the form's context menu, the <b>Form</b> menu or the main toolbar. You can also add and remove spacers from the layout to influence the geometries of the widgets.</p>
+<a name="insertingobjectsintoalayout"></a><p><table class="generic" align="center" cellpadding="2" cellspacing="1" border="0">
+<tr valign="top" class="odd"><td><img src="images/designer-layout-inserting.png" /></td><td><b>Inserting Objects into a Layout</b><p>Objects can be inserted into an existing layout by dragging them from their current positions and dropping them at the required location. A blue cursor is displayed in the layout as an object is dragged over it to indicate where the object will be added.</p>
+</td></tr>
+</table></p>
+<a name="setting-a-top-level-layout"></a>
+<h3>Setting A Top Level Layout</h3>
+<p>The form's top level layout can be set by clearing the slection (click the left mouse button on the form itself) and applying a layout. A top level layout is necessary to ensure that your widgets will resize correctly when its window is resized. To check if you have set a top level layout, preview your widget and attempt to resize the window by dragging the size grip.</p>
+<p><table class="generic" align="center" cellpadding="2" cellspacing="1" border="0">
+<tr valign="top" class="odd"><td><img src="images/designer-set-layout.png" /></td><td><b>Applying a Layout</b><p>To apply a layout, you can select your choice of layout from the toolbar shown on the left, or from the context menu shown below.</p>
+</td></tr>
+</table></p>
+<p align="center"><img src="images/designer-set-layout2.png" /></p><a name="horizontal-and-vertical-layouts"></a>
+<h3>Horizontal and Vertical Layouts</h3>
+<p>The simplest way to arrange objects on a form is to place them in a horizontal or vertical layout. Horizontal layouts ensure that the widgets within are aligned horizontally; vertical layouts ensure that they are aligned vertically.</p>
+<p>Horizontal and vertical layouts can be combined and nested to any depth. However, if you need more control over the placement of objects, consider using the grid layout.</p>
+<a name="the-grid-layout"></a>
+<h4>The Grid Layout</h4>
+<p>Complex form layouts can be created by placing objects in a grid layout. This kind of layout gives the form designer much more freedom to arrange widgets on the form, but can result in a much less flexible layout. However, for some kinds of form layout, a grid arrangement is much more suitable than a nested arrangement of horizontal and vertical layouts.</p>
+<a name="splitter-layouts"></a>
+<h4>Splitter Layouts</h4>
+<p>Another common way to manage the layout of objects on a form is to place them in a splitter. These splitters arrange the objects horizontally or vertically in the same way as normal layouts, but also allow the user to adjust the amount of space allocated to each object.</p>
+<p align="center"><img src="images/designer-splitter-layout.png" /></p><p>Although <a href="qsplitter.html">QSplitter</a> is a container widget, <i>Qt Designer</i> treats splitter objects as layouts that are applied to existing widgets. To place a group of widgets into a splitter, select them <a href="designer-widget-mode.html#selectingobjects">as described here</a> then apply the splitter layout by using the appropriate toolbar button, keyboard shortcut, or <b>Lay out</b> context menu entry.</p>
+<a name="the-form-layout"></a>
+<h4>The Form Layout</h4>
+<p>Since Qt 4.4, another layout class has been included -- <a href="qformlayout.html">QFormLayout</a>. This class manages widgets in a two-column form; the left column holds labels and the right column holds field widgets such as line edits, spin boxes, etc. The <a href="qformlayout.html">QFormLayout</a> class adheres to various platform look and feel guidelines and supports wrapping for long rows.</p>
+<p align="center"><img src="images/designer-form-layout.png" /></p><p>The UI file above results in the previews shown below.</p>
+<p><table class="generic" align="center" cellpadding="2" cellspacing="1" border="0">
+<thead><tr valign="top" class="qt-style"><th>Windows XP</th><th>Mac OS X</th><th>Cleanlooks</th></tr></thead>
+<tr valign="top" class="odd"><td><img src="images/designer-form-layout-windowsXP.png" /></td><td><img src="images/designer-form-layout-macintosh.png" /></td><td><img src="images/designer-form-layout-cleanlooks.png" /></td></tr>
+</table></p>
+<a name="shortcut-keys"></a>
+<h3>Shortcut Keys</h3>
+<p>In addition to the standard toolbar and context menu entries, there is also a set of keyboard shortcuts to apply layouts on widgets.</p>
+<a name="layoutshortcuts"></a><p><table class="generic" align="center" cellpadding="2" cellspacing="1" border="0">
+<thead><tr valign="top" class="qt-style"><th>Layout</th><th>Shortcut</th><th>Description</th></tr></thead>
+<tr valign="top" class="odd"><td>Horizontal</td><td><b>Ctrl+1</b></td><td>Places the selected objects in a horizontal layout.</td></tr>
+<tr valign="top" class="even"><td>Vertical</td><td><b>Ctrl+2</b></td><td>Places the selected objects in a vertical layout.</td></tr>
+<tr valign="top" class="odd"><td>Grid</td><td><b>Ctrl+5</b></td><td>Places the selected objects in a grid layout.</td></tr>
+<tr valign="top" class="even"><td>Form</td><td><b>Ctrl+6</b></td><td>Places the selected objects in a form layout.</td></tr>
+<tr valign="top" class="odd"><td>Horizontal splitter</td><td><b>Ctrl+3</b></td><td>Creates a horizontal splitter and places the selected objects inside it.</td></tr>
+<tr valign="top" class="even"><td>Vertical splitter</td><td><b>Ctrl+4</b></td><td>Creates a vertical splitter and places the selected objects inside it.</td></tr>
+<tr valign="top" class="odd"><td>Adjust size</td><td><b>Ctrl+J</b></td><td>Adjusts the size of the layout to ensure that each child object has sufficient space to display its contents. See <a href="qwidget.html#adjustSize">QWidget::adjustSize</a>() for more information.</td></tr>
+</table></p>
+<p><b>Note:</b> <b>Ctrl+0</b> is used to break a layout.</p>
+<p>
+[Previous: <a href="designer-widget-mode.html">Qt Designer's Widget Editing Mode</a>]
+[<a href=""></a>]
+[Next: <a href="designer-connection-mode.html">Qt Designer's Signals and Slots Editing Mode</a>]
+</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

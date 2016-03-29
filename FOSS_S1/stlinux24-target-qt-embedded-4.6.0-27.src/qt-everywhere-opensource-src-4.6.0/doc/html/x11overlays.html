@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- x11overlays.qdoc -->
+<head>
+  <title>Qt 4.6: How to Use X11 Overlays with Qt</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">How to Use X11 Overlays with Qt<br /><span class="subtitle"></span>
+</h1>
+<p>X11 overlays are a powerful mechanism for drawing annotations etc., on top of an image without destroying it, thus saving a great deal of image rendering time. For more information, see the highly recommended book <i>OpenGL Programming for the X Window System</i> (Mark Kilgard, Addison Wesley Developers Press 1996).</p>
+<p><b>Warning:</b> The Qt OpenGL Extension includes direct support for the use of OpenGL overlays. For many uses of overlays, this makes the technique described below redundant. The following is a discussion on how to use non-QGL widgets in overlay planes.</p>
+<p>In the typical case, X11 overlays can easily be used together with the current version of Qt and the Qt OpenGL Extension. The following requirements apply:</p>
+<ol type="1">
+<li>Your X server and graphics card/hardware must support overlays. For many X servers, overlay support can be turned on with a configuration option; consult your X server installation documentation.</li>
+<li>Your X server must (be configured to) use an overlay visual as the default visual. Most modern X servers do this, since this has the added advantage that pop-up menus, overlapping windows etc., will <i>not</i> affect underlying images in the main plane, thereby avoiding expensive redraws.</li>
+<li>The best (deepest) visual for OpenGL rendering is in the main plane. This is the normal case. Typically, X servers that support overlays provide a 24-bit <tt>TrueColor</tt> visual in the main plane, and an 8-bit <tt>PseudoColor</tt> (default) visual in the overlay plane.</li>
+</ol>
+<p>Assuming that the requirements mentioned above are met, a <a href="qglwidget.html">QGLWidget</a> will default to using the main plane visual, while all other widgets will use the overlay visual. Thus, we can place a normal widget on top of the <a href="qglwidget.html">QGLWidget</a>, and do drawing on it, without affecting the image in the OpenGL window. In other words, we can use all the drawing capabilities of <a href="qpainter.html">QPainter</a> to draw annotations, rubberbands, etc. For the typical use of overlays, this is much easier than using OpenGL for rendering annotations.</p>
+<p>An overlay plane has a specific color called the transparent color. Pixels drawn in this color will not be visible; instead the underlying OpenGL image will show through.</p>
+<p>To use this technique, you must not use the <a href="qapplication.html#ColorSpec-enum">QApplication::ManyColor</a> or QApplication::TrueColor color specification for <a href="qapplication.html">QApplication</a>, because this will force the normal Qt widgets to use a <tt>TrueColor</tt> visual, which will typically be in the main plane, not in the overlay plane as desired.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

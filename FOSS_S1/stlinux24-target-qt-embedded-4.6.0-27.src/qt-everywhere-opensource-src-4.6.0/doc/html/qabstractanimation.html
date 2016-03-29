@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qabstractanimation.cpp -->
+<head>
+  <title>Qt 4.6: QAbstractAnimation Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QAbstractAnimation" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QAbstractAnimation Class Reference<br /><span class="small-subtitle">[<a href="qtcore.html">QtCore</a> module]</span>
+</h1>
+<p>The QAbstractAnimation class is the base of all animations. <a href="#details">More...</a></p>
+<pre> #include &lt;QAbstractAnimation&gt;</pre><p>Inherits <a href="qobject.html">QObject</a>.</p>
+<p>Inherited by <a href="qanimationgroup.html">QAnimationGroup</a>, <a href="qpauseanimation.html">QPauseAnimation</a>, and <a href="qvariantanimation.html">QVariantAnimation</a>.</p>
+<p>This class was introduced in Qt 4.6.</p>
+<ul>
+<li><a href="qabstractanimation-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-types"></a>
+<h2>Public Types</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qabstractanimation.html#DeletionPolicy-enum">DeletionPolicy</a></b> { KeepWhenStopped, DeleteWhenStopped }</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qabstractanimation.html#Direction-enum">Direction</a></b> { Forward, Backward }</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qabstractanimation.html#State-enum">State</a></b> { Stopped, Paused, Running }</td></tr>
+</table>
+<hr />
+<a name="properties"></a>
+<h2>Properties</h2>
+<p><table class="propsummary" width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr><td width="45%" valign="top"><ul>
+<li><div class="fn"><b><a href="qabstractanimation.html#currentLoop-prop">currentLoop</a></b> : const int</div></li>
+<li><div class="fn"><b><a href="qabstractanimation.html#currentTime-prop">currentTime</a></b> : int</div></li>
+<li><div class="fn"><b><a href="qabstractanimation.html#direction-prop">direction</a></b> : Direction</div></li>
+</ul></td><td valign="top"><ul>
+<li><div class="fn"><b><a href="qabstractanimation.html#duration-prop">duration</a></b> : const int</div></li>
+<li><div class="fn"><b><a href="qabstractanimation.html#loopCount-prop">loopCount</a></b> : int</div></li>
+<li><div class="fn"><b><a href="qabstractanimation.html#state-prop">state</a></b> : const State</div></li>
+</ul>
+</td></tr>
+</table></p>
+<ul>
+<li><div bar="2" class="fn"></div>1 property inherited from <a href="qobject.html#properties">QObject</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qabstractanimation.html#QAbstractAnimation">QAbstractAnimation</a></b> ( QObject * <i>parent</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual </td><td class="memItemRight" valign="bottom"><b><a href="qabstractanimation.html#dtor.QAbstractAnimation">~QAbstractAnimation</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qabstractanimation.html#currentLoop-prop">currentLoop</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qabstractanimation.html#currentLoopTime">currentLoopTime</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qabstractanimation.html#currentTime-prop">currentTime</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Direction </td><td class="memItemRight" valign="bottom"><b><a href="qabstractanimation.html#direction-prop">direction</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual int </td><td class="memItemRight" valign="bottom"><b><a href="qabstractanimation.html#duration-prop">duration</a></b> () const = 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QAnimationGroup * </td><td class="memItemRight" valign="bottom"><b><a href="qabstractanimation.html#group">group</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qabstractanimation.html#loopCount-prop">loopCount</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qabstractanimation.html#direction-prop">setDirection</a></b> ( Direction <i>direction</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qabstractanimation.html#loopCount-prop">setLoopCount</a></b> ( int <i>loopCount</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">State </td><td class="memItemRight" valign="bottom"><b><a href="qabstractanimation.html#state-prop">state</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qabstractanimation.html#totalDuration">totalDuration</a></b> () const</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>29 public functions inherited from <a href="qobject.html#public-functions">QObject</a></li>
+</ul>
+<hr />
+<a name="public-slots"></a>
+<h2>Public Slots</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qabstractanimation.html#pause">pause</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qabstractanimation.html#resume">resume</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qabstractanimation.html#currentTime-prop">setCurrentTime</a></b> ( int <i>msecs</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qabstractanimation.html#setPaused">setPaused</a></b> ( bool <i>paused</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qabstractanimation.html#start">start</a></b> ( QAbstractAnimation::DeletionPolicy <i>policy</i> = KeepWhenStopped )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qabstractanimation.html#stop">stop</a></b> ()</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>1 public slot inherited from <a href="qobject.html#public-slots">QObject</a></li>
+</ul>
+<hr />
+<a name="signals"></a>
+<h2>Signals</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qabstractanimation.html#currentLoopChanged">currentLoopChanged</a></b> ( int <i>currentLoop</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qabstractanimation.html#directionChanged">directionChanged</a></b> ( QAbstractAnimation::Direction <i>newDirection</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qabstractanimation.html#finished">finished</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qabstractanimation.html#stateChanged">stateChanged</a></b> ( QAbstractAnimation::State <i>newState</i>, QAbstractAnimation::State <i>oldState</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>1 signal inherited from <a href="qobject.html#signals">QObject</a></li>
+</ul>
+<hr />
+<a name="protected-functions"></a>
+<h2>Protected Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qabstractanimation.html#updateCurrentTime">updateCurrentTime</a></b> ( int <i>currentTime</i> ) = 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qabstractanimation.html#updateDirection">updateDirection</a></b> ( QAbstractAnimation::Direction <i>direction</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qabstractanimation.html#updateState">updateState</a></b> ( QAbstractAnimation::State <i>newState</i>, QAbstractAnimation::State <i>oldState</i> )</td></tr>
+</table>
+<hr />
+<a name="reimplemented-protected-functions"></a>
+<h2>Reimplemented Protected Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qabstractanimation.html#event">event</a></b> ( QEvent * <i>event</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li><div class="fn"></div>5 static public members inherited from <a href="qobject.html#static-public-members">QObject</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QAbstractAnimation class is the base of all animations.</p>
+<p>The class defines the functions for the functionality shared by all animations. By inheriting this class, you can create custom animations that plug into the rest of the animation framework.</p>
+<p>The progress of an animation is given by its current time (<a href="qabstractanimation.html#currentLoopTime">currentLoopTime</a>()), which is measured in milliseconds from the start of the animation (0) to its end (<a href="qabstractanimation.html#duration-prop">duration</a>()). The value is updated automatically while the animation is running. It can also be set directly with <a href="qabstractanimation.html#currentTime-prop">setCurrentTime</a>().</p>
+<p>At any point an animation is in one of three states: <a href="qabstractanimation.html#State-enum">Running</a>, <a href="qabstractanimation.html#State-enum">Stopped</a>, or <a href="qabstractanimation.html#State-enum">Paused</a>--as defined by the <a href="qabstractanimation.html#State-enum">State</a> enum. The current state can be changed by calling <a href="qabstractanimation.html#start">start</a>(), <a href="qabstractanimation.html#stop">stop</a>(), <a href="qabstractanimation.html#pause">pause</a>(), or <a href="qabstractanimation.html#resume">resume</a>(). An animation will always reset its <a href="qabstractanimation.html#currentTime-prop">current time</a> when it is started. If paused, it will continue with the same current time when resumed. When an animation is stopped, it cannot be resumed, but will keep its current time (until started again). QAbstractAnimation will emit <a href="qabstractanimation.html#stateChanged">stateChanged</a>() whenever its state changes.</p>
+<p>An animation can loop any number of times by setting the <a href="qabstractanimation.html#loopCount-prop">loopCount</a> property. When an animation's current time reaches its <a href="qabstractanimation.html#duration-prop">duration</a>(), it will reset the current time and keep running. A loop count of 1 (the default value) means that the animation will run one time. Note that a duration of -1 means that the animation will run until stopped; the current time will increase indefinitely. When the current time equals <a href="qabstractanimation.html#duration-prop">duration</a>() and the animation is in its final loop, the <a href="qabstractanimation.html#State-enum">Stopped</a> state is entered, and the <a href="qabstractanimation.html#finished">finished</a>() signal is emitted.</p>
+<p>QAbstractAnimation provides pure virtual functions used by subclasses to track the progress of the animation: <a href="qabstractanimation.html#duration-prop">duration</a>() and <a href="qabstractanimation.html#updateCurrentTime">updateCurrentTime</a>(). The <a href="qabstractanimation.html#duration-prop">duration</a>() function lets you report a duration for the animation (as discussed above). The animation framework calls <a href="qabstractanimation.html#updateCurrentTime">updateCurrentTime</a>() when current time has changed. By reimplementing this function, you can track the animation progress. Note that neither the interval between calls nor the number of calls to this function are defined; though, it will normally be 60 updates per second.</p>
+<p>By reimplementing <a href="qabstractanimation.html#updateState">updateState</a>(), you can track the animation's state changes, which is particularly useful for animations that are not driven by time.</p>
+<p>See also <a href="qvariantanimation.html">QVariantAnimation</a>, <a href="qpropertyanimation.html">QPropertyAnimation</a>, <a href="qanimationgroup.html">QAnimationGroup</a>, and <a href="animation-overview.html">The Animation Framework</a>.</p>
+<hr />
+<h2>Member Type Documentation</h2>
+<a name="//apple_ref/cpp/tag/QAbstractAnimation/DeletionPolicy" />
+<a name="//apple_ref/cpp/econst/QAbstractAnimation/KeepWhenStopped" />
+<a name="//apple_ref/cpp/econst/QAbstractAnimation/DeleteWhenStopped" />
+<h3 class="fn"><a name="DeletionPolicy-enum"></a>enum QAbstractAnimation::DeletionPolicy</h3>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QAbstractAnimation::KeepWhenStopped</tt></td><td align="center" valign="top"><tt>0</tt></td><td valign="top">The animation will not be deleted when stopped.</td></tr>
+<tr><td valign="top"><tt>QAbstractAnimation::DeleteWhenStopped</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">The animation will be automatically deleted when stopped.</td></tr>
+</table></p>
+<a name="//apple_ref/cpp/tag/QAbstractAnimation/Direction" />
+<a name="//apple_ref/cpp/econst/QAbstractAnimation/Forward" />
+<a name="//apple_ref/cpp/econst/QAbstractAnimation/Backward" />
+<h3 class="fn"><a name="Direction-enum"></a>enum QAbstractAnimation::Direction</h3>
+<p>This enum describes the direction of the animation when in <a href="qabstractanimation.html#State-enum">Running</a> state.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QAbstractAnimation::Forward</tt></td><td align="center" valign="top"><tt>0</tt></td><td valign="top">The current time of the animation increases with time (i.e&#x2e;, moves from 0 and towards the end / duration).</td></tr>
+<tr><td valign="top"><tt>QAbstractAnimation::Backward</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">The current time of the animation decreases with time (i.e&#x2e;, moves from the end / duration and towards 0).</td></tr>
+</table></p>
+<p>See also <a href="qabstractanimation.html#direction-prop">direction</a>.</p>
+<a name="//apple_ref/cpp/tag/QAbstractAnimation/State" />
+<a name="//apple_ref/cpp/econst/QAbstractAnimation/Stopped" />
+<a name="//apple_ref/cpp/econst/QAbstractAnimation/Paused" />
+<a name="//apple_ref/cpp/econst/QAbstractAnimation/Running" />
+<h3 class="fn"><a name="State-enum"></a>enum QAbstractAnimation::State</h3>
+<p>This enum describes the state of the animation.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QAbstractAnimation::Stopped</tt></td><td align="center" valign="top"><tt>0</tt></td><td valign="top">The animation is not running. This is the initial state of <a href="qabstractanimation.html">QAbstractAnimation</a>, and the state <a href="qabstractanimation.html">QAbstractAnimation</a> reenters when finished. The current time remain unchanged until either <a href="qabstractanimation.html#currentTime-prop">setCurrentTime</a>() is called, or the animation is started by calling <a href="qabstractanimation.html#start">start</a>().</td></tr>
+<tr><td valign="top"><tt>QAbstractAnimation::Paused</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">The animation is paused (i.e&#x2e;, temporarily suspended). Calling <a href="qabstractanimation.html#resume">resume</a>() will resume animation activity.</td></tr>
+<tr><td valign="top"><tt>QAbstractAnimation::Running</tt></td><td align="center" valign="top"><tt>2</tt></td><td valign="top">The animation is running. While control is in the event loop, <a href="qabstractanimation.html">QAbstractAnimation</a> will update its current time at regular intervals, calling <a href="qabstractanimation.html#updateCurrentTime">updateCurrentTime</a>() when appropriate.</td></tr>
+</table></p>
+<p>See also <a href="qabstractanimation.html#state-prop">state</a>() and <a href="qabstractanimation.html#stateChanged">stateChanged</a>().</p>
+<hr />
+<h2>Property Documentation</h2>
+<a name="//apple_ref/cpp/instm/QAbstractAnimation/currentLoop" />
+<a name="//apple_ref/cpp/instm/QAbstractAnimation/currentLoopChanged" />
+<h3 class="fn"><a name="currentLoop-prop"></a>currentLoop : const int</h3>
+<p>This property holds the current loop of the animation.</p>
+<p>This property describes the current loop of the animation. By default, the animation's loop count is 1, and so the current loop will always be 0. If the loop count is 2 and the animation runs past its duration, it will automatically rewind and restart at current time 0, and current loop 1, and so on.</p>
+<p>When the current loop changes, <a href="qabstractanimation.html">QAbstractAnimation</a> emits the <a href="qabstractanimation.html#currentLoopChanged">currentLoopChanged</a>() signal.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b>currentLoop</b> () const</td></tr>
+</table>
+<p><b>Notifier signal:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qabstractanimation.html#currentLoopChanged">currentLoopChanged</a></b> ( int <i>currentLoop</i> )</td></tr>
+</table>
+<a name="//apple_ref/cpp/instm/QAbstractAnimation/currentTime" />
+<a name="//apple_ref/cpp/instm/QAbstractAnimation/setCurrentTime" />
+<h3 class="fn"><a name="currentTime-prop"></a>currentTime : int</h3>
+<p>This property holds the current time and progress of the animation.</p>
+<p>This property describes the animation's current time. You can change the current time by calling setCurrentTime, or you can call <a href="qabstractanimation.html#start">start</a>() and let the animation run, setting the current time automatically as the animation progresses.</p>
+<p>The animation's current time starts at 0, and ends at <a href="qabstractanimation.html#totalDuration">totalDuration</a>().</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b>currentTime</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setCurrentTime</b> ( int <i>msecs</i> )</td></tr>
+</table>
+<p>See also <a href="qabstractanimation.html#loopCount-prop">loopCount</a> and currentLoopTime.</p>
+<a name="//apple_ref/cpp/instm/QAbstractAnimation/direction" />
+<a name="//apple_ref/cpp/instm/QAbstractAnimation/setDirection" />
+<a name="//apple_ref/cpp/instm/QAbstractAnimation/directionChanged" />
+<h3 class="fn"><a name="direction-prop"></a>direction : <a href="qabstractanimation.html#Direction-enum">Direction</a></h3>
+<p>This property holds the direction of the animation when it is in Running state.</p>
+<p>This direction indicates whether the time moves from 0 towards the animation duration, or from the value of the duration and towards 0 after <a href="qabstractanimation.html#start">start</a>() has been called.</p>
+<p>By default, this property is set to <a href="qabstractanimation.html#Direction-enum">Forward</a>.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">Direction </td><td class="memItemRight" valign="bottom"><b>direction</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setDirection</b> ( Direction <i>direction</i> )</td></tr>
+</table>
+<p><b>Notifier signal:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qabstractanimation.html#directionChanged">directionChanged</a></b> ( QAbstractAnimation::Direction <i>newDirection</i> )</td></tr>
+</table>
+<a name="//apple_ref/cpp/instm/QAbstractAnimation/duration" />
+<h3 class="fn"><a name="duration-prop"></a>duration : const int</h3>
+<p>This property holds the duration of the animation.</p>
+<p>If the duration is -1, it means that the duration is undefined. In this case, <a href="qabstractanimation.html#loopCount-prop">loopCount</a> is ignored.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual int </td><td class="memItemRight" valign="bottom"><b>duration</b> () const = 0</td></tr>
+</table>
+<a name="//apple_ref/cpp/instm/QAbstractAnimation/loopCount" />
+<a name="//apple_ref/cpp/instm/QAbstractAnimation/setLoopCount" />
+<h3 class="fn"><a name="loopCount-prop"></a>loopCount : int</h3>
+<p>This property holds the loop count of the animation.</p>
+<p>This property describes the loop count of the animation as an integer. By default this value is 1, indicating that the animation should run once only, and then stop. By changing it you can let the animation loop several times. With a value of 0, the animation will not run at all, and with a value of -1, the animation will loop forever until stopped. It is not supported to have loop on an animation that has an undefined duration. It will only run once.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b>loopCount</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setLoopCount</b> ( int <i>loopCount</i> )</td></tr>
+</table>
+<a name="//apple_ref/cpp/instm/QAbstractAnimation/state" />
+<a name="//apple_ref/cpp/instm/QAbstractAnimation/stateChanged" />
+<h3 class="fn"><a name="state-prop"></a>state : const <a href="qabstractanimation.html#State-enum">State</a></h3>
+<p>This property holds state of the animation.</p>
+<p>This property describes the current state of the animation. When the animation state changes, <a href="qabstractanimation.html">QAbstractAnimation</a> emits the <a href="qabstractanimation.html#stateChanged">stateChanged</a>() signal.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">State </td><td class="memItemRight" valign="bottom"><b>state</b> () const</td></tr>
+</table>
+<p><b>Notifier signal:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qabstractanimation.html#stateChanged">stateChanged</a></b> ( QAbstractAnimation::State <i>newState</i>, QAbstractAnimation::State <i>oldState</i> )</td></tr>
+</table>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QAbstractAnimation/QAbstractAnimation" />
+<h3 class="fn"><a name="QAbstractAnimation"></a>QAbstractAnimation::QAbstractAnimation ( <a href="qobject.html">QObject</a> * <i>parent</i> = 0 )</h3>
+<p>Constructs the <a href="qabstractanimation.html">QAbstractAnimation</a> base class, and passes <i>parent</i> to <a href="qobject.html">QObject</a>'s constructor.</p>
+<p>See also <a href="qvariantanimation.html">QVariantAnimation</a> and <a href="qanimationgroup.html">QAnimationGroup</a>.</p>
+<a name="//apple_ref/cpp/instm/QAbstractAnimation/~QAbstractAnimation" />
+<h3 class="fn"><a name="dtor.QAbstractAnimation"></a>QAbstractAnimation::~QAbstractAnimation ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Stops the animation if it's running, then destroys the <a href="qabstractanimation.html">QAbstractAnimation</a>. If the animation is part of a <a href="qanimationgroup.html">QAnimationGroup</a>, it is automatically removed before it's destroyed.</p>
+<a name="//apple_ref/cpp/instm/QAbstractAnimation/currentLoopChanged" />
+<h3 class="fn"><a name="currentLoopChanged"></a>void QAbstractAnimation::currentLoopChanged ( int <i>currentLoop</i> )&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p><a href="qabstractanimation.html">QAbstractAnimation</a> emits this signal whenever the current loop changes. <i>currentLoop</i> is the current loop.</p>
+<p>See also <a href="qabstractanimation.html#currentLoop-prop">currentLoop</a>() and <a href="qabstractanimation.html#loopCount-prop">loopCount</a>().</p>
+<a name="//apple_ref/cpp/instm/QAbstractAnimation/currentLoopTime" />
+<h3 class="fn"><a name="currentLoopTime"></a>int QAbstractAnimation::currentLoopTime () const</h3>
+<p>Returns the current time inside the current loop. It can go from 0 to <a href="qabstractanimation.html#duration-prop">duration</a>().</p>
+<p>See also <a href="qabstractanimation.html#duration-prop">duration</a>() and <a href="qabstractanimation.html#currentTime-prop">currentTime</a>.</p>
+<a name="//apple_ref/cpp/instm/QAbstractAnimation/directionChanged" />
+<h3 class="fn"><a name="directionChanged"></a>void QAbstractAnimation::directionChanged ( <a href="qabstractanimation.html#Direction-enum">QAbstractAnimation::Direction</a> <i>newDirection</i> )&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p><a href="qabstractanimation.html">QAbstractAnimation</a> emits this signal whenever the direction has been changed. <i>newDirection</i> is the new direction.</p>
+<p>See also <a href="qabstractanimation.html#direction-prop">direction</a>.</p>
+<a name="//apple_ref/cpp/instm/QAbstractAnimation/event" />
+<h3 class="fn"><a name="event"></a>bool QAbstractAnimation::event ( <a href="qevent.html">QEvent</a> * <i>event</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qobject.html#event">QObject::event</a>().</p>
+<a name="//apple_ref/cpp/instm/QAbstractAnimation/finished" />
+<h3 class="fn"><a name="finished"></a>void QAbstractAnimation::finished ()&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p><a href="qabstractanimation.html">QAbstractAnimation</a> emits this signal after the animation has stopped and has reached the end.</p>
+<p>This signal is emitted after <a href="qabstractanimation.html#stateChanged">stateChanged</a>().</p>
+<p>See also <a href="qabstractanimation.html#stateChanged">stateChanged</a>().</p>
+<a name="//apple_ref/cpp/instm/QAbstractAnimation/group" />
+<h3 class="fn"><a name="group"></a><a href="qanimationgroup.html">QAnimationGroup</a> * QAbstractAnimation::group () const</h3>
+<p>If this animation is part of a <a href="qanimationgroup.html">QAnimationGroup</a>, this function returns a pointer to the group; otherwise, it returns 0.</p>
+<p>See also <a href="qanimationgroup.html#addAnimation">QAnimationGroup::addAnimation</a>().</p>
+<a name="//apple_ref/cpp/instm/QAbstractAnimation/pause" />
+<h3 class="fn"><a name="pause"></a>void QAbstractAnimation::pause ()&nbsp;&nbsp;<tt> [slot]</tt></h3>
+<p>Pauses the animation. When the animation is paused, <a href="qabstractanimation.html#state-prop">state</a>() returns Paused. The value of <a href="qabstractanimation.html#currentTime-prop">currentTime</a> will remain unchanged until <a href="qabstractanimation.html#resume">resume</a>() or <a href="qabstractanimation.html#start">start</a>() is called. If you want to continue from the current time, call <a href="qabstractanimation.html#resume">resume</a>().</p>
+<p>See also <a href="qabstractanimation.html#start">start</a>(), <a href="qabstractanimation.html#state-prop">state</a>(), and <a href="qabstractanimation.html#resume">resume</a>().</p>
+<a name="//apple_ref/cpp/instm/QAbstractAnimation/resume" />
+<h3 class="fn"><a name="resume"></a>void QAbstractAnimation::resume ()&nbsp;&nbsp;<tt> [slot]</tt></h3>
+<p>Resumes the animation after it was paused. When the animation is resumed, it emits the resumed() and <a href="qabstractanimation.html#stateChanged">stateChanged</a>() signals. The currenttime is not changed.</p>
+<p>See also <a href="qabstractanimation.html#start">start</a>(), <a href="qabstractanimation.html#pause">pause</a>(), and <a href="qabstractanimation.html#state-prop">state</a>().</p>
+<a name="//apple_ref/cpp/instm/QAbstractAnimation/setPaused" />
+<h3 class="fn"><a name="setPaused"></a>void QAbstractAnimation::setPaused ( bool <i>paused</i> )&nbsp;&nbsp;<tt> [slot]</tt></h3>
+<p>If <i>paused</i> is true, the animation is paused. If <i>paused</i> is false, the animation is resumed.</p>
+<p>See also <a href="qabstractanimation.html#state-prop">state</a>(), <a href="qabstractanimation.html#pause">pause</a>(), and <a href="qabstractanimation.html#resume">resume</a>().</p>
+<a name="//apple_ref/cpp/instm/QAbstractAnimation/start" />
+<h3 class="fn"><a name="start"></a>void QAbstractAnimation::start ( <a href="qabstractanimation.html#DeletionPolicy-enum">QAbstractAnimation::DeletionPolicy</a> <i>policy</i> = KeepWhenStopped )&nbsp;&nbsp;<tt> [slot]</tt></h3>
+<p>Starts the animation. The <i>policy</i> argument says whether or not the animation should be deleted when it's done. When the animation starts, the <a href="qabstractanimation.html#stateChanged">stateChanged</a>() signal is emitted, and <a href="qabstractanimation.html#state-prop">state</a>() returns Running. When control reaches the event loop, the animation will run by itself, periodically calling <a href="qabstractanimation.html#updateCurrentTime">updateCurrentTime</a>() as the animation progresses.</p>
+<p>If the animation is currently stopped or has already reached the end, calling start() will rewind the animation and start again from the beginning. When the animation reaches the end, the animation will either stop, or if the loop level is more than 1, it will rewind and continue from the beginning.</p>
+<p>If the animation is already running, this function does nothing.</p>
+<p>See also <a href="qabstractanimation.html#stop">stop</a>() and <a href="qabstractanimation.html#state-prop">state</a>().</p>
+<a name="//apple_ref/cpp/instm/QAbstractAnimation/stateChanged" />
+<h3 class="fn"><a name="stateChanged"></a>void QAbstractAnimation::stateChanged ( <a href="qabstractanimation.html#State-enum">QAbstractAnimation::State</a> <i>newState</i>, <a href="qabstractanimation.html#State-enum">QAbstractAnimation::State</a> <i>oldState</i> )&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p><a href="qabstractanimation.html">QAbstractAnimation</a> emits this signal whenever the state of the animation has changed from <i>oldState</i> to <i>newState</i>. This signal is emitted after the virtual <a href="qabstractanimation.html#updateState">updateState</a>() function is called.</p>
+<p>See also <a href="qabstractanimation.html#updateState">updateState</a>().</p>
+<a name="//apple_ref/cpp/instm/QAbstractAnimation/stop" />
+<h3 class="fn"><a name="stop"></a>void QAbstractAnimation::stop ()&nbsp;&nbsp;<tt> [slot]</tt></h3>
+<p>Stops the animation. When the animation is stopped, it emits the <a href="qabstractanimation.html#stateChanged">stateChanged</a>() signal, and <a href="qabstractanimation.html#state-prop">state</a>() returns Stopped. The current time is not changed.</p>
+<p>If the animation stops by itself after reaching the end (i.e&#x2e;, <a href="qabstractanimation.html#currentLoopTime">currentLoopTime</a>() == <a href="qabstractanimation.html#duration-prop">duration</a>() and <a href="qabstractanimation.html#currentLoop-prop">currentLoop</a>() &gt; <a href="qabstractanimation.html#loopCount-prop">loopCount</a>() - 1), the <a href="qabstractanimation.html#finished">finished</a>() signal is emitted.</p>
+<p>See also <a href="qabstractanimation.html#start">start</a>() and <a href="qabstractanimation.html#state-prop">state</a>().</p>
+<a name="//apple_ref/cpp/instm/QAbstractAnimation/totalDuration" />
+<h3 class="fn"><a name="totalDuration"></a>int QAbstractAnimation::totalDuration () const</h3>
+<p>Returns the total and effective duration of the animation, including the loop count.</p>
+<p>See also <a href="qabstractanimation.html#duration-prop">duration</a>() and <a href="qabstractanimation.html#currentTime-prop">currentTime</a>.</p>
+<a name="//apple_ref/cpp/instm/QAbstractAnimation/updateCurrentTime" />
+<h3 class="fn"><a name="updateCurrentTime"></a>void QAbstractAnimation::updateCurrentTime ( int <i>currentTime</i> )&nbsp;&nbsp;<tt> [pure virtual protected]</tt></h3>
+<p>This pure virtual function is called every time the animation's <i>currentTime</i> changes.</p>
+<p>See also <a href="qabstractanimation.html#updateState">updateState</a>().</p>
+<a name="//apple_ref/cpp/instm/QAbstractAnimation/updateDirection" />
+<h3 class="fn"><a name="updateDirection"></a>void QAbstractAnimation::updateDirection ( <a href="qabstractanimation.html#Direction-enum">QAbstractAnimation::Direction</a> <i>direction</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>This virtual function is called by <a href="qabstractanimation.html">QAbstractAnimation</a> when the direction of the animation is changed. The <i>direction</i> argument is the new direction.</p>
+<p>See also <a href="qabstractanimation.html#direction-prop">setDirection</a>() and <a href="qabstractanimation.html#direction-prop">direction</a>().</p>
+<a name="//apple_ref/cpp/instm/QAbstractAnimation/updateState" />
+<h3 class="fn"><a name="updateState"></a>void QAbstractAnimation::updateState ( <a href="qabstractanimation.html#State-enum">QAbstractAnimation::State</a> <i>newState</i>, <a href="qabstractanimation.html#State-enum">QAbstractAnimation::State</a> <i>oldState</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>This virtual function is called by <a href="qabstractanimation.html">QAbstractAnimation</a> when the state of the animation is changed from <i>oldState</i> to <i>newState</i>.</p>
+<p>See also <a href="qabstractanimation.html#start">start</a>(), <a href="qabstractanimation.html#stop">stop</a>(), <a href="qabstractanimation.html#pause">pause</a>(), and <a href="qabstractanimation.html#resume">resume</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

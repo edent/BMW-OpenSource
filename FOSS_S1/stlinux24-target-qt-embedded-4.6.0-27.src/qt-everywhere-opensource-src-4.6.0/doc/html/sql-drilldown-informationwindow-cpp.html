@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: informationwindow.cpp Example File (sql/drilldown/informationwindow.cpp)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">informationwindow.cpp Example File<br /><span class="small-subtitle">sql/drilldown/informationwindow.cpp</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the examples of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+
+ #include &quot;informationwindow.h&quot;
+
+ InformationWindow::InformationWindow(int id, QSqlRelationalTableModel *offices,
+                                      QWidget *parent)
+     : QDialog(parent)
+ {
+     QLabel *locationLabel = new QLabel(tr(&quot;Location: &quot;));
+     QLabel *countryLabel = new QLabel(tr(&quot;Country: &quot;));
+     QLabel *descriptionLabel = new QLabel(tr(&quot;Description: &quot;));
+     QLabel *imageFileLabel = new QLabel(tr(&quot;Image file: &quot;));
+
+     createButtons();
+
+     locationText = new QLabel;
+     countryText = new QLabel;
+     descriptionEditor = new QTextEdit;
+
+     imageFileEditor = new QComboBox;
+     imageFileEditor-&gt;setModel(offices-&gt;relationModel(1));
+     imageFileEditor-&gt;setModelColumn(offices-&gt;relationModel(1)-&gt;fieldIndex(&quot;file&quot;));
+
+     mapper = new QDataWidgetMapper(this);
+     mapper-&gt;setModel(offices);
+     mapper-&gt;setSubmitPolicy(QDataWidgetMapper::ManualSubmit);
+     mapper-&gt;setItemDelegate(new QSqlRelationalDelegate(mapper));
+     mapper-&gt;addMapping(imageFileEditor, 1);
+     mapper-&gt;addMapping(locationText, 2, &quot;text&quot;);
+     mapper-&gt;addMapping(countryText, 3, &quot;text&quot;);
+     mapper-&gt;addMapping(descriptionEditor, 4);
+     mapper-&gt;setCurrentIndex(id);
+
+     connect(descriptionEditor, SIGNAL(textChanged()),
+             this, SLOT(enableButtons()));
+     connect(imageFileEditor, SIGNAL(currentIndexChanged(int)),
+             this, SLOT(enableButtons()));
+
+     QGridLayout *layout = new QGridLayout;
+     layout-&gt;addWidget(locationLabel, 0, 0, Qt::AlignLeft | Qt::AlignTop);
+     layout-&gt;addWidget(countryLabel, 1, 0, Qt::AlignLeft | Qt::AlignTop);
+     layout-&gt;addWidget(imageFileLabel, 2, 0, Qt::AlignLeft | Qt::AlignTop);
+     layout-&gt;addWidget(descriptionLabel, 3, 0, Qt::AlignLeft | Qt::AlignTop);
+     layout-&gt;addWidget(locationText, 0, 1);
+     layout-&gt;addWidget(countryText, 1, 1);
+     layout-&gt;addWidget(imageFileEditor, 2, 1);
+     layout-&gt;addWidget(descriptionEditor, 3, 1);
+     layout-&gt;addWidget(buttonBox, 4, 0, 1, 2);
+     setLayout(layout);
+
+     locationId = id;
+     displayedImage = imageFileEditor-&gt;currentText();
+
+     setWindowFlags(Qt::Window);
+     enableButtons(false);
+     setWindowTitle(tr(&quot;Office: %1&quot;).arg(locationText-&gt;text()));
+ #ifndef Q_OS_SYMBIAN
+     resize(320, sizeHint().height());
+ #endif
+ }
+
+ int InformationWindow::id()
+ {
+     return locationId;
+ }
+
+ void InformationWindow::revert()
+ {
+     mapper-&gt;revert();
+     enableButtons(false);
+ }
+
+ void InformationWindow::submit()
+ {
+     QString newImage(imageFileEditor-&gt;currentText());
+
+     if (displayedImage != newImage) {
+         displayedImage = newImage;
+         emit imageChanged(locationId, newImage);
+     }
+
+     mapper-&gt;submit();
+     mapper-&gt;setCurrentIndex(locationId);
+
+     enableButtons(false);
+ }
+
+ void InformationWindow::createButtons()
+ {
+     closeButton = new QPushButton(tr(&quot;&amp;Close&quot;));
+     revertButton = new QPushButton(tr(&quot;&amp;Revert&quot;));
+     submitButton = new QPushButton(tr(&quot;&amp;Submit&quot;));
+
+     closeButton-&gt;setDefault(true);
+
+     connect(closeButton, SIGNAL(clicked()), this, SLOT(close()));
+     connect(revertButton, SIGNAL(clicked()), this, SLOT(revert()));
+     connect(submitButton, SIGNAL(clicked()), this, SLOT(submit()));
+
+     buttonBox = new QDialogButtonBox;
+     buttonBox-&gt;addButton(submitButton, QDialogButtonBox::ResetRole);
+     buttonBox-&gt;addButton(revertButton, QDialogButtonBox::ResetRole);
+     buttonBox-&gt;addButton(closeButton, QDialogButtonBox::RejectRole);
+ }
+
+ void InformationWindow::enableButtons(bool enable)
+ {
+     revertButton-&gt;setEnabled(enable);
+     submitButton-&gt;setEnabled(enable);
+ }</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

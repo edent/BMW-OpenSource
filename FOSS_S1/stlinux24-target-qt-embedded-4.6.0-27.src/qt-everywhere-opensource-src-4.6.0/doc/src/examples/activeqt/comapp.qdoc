@@ -1,0 +1,124 @@
+/****************************************************************************
+**
+** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+** All rights reserved.
+** Contact: Nokia Corporation (qt-info@nokia.com)
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:LGPL$
+** Commercial Usage
+** Licensees holding valid Qt Commercial licenses may use this file in
+** accordance with the Qt Commercial License Agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and Nokia.
+**
+** GNU Lesser General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU Lesser
+** General Public License version 2.1 as published by the Free Software
+** Foundation and appearing in the file LICENSE.LGPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU Lesser General Public License version 2.1 requirements
+** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+**
+** In addition, as a special exception, Nokia gives you certain additional
+** rights.  These rights are described in the Nokia Qt LGPL Exception
+** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+**
+** GNU General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU
+** General Public License version 3.0 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU General Public License version 3.0 requirements will be
+** met: http://www.gnu.org/copyleft/gpl.html.
+**
+** If you have questions regarding the use of this file, please contact
+** Nokia at qt-info@nokia.com.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \example activeqt/comapp
+    \title COM App Example (ActiveQt)
+
+    The COM App example shows how to use ActiveQt to develop a Qt
+    application that can be automated via COM. Different QObject
+    based classes are exposed as COM objects that communicate with the
+    GUI of the running Qt application. The APIs of those COM objects
+    has been designed to resemble the APIs of standard COM
+    applications; i.e. those from Microsoft Office.
+
+    \snippet examples/activeqt/comapp/main.cpp 2
+    The first class \c Application represents the application object. It
+    exposes read-only properties \c documents and \c id to get access to the
+    list of documents, and an identifier. A read/write property \c visible
+    controls whether the QTabWidget-based user interface of the application 
+    should be visible, and a slot \c quit() terminates the application.
+
+    The \e RegisterObject attribute is set to make sure that instances of this
+    class are registered in COM's running object table (ROT) - this allows COM
+    clients to connect to an already instantiated COM object.
+
+    \snippet examples/activeqt/comapp/main.cpp 1
+    The \c DocumentList class stores a list of documents. It provides an API
+    to read the number of documents, to access each document by index and to 
+    create a new document. The \c application property returns the root object.
+
+    \snippet examples/activeqt/comapp/main.cpp 0
+
+    The \c Document class finally represents a document in the application.
+    Each document is represented by a page in the application's tab widget, and
+    has a title that is readable and writable through the document's API.
+    The \c application property again returns the root object.
+
+    \snippet examples/activeqt/comapp/main.cpp 3
+    The implementation of the \c Document class creates a new page for the tab
+    widget, and uses the title of that page for the title property. The page 
+    is deleted when the document is deleted.
+
+    \snippet examples/activeqt/comapp/main.cpp 4
+    The \c DocumentList implementation is straightforward.
+
+    \snippet examples/activeqt/comapp/main.cpp 5
+    The \c Application class initializes the user interface in the constructor,
+    and shows and hides it in the implementation of \c setVisible(). The object
+    name (accessible through the \c id property) is set to \c "From QAxFactory" 
+    to indicate that this COM object has been created by COM. Note that there is 
+    no destructor that would delete the QTabWidget - this is instead done in the 
+    \c quit() slot, before calling QApplication::quit() through a single-shot-timer, 
+    which is necessary ensure that the COM call to the slot is complete.
+
+    \snippet examples/activeqt/comapp/main.cpp 6
+    The classes are exported from the server using the QAxFactory macros. Only
+    \c Application objects can be instantiated from outside - the other APIs can
+    only be used after accessing the respective objects throught the \c Application
+    API.
+
+    \snippet examples/activeqt/comapp/main.cpp 7
+    The main() entry point function creates a QApplication, and just enters the
+    event loop if the application has been started by COM. If the application
+    has been started by the user, then the \c Application object is created and 
+    the object name is set to "From Application". Then the COM server is started,
+    and the application object is registered with COM. It is now accessible to
+    COM clients through the client-specific APIs.
+
+    Application exiting is controlled explicitly - if COM started the application, 
+    then the client code has to call quit(); if the user started the application,
+    then the application terminates when the last window has been closed.
+
+    Finally, the user interface is made visible, and the event loop is started.
+
+    A simple Visual Basic application could now access this Qt application. In VB,
+    start a new "Standard Exe" project and add a project reference to the comappLib
+    type library. Create a form with a listbox "DocumentList", a static label 
+    "DocumentsCount" and a command button "NewDocument". Finally, implement the code 
+    for the form like this:
+
+    \snippet doc/src/snippets/code/doc_src_examples_activeqt_comapp.qdoc 0
+
+    To build the example you must first build the QAxServer library.
+    Then run \c qmake and your make tool in
+    \c{examples\activeqt\comapp}.
+*/

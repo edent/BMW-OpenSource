@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qaxbindable.cpp -->
+<head>
+  <title>Qt 4.6: QAxAggregated Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QAxAggregated" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QAxAggregated Class Reference<br /><span class="small-subtitle">[<a href="qaxserver.html">QAxServer</a> module]</span>
+</h1>
+<p>The QAxAggregated class is an abstract base class for implementations of additional COM interfaces. <a href="#details">More...</a></p>
+<pre> #include &lt;QAxAggregated&gt;</pre><p><b>This class is not part of the Qt GUI Framework Edition.</b></p>
+<ul>
+<li><a href="qaxaggregated-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual long </td><td class="memItemRight" valign="bottom"><b><a href="qaxaggregated.html#queryInterface">queryInterface</a></b> ( const QUuid &amp; <i>iid</i>, void ** <i>iface</i> ) = 0</td></tr>
+</table>
+<hr />
+<a name="protected-functions"></a>
+<h2>Protected Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual </td><td class="memItemRight" valign="bottom"><b><a href="qaxaggregated.html#dtor.QAxAggregated">~QAxAggregated</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">IUnknown * </td><td class="memItemRight" valign="bottom"><b><a href="qaxaggregated.html#controllingUnknown">controllingUnknown</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QObject * </td><td class="memItemRight" valign="bottom"><b><a href="qaxaggregated.html#object">object</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QWidget * </td><td class="memItemRight" valign="bottom"><b><a href="qaxaggregated.html#widget">widget</a></b> () const</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QAxAggregated class is an abstract base class for implementations of additional COM interfaces.</p>
+<p>Create a subclass of QAxAggregated and reimplement <a href="qaxaggregated.html#queryInterface">queryInterface</a>() to support additional COM interfaces. Use multiple inheritance from those COM interfaces. Implement the IUnknown interface of those COM interfaces by delegating the calls to <tt>QueryInterface()</tt>, <tt>AddRef()</tt> and <tt>Release()</tt> to the interface provided by <a href="qaxaggregated.html#controllingUnknown">controllingUnknown</a>().</p>
+<p>Use the <a href="qaxaggregated.html#widget">widget</a>() method if you need to make calls to the <a href="qwidget.html">QWidget</a> implementing the ActiveX control. You must not store that pointer in your subclass (unless you use <a href="qpointer.html">QPointer</a>), as the <a href="qwidget.html">QWidget</a> can be destroyed by the <a href="activeqt.html#activeqt">ActiveQt</a> framework at any time.</p>
+<p>See also <a href="qaxbindable.html">QAxBindable</a>, <a href="qaxfactory.html">QAxFactory</a>, and <a href="activeqt.html">ActiveQt Framework</a>.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QAxAggregated/~QAxAggregated" />
+<h3 class="fn"><a name="dtor.QAxAggregated"></a>QAxAggregated::~QAxAggregated ()&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>The destructor is called internally by Qt.</p>
+<a name="//apple_ref/cpp/instm/QAxAggregated/controllingUnknown" />
+<h3 class="fn"><a name="controllingUnknown"></a>IUnknown * QAxAggregated::controllingUnknown () const&nbsp;&nbsp;<tt> [protected]</tt></h3>
+<p>Returns the <tt>IUnknown</tt> interface of the ActiveX control. Implement the <tt>IUnknown</tt> interface in your <a href="qaxaggregated.html">QAxAggregated</a> subclass to delegate calls to <tt>QueryInterface()</tt>, <tt>AddRef()</tt>, and <tt>Release()</tt> to the interface provided by this function.</p>
+<pre> HRESULT AxImpl::QueryInterface(REFIID iid, void **iface)
+ {
+     return controllingUnknown()-&gt;QueryInterface(iid, iface);
+ }
+
+ ulong AxImpl::AddRef()
+ {
+     return controllingUnknown()-&gt;AddRef();
+ }
+
+ ulong AxImpl::Release()
+ {
+     return controllingUnknown()-&gt;Release();
+ }</pre>
+<p>Instead of declaring and implementing these three functions manually, you can use the <tt>QAXAGG_IUNKNOWN</tt> macro in the class declaration of your subclass.</p>
+<a name="//apple_ref/cpp/instm/QAxAggregated/object" />
+<h3 class="fn"><a name="object"></a><a href="qobject.html">QObject</a> * QAxAggregated::object () const&nbsp;&nbsp;<tt> [protected]</tt></h3>
+<p>Returns a pointer to the <a href="qobject.html">QObject</a> subclass implementing the COM object. This function might return 0.</p>
+<p><b>Warning:</b> You must not store the returned pointer, unless you use a <a href="qpointer.html">QPointer</a>, since the <a href="qobject.html">QObject</a> can be destroyed by <a href="activeqt.html#activeqt">ActiveQt</a> at any time.</p>
+<a name="//apple_ref/cpp/instm/QAxAggregated/queryInterface" />
+<h3 class="fn"><a name="queryInterface"></a>long QAxAggregated::queryInterface ( const <a href="quuid.html">QUuid</a> &amp; <i>iid</i>, void ** <i>iface</i> )&nbsp;&nbsp;<tt> [pure virtual]</tt></h3>
+<p>Reimplement this pure virtual function to support additional COM interfaces. Set the value of <i>iface</i> to point to this object to support the interface <i>iid</i>. Note that you must cast the <tt>this</tt> pointer to the appropriate superclass.</p>
+<pre> long AxImpl::queryInterface(const QUuid &amp;iid, void **iface)
+ {
+     *iface = 0;
+     if (iid == IID_ISomeCOMInterface)
+         *iface = (ISomeCOMInterface*)this;
+     else
+         return E_NOINTERFACE;
+
+     AddRef();
+     return S_OK;
+ }</pre>
+<p>Return the standard COM results <tt>S_OK</tt> (interface is supported) or <tt>E_NOINTERFACE</tt> (requested interface is not supported).</p>
+<p><b>Warning:</b> Even though you must implement the <tt>IUnknown</tt> interface if you implement any COM interface you must not support the <tt>IUnknown</tt> interface in your queryInterface() implementation.</p>
+<a name="//apple_ref/cpp/instm/QAxAggregated/widget" />
+<h3 class="fn"><a name="widget"></a><a href="qwidget.html">QWidget</a> * QAxAggregated::widget () const&nbsp;&nbsp;<tt> [protected]</tt></h3>
+<p>Returns a pointer to the <a href="qwidget.html">QWidget</a> subclass implementing the ActiveX control. This function might return 0.</p>
+<p><b>Warning:</b> You must not store the returned pointer, unless you use a <a href="qpointer.html">QPointer</a>, since the <a href="qwidget.html">QWidget</a> can be destroyed by <a href="activeqt.html#activeqt">ActiveQt</a> at any time.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

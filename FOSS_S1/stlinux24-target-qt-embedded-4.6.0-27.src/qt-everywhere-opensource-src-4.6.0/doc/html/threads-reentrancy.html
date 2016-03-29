@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- threads.qdoc -->
+<head>
+  <title>Qt 4.6: Reentrancy and Thread-Safety</title>
+  <link rel="prev" href="threads-synchronizing.html" />
+  <link rel="contents" href="threads.html" />
+  <link rel="next" href="threads-qobject.html" />
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><p>
+[Previous: <a href="threads-synchronizing.html">Synchronizing Threads</a>]
+[<a href="threads.html">Thread Support in Qt</a>]
+[Next: <a href="threads-qobject.html">Threads and QObjects</a>]
+</p>
+<h1 class="title">Reentrancy and Thread-Safety<br /><span class="subtitle"></span>
+</h1>
+<a name="reentrant"></a><a name="thread-safe"></a><p>Throughout the documentation, the terms <i>reentrant</i> and <i>thread-safe</i> are used to mark classes and functions to indicate how they can be used in multithread applications:</p>
+<ul>
+<li>A <i>thread-safe</i> function can be called simultaneously from multiple threads, even when the invocations use shared data, because all references to the shared data are serialized.</li>
+<li>A <i>reentrant</i> function can also be called simultaneously from multiple threads, but only if each invocation uses its own data.</li>
+</ul>
+<p>Hence, a <i>thread-safe</i> function is always <i>reentrant</i>, but a <i>reentrant</i> function is not always <i>thread-safe</i>.</p>
+<p>By extension, a class is said to be <i>reentrant</i> if its member functions can be called safely from multiple threads, as long as each thread uses a <i>different</i> instance of the class. The class is <i>thread-safe</i> if its member functions can be called safely from multiple threads, even if all the threads use the <i>same</i> instance of the class.</p>
+<p>C++ classes are often reentrant, simply because they only access their own member data. Any thread can call a member function on an instance of a reentrant class, as long as no other thread can call a member function on the <i>same</i> instance of the class at the same time. For example, the <tt>Counter</tt> class below is reentrant:</p>
+<pre> class Counter
+ {
+ public:
+     Counter() { n = 0; }
+
+     void increment() { ++n; }
+     void decrement() { --n; }
+     int value() const { return n; }
+
+ private:
+     int n;
+ };</pre>
+<p>The class isn't thread-safe, because if multiple threads try to modify the data member <tt>n</tt>, the result is undefined. This is because the <tt>++</tt> and <tt>--</tt> operators aren't always atomic. Indeed, they usually expand to three machine instructions:</p>
+<ol type="1">
+<li>Load the variable's value in a register.</li>
+<li>Increment or decrement the register's value.</li>
+<li>Store the register's value back into main memory.</li>
+</ol>
+<p>If thread A and thread B load the variable's old value simultaneously, increment their register, and store it back, they end up overwriting each other, and the variable is incremented only once!</p>
+<p>Clearly, the access must be serialized: Thread A must perform steps 1, 2, 3 without interruption (atomically) before thread B can perform the same steps; or vice versa. An easy way to make the class thread-safe is to protect all access to the data members with a <a href="qmutex.html">QMutex</a>:</p>
+<pre> class Counter
+ {
+ public:
+     Counter() { n = 0; }
+
+     void increment() { QMutexLocker locker(&amp;mutex); ++n; }
+     void decrement() { QMutexLocker locker(&amp;mutex); --n; }
+     int value() const { QMutexLocker locker(&amp;mutex); return n; }
+
+ private:
+     mutable QMutex mutex;
+     int n;
+ };</pre>
+<p>The <a href="qmutexlocker.html">QMutexLocker</a> class automatically locks the mutex in its constructor and unlocks it when the destructor is invoked, at the end of the function. Locking the mutex ensures that access from different threads will be serialized. The <tt>mutex</tt> data member is declared with the <tt>mutable</tt> qualifier because we need to lock and unlock the mutex in <tt>value()</tt>, which is a const function.</p>
+<p>Many Qt classes are <i>reentrant</i>, but they are not made <i>thread-safe</i>, because making them thread-safe would incur the extra overhead of repeatedly locking and unlocking a <a href="qmutex.html">QMutex</a>. For example, <a href="qstring.html">QString</a> is reentrant but not thread-safe. You can safely access <i>different</i> instances of <a href="qstring.html">QString</a> from multiple threads simultaneously, but you can't safely access the <i>same</i> instance of <a href="qstring.html">QString</a> from multiple threads simultaneously (unless you protect the accesses yourself with a <a href="qmutex.html">QMutex</a>).</p>
+<p>Some Qt classes and functions are thread-safe. These are mainly the thread-related classes (e.g&#x2e; <a href="qmutex.html">QMutex</a>) and fundamental functions (e.g&#x2e; <a href="qcoreapplication.html#postEvent">QCoreApplication::postEvent</a>()).</p>
+<p><b>Note:</b> Qt Classes are only documented as <i>thread-safe</i> if they are intended to be used by multiple threads.</p>
+<p><b>Note:</b> Terminology in the multithreading domain isn't entirely standardized. POSIX uses definitions of reentrant and thread-safe that are somewhat different for its C APIs. When using other object-oriented C++ class libraries with Qt, be sure the definitions are understood.</p>
+<p>
+[Previous: <a href="threads-synchronizing.html">Synchronizing Threads</a>]
+[<a href="threads.html">Thread Support in Qt</a>]
+[Next: <a href="threads-qobject.html">Threads and QObjects</a>]
+</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: imagecomposer.cpp Example File (painting/imagecomposition/imagecomposer.cpp)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">imagecomposer.cpp Example File<br /><span class="small-subtitle">painting/imagecomposition/imagecomposer.cpp</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the examples of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+
+ #include &lt;QtGui&gt;
+
+ #include &quot;imagecomposer.h&quot;
+
+ static const QSize resultSize(200, 200);
+
+ ImageComposer::ImageComposer()
+ {
+     sourceButton = new QToolButton;
+     sourceButton-&gt;setIconSize(resultSize);
+
+     operatorComboBox = new QComboBox;
+     addOp(QPainter::CompositionMode_SourceOver, tr(&quot;SourceOver&quot;));
+     addOp(QPainter::CompositionMode_DestinationOver, tr(&quot;DestinationOver&quot;));
+     addOp(QPainter::CompositionMode_Clear, tr(&quot;Clear&quot;));
+     addOp(QPainter::CompositionMode_Source, tr(&quot;Source&quot;));
+     addOp(QPainter::CompositionMode_Destination, tr(&quot;Destination&quot;));
+     addOp(QPainter::CompositionMode_SourceIn, tr(&quot;SourceIn&quot;));
+     addOp(QPainter::CompositionMode_DestinationIn, tr(&quot;DestinationIn&quot;));
+     addOp(QPainter::CompositionMode_SourceOut, tr(&quot;SourceOut&quot;));
+     addOp(QPainter::CompositionMode_DestinationOut, tr(&quot;DestinationOut&quot;));
+     addOp(QPainter::CompositionMode_SourceAtop, tr(&quot;SourceAtop&quot;));
+     addOp(QPainter::CompositionMode_DestinationAtop, tr(&quot;DestinationAtop&quot;));
+     addOp(QPainter::CompositionMode_Xor, tr(&quot;Xor&quot;));
+     addOp(QPainter::CompositionMode_Plus, tr(&quot;Plus&quot;));
+     addOp(QPainter::CompositionMode_Multiply, tr(&quot;Multiply&quot;));
+     addOp(QPainter::CompositionMode_Screen, tr(&quot;Screen&quot;));
+     addOp(QPainter::CompositionMode_Overlay, tr(&quot;Overlay&quot;));
+     addOp(QPainter::CompositionMode_Darken, tr(&quot;Darken&quot;));
+     addOp(QPainter::CompositionMode_Lighten, tr(&quot;Lighten&quot;));
+     addOp(QPainter::CompositionMode_ColorDodge, tr(&quot;ColorDodge&quot;));
+     addOp(QPainter::CompositionMode_ColorBurn, tr(&quot;ColorBurn&quot;));
+     addOp(QPainter::CompositionMode_HardLight, tr(&quot;HardLight&quot;));
+     addOp(QPainter::CompositionMode_SoftLight, tr(&quot;SoftLight&quot;));
+     addOp(QPainter::CompositionMode_Difference, tr(&quot;Difference&quot;));
+     addOp(QPainter::CompositionMode_Exclusion, tr(&quot;Exclusion&quot;));
+
+     destinationButton = new QToolButton;
+     destinationButton-&gt;setIconSize(resultSize);
+
+     equalLabel = new QLabel(tr(&quot;=&quot;));
+
+     resultLabel = new QLabel;
+     resultLabel-&gt;setMinimumWidth(resultSize.width());
+
+     connect(sourceButton, SIGNAL(clicked()), this, SLOT(chooseSource()));
+     connect(operatorComboBox, SIGNAL(activated(int)),
+             this, SLOT(recalculateResult()));
+     connect(destinationButton, SIGNAL(clicked()),
+             this, SLOT(chooseDestination()));
+
+     QGridLayout *mainLayout = new QGridLayout;
+     mainLayout-&gt;addWidget(sourceButton, 0, 0, 3, 1);
+     mainLayout-&gt;addWidget(operatorComboBox, 1, 1);
+     mainLayout-&gt;addWidget(destinationButton, 0, 2, 3, 1);
+     mainLayout-&gt;addWidget(equalLabel, 1, 3);
+     mainLayout-&gt;addWidget(resultLabel, 0, 4, 3, 1);
+     mainLayout-&gt;setSizeConstraint(QLayout::SetFixedSize);
+     setLayout(mainLayout);
+
+     resultImage = QImage(resultSize, QImage::Format_ARGB32_Premultiplied);
+
+     loadImage(&quot;:/images/butterfly.png&quot;, &amp;sourceImage, sourceButton);
+     loadImage(&quot;:/images/checker.png&quot;, &amp;destinationImage, destinationButton);
+
+     setWindowTitle(tr(&quot;Image Composition&quot;));
+ }
+
+ void ImageComposer::chooseSource()
+ {
+     chooseImage(tr(&quot;Choose Source Image&quot;), &amp;sourceImage, sourceButton);
+ }
+
+ void ImageComposer::chooseDestination()
+ {
+     chooseImage(tr(&quot;Choose Destination Image&quot;), &amp;destinationImage,
+                 destinationButton);
+ }
+
+ void ImageComposer::recalculateResult()
+ {
+     QPainter::CompositionMode mode = currentMode();
+
+     QPainter painter(&amp;resultImage);
+     painter.setCompositionMode(QPainter::CompositionMode_Source);
+     painter.fillRect(resultImage.rect(), Qt::transparent);
+     painter.setCompositionMode(QPainter::CompositionMode_SourceOver);
+     painter.drawImage(0, 0, destinationImage);
+     painter.setCompositionMode(mode);
+     painter.drawImage(0, 0, sourceImage);
+     painter.setCompositionMode(QPainter::CompositionMode_DestinationOver);
+     painter.fillRect(resultImage.rect(), Qt::white);
+     painter.end();
+
+     resultLabel-&gt;setPixmap(QPixmap::fromImage(resultImage));
+ }
+
+ void ImageComposer::addOp(QPainter::CompositionMode mode, const QString &amp;name)
+ {
+     operatorComboBox-&gt;addItem(name, mode);
+ }
+
+ void ImageComposer::chooseImage(const QString &amp;title, QImage *image,
+                                 QToolButton *button)
+ {
+     QString fileName = QFileDialog::getOpenFileName(this, title);
+     if (!fileName.isEmpty())
+         loadImage(fileName, image, button);
+ }
+
+ void ImageComposer::loadImage(const QString &amp;fileName, QImage *image,
+                               QToolButton *button)
+ {
+     image-&gt;load(fileName);
+
+     QImage fixedImage(resultSize, QImage::Format_ARGB32_Premultiplied);
+     QPainter painter(&amp;fixedImage);
+     painter.setCompositionMode(QPainter::CompositionMode_Source);
+     painter.fillRect(fixedImage.rect(), Qt::transparent);
+     painter.setCompositionMode(QPainter::CompositionMode_SourceOver);
+     painter.drawImage(imagePos(*image), *image);
+     painter.end();
+     button-&gt;setIcon(QPixmap::fromImage(fixedImage));
+
+     *image = fixedImage;
+
+     recalculateResult();
+ }
+
+ QPainter::CompositionMode ImageComposer::currentMode() const
+ {
+     return (QPainter::CompositionMode)
+            operatorComboBox-&gt;itemData(operatorComboBox-&gt;currentIndex()).toInt();
+ }
+
+ QPoint ImageComposer::imagePos(const QImage &amp;image) const
+ {
+     return QPoint((resultSize.width() - image.width()) / 2,
+                   (resultSize.height() - image.height()) / 2);
+ }</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

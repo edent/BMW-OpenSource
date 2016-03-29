@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qabstractfontengine_qws.cpp -->
+<head>
+  <title>Qt 4.6: QAbstractFontEngine Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QAbstractFontEngine" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QAbstractFontEngine Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QAbstractFontEngine class is the base class for font engine plugins in Qt for Embedded Linux. <a href="#details">More...</a></p>
+<pre> #include &lt;QAbstractFontEngine&gt;</pre><p><b>This class is under development and is subject to change.</b></p>
+<p>Inherits <a href="qobject.html">QObject</a>.</p>
+<p>This class was introduced in Qt 4.3.</p>
+<ul>
+<li><a href="qabstractfontengine-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-types"></a>
+<h2>Public Types</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">class </td><td class="memItemRight" valign="bottom"><b><a href="qabstractfontengine-fixedpoint.html">FixedPoint</a></b>&nbsp;&nbsp;<tt> (preliminary)</tt></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class </td><td class="memItemRight" valign="bottom"><b><a href="qabstractfontengine-glyphmetrics.html">GlyphMetrics</a></b>&nbsp;&nbsp;<tt> (preliminary)</tt></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">flags </td><td class="memItemRight" valign="bottom"><b><a href="qabstractfontengine.html#Capability-enum">Capabilities</a></b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qabstractfontengine.html#Capability-enum">Capability</a></b> { CanRenderGlyphs_Gray, CanRenderGlyphs_Mono, CanRenderGlyphs, CanOutlineGlyphs }</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef </td><td class="memItemRight" valign="bottom"><b><a href="qabstractfontengine.html#Fixed-typedef">Fixed</a></b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qabstractfontengine.html#FontProperty-enum">FontProperty</a></b> { Ascent, Descent, Leading, XHeight, ..., OutlineGlyphsHint }</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qabstractfontengine.html#TextShapingFlag-enum">TextShapingFlag</a></b> { RightToLeft, ReturnDesignMetrics }</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">flags </td><td class="memItemRight" valign="bottom"><b><a href="qabstractfontengine.html#TextShapingFlag-enum">TextShapingFlags</a></b></td></tr>
+</table>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qabstractfontengine.html#QAbstractFontEngine">QAbstractFontEngine</a></b> ( QObject * <i>parent</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qabstractfontengine.html#dtor.QAbstractFontEngine">~QAbstractFontEngine</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qabstractfontengine.html#addGlyphOutlinesToPath">addGlyphOutlinesToPath</a></b> ( uint * <i>glyphs</i>, int <i>numGlyphs</i>, FixedPoint * <i>positions</i>, QPainterPath * <i>path</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual Capabilities </td><td class="memItemRight" valign="bottom"><b><a href="qabstractfontengine.html#capabilities">capabilities</a></b> () const = 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qabstractfontengine.html#convertStringToGlyphIndices">convertStringToGlyphIndices</a></b> ( const QChar * <i>string</i>, int <i>length</i>, uint * <i>glyphs</i>, int * <i>numGlyphs</i>, TextShapingFlags <i>flags</i> ) const = 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QVariant </td><td class="memItemRight" valign="bottom"><b><a href="qabstractfontengine.html#fontProperty">fontProperty</a></b> ( FontProperty <i>property</i> ) const = 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qabstractfontengine.html#getGlyphAdvances">getGlyphAdvances</a></b> ( const uint * <i>glyphs</i>, int <i>numGlyphs</i>, Fixed * <i>advances</i>, TextShapingFlags <i>flags</i> ) const = 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual GlyphMetrics </td><td class="memItemRight" valign="bottom"><b><a href="qabstractfontengine.html#glyphMetrics">glyphMetrics</a></b> ( uint <i>glyph</i> ) const = 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qabstractfontengine.html#renderGlyph">renderGlyph</a></b> ( uint <i>glyph</i>, int <i>depth</i>, int <i>bytesPerLine</i>, int <i>height</i>, uchar * <i>buffer</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>29 public functions inherited from <a href="qobject.html#public-functions">QObject</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li><div class="fn"></div>1 property inherited from <a href="qobject.html#properties">QObject</a></li>
+<li><div class="fn"></div>1 public slot inherited from <a href="qobject.html#public-slots">QObject</a></li>
+<li><div class="fn"></div>1 signal inherited from <a href="qobject.html#signals">QObject</a></li>
+<li><div class="fn"></div>5 static public members inherited from <a href="qobject.html#static-public-members">QObject</a></li>
+<li><div class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QAbstractFontEngine class is the base class for font engine plugins in Qt for Embedded Linux.</p>
+<p>QAbstractFontEngine is implemented by font engine plugins through <a href="qfontengineplugin.html">QFontEnginePlugin</a>.</p>
+<p>See also <a href="qfontengineplugin.html">QFontEnginePlugin</a> and <a href="qfontengineinfo.html">QFontEngineInfo</a>.</p>
+<hr />
+<h2>Member Type Documentation</h2>
+<a name="//apple_ref/cpp/tag/QAbstractFontEngine/Capability" />
+<a name="//apple_ref/cpp/econst/QAbstractFontEngine/CanRenderGlyphs_Gray" />
+<a name="//apple_ref/cpp/econst/QAbstractFontEngine/CanRenderGlyphs_Mono" />
+<a name="//apple_ref/cpp/econst/QAbstractFontEngine/CanRenderGlyphs" />
+<a name="//apple_ref/cpp/econst/QAbstractFontEngine/CanOutlineGlyphs" />
+<a name="//apple_ref/cpp/tdef/QAbstractFontEngine/Capabilities" />
+<h3 class="flags"><a name="Capability-enum"></a>enum QAbstractFontEngine::Capability<br />flags QAbstractFontEngine::Capabilities</h3>
+<p>This enum describes the capabilities of a font engine.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QAbstractFontEngine::CanRenderGlyphs_Gray</tt></td><td align="center" valign="top"><tt>4</tt></td><td valign="top">The font engine can render individual glyphs into 8 bpp images.</td></tr>
+<tr><td valign="top"><tt>QAbstractFontEngine::CanRenderGlyphs_Mono</tt></td><td align="center" valign="top"><tt>2</tt></td><td valign="top">The font engine can render individual glyphs into 1 bpp images.</td></tr>
+<tr><td valign="top"><tt>QAbstractFontEngine::CanRenderGlyphs</tt></td><td align="center" valign="top"><tt>CanRenderGlyphs_Mono | CanRenderGlyphs_Gray</tt></td><td valign="top">The font engine can render individual glyphs into images.</td></tr>
+<tr><td valign="top"><tt>QAbstractFontEngine::CanOutlineGlyphs</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">The font engine can convert glyphs to painter paths.</td></tr>
+</table></p>
+<p>The Capabilities type is a typedef for <a href="qflags.html">QFlags</a>&lt;Capability&gt;. It stores an OR combination of Capability values.</p>
+<a name="//apple_ref/cpp/tdef/QAbstractFontEngine/Fixed" />
+<h3 class="fn"><a name="Fixed-typedef"></a>typedef QAbstractFontEngine::Fixed</h3>
+<p>This type is <tt>int</tt>, interpreted as a 26.6 fixed point value.</p>
+<a name="//apple_ref/cpp/tag/QAbstractFontEngine/FontProperty" />
+<a name="//apple_ref/cpp/econst/QAbstractFontEngine/Ascent" />
+<a name="//apple_ref/cpp/econst/QAbstractFontEngine/Descent" />
+<a name="//apple_ref/cpp/econst/QAbstractFontEngine/Leading" />
+<a name="//apple_ref/cpp/econst/QAbstractFontEngine/XHeight" />
+<a name="//apple_ref/cpp/econst/QAbstractFontEngine/AverageCharWidth" />
+<a name="//apple_ref/cpp/econst/QAbstractFontEngine/LineThickness" />
+<a name="//apple_ref/cpp/econst/QAbstractFontEngine/UnderlinePosition" />
+<a name="//apple_ref/cpp/econst/QAbstractFontEngine/MaxCharWidth" />
+<a name="//apple_ref/cpp/econst/QAbstractFontEngine/MinLeftBearing" />
+<a name="//apple_ref/cpp/econst/QAbstractFontEngine/MinRightBearing" />
+<a name="//apple_ref/cpp/econst/QAbstractFontEngine/GlyphCount" />
+<a name="//apple_ref/cpp/econst/QAbstractFontEngine/CacheGlyphsHint" />
+<a name="//apple_ref/cpp/econst/QAbstractFontEngine/OutlineGlyphsHint" />
+<h3 class="fn"><a name="FontProperty-enum"></a>enum QAbstractFontEngine::FontProperty</h3>
+<p>This enum describes the properties of a font provided by a font engine.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QAbstractFontEngine::Ascent</tt></td><td align="center" valign="top"><tt>0</tt></td><td valign="top">The ascent of the font, specified as a 26.6 fixed point value.</td></tr>
+<tr><td valign="top"><tt>QAbstractFontEngine::Descent</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">The descent of the font, specified as a 26.6 fixed point value.</td></tr>
+<tr><td valign="top"><tt>QAbstractFontEngine::Leading</tt></td><td align="center" valign="top"><tt>2</tt></td><td valign="top">The leading of the font, specified as a 26.6 fixed point value.</td></tr>
+<tr><td valign="top"><tt>QAbstractFontEngine::XHeight</tt></td><td align="center" valign="top"><tt>3</tt></td><td valign="top">The 'x' height of the font, specified as a 26.6 fixed point value.</td></tr>
+<tr><td valign="top"><tt>QAbstractFontEngine::AverageCharWidth</tt></td><td align="center" valign="top"><tt>4</tt></td><td valign="top">The average character width of the font, specified as a 26.6 fixed point value.</td></tr>
+<tr><td valign="top"><tt>QAbstractFontEngine::LineThickness</tt></td><td align="center" valign="top"><tt>5</tt></td><td valign="top">The thickness of the underline and strikeout lines for the font, specified as a 26.6 fixed point value.</td></tr>
+<tr><td valign="top"><tt>QAbstractFontEngine::UnderlinePosition</tt></td><td align="center" valign="top"><tt>6</tt></td><td valign="top">The distance from the base line to the underline position for the font, specified as a 26.6 fixed point value.</td></tr>
+<tr><td valign="top"><tt>QAbstractFontEngine::MaxCharWidth</tt></td><td align="center" valign="top"><tt>7</tt></td><td valign="top">The width of the widest character in the font, specified as a 26.6 fixed point value.</td></tr>
+<tr><td valign="top"><tt>QAbstractFontEngine::MinLeftBearing</tt></td><td align="center" valign="top"><tt>8</tt></td><td valign="top">The minimum left bearing of the font, specified as a 26.6 fixed point value.</td></tr>
+<tr><td valign="top"><tt>QAbstractFontEngine::MinRightBearing</tt></td><td align="center" valign="top"><tt>9</tt></td><td valign="top">The maximum right bearing of the font, specified as a 26.6 fixed point value.</td></tr>
+<tr><td valign="top"><tt>QAbstractFontEngine::GlyphCount</tt></td><td align="center" valign="top"><tt>10</tt></td><td valign="top">The number of glyphs in the font, specified as an integer value.</td></tr>
+<tr><td valign="top"><tt>QAbstractFontEngine::CacheGlyphsHint</tt></td><td align="center" valign="top"><tt>11</tt></td><td valign="top">A boolean value specifying whether rendered glyphs should be cached by Qt.</td></tr>
+<tr><td valign="top"><tt>QAbstractFontEngine::OutlineGlyphsHint</tt></td><td align="center" valign="top"><tt>12</tt></td><td valign="top">A boolean value specifying whether the font engine prefers outline drawing over image rendering for uncached glyphs.</td></tr>
+</table></p>
+<a name="//apple_ref/cpp/tag/QAbstractFontEngine/TextShapingFlag" />
+<a name="//apple_ref/cpp/econst/QAbstractFontEngine/RightToLeft" />
+<a name="//apple_ref/cpp/econst/QAbstractFontEngine/ReturnDesignMetrics" />
+<a name="//apple_ref/cpp/tdef/QAbstractFontEngine/TextShapingFlags" />
+<h3 class="flags"><a name="TextShapingFlag-enum"></a>enum QAbstractFontEngine::TextShapingFlag<br />flags QAbstractFontEngine::TextShapingFlags</h3>
+<p>This enum describes flags controlling conversion of characters to glyphs and their metrics.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QAbstractFontEngine::RightToLeft</tt></td><td align="center" valign="top"><tt>0x0001</tt></td><td valign="top">The text is used in a right-to-left context.</td></tr>
+<tr><td valign="top"><tt>QAbstractFontEngine::ReturnDesignMetrics</tt></td><td align="center" valign="top"><tt>0x0002</tt></td><td valign="top">Return font design metrics instead of pixel metrics.</td></tr>
+</table></p>
+<p>The TextShapingFlags type is a typedef for <a href="qflags.html">QFlags</a>&lt;TextShapingFlag&gt;. It stores an OR combination of TextShapingFlag values.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QAbstractFontEngine/QAbstractFontEngine" />
+<h3 class="fn"><a name="QAbstractFontEngine"></a>QAbstractFontEngine::QAbstractFontEngine ( <a href="qobject.html">QObject</a> * <i>parent</i> = 0 )</h3>
+<p>Constructs a new <a href="qabstractfontengine.html">QAbstractFontEngine</a> with the given <i>parent</i>.</p>
+<a name="//apple_ref/cpp/instm/QAbstractFontEngine/~QAbstractFontEngine" />
+<h3 class="fn"><a name="dtor.QAbstractFontEngine"></a>QAbstractFontEngine::~QAbstractFontEngine ()</h3>
+<p>Destroys this <a href="qabstractfontengine.html">QAbstractFontEngine</a> object.</p>
+<a name="//apple_ref/cpp/instm/QAbstractFontEngine/addGlyphOutlinesToPath" />
+<h3 class="fn"><a name="addGlyphOutlinesToPath"></a>void QAbstractFontEngine::addGlyphOutlinesToPath ( <a href="qtglobal.html#uint-typedef">uint</a> * <i>glyphs</i>, int <i>numGlyphs</i>, <a href="qabstractfontengine-fixedpoint.html">FixedPoint</a> * <i>positions</i>, <a href="qpainterpath.html">QPainterPath</a> * <i>path</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Implemented in subclasses to add the outline of the glyphs specified by <i>glyphs</i> and <i>numGlyphs</i> at the specified <i>positions</i> to the painter path <i>path</i>.</p>
+<a name="//apple_ref/cpp/instm/QAbstractFontEngine/capabilities" />
+<h3 class="fn"><a name="capabilities"></a><a href="qabstractfontengine.html#Capability-enum">Capabilities</a> QAbstractFontEngine::capabilities () const&nbsp;&nbsp;<tt> [pure virtual]</tt></h3>
+<p>Implemented in subclasses to specify the font engine's capabilities. The return value may be cached by the caller and is expected not to change during the lifetime of the font engine.</p>
+<a name="//apple_ref/cpp/instm/QAbstractFontEngine/convertStringToGlyphIndices" />
+<h3 class="fn"><a name="convertStringToGlyphIndices"></a>bool QAbstractFontEngine::convertStringToGlyphIndices ( const <a href="qchar.html">QChar</a> * <i>string</i>, int <i>length</i>, <a href="qtglobal.html#uint-typedef">uint</a> * <i>glyphs</i>, int * <i>numGlyphs</i>, <a href="qabstractfontengine.html#TextShapingFlag-enum">TextShapingFlags</a> <i>flags</i> ) const&nbsp;&nbsp;<tt> [pure virtual]</tt></h3>
+<p>Implemented in subclasses to convert the characters specified by <i>string</i> and <i>length</i> to glyph indicies, using <i>flags</i>. The glyph indicies should be returned in the <i>glyphs</i> array provided by the caller. The maximum size of <i>glyphs</i> is specified by the value pointed to by <i>numGlyphs</i>. If successful, the subclass implementation sets the value pointed to by <i>numGlyphs</i> to the actual number of glyph indices generated, and returns true. Otherwise, e.g&#x2e; if there is not enough space in the provided <i>glyphs</i> array, it should set <i>numGlyphs</i> to the number of glyphs needed for the conversion and return false.</p>
+<a name="//apple_ref/cpp/instm/QAbstractFontEngine/fontProperty" />
+<h3 class="fn"><a name="fontProperty"></a><a href="qvariant.html">QVariant</a> QAbstractFontEngine::fontProperty ( <a href="qabstractfontengine.html#FontProperty-enum">FontProperty</a> <i>property</i> ) const&nbsp;&nbsp;<tt> [pure virtual]</tt></h3>
+<p>Implemented in subclasses to return the value of the font attribute <i>property</i>. The return value may be cached by the caller and is expected not to change during the lifetime of the font engine.</p>
+<a name="//apple_ref/cpp/instm/QAbstractFontEngine/getGlyphAdvances" />
+<h3 class="fn"><a name="getGlyphAdvances"></a>void QAbstractFontEngine::getGlyphAdvances ( const <a href="qtglobal.html#uint-typedef">uint</a> * <i>glyphs</i>, int <i>numGlyphs</i>, <a href="qabstractfontengine.html#Fixed-typedef">Fixed</a> * <i>advances</i>, <a href="qabstractfontengine.html#TextShapingFlag-enum">TextShapingFlags</a> <i>flags</i> ) const&nbsp;&nbsp;<tt> [pure virtual]</tt></h3>
+<p>Implemented in subclasses to retrieve the advances of the array specified by <i>glyphs</i> and <i>numGlyphs</i>, using <i>flags</i>. The result is returned in <i>advances</i>, which is allocated by the caller and contains <i>numGlyphs</i> elements.</p>
+<a name="//apple_ref/cpp/instm/QAbstractFontEngine/glyphMetrics" />
+<h3 class="fn"><a name="glyphMetrics"></a><a href="qabstractfontengine-glyphmetrics.html">GlyphMetrics</a> QAbstractFontEngine::glyphMetrics ( <a href="qtglobal.html#uint-typedef">uint</a> <i>glyph</i> ) const&nbsp;&nbsp;<tt> [pure virtual]</tt></h3>
+<p>Implemented in subclass to return the metrics for <i>glyph</i>.</p>
+<a name="//apple_ref/cpp/instm/QAbstractFontEngine/renderGlyph" />
+<h3 class="fn"><a name="renderGlyph"></a>bool QAbstractFontEngine::renderGlyph ( <a href="qtglobal.html#uint-typedef">uint</a> <i>glyph</i>, int <i>depth</i>, int <i>bytesPerLine</i>, int <i>height</i>, <a href="qtglobal.html#uchar-typedef">uchar</a> * <i>buffer</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Implemented in subclasses to render the specified <i>glyph</i> into a <i>buffer</i> with the given <i>depth</i> , <i>bytesPerLine</i> and <i>height</i>.</p>
+<p>Returns true if rendering succeeded, false otherwise.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

@@ -1,0 +1,88 @@
+/****************************************************************************
+**
+** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+** All rights reserved.
+** Contact: Nokia Corporation (qt-info@nokia.com)
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:LGPL$
+** Commercial Usage
+** Licensees holding valid Qt Commercial licenses may use this file in
+** accordance with the Qt Commercial License Agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and Nokia.
+**
+** GNU Lesser General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU Lesser
+** General Public License version 2.1 as published by the Free Software
+** Foundation and appearing in the file LICENSE.LGPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU Lesser General Public License version 2.1 requirements
+** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+**
+** In addition, as a special exception, Nokia gives you certain additional
+** rights.  These rights are described in the Nokia Qt LGPL Exception
+** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+**
+** GNU General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU
+** General Public License version 3.0 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU General Public License version 3.0 requirements will be
+** met: http://www.gnu.org/copyleft/gpl.html.
+**
+** If you have questions regarding the use of this file, please contact
+** Nokia at qt-info@nokia.com.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \example widgets/digitalclock
+    \title Digital Clock Example
+
+    The Digital Clock example shows how to use QLCDNumber to display a 
+    number with LCD-like digits.
+
+    \image digitalclock-example.png Screenshot of the Digital Clock example
+
+    This example also demonstrates how QTimer can be used to update a widget
+    at regular intervals.
+
+    \section1 DigitalClock Class Definition
+
+    The \c DigitalClock class provides a clock widget showing the time with
+    hours and minutes separated by a blinking colon. We subclass QLCDNumber
+    and implement a private slot called \c showTime() to update the clock
+    display:
+
+    \snippet examples/widgets/digitalclock/digitalclock.h 0
+
+    \section1 DigitalClock Class Implementation
+
+    \snippet examples/widgets/digitalclock/digitalclock.cpp 0
+
+    In the constructor, we first change the look of the LCD numbers. The
+    QLCDNumber::Filled style produces raised segments filled with the
+    foreground color (typically black). We also set up a one-second timer
+    to keep track of the current time, and we connect
+    its \l{QTimer::timeout()}{timeout()} signal to the private \c showTime() slot
+    so that the display is updated every second. Then, we
+    call the \c showTime() slot; without this call, there would be a one-second
+    delay at startup before the time is shown.
+
+    \snippet examples/widgets/digitalclock/digitalclock.cpp 1
+    \snippet examples/widgets/digitalclock/digitalclock.cpp 2
+
+    The \c showTime() slot is called whenever the clock display needs
+    to be updated.
+
+    The current time is converted into a string with the format "hh:mm".
+    When QTime::second() is a even number, the colon in the string is
+    replaced with a space. This makes the colon appear and vanish every
+    other second.
+
+    Finally, we call QLCDNumber::display() to update the widget.
+*/

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qimage.cpp -->
+<head>
+  <title>Qt 4.6: Obsolete Members for QImage</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">Obsolete Members for QImage</h1>
+<p><b>The following class members are obsolete.</b> They are provided to keep old source code working. We strongly advise against using them in new code.</p>
+<p><ul><li><a href="qimage.html">QImage class reference</a></li></ul></p>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">QImage </td><td class="memItemRight" valign="bottom"><b><a href="qimage-obsolete.html#alphaChannel">alphaChannel</a></b> () const&nbsp;&nbsp;<tt> (obsolete)</tt></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qimage-obsolete.html#serialNumber">serialNumber</a></b> () const&nbsp;&nbsp;<tt> (obsolete)</tt></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qimage-obsolete.html#setAlphaChannel">setAlphaChannel</a></b> ( const QImage &amp; <i>alphaChannel</i> )&nbsp;&nbsp;<tt> (obsolete)</tt></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qimage-obsolete.html#setText-2">setText</a></b> ( const char * <i>key</i>, const char * <i>language</i>, const QString &amp; <i>text</i> )&nbsp;&nbsp;<tt> (obsolete)</tt></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qimage-obsolete.html#text-2">text</a></b> ( const char * <i>key</i>, const char * <i>language</i> = 0 ) const&nbsp;&nbsp;<tt> (obsolete)</tt></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qimage-obsolete.html#text-3">text</a></b> ( const QImageTextKeyLang &amp; <i>keywordAndLanguage</i> ) const&nbsp;&nbsp;<tt> (obsolete)</tt></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QStringList </td><td class="memItemRight" valign="bottom"><b><a href="qimage-obsolete.html#textLanguages">textLanguages</a></b> () const&nbsp;&nbsp;<tt> (obsolete)</tt></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QList&lt;QImageTextKeyLang&gt; </td><td class="memItemRight" valign="bottom"><b><a href="qimage-obsolete.html#textList">textList</a></b> () const&nbsp;&nbsp;<tt> (obsolete)</tt></td></tr>
+</table>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QImage/alphaChannel" />
+<h3 class="fn"><a name="alphaChannel"></a>QImage QImage::alphaChannel () const</h3>
+<p>Returns the alpha channel of the image as a new grayscale <a href="qimage.html">QImage</a> in which each pixel's red, green, and blue values are given the alpha value of the original image. The color depth of the returned image is 8-bit.</p>
+<p>You can see an example of use of this function in <a href="qpixmap.html">QPixmap</a>'s <a href="qpixmap-obsolete.html#alphaChannel">alphaChannel()</a>, which works in the same way as this function on QPixmaps.</p>
+<p>Most usecases for this function can be replaced with <a href="qpainter.html">QPainter</a> and using composition modes.</p>
+<p><b>Warning:</b> This is an expensive function.</p>
+<p>See also <a href="qimage-obsolete.html#setAlphaChannel">setAlphaChannel</a>(), <a href="qimage.html#hasAlphaChannel">hasAlphaChannel</a>(), <a href="qpixmap.html#pixmap-information">Pixmap</a>, and <a href="qimage.html#image-transformations">Image Transformations</a>.</p>
+<a name="//apple_ref/cpp/instm/QImage/serialNumber" />
+<h3 class="fn"><a name="serialNumber"></a>int QImage::serialNumber () const</h3>
+<p>Returns a number that identifies the contents of this <a href="qimage.html">QImage</a> object. Distinct <a href="qimage.html">QImage</a> objects can only have the same serial number if they refer to the same contents (but they don't have to).</p>
+<p>Use <a href="qimage.html#cacheKey">cacheKey</a>() instead.</p>
+<p><b>Warning:</b> The serial number doesn't necessarily change when the image is altered. This means that it may be dangerous to use it as a cache key.</p>
+<p>See also <a href="qimage.html#operator-eq-eq">operator==</a>().</p>
+<a name="//apple_ref/cpp/instm/QImage/setAlphaChannel" />
+<h3 class="fn"><a name="setAlphaChannel"></a>void QImage::setAlphaChannel ( const QImage &amp; <i>alphaChannel</i> )</h3>
+<p>Sets the alpha channel of this image to the given <i>alphaChannel</i>.</p>
+<p>If <i>alphaChannel</i> is an 8 bit grayscale image, the intensity values are written into this buffer directly. Otherwise, <i>alphaChannel</i> is converted to 32 bit and the intensity of the RGB pixel values is used.</p>
+<p>Note that the image will be converted to the <a href="qimage.html#Format-enum">Format_ARGB32_Premultiplied</a> format if the function succeeds.</p>
+<p>Use one of the composition modes in <a href="qpainter.html#CompositionMode-enum">QPainter::CompositionMode</a> instead.</p>
+<p><b>Warning:</b> This function is expensive.</p>
+<p>See also <a href="qimage-obsolete.html#alphaChannel">alphaChannel</a>(), <a href="qimage.html#image-transformations">Image Transformations</a>, and <a href="qimage.html#image-formats">Image Formats</a>.</p>
+<h3 class="fn"><a name="setText-2"></a>void QImage::setText ( const char * <i>key</i>, const char * <i>language</i>, const <a href="qstring.html">QString</a> &amp; <i>text</i> )</h3>
+<p>Sets the image text to the given <i>text</i> and associate it with the given <i>key</i>. The text is recorded in the specified <i>language</i>, or in a default language if <i>language</i> is 0.</p>
+<p>Use <a href="qimage.html#setText">setText</a>() instead.</p>
+<p>The language the text is recorded in is no longer relevant since the text is always set using <a href="qstring.html">QString</a> and UTF-8 representation.</p>
+<h3 class="fn"><a name="text-2"></a><a href="qstring.html">QString</a> QImage::text ( const char * <i>key</i>, const char * <i>language</i> = 0 ) const</h3>
+<p>Returns the text recorded for the given <i>key</i> in the given <i>language</i>, or in a default language if <i>language</i> is 0.</p>
+<p>Use <a href="qimage.html#text">text</a>() instead.</p>
+<p>The language the text is recorded in is no longer relevant since the text is always set using <a href="qstring.html">QString</a> and UTF-8 representation.</p>
+<h3 class="fn"><a name="text-3"></a><a href="qstring.html">QString</a> QImage::text ( const QImageTextKeyLang &amp; <i>keywordAndLanguage</i> ) const</h3>
+<p>This is an overloaded function.</p>
+<p>Returns the text recorded for the given <i>keywordAndLanguage</i>.</p>
+<p>Use <a href="qimage.html#text">text</a>() instead.</p>
+<p>The language the text is recorded in is no longer relevant since the text is always set using <a href="qstring.html">QString</a> and UTF-8 representation.</p>
+<a name="//apple_ref/cpp/instm/QImage/textLanguages" />
+<h3 class="fn"><a name="textLanguages"></a><a href="qstringlist.html">QStringList</a> QImage::textLanguages () const</h3>
+<p>Returns the language identifiers for which some texts are recorded. Note that if you want to iterate over the list, you should iterate over a copy.</p>
+<p>The language the text is recorded in is no longer relevant since the text is always set using <a href="qstring.html">QString</a> and UTF-8 representation.</p>
+<a name="//apple_ref/cpp/instm/QImage/textList" />
+<h3 class="fn"><a name="textList"></a><a href="qlist.html">QList</a>&lt;QImageTextKeyLang&gt; QImage::textList () const</h3>
+<p>Returns a list of QImageTextKeyLang objects that enumerate all the texts key/language pairs set for this image.</p>
+<p>Use <a href="qimage.html#textKeys">textKeys</a>() instead.</p>
+<p>The language the text is recorded in is no longer relevant since the text is always set using <a href="qstring.html">QString</a> and UTF-8 representation.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

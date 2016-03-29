@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qdesktopservices.cpp -->
+<head>
+  <title>Qt 4.6: QDesktopServices Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QDesktopServices" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QDesktopServices Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QDesktopServices class provides methods for accessing common desktop services. <a href="#details">More...</a></p>
+<pre> #include &lt;QDesktopServices&gt;</pre><p>This class was introduced in Qt 4.2.</p>
+<ul>
+<li><a href="qdesktopservices-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-types"></a>
+<h2>Public Types</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qdesktopservices.html#StandardLocation-enum">StandardLocation</a></b> { DesktopLocation, DocumentsLocation, FontsLocation, ApplicationsLocation, ..., CacheLocation }</td></tr>
+</table>
+<hr />
+<a name="static-public-members"></a>
+<h2>Static Public Members</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qdesktopservices.html#displayName">displayName</a></b> ( StandardLocation <i>type</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qdesktopservices.html#openUrl">openUrl</a></b> ( const QUrl &amp; <i>url</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qdesktopservices.html#setUrlHandler">setUrlHandler</a></b> ( const QString &amp; <i>scheme</i>, QObject * <i>receiver</i>, const char * <i>method</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qdesktopservices.html#storageLocation">storageLocation</a></b> ( StandardLocation <i>type</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qdesktopservices.html#unsetUrlHandler">unsetUrlHandler</a></b> ( const QString &amp; <i>scheme</i> )</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QDesktopServices class provides methods for accessing common desktop services.</p>
+<p>Many desktop environments provide services that can be used by applications to perform common tasks, such as opening a web page, in a way that is both consistent and takes into account the user's application preferences.</p>
+<p>This class contains functions that provide simple interfaces to these services that indicate whether they succeeded or failed.</p>
+<p>The <a href="qdesktopservices.html#openUrl">openUrl</a>() function is used to open files located at arbitrary URLs in external applications. For URLs that correspond to resources on the local filing system (where the URL scheme is &quot;file&quot;), a suitable application will be used to open the file; otherwise, a web browser will be used to fetch and display the file.</p>
+<p>The user's desktop settings control whether certain executable file types are opened for browsing, or if they are executed instead. Some desktop environments are configured to prevent users from executing files obtained from non-local URLs, or to ask the user's permission before doing so.</p>
+<a name="url-handlers"></a>
+<h3>URL Handlers</h3>
+<p>The behavior of the <a href="qdesktopservices.html#openUrl">openUrl</a>() function can be customized for individual URL schemes to allow applications to override the default handling behavior for certain types of URLs.</p>
+<p>The dispatch mechanism allows only one custom handler to be used for each URL scheme; this is set using the <a href="qdesktopservices.html#setUrlHandler">setUrlHandler</a>() function. Each handler is implemented as a slot which accepts only a single <a href="qurl.html">QUrl</a> argument.</p>
+<p>The existing handlers for each scheme can be removed with the <a href="qdesktopservices.html#unsetUrlHandler">unsetUrlHandler</a>() function. This returns the handling behavior for the given scheme to the default behavior.</p>
+<p>This system makes it easy to implement a help system, for example. Help could be provided in labels and text browsers using <b>help://myapplication/mytopic</b> URLs, and by registering a handler it becomes possible to display the help text inside the application:</p>
+<pre> class MyHelpHandler : public QObject
+ {
+     Q_OBJECT
+ public:
+     ...
+ public slots:
+     void showHelp(const QUrl &amp;url);
+ };
+
+ QDesktopServices::setUrlHandler(&quot;help&quot;, helpInstance, &quot;showHelp&quot;);</pre>
+<p>If inside the handler you decide that you can't open the requested URL, you can just call <a href="qdesktopservices.html#openUrl">QDesktopServices::openUrl</a>() again with the same argument, and it will try to open the URL using the appropriate mechanism for the user's desktop environment.</p>
+<p>See also <a href="qsystemtrayicon.html">QSystemTrayIcon</a> and <a href="qprocess.html">QProcess</a>.</p>
+<hr />
+<h2>Member Type Documentation</h2>
+<a name="//apple_ref/cpp/tag/QDesktopServices/StandardLocation" />
+<a name="//apple_ref/cpp/econst/QDesktopServices/DesktopLocation" />
+<a name="//apple_ref/cpp/econst/QDesktopServices/DocumentsLocation" />
+<a name="//apple_ref/cpp/econst/QDesktopServices/FontsLocation" />
+<a name="//apple_ref/cpp/econst/QDesktopServices/ApplicationsLocation" />
+<a name="//apple_ref/cpp/econst/QDesktopServices/MusicLocation" />
+<a name="//apple_ref/cpp/econst/QDesktopServices/MoviesLocation" />
+<a name="//apple_ref/cpp/econst/QDesktopServices/PicturesLocation" />
+<a name="//apple_ref/cpp/econst/QDesktopServices/TempLocation" />
+<a name="//apple_ref/cpp/econst/QDesktopServices/HomeLocation" />
+<a name="//apple_ref/cpp/econst/QDesktopServices/DataLocation" />
+<a name="//apple_ref/cpp/econst/QDesktopServices/CacheLocation" />
+<h3 class="fn"><a name="StandardLocation-enum"></a>enum QDesktopServices::StandardLocation</h3>
+<p>This enum describes the different locations that can be queried by QDesktopServices::storageLocation and QDesktopServices::displayName.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QDesktopServices::DesktopLocation</tt></td><td align="center" valign="top"><tt>0</tt></td><td valign="top">Returns the user's desktop directory.</td></tr>
+<tr><td valign="top"><tt>QDesktopServices::DocumentsLocation</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">Returns the user's document.</td></tr>
+<tr><td valign="top"><tt>QDesktopServices::FontsLocation</tt></td><td align="center" valign="top"><tt>2</tt></td><td valign="top">Returns the user's fonts.</td></tr>
+<tr><td valign="top"><tt>QDesktopServices::ApplicationsLocation</tt></td><td align="center" valign="top"><tt>3</tt></td><td valign="top">Returns the user's applications.</td></tr>
+<tr><td valign="top"><tt>QDesktopServices::MusicLocation</tt></td><td align="center" valign="top"><tt>4</tt></td><td valign="top">Returns the users music.</td></tr>
+<tr><td valign="top"><tt>QDesktopServices::MoviesLocation</tt></td><td align="center" valign="top"><tt>5</tt></td><td valign="top">Returns the user's movies.</td></tr>
+<tr><td valign="top"><tt>QDesktopServices::PicturesLocation</tt></td><td align="center" valign="top"><tt>6</tt></td><td valign="top">Returns the user's pictures.</td></tr>
+<tr><td valign="top"><tt>QDesktopServices::TempLocation</tt></td><td align="center" valign="top"><tt>7</tt></td><td valign="top">Returns the system's temporary directory.</td></tr>
+<tr><td valign="top"><tt>QDesktopServices::HomeLocation</tt></td><td align="center" valign="top"><tt>8</tt></td><td valign="top">Returns the user's home directory.</td></tr>
+<tr><td valign="top"><tt>QDesktopServices::DataLocation</tt></td><td align="center" valign="top"><tt>9</tt></td><td valign="top">Returns a directory location where persistent application data can be stored. <a href="qcoreapplication.html#applicationName-prop">QCoreApplication::applicationName</a> and <a href="qcoreapplication.html#organizationName-prop">QCoreApplication::organizationName</a> should work on all platforms.</td></tr>
+<tr><td valign="top"><tt>QDesktopServices::CacheLocation</tt></td><td align="center" valign="top"><tt>10</tt></td><td valign="top">Returns a directory location where user-specific non-essential (cached) data should be written.</td></tr>
+</table></p>
+<p>This enum was introduced in Qt 4.4.</p>
+<p>See also <a href="qdesktopservices.html#storageLocation">storageLocation</a>() and <a href="qdesktopservices.html#displayName">displayName</a>().</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/clm/QDesktopServices/displayName" />
+<h3 class="fn"><a name="displayName"></a><a href="qstring.html">QString</a> QDesktopServices::displayName ( <a href="qdesktopservices.html#StandardLocation-enum">StandardLocation</a> <i>type</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Returns a localized display name for the given location <i>type</i> or an empty <a href="qstring.html">QString</a> if no relevant location can be found.</p>
+<a name="//apple_ref/cpp/clm/QDesktopServices/openUrl" />
+<h3 class="fn"><a name="openUrl"></a>bool QDesktopServices::openUrl ( const <a href="qurl.html">QUrl</a> &amp; <i>url</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Opens the given <i>url</i> in the appropriate Web browser for the user's desktop environment, and returns true if successful; otherwise returns false.</p>
+<p>If the URL is a reference to a local file (i.e&#x2e;, the URL scheme is &quot;file&quot;) then it will be opened with a suitable application instead of a Web browser.</p>
+<p>The following example opens a file on the Windows file system residing on a path that contains spaces:</p>
+<pre> QDesktopServices::openUrl(QUrl(&quot;file:<span class="comment">///C:/Documents and Settings/All Users/Desktop&quot;, QUrl::TolerantMode));</span></pre>
+<p>If a <tt>mailto</tt> URL is specified, the user's e-mail client will be used to open a composer window containing the options specified in the URL, similar to the way <tt>mailto</tt> links are handled by a Web browser.</p>
+<p>For example, the following URL contains a recipient (<tt>user@foo.com</tt>), a subject (<tt>Test</tt>), and a message body (<tt>Just a test</tt>):</p>
+<pre> mailto:user@foo.com?subject=Test&amp;body=Just a test</pre>
+<p><b>Warning:</b> Although many e-mail clients can send attachments and are Unicode-aware, the user may have configured their client without these features. Also, certain e-mail clients (e.g&#x2e;, Lotus Notes) have problems with long URLs.</p>
+<p>See also <a href="qdesktopservices.html#setUrlHandler">setUrlHandler</a>().</p>
+<a name="//apple_ref/cpp/clm/QDesktopServices/setUrlHandler" />
+<h3 class="fn"><a name="setUrlHandler"></a>void QDesktopServices::setUrlHandler ( const <a href="qstring.html">QString</a> &amp; <i>scheme</i>, <a href="qobject.html">QObject</a> * <i>receiver</i>, const char * <i>method</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Sets the handler for the given <i>scheme</i> to be the handler <i>method</i> provided by the <i>receiver</i> object.</p>
+<p>This function provides a way to customize the behavior of <a href="qdesktopservices.html#openUrl">openUrl</a>(). If <a href="qdesktopservices.html#openUrl">openUrl</a>() is called with a URL with the specified <i>scheme</i> then the given <i>method</i> on the <i>receiver</i> object is called instead of <a href="qdesktopservices.html">QDesktopServices</a> launching an external application.</p>
+<p>The provided method must be implemented as a slot that only accepts a single <a href="qurl.html">QUrl</a> argument.</p>
+<p>If setUrlHandler() is used to set a new handler for a scheme which already has a handler, the existing handler is simply replaced with the new one. Since <a href="qdesktopservices.html">QDesktopServices</a> does not take ownership of handlers, no objects are deleted when a handler is replaced.</p>
+<p>Note that the handler will always be called from within the same thread that calls <a href="qdesktopservices.html#openUrl">QDesktopServices::openUrl</a>().</p>
+<p>See also <a href="qdesktopservices.html#openUrl">openUrl</a>() and <a href="qdesktopservices.html#unsetUrlHandler">unsetUrlHandler</a>().</p>
+<a name="//apple_ref/cpp/clm/QDesktopServices/storageLocation" />
+<h3 class="fn"><a name="storageLocation"></a><a href="qstring.html">QString</a> QDesktopServices::storageLocation ( <a href="qdesktopservices.html#StandardLocation-enum">StandardLocation</a> <i>type</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Returns the default system directory where files of <i>type</i> belong, or an empty string if the location cannot be determined.</p>
+<p><b>Note:</b> The storage location returned can be a directory that does not exist; i.e&#x2e;, it may need to be created by the system or the user.</p>
+<p><b>Note:</b> On Symbian OS, <a href="qdesktopservices.html#StandardLocation-enum">ApplicationsLocation</a> always point /sys/bin folder on the same drive with executable. <a href="qdesktopservices.html#StandardLocation-enum">FontsLocation</a> always points to folder on ROM drive. Symbian OS does not have desktop concept, <a href="qdesktopservices.html#StandardLocation-enum">DesktopLocation</a> returns same path as <a href="qdesktopservices.html#StandardLocation-enum">DocumentsLocation</a>. Rest of the standard locations point to folder on same drive with executable, except that if executable is in ROM the folder from C drive is returned.</p>
+<p>This function was introduced in Qt 4.4.</p>
+<a name="//apple_ref/cpp/clm/QDesktopServices/unsetUrlHandler" />
+<h3 class="fn"><a name="unsetUrlHandler"></a>void QDesktopServices::unsetUrlHandler ( const <a href="qstring.html">QString</a> &amp; <i>scheme</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Removes a previously set URL handler for the specified <i>scheme</i>.</p>
+<p>See also <a href="qdesktopservices.html#setUrlHandler">setUrlHandler</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

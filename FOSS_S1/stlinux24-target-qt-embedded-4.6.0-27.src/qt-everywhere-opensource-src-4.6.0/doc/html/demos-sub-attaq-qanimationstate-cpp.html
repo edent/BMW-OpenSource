@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: qanimationstate.cpp Example File (demos/sub-attaq/qanimationstate.cpp)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">qanimationstate.cpp Example File<br /><span class="small-subtitle">demos/sub-attaq/qanimationstate.cpp</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the QtGui module of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+
+ #include &quot;qanimationstate.h&quot;
+
+ #include &lt;QtCore/qstate.h&gt;
+
+<span class="comment"> /*!
+ \class QAnimationState
+
+ \brief The QAnimationState class provides state that handle an animation and emit
+ a signal when this animation is finished.
+
+ \ingroup statemachine
+
+ QAnimationState provides a state that handle an animation. It will start this animation
+ when the state is entered and stop it when it is leaved. When the animation has finished the
+ state emit animationFinished signal.
+ QAnimationState is part of \l{The State Machine Framework}.
+
+ \code
+ QStateMachine machine;
+ QAnimationState *s = new QAnimationState(machine-&gt;rootState());
+ QPropertyAnimation *animation = new QPropertyAnimation(obj, &quot;pos&quot;);
+ s-&gt;setAnimation(animation);
+ QState *s2 = new QState(machine-&gt;rootState());
+ s-&gt;addTransition(s, SIGNAL(animationFinished()), s2);
+ machine.start();
+ \endcode
+
+ \sa QState, {The Animation Framework}
+ */</span>
+
+ #ifndef QT_NO_ANIMATION
+
+<span class="comment"> /*!
+   Constructs a new state with the given \a parent state.
+ */</span>
+ QAnimationState::QAnimationState(QState *parent)
+     : QState(parent), m_animation(0)
+ {
+ }
+
+<span class="comment"> /*!
+   Destroys the animation state.
+ */</span>
+ QAnimationState::~QAnimationState()
+ {
+ }
+
+<span class="comment"> /*!
+   Set an \a animation for this QAnimationState. If an animation was previously handle by this
+   state then it won't emit animationFinished for the old animation. The QAnimationState doesn't
+   take the ownership of the animation.
+ */</span>
+ void QAnimationState::setAnimation(QAbstractAnimation *animation)
+ {
+     if (animation == m_animation)
+         return;
+
+     <span class="comment">//Disconnect from the previous animation if exist</span>
+     if(m_animation)
+         disconnect(m_animation, SIGNAL(finished()), this, SIGNAL(animationFinished()));
+
+     m_animation = animation;
+
+     if (m_animation) {
+         <span class="comment">//connect the new animation</span>
+         connect(m_animation, SIGNAL(finished()), this, SIGNAL(animationFinished()));
+     }
+ }
+
+<span class="comment"> /*!
+   Returns the animation handle by this animation state, or 0 if there is no animation.
+ */</span>
+ QAbstractAnimation* QAnimationState::animation() const
+ {
+     return m_animation;
+ }
+
+<span class="comment"> /*!
+   \reimp
+ */</span>
+ void QAnimationState::onEntry(QEvent *)
+ {
+     if (m_animation)
+         m_animation-&gt;start();
+ }
+
+<span class="comment"> /*!
+   \reimp
+ */</span>
+ void QAnimationState::onExit(QEvent *)
+ {
+     if (m_animation)
+         m_animation-&gt;stop();
+ }
+
+<span class="comment"> /*!
+   \reimp
+ */</span>
+ bool QAnimationState::event(QEvent *e)
+ {
+     return QState::event(e);
+ }
+
+
+ #endif</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

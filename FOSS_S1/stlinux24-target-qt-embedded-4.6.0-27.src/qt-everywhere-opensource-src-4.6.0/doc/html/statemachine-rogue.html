@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- rogue.qdoc -->
+<head>
+  <title>Qt 4.6: Rogue Example</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">Rogue Example<br /><span class="subtitle"></span>
+</h1>
+<p>Files:</p>
+<ul>
+<li><a href="statemachine-rogue-movementtransition-h.html">statemachine/rogue/movementtransition.h</a></li>
+<li><a href="statemachine-rogue-window-cpp.html">statemachine/rogue/window.cpp</a></li>
+<li><a href="statemachine-rogue-window-h.html">statemachine/rogue/window.h</a></li>
+<li><a href="statemachine-rogue-main-cpp.html">statemachine/rogue/main.cpp</a></li>
+<li><a href="statemachine-rogue-rogue-pro.html">statemachine/rogue/rogue.pro</a></li>
+</ul>
+<p>The Rogue example shows how to use the Qt state machine for event handling.</p>
+<p align="center"><img src="images/rogue-example.png" /></p><p>This example implements a simple text based game. Do you see the <tt>@</tt> in the screenshot? That's you, the rogue. The <tt>#</tt> characters are walls, and the dots represent floor. In a real game, other ASCII characters would represent all kinds of objects and creatures, for instance, ancient dragons (<tt>D</tt>s) or food rations (<tt>%</tt>s). But let's not get carried away. In this game, the rogue is simply running around in an empty room.</p>
+<p>The rogue is moved with the keypad (2, 4, 8, 6). That aside, we have implemented a <tt>quit</tt> command that triggers if the player types <tt>q</tt>. The player is then asked if he/she really wants to quit.</p>
+<p>Most games have commands that need more than one key press (we think of consecutive presses, i.e&#x2e;, not of several keys being pressed at the same time). In this game, only the <tt>quit</tt> command falls under this category, but for the sake of argument, let's imagine a fully-fledged game with a rich set of commands. If we were to implement these by catching key events in <a href="qwidget.html#keyPressEvent">keyPressEvent()</a>, we would have to keep a lot of class member variables to track the sequence of keys already typed (or find some other way of deducing the current state of a command). This can easily lead to spaghetti, which is--as we all well know, I'm sure--unpleasant. With a state machine, on the other hand, separate states can wait for a single key press, and that makes our lives a lot simpler.</p>
+<p>The example consists of two classes:</p>
+<ul>
+<li><tt>Window</tt> draws the text display of the game and sets up the state machine. The window also has a status bar above the area in which the rouge moves.</li>
+<li><tt>MovementTransition</tt> is a transition that carries out a single move of the rogue.</li>
+</ul>
+<p>Before we embark on a code walkthrough, it is necessary to take a closer look at the design of the machine. Here is a state chart that shows what we want to achieve:</p>
+<p align="center"><img src="images/rogue-statechart.png" /></p><p>The input state waits for a key press to start a new command. When receiving a key it recognizes, it transitions to one of the two commands of the game; though, as we will see, movement is handled by the transition itself. The quit state waits for the player to answer yes or no (by typing <tt>y</tt> or <tt>n</tt>) when asked whether he/she really wants to quit the game.</p>
+<p>The chart demonstrates how we use one state to wait for a single key press. The press received may trigger one of the transitions connected to the state.</p>
+<a name="window-class-definition"></a>
+<h2>Window Class Definition</h2>
+<p>The <tt>Window</tt> class is a widget that draws the text display of the game. It also sets up the state machine, i.e&#x2e;, creates and connects the states in the machine. It is the key events from this widget that are used by the machine.</p>
+<pre> class Window : public QWidget
+ {
+     Q_OBJECT
+     Q_PROPERTY(QString status READ status WRITE setStatus)
+
+ public:
+     enum Direction { Up, Down, Left, Right };
+
+     Window();
+
+     void movePlayer(Direction direction);
+     void setStatus(const QString &amp;status);
+     QString status() const;
+
+     QSize sizeHint() const;
+
+ protected:
+     void paintEvent(QPaintEvent *event);</pre>
+<p><tt>Direction</tt> specifies the direction in which the rogue is to move. We use this in <tt>movePlayer()</tt>, which moves the rogue and repaints the window. The game has a status line above the area in which the rogue moves. The <tt>status</tt> property contains the text of this line. We use a property because the <a href="qstate.html">QState</a> class allows setting any Qt <a href="properties.html">property</a> when entered. More on this later.</p>
+<pre> private:
+     void buildMachine();
+     void setupMap();
+
+     QChar map[WIDTH][HEIGHT];
+     int pX, pY;
+
+     QStateMachine *machine;
+     QString myStatus;
+ };</pre>
+<p>The <tt>map</tt> is an array with the characters that are currently displayed. We set up the array in <tt>setupMap()</tt>, and update it when the rogue is moved. <tt>pX</tt> and <tt>pY</tt> is the current position of the rogue. <tt>WIDTH</tt> and <tt>HEIGHT</tt> are macros specifying the dimensions of the map.</p>
+<p>The <tt>paintEvent()</tt> function is left out of this walkthrough. We also do not discuss other code that does not concern the state machine (the <tt>setupMap()</tt>, <tt>status()</tt>, <tt>setStatus()</tt>, <tt>movePlayer()</tt>, and <tt>sizeHint()</tt> functions). If you wish to take a look at the code, click on the link for the <tt>window.cpp</tt> file at the top of this page.</p>
+<a name="window-class-implementation"></a>
+<h2>Window Class Implementation</h2>
+<p>Here is the constructor of <tt>Window</tt>:</p>
+<pre> Window::Window()
+ {
+     pX = 5;
+     pY = 5;
+     ...
+     setupMap();
+     buildMachine();
+ }</pre>
+<p>The player starts off at position (5, 5). We then set up the map and statemachine. Let's proceed with the <tt>buildMachine()</tt> function:</p>
+<pre> void Window::buildMachine()
+ {
+     machine = new QStateMachine;
+
+     QState *inputState = new QState(machine);
+     inputState-&gt;assignProperty(this, &quot;status&quot;, &quot;Move the rogue with 2, 4, 6, and 8&quot;);
+
+     MovementTransition *transition = new MovementTransition(this);
+     inputState-&gt;addTransition(transition);</pre>
+<p>We enter <tt>inputState</tt> when the machine is started and from the <tt>quitState</tt> if the user wants to continue playing. We then set the status to a helpful reminder of how to play the game.</p>
+<p>First, the <tt>Movement</tt> transition is added to the input state. This will enable the rogue to be moved with the keypad. Notice that we don't set a target state for the movement transition. This will cause the transition to be triggered (and the <a href="qabstracttransition.html#onTransition">onTransition()</a> function to be invoked), but the machine will not leave the <tt>inputState</tt>. If we had set <tt>inputState</tt> as the target state, we would first have left and then entered the <tt>inputState</tt> again.</p>
+<pre>     QState *quitState = new QState(machine);
+     quitState-&gt;assignProperty(this, &quot;status&quot;, &quot;Really quit(y/n)?&quot;);
+
+     QKeyEventTransition *yesTransition = new
+         QKeyEventTransition(this, QEvent::KeyPress, Qt::Key_Y);
+     yesTransition-&gt;setTargetState(new QFinalState(machine));
+     quitState-&gt;addTransition(yesTransition);
+
+     QKeyEventTransition *noTransition =
+         new QKeyEventTransition(this, QEvent::KeyPress, Qt::Key_N);
+     noTransition-&gt;setTargetState(inputState);
+     quitState-&gt;addTransition(noTransition);</pre>
+<p>When we enter <tt>quitState</tt>, we update the status bar of the window.</p>
+<p><tt>QKeyEventTransition</tt> is a utility class that removes the hassle of implementing transitions for <a href="qkeyevent.html">QKeyEvent</a>s. We simply need to specify the key on which the transition should trigger and the target state of the transition.</p>
+<pre>     QKeyEventTransition *quitTransition =
+         new QKeyEventTransition(this, QEvent::KeyPress, Qt::Key_Q);
+     quitTransition-&gt;setTargetState(quitState);
+     inputState-&gt;addTransition(quitTransition);</pre>
+<p>The transition from <tt>inputState</tt> allows triggering the quit state when the player types <tt>q</tt>.</p>
+<pre>     machine-&gt;setInitialState(inputState);
+
+     connect(machine, SIGNAL(finished()), qApp, SLOT(quit()));
+
+     machine-&gt;start();
+ }</pre>
+<p>The machine is set up, so it's time to start it.</p>
+<a name="the-movementtransition-class"></a>
+<h2>The MovementTransition Class</h2>
+<p><tt>MovementTransition</tt> is triggered when the player request the rogue to be moved (by typing 2, 4, 6, or 8) when the machine is in the <tt>inputState</tt>.</p>
+<pre> class MovementTransition : public QEventTransition
+ {
+     Q_OBJECT
+
+ public:
+     MovementTransition(Window *window) :
+         QEventTransition(window, QEvent::KeyPress) {
+         this-&gt;window = window;
+     }</pre>
+<p>In the constructor, we tell <a href="qeventtransition.html">QEventTransition</a> to only send <a href="qevent.html#Type-enum">KeyPress</a> events to the <a href="qabstracttransition.html#eventTest">eventTest()</a> function:</p>
+<pre> protected:
+     bool eventTest(QEvent *event) {
+         if (event-&gt;type() == QEvent::StateMachineWrapped &amp;&amp;
+             static_cast&lt;QStateMachine::WrappedEvent *&gt;(event)-&gt;event()-&gt;type() == QEvent::KeyPress) {
+             QEvent *wrappedEvent = static_cast&lt;QStateMachine::WrappedEvent *&gt;(event)-&gt;event();
+
+             QKeyEvent *keyEvent = static_cast&lt;QKeyEvent *&gt;(wrappedEvent);
+             int key = keyEvent-&gt;key();
+
+             return key == Qt::Key_2 || key == Qt::Key_8 || key == Qt::Key_6 ||
+                    key == Qt::Key_4;
+         }
+         return false;
+     }</pre>
+<p>The KeyPress events come wrapped in <a href="qstatemachine-wrappedevent.html">QStateMachine::WrappedEvent</a>s. <tt>event</tt> must be confirmed to be a wrapped event because Qt uses other events internally. After that, it is simply a matter of checking which key has been pressed.</p>
+<p>Let's move on to the <tt>onTransition()</tt> function:</p>
+<pre>     void onTransition(QEvent *event) {
+         QKeyEvent *keyEvent = static_cast&lt;QKeyEvent *&gt;(
+             static_cast&lt;QStateMachine::WrappedEvent *&gt;(event)-&gt;event());
+
+         int key = keyEvent-&gt;key();
+         switch (key) {
+             case Qt::Key_4:
+                 window-&gt;movePlayer(Window::Left);
+                 break;
+             case Qt::Key_8:
+                 window-&gt;movePlayer(Window::Up);
+                 break;
+             case Qt::Key_6:
+                 window-&gt;movePlayer(Window::Right);
+                 break;
+             case Qt::Key_2:
+                 window-&gt;movePlayer(Window::Down);
+                 break;
+             default:
+                 ;
+         }
+     }</pre>
+<p>When <tt>onTransition()</tt> is invoked, we know that we have a <a href="qevent.html#Type-enum">KeyPress</a> event with 2, 4, 6, or 8, i.e&#x2e;, the event is already unwrapped.</p>
+<a name="the-roguelike-tradition"></a>
+<h2>The Roguelike Tradition</h2>
+<p>You might have been wondering why the game features a rogue. Well, these kinds of text based dungeon exploration games date back to a game called, yes, &quot;Rogue&quot;. Although outflanked by the technology of modern 3D computer games, roguelikes have a solid community of hard-core, devoted followers.</p>
+<p>Playing these games can be surprisingly addictive (despite the lack of graphics). Angband, the perhaps most well-known rougelike, is found here: <a href="http://rephial.org/">http://rephial.org/</a>.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

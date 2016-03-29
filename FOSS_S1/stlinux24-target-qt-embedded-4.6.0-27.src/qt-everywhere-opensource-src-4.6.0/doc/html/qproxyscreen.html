@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qscreenproxy_qws.cpp -->
+<head>
+  <title>Qt 4.6: QProxyScreen Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QProxyScreen" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QProxyScreen Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QProxyScreen class provides a generic interface to <a href="qscreen.html">QScreen</a> implementations. <a href="#details">More...</a></p>
+<pre> #include &lt;QProxyScreen&gt;</pre><p>Inherits <a href="qscreen.html">QScreen</a>.</p>
+<ul>
+<li><a href="qproxyscreen-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qproxyscreen.html#QProxyScreen">QProxyScreen</a></b> ( int <i>displayId</i>, ClassId <i>classId</i> = ProxyClass )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qproxyscreen.html#dtor.QProxyScreen">~QProxyScreen</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QScreen * </td><td class="memItemRight" valign="bottom"><b><a href="qproxyscreen.html#screen">screen</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qproxyscreen.html#setScreen">setScreen</a></b> ( QScreen * <i>screen</i> )</td></tr>
+</table>
+<hr />
+<a name="reimplemented-public-functions"></a>
+<h2>Reimplemented Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qproxyscreen.html#blank">blank</a></b> ( bool <i>on</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qproxyscreen.html#blit">blit</a></b> ( const QImage &amp; <i>image</i>, const QPoint &amp; <i>topLeft</i>, const QRegion &amp; <i>region</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qproxyscreen.html#connect">connect</a></b> ( const QString &amp; <i>displaySpec</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QWSWindowSurface * </td><td class="memItemRight" valign="bottom"><b><a href="qproxyscreen.html#createSurface">createSurface</a></b> ( QWidget * <i>widget</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QWSWindowSurface * </td><td class="memItemRight" valign="bottom"><b><a href="qproxyscreen.html#createSurface-2">createSurface</a></b> ( const QString &amp; <i>key</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qproxyscreen.html#disconnect">disconnect</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qproxyscreen.html#exposeRegion">exposeRegion</a></b> ( QRegion <i>r</i>, int <i>changing</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qproxyscreen.html#initDevice">initDevice</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qproxyscreen.html#isInterlaced">isInterlaced</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qproxyscreen.html#isTransformed">isTransformed</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QSize </td><td class="memItemRight" valign="bottom"><b><a href="qproxyscreen.html#mapFromDevice">mapFromDevice</a></b> ( const QSize &amp; <i>s</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QPoint </td><td class="memItemRight" valign="bottom"><b><a href="qproxyscreen.html#mapFromDevice-2">mapFromDevice</a></b> ( const QPoint &amp; <i>p</i>, const QSize &amp; <i>s</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QRect </td><td class="memItemRight" valign="bottom"><b><a href="qproxyscreen.html#mapFromDevice-3">mapFromDevice</a></b> ( const QRect &amp; <i>r</i>, const QSize &amp; <i>s</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QRegion </td><td class="memItemRight" valign="bottom"><b><a href="qproxyscreen.html#mapFromDevice-4">mapFromDevice</a></b> ( const QRegion &amp; <i>r</i>, const QSize &amp; <i>s</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QSize </td><td class="memItemRight" valign="bottom"><b><a href="qproxyscreen.html#mapToDevice">mapToDevice</a></b> ( const QSize &amp; <i>s</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QPoint </td><td class="memItemRight" valign="bottom"><b><a href="qproxyscreen.html#mapToDevice-2">mapToDevice</a></b> ( const QPoint &amp; <i>p</i>, const QSize &amp; <i>s</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QRect </td><td class="memItemRight" valign="bottom"><b><a href="qproxyscreen.html#mapToDevice-3">mapToDevice</a></b> ( const QRect &amp; <i>r</i>, const QSize &amp; <i>s</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QRegion </td><td class="memItemRight" valign="bottom"><b><a href="qproxyscreen.html#mapToDevice-4">mapToDevice</a></b> ( const QRegion &amp; <i>r</i>, const QSize &amp; <i>s</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qproxyscreen.html#onCard">onCard</a></b> ( const unsigned char * <i>ptr</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qproxyscreen.html#onCard-2">onCard</a></b> ( const unsigned char * <i>ptr</i>, ulong &amp; <i>offset</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QRegion </td><td class="memItemRight" valign="bottom"><b><a href="qproxyscreen.html#region">region</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qproxyscreen.html#restore">restore</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qproxyscreen.html#save">save</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qproxyscreen.html#setDirty">setDirty</a></b> ( const QRect &amp; <i>rect</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qproxyscreen.html#setMode">setMode</a></b> ( int <i>w</i>, int <i>h</i>, int <i>d</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qproxyscreen.html#shutdownDevice">shutdownDevice</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qproxyscreen.html#solidFill">solidFill</a></b> ( const QColor &amp; <i>color</i>, const QRegion &amp; <i>region</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QList&lt;QScreen *&gt; </td><td class="memItemRight" valign="bottom"><b><a href="qproxyscreen.html#subScreens">subScreens</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qproxyscreen.html#supportsDepth">supportsDepth</a></b> ( int <i>depth</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual int </td><td class="memItemRight" valign="bottom"><b><a href="qproxyscreen.html#transformOrientation">transformOrientation</a></b> () const</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>54 public functions inherited from <a href="qscreen.html#public-functions">QScreen</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li><div class="fn"></div>1 static public member inherited from <a href="qscreen.html#static-public-members">QScreen</a></li>
+<li><div class="fn"></div>1 protected function inherited from <a href="qscreen.html#protected-functions">QScreen</a></li>
+<li><div class="fn"></div>15 protected variables inherited from <a href="qscreen.html#protected-variables">QScreen</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QProxyScreen class provides a generic interface to <a href="qscreen.html">QScreen</a> implementations.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QProxyScreen/QProxyScreen" />
+<h3 class="fn"><a name="QProxyScreen"></a>QProxyScreen::QProxyScreen ( int <i>displayId</i>, <a href="qscreen.html#ClassId-enum">ClassId</a> <i>classId</i> = ProxyClass )</h3>
+<p>Constructs a proxy screen with the given <i>displayId</i> and <i>classId</i>.</p>
+<a name="//apple_ref/cpp/instm/QProxyScreen/~QProxyScreen" />
+<h3 class="fn"><a name="dtor.QProxyScreen"></a>QProxyScreen::~QProxyScreen ()</h3>
+<p>Destroys the proxy screen.</p>
+<a name="//apple_ref/cpp/instm/QProxyScreen/blank" />
+<h3 class="fn"><a name="blank"></a>void QProxyScreen::blank ( bool <i>on</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qscreen.html#blank">QScreen::blank</a>().</p>
+<a name="//apple_ref/cpp/instm/QProxyScreen/blit" />
+<h3 class="fn"><a name="blit"></a>void QProxyScreen::blit ( const <a href="qimage.html">QImage</a> &amp; <i>image</i>, const <a href="qpoint.html">QPoint</a> &amp; <i>topLeft</i>, const <a href="qregion.html">QRegion</a> &amp; <i>region</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qscreen.html#blit">QScreen::blit</a>().</p>
+<a name="//apple_ref/cpp/instm/QProxyScreen/connect" />
+<h3 class="fn"><a name="connect"></a>bool QProxyScreen::connect ( const <a href="qstring.html">QString</a> &amp; <i>displaySpec</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qscreen.html#connect">QScreen::connect</a>().</p>
+<a name="//apple_ref/cpp/instm/QProxyScreen/createSurface" />
+<h3 class="fn"><a name="createSurface"></a>QWSWindowSurface * QProxyScreen::createSurface ( <a href="qwidget.html">QWidget</a> * <i>widget</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qscreen.html#createSurface-2">QScreen::createSurface</a>().</p>
+<h3 class="fn"><a name="createSurface-2"></a>QWSWindowSurface * QProxyScreen::createSurface ( const <a href="qstring.html">QString</a> &amp; <i>key</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qscreen.html#createSurface">QScreen::createSurface</a>().</p>
+<a name="//apple_ref/cpp/instm/QProxyScreen/disconnect" />
+<h3 class="fn"><a name="disconnect"></a>void QProxyScreen::disconnect ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qscreen.html#disconnect">QScreen::disconnect</a>().</p>
+<a name="//apple_ref/cpp/instm/QProxyScreen/exposeRegion" />
+<h3 class="fn"><a name="exposeRegion"></a>void QProxyScreen::exposeRegion ( <a href="qregion.html">QRegion</a> <i>r</i>, int <i>changing</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qscreen.html#exposeRegion">QScreen::exposeRegion</a>().</p>
+<a name="//apple_ref/cpp/instm/QProxyScreen/initDevice" />
+<h3 class="fn"><a name="initDevice"></a>bool QProxyScreen::initDevice ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qscreen.html#initDevice">QScreen::initDevice</a>().</p>
+<a name="//apple_ref/cpp/instm/QProxyScreen/isInterlaced" />
+<h3 class="fn"><a name="isInterlaced"></a>bool QProxyScreen::isInterlaced () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qscreen.html#isInterlaced">QScreen::isInterlaced</a>().</p>
+<a name="//apple_ref/cpp/instm/QProxyScreen/isTransformed" />
+<h3 class="fn"><a name="isTransformed"></a>bool QProxyScreen::isTransformed () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qscreen.html#isTransformed">QScreen::isTransformed</a>().</p>
+<a name="//apple_ref/cpp/instm/QProxyScreen/mapFromDevice" />
+<h3 class="fn"><a name="mapFromDevice"></a><a href="qsize.html">QSize</a> QProxyScreen::mapFromDevice ( const <a href="qsize.html">QSize</a> &amp; <i>s</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qscreen.html#mapFromDevice">QScreen::mapFromDevice</a>().</p>
+<h3 class="fn"><a name="mapFromDevice-2"></a><a href="qpoint.html">QPoint</a> QProxyScreen::mapFromDevice ( const <a href="qpoint.html">QPoint</a> &amp; <i>p</i>, const <a href="qsize.html">QSize</a> &amp; <i>s</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qscreen.html#mapFromDevice-2">QScreen::mapFromDevice</a>().</p>
+<h3 class="fn"><a name="mapFromDevice-3"></a><a href="qrect.html">QRect</a> QProxyScreen::mapFromDevice ( const <a href="qrect.html">QRect</a> &amp; <i>r</i>, const <a href="qsize.html">QSize</a> &amp; <i>s</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qscreen.html#mapFromDevice-3">QScreen::mapFromDevice</a>().</p>
+<h3 class="fn"><a name="mapFromDevice-4"></a><a href="qregion.html">QRegion</a> QProxyScreen::mapFromDevice ( const <a href="qregion.html">QRegion</a> &amp; <i>r</i>, const <a href="qsize.html">QSize</a> &amp; <i>s</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qscreen.html#mapFromDevice-5">QScreen::mapFromDevice</a>().</p>
+<a name="//apple_ref/cpp/instm/QProxyScreen/mapToDevice" />
+<h3 class="fn"><a name="mapToDevice"></a><a href="qsize.html">QSize</a> QProxyScreen::mapToDevice ( const <a href="qsize.html">QSize</a> &amp; <i>s</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qscreen.html#mapToDevice">QScreen::mapToDevice</a>().</p>
+<h3 class="fn"><a name="mapToDevice-2"></a><a href="qpoint.html">QPoint</a> QProxyScreen::mapToDevice ( const <a href="qpoint.html">QPoint</a> &amp; <i>p</i>, const <a href="qsize.html">QSize</a> &amp; <i>s</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qscreen.html#mapToDevice-2">QScreen::mapToDevice</a>().</p>
+<h3 class="fn"><a name="mapToDevice-3"></a><a href="qrect.html">QRect</a> QProxyScreen::mapToDevice ( const <a href="qrect.html">QRect</a> &amp; <i>r</i>, const <a href="qsize.html">QSize</a> &amp; <i>s</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qscreen.html#mapToDevice-3">QScreen::mapToDevice</a>().</p>
+<h3 class="fn"><a name="mapToDevice-4"></a><a href="qregion.html">QRegion</a> QProxyScreen::mapToDevice ( const <a href="qregion.html">QRegion</a> &amp; <i>r</i>, const <a href="qsize.html">QSize</a> &amp; <i>s</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qscreen.html#mapToDevice-5">QScreen::mapToDevice</a>().</p>
+<a name="//apple_ref/cpp/instm/QProxyScreen/onCard" />
+<h3 class="fn"><a name="onCard"></a>bool QProxyScreen::onCard ( const unsigned char * <i>ptr</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qscreen.html#onCard">QScreen::onCard</a>().</p>
+<h3 class="fn"><a name="onCard-2"></a>bool QProxyScreen::onCard ( const unsigned char * <i>ptr</i>, <a href="qtglobal.html#ulong-typedef">ulong</a> &amp; <i>offset</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qscreen.html#onCard-2">QScreen::onCard</a>().</p>
+<a name="//apple_ref/cpp/instm/QProxyScreen/region" />
+<h3 class="fn"><a name="region"></a><a href="qregion.html">QRegion</a> QProxyScreen::region () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qscreen.html#region">QScreen::region</a>().</p>
+<a name="//apple_ref/cpp/instm/QProxyScreen/restore" />
+<h3 class="fn"><a name="restore"></a>void QProxyScreen::restore ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qscreen.html#restore">QScreen::restore</a>().</p>
+<a name="//apple_ref/cpp/instm/QProxyScreen/save" />
+<h3 class="fn"><a name="save"></a>void QProxyScreen::save ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qscreen.html#save">QScreen::save</a>().</p>
+<a name="//apple_ref/cpp/instm/QProxyScreen/screen" />
+<h3 class="fn"><a name="screen"></a><a href="qscreen.html">QScreen</a> * QProxyScreen::screen () const</h3>
+<p>Returns the real screen used by the proxy screen.</p>
+<p>See also <a href="qproxyscreen.html#setScreen">setScreen</a>().</p>
+<a name="//apple_ref/cpp/instm/QProxyScreen/setDirty" />
+<h3 class="fn"><a name="setDirty"></a>void QProxyScreen::setDirty ( const <a href="qrect.html">QRect</a> &amp; <i>rect</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qscreen.html#setDirty">QScreen::setDirty</a>().</p>
+<a name="//apple_ref/cpp/instm/QProxyScreen/setMode" />
+<h3 class="fn"><a name="setMode"></a>void QProxyScreen::setMode ( int <i>w</i>, int <i>h</i>, int <i>d</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qscreen.html#setMode">QScreen::setMode</a>().</p>
+<a name="//apple_ref/cpp/instm/QProxyScreen/setScreen" />
+<h3 class="fn"><a name="setScreen"></a>void QProxyScreen::setScreen ( <a href="qscreen.html">QScreen</a> * <i>screen</i> )</h3>
+<p>Sets the real <i>screen</i> to be used by the proxy screen.</p>
+<p>See also <a href="qproxyscreen.html#screen">screen</a>().</p>
+<a name="//apple_ref/cpp/instm/QProxyScreen/shutdownDevice" />
+<h3 class="fn"><a name="shutdownDevice"></a>void QProxyScreen::shutdownDevice ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qscreen.html#shutdownDevice">QScreen::shutdownDevice</a>().</p>
+<a name="//apple_ref/cpp/instm/QProxyScreen/solidFill" />
+<h3 class="fn"><a name="solidFill"></a>void QProxyScreen::solidFill ( const <a href="qcolor.html">QColor</a> &amp; <i>color</i>, const <a href="qregion.html">QRegion</a> &amp; <i>region</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qscreen.html#solidFill">QScreen::solidFill</a>().</p>
+<a name="//apple_ref/cpp/instm/QProxyScreen/subScreens" />
+<h3 class="fn"><a name="subScreens"></a><a href="qlist.html">QList</a>&lt;<a href="qscreen.html">QScreen</a> *&gt; QProxyScreen::subScreens () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qscreen.html#subScreens">QScreen::subScreens</a>().</p>
+<a name="//apple_ref/cpp/instm/QProxyScreen/supportsDepth" />
+<h3 class="fn"><a name="supportsDepth"></a>bool QProxyScreen::supportsDepth ( int <i>depth</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qscreen.html#supportsDepth">QScreen::supportsDepth</a>().</p>
+<a name="//apple_ref/cpp/instm/QProxyScreen/transformOrientation" />
+<h3 class="fn"><a name="transformOrientation"></a>int QProxyScreen::transformOrientation () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qscreen.html#transformOrientation">QScreen::transformOrientation</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qdom.cpp -->
+<head>
+  <title>Qt 4.6: QDomNodeList Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QDomNodeList" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QDomNodeList Class Reference<br /><span class="small-subtitle">[<a href="qtxml.html">QtXml</a> module]</span>
+</h1>
+<p>The QDomNodeList class is a list of <a href="qdomnode.html">QDomNode</a> objects. <a href="#details">More...</a></p>
+<pre> #include &lt;QDomNodeList&gt;</pre><p><b>This class is not part of the Qt GUI Framework Edition.</b></p>
+<p><b>Note:</b> All functions in this class are <a href="threads-reentrancy.html#reentrant">reentrant</a>.</p>
+<ul>
+<li><a href="qdomnodelist-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qdomnodelist.html#QDomNodeList">QDomNodeList</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qdomnodelist.html#QDomNodeList-2">QDomNodeList</a></b> ( const QDomNodeList &amp; <i>n</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qdomnodelist.html#dtor.QDomNodeList">~QDomNodeList</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QDomNode </td><td class="memItemRight" valign="bottom"><b><a href="qdomnodelist.html#at">at</a></b> ( int <i>index</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qdomnodelist.html#count">count</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qdomnodelist.html#isEmpty">isEmpty</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QDomNode </td><td class="memItemRight" valign="bottom"><b><a href="qdomnodelist.html#item">item</a></b> ( int <i>index</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">uint </td><td class="memItemRight" valign="bottom"><b><a href="qdomnodelist.html#length">length</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qdomnodelist.html#size">size</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qdomnodelist.html#operator-not-eq">operator!=</a></b> ( const QDomNodeList &amp; <i>n</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QDomNodeList &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qdomnodelist.html#operator-eq">operator=</a></b> ( const QDomNodeList &amp; <i>n</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qdomnodelist.html#operator-eq-eq">operator==</a></b> ( const QDomNodeList &amp; <i>n</i> ) const</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QDomNodeList class is a list of <a href="qdomnode.html">QDomNode</a> objects.</p>
+<p>Lists can be obtained by <a href="qdomdocument.html#elementsByTagName">QDomDocument::elementsByTagName</a>() and <a href="qdomnode.html#childNodes">QDomNode::childNodes</a>(). The Document Object Model (DOM) requires these lists to be &quot;live&quot;: whenever you change the underlying document, the contents of the list will get updated.</p>
+<p>You can get a particular node from the list with <a href="qdomnodelist.html#item">item</a>(). The number of items in the list is returned by <a href="qdomnodelist.html#length">length</a>().</p>
+<p>For further information about the Document Object Model see <a href="http://www.w3.org/TR/REC-DOM-Level-1/">Level 1</a> and <a href="http://www.w3.org/TR/DOM-Level-2-Core/">Level 2 Core</a>. For a more general introduction of the DOM implementation see the <a href="qdomdocument.html">QDomDocument</a> documentation.</p>
+<p>See also <a href="qdomnode.html#childNodes">QDomNode::childNodes</a>() and <a href="qdomdocument.html#elementsByTagName">QDomDocument::elementsByTagName</a>().</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QDomNodeList/QDomNodeList" />
+<h3 class="fn"><a name="QDomNodeList"></a>QDomNodeList::QDomNodeList ()</h3>
+<p>Creates an empty node list.</p>
+<h3 class="fn"><a name="QDomNodeList-2"></a>QDomNodeList::QDomNodeList ( const QDomNodeList &amp; <i>n</i> )</h3>
+<p>Constructs a copy of <i>n</i>.</p>
+<a name="//apple_ref/cpp/instm/QDomNodeList/~QDomNodeList" />
+<h3 class="fn"><a name="dtor.QDomNodeList"></a>QDomNodeList::~QDomNodeList ()</h3>
+<p>Destroys the object and frees its resources.</p>
+<a name="//apple_ref/cpp/instm/QDomNodeList/at" />
+<h3 class="fn"><a name="at"></a><a href="qdomnode.html">QDomNode</a> QDomNodeList::at ( int <i>index</i> ) const</h3>
+<p>This function is provided for Qt API consistency. It is equivalent to <a href="qdomnodelist.html#item">item</a>().</p>
+<p>If <i>index</i> is negative or if <i>index</i> &gt;= <a href="qdomnodelist.html#length">length</a>() then a null node is returned (i.e&#x2e; a node for which <a href="qdomnode.html#isNull">QDomNode::isNull</a>() returns true).</p>
+<a name="//apple_ref/cpp/instm/QDomNodeList/count" />
+<h3 class="fn"><a name="count"></a>int QDomNodeList::count () const</h3>
+<p>This function is provided for Qt API consistency. It is equivalent to <a href="qdomnodelist.html#length">length</a>().</p>
+<a name="//apple_ref/cpp/instm/QDomNodeList/isEmpty" />
+<h3 class="fn"><a name="isEmpty"></a>bool QDomNodeList::isEmpty () const</h3>
+<p>Returns true if the list contains no items; otherwise returns false. This function is provided for Qt API consistency.</p>
+<a name="//apple_ref/cpp/instm/QDomNodeList/item" />
+<h3 class="fn"><a name="item"></a><a href="qdomnode.html">QDomNode</a> QDomNodeList::item ( int <i>index</i> ) const</h3>
+<p>Returns the node at position <i>index</i>.</p>
+<p>If <i>index</i> is negative or if <i>index</i> &gt;= <a href="qdomnodelist.html#length">length</a>() then a null node is returned (i.e&#x2e; a node for which <a href="qdomnode.html#isNull">QDomNode::isNull</a>() returns true).</p>
+<p>See also <a href="qdomnodelist.html#length">length</a>().</p>
+<a name="//apple_ref/cpp/instm/QDomNodeList/length" />
+<h3 class="fn"><a name="length"></a><a href="qtglobal.html#uint-typedef">uint</a> QDomNodeList::length () const</h3>
+<p>Returns the number of nodes in the list.</p>
+<a name="//apple_ref/cpp/instm/QDomNodeList/size" />
+<h3 class="fn"><a name="size"></a>int QDomNodeList::size () const</h3>
+<p>This function is provided for Qt API consistency. It is equivalent to <a href="qdomnodelist.html#length">length</a>().</p>
+<a name="//apple_ref/cpp/instm/QDomNodeList/operator!=" />
+<h3 class="fn"><a name="operator-not-eq"></a>bool QDomNodeList::operator!= ( const QDomNodeList &amp; <i>n</i> ) const</h3>
+<p>Returns true the node list <i>n</i> and this node list are not equal; otherwise returns false.</p>
+<a name="//apple_ref/cpp/instm/QDomNodeList/operator=" />
+<h3 class="fn"><a name="operator-eq"></a>QDomNodeList &amp; QDomNodeList::operator= ( const QDomNodeList &amp; <i>n</i> )</h3>
+<p>Assigns <i>n</i> to this node list.</p>
+<a name="//apple_ref/cpp/instm/QDomNodeList/operator==" />
+<h3 class="fn"><a name="operator-eq-eq"></a>bool QDomNodeList::operator== ( const QDomNodeList &amp; <i>n</i> ) const</h3>
+<p>Returns true if the node list <i>n</i> and this node list are equal; otherwise returns false.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

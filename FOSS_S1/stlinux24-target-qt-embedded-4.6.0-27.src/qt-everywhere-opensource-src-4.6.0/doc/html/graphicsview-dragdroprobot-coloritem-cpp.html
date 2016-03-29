@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: coloritem.cpp Example File (graphicsview/dragdroprobot/coloritem.cpp)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">coloritem.cpp Example File<br /><span class="small-subtitle">graphicsview/dragdroprobot/coloritem.cpp</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the examples of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+
+ #include &lt;QtGui&gt;
+
+ #include &quot;coloritem.h&quot;
+
+ ColorItem::ColorItem()
+     : color(qrand() % 256, qrand() % 256, qrand() % 256)
+ {
+     setToolTip(QString(&quot;QColor(%1, %2, %3)\n%4&quot;)
+               .arg(color.red()).arg(color.green()).arg(color.blue())
+               .arg(&quot;Click and drag this color onto the robot!&quot;));
+     setCursor(Qt::OpenHandCursor);
+ }
+
+ QRectF ColorItem::boundingRect() const
+ {
+     return QRectF(-15.5, -15.5, 34, 34);
+ }
+
+ void ColorItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+ {
+     Q_UNUSED(option);
+     Q_UNUSED(widget);
+     painter-&gt;setPen(Qt::NoPen);
+     painter-&gt;setBrush(Qt::darkGray);
+     painter-&gt;drawEllipse(-12, -12, 30, 30);
+     painter-&gt;setPen(QPen(Qt::black, 1));
+     painter-&gt;setBrush(QBrush(color));
+     painter-&gt;drawEllipse(-15, -15, 30, 30);
+ }
+
+ void ColorItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
+ {
+     if (event-&gt;button() != Qt::LeftButton) {
+         event-&gt;ignore();
+         return;
+     }
+
+     setCursor(Qt::ClosedHandCursor);
+ }
+
+ void ColorItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
+ {
+     if (QLineF(event-&gt;screenPos(), event-&gt;buttonDownScreenPos(Qt::LeftButton))
+         .length() &lt; QApplication::startDragDistance()) {
+         return;
+     }
+
+     QDrag *drag = new QDrag(event-&gt;widget());
+     QMimeData *mime = new QMimeData;
+     drag-&gt;setMimeData(mime);
+
+     static int n = 0;
+     if (n++ &gt; 2 &amp;&amp; (qrand() % 3) == 0) {
+         QImage image(&quot;:/images/head.png&quot;);
+         mime-&gt;setImageData(image);
+
+         drag-&gt;setPixmap(QPixmap::fromImage(image).scaled(30, 40));
+         drag-&gt;setHotSpot(QPoint(15, 30));
+     } else {
+         mime-&gt;setColorData(color);
+         mime-&gt;setText(QString(&quot;#%1%2%3&quot;)
+                       .arg(color.red(), 2, 16, QLatin1Char('0'))
+                       .arg(color.green(), 2, 16, QLatin1Char('0'))
+                       .arg(color.blue(), 2, 16, QLatin1Char('0')));
+
+         QPixmap pixmap(34, 34);
+         pixmap.fill(Qt::white);
+
+         QPainter painter(&amp;pixmap);
+         painter.translate(15, 15);
+         painter.setRenderHint(QPainter::Antialiasing);
+         paint(&amp;painter, 0, 0);
+         painter.end();
+
+         pixmap.setMask(pixmap.createHeuristicMask());
+
+         drag-&gt;setPixmap(pixmap);
+         drag-&gt;setHotSpot(QPoint(15, 20));
+     }
+
+     drag-&gt;exec();
+     setCursor(Qt::OpenHandCursor);
+ }
+
+ void ColorItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *)
+ {
+     setCursor(Qt::OpenHandCursor);
+ }</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

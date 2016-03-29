@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: torpedo.cpp Example File (demos/sub-attaq/torpedo.cpp)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">torpedo.cpp Example File<br /><span class="small-subtitle">demos/sub-attaq/torpedo.cpp</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the QtCore module of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+
+<span class="comment"> //Own</span>
+ #include &quot;torpedo.h&quot;
+ #include &quot;pixmapitem.h&quot;
+ #include &quot;boat.h&quot;
+ #include &quot;graphicsscene.h&quot;
+ #include &quot;animationmanager.h&quot;
+ #include &quot;qanimationstate.h&quot;
+
+ #include &lt;QtCore/QPropertyAnimation&gt;
+ #include &lt;QtCore/QStateMachine&gt;
+ #include &lt;QtCore/QFinalState&gt;
+
+ Torpedo::Torpedo() : PixmapItem(QString::fromLatin1(&quot;torpedo&quot;),GraphicsScene::Big),
+     currentSpeed(0)
+ {
+     setZValue(2);
+ }
+
+ void Torpedo::launch()
+ {
+     QPropertyAnimation *launchAnimation = new QPropertyAnimation(this, &quot;pos&quot;);
+     AnimationManager::self()-&gt;registerAnimation(launchAnimation);
+     launchAnimation-&gt;setEndValue(QPointF(x(),qobject_cast&lt;GraphicsScene *&gt;(scene())-&gt;sealLevel() - 15));
+     launchAnimation-&gt;setEasingCurve(QEasingCurve::InQuad);
+     launchAnimation-&gt;setDuration(y()/currentSpeed*10);
+     connect(launchAnimation,SIGNAL(valueChanged(const QVariant &amp;)),this,SLOT(onAnimationLaunchValueChanged(const QVariant &amp;)));
+     connect(this,SIGNAL(torpedoExploded()), launchAnimation, SLOT(stop()));
+
+     <span class="comment">//We setup the state machine of the torpedo</span>
+     QStateMachine *machine = new QStateMachine(this);
+
+     <span class="comment">//This state is when the launch animation is playing</span>
+     QAnimationState *launched = new QAnimationState(machine);
+     launched-&gt;setAnimation(launchAnimation);
+
+     <span class="comment">//End</span>
+     QFinalState *final = new QFinalState(machine);
+
+     machine-&gt;setInitialState(launched);
+
+     <span class="comment">//### Add a nice animation when the torpedo is destroyed</span>
+     launched-&gt;addTransition(this, SIGNAL(torpedoExploded()),final);
+
+     <span class="comment">//If the animation is finished, then we move to the final state</span>
+     launched-&gt;addTransition(launched, SIGNAL(animationFinished()), final);
+
+     <span class="comment">//The machine has finished to be executed, then the boat is dead</span>
+     connect(machine,SIGNAL(finished()),this, SIGNAL(torpedoExecutionFinished()));
+
+     machine-&gt;start();
+ }
+
+ void Torpedo::setCurrentSpeed(int speed)
+ {
+     if (speed &lt; 0) {
+         qWarning(&quot;Torpedo::setCurrentSpeed : The speed is invalid&quot;);
+         return;
+     }
+     currentSpeed = speed;
+ }
+
+ void Torpedo::onAnimationLaunchValueChanged(const QVariant &amp;)
+ {
+     foreach (QGraphicsItem *item , collidingItems(Qt::IntersectsItemBoundingRect)) {
+         if (Boat *b = qgraphicsitem_cast&lt;Boat*&gt;(item))
+             b-&gt;destroy();
+     }
+ }
+
+ void Torpedo::destroy()
+ {
+     emit torpedoExploded();
+ }</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

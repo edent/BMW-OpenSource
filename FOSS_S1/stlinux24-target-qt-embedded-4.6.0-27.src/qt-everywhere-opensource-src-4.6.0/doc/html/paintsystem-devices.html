@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- paintsystem.qdoc -->
+<head>
+  <title>Qt 4.6: Paint Devices and Backends</title>
+  <link rel="contents" href="paintsystem.html" />
+  <link rel="next" href="paintsystem-drawing.html" />
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><p>
+[<a href="paintsystem.html">The Paint System</a>]
+[Next: <a href="paintsystem-drawing.html">Drawing and Filling</a>]
+</p>
+<h1 class="title">Paint Devices and Backends<br /><span class="subtitle"></span>
+</h1>
+<a name="creating-a-paint-device"></a>
+<h2>Creating a Paint Device</h2>
+<p>The <a href="qpaintdevice.html">QPaintDevice</a> class is the base class of objects that can be painted, i.e&#x2e; <a href="qpainter.html">QPainter</a> can draw on any <a href="qpaintdevice.html">QPaintDevice</a> subclass. <a href="qpaintdevice.html">QPaintDevice</a>'s drawing capabilities are currently implemented by the <a href="qwidget.html">QWidget</a>, <a href="qimage.html">QImage</a>, <a href="qpixmap.html">QPixmap</a>, <a href="qglwidget.html">QGLWidget</a>, <a href="qglpixelbuffer.html">QGLPixelBuffer</a>, <a href="qpicture.html">QPicture</a> and <a href="qprinter.html">QPrinter</a> subclasses.</p>
+<p align="center"><img src="images/paintsystem-devices.png" /></p><p><table class="generic" width="100%" align="center" cellpadding="2" cellspacing="1" border="0">
+<tr valign="top" class="odd"><td><b>Widget</b><p>The <a href="qwidget.html">QWidget</a> class is the base class of all user interface objects. The widget is the atom of the user interface: it receives mouse, keyboard and other events from the window system, and paints a representation of itself on the screen.</p>
+</td></tr>
+<tr valign="top" class="even"><td><b>Image</b><p>The <a href="qimage.html">QImage</a> class provides a hardware-independent image representation which is designed and optimized for I/O, and for direct pixel access and manipulation. <a href="qimage.html">QImage</a> supports several image formats including monochrome, 8-bit, 32-bit and alpha-blended images.</p>
+<p>One advantage of using <a href="qimage.html">QImage</a> as a paint device is that it is possible to guarantee the pixel exactness of any drawing operation in a platform-independent way. Another benefit is that the painting can be performed in another thread than the current GUI thread.</p>
+</td></tr>
+<tr valign="top" class="odd"><td><b>Pixmap</b><p>The <a href="qpixmap.html">QPixmap</a> class is an off-screen image representation which is designed and optimized for showing images on screen. Unlike <a href="qimage.html">QImage</a>, the pixel data in a pixmap is internal and is managed by the underlying window system, i.e&#x2e; pixels can only be accessed through <a href="qpainter.html">QPainter</a> functions or by converting the <a href="qpixmap.html">QPixmap</a> to a <a href="qimage.html">QImage</a>.</p>
+<p>To optimize drawing with <a href="qpixmap.html">QPixmap</a>, Qt provides the <a href="qpixmapcache.html">QPixmapCache</a> class which can be used to store temporary pixmaps that are expensive to generate without using more storage space than the cache limit.</p>
+<p>Qt also provides the <a href="qbitmap.html">QBitmap</a> convenience class, inheriting <a href="qpixmap.html">QPixmap</a>. <a href="qbitmap.html">QBitmap</a> guarantees monochrome (1-bit depth) pixmaps, and is mainly used for creating custom <a href="qcursor.html">QCursor</a> and <a href="qbrush.html">QBrush</a> objects, constructing <a href="qregion.html">QRegion</a> objects, and for setting masks for pixmaps and widgets.</p>
+</td></tr>
+<tr valign="top" class="even"><td><b>OpenGL Widget</b><p>As mentioned previously, Qt provides the <a href="qtopengl.html">QtOpenGL</a> module offering classes that makes it easy to use OpenGL in Qt applications. For example, the <a href="qglwidget.html">QGLWidget</a> enables the OpenGL API for rendering.</p>
+<p>But <a href="qglwidget.html">QGLWidget</a> is also a <a href="qwidget.html">QWidget</a> subclass, and can be used by <a href="qpainter.html">QPainter</a> as any other paint device. One huge benefit from this is that it enables Qt to utilize the high performance of OpenGL for most drawing operations, such as transformations and pixmap drawing.</p>
+</td></tr>
+<tr valign="top" class="odd"><td><b>Pixel Buffer</b><p>The <a href="qtopengl.html">QtOpenGL</a> module also provides the <a href="qglpixelbuffer.html">QGLPixelBuffer</a> class which inherits <a href="qpaintdevice.html">QPaintDevice</a> directly.</p>
+<p><a href="qglpixelbuffer.html">QGLPixelBuffer</a> encapsulates an OpenGL pbuffer. Rendering into a pbuffer is normally done using full hardware acceleration which can be significantly faster than rendering into a <a href="qpixmap.html">QPixmap</a>.</p>
+</td></tr>
+<tr valign="top" class="even"><td><b>Framebuffer Object</b><p>The <a href="qtopengl.html">QtOpenGL</a> module also provides the <a href="qglframebufferobject.html">QGLFramebufferObject</a> class which inherits <a href="qpaintdevice.html">QPaintDevice</a> directly.</p>
+<p><a href="qglframebufferobject.html">QGLFramebufferObject</a> encapsulates an OpenGL framebuffer object. Framebuffer objects can also be used for off-screen rendering, and offer several advantages over pixel buffers for this purpose. These are described in the <a href="qglframebufferobject.html">QGLFramebufferObject</a> class documentation.</p>
+</td></tr>
+<tr valign="top" class="odd"><td><b>Picture</b><p>The <a href="qpicture.html">QPicture</a> class is a paint device that records and replays <a href="qpainter.html">QPainter</a> commands. A picture serializes painter commands to an IO device in a platform-independent format. <a href="qpicture.html">QPicture</a> is also resolution independent, i.e&#x2e; a <a href="qpicture.html">QPicture</a> can be displayed on different devices (for example svg, pdf, ps, printer and screen) looking the same.</p>
+<p>Qt provides the <a href="qpicture.html#load">QPicture::load</a>() and <a href="qpicture.html#save">QPicture::save</a>() functions as well as streaming operators for loading and saving pictures.</p>
+</td></tr>
+<tr valign="top" class="even"><td><b>Printer</b><p>The <a href="qprinter.html">QPrinter</a> class is a paint device that paints on a printer. On Windows or Mac OS X, <a href="qprinter.html">QPrinter</a> uses the built-in printer drivers. On X11, <a href="qprinter.html">QPrinter</a> generates postscript and sends that to lpr, lp, or another print program. <a href="qprinter.html">QPrinter</a> can also print to any other <a href="qprintengine.html">QPrintEngine</a> object.</p>
+<p>The <a href="qprintengine.html">QPrintEngine</a> class defines an interface for how <a href="qprinter.html">QPrinter</a> interacts with a given printing subsystem. The common case when creating your own print engine, is to derive from both <a href="qpaintengine.html">QPaintEngine</a> and <a href="qprintengine.html">QPrintEngine</a>.</p>
+<p>The output format is by default determined by the platform the printer is running on, but by explicitly setting the output format to <a href="qprinter.html#OutputFormat-enum">QPrinter::PdfFormat</a>, <a href="qprinter.html">QPrinter</a> will generate its output as a PDF file.</p>
+</td></tr>
+<tr valign="top" class="odd"><td><b>Custom Backends</b><p>Support for a new backend can be implemented by deriving from the <a href="qpaintdevice.html">QPaintDevice</a> class and reimplementing the virtual <a href="qpaintdevice.html#paintEngine">QPaintDevice::paintEngine</a>() function to tell <a href="qpainter.html">QPainter</a> which paint engine should be used to draw on this particular device. To actually be able to draw on the device, this paint engine must be a custom paint engine created by deriving from the <a href="qpaintengine.html">QPaintEngine</a> class.</p>
+</td></tr>
+</table></p>
+<a name="selecting-the-painting-backend"></a>
+<h2>Selecting the Painting Backend</h2>
+<p>Since Qt 4.5, it is possible to replace the paint engines and paint devices used for widgets, pixmaps and the offscreen double buffer. By default the backends are:</p>
+<p><table class="generic" align="center" cellpadding="2" cellspacing="1" border="0">
+<tr valign="top" class="odd"><td>Windows</td><td>Software Rasterizer</td></tr>
+<tr valign="top" class="even"><td>X11</td><td>X11</td></tr>
+<tr valign="top" class="odd"><td>Mac OS X</td><td>CoreGraphics</td></tr>
+<tr valign="top" class="even"><td>Embedded</td><td>Software Rasterizer</td></tr>
+</table></p>
+<p>Passing a command line parameter to the application, such as, <tt>-graphicssystem raster</tt>, specifies that Qt should use the software rasterizer for this application. The Software rasterizer is fully supported on all platforms.</p>
+<pre> &gt; analogclock -graphicssystem raster</pre>
+<p>There is also a <tt>-graphicssystem opengl</tt> mode that uses OpenGL for all drawing. Currently, this engine is experimental as it does not draw everything correctly.</p>
+<p>Qt also supports being configured using <tt>-graphicssystem raster|opengl</tt> in which case all applications will use the specified graphics system for its graphics.</p>
+<p>
+[<a href="paintsystem.html">The Paint System</a>]
+[Next: <a href="paintsystem-drawing.html">Drawing and Filling</a>]
+</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

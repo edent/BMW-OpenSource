@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- wince-openvg.qdoc -->
+<head>
+  <title>Qt 4.6: Qt for Windows CE and OpenVG</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">Qt for Windows CE and OpenVG<br /><span class="subtitle"></span>
+</h1>
+<a name="introduction"></a>
+<h3>Introduction</h3>
+<p><a href="http://www.khronos.org/openvg">OpenVG</a> is a standard API from the <a href="http://www.khronos.org/openvg">Khronos Group</a> for accelerated 2D vector graphics and raster graphics. It is a dedicated API for 2D graphics on mobile devices. It is therefore more likely to be a better alternative for 2D acceleration than OpenGL/ES.</p>
+<ul><li><a href="#introduction">Introduction</a></li>
+<li><a href="#using-openvg-with-qt">Using OpenVG with Qt</a></li>
+<ul><li><a href="#configure">Configure</a></li>
+<li><a href="#supported-openvg-engines">Supported OpenVG Engines</a></li>
+</ul>
+<li><a href="#using-the-openvg-graphics-system">Using the OpenVG graphics system</a></li>
+<ul><li><a href="#supported-features">Supported features</a></li>
+<li><a href="#known-issues">Known issues</a></li>
+</ul>
+<li><a href="#using-openvg-with-qt-for-windows-ce">Using OpenVG with Qt for Windows CE</a></li>
+</ul>
+<a name="using-openvg-with-qt"></a>
+<h3>Using OpenVG with Qt</h3>
+<p>The <a href="qtopenvg.html">QtOpenVG</a> plugin provides support for OpenVG painting. OpenVG is optimized for 2D vector operations, and closely matches the functionality in <a href="qpainter.html">QPainter</a>. To translate <a href="qpainter.html">QPainter</a> operations into OpenVG calls, Qt uses a subclass of <a href="qpaintengine.html">QPaintEngine</a>. Unlike with OpenGL ES, OpenVG can be used for acceleration of regular widgets. It can therefore be an excellent substitute for the default raster-based <a href="qpaintengine.html">QPaintEngine</a> on hardware that supports the OpenVG API.</p>
+<a name="configure"></a>
+<h4>Configure</h4>
+<p>OpenVG support can be enabled by passing the <tt>-openvg</tt> option to configure. It is assumed that the following qmake variables are set to appropriate values in the qmake.conf file for your platform:</p>
+<ul>
+<li><a href="qmake-variable-reference.html#qmake-incdir-openvg">QMAKE_INCDIR_OPENVG</a></li>
+<li><a href="qmake-variable-reference.html#qmake-libdir-openvg">QMAKE_LIBDIR_OPENVG</a></li>
+<li><a href="qmake-variable-reference.html#qmake-libs-openvg">QMAKE_LIBS_OPENVG</a></li>
+</ul>
+<p>Most OpenVG implementations are based on EGL, so the following variables may also need to be set:</p>
+<ul>
+<li><a href="qmake-variable-reference.html#qmake-incdir-egl">QMAKE_INCDIR_EGL</a></li>
+<li><a href="qmake-variable-reference.html#qmake-libdir-egl">QMAKE_LIBDIR_EGL</a></li>
+<li><a href="qmake-variable-reference.html#qmake-libs-egl">QMAKE_LIBS_EGL</a></li>
+</ul>
+<p>See <a href="qmake-variable-reference.html">qmake Variable Reference</a> for more information on these variables.</p>
+<a name="supported-openvg-engines"></a>
+<h4>Supported OpenVG Engines</h4>
+<p>Two kinds of OpenVG engines are currently supported: EGL based, and engines built on top of OpenGL such as <a href="http://sourceforge.net/projects/shivavg">ShivaVG</a>. EGL based engines are preferred.</p>
+<p>It is assumed that the EGL implementation has some way to turn a <a href="qwidget.html#winId">QWidget::winId</a>() into an EGL rendering surface with <tt>eglCreateWindowSurface()</tt>. If this is not the case, then modifications may be needed to the code under <tt>src/gui/egl</tt> and <tt>src/plugins/graphicssystems/openvg</tt> to accomodate the EGL implementation.</p>
+<p>The ShivaVG graphics system under <tt>src/plugins/graphicssystems/shivavg</tt> is an example of how to integrate a non-EGL implementation of OpenVG into Qt. It is currently only supported with Qt/X11 and being an example only, the resulting screen output may not be as good as with other OpenVG engines.</p>
+<a name="using-the-openvg-graphics-system"></a>
+<h3>Using the OpenVG graphics system</h3>
+<p>Once the graphics system plugin has been built and installed, applications can be run as follows to use the plugin:</p>
+<pre> app -graphicssystem OpenVG</pre>
+<p>If ShivaVG is being used, then substitute <tt>ShivaVG</tt> instead of <tt>OpenVG</tt> in the line above.</p>
+<p>If the plugin fails to load, try setting the <tt>QT_DEBUG_PLUGINS</tt> environment variable to 1 and try again. Usually the plugin cannot be loaded because Qt cannot locate it in the directory <tt>plugins/graphicssystems</tt> within the Qt installation, or the dynamic library path does not include the directory containing the system's <tt>libOpenVG.so</tt> library.</p>
+<a name="supported-features"></a>
+<h4>Supported features</h4>
+<p><table class="generic" align="center" cellpadding="2" cellspacing="1" border="0">
+<thead><tr valign="top" class="qt-style"><th>Feature</th><th>Description</th></tr></thead>
+<tr valign="top" class="odd"><td>Context modes</td><td>The default configuration is &quot;single-context&quot; mode, where a single EGLContext object is used for all drawing, regardless of the surface. Multiple EGLSurfaces are created, one for each window surface or pixmap. eglMakeCurrent() is called with the same EGLContext every time, but a different EGLSurface.<p>Single-context mode is necessary for QPixmapData to be implemented in terms of a VGImage. If single-context mode is not enabled, then QPixmapData will use the fallback QRasterPixmapData implementation, which is less efficient performance-wise.</p>
+<p>Single-context mode can be disabled with the QVG_NO_SINGLE_CONTEXT define if the OpenVG engine does not support one context with multiple surfaces.</p>
+</td></tr>
+<tr valign="top" class="even"><td>Transformation matrices</td><td>All affine and projective transformation matrices are supported.<p>QVGPaintEngine will use the engine to accelerate affine transformation matrices only. When a projective transformation matrix is used, QVGPaintEngine will transform the coordinates before passing them to the engine. This will probably incur a performance penalty.</p>
+<p>Pixmaps and images are always transformed by the engine, because OpenVG specifies that projective transformations must work for images.</p>
+<p>It is recommended that client applications should avoid using projective transformations for non-image elements in performance critical code.</p>
+</td></tr>
+<tr valign="top" class="odd"><td>Composition modes</td><td>The following composition modes are supported:<ul>
+<li><a href="qpainter.html#CompositionMode-enum">QPainter::CompositionMode_SourceOver</a></li>
+<li><a href="qpainter.html#CompositionMode-enum">QPainter::CompositionMode_DestinationOver</a></li>
+<li><a href="qpainter.html#CompositionMode-enum">QPainter::CompositionMode_Source</a></li>
+<li><a href="qpainter.html#CompositionMode-enum">QPainter::CompositionMode_SourceIn</a></li>
+<li><a href="qpainter.html#CompositionMode-enum">QPainter::CompositionMode_DestinationIn</a></li>
+<li><a href="qpainter.html#CompositionMode-enum">QPainter::CompositionMode_Plus</a></li>
+<li><a href="qpainter.html#CompositionMode-enum">QPainter::CompositionMode_Multiply</a></li>
+<li><a href="qpainter.html#CompositionMode-enum">QPainter::CompositionMode_Screen</a></li>
+<li><a href="qpainter.html#CompositionMode-enum">QPainter::CompositionMode_Darken</a></li>
+<li><a href="qpainter.html#CompositionMode-enum">QPainter::CompositionMode_Lighten</a></li>
+</ul>
+<p>The other members of <a href="qpainter.html#CompositionMode-enum">QPainter::CompositionMode</a> are not supported because OpenVG 1.1 does not have an equivalent in its <tt>VGBlendMode</tt> enumeration. Any attempt to set an unsupported mode will result in the actual mode being set to <a href="qpainter.html#CompositionMode-enum">QPainter::CompositionMode_SourceOver</a>. Client applications should avoid using unsupported modes.</p>
+</td></tr>
+<tr valign="top" class="even"><td>Pens and brushes</td><td>All pen styles are supported, including cosmetic pens.<p>All brush styles are supported except for conical gradients, which are not supported by OpenVG 1.1&#x2e; Conical gradients will be converted into a solid color brush corresponding to the first color in the gradient's color ramp.</p>
+<p>Affine matrices are supported for brush transforms, but not projective matrices.</p>
+</td></tr>
+<tr valign="top" class="odd"><td>Rectangles, lines, and points</td><td>Rectangles, lines, and rounded rectangles use cached VGPath objects to try to accelerate drawing operations. vgModifyPathCoords() is used to modify the co-ordinates in the cached VGPath object each time fillRect(), drawRects(), drawLines(), or drawRoundedRect() is called.<p>If the engine does not implement vgModifyPathCoords() properly, then the QVG_NO_MODIFY_PATH define can be set to disable path caching. This will incur a performance penalty.</p>
+<p>Points are implemented as lines from the point to itself. The cached line drawing VGPath object is used when drawing points.</p>
+</td></tr>
+<tr valign="top" class="even"><td>Polygons and Ellipses</td><td>Polygon and ellipse drawing creates a new VGPath object every time drawPolygon() or drawEllipse() is called. If the client application is making heavy use of these functions, the constant creation and destruction of VGPath objects could have an impact on performance.<p>If a projective transformation is active, ellipses are converted into cubic curves prior to transformation, which may further impact performance.</p>
+<p>Client applications should avoid polygon and ellipse drawing in performance critical code if possible.</p>
+</td></tr>
+<tr valign="top" class="odd"><td>Other Objects</td><td>Most other objects (arcs, pies, etc) use drawPath(), which takes a <a href="qpainterpath.html">QPainterPath</a> argument. The default implementation in QPainterEngineEx converts the <a href="qpainterpath.html">QPainterPath</a> into a QVectorPath and then calls draw(), which in turn converts the QVectorPath into a VGPath for drawing.<p>To reduce the overhead, we have overridden drawPath() in QVGPaintEngine to convert <a href="qpainterpath.html">QPainterPath</a>'s directly into VGPath's. This should help improve performance compared to the default implementation.</p>
+<p>Client applications should try to avoid these types of objects in performance critical code because of the <a href="qpainterpath.html">QPainterPath</a> to VGPath conversion cost.</p>
+</td></tr>
+<tr valign="top" class="even"><td>Clipping</td><td>Clipping with <a href="qrect.html">QRect</a>, <a href="qrectf.html">QRectF</a>, and <a href="qregion.html">QRegion</a> objects is supported on all OpenVG engines with vgMask() if the transformation matrix is the identity or a simple origin translation.<p>Clipping with an arbitrary <a href="qpainterpath.html">QPainterPath</a>, or setting the clip region when the transformation matrix is simple, is supported only if the OpenVG engine has the vgRenderToMask() function (OpenVG 1.1 and higher).</p>
+<p>The QVG_NO_RENDER_TO_MASK define will disable the use of vgRenderToMask().</p>
+<p>The QVG_SCISSOR_CLIP define will disable clipping with vgMask() or vgRenderToMask() and instead use the scissor rectangle list to perform clipping. Clipping with an arbitrary <a href="qpainterpath.html">QPainterPath</a> will not be supported.</p>
+<p>The QVG_SCISSOR_CLIP define should only be used if the OpenVG engine does not support vgMask() or vgRenderToMask().</p>
+</td></tr>
+<tr valign="top" class="odd"><td>Opacity</td><td>Opacity is supported for all drawing operations. Solid color pens, solid color brushes, gradient brushes, and image drawing with drawPixmap() and drawImage() will probably have the best performance compared to other kinds of pens and brushes.</td></tr>
+<tr valign="top" class="even"><td>Text Drawing</td><td>If OpenVG 1.1 is used, the paint engine will use VG fonts to cache glyphs while drawing. If the engine does not support VG fonts correctly, QVG_NO_DRAW_GLYPHS can be defined to disable this mode. Text drawing performance will suffer if VG fonts are not used.<p>By default, image-based glyphs are used. If QVG_NO_IMAGE_GLYPHS is defined, then path-based glyphs will be used instead. QVG_NO_IMAGE_GLYPHS is ignored if QVG_NO_DRAW_GLYPHS is defined.</p>
+<p>If path-based glyphs are used, then the OpenVG engine will need to support hinting to render text with good results. Image-based glyphs avoids the need for hinting and will usually give better results than path-based glyphs.</p>
+</td></tr>
+<tr valign="top" class="odd"><td>Pixmaps</td><td>In single-context mode, pixmaps will be implemented using VGImage unless QVG_NO_PIXMAP_DATA is defined.<p>QVGPixmapData will convert <a href="qimage.html">QImage</a>'s into VGImage's when the application calls drawPixmap(), and the pixmap will be kept in VGImage form for the lifetime of the QVGPixmapData object. When the application tries to paint into a <a href="qpixmap.html">QPixmap</a> with <a href="qpainter.html">QPainter</a>, the data will be converted back into a <a href="qimage.html">QImage</a> and the raster paint engine will be used to render into the <a href="qimage.html">QImage</a>.</p>
+<p>This arrangement optimizes for the case of drawing the same static pixmap over and over (e.g&#x2e; for icons), but does not optimize the case of drawing into pixmaps.</p>
+<p>Bitmaps must use QRasterPixmapData. They are not accelerated with VGImage at present.</p>
+</td></tr>
+<tr valign="top" class="even"><td>Pixmap filters</td><td>Convolution, colorize, drop shadow, and blur filters are accelerated using OpenVG operations.</td></tr>
+</table></p>
+<a name="known-issues"></a>
+<h4>Known issues</h4>
+<p>Performance of copying the contents of an OpenVG-rendered window to the screen needs platform-specific work in the QVGWindowSurface class.</p>
+<p>Clipping with arbitrary non-rectangular paths only works on engines that support vgRenderToMask(). Simple rectangular paths are supported on all engines that correctly implement vgMask().</p>
+<p>The paint engine is not yet thread-safe, so it is not recommended for use in threaded Qt applications that draw from multiple threads. Drawing should be limited to the main GUI thread.</p>
+<p>Performance of projective matrices for non-image drawing is not as good as for affine matrices.</p>
+<p><a href="qpixmap.html">QPixmap</a>'s are implemented as VGImage objects so that they can be quickly rendered with drawPixmap(). Rendering into a <a href="qpixmap.html">QPixmap</a> using <a href="qpainter.html">QPainter</a> will use the default Qt raster paint engine on a <a href="qimage.html">QImage</a> copy of the <a href="qpixmap.html">QPixmap</a>, and will not be accelerated. This issue may be addressed in a future version of the engine.</p>
+<p>ShivaVG support is highly experimental and limited to Qt/X11. It is provided as an example of how to integrate a non-EGL engine.</p>
+<a name="using-openvg-with-qt-for-windows-ce"></a>
+<h3>Using OpenVG with Qt for Windows CE</h3>
+<p>Qt for Windows CE uses EGL 1.1 to embed OpenVG windows within the Windows CE window manager.</p>
+<p><b>Note:</b> Make sure that your Windows CE SDK have a working EGL implementation. If not, OpenVG will not work.</p>
+<p><b>Note:</b> There is currently no support for Blitting and Alpha blending in Qt for Windows CE.</p>
+<p><b>Note:</b> To configure Qt for Windows Mobile 5.0 and OpenVG support you can run <tt>configure</tt> like this:</p>
+<pre> configure -platform win32-msvc2005 -xplatform wincewm50pocket-msvc2005 -opengl-es-cl</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

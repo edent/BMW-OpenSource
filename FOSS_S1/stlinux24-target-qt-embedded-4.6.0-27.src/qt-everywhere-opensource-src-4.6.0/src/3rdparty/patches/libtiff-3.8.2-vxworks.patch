@@ -1,0 +1,11 @@
+--- libtiff/tif_config.h.orig
++++ libtiff/tif_config.h
+@@ -104,7 +104,7 @@
+ /* #undef HAVE_PTHREAD */
+ 
+ /* Define to 1 if you have the <search.h> header file. */
+-#if !defined(Q_OS_WINCE)
++#if !defined(Q_OS_WINCE) && !defined(Q_OS_VXWORKS)
+ #define HAVE_SEARCH_H 1
+ #endif
+ 

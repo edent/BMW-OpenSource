@@ -1,0 +1,51 @@
+load(data_caging_paths)
+
+# If no_icon keyword exist, the S60 UI app is just made hidden. This because S60 app FW
+# requires the registration resource file to exist always
+contains( CONFIG, no_icon ) {
+    symbian:RSS_RULES ="hidden = KAppIsHidden;"
+    CONFIG -= no_icon
+} else {
+# There is no point in compiling the MIF icon if no_icon CONFIGS is set
+    !isEmpty(ICON) {
+
+        !count(ICON, 1) {
+            ICON = $$first(ICON)
+            warning("Only first icon specified in ICON variable is used: $$ICON")
+        }
+
+        # Try to produce indentical string to fixedTarget in SymbianMakefileGenerator, replaced chars taken
+        # from SymbianMakefileGenerator::removeSpecialCharacters.
+        #
+        # Note: it is not a major problem even baseTarget is not 100% identical to fixedTarget since qmake
+        # only uses filename from RSS_RULES.icon_file when referring to icon file name.
+        baseTarget = $$basename(TARGET)
+        baseTarget = $$replace(baseTarget, /,_)
+        baseTarget = $$replace(baseTarget, \\,_)
+        baseTarget = $$replace(baseTarget, -,_)
+        baseTarget = $$replace(baseTarget, :,_)
+        baseTarget = $$replace(baseTarget, \.,_)
+        baseTarget = $$replace(baseTarget, " ",_)
+
+        # Note: symbian-sbsv2 builds can't utilize extra compiler for mifconv, so ICON handling is done in code
+        symbian-abld {
+            #Makefile: requires paths with backslash
+            ICON = $$replace( ICON, /, \\)
+
+            # Extra compiler rules for mifconv
+            mifconv.output = ${ZDIR}$$APP_RESOURCE_DIR/$${baseTarget}.mif
+            # Based on: http://www.forum.nokia.com/document/Cpp_Developers_Library
+            # svg-t icons should always use /c32 depth
+            mifconv.commands = mifconv ${QMAKE_FILE_OUT} /c32 ${QMAKE_FILE_IN}
+            mifconv.input = ICON
+            mifconv.CONFIG = no_link combine
+            # target_predeps together with combine seems not to work correctly, lets define it by ourselves
+            PRE_TARGETDEPS += $$mifconv.output
+            QMAKE_EXTRA_COMPILERS += mifconv
+        }
+        # Rules to use generated MIF file from symbian resources
+        RSS_RULES.number_of_icons = $$size(ICON)
+        RSS_RULES.icon_file = $$APP_RESOURCE_DIR/$${baseTarget}.mif
+    }
+}
+

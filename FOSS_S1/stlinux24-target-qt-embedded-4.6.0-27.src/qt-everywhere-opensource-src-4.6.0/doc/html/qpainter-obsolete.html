@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qpainter.cpp -->
+<head>
+  <title>Qt 4.6: Obsolete Members for QPainter</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">Obsolete Members for QPainter</h1>
+<p><b>The following class members are obsolete.</b> They are provided to keep old source code working. We strongly advise against using them in new code.</p>
+<p><ul><li><a href="qpainter.html">QPainter class reference</a></li></ul></p>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">QMatrix </td><td class="memItemRight" valign="bottom"><b><a href="qpainter-obsolete.html#combinedMatrix">combinedMatrix</a></b> () const&nbsp;&nbsp;<tt> (obsolete)</tt></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const QMatrix &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qpainter-obsolete.html#deviceMatrix">deviceMatrix</a></b> () const&nbsp;&nbsp;<tt> (obsolete)</tt></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qpainter-obsolete.html#drawRoundRect">drawRoundRect</a></b> ( const QRectF &amp; <i>r</i>, int <i>xRnd</i> = 25, int <i>yRnd</i> = 25 )&nbsp;&nbsp;<tt> (obsolete)</tt></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qpainter-obsolete.html#drawRoundRect-2">drawRoundRect</a></b> ( const QRect &amp; <i>r</i>, int <i>xRnd</i> = 25, int <i>yRnd</i> = 25 )&nbsp;&nbsp;<tt> (obsolete)</tt></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qpainter-obsolete.html#drawRoundRect-3">drawRoundRect</a></b> ( int <i>x</i>, int <i>y</i>, int <i>w</i>, int <i>h</i>, int <i>xRnd</i> = 25, int <i>yRnd</i> = 25 )&nbsp;&nbsp;<tt> (obsolete)</tt></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const QMatrix &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qpainter-obsolete.html#matrix">matrix</a></b> () const&nbsp;&nbsp;<tt> (obsolete)</tt></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qpainter-obsolete.html#matrixEnabled">matrixEnabled</a></b> () const&nbsp;&nbsp;<tt> (obsolete)</tt></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qpainter-obsolete.html#resetMatrix">resetMatrix</a></b> ()&nbsp;&nbsp;<tt> (obsolete)</tt></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qpainter-obsolete.html#setMatrix">setMatrix</a></b> ( const QMatrix &amp; <i>matrix</i>, bool <i>combine</i> = false )&nbsp;&nbsp;<tt> (obsolete)</tt></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qpainter-obsolete.html#setMatrixEnabled">setMatrixEnabled</a></b> ( bool <i>enable</i> )&nbsp;&nbsp;<tt> (obsolete)</tt></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qpainter-obsolete.html#setWorldMatrix">setWorldMatrix</a></b> ( const QMatrix &amp; <i>matrix</i>, bool <i>combine</i> = false )&nbsp;&nbsp;<tt> (obsolete)</tt></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const QMatrix &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qpainter-obsolete.html#worldMatrix">worldMatrix</a></b> () const&nbsp;&nbsp;<tt> (obsolete)</tt></td></tr>
+</table>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QPainter/combinedMatrix" />
+<h3 class="fn"><a name="combinedMatrix"></a><a href="qmatrix.html">QMatrix</a> QPainter::combinedMatrix () const</h3>
+<p>Returns the transformation matrix combining the current window/viewport and world transformation.</p>
+<p>It is advisable to use <a href="qpainter.html#combinedTransform">combinedTransform</a>() instead of this function to preserve the properties of perspective transformations.</p>
+<p>This function was introduced in Qt 4.2.</p>
+<p>See also <a href="qpainter.html#setWorldTransform">setWorldTransform</a>(), <a href="qpainter.html#setWindow">setWindow</a>(), and <a href="qpainter.html#setViewport">setViewport</a>().</p>
+<a name="//apple_ref/cpp/instm/QPainter/deviceMatrix" />
+<h3 class="fn"><a name="deviceMatrix"></a>const <a href="qmatrix.html">QMatrix</a> &amp; QPainter::deviceMatrix () const</h3>
+<p>Returns the matrix that transforms from logical coordinates to device coordinates of the platform dependent paint device.</p>
+<p><b>Note:</b> It is advisable to use <a href="qpainter.html#deviceTransform">deviceTransform</a>() instead of this function to preserve the properties of perspective transformations.</p>
+<p>This function is <i>only</i> needed when using platform painting commands on the platform dependent handle (<a href="qt.html#HANDLE-typedef">Qt::HANDLE</a>), and the platform does not do transformations nativly.</p>
+<p>The <a href="qpaintengine.html#PaintEngineFeature-enum">QPaintEngine::PaintEngineFeature</a> enum can be queried to determine whether the platform performs the transformations or not.</p>
+<p>See also <a href="qpainter-obsolete.html#worldMatrix">worldMatrix</a>() and <a href="qpaintengine.html#hasFeature">QPaintEngine::hasFeature</a>().</p>
+<a name="//apple_ref/cpp/instm/QPainter/drawRoundRect" />
+<h3 class="fn"><a name="drawRoundRect"></a>void QPainter::drawRoundRect ( const <a href="qrectf.html">QRectF</a> &amp; <i>r</i>, int <i>xRnd</i> = 25, int <i>yRnd</i> = 25 )</h3>
+<p>Draws a rectangle <i>r</i> with rounded corners.</p>
+<p>The <i>xRnd</i> and <i>yRnd</i> arguments specify how rounded the corners should be. 0 is angled corners, 99 is maximum roundedness.</p>
+<p>A filled rectangle has a size of r.size(). A stroked rectangle has a size of r.size() plus the pen width.</p>
+<p>See also <a href="qpainter.html#drawRoundedRect">drawRoundedRect</a>().</p>
+<h3 class="fn"><a name="drawRoundRect-2"></a>void QPainter::drawRoundRect ( const <a href="qrect.html">QRect</a> &amp; <i>r</i>, int <i>xRnd</i> = 25, int <i>yRnd</i> = 25 )</h3>
+<p>This is an overloaded function.</p>
+<p>Draws the rectangle <i>r</i> with rounded corners.</p>
+<h3 class="fn"><a name="drawRoundRect-3"></a>void QPainter::drawRoundRect ( int <i>x</i>, int <i>y</i>, int <i>w</i>, int <i>h</i>, int <i>xRnd</i> = 25, int <i>yRnd</i> = 25 )</h3>
+<p>This is an overloaded function.</p>
+<p>Draws the rectangle <i>x</i>, <i>y</i>, <i>w</i>, <i>h</i> with rounded corners.</p>
+<a name="//apple_ref/cpp/instm/QPainter/matrix" />
+<h3 class="fn"><a name="matrix"></a>const <a href="qmatrix.html">QMatrix</a> &amp; QPainter::matrix () const</h3>
+<p>Use <a href="qpainter.html#worldTransform">worldTransform</a>() instead.</p>
+<p>See also <a href="qpainter-obsolete.html#setMatrix">setMatrix</a>() and <a href="qpainter.html#worldTransform">worldTransform</a>().</p>
+<a name="//apple_ref/cpp/instm/QPainter/matrixEnabled" />
+<h3 class="fn"><a name="matrixEnabled"></a>bool QPainter::matrixEnabled () const</h3>
+<p>Use <a href="qpainter.html#worldMatrixEnabled">worldMatrixEnabled</a>() instead</p>
+<p>See also <a href="qpainter-obsolete.html#setMatrixEnabled">setMatrixEnabled</a>() and <a href="qpainter.html#worldMatrixEnabled">worldMatrixEnabled</a>().</p>
+<a name="//apple_ref/cpp/instm/QPainter/resetMatrix" />
+<h3 class="fn"><a name="resetMatrix"></a>void QPainter::resetMatrix ()</h3>
+<p>Resets any transformations that were made using <a href="qpainter.html#translate">translate</a>(), <a href="qpainter.html#scale">scale</a>(), <a href="qpainter.html#shear">shear</a>(), <a href="qpainter.html#rotate">rotate</a>(), <a href="qpainter-obsolete.html#setWorldMatrix">setWorldMatrix</a>(), <a href="qpainter.html#setViewport">setViewport</a>() and <a href="qpainter.html#setWindow">setWindow</a>().</p>
+<p>It is advisable to use <a href="qpainter.html#resetTransform">resetTransform</a>() instead of this function to preserve the properties of perspective transformations.</p>
+<p>See also <a href="qpainter.html#coordinate-transformations">Coordinate Transformations</a>.</p>
+<a name="//apple_ref/cpp/instm/QPainter/setMatrix" />
+<h3 class="fn"><a name="setMatrix"></a>void QPainter::setMatrix ( const <a href="qmatrix.html">QMatrix</a> &amp; <i>matrix</i>, bool <i>combine</i> = false )</h3>
+<p>Use <a href="qpainter.html#setWorldTransform">setWorldTransform</a>() instead.</p>
+<p>See also <a href="qpainter-obsolete.html#matrix">matrix</a>() and <a href="qpainter.html#setWorldTransform">setWorldTransform</a>().</p>
+<a name="//apple_ref/cpp/instm/QPainter/setMatrixEnabled" />
+<h3 class="fn"><a name="setMatrixEnabled"></a>void QPainter::setMatrixEnabled ( bool <i>enable</i> )</h3>
+<p>Use <a href="qpainter.html#setWorldMatrixEnabled">setWorldMatrixEnabled</a>() instead.</p>
+<p>See also <a href="qpainter-obsolete.html#matrixEnabled">matrixEnabled</a>() and <a href="qpainter.html#setWorldMatrixEnabled">setWorldMatrixEnabled</a>().</p>
+<a name="//apple_ref/cpp/instm/QPainter/setWorldMatrix" />
+<h3 class="fn"><a name="setWorldMatrix"></a>void QPainter::setWorldMatrix ( const <a href="qmatrix.html">QMatrix</a> &amp; <i>matrix</i>, bool <i>combine</i> = false )</h3>
+<p>Sets the transformation matrix to <i>matrix</i> and enables transformations.</p>
+<p><b>Note:</b> It is advisable to use <a href="qpainter.html#setWorldTransform">setWorldTransform</a>() instead of this function to preserve the properties of perspective transformations.</p>
+<p>If <i>combine</i> is true, then <i>matrix</i> is combined with the current transformation matrix; otherwise <i>matrix</i> replaces the current transformation matrix.</p>
+<p>If <i>matrix</i> is the identity matrix and <i>combine</i> is false, this function calls setWorldMatrixEnabled(false). (The identity matrix is the matrix where <a href="qmatrix.html#m11">QMatrix::m11</a>() and <a href="qmatrix.html#m22">QMatrix::m22</a>() are 1.0 and the rest are 0.0&#x2e;)</p>
+<p>The following functions can transform the coordinate system without using a <a href="qmatrix.html">QMatrix</a>:</p>
+<ul>
+<li><a href="qpainter.html#translate">translate</a>()</li>
+<li><a href="qpainter.html#scale">scale</a>()</li>
+<li><a href="qpainter.html#shear">shear</a>()</li>
+<li><a href="qpainter.html#rotate">rotate</a>()</li>
+</ul>
+<p>They operate on the painter's <a href="qpainter-obsolete.html#worldMatrix">worldMatrix</a>() and are implemented like this:</p>
+<pre> void QPainter::rotate(qreal angle)
+ {
+     QMatrix matrix;
+     matrix.rotate(angle);
+     setWorldMatrix(matrix, true);
+ }</pre>
+<p>Note that when using setWorldMatrix() function you should always have <i>combine</i> be true when you are drawing into a <a href="qpicture.html">QPicture</a>. Otherwise it may not be possible to replay the picture with additional transformations; using the <a href="qpainter.html#translate">translate</a>(), <a href="qpainter.html#scale">scale</a>(), etc. convenience functions is safe.</p>
+<p>For more information about the coordinate system, transformations and window-viewport conversion, see <a href="coordsys.html">The Coordinate System</a> documentation.</p>
+<p>This function was introduced in Qt 4.2.</p>
+<p>See also <a href="qpainter-obsolete.html#worldMatrix">worldMatrix</a>(), <a href="qpainter.html#setWorldTransform">setWorldTransform</a>(), and <a href="qtransform.html">QTransform</a>.</p>
+<a name="//apple_ref/cpp/instm/QPainter/worldMatrix" />
+<h3 class="fn"><a name="worldMatrix"></a>const <a href="qmatrix.html">QMatrix</a> &amp; QPainter::worldMatrix () const</h3>
+<p>Returns the world transformation matrix.</p>
+<p>It is advisable to use <a href="qpainter.html#worldTransform">worldTransform</a>() because worldMatrix() does not preserve the properties of perspective transformations.</p>
+<p>This function was introduced in Qt 4.2.</p>
+<p>See also <a href="qpainter-obsolete.html#setWorldMatrix">setWorldMatrix</a>(), <a href="qpainter.html#coordinate-transformations">Coordinate Transformations</a>, and <a href="coordsys.html">The Coordinate System</a>.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

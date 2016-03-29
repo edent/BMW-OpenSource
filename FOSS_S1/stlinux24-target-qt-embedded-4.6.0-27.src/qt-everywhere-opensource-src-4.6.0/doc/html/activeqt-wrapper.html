@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- wrapper.qdoc -->
+<head>
+  <title>Qt 4.6: Wrapper Example (ActiveQt)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">Wrapper Example (ActiveQt)<br /><span class="subtitle"></span>
+</h1>
+<p>Files:</p>
+<ul>
+<li><a href="activeqt-wrapper-main-cpp.html">activeqt/wrapper/main.cpp</a></li>
+<li><a href="activeqt-wrapper-wrapper-pro.html">activeqt/wrapper/wrapper.pro</a></li>
+</ul>
+<p>The Wrapper example demonstrates how to export existing <a href="qwidget.html">QWidget</a> classes as ActiveX controls, and the use of <a href="qaxfactory.html">QAxFactory</a> together with the <tt>QAXFACTORY_EXPORT()</tt> macro. ActiveX controls in this example are the standard button classes <a href="qpushbutton.html">QPushButton</a>, <a href="qcheckbox.html">QCheckBox</a> and <a href="qradiobutton.html">QRadioButton</a> as provided by Qt.</p>
+<pre> class ActiveQtFactory : public QAxFactory
+ {
+ public:
+     ActiveQtFactory( const QUuid &amp;lib, const QUuid &amp;app )
+         : QAxFactory( lib, app )
+     {}
+     QStringList featureList() const
+     {
+         QStringList list;
+         list &lt;&lt; &quot;QCheckBox&quot;;
+         list &lt;&lt; &quot;QRadioButton&quot;;
+         list &lt;&lt; &quot;QPushButton&quot;;
+         list &lt;&lt; &quot;QToolButton&quot;;
+         return list;
+     }
+     QObject *createObject(const QString &amp;key)
+     {
+         if ( key == &quot;QCheckBox&quot; )
+             return new QCheckBox(0);
+         if ( key == &quot;QRadioButton&quot; )
+             return new QRadioButton(0);
+         if ( key == &quot;QPushButton&quot; )
+             return new QPushButton(0 );
+         if ( key == &quot;QToolButton&quot; ) {
+             QToolButton *tb = new QToolButton(0);
+<span class="comment"> //          tb-&gt;setIcon( QPixmap(fileopen) );</span>
+             return tb;
+         }
+
+         return 0;
+     }
+     const QMetaObject *metaObject( const QString &amp;key ) const
+     {
+         if ( key == &quot;QCheckBox&quot; )
+             return &amp;QCheckBox::staticMetaObject;
+         if ( key == &quot;QRadioButton&quot; )
+             return &amp;QRadioButton::staticMetaObject;
+         if ( key == &quot;QPushButton&quot; )
+             return &amp;QPushButton::staticMetaObject;
+         if ( key == &quot;QToolButton&quot; )
+             return &amp;QToolButton::staticMetaObject;
+
+         return 0;
+     }
+     QUuid classID( const QString &amp;key ) const
+     {
+         if ( key == &quot;QCheckBox&quot; )
+             return &quot;{6E795DE9-872D-43CF-A831-496EF9D86C68}&quot;;
+         if ( key == &quot;QRadioButton&quot; )
+             return &quot;{AFCF78C8-446C-409A-93B3-BA2959039189}&quot;;
+         if ( key == &quot;QPushButton&quot; )
+             return &quot;{2B262458-A4B6-468B-B7D4-CF5FEE0A7092}&quot;;
+         if ( key == &quot;QToolButton&quot; )
+             return &quot;{7c0ffe7a-60c3-4666-bde2-5cf2b54390a1}&quot;;
+
+         return QUuid();
+     }
+     QUuid interfaceID( const QString &amp;key ) const
+     {
+         if ( key == &quot;QCheckBox&quot; )
+             return &quot;{4FD39DD7-2DE0-43C1-A8C2-27C51A052810}&quot;;
+         if ( key == &quot;QRadioButton&quot; )
+             return &quot;{7CC8AE30-206C-48A3-A009-B0A088026C2F}&quot;;
+         if ( key == &quot;QPushButton&quot; )
+             return &quot;{06831CC9-59B6-436A-9578-6D53E5AD03D3}&quot;;
+         if ( key == &quot;QToolButton&quot; )
+             return &quot;{6726080f-d63d-4950-a366-9bf33e5cdf84}&quot;;
+
+         return QUuid();
+     }
+     QUuid eventsID( const QString &amp;key ) const
+     {
+         if ( key == &quot;QCheckBox&quot; )
+             return &quot;{FDB6FFBE-56A3-4E90-8F4D-198488418B3A}&quot;;
+         if ( key == &quot;QRadioButton&quot; )
+             return &quot;{73EE4860-684C-4A66-BF63-9B9EFFA0CBE5}&quot;;
+         if ( key == &quot;QPushButton&quot; )
+             return &quot;{3CC3F17F-EA59-4B58-BBD3-842D467131DD}&quot;;
+         if ( key == &quot;QToolButton&quot; )
+             return &quot;{f4d421fd-4ead-4fd9-8a25-440766939639}&quot;;
+
+         return QUuid();
+     }
+ };</pre>
+<p>The factory implementation returns the list of supported controls, creates controls on request and provides information about the unique IDs of the COM classes and interfaces for each control.</p>
+<pre> QAXFACTORY_EXPORT( ActiveQtFactory, &quot;{3B756301-0075-4E40-8BE8-5A81DE2426B7}&quot;, &quot;{AB068077-4924-406a-BBAF-42D91C8727DD}&quot; )</pre>
+<p>The factory is exported using the QAXFACTORY_EXPORT macro.</p>
+<p>To build the example you must first build the <a href="qaxserver.html">QAxServer</a> library. Then run <tt>qmake</tt> and your make tool in <tt>examples/activeqt/wrapper</tt>.</p>
+<p>The <a href="qaxserver-demo-wrapper.html">demonstration</a> requires a web browser that supports ActiveX controls, and scripting to be enabled.</p>
+<pre> &lt;SCRIPT LANGUAGE=&quot;VBScript&quot;&gt;
+ Sub ToolButton_Clicked()
+     RadioButton.text = InputBox( &quot;Enter something&quot;, &quot;Wrapper Demo&quot; )
+ End Sub
+
+ Sub PushButton_clicked()
+     MsgBox( &quot;Thank you!&quot; )
+ End Sub
+
+ Sub CheckBox_toggled( state )
+     if state = 0 then
+         CheckBox.text = &quot;Check me!&quot;
+     else
+         CheckBox.text = &quot;Uncheck me!&quot;
+     end if
+ End Sub
+ &lt;/SCRIPT&gt;
+ &lt;p /&gt;
+ A QPushButton:&lt;br /&gt;
+ &lt;object ID=&quot;PushButton&quot; CLASSID=&quot;CLSID:2B262458-A4B6-468B-B7D4-CF5FEE0A7092&quot;
+ CODEBASE=&quot;http://qt.nokia.com/demos/wrapperax.cab&quot;&gt;
+     &lt;PARAM NAME=&quot;text&quot; VALUE=&quot;Click me!&quot; /&gt;
+ [Object not available! Did you forget to build and register the server?]
+ &lt;/object&gt;&lt;br /&gt;
+
+ &lt;p /&gt;
+ A QCheckBox:&lt;br /&gt;
+ &lt;object ID=&quot;CheckBox&quot; CLASSID=&quot;CLSID:6E795de9-872d-43cf-a831-496ef9d86c68&quot;
+ CODEBASE=&quot;http://qt.nokia.com/demos/wrapperax.cab&quot;&gt;
+     &lt;PARAM NAME=&quot;text&quot; VALUE=&quot;Check me!&quot; /&gt;
+ [Object not available! Did you forget to build and register the server?]
+ &lt;/object&gt;&lt;br /&gt;
+
+ &lt;p /&gt;
+ A QToolButton:&lt;br /&gt;
+ &lt;object ID=&quot;ToolButton&quot; CLASSID=&quot;CLSID:7c0ffe7a-60c3-4666-bde2-5cf2b54390a1&quot;
+ CODEBASE=&quot;http://qt.nokia.com/demos/wrapperax.cab&quot;&gt;
+ [Object not available! Did you forget to build and register the server?]
+ &lt;/object&gt;&lt;br /&gt;
+
+ &lt;p /&gt;
+ A QRadioButton:&lt;br /&gt;
+ &lt;object ID=&quot;RadioButton&quot; CLASSID=&quot;CLSID:afcf78c8-446c-409a-93b3-ba2959039189&quot;
+ CODEBASE=&quot;http://qt.nokia.com/demos/wrapperax.cab&quot;&gt;
+     &lt;PARAM NAME=&quot;text&quot; VALUE=&quot;Tune me!&quot; /&gt;
+ [Object not available! Did you forget to build and register the server?]
+ &lt;/object&gt;&lt;br /&gt;</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

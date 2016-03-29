@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qquaternion.cpp -->
+<head>
+  <title>Qt 4.6: QQuaternion Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QQuaternion" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QQuaternion Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QQuaternion class represents a quaternion consisting of a vector and scalar. <a href="#details">More...</a></p>
+<pre> #include &lt;QQuaternion&gt;</pre><p>This class was introduced in Qt 4.6.</p>
+<ul>
+<li><a href="qquaternion-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qquaternion.html#QQuaternion">QQuaternion</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qquaternion.html#QQuaternion-2">QQuaternion</a></b> ( qreal <i>scalar</i>, qreal <i>xpos</i>, qreal <i>ypos</i>, qreal <i>zpos</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qquaternion.html#QQuaternion-3">QQuaternion</a></b> ( qreal <i>scalar</i>, const QVector3D &amp; <i>vector</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qquaternion.html#QQuaternion-4">QQuaternion</a></b> ( const QVector4D &amp; <i>vector</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QQuaternion </td><td class="memItemRight" valign="bottom"><b><a href="qquaternion.html#conjugate">conjugate</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qquaternion.html#isIdentity">isIdentity</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qquaternion.html#isNull">isNull</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">qreal </td><td class="memItemRight" valign="bottom"><b><a href="qquaternion.html#length">length</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">qreal </td><td class="memItemRight" valign="bottom"><b><a href="qquaternion.html#lengthSquared">lengthSquared</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qquaternion.html#normalize">normalize</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QQuaternion </td><td class="memItemRight" valign="bottom"><b><a href="qquaternion.html#normalized">normalized</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QVector3D </td><td class="memItemRight" valign="bottom"><b><a href="qquaternion.html#rotatedVector">rotatedVector</a></b> ( const QVector3D &amp; <i>vector</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">qreal </td><td class="memItemRight" valign="bottom"><b><a href="qquaternion.html#scalar">scalar</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qquaternion.html#setScalar">setScalar</a></b> ( qreal <i>scalar</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qquaternion.html#setVector">setVector</a></b> ( const QVector3D &amp; <i>vector</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qquaternion.html#setVector-2">setVector</a></b> ( qreal <i>x</i>, qreal <i>y</i>, qreal <i>z</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qquaternion.html#setX">setX</a></b> ( qreal <i>x</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qquaternion.html#setY">setY</a></b> ( qreal <i>y</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qquaternion.html#setZ">setZ</a></b> ( qreal <i>z</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QVector4D </td><td class="memItemRight" valign="bottom"><b><a href="qquaternion.html#toVector4D">toVector4D</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QVector3D </td><td class="memItemRight" valign="bottom"><b><a href="qquaternion.html#vector">vector</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">qreal </td><td class="memItemRight" valign="bottom"><b><a href="qquaternion.html#x">x</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">qreal </td><td class="memItemRight" valign="bottom"><b><a href="qquaternion.html#y">y</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">qreal </td><td class="memItemRight" valign="bottom"><b><a href="qquaternion.html#z">z</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qquaternion.html#operator-QVariant">operator QVariant</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QQuaternion &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qquaternion.html#operator-2a-eq">operator*=</a></b> ( qreal <i>factor</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QQuaternion &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qquaternion.html#operator-2a-eq-2">operator*=</a></b> ( const QQuaternion &amp; <i>quaternion</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QQuaternion &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qquaternion.html#operator-2b-eq">operator+=</a></b> ( const QQuaternion &amp; <i>quaternion</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QQuaternion &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qquaternion.html#operator--eq">operator-=</a></b> ( const QQuaternion &amp; <i>quaternion</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QQuaternion &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qquaternion.html#operator-2f-eq">operator/=</a></b> ( qreal <i>divisor</i> )</td></tr>
+</table>
+<hr />
+<a name="static-public-members"></a>
+<h2>Static Public Members</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">QQuaternion </td><td class="memItemRight" valign="bottom"><b><a href="qquaternion.html#fromAxisAndAngle">fromAxisAndAngle</a></b> ( const QVector3D &amp; <i>axis</i>, qreal <i>angle</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QQuaternion </td><td class="memItemRight" valign="bottom"><b><a href="qquaternion.html#fromAxisAndAngle-2">fromAxisAndAngle</a></b> ( qreal <i>x</i>, qreal <i>y</i>, qreal <i>z</i>, qreal <i>angle</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QQuaternion </td><td class="memItemRight" valign="bottom"><b><a href="qquaternion.html#nlerp">nlerp</a></b> ( const QQuaternion &amp; <i>q1</i>, const QQuaternion &amp; <i>q2</i>, qreal <i>t</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QQuaternion </td><td class="memItemRight" valign="bottom"><b><a href="qquaternion.html#slerp">slerp</a></b> ( const QQuaternion &amp; <i>q1</i>, const QQuaternion &amp; <i>q2</i>, qreal <i>t</i> )</td></tr>
+</table>
+<hr />
+<a name="related-non-members"></a>
+<h2>Related Non-Members</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qquaternion.html#qFuzzyCompare-5">qFuzzyCompare</a></b> ( const QQuaternion &amp; <i>q1</i>, const QQuaternion &amp; <i>q2</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qquaternion.html#operator-not-eq-36">operator!=</a></b> ( const QQuaternion &amp; <i>q1</i>, const QQuaternion &amp; <i>q2</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const QQuaternion </td><td class="memItemRight" valign="bottom"><b><a href="qquaternion.html#operator-2a-23">operator*</a></b> ( const QQuaternion &amp; <i>q1</i>, const QQuaternion &amp; <i>q2</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const QQuaternion </td><td class="memItemRight" valign="bottom"><b><a href="qquaternion.html#operator-2a-24">operator*</a></b> ( qreal <i>factor</i>, const QQuaternion &amp; <i>quaternion</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const QQuaternion </td><td class="memItemRight" valign="bottom"><b><a href="qquaternion.html#operator-2a-25">operator*</a></b> ( const QQuaternion &amp; <i>quaternion</i>, qreal <i>factor</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const QQuaternion </td><td class="memItemRight" valign="bottom"><b><a href="qquaternion.html#operator-2b-19">operator+</a></b> ( const QQuaternion &amp; <i>q1</i>, const QQuaternion &amp; <i>q2</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const QQuaternion </td><td class="memItemRight" valign="bottom"><b><a href="qquaternion.html#operator--7">operator-</a></b> ( const QQuaternion &amp; <i>q1</i>, const QQuaternion &amp; <i>q2</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const QQuaternion </td><td class="memItemRight" valign="bottom"><b><a href="qquaternion.html#operator--19">operator-</a></b> ( const QQuaternion &amp; <i>quaternion</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const QQuaternion </td><td class="memItemRight" valign="bottom"><b><a href="qquaternion.html#operator-2f-7">operator/</a></b> ( const QQuaternion &amp; <i>quaternion</i>, qreal <i>divisor</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QDataStream &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qquaternion.html#operator-lt-lt-108">operator&lt;&lt;</a></b> ( QDataStream &amp; <i>stream</i>, const QQuaternion &amp; <i>quaternion</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qquaternion.html#operator-eq-eq-45">operator==</a></b> ( const QQuaternion &amp; <i>q1</i>, const QQuaternion &amp; <i>q2</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QDataStream &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qquaternion.html#operator-gt-gt-70">operator&gt;&gt;</a></b> ( QDataStream &amp; <i>stream</i>, QQuaternion &amp; <i>quaternion</i> )</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QQuaternion class represents a quaternion consisting of a vector and scalar.</p>
+<p>Quaternions are used to represent rotations in 3D space, and consist of a 3D rotation axis specified by the x, y, and z coordinates, and a scalar representing the rotation angle.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QQuaternion/QQuaternion" />
+<h3 class="fn"><a name="QQuaternion"></a>QQuaternion::QQuaternion ()</h3>
+<p>Constructs an identity quaternion, i.e&#x2e; with coordinates (1, 0, 0, 0).</p>
+<h3 class="fn"><a name="QQuaternion-2"></a>QQuaternion::QQuaternion ( <a href="qtglobal.html#qreal-typedef">qreal</a> <i>scalar</i>, <a href="qtglobal.html#qreal-typedef">qreal</a> <i>xpos</i>, <a href="qtglobal.html#qreal-typedef">qreal</a> <i>ypos</i>, <a href="qtglobal.html#qreal-typedef">qreal</a> <i>zpos</i> )</h3>
+<p>Constructs a quaternion with the vector (<i>xpos</i>, <i>ypos</i>, <i>zpos</i>) and <i>scalar</i>.</p>
+<h3 class="fn"><a name="QQuaternion-3"></a>QQuaternion::QQuaternion ( <a href="qtglobal.html#qreal-typedef">qreal</a> <i>scalar</i>, const <a href="qvector3d.html">QVector3D</a> &amp; <i>vector</i> )</h3>
+<p>Constructs a quaternion vector from the specified <i>vector</i> and <i>scalar</i>.</p>
+<p>See also <a href="qquaternion.html#vector">vector</a>() and <a href="qquaternion.html#scalar">scalar</a>().</p>
+<h3 class="fn"><a name="QQuaternion-4"></a>QQuaternion::QQuaternion ( const <a href="qvector4d.html">QVector4D</a> &amp; <i>vector</i> )</h3>
+<p>Constructs a quaternion from the components of <i>vector</i>.</p>
+<a name="//apple_ref/cpp/instm/QQuaternion/conjugate" />
+<h3 class="fn"><a name="conjugate"></a>QQuaternion QQuaternion::conjugate () const</h3>
+<p>Returns the conjugate of this quaternion, which is (-x, -y, -z, scalar).</p>
+<a name="//apple_ref/cpp/clm/QQuaternion/fromAxisAndAngle" />
+<h3 class="fn"><a name="fromAxisAndAngle"></a>QQuaternion QQuaternion::fromAxisAndAngle ( const <a href="qvector3d.html">QVector3D</a> &amp; <i>axis</i>, <a href="qtglobal.html#qreal-typedef">qreal</a> <i>angle</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Creates a normalized quaternion that corresponds to rotating through <i>angle</i> degrees about the specified 3D <i>axis</i>.</p>
+<h3 class="fn"><a name="fromAxisAndAngle-2"></a>QQuaternion QQuaternion::fromAxisAndAngle ( <a href="qtglobal.html#qreal-typedef">qreal</a> <i>x</i>, <a href="qtglobal.html#qreal-typedef">qreal</a> <i>y</i>, <a href="qtglobal.html#qreal-typedef">qreal</a> <i>z</i>, <a href="qtglobal.html#qreal-typedef">qreal</a> <i>angle</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Creates a normalized quaternion that corresponds to rotating through <i>angle</i> degrees about the 3D axis (<i>x</i>, <i>y</i>, <i>z</i>).</p>
+<a name="//apple_ref/cpp/instm/QQuaternion/isIdentity" />
+<h3 class="fn"><a name="isIdentity"></a>bool QQuaternion::isIdentity () const</h3>
+<p>Returns true if the x, y, and z components of this quaternion are set to 0.0, and the scalar component is set to 1.0; otherwise returns false.</p>
+<a name="//apple_ref/cpp/instm/QQuaternion/isNull" />
+<h3 class="fn"><a name="isNull"></a>bool QQuaternion::isNull () const</h3>
+<p>Returns true if the x, y, z, and scalar components of this quaternion are set to 0.0; otherwise returns false.</p>
+<a name="//apple_ref/cpp/instm/QQuaternion/length" />
+<h3 class="fn"><a name="length"></a><a href="qtglobal.html#qreal-typedef">qreal</a> QQuaternion::length () const</h3>
+<p>Returns the length of the quaternion. This is also called the &quot;norm&quot;.</p>
+<p>See also <a href="qquaternion.html#lengthSquared">lengthSquared</a>() and <a href="qquaternion.html#normalized">normalized</a>().</p>
+<a name="//apple_ref/cpp/instm/QQuaternion/lengthSquared" />
+<h3 class="fn"><a name="lengthSquared"></a><a href="qtglobal.html#qreal-typedef">qreal</a> QQuaternion::lengthSquared () const</h3>
+<p>Returns the squared length of the quaternion.</p>
+<p>See also <a href="qquaternion.html#length">length</a>().</p>
+<a name="//apple_ref/cpp/clm/QQuaternion/nlerp" />
+<h3 class="fn"><a name="nlerp"></a>QQuaternion QQuaternion::nlerp ( const QQuaternion &amp; <i>q1</i>, const QQuaternion &amp; <i>q2</i>, <a href="qtglobal.html#qreal-typedef">qreal</a> <i>t</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Interpolates along the shortest linear path between the rotational positions <i>q1</i> and <i>q2</i>. The value <i>t</i> should be between 0 and 1, indicating the distance to travel between <i>q1</i> and <i>q2</i>. The result will be <a href="qquaternion.html#normalized">normalized</a>().</p>
+<p>If <i>t</i> is less than or equal to 0, then <i>q1</i> will be returned. If <i>t</i> is greater than or equal to 1, then <i>q2</i> will be returned.</p>
+<p>The nlerp() function is typically faster than <a href="qquaternion.html#slerp">slerp</a>() and will give approximate results to spherical interpolation that are good enough for some applications.</p>
+<p>See also <a href="qquaternion.html#slerp">slerp</a>().</p>
+<a name="//apple_ref/cpp/instm/QQuaternion/normalize" />
+<h3 class="fn"><a name="normalize"></a>void QQuaternion::normalize ()</h3>
+<p>Normalizes the currect quaternion in place. Nothing happens if this is a null quaternion or the length of the quaternion is very close to 1.</p>
+<p>See also <a href="qquaternion.html#length">length</a>() and <a href="qquaternion.html#normalized">normalized</a>().</p>
+<a name="//apple_ref/cpp/instm/QQuaternion/normalized" />
+<h3 class="fn"><a name="normalized"></a>QQuaternion QQuaternion::normalized () const</h3>
+<p>Returns the normalized unit form of this quaternion.</p>
+<p>If this quaternion is null, then a null quaternion is returned. If the length of the quaternion is very close to 1, then the quaternion will be returned as-is. Otherwise the normalized form of the quaternion of length 1 will be returned.</p>
+<p>See also <a href="qquaternion.html#length">length</a>() and <a href="qquaternion.html#normalize">normalize</a>().</p>
+<a name="//apple_ref/cpp/instm/QQuaternion/rotatedVector" />
+<h3 class="fn"><a name="rotatedVector"></a><a href="qvector3d.html">QVector3D</a> QQuaternion::rotatedVector ( const <a href="qvector3d.html">QVector3D</a> &amp; <i>vector</i> ) const</h3>
+<p>Rotates <i>vector</i> with this quaternion to produce a new vector in 3D space. The following code:</p>
+<pre> QVector3D result = q.rotatedVector(vector);</pre>
+<p>is equivalent to the following:</p>
+<pre> QVector3D result = (q * QQuaternion(0, vector) * q.conjugate()).vector();</pre>
+<a name="//apple_ref/cpp/instm/QQuaternion/scalar" />
+<h3 class="fn"><a name="scalar"></a><a href="qtglobal.html#qreal-typedef">qreal</a> QQuaternion::scalar () const</h3>
+<p>Returns the scalar component of this quaternion.</p>
+<p>See also <a href="qquaternion.html#setScalar">setScalar</a>(), <a href="qquaternion.html#x">x</a>(), <a href="qquaternion.html#y">y</a>(), and <a href="qquaternion.html#z">z</a>().</p>
+<a name="//apple_ref/cpp/instm/QQuaternion/setScalar" />
+<h3 class="fn"><a name="setScalar"></a>void QQuaternion::setScalar ( <a href="qtglobal.html#qreal-typedef">qreal</a> <i>scalar</i> )</h3>
+<p>Sets the scalar component of this quaternion to <i>scalar</i>.</p>
+<p>See also <a href="qquaternion.html#scalar">scalar</a>(), <a href="qquaternion.html#setX">setX</a>(), <a href="qquaternion.html#setY">setY</a>(), and <a href="qquaternion.html#setZ">setZ</a>().</p>
+<a name="//apple_ref/cpp/instm/QQuaternion/setVector" />
+<h3 class="fn"><a name="setVector"></a>void QQuaternion::setVector ( const <a href="qvector3d.html">QVector3D</a> &amp; <i>vector</i> )</h3>
+<p>Sets the vector component of this quaternion to <i>vector</i>.</p>
+<p>See also <a href="qquaternion.html#vector">vector</a>() and <a href="qquaternion.html#setScalar">setScalar</a>().</p>
+<h3 class="fn"><a name="setVector-2"></a>void QQuaternion::setVector ( <a href="qtglobal.html#qreal-typedef">qreal</a> <i>x</i>, <a href="qtglobal.html#qreal-typedef">qreal</a> <i>y</i>, <a href="qtglobal.html#qreal-typedef">qreal</a> <i>z</i> )</h3>
+<p>Sets the vector component of this quaternion to (<i>x</i>, <i>y</i>, <i>z</i>).</p>
+<p>See also <a href="qquaternion.html#vector">vector</a>() and <a href="qquaternion.html#setScalar">setScalar</a>().</p>
+<a name="//apple_ref/cpp/instm/QQuaternion/setX" />
+<h3 class="fn"><a name="setX"></a>void QQuaternion::setX ( <a href="qtglobal.html#qreal-typedef">qreal</a> <i>x</i> )</h3>
+<p>Sets the x coordinate of this quaternion's vector to the given <i>x</i> coordinate.</p>
+<p>See also <a href="qquaternion.html#x">x</a>(), <a href="qquaternion.html#setY">setY</a>(), <a href="qquaternion.html#setZ">setZ</a>(), and <a href="qquaternion.html#setScalar">setScalar</a>().</p>
+<a name="//apple_ref/cpp/instm/QQuaternion/setY" />
+<h3 class="fn"><a name="setY"></a>void QQuaternion::setY ( <a href="qtglobal.html#qreal-typedef">qreal</a> <i>y</i> )</h3>
+<p>Sets the y coordinate of this quaternion's vector to the given <i>y</i> coordinate.</p>
+<p>See also <a href="qquaternion.html#y">y</a>(), <a href="qquaternion.html#setX">setX</a>(), <a href="qquaternion.html#setZ">setZ</a>(), and <a href="qquaternion.html#setScalar">setScalar</a>().</p>
+<a name="//apple_ref/cpp/instm/QQuaternion/setZ" />
+<h3 class="fn"><a name="setZ"></a>void QQuaternion::setZ ( <a href="qtglobal.html#qreal-typedef">qreal</a> <i>z</i> )</h3>
+<p>Sets the z coordinate of this quaternion's vector to the given <i>z</i> coordinate.</p>
+<p>See also <a href="qquaternion.html#z">z</a>(), <a href="qquaternion.html#setX">setX</a>(), <a href="qquaternion.html#setY">setY</a>(), and <a href="qquaternion.html#setScalar">setScalar</a>().</p>
+<a name="//apple_ref/cpp/clm/QQuaternion/slerp" />
+<h3 class="fn"><a name="slerp"></a>QQuaternion QQuaternion::slerp ( const QQuaternion &amp; <i>q1</i>, const QQuaternion &amp; <i>q2</i>, <a href="qtglobal.html#qreal-typedef">qreal</a> <i>t</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Interpolates along the shortest spherical path between the rotational positions <i>q1</i> and <i>q2</i>. The value <i>t</i> should be between 0 and 1, indicating the spherical distance to travel between <i>q1</i> and <i>q2</i>.</p>
+<p>If <i>t</i> is less than or equal to 0, then <i>q1</i> will be returned. If <i>t</i> is greater than or equal to 1, then <i>q2</i> will be returned.</p>
+<p>See also <a href="qquaternion.html#nlerp">nlerp</a>().</p>
+<a name="//apple_ref/cpp/instm/QQuaternion/toVector4D" />
+<h3 class="fn"><a name="toVector4D"></a><a href="qvector4d.html">QVector4D</a> QQuaternion::toVector4D () const</h3>
+<p>Returns this quaternion as a 4D vector.</p>
+<a name="//apple_ref/cpp/instm/QQuaternion/vector" />
+<h3 class="fn"><a name="vector"></a><a href="qvector3d.html">QVector3D</a> QQuaternion::vector () const</h3>
+<p>Returns the vector component of this quaternion.</p>
+<p>See also <a href="qquaternion.html#setVector">setVector</a>() and <a href="qquaternion.html#scalar">scalar</a>().</p>
+<a name="//apple_ref/cpp/instm/QQuaternion/x" />
+<h3 class="fn"><a name="x"></a><a href="qtglobal.html#qreal-typedef">qreal</a> QQuaternion::x () const</h3>
+<p>Returns the x coordinate of this quaternion's vector.</p>
+<p>See also <a href="qquaternion.html#setX">setX</a>(), <a href="qquaternion.html#y">y</a>(), <a href="qquaternion.html#z">z</a>(), and <a href="qquaternion.html#scalar">scalar</a>().</p>
+<a name="//apple_ref/cpp/instm/QQuaternion/y" />
+<h3 class="fn"><a name="y"></a><a href="qtglobal.html#qreal-typedef">qreal</a> QQuaternion::y () const</h3>
+<p>Returns the y coordinate of this quaternion's vector.</p>
+<p>See also <a href="qquaternion.html#setY">setY</a>(), <a href="qquaternion.html#x">x</a>(), <a href="qquaternion.html#z">z</a>(), and <a href="qquaternion.html#scalar">scalar</a>().</p>
+<a name="//apple_ref/cpp/instm/QQuaternion/z" />
+<h3 class="fn"><a name="z"></a><a href="qtglobal.html#qreal-typedef">qreal</a> QQuaternion::z () const</h3>
+<p>Returns the z coordinate of this quaternion's vector.</p>
+<p>See also <a href="qquaternion.html#setZ">setZ</a>(), <a href="qquaternion.html#x">x</a>(), <a href="qquaternion.html#y">y</a>(), and <a href="qquaternion.html#scalar">scalar</a>().</p>
+<a name="//apple_ref/cpp/instm/QQuaternion/operator QVariant" />
+<h3 class="fn"><a name="operator-QVariant"></a>QQuaternion::operator QVariant () const</h3>
+<p>Returns the quaternion as a <a href="qvariant.html">QVariant</a>.</p>
+<a name="//apple_ref/cpp/instm/QQuaternion/operator*=" />
+<h3 class="fn"><a name="operator-2a-eq"></a>QQuaternion &amp; QQuaternion::operator*= ( <a href="qtglobal.html#qreal-typedef">qreal</a> <i>factor</i> )</h3>
+<p>Multiplies this quaternion's components by the given <i>factor</i>, and returns a reference to this quaternion.</p>
+<p>See also <a href="qquaternion.html#operator-2f-eq">operator/=</a>().</p>
+<h3 class="fn"><a name="operator-2a-eq-2"></a>QQuaternion &amp; QQuaternion::operator*= ( const QQuaternion &amp; <i>quaternion</i> )</h3>
+<p>Multiplies this quaternion by <i>quaternion</i> and returns a reference to this quaternion.</p>
+<a name="//apple_ref/cpp/instm/QQuaternion/operator+=" />
+<h3 class="fn"><a name="operator-2b-eq"></a>QQuaternion &amp; QQuaternion::operator+= ( const QQuaternion &amp; <i>quaternion</i> )</h3>
+<p>Adds the given <i>quaternion</i> to this quaternion and returns a reference to this quaternion.</p>
+<p>See also <a href="qquaternion.html#operator--eq">operator-=</a>().</p>
+<a name="//apple_ref/cpp/instm/QQuaternion/operator-=" />
+<h3 class="fn"><a name="operator--eq"></a>QQuaternion &amp; QQuaternion::operator-= ( const QQuaternion &amp; <i>quaternion</i> )</h3>
+<p>Subtracts the given <i>quaternion</i> from this quaternion and returns a reference to this quaternion.</p>
+<p>See also <a href="qquaternion.html#operator-2b-eq">operator+=</a>().</p>
+<a name="//apple_ref/cpp/instm/QQuaternion/operator/=" />
+<h3 class="fn"><a name="operator-2f-eq"></a>QQuaternion &amp; QQuaternion::operator/= ( <a href="qtglobal.html#qreal-typedef">qreal</a> <i>divisor</i> )</h3>
+<p>Divides this quaternion's components by the given <i>divisor</i>, and returns a reference to this quaternion.</p>
+<p>See also <a href="qquaternion.html#operator-2a-eq">operator*=</a>().</p>
+<hr />
+<h2>Related Non-Members</h2>
+<h3 class="fn"><a name="qFuzzyCompare-5"></a>bool qFuzzyCompare ( const QQuaternion &amp; <i>q1</i>, const QQuaternion &amp; <i>q2</i> )</h3>
+<p>Returns true if <i>q1</i> and <i>q2</i> are equal, allowing for a small fuzziness factor for floating-point comparisons; false otherwise.</p>
+<h3 class="fn"><a name="operator-not-eq-36"></a>bool operator!= ( const QQuaternion &amp; <i>q1</i>, const QQuaternion &amp; <i>q2</i> )</h3>
+<p>Returns true if <i>q1</i> is not equal to <i>q2</i>; otherwise returns false. This operator uses an exact floating-point comparison.</p>
+<h3 class="fn"><a name="operator-2a-23"></a>const QQuaternion operator* ( const QQuaternion &amp; <i>q1</i>, const QQuaternion &amp; <i>q2</i> )</h3>
+<p>Multiplies <i>q1</i> and <i>q2</i> using quaternion multiplication. The result corresponds to applying both of the rotations specified by <i>q1</i> and <i>q2</i>.</p>
+<p>See also <a href="qquaternion.html#operator-2a-eq">QQuaternion::operator*=</a>().</p>
+<h3 class="fn"><a name="operator-2a-24"></a>const QQuaternion operator* ( <a href="qtglobal.html#qreal-typedef">qreal</a> <i>factor</i>, const QQuaternion &amp; <i>quaternion</i> )</h3>
+<p>Returns a copy of the given <i>quaternion</i>, multiplied by the given <i>factor</i>.</p>
+<p>See also <a href="qquaternion.html#operator-2a-eq">QQuaternion::operator*=</a>().</p>
+<h3 class="fn"><a name="operator-2a-25"></a>const QQuaternion operator* ( const QQuaternion &amp; <i>quaternion</i>, <a href="qtglobal.html#qreal-typedef">qreal</a> <i>factor</i> )</h3>
+<p>Returns a copy of the given <i>quaternion</i>, multiplied by the given <i>factor</i>.</p>
+<p>See also <a href="qquaternion.html#operator-2a-eq">QQuaternion::operator*=</a>().</p>
+<h3 class="fn"><a name="operator-2b-19"></a>const QQuaternion operator+ ( const QQuaternion &amp; <i>q1</i>, const QQuaternion &amp; <i>q2</i> )</h3>
+<p>Returns a <a href="qquaternion.html">QQuaternion</a> object that is the sum of the given quaternions, <i>q1</i> and <i>q2</i>; each component is added separately.</p>
+<p>See also <a href="qquaternion.html#operator-2b-eq">QQuaternion::operator+=</a>().</p>
+<h3 class="fn"><a name="operator--7"></a>const QQuaternion operator- ( const QQuaternion &amp; <i>q1</i>, const QQuaternion &amp; <i>q2</i> )</h3>
+<p>Returns a <a href="qquaternion.html">QQuaternion</a> object that is formed by subtracting <i>q2</i> from <i>q1</i>; each component is subtracted separately.</p>
+<p>See also <a href="qquaternion.html#operator--eq">QQuaternion::operator-=</a>().</p>
+<h3 class="fn"><a name="operator--19"></a>const QQuaternion operator- ( const QQuaternion &amp; <i>quaternion</i> )</h3>
+<p>This is an overloaded function.</p>
+<p>Returns a <a href="qquaternion.html">QQuaternion</a> object that is formed by changing the sign of all three components of the given <i>quaternion</i>.</p>
+<p>Equivalent to <tt>QQuaternion(0,0,0,0) - quaternion</tt>.</p>
+<h3 class="fn"><a name="operator-2f-7"></a>const QQuaternion operator/ ( const QQuaternion &amp; <i>quaternion</i>, <a href="qtglobal.html#qreal-typedef">qreal</a> <i>divisor</i> )</h3>
+<p>Returns the <a href="qquaternion.html">QQuaternion</a> object formed by dividing all components of the given <i>quaternion</i> by the given <i>divisor</i>.</p>
+<p>See also <a href="qquaternion.html#operator-2f-eq">QQuaternion::operator/=</a>().</p>
+<h3 class="fn"><a name="operator-lt-lt-108"></a><a href="qdatastream.html">QDataStream</a> &amp; operator&lt;&lt; ( <a href="qdatastream.html">QDataStream</a> &amp; <i>stream</i>, const QQuaternion &amp; <i>quaternion</i> )</h3>
+<p>Writes the given <i>quaternion</i> to the given <i>stream</i> and returns a reference to the stream.</p>
+<p>See also <a href="datastreamformat.html">Format of the QDataStream Operators</a>.</p>
+<h3 class="fn"><a name="operator-eq-eq-45"></a>bool operator== ( const QQuaternion &amp; <i>q1</i>, const QQuaternion &amp; <i>q2</i> )</h3>
+<p>Returns true if <i>q1</i> is equal to <i>q2</i>; otherwise returns false. This operator uses an exact floating-point comparison.</p>
+<h3 class="fn"><a name="operator-gt-gt-70"></a><a href="qdatastream.html">QDataStream</a> &amp; operator&gt;&gt; ( <a href="qdatastream.html">QDataStream</a> &amp; <i>stream</i>, QQuaternion &amp; <i>quaternion</i> )</h3>
+<p>Reads a quaternion from the given <i>stream</i> into the given <i>quaternion</i> and returns a reference to the stream.</p>
+<p>See also <a href="datastreamformat.html">Format of the QDataStream Operators</a>.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

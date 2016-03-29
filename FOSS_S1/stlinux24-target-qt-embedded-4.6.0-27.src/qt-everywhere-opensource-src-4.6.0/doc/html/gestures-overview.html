@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- gestures.qdoc -->
+<head>
+  <title>Qt 4.6: Gestures Programming</title>
+  <link rel="start" href="index.html" />
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><p>
+</p>
+<h1 class="title">Gestures Programming<br /><span class="subtitle"></span>
+</h1>
+<p>Qt includes a framework for gesture programming that gives has the ability to form gestures from a series of events, independently of the input methods used. A gesture could be a particular movement of a mouse, a touch screen action, or a series of events from some other source. The nature of the input, the interpretation of the gesture and the action taken are the choice of the developer.</p>
+<ul><li><a href="#overview">Overview</a></li>
+<li><a href="#using-standard-gestures-with-widgets">Using Standard Gestures with Widgets</a></li>
+<li><a href="#creating-your-own-gesture-recognizer">Creating Your Own Gesture Recognizer</a></li>
+<ul><li><a href="#filtering-input-events">Filtering Input Events</a></li>
+<li><a href="#custom-gestures">Custom Gestures</a></li>
+<li><a href="#resetting-gestures">Resetting Gestures</a></li>
+</ul>
+<li><a href="#using-a-new-gesture-recognizer">Using a New Gesture Recognizer</a></li>
+<li><a href="#further-reading">Further Reading</a></li>
+</ul>
+<a name="overview"></a>
+<h3>Overview</h3>
+<p><a href="qgesture.html">QGesture</a> is the central class in Qt's gesture framework, providing a container for information about gestures performed by the user. <a href="qgesture.html">QGesture</a> exposes properties that give general information that is common to all gestures, and these can be extended to provide additional gesture-specific information. Common panning, pinching and swiping gestures are represented by specialized classes: <a href="qpangesture.html">QPanGesture</a>, <a href="qpinchgesture.html">QPinchGesture</a> and <a href="qswipegesture.html">QSwipeGesture</a>.</p>
+<p>Developers can also implement new gestures by subclassing and extending the <a href="qgesturerecognizer.html">QGestureRecognizer</a> class. Adding support for a new gesture involves implementing code to recognize the gesture from input events. This is described in the <a href="#creating-your-own-gesture-recognizer">Creating Your Own Gesture Recognizer</a> section.</p>
+<a name="using-standard-gestures-with-widgets"></a>
+<h3>Using Standard Gestures with Widgets</h3>
+<p>Gestures can be enabled for instances of <a href="qwidget.html">QWidget</a> and <a href="qgraphicsobject.html">QGraphicsObject</a> subclasses. An object that accepts gesture input is referred to as a <i>target object</i>.</p>
+<p>To enable a gesture for a target object, call its <a href="qwidget.html#grabGesture">QWidget::grabGesture</a>() or <a href="qgraphicsobject.html#grabGesture">QGraphicsObject::grabGesture</a>() function with an argument describing the required gesture type. The standard types are defined by the <a href="qt.html#GestureType-enum">Qt::GestureType</a> enum and include many commonly used gestures.</p>
+<pre>     grabGesture(Qt::PanGesture);
+     grabGesture(Qt::PinchGesture);
+     grabGesture(Qt::SwipeGesture);</pre>
+<p>In the above code, the gesture is set up in the constructor of the target object itself.</p>
+<p>When the user performs a gesture, <a href="qgestureevent.html">QGestureEvent</a> events will be delivered to the target object, and these can be handled by reimplementing the <a href="qwidget.html#event">QWidget::event</a>() handler function for widgets or <a href="qgraphicsitem.html#sceneEvent">QGraphicsItem::sceneEvent</a>() for graphics objects.</p>
+<p>For convenience, the <a href="gestures-imagegestures.html">Image Gestures Example</a> reimplements the general <a href="qwidget.html#event">event()</a> handler function and delegates gesture events to a specialized gestureEvent() function:</p>
+<pre> bool ImageWidget::event(QEvent *event)
+ {
+     if (event-&gt;type() == QEvent::Gesture)
+         return gestureEvent(static_cast&lt;QGestureEvent*&gt;(event));
+     return QWidget::event(event);
+ }</pre>
+<p>The gesture events delivered to the target object can be examined individually and dealt with appropriately:</p>
+<pre> bool ImageWidget::gestureEvent(QGestureEvent *event)
+ {
+     if (QGesture *swipe = event-&gt;gesture(Qt::SwipeGesture))
+         swipeTriggered(static_cast&lt;QSwipeGesture *&gt;(swipe));
+     else if (QGesture *pan = event-&gt;gesture(Qt::PanGesture))
+         panTriggered(static_cast&lt;QPanGesture *&gt;(pan));
+     if (QGesture *pinch = event-&gt;gesture(Qt::PinchGesture))
+         pinchTriggered(static_cast&lt;QPinchGesture *&gt;(pinch));
+     return true;
+ }</pre>
+<p>Responding to a gesture is simply a matter of obtaining the <a href="qgesture.html">QGesture</a> object delivered in the <a href="qgestureevent.html">QGestureEvent</a> sent to the target object and examining the information it contains.</p>
+<pre> void ImageWidget::swipeTriggered(QSwipeGesture *gesture)
+ {
+     if (gesture-&gt;state() == Qt::GestureFinished) {
+         if (gesture-&gt;horizontalDirection() == QSwipeGesture::Left
+             || gesture-&gt;verticalDirection() == QSwipeGesture::Up)
+             goPrevImage();
+         else
+             goNextImage();
+         update();
+     }
+ }</pre>
+<p>Here, we examine the direction in which the user swiped the widget and modify its contents accordingly.</p>
+<a name="creating-your-own-gesture-recognizer"></a>
+<h3>Creating Your Own Gesture Recognizer</h3>
+<p>Adding support for a new gesture involves creating and registering a new gesture recognizer. Depending on the recognition process for the gesture, it may also involve creating a new gesture object.</p>
+<p>To create a new recognizer, you need to subclass <a href="qgesturerecognizer.html">QGestureRecognizer</a> to create a custom recognizer class. There is one virtual function that you must reimplement and two others that can be reimplemented as required.</p>
+<a name="filtering-input-events"></a>
+<h4>Filtering Input Events</h4>
+<p>The <a href="qgesturerecognizer.html#recognize">recognize()</a> function must be reimplemented. This function handles and filters the incoming input events for the target objects and determines whether or not they correspond to the gesture the recognizer is looking for.</p>
+<p>Although the logic for gesture recognition is implemented in this function, possibly using a state machine based on the <a href="qt.html#GestureState-enum">Qt::GestureState</a> enums, you can store persistent information about the state of the recognition process in the <a href="qgesture.html">QGesture</a> object supplied.</p>
+<p>Your <a href="qgesturerecognizer.html#recognize">recognize()</a> function must return a value of <a href="qgesturerecognizer.html#ResultFlag-enum">QGestureRecognizer::Result</a> that indicates the state of recognition for a given gesture and target object. This determines whether or not a gesture event will be delivered to a target object.</p>
+<a name="custom-gestures"></a>
+<h4>Custom Gestures</h4>
+<p>If you choose to represent a gesture by a custom <a href="qgesture.html">QGesture</a> subclass, you will need to reimplement the <a href="qgesturerecognizer.html#create">create()</a> function to construct instances of your gesture class instead of standard <a href="qgesture.html">QGesture</a> instances. Alternatively, you may want to use standard <a href="qgesture.html">QGesture</a> instances, but add additional dynamic properties to them to express specific details of the gesture you want to handle.</p>
+<a name="resetting-gestures"></a>
+<h4>Resetting Gestures</h4>
+<p>If you use custom gesture objects that need to be reset or otherwise specially handled when a gesture is canceled, you need to reimplement the <a href="qgesturerecognizer.html#reset">reset()</a> function to perform these special tasks.</p>
+<p>Note that <a href="qgesture.html">QGesture</a> objects are only created once for each combination of target object and gesture type, and they might be reused every time the user attempts to perform the same gesture type on the target object. As a result, it can be useful to reimplement the <a href="qgesturerecognizer.html#reset">reset()</a> function to clean up after each previous attempt at recognizing a gesture.</p>
+<a name="using-a-new-gesture-recognizer"></a>
+<h3>Using a New Gesture Recognizer</h3>
+<p>To use a gesture recognizer, construct an instance of your <a href="qgesturerecognizer.html">QGestureRecognizer</a> subclass, and register it with the application with <a href="qgesturerecognizer.html#registerRecognizer">QGestureRecognizer::registerRecognizer</a>(). A recognizer for a given type of gesture can be removed with <a href="qgesturerecognizer.html#unregisterRecognizer">QGestureRecognizer::unregisterRecognizer</a>().</p>
+<a name="further-reading"></a>
+<h3>Further Reading</h3>
+<p>The <a href="gestures-imagegestures.html">Image Gestures Example</a> shows how to enable gestures for a widget in a simple image viewer application.</p>
+<p>
+</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

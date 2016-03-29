@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: lifecycle.cpp Example File (animation/stickman/lifecycle.cpp)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">lifecycle.cpp Example File<br /><span class="small-subtitle">animation/stickman/lifecycle.cpp</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the QtCore module of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+
+ #include &quot;lifecycle.h&quot;
+ #include &quot;stickman.h&quot;
+ #include &quot;node.h&quot;
+ #include &quot;animation.h&quot;
+ #include &quot;graphicsview.h&quot;
+
+ #include &lt;QtCore&gt;
+ #include &lt;QtGui&gt;
+
+ class KeyPressTransition: public QSignalTransition
+ {
+ public:
+     KeyPressTransition(GraphicsView *receiver, Qt::Key key)
+         : QSignalTransition(receiver, SIGNAL(keyPressed(int))), m_key(key)
+     {
+     }
+     KeyPressTransition(GraphicsView *receiver, Qt::Key key, QAbstractState *target)
+         : QSignalTransition(receiver, SIGNAL(keyPressed(int))), m_key(key)
+     {
+         setTargetState(target);
+     }
+
+     virtual bool eventTest(QEvent *e)
+     {
+         if (QSignalTransition::eventTest(e)) {
+             QVariant key = static_cast&lt;QStateMachine::SignalEvent*&gt;(e)-&gt;arguments().at(0);
+             return (key.toInt() == int(m_key));
+         }
+
+         return false;
+     }
+ private:
+     Qt::Key m_key;
+ };
+
+ class LightningStrikesTransition: public QEventTransition
+ {
+ public:
+     LightningStrikesTransition(QAbstractState *target)
+         : QEventTransition(this, QEvent::Timer)
+     {
+         setTargetState(target);
+         qsrand((uint)QDateTime::currentDateTime().toTime_t());
+         startTimer(1000);
+     }
+
+     virtual bool eventTest(QEvent *e)
+     {
+         return QEventTransition::eventTest(e) &amp;&amp; ((qrand() % 50) == 0);
+     }
+ };
+
+ LifeCycle::LifeCycle(StickMan *stickMan, GraphicsView *keyReceiver)
+     : m_stickMan(stickMan), m_keyReceiver(keyReceiver)
+ {
+     <span class="comment">// Create animation group to be used for all transitions</span>
+     m_animationGroup = new QParallelAnimationGroup();
+     const int stickManNodeCount = m_stickMan-&gt;nodeCount();
+     for (int i=0; i&lt;stickManNodeCount; ++i) {
+         QPropertyAnimation *pa = new QPropertyAnimation(m_stickMan-&gt;node(i), &quot;pos&quot;);
+         m_animationGroup-&gt;addAnimation(pa);
+     }
+
+     <span class="comment">// Set up intial state graph</span>
+     m_machine = new QStateMachine();
+     m_machine-&gt;addDefaultAnimation(m_animationGroup);
+
+     m_alive = new QState(m_machine);
+     m_alive-&gt;setObjectName(&quot;alive&quot;);
+
+     <span class="comment">// Make it blink when lightning strikes before entering dead animation</span>
+     QState *lightningBlink = new QState(m_machine);
+     lightningBlink-&gt;assignProperty(m_stickMan-&gt;scene(), &quot;backgroundBrush&quot;, Qt::white);
+     lightningBlink-&gt;assignProperty(m_stickMan, &quot;penColor&quot;, Qt::black);
+     lightningBlink-&gt;assignProperty(m_stickMan, &quot;fillColor&quot;, Qt::white);
+     lightningBlink-&gt;assignProperty(m_stickMan, &quot;isDead&quot;, true);
+
+     QTimer *timer = new QTimer(lightningBlink);
+     timer-&gt;setSingleShot(true);
+     timer-&gt;setInterval(100);
+     QObject::connect(lightningBlink, SIGNAL(entered()), timer, SLOT(start()));
+     QObject::connect(lightningBlink, SIGNAL(exited()), timer, SLOT(stop()));
+
+     m_dead = new QState(m_machine);
+     m_dead-&gt;assignProperty(m_stickMan-&gt;scene(), &quot;backgroundBrush&quot;, Qt::black);
+     m_dead-&gt;assignProperty(m_stickMan, &quot;penColor&quot;, Qt::white);
+     m_dead-&gt;assignProperty(m_stickMan, &quot;fillColor&quot;, Qt::black);
+     m_dead-&gt;setObjectName(&quot;dead&quot;);
+
+     <span class="comment">// Idle state (sets no properties)</span>
+     m_idle = new QState(m_alive);
+     m_idle-&gt;setObjectName(&quot;idle&quot;);
+
+     m_alive-&gt;setInitialState(m_idle);
+
+     <span class="comment">// Lightning strikes at random</span>
+     m_alive-&gt;addTransition(new LightningStrikesTransition(lightningBlink));
+     lightningBlink-&gt;addTransition(timer, SIGNAL(timeout()), m_dead);
+
+     m_machine-&gt;setInitialState(m_alive);
+ }
+
+ void LifeCycle::setDeathAnimation(const QString &amp;fileName)
+ {
+     QState *deathAnimation = makeState(m_dead, fileName);
+     m_dead-&gt;setInitialState(deathAnimation);
+ }
+
+ void LifeCycle::start()
+ {
+     m_machine-&gt;start();
+ }
+
+ void LifeCycle::addActivity(const QString &amp;fileName, Qt::Key key)
+ {
+     QState *state = makeState(m_alive, fileName);
+     m_alive-&gt;addTransition(new KeyPressTransition(m_keyReceiver, key, state));
+ }
+
+ QState *LifeCycle::makeState(QState *parentState, const QString &amp;animationFileName)
+ {
+     QState *topLevel = new QState(parentState);
+
+     Animation animation;
+     {
+         QFile file(animationFileName);
+         if (file.open(QIODevice::ReadOnly))
+             animation.load(&amp;file);
+     }
+
+     const int frameCount = animation.totalFrames();
+     QState *previousState = 0;
+     for (int i=0; i&lt;frameCount; ++i) {
+         animation.setCurrentFrame(i);
+
+         QState *frameState = new QState(topLevel);
+         const int nodeCount = animation.nodeCount();
+         for (int j=0; j&lt;nodeCount; ++j)
+             frameState-&gt;assignProperty(m_stickMan-&gt;node(j), &quot;pos&quot;, animation.nodePos(j));
+
+         frameState-&gt;setObjectName(QString::fromLatin1(&quot;frame %0&quot;).arg(i));
+         if (previousState == 0)
+             topLevel-&gt;setInitialState(frameState);
+         else
+             previousState-&gt;addTransition(previousState, SIGNAL(propertiesAssigned()), frameState);
+
+         previousState = frameState;
+     }
+
+     <span class="comment">// Loop</span>
+     previousState-&gt;addTransition(previousState, SIGNAL(propertiesAssigned()), topLevel-&gt;initialState());
+
+     return topLevel;
+
+ }
+
+ LifeCycle::~LifeCycle()
+ {
+     delete m_machine;
+     delete m_animationGroup;
+ }</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

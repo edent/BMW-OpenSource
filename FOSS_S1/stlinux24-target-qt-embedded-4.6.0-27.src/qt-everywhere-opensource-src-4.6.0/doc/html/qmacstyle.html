@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qmacstyle.qdoc -->
+<head>
+  <title>Qt 4.6: QMacStyle Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QMacStyle" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QMacStyle Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QMacStyle class provides a Mac OS X style using the Apple Appearance Manager. <a href="#details">More...</a></p>
+<pre> #include &lt;QMacStyle&gt;</pre><p>Inherits <a href="qwindowsstyle.html">QWindowsStyle</a>.</p>
+<ul>
+<li><a href="qmacstyle-members.html">List of all members, including inherited members</a></li>
+<li><a href="qmacstyle-obsolete.html">Obsolete members</a></li>
+</ul>
+<hr />
+<a name="public-types"></a>
+<h2>Public Types</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qmacstyle.html#FocusRectPolicy-enum">FocusRectPolicy</a></b> { FocusEnabled, FocusDisabled, FocusDefault }</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qmacstyle.html#WidgetSizePolicy-enum">WidgetSizePolicy</a></b> { SizeSmall, SizeLarge, SizeMini, SizeDefault }</td></tr>
+</table>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qmacstyle.html#QMacStyle">QMacStyle</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual </td><td class="memItemRight" valign="bottom"><b><a href="qmacstyle.html#dtor.QMacStyle">~QMacStyle</a></b> ()</td></tr>
+</table>
+<hr />
+<a name="reimplemented-public-functions"></a>
+<h2>Reimplemented Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qmacstyle.html#drawComplexControl">drawComplexControl</a></b> ( ComplexControl <i>cc</i>, const QStyleOptionComplex * <i>opt</i>, QPainter * <i>p</i>, const QWidget * <i>widget</i> = 0 ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qmacstyle.html#drawControl">drawControl</a></b> ( ControlElement <i>ce</i>, const QStyleOption * <i>opt</i>, QPainter * <i>p</i>, const QWidget * <i>w</i> = 0 ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qmacstyle.html#drawItemText">drawItemText</a></b> ( QPainter * <i>p</i>, const QRect &amp; <i>r</i>, int <i>flags</i>, const QPalette &amp; <i>pal</i>, bool <i>enabled</i>, const QString &amp; <i>text</i>, QPalette::ColorRole <i>textRole</i> = QPalette::NoRole ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qmacstyle.html#drawPrimitive">drawPrimitive</a></b> ( PrimitiveElement <i>pe</i>, const QStyleOption * <i>opt</i>, QPainter * <i>p</i>, const QWidget * <i>w</i> = 0 ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qmacstyle.html#event">event</a></b> ( QEvent * <i>e</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QPixmap </td><td class="memItemRight" valign="bottom"><b><a href="qmacstyle.html#generatedIconPixmap">generatedIconPixmap</a></b> ( QIcon::Mode <i>iconMode</i>, const QPixmap &amp; <i>pixmap</i>, const QStyleOption * <i>opt</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual SubControl </td><td class="memItemRight" valign="bottom"><b><a href="qmacstyle.html#hitTestComplexControl">hitTestComplexControl</a></b> ( ComplexControl <i>cc</i>, const QStyleOptionComplex * <i>opt</i>, const QPoint &amp; <i>pt</i>, const QWidget * <i>widget</i> = 0 ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual int </td><td class="memItemRight" valign="bottom"><b><a href="qmacstyle.html#pixelMetric">pixelMetric</a></b> ( PixelMetric <i>metric</i>, const QStyleOption * <i>opt</i> = 0, const QWidget * <i>widget</i> = 0 ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qmacstyle.html#polish">polish</a></b> ( QWidget * <i>w</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qmacstyle.html#polish-2">polish</a></b> ( QApplication * )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qmacstyle.html#polish-3">polish</a></b> ( QPalette &amp; <i>pal</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QSize </td><td class="memItemRight" valign="bottom"><b><a href="qmacstyle.html#sizeFromContents">sizeFromContents</a></b> ( ContentsType <i>ct</i>, const QStyleOption * <i>opt</i>, const QSize &amp; <i>csz</i>, const QWidget * <i>widget</i> = 0 ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QPalette </td><td class="memItemRight" valign="bottom"><b><a href="qmacstyle.html#standardPalette">standardPalette</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QPixmap </td><td class="memItemRight" valign="bottom"><b><a href="qmacstyle.html#standardPixmap">standardPixmap</a></b> ( StandardPixmap <i>standardPixmap</i>, const QStyleOption * <i>opt</i>, const QWidget * <i>widget</i> = 0 ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual int </td><td class="memItemRight" valign="bottom"><b><a href="qmacstyle.html#styleHint">styleHint</a></b> ( StyleHint <i>sh</i>, const QStyleOption * <i>opt</i> = 0, const QWidget * <i>w</i> = 0, QStyleHintReturn * <i>hret</i> = 0 ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QRect </td><td class="memItemRight" valign="bottom"><b><a href="qmacstyle.html#subControlRect">subControlRect</a></b> ( ComplexControl <i>cc</i>, const QStyleOptionComplex * <i>opt</i>, SubControl <i>sc</i>, const QWidget * <i>widget</i> = 0 ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QRect </td><td class="memItemRight" valign="bottom"><b><a href="qmacstyle.html#subElementRect">subElementRect</a></b> ( SubElement <i>sr</i>, const QStyleOption * <i>opt</i>, const QWidget * <i>widget</i> = 0 ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qmacstyle.html#unpolish">unpolish</a></b> ( QWidget * <i>w</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qmacstyle.html#unpolish-2">unpolish</a></b> ( QApplication * )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>13 public functions inherited from <a href="qwindowsstyle.html#public-functions">QWindowsStyle</a></li>
+<li><div bar="2" class="fn"></div>16 public functions inherited from <a href="qcommonstyle.html#public-functions">QCommonStyle</a></li>
+<li><div bar="2" class="fn"></div>24 public functions inherited from <a href="qstyle.html#public-functions">QStyle</a></li>
+<li><div bar="2" class="fn"></div>29 public functions inherited from <a href="qobject.html#public-functions">QObject</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li><div class="fn"></div>1 property inherited from <a href="qobject.html#properties">QObject</a></li>
+<li><div class="fn"></div>1 public slot inherited from <a href="qobject.html#public-slots">QObject</a></li>
+<li><div class="fn"></div>1 signal inherited from <a href="qobject.html#signals">QObject</a></li>
+<li><div class="fn"></div>6 static public members inherited from <a href="qstyle.html#static-public-members">QStyle</a></li>
+<li><div class="fn"></div>5 static public members inherited from <a href="qobject.html#static-public-members">QObject</a></li>
+<li><div class="fn"></div>2 protected functions inherited from <a href="qwindowsstyle.html#protected-functions">QWindowsStyle</a></li>
+<li><div class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+<li><div class="fn"></div>2 protected slots inherited from <a href="qstyle.html#protected-slots">QStyle</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QMacStyle class provides a Mac OS X style using the Apple Appearance Manager.</p>
+<p>This class is implemented as a wrapper to the HITheme APIs, allowing applications to be styled according to the current theme in use on Mac OS X. This is done by having primitives in <a href="qstyle.html">QStyle</a> implemented in terms of what Mac OS X would normally theme.</p>
+<p><b>Warning:</b> This style is only available on Mac OS X because it relies on the HITheme APIs.</p>
+<p>There are additional issues that should be taken into consideration to make an application compatible with the <a href="http://developer.apple.com/documentation/UserExperience/Conceptual/OSXHIGuidelines/index.html">Apple Human Interface Guidelines</a>. Some of these issues are outlined below.</p>
+<ul>
+<li>Layout - The restrictions on window layout are such that some aspects of layout that are style-dependent cannot be achieved using <a href="qlayout.html">QLayout</a>. Changes are being considered (and feedback would be appreciated) to make layouts <a href="qstyle.html">QStyle</a>-able. Some of the restrictions involve horizontal and vertical widget alignment and widget size (covered below).</li>
+<li>Widget size - Mac OS X allows widgets to have specific fixed sizes. Qt does not fully implement this behavior so as to maintain cross-platform compatibility. As a result some widgets sizes may be inappropriate (and subsequently not rendered correctly by the HITheme APIs).The <a href="qwidget.html#sizeHint-prop">QWidget::sizeHint</a>() will return the appropriate size for many managed widgets (widgets enumerated in <a href="qstyle.html#ContentsType-enum">QStyle::ContentsType</a>).</li>
+<li>Effects - QMacStyle uses HITheme for performing most of the drawing, but also uses emulation in a few cases where HITheme does not provide the required functionality (for example, tab bars on Panther, the toolbar separator, etc). We tried to make the emulation as close to the original as possible. Please report any issues you see in effects or non-standard widgets.</li>
+</ul>
+<p>There are other issues that need to be considered in the feel of your application (including the general color scheme to match the Aqua colors). The Guidelines mentioned above will remain current with new advances and design suggestions for Mac OS X.</p>
+<p>Note that the functions provided by QMacStyle are reimplementations of <a href="qstyle.html">QStyle</a> functions; see <a href="qstyle.html">QStyle</a> for their documentation.</p>
+<p align="center"><img src="images/qmacstyle.png" /></p><p>See also <a href="qwindowsxpstyle.html">QWindowsXPStyle</a>, <a href="qwindowsstyle.html">QWindowsStyle</a>, <a href="qplastiquestyle.html">QPlastiqueStyle</a>, <a href="qcdestyle.html">QCDEStyle</a>, and <a href="qmotifstyle.html">QMotifStyle</a>.</p>
+<hr />
+<h2>Member Type Documentation</h2>
+<a name="//apple_ref/cpp/tag/QMacStyle/FocusRectPolicy" />
+<a name="//apple_ref/cpp/econst/QMacStyle/FocusEnabled" />
+<a name="//apple_ref/cpp/econst/QMacStyle/FocusDisabled" />
+<a name="//apple_ref/cpp/econst/QMacStyle/FocusDefault" />
+<h3 class="fn"><a name="FocusRectPolicy-enum"></a>enum QMacStyle::FocusRectPolicy</h3>
+<p>This type is used to signify a widget's focus rectangle policy.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QMacStyle::FocusEnabled</tt></td><td align="center" valign="top"><tt>0</tt></td><td valign="top">show a focus rectangle when the widget has focus.</td></tr>
+<tr><td valign="top"><tt>QMacStyle::FocusDisabled</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">never show a focus rectangle for the widget.</td></tr>
+<tr><td valign="top"><tt>QMacStyle::FocusDefault</tt></td><td align="center" valign="top"><tt>2</tt></td><td valign="top">show a focus rectangle when the widget has focus and the widget is a QSpinWidget, <a href="qdatetimeedit.html">QDateTimeEdit</a>, <a href="qlineedit.html">QLineEdit</a>, <a href="porting4.html#qlistbox">QListBox</a>, <a href="qlistview.html">QListView</a>, editable <a href="qtextedit.html">QTextEdit</a>, or one of their subclasses.</td></tr>
+</table></p>
+<a name="//apple_ref/cpp/tag/QMacStyle/WidgetSizePolicy" />
+<a name="//apple_ref/cpp/econst/QMacStyle/SizeSmall" />
+<a name="//apple_ref/cpp/econst/QMacStyle/SizeLarge" />
+<a name="//apple_ref/cpp/econst/QMacStyle/SizeMini" />
+<a name="//apple_ref/cpp/econst/QMacStyle/SizeDefault" />
+<a name="//apple_ref/cpp/econst/QMacStyle/SizeNone" />
+<h3 class="fn"><a name="WidgetSizePolicy-enum"></a>enum QMacStyle::WidgetSizePolicy</h3>
+<p><table  class="valuelist" border="1" cellpadding="2" cellspacing="1" width="40%">
+<tr><th width="60%">Constant</th><th width="40%">Value</th></tr>
+<tr><td valign="top"><tt>QMacStyle::SizeSmall</tt></td><td align="center" valign="top"><tt>0</tt></td></tr>
+<tr><td valign="top"><tt>QMacStyle::SizeLarge</tt></td><td align="center" valign="top"><tt>1</tt></td></tr>
+<tr><td valign="top"><tt>QMacStyle::SizeMini</tt></td><td align="center" valign="top"><tt>2</tt></td></tr>
+<tr><td valign="top"><tt>QMacStyle::SizeDefault</tt></td><td align="center" valign="top"><tt>3</tt></td></tr>
+</table></p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QMacStyle/QMacStyle" />
+<h3 class="fn"><a name="QMacStyle"></a>QMacStyle::QMacStyle ()</h3>
+<p>Constructs a <a href="qmacstyle.html">QMacStyle</a> object.</p>
+<a name="//apple_ref/cpp/instm/QMacStyle/~QMacStyle" />
+<h3 class="fn"><a name="dtor.QMacStyle"></a>QMacStyle::~QMacStyle ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Destructs a <a href="qmacstyle.html">QMacStyle</a> object.</p>
+<a name="//apple_ref/cpp/instm/QMacStyle/drawComplexControl" />
+<h3 class="fn"><a name="drawComplexControl"></a>void QMacStyle::drawComplexControl ( <a href="qstyle.html#ComplexControl-enum">ComplexControl</a> <i>cc</i>, const <a href="qstyleoptioncomplex.html">QStyleOptionComplex</a> * <i>opt</i>, <a href="qpainter.html">QPainter</a> * <i>p</i>, const <a href="qwidget.html">QWidget</a> * <i>widget</i> = 0 ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qstyle.html#drawComplexControl">QStyle::drawComplexControl</a>().</p>
+<a name="//apple_ref/cpp/instm/QMacStyle/drawControl" />
+<h3 class="fn"><a name="drawControl"></a>void QMacStyle::drawControl ( <a href="qstyle.html#ControlElement-enum">ControlElement</a> <i>ce</i>, const <a href="qstyleoption.html">QStyleOption</a> * <i>opt</i>, <a href="qpainter.html">QPainter</a> * <i>p</i>, const <a href="qwidget.html">QWidget</a> * <i>w</i> = 0 ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qstyle.html#drawControl">QStyle::drawControl</a>().</p>
+<a name="//apple_ref/cpp/instm/QMacStyle/drawItemText" />
+<h3 class="fn"><a name="drawItemText"></a>void QMacStyle::drawItemText ( <a href="qpainter.html">QPainter</a> * <i>p</i>, const <a href="qrect.html">QRect</a> &amp; <i>r</i>, int <i>flags</i>, const <a href="qpalette.html">QPalette</a> &amp; <i>pal</i>, bool <i>enabled</i>, const <a href="qstring.html">QString</a> &amp; <i>text</i>, <a href="qpalette.html#ColorRole-enum">QPalette::ColorRole</a> <i>textRole</i> = QPalette::NoRole ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qstyle.html#drawItemText">QStyle::drawItemText</a>().</p>
+<a name="//apple_ref/cpp/instm/QMacStyle/drawPrimitive" />
+<h3 class="fn"><a name="drawPrimitive"></a>void QMacStyle::drawPrimitive ( <a href="qstyle.html#PrimitiveElement-enum">PrimitiveElement</a> <i>pe</i>, const <a href="qstyleoption.html">QStyleOption</a> * <i>opt</i>, <a href="qpainter.html">QPainter</a> * <i>p</i>, const <a href="qwidget.html">QWidget</a> * <i>w</i> = 0 ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qstyle.html#drawPrimitive">QStyle::drawPrimitive</a>().</p>
+<a name="//apple_ref/cpp/instm/QMacStyle/event" />
+<h3 class="fn"><a name="event"></a>bool QMacStyle::event ( <a href="qevent.html">QEvent</a> * <i>e</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qobject.html#event">QObject::event</a>().</p>
+<a name="//apple_ref/cpp/instm/QMacStyle/generatedIconPixmap" />
+<h3 class="fn"><a name="generatedIconPixmap"></a><a href="qpixmap.html">QPixmap</a> QMacStyle::generatedIconPixmap ( <a href="qicon.html#Mode-enum">QIcon::Mode</a> <i>iconMode</i>, const <a href="qpixmap.html">QPixmap</a> &amp; <i>pixmap</i>, const <a href="qstyleoption.html">QStyleOption</a> * <i>opt</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qstyle.html#generatedIconPixmap">QStyle::generatedIconPixmap</a>().</p>
+<a name="//apple_ref/cpp/instm/QMacStyle/hitTestComplexControl" />
+<h3 class="fn"><a name="hitTestComplexControl"></a><a href="qstyle.html#SubControl-enum">SubControl</a> QMacStyle::hitTestComplexControl ( <a href="qstyle.html#ComplexControl-enum">ComplexControl</a> <i>cc</i>, const <a href="qstyleoptioncomplex.html">QStyleOptionComplex</a> * <i>opt</i>, const <a href="qpoint.html">QPoint</a> &amp; <i>pt</i>, const <a href="qwidget.html">QWidget</a> * <i>widget</i> = 0 ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qstyle.html#hitTestComplexControl">QStyle::hitTestComplexControl</a>().</p>
+<a name="//apple_ref/cpp/instm/QMacStyle/pixelMetric" />
+<h3 class="fn"><a name="pixelMetric"></a>int QMacStyle::pixelMetric ( <a href="qstyle.html#PixelMetric-enum">PixelMetric</a> <i>metric</i>, const <a href="qstyleoption.html">QStyleOption</a> * <i>opt</i> = 0, const <a href="qwidget.html">QWidget</a> * <i>widget</i> = 0 ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qstyle.html#pixelMetric">QStyle::pixelMetric</a>().</p>
+<a name="//apple_ref/cpp/instm/QMacStyle/polish" />
+<h3 class="fn"><a name="polish"></a>void QMacStyle::polish ( <a href="qwidget.html">QWidget</a> * <i>w</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qstyle.html#polish">QStyle::polish</a>().</p>
+<h3 class="fn"><a name="polish-2"></a>void QMacStyle::polish ( <a href="qapplication.html">QApplication</a> * )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qstyle.html#polish-2">QStyle::polish</a>().</p>
+<h3 class="fn"><a name="polish-3"></a>void QMacStyle::polish ( <a href="qpalette.html">QPalette</a> &amp; <i>pal</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qstyle.html#polish-3">QStyle::polish</a>().</p>
+<a name="//apple_ref/cpp/instm/QMacStyle/sizeFromContents" />
+<h3 class="fn"><a name="sizeFromContents"></a><a href="qsize.html">QSize</a> QMacStyle::sizeFromContents ( <a href="qstyle.html#ContentsType-enum">ContentsType</a> <i>ct</i>, const <a href="qstyleoption.html">QStyleOption</a> * <i>opt</i>, const <a href="qsize.html">QSize</a> &amp; <i>csz</i>, const <a href="qwidget.html">QWidget</a> * <i>widget</i> = 0 ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qstyle.html#sizeFromContents">QStyle::sizeFromContents</a>().</p>
+<a name="//apple_ref/cpp/instm/QMacStyle/standardPalette" />
+<h3 class="fn"><a name="standardPalette"></a><a href="qpalette.html">QPalette</a> QMacStyle::standardPalette () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qstyle.html#standardPalette">QStyle::standardPalette</a>().</p>
+<a name="//apple_ref/cpp/instm/QMacStyle/standardPixmap" />
+<h3 class="fn"><a name="standardPixmap"></a><a href="qpixmap.html">QPixmap</a> QMacStyle::standardPixmap ( <a href="qstyle.html#StandardPixmap-enum">StandardPixmap</a> <i>standardPixmap</i>, const <a href="qstyleoption.html">QStyleOption</a> * <i>opt</i>, const <a href="qwidget.html">QWidget</a> * <i>widget</i> = 0 ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qstyle-obsolete.html#standardPixmap" class="obsolete">QStyle::standardPixmap</a>().</p>
+<a name="//apple_ref/cpp/instm/QMacStyle/styleHint" />
+<h3 class="fn"><a name="styleHint"></a>int QMacStyle::styleHint ( <a href="qstyle.html#StyleHint-enum">StyleHint</a> <i>sh</i>, const <a href="qstyleoption.html">QStyleOption</a> * <i>opt</i> = 0, const <a href="qwidget.html">QWidget</a> * <i>w</i> = 0, <a href="qstylehintreturn.html">QStyleHintReturn</a> * <i>hret</i> = 0 ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qstyle.html#styleHint">QStyle::styleHint</a>().</p>
+<a name="//apple_ref/cpp/instm/QMacStyle/subControlRect" />
+<h3 class="fn"><a name="subControlRect"></a><a href="qrect.html">QRect</a> QMacStyle::subControlRect ( <a href="qstyle.html#ComplexControl-enum">ComplexControl</a> <i>cc</i>, const <a href="qstyleoptioncomplex.html">QStyleOptionComplex</a> * <i>opt</i>, <a href="qstyle.html#SubControl-enum">SubControl</a> <i>sc</i>, const <a href="qwidget.html">QWidget</a> * <i>widget</i> = 0 ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qstyle.html#subControlRect">QStyle::subControlRect</a>().</p>
+<a name="//apple_ref/cpp/instm/QMacStyle/subElementRect" />
+<h3 class="fn"><a name="subElementRect"></a><a href="qrect.html">QRect</a> QMacStyle::subElementRect ( <a href="qstyle.html#SubElement-enum">SubElement</a> <i>sr</i>, const <a href="qstyleoption.html">QStyleOption</a> * <i>opt</i>, const <a href="qwidget.html">QWidget</a> * <i>widget</i> = 0 ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qstyle.html#subElementRect">QStyle::subElementRect</a>().</p>
+<a name="//apple_ref/cpp/instm/QMacStyle/unpolish" />
+<h3 class="fn"><a name="unpolish"></a>void QMacStyle::unpolish ( <a href="qwidget.html">QWidget</a> * <i>w</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qstyle.html#unpolish">QStyle::unpolish</a>().</p>
+<h3 class="fn"><a name="unpolish-2"></a>void QMacStyle::unpolish ( <a href="qapplication.html">QApplication</a> * )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qstyle.html#unpolish-2">QStyle::unpolish</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qcolordialog.cpp -->
+<head>
+  <title>Qt 4.6: QColorDialog Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QColorDialog" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QColorDialog Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QColorDialog class provides a dialog widget for specifying colors. <a href="#details">More...</a></p>
+<pre> #include &lt;QColorDialog&gt;</pre><p>Inherits <a href="qdialog.html">QDialog</a>.</p>
+<ul>
+<li><a href="qcolordialog-members.html">List of all members, including inherited members</a></li>
+<li><a href="qcolordialog-obsolete.html">Obsolete members</a></li>
+<li><a href="qcolordialog-qt3.html">Qt 3 support members</a></li>
+</ul>
+<hr />
+<a name="public-types"></a>
+<h2>Public Types</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qcolordialog.html#ColorDialogOption-enum">ColorDialogOption</a></b> { ShowAlphaChannel, NoButtons, DontUseNativeDialog }</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">flags </td><td class="memItemRight" valign="bottom"><b><a href="qcolordialog.html#ColorDialogOption-enum">ColorDialogOptions</a></b></td></tr>
+</table>
+<hr />
+<a name="properties"></a>
+<h2>Properties</h2>
+<ul>
+<li><div class="fn"><b><a href="qcolordialog.html#currentColor-prop">currentColor</a></b> : QColor</div></li>
+<li><div class="fn"><b><a href="qcolordialog.html#options-prop">options</a></b> : ColorDialogOptions</div></li>
+</ul>
+<ul>
+<li><div bar="2" class="fn"></div>2 properties inherited from <a href="qdialog.html#properties">QDialog</a></li>
+<li><div bar="2" class="fn"></div>58 properties inherited from <a href="qwidget.html#properties">QWidget</a></li>
+<li><div bar="2" class="fn"></div>1 property inherited from <a href="qobject.html#properties">QObject</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qcolordialog.html#QColorDialog">QColorDialog</a></b> ( QWidget * <i>parent</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qcolordialog.html#QColorDialog-2">QColorDialog</a></b> ( const QColor &amp; <i>initial</i>, QWidget * <i>parent</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qcolordialog.html#dtor.QColorDialog">~QColorDialog</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QColor </td><td class="memItemRight" valign="bottom"><b><a href="qcolordialog.html#currentColor-prop">currentColor</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qcolordialog.html#open">open</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qcolordialog.html#open-2">open</a></b> ( QObject * <i>receiver</i>, const char * <i>member</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">ColorDialogOptions </td><td class="memItemRight" valign="bottom"><b><a href="qcolordialog.html#options-prop">options</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QColor </td><td class="memItemRight" valign="bottom"><b><a href="qcolordialog.html#selectedColor">selectedColor</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qcolordialog.html#currentColor-prop">setCurrentColor</a></b> ( const QColor &amp; <i>color</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qcolordialog.html#setOption">setOption</a></b> ( ColorDialogOption <i>option</i>, bool <i>on</i> = true )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qcolordialog.html#options-prop">setOptions</a></b> ( ColorDialogOptions <i>options</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qcolordialog.html#testOption">testOption</a></b> ( ColorDialogOption <i>option</i> ) const</td></tr>
+</table>
+<hr />
+<a name="reimplemented-public-functions"></a>
+<h2>Reimplemented Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qcolordialog.html#setVisible">setVisible</a></b> ( bool <i>visible</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>8 public functions inherited from <a href="qdialog.html#public-functions">QDialog</a></li>
+<li><div bar="2" class="fn"></div>216 public functions inherited from <a href="qwidget.html#public-functions">QWidget</a></li>
+<li><div bar="2" class="fn"></div>29 public functions inherited from <a href="qobject.html#public-functions">QObject</a></li>
+<li><div bar="2" class="fn"></div>12 public functions inherited from <a href="qpaintdevice.html#public-functions">QPaintDevice</a></li>
+</ul>
+<hr />
+<a name="signals"></a>
+<h2>Signals</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qcolordialog.html#colorSelected">colorSelected</a></b> ( const QColor &amp; <i>color</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qcolordialog.html#currentColorChanged">currentColorChanged</a></b> ( const QColor &amp; <i>color</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>3 signals inherited from <a href="qdialog.html#signals">QDialog</a></li>
+<li><div bar="2" class="fn"></div>1 signal inherited from <a href="qwidget.html#signals">QWidget</a></li>
+<li><div bar="2" class="fn"></div>1 signal inherited from <a href="qobject.html#signals">QObject</a></li>
+</ul>
+<hr />
+<a name="static-public-members"></a>
+<h2>Static Public Members</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">QRgb </td><td class="memItemRight" valign="bottom"><b><a href="qcolordialog.html#customColor">customColor</a></b> ( int <i>index</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qcolordialog.html#customCount">customCount</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QColor </td><td class="memItemRight" valign="bottom"><b><a href="qcolordialog.html#getColor">getColor</a></b> ( const QColor &amp; <i>initial</i>, QWidget * <i>parent</i>, const QString &amp; <i>title</i>, ColorDialogOptions <i>options</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QColor </td><td class="memItemRight" valign="bottom"><b><a href="qcolordialog.html#getColor-2">getColor</a></b> ( const QColor &amp; <i>initial</i> = Qt::white, QWidget * <i>parent</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qcolordialog.html#setCustomColor">setCustomColor</a></b> ( int <i>index</i>, QRgb <i>color</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qcolordialog.html#setStandardColor">setStandardColor</a></b> ( int <i>index</i>, QRgb <i>color</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>4 static public members inherited from <a href="qwidget.html#static-public-members">QWidget</a></li>
+<li><div bar="2" class="fn"></div>5 static public members inherited from <a href="qobject.html#static-public-members">QObject</a></li>
+</ul>
+<hr />
+<a name="reimplemented-protected-functions"></a>
+<h2>Reimplemented Protected Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qcolordialog.html#changeEvent">changeEvent</a></b> ( QEvent * <i>e</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qcolordialog.html#done">done</a></b> ( int <i>result</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>7 protected functions inherited from <a href="qdialog.html#protected-functions">QDialog</a></li>
+<li><div bar="2" class="fn"></div>37 protected functions inherited from <a href="qwidget.html#protected-functions">QWidget</a></li>
+<li><div bar="2" class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+<li><div bar="2" class="fn"></div>1 protected function inherited from <a href="qpaintdevice.html#protected-functions">QPaintDevice</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li><div class="fn"></div>5 public slots inherited from <a href="qdialog.html#public-slots">QDialog</a></li>
+<li><div class="fn"></div>19 public slots inherited from <a href="qwidget.html#public-slots">QWidget</a></li>
+<li><div class="fn"></div>1 public slot inherited from <a href="qobject.html#public-slots">QObject</a></li>
+<li><div class="fn"></div>7 protected functions inherited from <a href="qdialog.html#protected-functions">QDialog</a></li>
+<li><div class="fn"></div>37 protected functions inherited from <a href="qwidget.html#protected-functions">QWidget</a></li>
+<li><div class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+<li><div class="fn"></div>1 protected function inherited from <a href="qpaintdevice.html#protected-functions">QPaintDevice</a></li>
+<li><div class="fn"></div>1 protected slot inherited from <a href="qwidget.html#protected-slots">QWidget</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QColorDialog class provides a dialog widget for specifying colors.</p>
+<p>The color dialog's function is to allow users to choose colors. For example, you might use this in a drawing program to allow the user to set the brush color.</p>
+<p>The static functions provide modal color dialogs.</p>
+<p>The static <a href="qcolordialog.html#getColor">getColor</a>() function shows the dialog, and allows the user to specify a color. This function can also be used to let users choose a color with a level of transparency: pass the <a href="qcolordialog.html#ColorDialogOption-enum">ShowAlphaChannel</a> option as an additional argument.</p>
+<p>The user can store <a href="qcolordialog.html#customCount">customCount</a>() different custom colors. The custom colors are shared by all color dialogs, and remembered during the execution of the program. Use <a href="qcolordialog.html#setCustomColor">setCustomColor</a>() to set the custom colors, and use <a href="qcolordialog.html#customColor">customColor</a>() to get them.</p>
+<p>Additional widgets that allow users to pick colors are available as <a href="http://qt.nokia.com/products/add-on-products">Qt Solutions</a>.</p>
+<p>The <a href="dialogs-standarddialogs.html">Standard Dialogs</a> example shows how to use QColorDialog as well as other built-in Qt dialogs.</p>
+<p align="center"><img src="images/plastique-colordialog.png" alt="A color dialog in the Plastique widget style." /></p><p>See also <a href="qcolor.html">QColor</a>, <a href="qfiledialog.html">QFileDialog</a>, <a href="qprintdialog.html">QPrintDialog</a>, <a href="qfontdialog.html">QFontDialog</a>, and <a href="dialogs-standarddialogs.html">Standard Dialogs Example</a>.</p>
+<hr />
+<h2>Member Type Documentation</h2>
+<a name="//apple_ref/cpp/tag/QColorDialog/ColorDialogOption" />
+<a name="//apple_ref/cpp/econst/QColorDialog/ShowAlphaChannel" />
+<a name="//apple_ref/cpp/econst/QColorDialog/NoButtons" />
+<a name="//apple_ref/cpp/econst/QColorDialog/DontUseNativeDialog" />
+<a name="//apple_ref/cpp/tdef/QColorDialog/ColorDialogOptions" />
+<h3 class="flags"><a name="ColorDialogOption-enum"></a>enum QColorDialog::ColorDialogOption<br />flags QColorDialog::ColorDialogOptions</h3>
+<p>This enum specifies various options that affect the look and feel of a color dialog.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QColorDialog::ShowAlphaChannel</tt></td><td align="center" valign="top"><tt>0x00000001</tt></td><td valign="top">Allow the user to select the alpha component of a color.</td></tr>
+<tr><td valign="top"><tt>QColorDialog::NoButtons</tt></td><td align="center" valign="top"><tt>0x00000002</tt></td><td valign="top">Don't display <b>OK</b> and <b>Cancel</b> buttons. (Useful for &quot;live dialogs&quot;.)</td></tr>
+<tr><td valign="top"><tt>QColorDialog::DontUseNativeDialog</tt></td><td align="center" valign="top"><tt>0x00000004</tt></td><td valign="top">Use Qt's standard color dialog on the Mac instead of Apple's native color panel.</td></tr>
+</table></p>
+<p>This enum was introduced in Qt 4.5.</p>
+<p>The ColorDialogOptions type is a typedef for <a href="qflags.html">QFlags</a>&lt;ColorDialogOption&gt;. It stores an OR combination of ColorDialogOption values.</p>
+<p>See also <a href="qcolordialog.html#options-prop">options</a>, <a href="qcolordialog.html#setOption">setOption</a>(), <a href="qcolordialog.html#testOption">testOption</a>(), and <a href="qwidget.html#windowModality-prop">windowModality</a>().</p>
+<hr />
+<h2>Property Documentation</h2>
+<a name="//apple_ref/cpp/instm/QColorDialog/currentColor" />
+<a name="//apple_ref/cpp/instm/QColorDialog/setCurrentColor" />
+<a name="//apple_ref/cpp/instm/QColorDialog/currentColorChanged" />
+<h3 class="fn"><a name="currentColor-prop"></a>currentColor : <a href="qcolor.html">QColor</a></h3>
+<p>This property holds the currently selected color in the dialog.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">QColor </td><td class="memItemRight" valign="bottom"><b>currentColor</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setCurrentColor</b> ( const QColor &amp; <i>color</i> )</td></tr>
+</table>
+<p><b>Notifier signal:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qcolordialog.html#currentColorChanged">currentColorChanged</a></b> ( const QColor &amp; <i>color</i> )</td></tr>
+</table>
+<a name="//apple_ref/cpp/instm/QColorDialog/options" />
+<a name="//apple_ref/cpp/instm/QColorDialog/setOptions" />
+<h3 class="fn"><a name="options-prop"></a>options : <a href="qcolordialog.html#ColorDialogOption-enum">ColorDialogOptions</a></h3>
+<p>This property holds the various options that affect the look and feel of the dialog.</p>
+<p>By default, all options are disabled.</p>
+<p>Options should be set before showing the dialog. Setting them while the dialog is visible is not guaranteed to have an immediate effect on the dialog (depending on the option and on the platform).</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">ColorDialogOptions </td><td class="memItemRight" valign="bottom"><b>options</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setOptions</b> ( ColorDialogOptions <i>options</i> )</td></tr>
+</table>
+<p>See also <a href="qcolordialog.html#setOption">setOption</a>() and <a href="qcolordialog.html#testOption">testOption</a>().</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QColorDialog/QColorDialog" />
+<h3 class="fn"><a name="QColorDialog"></a>QColorDialog::QColorDialog ( <a href="qwidget.html">QWidget</a> * <i>parent</i> = 0 )</h3>
+<p>Constructs a color dialog with the given <i>parent</i>.</p>
+<p>This function was introduced in Qt 4.5.</p>
+<h3 class="fn"><a name="QColorDialog-2"></a>QColorDialog::QColorDialog ( const <a href="qcolor.html">QColor</a> &amp; <i>initial</i>, <a href="qwidget.html">QWidget</a> * <i>parent</i> = 0 )</h3>
+<p>Constructs a color dialog with the given <i>parent</i> and specified <i>initial</i> color.</p>
+<p>This function was introduced in Qt 4.5.</p>
+<a name="//apple_ref/cpp/instm/QColorDialog/~QColorDialog" />
+<h3 class="fn"><a name="dtor.QColorDialog"></a>QColorDialog::~QColorDialog ()</h3>
+<p>Destroys the color dialog.</p>
+<a name="//apple_ref/cpp/instm/QColorDialog/changeEvent" />
+<h3 class="fn"><a name="changeEvent"></a>void QColorDialog::changeEvent ( <a href="qevent.html">QEvent</a> * <i>e</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#changeEvent">QWidget::changeEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QColorDialog/colorSelected" />
+<h3 class="fn"><a name="colorSelected"></a>void QColorDialog::colorSelected ( const <a href="qcolor.html">QColor</a> &amp; <i>color</i> )&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted just after the user has clicked <b>OK</b> to select a color to use. The chosen color is specified by <i>color</i>.</p>
+<p>See also <a href="stylesheet-reference.html#color">color</a> and <a href="qcolordialog.html#currentColorChanged">currentColorChanged</a>().</p>
+<a name="//apple_ref/cpp/instm/QColorDialog/currentColorChanged" />
+<h3 class="fn"><a name="currentColorChanged"></a>void QColorDialog::currentColorChanged ( const <a href="qcolor.html">QColor</a> &amp; <i>color</i> )&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted whenever the current color changes in the dialog. The current color is specified by <i>color</i>.</p>
+<p>See also <a href="stylesheet-reference.html#color">color</a> and <a href="qcolordialog.html#colorSelected">colorSelected</a>().</p>
+<a name="//apple_ref/cpp/clm/QColorDialog/customColor" />
+<h3 class="fn"><a name="customColor"></a><a href="qcolor.html#QRgb-typedef">QRgb</a> QColorDialog::customColor ( int <i>index</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Returns the custom color at the given <i>index</i> as a <a href="qcolor.html#QRgb-typedef">QRgb</a> value.</p>
+<p>This function was introduced in Qt 4.5.</p>
+<p>See also <a href="qcolordialog.html#setCustomColor">setCustomColor</a>().</p>
+<a name="//apple_ref/cpp/clm/QColorDialog/customCount" />
+<h3 class="fn"><a name="customCount"></a>int QColorDialog::customCount ()&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Returns the number of custom colors supported by <a href="qcolordialog.html">QColorDialog</a>. All color dialogs share the same custom colors.</p>
+<a name="//apple_ref/cpp/instm/QColorDialog/done" />
+<h3 class="fn"><a name="done"></a>void QColorDialog::done ( int <i>result</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qdialog.html#done">QDialog::done</a>().</p>
+<p>Closes the dialog and sets its result code to <i>result</i>. If this dialog is shown with <a href="qdialog.html#exec">exec</a>(), done() causes the local event loop to finish, and <a href="qdialog.html#exec">exec</a>() to return <i>result</i>.</p>
+<p>See also <a href="qdialog.html#done">QDialog::done</a>().</p>
+<a name="//apple_ref/cpp/clm/QColorDialog/getColor" />
+<h3 class="fn"><a name="getColor"></a><a href="qcolor.html">QColor</a> QColorDialog::getColor ( const <a href="qcolor.html">QColor</a> &amp; <i>initial</i>, <a href="qwidget.html">QWidget</a> * <i>parent</i>, const <a href="qstring.html">QString</a> &amp; <i>title</i>, <a href="qcolordialog.html#ColorDialogOption-enum">ColorDialogOptions</a> <i>options</i> = 0 )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Pops up a modal color dialog with the given window <i>title</i> (or &quot;Select Color&quot; if none is specified), lets the user choose a color, and returns that color. The color is initially set to <i>initial</i>. The dialog is a child of <i>parent</i>. It returns an invalid (see <a href="qcolor.html#isValid">QColor::isValid</a>()) color if the user cancels the dialog.</p>
+<p>The <i>options</i> argument allows you to customize the dialog.</p>
+<p>This function was introduced in Qt 4.5.</p>
+<h3 class="fn"><a name="getColor-2"></a><a href="qcolor.html">QColor</a> QColorDialog::getColor ( const <a href="qcolor.html">QColor</a> &amp; <i>initial</i> = Qt::white, <a href="qwidget.html">QWidget</a> * <i>parent</i> = 0 )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Pops up a modal color dialog, lets the user choose a color, and returns that color. The color is initially set to <i>initial</i>. The dialog is a child of <i>parent</i>. It returns an invalid (see <a href="qcolor.html#isValid">QColor::isValid</a>()) color if the user cancels the dialog.</p>
+<a name="//apple_ref/cpp/instm/QColorDialog/open" />
+<h3 class="fn"><a name="open"></a>void QColorDialog::open ()</h3>
+<p>Shows the dialog as a <a href="qdialog.html#modal-dialogs">window modal dialog</a>, returning immediately.</p>
+<p>This function was introduced in Qt 4.5.</p>
+<p>See also <a href="qdialog.html#open">QDialog::open</a>().</p>
+<h3 class="fn"><a name="open-2"></a>void QColorDialog::open ( <a href="qobject.html">QObject</a> * <i>receiver</i>, const char * <i>member</i> )</h3>
+<p>This is an overloaded function.</p>
+<p>Opens the dialog and connects its <a href="qcolordialog.html#colorSelected">colorSelected</a>() signal to the slot specified by <i>receiver</i> and <i>member</i>.</p>
+<p>The signal will be disconnected from the slot when the dialog is closed.</p>
+<p>This function was introduced in Qt 4.5.</p>
+<a name="//apple_ref/cpp/instm/QColorDialog/selectedColor" />
+<h3 class="fn"><a name="selectedColor"></a><a href="qcolor.html">QColor</a> QColorDialog::selectedColor () const</h3>
+<p>Returns the color that the user selected by clicking the <b>OK</b> or equivalent button.</p>
+<p><b>Note:</b> This color is not always the same as the color held by the <a href="qcolordialog.html#currentColor-prop">currentColor</a> property since the user can choose different colors before finally selecting the one to use.</p>
+<a name="//apple_ref/cpp/clm/QColorDialog/setCustomColor" />
+<h3 class="fn"><a name="setCustomColor"></a>void QColorDialog::setCustomColor ( int <i>index</i>, <a href="qcolor.html#QRgb-typedef">QRgb</a> <i>color</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Sets the custom color at <i>index</i> to the <a href="qcolor.html#QRgb-typedef">QRgb</a> <i>color</i> value.</p>
+<p><b>Note:</b> This function does not apply to the Native Color Dialog on the Mac OS X platform. If you still require this function, use the <a href="qcolordialog.html#ColorDialogOption-enum">QColorDialog::DontUseNativeDialog</a> option.</p>
+<p>See also <a href="qcolordialog.html#customColor">customColor</a>().</p>
+<a name="//apple_ref/cpp/instm/QColorDialog/setOption" />
+<h3 class="fn"><a name="setOption"></a>void QColorDialog::setOption ( <a href="qcolordialog.html#ColorDialogOption-enum">ColorDialogOption</a> <i>option</i>, bool <i>on</i> = true )</h3>
+<p>Sets the given <i>option</i> to be enabled if <i>on</i> is true; otherwise, clears the given <i>option</i>.</p>
+<p>See also <a href="qcolordialog.html#options-prop">options</a> and <a href="qcolordialog.html#testOption">testOption</a>().</p>
+<a name="//apple_ref/cpp/clm/QColorDialog/setStandardColor" />
+<h3 class="fn"><a name="setStandardColor"></a>void QColorDialog::setStandardColor ( int <i>index</i>, <a href="qcolor.html#QRgb-typedef">QRgb</a> <i>color</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Sets the standard color at <i>index</i> to the <a href="qcolor.html#QRgb-typedef">QRgb</a> <i>color</i> value.</p>
+<p><b>Note:</b> This function does not apply to the Native Color Dialog on the Mac OS X platform. If you still require this function, use the <a href="qcolordialog.html#ColorDialogOption-enum">QColorDialog::DontUseNativeDialog</a> option.</p>
+<a name="//apple_ref/cpp/instm/QColorDialog/setVisible" />
+<h3 class="fn"><a name="setVisible"></a>void QColorDialog::setVisible ( bool <i>visible</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#visible-prop">QWidget::setVisible</a>().</p>
+<p>Changes the visibility of the dialog. If <i>visible</i> is true, the dialog is shown; otherwise, it is hidden.</p>
+<a name="//apple_ref/cpp/instm/QColorDialog/testOption" />
+<h3 class="fn"><a name="testOption"></a>bool QColorDialog::testOption ( <a href="qcolordialog.html#ColorDialogOption-enum">ColorDialogOption</a> <i>option</i> ) const</h3>
+<p>Returns true if the given <i>option</i> is enabled; otherwise, returns false.</p>
+<p>This function was introduced in Qt 4.5.</p>
+<p>See also <a href="qcolordialog.html#options-prop">options</a> and <a href="qcolordialog.html#setOption">setOption</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

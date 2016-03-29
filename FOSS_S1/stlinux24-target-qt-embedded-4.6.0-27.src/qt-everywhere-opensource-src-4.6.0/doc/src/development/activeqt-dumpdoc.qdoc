@@ -1,0 +1,83 @@
+/****************************************************************************
+**
+** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+** All rights reserved.
+** Contact: Nokia Corporation (qt-info@nokia.com)
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:LGPL$
+** Commercial Usage
+** Licensees holding valid Qt Commercial licenses may use this file in
+** accordance with the Qt Commercial License Agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and Nokia.
+**
+** GNU Lesser General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU Lesser
+** General Public License version 2.1 as published by the Free Software
+** Foundation and appearing in the file LICENSE.LGPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU Lesser General Public License version 2.1 requirements
+** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+**
+** In addition, as a special exception, Nokia gives you certain additional
+** rights.  These rights are described in the Nokia Qt LGPL Exception
+** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+**
+** GNU General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU
+** General Public License version 3.0 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU General Public License version 3.0 requirements will be
+** met: http://www.gnu.org/copyleft/gpl.html.
+**
+** If you have questions regarding the use of this file, please contact
+** Nokia at qt-info@nokia.com.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*! 
+    \page activeqt-dumpdoc.html
+    \title The dumpdoc Tool (ActiveQt)
+
+    \ingroup activeqt-tools
+
+    \keyword dumpdoc
+
+    The \c dumpdoc tool generates Qt-style documentation for any
+    COM object and writes it into the file specified.
+
+    Call \c dumpdoc with the following command line parameters:
+
+    \table
+    \header
+    \i Option
+    \i Result
+    \row
+    \i -o file
+    \i Writes output to \e file
+    \row
+    \i object
+    \i Generate documentation for \e object
+    \row
+    \i -v
+    \i Print version information
+    \row
+    \i -h
+    \i Print help
+    \endtable
+
+    \e object must be an object installed on the local machine (ie.
+    remote objects are not supported), and can include subobjects
+    accessible through properties, ie.
+    \c Outlook.Application/Session/CurrentUser
+
+    The generated file will be an HTML file using Qt documentation
+    style.
+
+    To build the tool you must first build the QAxContainer library.
+    Then run your make tool in \c tools/dumpdoc.
+*/

@@ -1,0 +1,111 @@
+/****************************************************************************
+**
+** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+** All rights reserved.
+** Contact: Nokia Corporation (qt-info@nokia.com)
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:LGPL$
+** Commercial Usage
+** Licensees holding valid Qt Commercial licenses may use this file in
+** accordance with the Qt Commercial License Agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and Nokia.
+**
+** GNU Lesser General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU Lesser
+** General Public License version 2.1 as published by the Free Software
+** Foundation and appearing in the file LICENSE.LGPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU Lesser General Public License version 2.1 requirements
+** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+**
+** In addition, as a special exception, Nokia gives you certain additional
+** rights.  These rights are described in the Nokia Qt LGPL Exception
+** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+**
+** GNU General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU
+** General Public License version 3.0 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU General Public License version 3.0 requirements will be
+** met: http://www.gnu.org/copyleft/gpl.html.
+**
+** If you have questions regarding the use of this file, please contact
+** Nokia at qt-info@nokia.com.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+//! [0]
+wince<version><SDK-shortcut>-[architecture]-msvc2005
+//! [0]
+
+
+//! [1]
+CE_SDK        = Windows Mobile 5.0 Pocket PC SDK
+CE_ARCH       = ARMV4I
+//! [1]
+
+
+//! [2]
+DEFINES	     += UNDER_CE WINCE _WINDOWS _UNICODE UNICODE _WIN32_WCE=0x501 $$CE_ARCH _ARMV4I_ armv4i _ARM_ ARM _M_ARM ARM _WIN32 __arm__ Q_OS_WINCE_WM QT_NO_PRINTER QT_NO_PRINTDIALOG
+//! [2]
+
+
+//! [3]
+set PATH=C:\Qt\mobile5-shadow\bin;%PATH%
+//! [3]
+
+
+//! [4]
+cd c:\Qt\mobile5-shadow
+C:\Qt\4.6.0\configure.exe -platform win32-msvc2005 -xplatform wincewm50pocket-msvc2005 -release
+//! [4]
+
+
+//! [5]
+set INCLUDE=C:\Program Files\Microsoft Visual Studio 8\VC\ce\include;
+    C:\Program Files\Windows CE Tools\wce500\Windows Mobile 5.0 Pocket PC SDK\Include\Armv4i
+set LIB=C:\Program Files\Microsoft Visual Studio 8\VC\ce\lib\armv4i;
+    C:\Program Files\Windows CE Tools\wce500\Windows Mobile 5.0 Pocket PC SDK\Lib\ARMV4I
+set PATH=C:\Program Files\Microsoft Visual Studio 8\VC\ce\bin\x86_arm;
+    %PATH%
+//! [5]
+
+
+//! [6]
+setcepaths wincewm50pocket-msvc2005
+//! [6]
+
+
+//! [7]
+nmake
+//! [7]
+
+//! [8]
+if(equals(TEMPLATE_PREFIX, "vc") | equals(TEMPLATE, "vc*")) {
+    DEFINES -= _M_ARM
+}
+//! [8]
+
+//! [9]
+wchar_t* libraries[] = {
+    L"QtCore4.dll",
+    L"QtGui4.dll",
+    0
+};
+
+for (int i = 0; libraries[i] != 0; ++i) {
+    HINSTANCE instance = LoadLibraryW(libraries[i]);
+    OutputDebugStringW(libraries[i]);
+    if (instance != NULL) {
+        OutputDebugStringW(L" : Successfully instantiated\n");
+        FreeLibrary(instance);
+    } else {
+        OutputDebugStringW(L" : Could not be loaded\n");
+    }
+}
+//! [9]

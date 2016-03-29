@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qworkspace.cpp -->
+<head>
+  <title>Qt 4.6: QWorkspace Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QWorkspace" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QWorkspace Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QWorkspace widget provides a workspace window that can be used in an MDI application. <a href="#details">More...</a></p>
+<pre> #include &lt;QWorkspace&gt;</pre><p><b>This class is obsolete.</b> It is provided to keep old source code working. We strongly advise against using it in new code.</p>
+<p>Inherits <a href="qwidget.html">QWidget</a>.</p>
+<ul>
+<li><a href="qworkspace-members.html">List of all members, including inherited members</a></li>
+<li><a href="qworkspace-qt3.html">Qt 3 support members</a></li>
+</ul>
+<hr />
+<a name="public-types"></a>
+<h2>Public Types</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qworkspace.html#WindowOrder-enum">WindowOrder</a></b> { CreationOrder, StackingOrder }</td></tr>
+</table>
+<hr />
+<a name="properties"></a>
+<h2>Properties</h2>
+<ul>
+<li><div class="fn"><b><a href="qworkspace.html#background-prop">background</a></b> : QBrush</div></li>
+<li><div class="fn"><b><a href="qworkspace.html#scrollBarsEnabled-prop">scrollBarsEnabled</a></b> : bool</div></li>
+</ul>
+<ul>
+<li><div bar="2" class="fn"></div>58 properties inherited from <a href="qwidget.html#properties">QWidget</a></li>
+<li><div bar="2" class="fn"></div>1 property inherited from <a href="qobject.html#properties">QObject</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qworkspace.html#QWorkspace">QWorkspace</a></b> ( QWidget * <i>parent</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qworkspace.html#dtor.QWorkspace">~QWorkspace</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QWidget * </td><td class="memItemRight" valign="bottom"><b><a href="qworkspace.html#activeWindow">activeWindow</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QWidget * </td><td class="memItemRight" valign="bottom"><b><a href="qworkspace.html#addWindow">addWindow</a></b> ( QWidget * <i>w</i>, Qt::WindowFlags <i>flags</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QBrush </td><td class="memItemRight" valign="bottom"><b><a href="qworkspace.html#background-prop">background</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qworkspace.html#scrollBarsEnabled-prop">scrollBarsEnabled</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qworkspace.html#background-prop">setBackground</a></b> ( const QBrush &amp; <i>background</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qworkspace.html#scrollBarsEnabled-prop">setScrollBarsEnabled</a></b> ( bool <i>enable</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QWidgetList </td><td class="memItemRight" valign="bottom"><b><a href="qworkspace.html#windowList">windowList</a></b> ( WindowOrder <i>order</i> = CreationOrder ) const</td></tr>
+</table>
+<hr />
+<a name="reimplemented-public-functions"></a>
+<h2>Reimplemented Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual QSize </td><td class="memItemRight" valign="bottom"><b><a href="qworkspace.html#sizeHint">sizeHint</a></b> () const</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>216 public functions inherited from <a href="qwidget.html#public-functions">QWidget</a></li>
+<li><div bar="2" class="fn"></div>29 public functions inherited from <a href="qobject.html#public-functions">QObject</a></li>
+<li><div bar="2" class="fn"></div>12 public functions inherited from <a href="qpaintdevice.html#public-functions">QPaintDevice</a></li>
+</ul>
+<hr />
+<a name="public-slots"></a>
+<h2>Public Slots</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qworkspace.html#activateNextWindow">activateNextWindow</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qworkspace.html#activatePreviousWindow">activatePreviousWindow</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qworkspace.html#arrangeIcons">arrangeIcons</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qworkspace.html#cascade">cascade</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qworkspace.html#closeActiveWindow">closeActiveWindow</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qworkspace.html#closeAllWindows">closeAllWindows</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qworkspace.html#setActiveWindow">setActiveWindow</a></b> ( QWidget * <i>w</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qworkspace.html#tile">tile</a></b> ()</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>19 public slots inherited from <a href="qwidget.html#public-slots">QWidget</a></li>
+<li><div bar="2" class="fn"></div>1 public slot inherited from <a href="qobject.html#public-slots">QObject</a></li>
+</ul>
+<hr />
+<a name="signals"></a>
+<h2>Signals</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qworkspace.html#windowActivated">windowActivated</a></b> ( QWidget * <i>w</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>1 signal inherited from <a href="qwidget.html#signals">QWidget</a></li>
+<li><div bar="2" class="fn"></div>1 signal inherited from <a href="qobject.html#signals">QObject</a></li>
+</ul>
+<hr />
+<a name="reimplemented-protected-functions"></a>
+<h2>Reimplemented Protected Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qworkspace.html#changeEvent">changeEvent</a></b> ( QEvent * <i>ev</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qworkspace.html#childEvent">childEvent</a></b> ( QChildEvent * <i>e</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qworkspace.html#event">event</a></b> ( QEvent * <i>e</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qworkspace.html#eventFilter">eventFilter</a></b> ( QObject * <i>o</i>, QEvent * <i>e</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qworkspace.html#hideEvent">hideEvent</a></b> ( QHideEvent * <i>e</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qworkspace.html#paintEvent">paintEvent</a></b> ( QPaintEvent * <i>e</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qworkspace.html#resizeEvent">resizeEvent</a></b> ( QResizeEvent * )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qworkspace.html#showEvent">showEvent</a></b> ( QShowEvent * <i>e</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qworkspace.html#wheelEvent">wheelEvent</a></b> ( QWheelEvent * <i>e</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>37 protected functions inherited from <a href="qwidget.html#protected-functions">QWidget</a></li>
+<li><div bar="2" class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+<li><div bar="2" class="fn"></div>1 protected function inherited from <a href="qpaintdevice.html#protected-functions">QPaintDevice</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li><div class="fn"></div>4 static public members inherited from <a href="qwidget.html#static-public-members">QWidget</a></li>
+<li><div class="fn"></div>5 static public members inherited from <a href="qobject.html#static-public-members">QObject</a></li>
+<li><div class="fn"></div>37 protected functions inherited from <a href="qwidget.html#protected-functions">QWidget</a></li>
+<li><div class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+<li><div class="fn"></div>1 protected function inherited from <a href="qpaintdevice.html#protected-functions">QPaintDevice</a></li>
+<li><div class="fn"></div>1 protected slot inherited from <a href="qwidget.html#protected-slots">QWidget</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QWorkspace widget provides a workspace window that can be used in an MDI application.</p>
+<p>This class is deprecated. Use <a href="qmdiarea.html">QMdiArea</a> instead.</p>
+<p>Multiple Document Interface (MDI) applications are typically composed of a main window containing a menu bar, a toolbar, and a central QWorkspace widget. The workspace itself is used to display a number of child windows, each of which is a widget.</p>
+<p>The workspace itself is an ordinary Qt widget. It has a standard constructor that takes a parent widget. Workspaces can be placed in any layout, but are typically given as the central widget in a <a href="qmainwindow.html">QMainWindow</a>:</p>
+<pre> MainWindow::MainWindow()
+ {
+     workspace = new QWorkspace;
+     setCentralWidget(workspace);
+     ...
+ }</pre>
+<p>Child windows (MDI windows) are standard Qt widgets that are inserted into the workspace with <a href="qworkspace.html#addWindow">addWindow</a>(). As with top-level widgets, you can call functions such as <a href="qwidget.html#show">show</a>(), <a href="qwidget.html#hide">hide</a>(), <a href="qwidget.html#showMaximized">showMaximized</a>(), and <a href="qwidget.html#windowTitle-prop">setWindowTitle</a>() on a child window to change its appearance within the workspace. You can also provide widget flags to determine the layout of the decoration or the behavior of the widget itself.</p>
+<p>To change or retrieve the geometry of a child window, you must operate on its <a href="qwidget.html#parentWidget">parentWidget</a>(). The <a href="qwidget.html#parentWidget">parentWidget</a>() provides access to the decorated frame that contains the child window widget. When a child window is maximised, its decorated frame is hidden. If the top-level widget contains a menu bar, it will display the maximised window's operations menu to the left of the menu entries, and the window's controls to the right.</p>
+<p>A child window becomes active when it gets the keyboard focus, or when <a href="qwidget.html#setFocus">setFocus</a>() is called. The user can activate a window by moving focus in the usual ways, for example by clicking a window or by pressing Tab. The workspace emits a signal <a href="qworkspace.html#windowActivated">windowActivated</a>() when the active window changes, and the function <a href="qworkspace.html#activeWindow">activeWindow</a>() returns a pointer to the active child window, or 0 if no window is active.</p>
+<p>The convenience function <a href="qworkspace.html#windowList">windowList</a>() returns a list of all child windows. This information could be used in a popup menu containing a list of windows, for example. This feature is also available as part of the <a href="http://qt.nokia.com/products/add-on-products/catalog/4/Widgets/qtwindowlistmenu/">Window Menu</a> Solution.</p>
+<p>QWorkspace provides two built-in layout strategies for child windows: <a href="qworkspace.html#cascade">cascade</a>() and <a href="qworkspace.html#tile">tile</a>(). Both are slots so you can easily connect menu entries to them.</p>
+<p><table class="generic" align="center" cellpadding="2" cellspacing="1" border="0">
+<tr valign="top" class="odd"><td><img src="images/mdi-cascade.png" /></td><td><img src="images/mdi-tile.png" /></td></tr>
+</table></p>
+<p>If you want your users to be able to work with child windows larger than the visible workspace area, set the <a href="qworkspace.html#scrollBarsEnabled-prop">scrollBarsEnabled</a> property to true.</p>
+<p>See also <a href="qdockwidget.html">QDockWidget</a> and <a href="mainwindows-mdi.html">MDI Example</a>.</p>
+<hr />
+<h2>Member Type Documentation</h2>
+<a name="//apple_ref/cpp/tag/QWorkspace/WindowOrder" />
+<a name="//apple_ref/cpp/econst/QWorkspace/CreationOrder" />
+<a name="//apple_ref/cpp/econst/QWorkspace/StackingOrder" />
+<h3 class="fn"><a name="WindowOrder-enum"></a>enum QWorkspace::WindowOrder</h3>
+<p>Specifies the order in which child windows are returned from <a href="qworkspace.html#windowList">windowList</a>().</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QWorkspace::CreationOrder</tt></td><td align="center" valign="top"><tt>0</tt></td><td valign="top">The windows are returned in the order of their creation</td></tr>
+<tr><td valign="top"><tt>QWorkspace::StackingOrder</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">The windows are returned in the order of their stacking</td></tr>
+</table></p>
+<hr />
+<h2>Property Documentation</h2>
+<a name="//apple_ref/cpp/instm/QWorkspace/background" />
+<a name="//apple_ref/cpp/instm/QWorkspace/setBackground" />
+<h3 class="fn"><a name="background-prop"></a>background : <a href="qbrush.html">QBrush</a></h3>
+<p>This property holds the workspace's background.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">QBrush </td><td class="memItemRight" valign="bottom"><b>background</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setBackground</b> ( const QBrush &amp; <i>background</i> )</td></tr>
+</table>
+<a name="//apple_ref/cpp/instm/QWorkspace/scrollBarsEnabled" />
+<a name="//apple_ref/cpp/instm/QWorkspace/setScrollBarsEnabled" />
+<h3 class="fn"><a name="scrollBarsEnabled-prop"></a>scrollBarsEnabled : bool</h3>
+<p>This property holds whether the workspace provides scroll bars.</p>
+<p>If this property is true, the workspace will provide scroll bars if any of the child windows extend beyond the edges of the visible workspace. The workspace area will automatically increase to contain child windows if they are resized beyond the right or bottom edges of the visible area.</p>
+<p>If this property is false (the default), resizing child windows out of the visible area of the workspace is not permitted, although it is still possible to position them partially outside the visible area.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b>scrollBarsEnabled</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setScrollBarsEnabled</b> ( bool <i>enable</i> )</td></tr>
+</table>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QWorkspace/QWorkspace" />
+<h3 class="fn"><a name="QWorkspace"></a>QWorkspace::QWorkspace ( <a href="qwidget.html">QWidget</a> * <i>parent</i> = 0 )</h3>
+<p>Constructs a workspace with the given <i>parent</i>.</p>
+<a name="//apple_ref/cpp/instm/QWorkspace/~QWorkspace" />
+<h3 class="fn"><a name="dtor.QWorkspace"></a>QWorkspace::~QWorkspace ()</h3>
+<p>Destroys the workspace and frees any allocated resources.</p>
+<a name="//apple_ref/cpp/instm/QWorkspace/activateNextWindow" />
+<h3 class="fn"><a name="activateNextWindow"></a>void QWorkspace::activateNextWindow ()&nbsp;&nbsp;<tt> [slot]</tt></h3>
+<p>Gives the input focus to the next window in the list of child windows.</p>
+<p>See also <a href="qworkspace.html#activatePreviousWindow">activatePreviousWindow</a>().</p>
+<a name="//apple_ref/cpp/instm/QWorkspace/activatePreviousWindow" />
+<h3 class="fn"><a name="activatePreviousWindow"></a>void QWorkspace::activatePreviousWindow ()&nbsp;&nbsp;<tt> [slot]</tt></h3>
+<p>Gives the input focus to the previous window in the list of child windows.</p>
+<p>See also <a href="qworkspace.html#activateNextWindow">activateNextWindow</a>().</p>
+<a name="//apple_ref/cpp/instm/QWorkspace/activeWindow" />
+<h3 class="fn"><a name="activeWindow"></a><a href="qwidget.html">QWidget</a> * QWorkspace::activeWindow () const</h3>
+<p>Returns a pointer to the widget corresponding to the active child window, or 0 if no window is active.</p>
+<p>See also <a href="qworkspace.html#setActiveWindow">setActiveWindow</a>().</p>
+<a name="//apple_ref/cpp/instm/QWorkspace/addWindow" />
+<h3 class="fn"><a name="addWindow"></a><a href="qwidget.html">QWidget</a> * QWorkspace::addWindow ( <a href="qwidget.html">QWidget</a> * <i>w</i>, <a href="qt.html#WindowType-enum">Qt::WindowFlags</a> <i>flags</i> = 0 )</h3>
+<p>Adds widget <i>w</i> as new sub window to the workspace. If <i>flags</i> are non-zero, they will override the flags set on the widget.</p>
+<p>Returns the widget used for the window frame.</p>
+<p>To remove the widget <i>w</i> from the workspace, simply call <a href="qwidget.html#setParent">setParent</a>() with the new parent (or 0 to make it a stand-alone window).</p>
+<a name="//apple_ref/cpp/instm/QWorkspace/arrangeIcons" />
+<h3 class="fn"><a name="arrangeIcons"></a>void QWorkspace::arrangeIcons ()&nbsp;&nbsp;<tt> [slot]</tt></h3>
+<p>Arranges all iconified windows at the bottom of the workspace.</p>
+<p>See also <a href="qworkspace.html#cascade">cascade</a>() and <a href="qworkspace.html#tile">tile</a>().</p>
+<a name="//apple_ref/cpp/instm/QWorkspace/cascade" />
+<h3 class="fn"><a name="cascade"></a>void QWorkspace::cascade ()&nbsp;&nbsp;<tt> [slot]</tt></h3>
+<p>Arranges all the child windows in a cascade pattern.</p>
+<p>See also <a href="qworkspace.html#tile">tile</a>() and <a href="qworkspace.html#arrangeIcons">arrangeIcons</a>().</p>
+<a name="//apple_ref/cpp/instm/QWorkspace/changeEvent" />
+<h3 class="fn"><a name="changeEvent"></a>void QWorkspace::changeEvent ( <a href="qevent.html">QEvent</a> * <i>ev</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#changeEvent">QWidget::changeEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QWorkspace/childEvent" />
+<h3 class="fn"><a name="childEvent"></a>void QWorkspace::childEvent ( <a href="qchildevent.html">QChildEvent</a> * <i>e</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qobject.html#childEvent">QObject::childEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QWorkspace/closeActiveWindow" />
+<h3 class="fn"><a name="closeActiveWindow"></a>void QWorkspace::closeActiveWindow ()&nbsp;&nbsp;<tt> [slot]</tt></h3>
+<p>Closes the child window that is currently active.</p>
+<p>See also <a href="qworkspace.html#closeAllWindows">closeAllWindows</a>().</p>
+<a name="//apple_ref/cpp/instm/QWorkspace/closeAllWindows" />
+<h3 class="fn"><a name="closeAllWindows"></a>void QWorkspace::closeAllWindows ()&nbsp;&nbsp;<tt> [slot]</tt></h3>
+<p>Closes all child windows.</p>
+<p>If any child window fails to accept the close event, the remaining windows will remain open.</p>
+<p>See also <a href="qworkspace.html#closeActiveWindow">closeActiveWindow</a>().</p>
+<a name="//apple_ref/cpp/instm/QWorkspace/event" />
+<h3 class="fn"><a name="event"></a>bool QWorkspace::event ( <a href="qevent.html">QEvent</a> * <i>e</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qobject.html#event">QObject::event</a>().</p>
+<a name="//apple_ref/cpp/instm/QWorkspace/eventFilter" />
+<h3 class="fn"><a name="eventFilter"></a>bool QWorkspace::eventFilter ( <a href="qobject.html">QObject</a> * <i>o</i>, <a href="qevent.html">QEvent</a> * <i>e</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qobject.html#eventFilter">QObject::eventFilter</a>().</p>
+<a name="//apple_ref/cpp/instm/QWorkspace/hideEvent" />
+<h3 class="fn"><a name="hideEvent"></a>void QWorkspace::hideEvent ( <a href="qhideevent.html">QHideEvent</a> * <i>e</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#hideEvent">QWidget::hideEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QWorkspace/paintEvent" />
+<h3 class="fn"><a name="paintEvent"></a>void QWorkspace::paintEvent ( <a href="qpaintevent.html">QPaintEvent</a> * <i>e</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#paintEvent">QWidget::paintEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QWorkspace/resizeEvent" />
+<h3 class="fn"><a name="resizeEvent"></a>void QWorkspace::resizeEvent ( <a href="qresizeevent.html">QResizeEvent</a> * )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#resizeEvent">QWidget::resizeEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QWorkspace/setActiveWindow" />
+<h3 class="fn"><a name="setActiveWindow"></a>void QWorkspace::setActiveWindow ( <a href="qwidget.html">QWidget</a> * <i>w</i> )&nbsp;&nbsp;<tt> [slot]</tt></h3>
+<p>Makes the child window that contains <i>w</i> the active child window.</p>
+<p>See also <a href="qworkspace.html#activeWindow">activeWindow</a>().</p>
+<a name="//apple_ref/cpp/instm/QWorkspace/showEvent" />
+<h3 class="fn"><a name="showEvent"></a>void QWorkspace::showEvent ( <a href="qshowevent.html">QShowEvent</a> * <i>e</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#showEvent">QWidget::showEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QWorkspace/sizeHint" />
+<h3 class="fn"><a name="sizeHint"></a><a href="qsize.html">QSize</a> QWorkspace::sizeHint () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#sizeHint-prop">QWidget::sizeHint</a>().</p>
+<a name="//apple_ref/cpp/instm/QWorkspace/tile" />
+<h3 class="fn"><a name="tile"></a>void QWorkspace::tile ()&nbsp;&nbsp;<tt> [slot]</tt></h3>
+<p>Arranges all child windows in a tile pattern.</p>
+<p>See also <a href="qworkspace.html#cascade">cascade</a>() and <a href="qworkspace.html#arrangeIcons">arrangeIcons</a>().</p>
+<a name="//apple_ref/cpp/instm/QWorkspace/wheelEvent" />
+<h3 class="fn"><a name="wheelEvent"></a>void QWorkspace::wheelEvent ( <a href="qwheelevent.html">QWheelEvent</a> * <i>e</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#wheelEvent">QWidget::wheelEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QWorkspace/windowActivated" />
+<h3 class="fn"><a name="windowActivated"></a>void QWorkspace::windowActivated ( <a href="qwidget.html">QWidget</a> * <i>w</i> )&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted when the child window <i>w</i> becomes active. Note that <i>w</i> can be 0, and that more than one signal may be emitted for a single activation event.</p>
+<p>See also <a href="qworkspace.html#activeWindow">activeWindow</a>() and <a href="qworkspace.html#windowList">windowList</a>().</p>
+<a name="//apple_ref/cpp/instm/QWorkspace/windowList" />
+<h3 class="fn"><a name="windowList"></a><a href="qwidget.html#QWidgetList-typedef">QWidgetList</a> QWorkspace::windowList ( <a href="qworkspace.html#WindowOrder-enum">WindowOrder</a> <i>order</i> = CreationOrder ) const</h3>
+<p>Returns a list of all visible or minimized child windows. If <i>order</i> is <a href="qworkspace.html#WindowOrder-enum">CreationOrder</a> (the default), the windows are listed in the order in which they were inserted into the workspace. If <i>order</i> is <a href="qworkspace.html#WindowOrder-enum">StackingOrder</a>, the windows are listed in their stacking order, with the topmost window as the last item in the list.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

@@ -1,0 +1,13 @@
+diff --git pngconf.h pngconf.h
+index 19e4732..8eb7d35 100644
+--- pngconf.h
++++ pngconf.h
+@@ -344,7 +344,7 @@
+ #  endif /* __linux__ */
+ #endif /* PNG_SETJMP_SUPPORTED */
+ 
+-#ifdef BSD
++#if defined(BSD) && !defined(VXWORKS)
+ #  include <strings.h>
+ #else
+ #  include <string.h>

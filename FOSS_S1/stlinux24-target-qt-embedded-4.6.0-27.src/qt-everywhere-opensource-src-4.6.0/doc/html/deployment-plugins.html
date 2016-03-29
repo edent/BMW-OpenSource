@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- deployment-plugins.qdoc -->
+<head>
+  <title>Qt 4.6: Deploying Plugins</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">Deploying Plugins<br /><span class="subtitle"></span>
+</h1>
+<p>This document explains how to deploy plugin libraries that Qt or your application should load at runtime. If you use <a href="plugins-howto.html#static-plugins">static plugins</a>, then the plugin code is already part of your application executable, and no separate deployment steps are required.</p>
+<ul><li><a href="#the-plugin-directory">The Plugin Directory</a></li>
+<li><a href="#loading-and-verifying-plugins-dynamically">Loading and Verifying Plugins Dynamically</a></li>
+<ul><li><a href="#the-build-key">The Build Key</a></li>
+</ul>
+<li><a href="#the-plugin-cache">The Plugin Cache</a></li>
+<li><a href="#debugging-plugins">Debugging Plugins</a></li>
+</ul>
+<a name="the-plugin-directory"></a>
+<h3>The Plugin Directory</h3>
+<p>When the application is run, Qt will first treat the application's executable directory as the <tt>pluginsbase</tt>. For example if the application is in <tt>C:\Program Files\MyApp</tt> and has a style plugin, Qt will look in <tt>C:\Program Files\MyApp\styles</tt>. (See <a href="qcoreapplication.html#applicationDirPath">QCoreApplication::applicationDirPath</a>() for how to find out where the application's executable is.) Qt will also look in the directory specified by QLibraryInfo::location(<a href="qlibraryinfo.html#LibraryLocation-enum">QLibraryInfo::PluginsPath</a>), which typically is located in <tt>QTDIR/plugins</tt> (where <tt>QTDIR</tt> is the directory where Qt is installed). If you want Qt to look in additional places you can add as many paths as you need with calls to <a href="qcoreapplication.html#addLibraryPath">QCoreApplication::addLibraryPath</a>(). And if you want to set your own path or paths you can use <a href="qcoreapplication.html#setLibraryPaths">QCoreApplication::setLibraryPaths</a>(). You can also use a <tt>qt.conf</tt> file to override the hard-coded paths that are compiled into the Qt library. For more information, see the <a href="qt-conf.html">Using qt.conf</a> documentation. Yet another possibility is to set the <tt>QT_PLUGIN_PATH</tt> environment variable before running the application. If set, Qt will look for plugins in the paths (separated by the system path separator) specified in the variable.</p>
+<a name="loading-and-verifying-plugins-dynamically"></a>
+<h3>Loading and Verifying Plugins Dynamically</h3>
+<p>When loading plugins, the Qt library does some sanity checking to determine whether or not the plugin can be loaded and used. This provides the ability to have multiple versions and configurations of the Qt library installed side by side.</p>
+<ul>
+<li>Plugins linked with a Qt library that has a higher version number will not be loaded by a library with a lower version number.<br /><p><b>Example:</b> Qt 4.3&#x2e;0 will <i>not</i> load a plugin built with Qt 4.3&#x2e;1&#x2e;</p>
+</li>
+<li>Plugins linked with a Qt library that has a lower major version number will not be loaded by a library with a higher major version number.<br /><p><b>Example:</b> Qt 4.3&#x2e;1 will <i>not</i> load a plugin built with Qt 3.3&#x2e;1&#x2e; <br /> <b>Example:</b> Qt 4.3&#x2e;1 will load plugins built with Qt 4.3&#x2e;0 and Qt 4.2&#x2e;3&#x2e;</p>
+</li>
+<li>The Qt library and all plugins are built using a <i>build key</i>. The build key in the Qt library is examined against the build key in the plugin, and if they match, the plugin is loaded. If the build keys do not match, then the Qt library refuses to load the plugin.<br /><p><b>Rationale:</b> See the <a href="#the-build-key">The Build Key</a> section below.</p>
+</li>
+</ul>
+<p>When building plugins to extend an application, it is important to ensure that the plugin is configured in the same way as the application. This means that if the application was built in release mode, plugins should be built in release mode, too.</p>
+<p>If you configure Qt to be built in both debug and release modes, but only build applications in release mode, you need to ensure that your plugins are also built in release mode. By default, if a debug build of Qt is available, plugins will <i>only</i> be built in debug mode. To force the plugins to be built in release mode, add the following line to the plugin's project file:</p>
+<pre> CONFIG += release</pre>
+<p>This will ensure that the plugin is compatible with the version of the library used in the application.</p>
+<a name="the-build-key"></a>
+<h4>The Build Key</h4>
+<p>When loading plugins, Qt checks the build key of each plugin against its own configuration to ensure that only compatible plugins are loaded; any plugins that are configured differently are not loaded.</p>
+<p>The build key contains the following information:</p>
+<ul>
+<li>Architecture, operating system and compiler.<p><i>Rationale:</i> In cases where different versions of the same compiler do not produce binary compatible code, the version of the compiler is also present in the build key.</p>
+</li>
+<li>Configuration of the Qt library. The configuration is a list of the missing features that affect the available API in the library.<p><i>Rationale:</i> Two different configurations of the same version of the Qt library are not binary compatible. The Qt library that loads the plugin uses the list of (missing) features to determine if the plugin is binary compatible.</p>
+<p><i>Note:</i> There are cases where a plugin can use features that are available in two different configurations. However, the developer writing plugins would need to know which features are in use, both in their plugin and internally by the utility classes in Qt. The Qt library would require complex feature and dependency queries and verification when loading plugins. Requiring this would place an unnecessary burden on the developer, and increase the overhead of loading a plugin. To reduce both development time and application runtime costs, a simple string comparision of the build keys is used.</p>
+</li>
+<li>Optionally, an extra string may be specified on the configure script command line.<p><i>Rationale:</i> When distributing binaries of the Qt library with an application, this provides a way for developers to write plugins that can only be loaded by the library with which the plugins were linked.</p>
+</li>
+</ul>
+<p>For debugging purposes, it is possible to override the run-time build key checks by configuring Qt with the <tt>QT_NO_PLUGIN_CHECK</tt> preprocessor macro defined.</p>
+<a name="the-plugin-cache"></a>
+<h3>The Plugin Cache</h3>
+<p>In order to speed up loading and validation of plugins, some of the information that is collected when plugins are loaded is cached through <a href="qsettings.html">QSettings</a>. This includes information about whether or not a plugin was successfully loaded, so that subsequent load operations don't try to load an invalid plugin. However, if the &quot;last modified&quot; timestamp of a plugin has changed, the plugin's cache entry is invalidated and the plugin is reloaded regardless of the values in the cache entry, and the cache entry itself is updated with the new result.</p>
+<p>This also means that the timestamp must be updated each time the plugin or any dependent resources (such as a shared library) is updated, since the dependent resources might influence the result of loading a plugin.</p>
+<p>Sometimes, when developing plugins, it is necessary to remove entries from the plugin cache. Since Qt uses <a href="qsettings.html">QSettings</a> to manage the plugin cache, the locations of plugins are platform-dependent; see <a href="qsettings.html#platform-specific-notes">the QSettings documentation</a> for more information about each platform.</p>
+<p>For example, on Windows the entries are stored in the registry, and the paths for each plugin will typically begin with either of these two strings:</p>
+<pre> HKEY_CURRENT_USER\Software\Trolltech\OrganizationDefaults\Qt Plugin Cache 4.2.debug
+ HKEY_CURRENT_USER\Software\Trolltech\OrganizationDefaults\Qt Plugin Cache 4.2.false</pre>
+<a name="debugging-plugins"></a>
+<h3>Debugging Plugins</h3>
+<p>There are a number of issues that may prevent correctly-written plugins from working with the applications that are designed to use them. Many of these are related to differences in the way that plugins and applications have been built, often arising from separate build systems and processes.</p>
+<p>The following table contains descriptions of the common causes of problems developers experience when creating plugins:</p>
+<p><table class="generic" align="center" cellpadding="2" cellspacing="1" border="0">
+<thead><tr valign="top" class="qt-style"><th>Problem</th><th>Cause</th><th>Solution</th></tr></thead>
+<tr valign="top" class="odd"><td>Plugins sliently fail to load even when opened directly by the application. <i>Qt Designer</i> shows the plugin libraries in its <b>Help|About Plugins</b> dialog, but no plugins are listed under each of them.</td><td>The application and its plugins are built in different modes.</td><td>Either share the same build information or build the plugins in both debug and release modes by appending the <tt>debug_and_release</tt> to the <a href="qmake-variable-reference.html#config">CONFIG</a> variable in each of their project files.</td></tr>
+<tr valign="top" class="even"><td>A valid plugin that replaces an invalid (or broken) plugin fails to load.</td><td>The entry for the plugin in the plugin cache indicates that the original plugin could not be loaded, causing Qt to ignore the replacement.</td><td>Either ensure that the plugin's timestamp is updated, or delete the entry in the <a href="#the-plugin-cache">plugin cache</a>.</td></tr>
+</table></p>
+<p>You can also use the <tt>QT_DEBUG_PLUGINS</tt> environment variable to obtain diagnostic information from Qt about each plugin it tries to load. Set this variable to a non-zero value in the environment from which your application is launched.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

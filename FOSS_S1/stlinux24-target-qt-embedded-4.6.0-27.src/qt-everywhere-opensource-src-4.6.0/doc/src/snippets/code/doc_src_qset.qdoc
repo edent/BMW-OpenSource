@@ -1,0 +1,167 @@
+/****************************************************************************
+**
+** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+** All rights reserved.
+** Contact: Nokia Corporation (qt-info@nokia.com)
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:LGPL$
+** Commercial Usage
+** Licensees holding valid Qt Commercial licenses may use this file in
+** accordance with the Qt Commercial License Agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and Nokia.
+**
+** GNU Lesser General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU Lesser
+** General Public License version 2.1 as published by the Free Software
+** Foundation and appearing in the file LICENSE.LGPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU Lesser General Public License version 2.1 requirements
+** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+**
+** In addition, as a special exception, Nokia gives you certain additional
+** rights.  These rights are described in the Nokia Qt LGPL Exception
+** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+**
+** GNU General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU
+** General Public License version 3.0 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU General Public License version 3.0 requirements will be
+** met: http://www.gnu.org/copyleft/gpl.html.
+**
+** If you have questions regarding the use of this file, please contact
+** Nokia at qt-info@nokia.com.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+//! [0]
+QSet<QString> set;
+//! [0]
+
+
+//! [1]
+set.insert("one");
+set.insert("three");
+set.insert("seven");
+//! [1]
+
+
+//! [2]
+set << "twelve" << "fifteen" << "nineteen";
+//! [2]
+
+
+//! [3]
+if (!set.contains("ninety-nine"))
+    ...
+//! [3]
+
+
+//! [4]
+QSetIterator<QWidget *> i(set);
+while (i.hasNext())
+    qDebug() << i.next();
+//! [4]
+
+
+//! [5]
+QSet<QWidget *>::const_iterator i = set.constBegin();
+while (i != set.constEnd()) {
+    qDebug() << *i;
+    ++i;
+}
+//! [5]
+
+
+//! [6]
+QSet<QString> set;
+...
+foreach (QString value, set)
+    qDebug() << value;
+//! [6]
+
+
+//! [7]
+QSet<QString> set;
+set.reserve(20000);
+for (int i = 0; i < 20000; ++i)
+    set.insert(values[i]);
+//! [7]
+
+
+//! [8]
+QSet<QString> set;
+set << "January" << "February" << ... << "December";
+
+QSet<QString>::iterator i;
+for (i = set.begin(); i != set.end(); ++i)
+    qDebug() << *i;
+//! [8]
+
+
+//! [9]
+QSet<QString> set;
+set << "January" << "February" << ... << "December";
+
+QSet<QString>::iterator i = set.begin();
+while (i != set.end()) {
+    if ((*i).startsWith('J')) {
+        i = set.erase(i);
+    } else {
+        ++i;
+    }
+}
+//! [9]
+
+
+//! [10]
+QSet<QString> set;
+...
+QSet<QString>::iterator it = qFind(set.begin(), set.end(), "Jeanette");
+if (it != set.end())
+    cout << "Found Jeanette" << endl;
+//! [10]
+
+
+//! [11]
+QSet<QString> set;
+set << "January" << "February" << ... << "December";
+
+QSet<QString>::const_iterator i;
+for (i = set.begin(); i != set.end(); ++i)
+    qDebug() << *i;
+//! [11]
+
+
+//! [12]
+QSet<QString> set;
+...
+QSet<QString>::iterator it = qFind(set.begin(), set.end(), "Jeanette");
+if (it != set.constEnd())
+    cout << "Found Jeanette" << endl;
+//! [12]
+
+
+//! [13]
+QSet<QString> set;
+set << "red" << "green" << "blue" << ... << "black";
+
+QList<QString> list = set.toList();
+qSort(list);
+//! [13]
+
+
+//! [14]
+QStringList list;
+list << "Julia" << "Mike" << "Mike" << "Julia" << "Julia";
+
+QSet<QString> set = QSet<QString>::fromList(list);
+set.contains("Julia");  // returns true
+set.contains("Mike");   // returns true
+set.size();             // returns 2
+//! [14]

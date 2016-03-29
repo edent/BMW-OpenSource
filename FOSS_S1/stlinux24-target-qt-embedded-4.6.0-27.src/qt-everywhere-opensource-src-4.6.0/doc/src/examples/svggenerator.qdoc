@@ -1,0 +1,136 @@
+/****************************************************************************
+**
+** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+** All rights reserved.
+** Contact: Nokia Corporation (qt-info@nokia.com)
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:LGPL$
+** Commercial Usage
+** Licensees holding valid Qt Commercial licenses may use this file in
+** accordance with the Qt Commercial License Agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and Nokia.
+**
+** GNU Lesser General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU Lesser
+** General Public License version 2.1 as published by the Free Software
+** Foundation and appearing in the file LICENSE.LGPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU Lesser General Public License version 2.1 requirements
+** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+**
+** In addition, as a special exception, Nokia gives you certain additional
+** rights.  These rights are described in the Nokia Qt LGPL Exception
+** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+**
+** GNU General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU
+** General Public License version 3.0 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU General Public License version 3.0 requirements will be
+** met: http://www.gnu.org/copyleft/gpl.html.
+**
+** If you have questions regarding the use of this file, please contact
+** Nokia at qt-info@nokia.com.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \example painting/svggenerator
+    \title SVG Generator Example
+
+    The SVG Generator example shows how to add SVG file export to applications.
+
+    \image svggenerator-example.png
+
+    Scalable Vector Graphics (SVG) is an XML-based language for describing
+    two-dimensional vector graphics. Qt provides classes for rendering and
+    generating SVG drawings. This example allows the user to create a simple
+    picture and save it to an SVG file.
+
+    The example consists of two classes: \c Window and \c DisplayWidget.
+
+    The \c Window class contains the application logic and constructs the user
+    interface from a Qt Designer UI file as described in the
+    \l{Using a Designer UI File in Your Application#The Multiple Inheritance Approach}{Qt Designer manual}.
+    It also contains the code to write an SVG file.
+
+    The \c DisplayWidget class performs all the work of painting a picture on
+    screen. Since we want the SVG to resemble this picture as closely as
+    possible, we make this code available to the \c Window class so that it can
+    be used to generate SVG files.
+
+    \section1 The DisplayWidget Class
+
+    The \c DisplayWidget class displays a drawing consisting of a selection of
+    elements chosen by the user. These are defined using \c Shape and
+    \c Background enums that are included within the class definition:
+
+    \snippet examples/painting/svggenerator/displaywidget.h DisplayWidget class definition
+
+    Much of this class is used to configure the appearance of the drawing. The
+    \c paintEvent() and \c paint() functions are most relevant to the purpose
+    of this example, so we will describe these here and leave the reader to
+    look at the source code for the example to see how shapes and colors are
+    handled.
+
+    We reimplement the QWidget::paintEvent() function to display the drawing
+    on screen:
+
+    \snippet examples/painting/svggenerator/displaywidget.cpp paint event
+
+    Here, we only construct a QPainter object, begin painting on the device
+    and set a render hint for improved output quality before calling the
+    \c paint() function to perform the painting itself. When this returns,
+    we close the painter and return.
+
+    The \c paint() function is designed to be used for different painting
+    tasks. In this example, we use it to draw on a \c DisplayWidget instance
+    and on a QSvgGenerator object. We show how the painting is performed to
+    demonstrate that there is nothing device-specific about the process:
+
+    \snippet examples/painting/svggenerator/displaywidget.cpp paint function
+
+    \section1 The Window Class
+
+    The \c Window class represents the example's window, containing the user
+    interface, which has been created using Qt Designer:
+
+    \snippet examples/painting/svggenerator/window.h Window class definition
+
+    As with the \c DisplayWidget class, we concentrate on the parts of the code
+    which are concerned with painting and SVG generation. In the \c Window
+    class, the \c saveSvg() function is called whenever the \gui{Save As...}
+    button is clicked; this connection was defined in the \c{window.ui} file
+    using Qt Designer.
+
+    The start of the \c saveSvg() function performs the task of showing a file
+    dialog so that the user can specify a SVG file to save the drawing to.
+    
+    \snippet examples/painting/svggenerator/window.cpp save SVG
+
+    In the rest of the function, we set up the generator and configure it to
+    generate output with the appropriate dimensions and write to the
+    user-specified file. We paint on the QSvgGenerator object in the same way
+    that we paint on a widget, calling the \c DisplayWidget::paint() function
+    so that we use exactly the same code that we used to display the drawing.
+
+    The generation process itself begins with the call to the painter's
+    \l{QPainter::}{begin()} function and ends with call to its
+    \l{QPainter::}{end()} function. The QSvgGenerator paint device relies on
+    the explicit use of these functions to ensure that output is written to
+    the file.
+
+    \section1 Further Reading
+
+    The \l{SVG Viewer Example} shows how to display SVG drawings in an
+    application, and can be used to show the contents of SVG files created
+    by this example.
+
+    See the QtSvg module documentation for more information about SVG and Qt's
+    SVG classes.
+*/

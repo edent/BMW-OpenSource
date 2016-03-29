@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qxmlquery.cpp -->
+<head>
+  <title>Qt 4.6: QXmlQuery Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QXmlQuery" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QXmlQuery Class Reference<br /><span class="small-subtitle">[<a href="qtxmlpatterns.html">QtXmlPatterns</a> module]</span>
+</h1>
+<p>The QXmlQuery class performs XQueries on XML data, or on non-XML data modeled to look like XML. <a href="#details">More...</a></p>
+<pre> #include &lt;QXmlQuery&gt;</pre><p><b>This class is not part of the Qt GUI Framework Edition.</b></p>
+<p><b>Note:</b> All functions in this class are <a href="threads-reentrancy.html#reentrant">reentrant</a>.</p>
+<p>This class was introduced in Qt 4.4.</p>
+<ul>
+<li><a href="qxmlquery-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-types"></a>
+<h2>Public Types</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qxmlquery.html#QueryLanguage-enum">QueryLanguage</a></b> { XQuery10, XSLT20 }</td></tr>
+</table>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qxmlquery.html#QXmlQuery">QXmlQuery</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qxmlquery.html#QXmlQuery-2">QXmlQuery</a></b> ( const QXmlQuery &amp; <i>other</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qxmlquery.html#QXmlQuery-3">QXmlQuery</a></b> ( const QXmlNamePool &amp; <i>np</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qxmlquery.html#QXmlQuery-4">QXmlQuery</a></b> ( QueryLanguage <i>queryLanguage</i>, const QXmlNamePool &amp; <i>np</i> = QXmlNamePool() )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qxmlquery.html#dtor.QXmlQuery">~QXmlQuery</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qxmlquery.html#bindVariable">bindVariable</a></b> ( const QXmlName &amp; <i>name</i>, const QXmlItem &amp; <i>value</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qxmlquery.html#bindVariable-2">bindVariable</a></b> ( const QXmlName &amp; <i>name</i>, QIODevice * <i>device</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qxmlquery.html#bindVariable-3">bindVariable</a></b> ( const QXmlName &amp; <i>name</i>, const QXmlQuery &amp; <i>query</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qxmlquery.html#bindVariable-4">bindVariable</a></b> ( const QString &amp; <i>localName</i>, const QXmlItem &amp; <i>value</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qxmlquery.html#bindVariable-5">bindVariable</a></b> ( const QString &amp; <i>localName</i>, QIODevice * <i>device</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qxmlquery.html#bindVariable-6">bindVariable</a></b> ( const QString &amp; <i>localName</i>, const QXmlQuery &amp; <i>query</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qxmlquery.html#evaluateTo">evaluateTo</a></b> ( QXmlResultItems * <i>result</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qxmlquery.html#evaluateTo-2">evaluateTo</a></b> ( QAbstractXmlReceiver * <i>callback</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qxmlquery.html#evaluateTo-3">evaluateTo</a></b> ( QStringList * <i>target</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qxmlquery.html#evaluateTo-4">evaluateTo</a></b> ( QString * <i>output</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qxmlquery.html#evaluateTo-5">evaluateTo</a></b> ( QIODevice * <i>target</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QXmlName </td><td class="memItemRight" valign="bottom"><b><a href="qxmlquery.html#initialTemplateName">initialTemplateName</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qxmlquery.html#isValid">isValid</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QAbstractMessageHandler * </td><td class="memItemRight" valign="bottom"><b><a href="qxmlquery.html#messageHandler">messageHandler</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QXmlNamePool </td><td class="memItemRight" valign="bottom"><b><a href="qxmlquery.html#namePool">namePool</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QNetworkAccessManager * </td><td class="memItemRight" valign="bottom"><b><a href="qxmlquery.html#networkAccessManager">networkAccessManager</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QueryLanguage </td><td class="memItemRight" valign="bottom"><b><a href="qxmlquery.html#queryLanguage">queryLanguage</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qxmlquery.html#setFocus">setFocus</a></b> ( const QXmlItem &amp; <i>item</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qxmlquery.html#setFocus-2">setFocus</a></b> ( const QUrl &amp; <i>documentURI</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qxmlquery.html#setFocus-3">setFocus</a></b> ( QIODevice * <i>document</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qxmlquery.html#setFocus-4">setFocus</a></b> ( const QString &amp; <i>focus</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qxmlquery.html#setInitialTemplateName">setInitialTemplateName</a></b> ( const QXmlName &amp; <i>name</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qxmlquery.html#setInitialTemplateName-2">setInitialTemplateName</a></b> ( const QString &amp; <i>localName</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qxmlquery.html#setMessageHandler">setMessageHandler</a></b> ( QAbstractMessageHandler * <i>aMessageHandler</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qxmlquery.html#setNetworkAccessManager">setNetworkAccessManager</a></b> ( QNetworkAccessManager * <i>newManager</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qxmlquery.html#setQuery">setQuery</a></b> ( QIODevice * <i>sourceCode</i>, const QUrl &amp; <i>documentURI</i> = QUrl() )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qxmlquery.html#setQuery-2">setQuery</a></b> ( const QUrl &amp; <i>queryURI</i>, const QUrl &amp; <i>baseURI</i> = QUrl() )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qxmlquery.html#setQuery-3">setQuery</a></b> ( const QString &amp; <i>sourceCode</i>, const QUrl &amp; <i>documentURI</i> = QUrl() )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qxmlquery.html#setUriResolver">setUriResolver</a></b> ( const QAbstractUriResolver * <i>resolver</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const QAbstractUriResolver * </td><td class="memItemRight" valign="bottom"><b><a href="qxmlquery.html#uriResolver">uriResolver</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QXmlQuery &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qxmlquery.html#operator-eq">operator=</a></b> ( const QXmlQuery &amp; <i>other</i> )</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QXmlQuery class performs XQueries on XML data, or on non-XML data modeled to look like XML.</p>
+<p>The QXmlQuery class compiles and executes queries written in the <a href="http://www.w3.org/TR/xquery/">XQuery language</a>. QXmlQuery is typically used to query XML data, but it can also query non-XML data that has been modeled to look like XML.</p>
+<p>Using QXmlQuery to query XML data, as in the snippet below, is simple because it can use the built-in <a href="qabstractxmlnodemodel.html">XML data model</a> as its delegate to the underlying query engine for traversing the data. The built-in data model is specified in <a href="http://www.w3.org/TR/xpath-datamodel/">XQuery 1.0 and XPath 2.0 Data Model</a>.</p>
+<pre> QXmlQuery query;
+ query.setQuery(&quot;doc('index.html')/html/body/p[1]&quot;);
+
+ QXmlSerializer serializer(query, myOutputDevice);
+ query.evaluateTo(&amp;serializer);</pre>
+<p>The example uses QXmlQuery to match the first paragraph of an XML document and then <a href="qxmlserializer.html">output the result</a> to a device as XML.</p>
+<p>Using QXmlQuery to query <i>non-XML</i> data requires writing a subclass of <a href="qabstractxmlnodemodel.html">QAbstractXmlNodeModel</a> to use as a replacement for the built-in XML data model. The custom data model will be able to traverse the non-XML data as required by the <a href="qabstractxmlnodemodel.html">QAbstractXmlNodeModel</a> interface. An instance of this custom data model then becomes the delegate used by the query engine to traverse the non-XML data. For an example of how to use QXmlQuery to query non-XML data, see the documentation for <a href="qabstractxmlnodemodel.html">QAbstractXmlNodeModel</a>.</p>
+<a name="running-xqueries"></a>
+<h3>Running XQueries</h3>
+<p>To run a query set up with QXmlQuery, call one of the evaluation functions.</p>
+<ul>
+<li>evaluateTo(<a href="qabstractxmlreceiver.html">QAbstractXmlReceiver</a> *) is called with a pointer to an XML <a href="qabstractxmlreceiver.html">receiver</a>, which receives the query results as a sequence of callbacks. The receiver callback class is like the callback class used for translating the output of a SAX parser. <a href="qxmlserializer.html">QXmlSerializer</a>, for example, is a receiver callback class for translating the sequence of callbacks for output as unformatted XML text.</li>
+</ul>
+<ul>
+<li>evaluateTo(<a href="qxmlresultitems.html">QXmlResultItems</a> *) is called with a pointer to an iterator for an empty sequence of query <a href="qxmlresultitems.html">result items</a>. The Java-like iterator allows the query results to be accessed sequentially.</li>
+</ul>
+<ul>
+<li>evaluateTo(<a href="qstringlist.html">QStringList</a> *) is like evaluateTo(<a href="qxmlresultitems.html">QXmlResultItems</a> *), but the query must evaluate to a sequence of strings.</li>
+</ul>
+<a name="running-xpath-expressions"></a>
+<h3>Running XPath Expressions</h3>
+<p>The XPath language is a subset of the XQuery language, so running an XPath expression is the same as running an XQuery query. Pass the XPath expression to QXmlQuery using <a href="qxmlquery.html#setQuery">setQuery</a>().</p>
+<a name="running-xslt-stylesheets"></a>
+<h3>Running XSLT stylesheets</h3>
+<p>Running an XSLT stylesheet is like running an XQuery, except that when you construct your QXmlQuery, you must pass <a href="qxmlquery.html#QueryLanguage-enum">QXmlQuery::XSLT20</a> to tell QXmlQuery to interpret whatever it gets from <a href="qxmlquery.html#setQuery">setQuery</a>() as an XSLT stylesheet instead of as an XQuery. You must also set the input document by calling <a href="qxmlquery.html#setFocus">setFocus</a>().</p>
+<pre>     QXmlQuery query(QXmlQuery::XSLT20);
+     query.setFocus(QUrl(&quot;myInput.xml&quot;));
+     query.setQuery(QUrl(&quot;myStylesheet.xsl&quot;));
+     query.evaluateTo(out);</pre>
+<p><b>Note:</b> Currently, <a href="qxmlquery.html#setFocus">setFocus</a>() must be called <i>before</i> <a href="qxmlquery.html#setQuery">setQuery</a>() when using XSLT.</p>
+<p>Another way to run an XSLT stylesheet is to use the <tt>xmlpatterns</tt> command line utility.</p>
+<pre> xmlpatterns myStylesheet.xsl myInput.xml</pre>
+<p><b>Note:</b> For the current release, XSLT support should be considered experimental. See section <a href="xmlprocessing.html#xslt-2-0">XSLT conformance</a> for details.</p>
+<p>Stylesheet parameters are bound using <a href="qxmlquery.html#bindVariable">bindVariable</a>().</p>
+<a name="binding-a-query-to-a-starting-node"></a>
+<h3>Binding A Query To A Starting Node</h3>
+<p>When a query is run on XML data, as in the snippet above, the <tt>doc()</tt> function returns the node in the built-in data model where the query evaluation will begin. But when a query is run on a custom node model containing non-XML data, one of the <a href="qxmlquery.html#bindVariable">bindVariable</a>() functions must be called to bind a variable name to a starting node in the custom model. A $variable reference is used in the XQuery text to access the starting node in the custom model. It is not necessary to declare the variable name external in the query. See the example in the documentation for <a href="qabstractxmlnodemodel.html">QAbstractXmlNodeModel</a>.</p>
+<a name="reentrancy-and-thread-safety"></a>
+<h3>Reentrancy and Thread-Safety</h3>
+<p>QXmlQuery is reentrant but not thread-safe. It is safe to use the QxmlQuery copy constructor to create a copy of a query and run the same query multiple times. Behind the scenes, QXmlQuery will reuse resources such as opened files and compiled queries to the extent possible. But it is not safe to use the same instance of QXmlQuery in multiple threads.</p>
+<a name="error-handling"></a>
+<h3>Error Handling</h3>
+<p>Errors can occur during query evaluation. Examples include type errors and file loading errors. When an error occurs:</p>
+<ul>
+<li>The error message is sent to the <a href="qxmlquery.html#messageHandler">messageHandler</a>().</li>
+<li><a href="qxmlresultitems.html#hasError">QXmlResultItems::hasError</a>() will return <tt>true</tt>, or <a href="qxmlquery.html#evaluateTo">evaluateTo</a>() will return <tt>false</tt>;</li>
+<li>The results of the evaluation are undefined.</li>
+</ul>
+<a name="resource-management"></a>
+<h3>Resource Management</h3>
+<p>When a query runs, it parses documents, allocating internal data structures to hold them, and it may load other resources over the network. It reuses these allocated resources when possible, to avoid having to reload and reparse them.</p>
+<p>When <a href="qxmlquery.html#setQuery">setQuery</a>() is called, the query text is compiled into an internal data structure and optimized. The optimized form can then be reused for multiple evaluations of the query. Since the compile-and-optimize process can be expensive, repeating it for the same query should be avoided by using a separate instance of QXmlQuery for each query text.</p>
+<p>Once a document has been parsed, its internal representation is maintained in the QXmlQuery instance and shared among multiple QXmlQuery instances.</p>
+<p>An instance of <a href="qcoreapplication.html">QCoreApplication</a> must exist before QXmlQuery can be used.</p>
+<a name="event-handling"></a>
+<h3>Event Handling</h3>
+<p>When QXmlQuery accesses resources (e.g&#x2e;, calling <tt>fn:doc()</tt> to load a file, or accessing a device via a bound variable), the event loop is used, which means events will be processed. To avoid processing events when QXmlQuery accesses resources, create your QXmlQuery instance in a separate thread.</p>
+<hr />
+<h2>Member Type Documentation</h2>
+<a name="//apple_ref/cpp/tag/QXmlQuery/QueryLanguage" />
+<a name="//apple_ref/cpp/econst/QXmlQuery/XQuery10" />
+<a name="//apple_ref/cpp/econst/QXmlQuery/XSLT20" />
+<a name="//apple_ref/cpp/econst/QXmlQuery/XmlSchema11IdentityConstraintSelector" />
+<a name="//apple_ref/cpp/econst/QXmlQuery/XmlSchema11IdentityConstraintField" />
+<a name="//apple_ref/cpp/econst/QXmlQuery/XPath20" />
+<h3 class="fn"><a name="QueryLanguage-enum"></a>enum QXmlQuery::QueryLanguage</h3>
+<p>Specifies whether you want <a href="qxmlquery.html">QXmlQuery</a> to interpret the input to <a href="qxmlquery.html#setQuery">setQuery</a>() as an XQuery or as an XSLT stylesheet.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QXmlQuery::XQuery10</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">XQuery 1.0&#x2e;</td></tr>
+<tr><td valign="top"><tt>QXmlQuery::XSLT20</tt></td><td align="center" valign="top"><tt>2</tt></td><td valign="top">XSLT 2.0 The selector, the restricted XPath pattern found in W3C XML Schema 1.1 for uniqueness contraints. Apart from restricting the syntax, the type check stage for the expression assumes a sequence of nodes to be the focus. The field, the restricted XPath pattern found in W3C XML Schema 1.1 for uniqueness contraints. Apart from restricting the syntax, the type check stage for the expression assumes a sequence of nodes to be the focus. Signifies XPath 2.0&#x2e; Has no effect in the public API, it's used internally. As With XmlSchema11IdentityConstraintSelector and XmlSchema11IdentityConstraintField, the type check stage for the expression assumes a sequence of nodes to be the focus.</td></tr>
+</table></p>
+<p>This enum was introduced in Qt 4.5.</p>
+<p>See also <a href="qxmlquery.html#setQuery">setQuery</a>().</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QXmlQuery/QXmlQuery" />
+<h3 class="fn"><a name="QXmlQuery"></a>QXmlQuery::QXmlQuery ()</h3>
+<p>Constructs an invalid, empty query that cannot be used until <a href="qxmlquery.html#setQuery">setQuery</a>() is called.</p>
+<p><b>Note:</b> This constructor must not be used if you intend to use this <a href="qxmlquery.html">QXmlQuery</a> to process XSL-T stylesheets. The other constructor must be used in that case.</p>
+<h3 class="fn"><a name="QXmlQuery-2"></a>QXmlQuery::QXmlQuery ( const QXmlQuery &amp; <i>other</i> )</h3>
+<p>Constructs a <a href="qxmlquery.html">QXmlQuery</a> that is a copy of <i>other</i>. The new instance will share resources with the existing query to the extent possible.</p>
+<h3 class="fn"><a name="QXmlQuery-3"></a>QXmlQuery::QXmlQuery ( const <a href="qxmlnamepool.html">QXmlNamePool</a> &amp; <i>np</i> )</h3>
+<p>Constructs a query that will use <i>np</i> as its name pool. The query cannot be evaluated until <a href="qxmlquery.html#setQuery">setQuery</a>() has been called.</p>
+<h3 class="fn"><a name="QXmlQuery-4"></a>QXmlQuery::QXmlQuery ( <a href="qxmlquery.html#QueryLanguage-enum">QueryLanguage</a> <i>queryLanguage</i>, const <a href="qxmlnamepool.html">QXmlNamePool</a> &amp; <i>np</i> = QXmlNamePool() )</h3>
+<p>Constructs a query that will be used to run Xqueries or XSL-T stylesheets, depending on the value of <i>queryLanguage</i>. It will use <i>np</i> as its name pool.</p>
+<p><b>Note:</b> If your <a href="qxmlquery.html">QXmlQuery</a> will process XSL-T stylesheets, this constructor must be used. The default constructor can only create instances of <a href="qxmlquery.html">QXmlQuery</a> for running XQueries.</p>
+<p><b>Note:</b> The XSL-T support in this release is considered experimental. See the <a href="xmlprocessing.html#xslt-2-0">XSLT conformance</a> for details.</p>
+<p>This function was introduced in Qt 4.5.</p>
+<p>See also <a href="qxmlquery.html#queryLanguage">queryLanguage</a>().</p>
+<a name="//apple_ref/cpp/instm/QXmlQuery/~QXmlQuery" />
+<h3 class="fn"><a name="dtor.QXmlQuery"></a>QXmlQuery::~QXmlQuery ()</h3>
+<p>Destroys this <a href="qxmlquery.html">QXmlQuery</a>.</p>
+<a name="//apple_ref/cpp/instm/QXmlQuery/bindVariable" />
+<h3 class="fn"><a name="bindVariable"></a>void QXmlQuery::bindVariable ( const <a href="qxmlname.html">QXmlName</a> &amp; <i>name</i>, const <a href="qxmlitem.html">QXmlItem</a> &amp; <i>value</i> )</h3>
+<p>Binds the variable <i>name</i> to the <i>value</i> so that $<i>name</i> can be used from within the query to refer to the <i>value</i>.</p>
+<p><i>name</i> must not be <i>null</i>. <i>name</i>.isNull() must return false. If <i>name</i> has already been bound by a previous bindVariable() call, its previous binding will be overridden.</p>
+<p>If <i>value</i> is null so that <i>value</i>.isNull() returns true, and <i>name</i> already has a binding, the effect is to remove the existing binding for <i>name</i>.</p>
+<p>To bind a value of type <a href="qstring.html">QString</a> or <a href="qurl.html">QUrl</a>, wrap the value in a <a href="qvariant.html">QVariant</a> such that <a href="qxmlitem.html">QXmlItem</a>'s <a href="qvariant.html">QVariant</a> constructor is called.</p>
+<p>All strings processed by the query must be valid XQuery strings, which means they must contain only XML 1.0 characters. However, this requirement is not checked. If the query processes an invalid string, the behavior is undefined.</p>
+<p>See also <a href="qvariant.html#isValid">QVariant::isValid</a>(), <a href="xmlprocessing.html#qtxdm">How QVariant maps to XQuery's Data Model</a>, and <a href="qxmlitem.html#isNull">QXmlItem::isNull</a>().</p>
+<h3 class="fn"><a name="bindVariable-2"></a>void QXmlQuery::bindVariable ( const <a href="qxmlname.html">QXmlName</a> &amp; <i>name</i>, <a href="qiodevice.html">QIODevice</a> * <i>device</i> )</h3>
+<p>Binds the variable <i>name</i> to the <i>device</i> so that $<i>name</i> can be used from within the query to refer to the <i>device</i>. The <a href="qiodevice.html">QIODevice</a> <i>device</i> is exposed to the query as a URI of type <tt>xs:anyURI</tt>, which can be passed to the <tt>fn:doc()</tt> function to be read. E.g&#x2e;, this function can be used to pass an XML document in memory to <tt>fn:doc</tt>.</p>
+<pre>     QByteArray myDocument;
+     QBuffer buffer(&amp;myDocument); <span class="comment">// This is a QIODevice.</span>
+     buffer.open(QIODevice::ReadOnly);
+     QXmlQuery query;
+     query.bindVariable(&quot;myDocument&quot;, &amp;buffer);
+     query.setQuery(&quot;doc($myDocument)&quot;);</pre>
+<p>The caller must ensure that <i>device</i> has been opened with at least <a href="qiodevice.html#OpenModeFlag-enum">QIODevice::ReadOnly</a> prior to this binding. Otherwise, behavior is undefined.</p>
+<p>If the query will access an XML document contained in a <a href="qstring.html">QString</a>, use a <a href="qbuffer.html">QBuffer</a> as shown in the following snippet. Suppose <i>myQString</i> contains <tt>&lt;document&gt;content&lt;/document&gt;</tt></p>
+<pre>     QBuffer device;
+     device.setData(myQString.toUtf8());
+     device.open(QIODevice::ReadOnly);
+
+     QXmlQuery query;
+     query.setQuery(&quot;doc($inputDocument)/query[theDocument]&quot;);
+     query.bindVariable(&quot;inputDocument&quot;, &amp;device);</pre>
+<p><i>name</i> must not be <i>null</i>. <i>name</i>.isNull() must return false. If <i>name</i> has already been bound, its previous binding will be overridden. The URI that <i>name</i> evaluates to is arbitrary and may change.</p>
+<p>If the type of the variable binding changes (e.g&#x2e;, if a previous binding by the same name was a <a href="qvariant.html">QVariant</a>, or if there was no previous binding), <a href="qxmlquery.html#isValid">isValid</a>() will return <tt>false</tt>, and recompilation of the query text is required. To recompile the query, call <a href="qxmlquery.html#setQuery">setQuery</a>(). For this reason, <a href="qxmlquery.html#bindVariable">bindVariable</a>() should be called before <a href="qxmlquery.html#setQuery">setQuery</a>(), if possible.</p>
+<p><b>Note:</b> <i>device</i> must not be deleted while this <a href="qxmlquery.html">QXmlQuery</a> exists.</p>
+<h3 class="fn"><a name="bindVariable-3"></a>void QXmlQuery::bindVariable ( const <a href="qxmlname.html">QXmlName</a> &amp; <i>name</i>, const QXmlQuery &amp; <i>query</i> )</h3>
+<p>Binds the result of the query <i>query</i>, to a variable by name <i>name</i>.</p>
+<p>Evaluation of <i>query</i> will be commenced when this function is called.</p>
+<p>If <i>query</i> is invalid, behavior is undefined. <i>query</i> will be copied.</p>
+<p>This function was introduced in Qt 4.5.</p>
+<p>See also <a href="qxmlquery.html#isValid">isValid</a>().</p>
+<h3 class="fn"><a name="bindVariable-4"></a>void QXmlQuery::bindVariable ( const <a href="qstring.html">QString</a> &amp; <i>localName</i>, const <a href="qxmlitem.html">QXmlItem</a> &amp; <i>value</i> )</h3>
+<p>This is an overloaded function.</p>
+<p>This function constructs a <a href="qxmlname.html">QXmlName</a> from <i>localName</i> using the query's <a href="qxmlnamepool.html">namespace</a>. The function then behaves as the overloaded function. It is equivalent to the following snippet.</p>
+<pre>     QXmlNamePool namePool(query.namePool());
+     query.bindVariable(QXmlName(namePool, localName), value);</pre>
+<h3 class="fn"><a name="bindVariable-5"></a>void QXmlQuery::bindVariable ( const <a href="qstring.html">QString</a> &amp; <i>localName</i>, <a href="qiodevice.html">QIODevice</a> * <i>device</i> )</h3>
+<p>This is an overloaded function.</p>
+<p>If <i>localName</i> is a valid <a href="qxmlname.html#isNCName">NCName</a>, this function is equivalent to the following snippet.</p>
+<pre>     QXmlNamePool namePool(query.namePool());
+     query.bindVariable(QXmlName(namePool, localName), device);</pre>
+<p>A <a href="qxmlname.html">QXmlName</a> is constructed from <i>localName</i>, and is passed to the appropriate overload along with <i>device</i>.</p>
+<p>See also <a href="qxmlname.html#isNCName">QXmlName::isNCName</a>().</p>
+<h3 class="fn"><a name="bindVariable-6"></a>void QXmlQuery::bindVariable ( const <a href="qstring.html">QString</a> &amp; <i>localName</i>, const QXmlQuery &amp; <i>query</i> )</h3>
+<p>This is an overloaded function.</p>
+<p>Has the same behavior and effects as the function being overloaded, but takes the variable name <i>localName</i> as a <a href="qstring.html">QString</a>. <i>query</i> is used as in the overloaded function.</p>
+<p>This function was introduced in Qt 4.5.</p>
+<a name="//apple_ref/cpp/instm/QXmlQuery/evaluateTo" />
+<h3 class="fn"><a name="evaluateTo"></a>void QXmlQuery::evaluateTo ( <a href="qxmlresultitems.html">QXmlResultItems</a> * <i>result</i> ) const</h3>
+<p>Starts the evaluation and makes it available in <i>result</i>. If <i>result</i> is null, the behavior is undefined. The evaluation takes place incrementally (lazy evaluation), as the caller uses <a href="qxmlresultitems.html#next">QXmlResultItems::next</a>() to get the next result.</p>
+<p>See also <a href="qxmlresultitems.html#next">QXmlResultItems::next</a>().</p>
+<h3 class="fn"><a name="evaluateTo-2"></a>bool QXmlQuery::evaluateTo ( <a href="qabstractxmlreceiver.html">QAbstractXmlReceiver</a> * <i>callback</i> ) const</h3>
+<p>Evaluates this query and sends the result as a sequence of callbacks to the <a href="qabstractxmlreceiver.html">receiver</a> <i>callback</i>. <a href="qxmlquery.html">QXmlQuery</a> does not take ownership of <i>callback</i>.</p>
+<p>If an error occurs during the evaluation, error messages are sent to <a href="qxmlquery.html#messageHandler">messageHandler</a>() and <tt>false</tt> is returned.</p>
+<p>If this query <a href="qxmlquery.html#isValid">is invalid</a>, <tt>false</tt> is returned and the behavior is undefined. If <i>callback</i> is null, behavior is undefined.</p>
+<p>See also <a href="qabstractxmlreceiver.html">QAbstractXmlReceiver</a> and <a href="qxmlquery.html#isValid">isValid</a>().</p>
+<h3 class="fn"><a name="evaluateTo-3"></a>bool QXmlQuery::evaluateTo ( <a href="qstringlist.html">QStringList</a> * <i>target</i> ) const</h3>
+<p>Attempts to evaluate the query and returns the results in the <i>target</i> <a href="qstringlist.html">string list</a>.</p>
+<p>If the query <a href="qxmlquery.html#isValid">is valid</a> and the evaluation succeeds, true is returned. Otherwise, false is returned and the contents of <i>target</i> are undefined.</p>
+<p>The query must evaluate to a sequence of <tt>xs:string</tt> values. If the query does not evaluate to a sequence of strings, the values can often be converted by adding a call to <tt>string()</tt> at the end of the XQuery.</p>
+<p>If <i>target</i> is null, the behavior is undefined.</p>
+<h3 class="fn"><a name="evaluateTo-4"></a>bool QXmlQuery::evaluateTo ( <a href="qstring.html">QString</a> * <i>output</i> ) const</h3>
+<p>Evaluates the query, and serializes the output as XML to <i>output</i>.</p>
+<p>If an error occurs during the evaluation, error messages are sent to <a href="qxmlquery.html#messageHandler">messageHandler</a>(), the content of <i>output</i> is undefined and <tt>false</tt> is returned, otherwise <tt>true</tt> is returned.</p>
+<p>If <i>output</i> is <tt>null</tt> behavior is undefined. <a href="qxmlquery.html">QXmlQuery</a> does not take ownership of <i>output</i>.</p>
+<p>Internally, the class <a href="qxmlformatter.html">QXmlFormatter</a> is used for this.</p>
+<p>This function was introduced in Qt 4.5.</p>
+<h3 class="fn"><a name="evaluateTo-5"></a>bool QXmlQuery::evaluateTo ( <a href="qiodevice.html">QIODevice</a> * <i>target</i> ) const</h3>
+<p>Evaluates the query or stylesheet, and writes the output to <i>target</i>.</p>
+<p><a href="qxmlserializer.html">QXmlSerializer</a> is used to write the output to <i>target</i>. In a future release, it is expected that this function will be changed to respect serialization options set in the stylesheet.</p>
+<p>If an error occurs during the evaluation, error messages are sent to <a href="qxmlquery.html#messageHandler">messageHandler</a>() and <tt>false</tt> is returned.</p>
+<p>If <i>target</i> is <tt>null</tt>, or is not opened in at least <a href="qiodevice.html#OpenModeFlag-enum">QIODevice::WriteOnly</a> mode, the behavior is undefined. <a href="qxmlquery.html">QXmlQuery</a> does not take ownership of <i>target</i>.</p>
+<p>This is an overloaded function.</p>
+<p>This function was introduced in Qt 4.5.</p>
+<a name="//apple_ref/cpp/instm/QXmlQuery/initialTemplateName" />
+<h3 class="fn"><a name="initialTemplateName"></a><a href="qxmlname.html">QXmlName</a> QXmlQuery::initialTemplateName () const</h3>
+<p>Returns the name of the XSL-T stylesheet template that the processor will call first when running an XSL-T stylesheet. This function only applies when using <a href="qxmlquery.html">QXmlQuery</a> to process XSL-T stylesheets. By default, no initial template is set. In that case, a default constructed <a href="qxmlname.html">QXmlName</a> is returned.</p>
+<p>This function was introduced in Qt 4.5.</p>
+<p>See also <a href="qxmlquery.html#setInitialTemplateName">setInitialTemplateName</a>().</p>
+<a name="//apple_ref/cpp/instm/QXmlQuery/isValid" />
+<h3 class="fn"><a name="isValid"></a>bool QXmlQuery::isValid () const</h3>
+<p>Returns true if this query is valid. Examples of invalid queries are ones that contain syntax errors or that have not had <a href="qxmlquery.html#setQuery">setQuery</a>() called for them yet.</p>
+<a name="//apple_ref/cpp/instm/QXmlQuery/messageHandler" />
+<h3 class="fn"><a name="messageHandler"></a><a href="qabstractmessagehandler.html">QAbstractMessageHandler</a> * QXmlQuery::messageHandler () const</h3>
+<p>Returns the message handler that handles compile and runtime messages for this <a href="qxmlquery.html">QXmlQuery</a>.</p>
+<p>See also <a href="qxmlquery.html#setMessageHandler">setMessageHandler</a>().</p>
+<a name="//apple_ref/cpp/instm/QXmlQuery/namePool" />
+<h3 class="fn"><a name="namePool"></a><a href="qxmlnamepool.html">QXmlNamePool</a> QXmlQuery::namePool () const</h3>
+<p>Returns the name pool used by this <a href="qxmlquery.html">QXmlQuery</a> for constructing <a href="qxmlname.html">names</a>. There is no setter for the name pool, because mixing name pools causes errors due to name confusion.</p>
+<a name="//apple_ref/cpp/instm/QXmlQuery/networkAccessManager" />
+<h3 class="fn"><a name="networkAccessManager"></a><a href="qnetworkaccessmanager.html">QNetworkAccessManager</a> * QXmlQuery::networkAccessManager () const</h3>
+<p>Returns the network manager, or 0 if it has not been set.</p>
+<p>This function was introduced in Qt 4.5.</p>
+<p>See also <a href="qxmlquery.html#setNetworkAccessManager">setNetworkAccessManager</a>().</p>
+<a name="//apple_ref/cpp/instm/QXmlQuery/queryLanguage" />
+<h3 class="fn"><a name="queryLanguage"></a><a href="qxmlquery.html#QueryLanguage-enum">QueryLanguage</a> QXmlQuery::queryLanguage () const</h3>
+<p>Returns a value indicating what this <a href="qxmlquery.html">QXmlQuery</a> is being used for. The default is <a href="qxmlquery.html#QueryLanguage-enum">QXmlQuery::XQuery10</a>, which means the <a href="qxmlquery.html">QXmlQuery</a> is being used for running XQuery and XPath queries. <a href="qxmlquery.html#QueryLanguage-enum">QXmlQuery::XSLT20</a> can also be returned, which indicates the <a href="qxmlquery.html">QXmlQuery</a> is for running XSL-T spreadsheets.</p>
+<p>This function was introduced in Qt 4.5.</p>
+<a name="//apple_ref/cpp/instm/QXmlQuery/setFocus" />
+<h3 class="fn"><a name="setFocus"></a>void QXmlQuery::setFocus ( const <a href="qxmlitem.html">QXmlItem</a> &amp; <i>item</i> )</h3>
+<p>Sets the focus to <i>item</i>. The focus is the set of items that the context item expression and path expressions navigate from. For example, in the expression <i>p/span</i>, the element that <i>p</i> evaluates to is the focus for the following expression, <i>span</i>.</p>
+<p>The focus can be accessed using the context item expression, i.e&#x2e;, dot (&quot;.&quot;).</p>
+<p>By default, the focus is not set and is undefined. It will therefore result in a dynamic error, <tt>XPDY0002</tt>, if the focus is attempted to be accessed. The focus must be set before the query is set with <a href="qxmlquery.html#setQuery">setQuery</a>().</p>
+<p>There is no behavior defined for setting an item which is null.</p>
+<h3 class="fn"><a name="setFocus-2"></a>bool QXmlQuery::setFocus ( const <a href="qurl.html">QUrl</a> &amp; <i>documentURI</i> )</h3>
+<p>This is an overloaded function.</p>
+<p>Sets the focus to be the document located at <i>documentURI</i> and returns true. If <i>documentURI</i> cannot be loaded, false is returned. It is undefined at what time the document may be loaded. When loading the document, the message handler and URI resolver set on this <a href="qxmlquery.html">QXmlQuery</a> are used.</p>
+<p>If <i>documentURI</i> is empty or is not a valid URI, the behavior of this function is undefined.</p>
+<p>This function was introduced in Qt 4.5.</p>
+<h3 class="fn"><a name="setFocus-3"></a>bool QXmlQuery::setFocus ( <a href="qiodevice.html">QIODevice</a> * <i>document</i> )</h3>
+<p>Sets the focus to be the <i>document</i> read from the <a href="qiodevice.html">QIODevice</a> and returns true. If <i>document</i> cannot be loaded, false is returned.</p>
+<p><a href="qxmlquery.html">QXmlQuery</a> does not take ownership of <i>document</i>. The user guarantees that a document is available from the <i>document</i> device and that the document is not empty. The device must be opened in at least read-only mode. <i>document</i> must stay in scope as long as the current query is active.</p>
+<p>This is an overloaded function.</p>
+<p>This function was introduced in Qt 4.5.</p>
+<h3 class="fn"><a name="setFocus-4"></a>bool QXmlQuery::setFocus ( const <a href="qstring.html">QString</a> &amp; <i>focus</i> )</h3>
+<p>This function behaves identically to calling the <a href="qxmlquery.html#setFocus">setFocus</a>() overload with a <a href="qiodevice.html">QIODevice</a> whose content is <i>focus</i> encoded as UTF-8. That is, <i>focus</i> is treated as if it contained an XML document.</p>
+<p>Returns the same result as the overload.</p>
+<p>This is an overloaded function.</p>
+<p>This function was introduced in Qt 4.6.</p>
+<a name="//apple_ref/cpp/instm/QXmlQuery/setInitialTemplateName" />
+<h3 class="fn"><a name="setInitialTemplateName"></a>void QXmlQuery::setInitialTemplateName ( const <a href="qxmlname.html">QXmlName</a> &amp; <i>name</i> )</h3>
+<p>Sets the <i>name</i> of the initial template. The initial template is the one the processor calls first, instead of attempting to match a template to the context node (if any). If an initial template is not set, the standard order of template invocation will be used.</p>
+<p>This function only applies when using <a href="qxmlquery.html">QXmlQuery</a> to process XSL-T stylesheets. The name becomes part of the compiled stylesheet. Therefore, this function must be called before calling <a href="qxmlquery.html#setQuery">setQuery</a>().</p>
+<p>If the stylesheet has no template named <i>name</i>, the processor will use the standard order of template invocation.</p>
+<p>This function was introduced in Qt 4.5.</p>
+<p>See also <a href="qxmlquery.html#initialTemplateName">initialTemplateName</a>().</p>
+<h3 class="fn"><a name="setInitialTemplateName-2"></a>void QXmlQuery::setInitialTemplateName ( const <a href="qstring.html">QString</a> &amp; <i>localName</i> )</h3>
+<p>This is an overloaded function.</p>
+<p>Sets the name of the initial template to <i>localName</i>, which must be a valid <a href="qxmlname.html#localName">local name</a>. The initial template is the one the processor calls first, instead of attempting to match a template to the context node (if any). If an initial template is not set, the standard order of template invocation will be used.</p>
+<p>This function only applies when using <a href="qxmlquery.html">QXmlQuery</a> to process XSL-T stylesheets. The name becomes part of the compiled stylesheet. Therefore, this function must be called before calling <a href="qxmlquery.html#setQuery">setQuery</a>().</p>
+<p>If <i>localName</i> is not a valid <a href="qxmlname.html#localName">local name</a>, the effect is undefined. If the stylesheet has no template named <i>localName</i>, the processor will use the standard order of template invocation.</p>
+<p>This function was introduced in Qt 4.5.</p>
+<p>See also <a href="qxmlquery.html#initialTemplateName">initialTemplateName</a>().</p>
+<a name="//apple_ref/cpp/instm/QXmlQuery/setMessageHandler" />
+<h3 class="fn"><a name="setMessageHandler"></a>void QXmlQuery::setMessageHandler ( <a href="qabstractmessagehandler.html">QAbstractMessageHandler</a> * <i>aMessageHandler</i> )</h3>
+<p>Changes the <a href="qabstractmessagehandler.html">message handler</a> for this <a href="qxmlquery.html">QXmlQuery</a> to <i>aMessageHandler</i>. The query sends all compile and runtime messages to this message handler. <a href="qxmlquery.html">QXmlQuery</a> does not take ownership of <i>aMessageHandler</i>.</p>
+<p>Normally, the default message handler is sufficient. It writes compile and runtime messages to <i>stderr</i>. The default message handler includes color codes if <i>stderr</i> can render colors.</p>
+<p>Note that changing the message handler after the query has been compiled has no effect, i.e&#x2e; the query uses the same message handler at runtime that it uses at compile time.</p>
+<p>When <a href="qxmlquery.html">QXmlQuery</a> calls <a href="qabstractmessagehandler.html#message">QAbstractMessageHandler::message</a>(), the arguments are as follows:</p>
+<p><table class="generic" align="center" cellpadding="2" cellspacing="1" border="0">
+<thead><tr valign="top" class="qt-style"><th>message() argument</th><th>Semantics</th></tr></thead>
+<tr valign="top" class="odd"><td><a href="qtglobal.html#QtMsgType-enum">QtMsgType</a> type</td><td>Only <a href="qtglobal.html#QtMsgType-enum">QtWarningMsg</a> and <a href="qtglobal.html#QtMsgType-enum">QtFatalMsg</a> are used. The former identifies a compile or runtime warning, while the latter identifies a dynamic or static error.</td></tr>
+<tr valign="top" class="even"><td>const <a href="qstring.html">QString</a> &amp; description</td><td>An XHTML document which is the actual message. It is translated into the current language.</td></tr>
+<tr valign="top" class="odd"><td>const <a href="qurl.html">QUrl</a> &amp;identifier</td><td>Identifies the error with a URI, where the fragment is the error code, and the rest of the URI is the error namespace.</td></tr>
+<tr valign="top" class="even"><td>const <a href="qsourcelocation.html">QSourceLocation</a> &amp; sourceLocation</td><td>Identifies where the error occurred.</td></tr>
+</table></p>
+<p>See also <a href="qxmlquery.html#messageHandler">messageHandler</a>().</p>
+<a name="//apple_ref/cpp/instm/QXmlQuery/setNetworkAccessManager" />
+<h3 class="fn"><a name="setNetworkAccessManager"></a>void QXmlQuery::setNetworkAccessManager ( <a href="qnetworkaccessmanager.html">QNetworkAccessManager</a> * <i>newManager</i> )</h3>
+<p>Sets the network manager to <i>newManager</i>. <a href="qxmlquery.html">QXmlQuery</a> does not take ownership of <i>newManager</i>.</p>
+<p>This function was introduced in Qt 4.5.</p>
+<p>See also <a href="qxmlquery.html#networkAccessManager">networkAccessManager</a>().</p>
+<a name="//apple_ref/cpp/instm/QXmlQuery/setQuery" />
+<h3 class="fn"><a name="setQuery"></a>void QXmlQuery::setQuery ( <a href="qiodevice.html">QIODevice</a> * <i>sourceCode</i>, const <a href="qurl.html">QUrl</a> &amp; <i>documentURI</i> = QUrl() )</h3>
+<p>Sets this <a href="qxmlquery.html">QXmlQuery</a> to an XQuery read from the <i>sourceCode</i> device. The device must have been opened with at least <a href="qiodevice.html#OpenModeFlag-enum">QIODevice::ReadOnly</a>.</p>
+<p><i>documentURI</i> represents the query obtained from the <i>sourceCode</i> device. It is the base URI of the static context, as defined in the <a href="http://www.w3.org/TR/xquery/">XQuery language</a>. It is used internally to resolve relative URIs that appear in the query, and for message reporting. <i>documentURI</i> can be empty. If it is empty, the <a href="qcoreapplication.html#applicationFilePath">application file path</a> is used. If it is not empty, it may be either relative or absolute. If it is relative, it is resolved itself against the <a href="qcoreapplication.html#applicationFilePath">application file path</a> before it is used. If <i>documentURI</i> is neither a valid URI nor empty, the result is undefined.</p>
+<p>If the query contains a static error (e.g&#x2e; syntax error), an error message is sent to the <a href="qxmlquery.html#messageHandler">messageHandler</a>(), and <a href="qxmlquery.html#isValid">isValid</a>() will return <i>false</i>.</p>
+<p>Variables must be bound before setQuery() is called.</p>
+<p>The encoding of the XQuery in <i>sourceCode</i> is detected internally using the rules for setting and detecting encoding of XQuery files, which are explained in the <a href="http://www.w3.org/TR/xquery/">XQuery language</a>.</p>
+<p>If <i>sourceCode</i> is <tt>null</tt> or not readable, or if <i>documentURI</i> is not a valid URI, behavior is undefined.</p>
+<p>See also <a href="qxmlquery.html#isValid">isValid</a>().</p>
+<h3 class="fn"><a name="setQuery-2"></a>void QXmlQuery::setQuery ( const <a href="qurl.html">QUrl</a> &amp; <i>queryURI</i>, const <a href="qurl.html">QUrl</a> &amp; <i>baseURI</i> = QUrl() )</h3>
+<p>Sets this <a href="qxmlquery.html">QXmlQuery</a> to the XQuery read from the <i>queryURI</i>. Use <a href="qxmlquery.html#isValid">isValid</a>() after calling this function. If an error occurred reading <i>queryURI</i>, e.g&#x2e;, the query does not exist, cannot be read, or is invalid, <a href="qxmlquery.html#isValid">isValid</a>() will return <i>false</i>.</p>
+<p>The supported URI schemes are the same as those in the XQuery function <tt>fn:doc</tt>, except that queryURI can be the object of a variable binding.</p>
+<p><i>baseURI</i> is the Base URI of the static context, as defined in the <a href="http://www.w3.org/TR/xquery/">XQuery language</a>. It is used internally to resolve relative URIs that appear in the query, and for message reporting. If <i>baseURI</i> is empty, <i>queryURI</i> is used. Otherwise, <i>baseURI</i> is used, and it is resolved against the <a href="qcoreapplication.html#applicationFilePath">application file path</a> if it is relative.</p>
+<p>If <i>queryURI</i> is empty or invalid, or if <i>baseURI</i> is invalid, the behavior of this function is undefined.</p>
+<h3 class="fn"><a name="setQuery-3"></a>void QXmlQuery::setQuery ( const <a href="qstring.html">QString</a> &amp; <i>sourceCode</i>, const <a href="qurl.html">QUrl</a> &amp; <i>documentURI</i> = QUrl() )</h3>
+<p>This is an overloaded function.</p>
+<p>The behavior and requirements of this function are the same as for setQuery(<a href="qiodevice.html">QIODevice</a>*, const <a href="qurl.html">QUrl</a>&amp;), after the XQuery has been read from the IO device into a string. Because <i>sourceCode</i> is already a Unicode string, detection of its encoding is unnecessary.</p>
+<a name="//apple_ref/cpp/instm/QXmlQuery/setUriResolver" />
+<h3 class="fn"><a name="setUriResolver"></a>void QXmlQuery::setUriResolver ( const <a href="qabstracturiresolver.html">QAbstractUriResolver</a> * <i>resolver</i> )</h3>
+<p>Sets the URI resolver to <i>resolver</i>. <a href="qxmlquery.html">QXmlQuery</a> does not take ownership of <i>resolver</i>.</p>
+<p>See also <a href="qxmlquery.html#uriResolver">uriResolver</a>().</p>
+<a name="//apple_ref/cpp/instm/QXmlQuery/uriResolver" />
+<h3 class="fn"><a name="uriResolver"></a>const <a href="qabstracturiresolver.html">QAbstractUriResolver</a> * QXmlQuery::uriResolver () const</h3>
+<p>Returns the query's URI resolver. If no URI resolver has been set, <a href="qtxmlpatterns.html">QtXmlPatterns</a> will use the URIs in queries as they are.</p>
+<p>The URI resolver provides a level of abstraction, or <i>polymorphic URIs</i>. A resolver can rewrite <i>logical</i> URIs to physical ones, or it can translate obsolete or invalid URIs to valid ones.</p>
+<p><a href="qtxmlpatterns.html">QtXmlPatterns</a> calls the URI resolver for all URIs it encounters, except for namespaces. Specifically, all builtin functions that deal with URIs (<tt>fn:doc()</tt>, and <tt>fn:doc-available()</tt>).</p>
+<p>In the case of <tt>fn:doc()</tt>, the absolute URI is the base URI in the static context (which most likely is the location of the query). Rather than use the URI the user specified, the return value of <a href="qabstracturiresolver.html#resolve">QAbstractUriResolver::resolve</a>() will be used.</p>
+<p>When <a href="qtxmlpatterns.html">QtXmlPatterns</a> calls <a href="qabstracturiresolver.html#resolve">QAbstractUriResolver::resolve</a>() the absolute URI is the URI mandated by the XQuery language, and the relative URI is the URI specified by the user.</p>
+<p>See also <a href="qxmlquery.html#setUriResolver">setUriResolver</a>().</p>
+<a name="//apple_ref/cpp/instm/QXmlQuery/operator=" />
+<h3 class="fn"><a name="operator-eq"></a>QXmlQuery &amp; QXmlQuery::operator= ( const QXmlQuery &amp; <i>other</i> )</h3>
+<p>Assigns <i>other</i> to this <a href="qxmlquery.html">QXmlQuery</a> instance.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

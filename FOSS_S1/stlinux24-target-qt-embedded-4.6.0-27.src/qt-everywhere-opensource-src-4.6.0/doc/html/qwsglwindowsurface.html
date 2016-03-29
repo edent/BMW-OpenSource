@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qglwindowsurface_qws.cpp -->
+<head>
+  <title>Qt 4.6: QWSGLWindowSurface Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QWSGLWindowSurface" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QWSGLWindowSurface Class Reference<br /><span class="small-subtitle">[<a href="qtopengl.html">QtOpenGL</a> module]</span>
+</h1>
+<p>The QWSGLWindowSurface class provides the drawing area for top-level windows with Qt for Embedded Linux on EGL/OpenGL ES. It also provides the drawing area for <a href="qglwidget.html">QGLWidget</a>s whether they are top-level windows or children of another <a href="qwidget.html">QWidget</a>. <a href="#details">More...</a></p>
+<pre> #include &lt;QWSGLWindowSurface&gt;</pre><p><b>This class is under development and is subject to change.</b></p>
+<p><b>This class is not part of the Qt GUI Framework Edition.</b></p>
+<p>This class was introduced in Qt 4.3.</p>
+<ul>
+<li><a href="qwsglwindowsurface-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qwsglwindowsurface.html#QWSGLWindowSurface">QWSGLWindowSurface</a></b> ( QWidget * <i>window</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qwsglwindowsurface.html#QWSGLWindowSurface-2">QWSGLWindowSurface</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qwsglwindowsurface.html#dtor.QWSGLWindowSurface">~QWSGLWindowSurface</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QGLContext * </td><td class="memItemRight" valign="bottom"><b><a href="qwsglwindowsurface.html#context">context</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qwsglwindowsurface.html#setContext">setContext</a></b> ( QGLContext * <i>context</i> )</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QWSGLWindowSurface class provides the drawing area for top-level windows with Qt for Embedded Linux on EGL/OpenGL ES. It also provides the drawing area for <a href="qglwidget.html">QGLWidget</a>s whether they are top-level windows or children of another <a href="qwidget.html">QWidget</a>.</p>
+<p>Note that this class is only available in Qt for Embedded Linux and only available if Qt is configured with OpenGL support.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QWSGLWindowSurface/QWSGLWindowSurface" />
+<h3 class="fn"><a name="QWSGLWindowSurface"></a>QWSGLWindowSurface::QWSGLWindowSurface ( <a href="qwidget.html">QWidget</a> * <i>window</i> )</h3>
+<p>Constructs an empty <a href="qwsglwindowsurface.html">QWSGLWindowSurface</a> for the given top-level <i>window</i>. The window surface is later initialized from chooseContext() and resources for it is typically allocated in setGeometry().</p>
+<h3 class="fn"><a name="QWSGLWindowSurface-2"></a>QWSGLWindowSurface::QWSGLWindowSurface ()</h3>
+<p>Constructs an empty <a href="qwsglwindowsurface.html">QWSGLWindowSurface</a>.</p>
+<a name="//apple_ref/cpp/instm/QWSGLWindowSurface/~QWSGLWindowSurface" />
+<h3 class="fn"><a name="dtor.QWSGLWindowSurface"></a>QWSGLWindowSurface::~QWSGLWindowSurface ()</h3>
+<p>Destroys the <a href="qwsglwindowsurface.html">QWSGLWindowSurface</a> object and frees any allocated resources.</p>
+<a name="//apple_ref/cpp/instm/QWSGLWindowSurface/context" />
+<h3 class="fn"><a name="context"></a><a href="qglcontext.html">QGLContext</a> * QWSGLWindowSurface::context () const</h3>
+<p>Returns the <a href="qglcontext.html">QGLContext</a> of the window surface.</p>
+<p>See also <a href="qwsglwindowsurface.html#setContext">setContext</a>().</p>
+<a name="//apple_ref/cpp/instm/QWSGLWindowSurface/setContext" />
+<h3 class="fn"><a name="setContext"></a>void QWSGLWindowSurface::setContext ( <a href="qglcontext.html">QGLContext</a> * <i>context</i> )</h3>
+<p>Sets the <a href="qglcontext.html">QGLContext</a> for this window surface to <i>context</i>.</p>
+<p>See also <a href="qwsglwindowsurface.html#context">context</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

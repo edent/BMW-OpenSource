@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qgraphicswebview.cpp -->
+<head>
+  <title>Qt 4.6: QGraphicsWebView Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QGraphicsWebView" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QGraphicsWebView Class Reference<br /><span class="small-subtitle">[<a href="qtwebkit.html">QtWebKit</a> module]</span>
+</h1>
+<p>The QGraphicsWebView class allows Web content to be added to a <a href="graphicsview.html#graphicsview">GraphicsView</a>. <a href="#details">More...</a></p>
+<pre> #include &lt;QGraphicsWebView&gt;</pre><p><b>This class is not part of the Qt GUI Framework Edition.</b></p>
+<p>Inherits <a href="qgraphicswidget.html">QGraphicsWidget</a>.</p>
+<p>This class was introduced in Qt 4.6.</p>
+<ul>
+<li><a href="qgraphicswebview-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="properties"></a>
+<h2>Properties</h2>
+<p><table class="propsummary" width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr><td width="45%" valign="top"><ul>
+<li><div class="fn"><b><a href="qgraphicswebview.html#icon-prop">icon</a></b> : const QIcon</div></li>
+<li><div class="fn"><b><a href="qgraphicswebview.html#modified-prop">modified</a></b> : const bool</div></li>
+<li><div class="fn"><b><a href="qgraphicswebview.html#title-prop">title</a></b> : const QString</div></li>
+</ul></td><td valign="top"><ul>
+<li><div class="fn"><b><a href="qgraphicswebview.html#url-prop">url</a></b> : QUrl</div></li>
+<li><div class="fn"><b><a href="qgraphicswebview.html#zoomFactor-prop">zoomFactor</a></b> : qreal</div></li>
+</ul>
+</td></tr>
+</table></p>
+<ul>
+<li><div bar="2" class="fn"></div>12 properties inherited from <a href="qgraphicswidget.html#properties">QGraphicsWidget</a></li>
+<li><div bar="2" class="fn"></div>12 properties inherited from <a href="qgraphicsobject.html#properties">QGraphicsObject</a></li>
+<li><div bar="2" class="fn"></div>1 property inherited from <a href="qobject.html#properties">QObject</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#QGraphicsWebView">QGraphicsWebView</a></b> ( QGraphicsItem * <i>parent</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#dtor.QGraphicsWebView">~QGraphicsWebView</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#findText">findText</a></b> ( const QString &amp; <i>subString</i>, QWebPage::FindFlags <i>options</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QWebHistory * </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#history">history</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QIcon </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#icon-prop">icon</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#modified-prop">isModified</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#load">load</a></b> ( const QUrl &amp; <i>url</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#load-2">load</a></b> ( const QNetworkRequest &amp; <i>request</i>, QNetworkAccessManager::Operation <i>operation</i> = QNetworkAccessManager::GetOperation, const QByteArray &amp; <i>body</i> = QByteArray() )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QWebPage * </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#page">page</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QAction * </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#pageAction">pageAction</a></b> ( QWebPage::WebAction <i>action</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#setContent">setContent</a></b> ( const QByteArray &amp; <i>data</i>, const QString &amp; <i>mimeType</i> = QString(), const QUrl &amp; <i>baseUrl</i> = QUrl() )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#setHtml">setHtml</a></b> ( const QString &amp; <i>html</i>, const QUrl &amp; <i>baseUrl</i> = QUrl() )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#setPage">setPage</a></b> ( QWebPage * <i>page</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#url-prop">setUrl</a></b> ( const QUrl &amp; )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#zoomFactor-prop">setZoomFactor</a></b> ( qreal )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QWebSettings * </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#settings">settings</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#title-prop">title</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#triggerPageAction">triggerPageAction</a></b> ( QWebPage::WebAction <i>action</i>, bool <i>checked</i> = false )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QUrl </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#url-prop">url</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">qreal </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#zoomFactor-prop">zoomFactor</a></b> () const</td></tr>
+</table>
+<hr />
+<a name="reimplemented-public-functions"></a>
+<h2>Reimplemented Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#event">event</a></b> ( QEvent * <i>event</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QVariant </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#inputMethodQuery">inputMethodQuery</a></b> ( Qt::InputMethodQuery <i>query</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QVariant </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#itemChange">itemChange</a></b> ( GraphicsItemChange <i>change</i>, const QVariant &amp; <i>value</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#paint">paint</a></b> ( QPainter * <i>painter</i>, const QStyleOptionGraphicsItem * <i>option</i>, QWidget * <i>widget</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#setGeometry">setGeometry</a></b> ( const QRectF &amp; <i>rect</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QSizeF </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#sizeHint">sizeHint</a></b> ( Qt::SizeHint <i>which</i>, const QSizeF &amp; <i>constraint</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#updateGeometry">updateGeometry</a></b> ()</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>51 public functions inherited from <a href="qgraphicswidget.html#public-functions">QGraphicsWidget</a></li>
+<li><div bar="2" class="fn"></div>2 public functions inherited from <a href="qgraphicsobject.html#public-functions">QGraphicsObject</a></li>
+<li><div bar="2" class="fn"></div>35 public functions inherited from <a href="qgraphicslayoutitem.html#public-functions">QGraphicsLayoutItem</a></li>
+<li><div bar="2" class="fn"></div>29 public functions inherited from <a href="qobject.html#public-functions">QObject</a></li>
+<li><div bar="2" class="fn"></div>177 public functions inherited from <a href="qgraphicsitem.html#public-functions">QGraphicsItem</a></li>
+</ul>
+<hr />
+<a name="public-slots"></a>
+<h2>Public Slots</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#back">back</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#forward">forward</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#reload">reload</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#stop">stop</a></b> ()</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>1 public slot inherited from <a href="qgraphicswidget.html#public-slots">QGraphicsWidget</a></li>
+<li><div bar="2" class="fn"></div>1 public slot inherited from <a href="qobject.html#public-slots">QObject</a></li>
+</ul>
+<hr />
+<a name="signals"></a>
+<h2>Signals</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#iconChanged">iconChanged</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#linkClicked">linkClicked</a></b> ( const QUrl &amp; <i>url</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#loadFinished">loadFinished</a></b> ( bool <i>ok</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#loadProgress">loadProgress</a></b> ( int <i>progress</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#loadStarted">loadStarted</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#statusBarMessage">statusBarMessage</a></b> ( const QString &amp; <i>text</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#titleChanged">titleChanged</a></b> ( const QString &amp; <i>title</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#urlChanged">urlChanged</a></b> ( const QUrl &amp; <i>url</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>9 signals inherited from <a href="qgraphicsobject.html#signals">QGraphicsObject</a></li>
+<li><div bar="2" class="fn"></div>1 signal inherited from <a href="qobject.html#signals">QObject</a></li>
+</ul>
+<hr />
+<a name="reimplemented-protected-functions"></a>
+<h2>Reimplemented Protected Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#contextMenuEvent">contextMenuEvent</a></b> ( QGraphicsSceneContextMenuEvent * <i>ev</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#dragEnterEvent">dragEnterEvent</a></b> ( QGraphicsSceneDragDropEvent * <i>ev</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#dragLeaveEvent">dragLeaveEvent</a></b> ( QGraphicsSceneDragDropEvent * <i>ev</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#dragMoveEvent">dragMoveEvent</a></b> ( QGraphicsSceneDragDropEvent * <i>ev</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#dropEvent">dropEvent</a></b> ( QGraphicsSceneDragDropEvent * <i>ev</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#focusInEvent">focusInEvent</a></b> ( QFocusEvent * <i>ev</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#focusNextPrevChild">focusNextPrevChild</a></b> ( bool <i>next</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#focusOutEvent">focusOutEvent</a></b> ( QFocusEvent * <i>ev</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#hoverLeaveEvent">hoverLeaveEvent</a></b> ( QGraphicsSceneHoverEvent * <i>ev</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#hoverMoveEvent">hoverMoveEvent</a></b> ( QGraphicsSceneHoverEvent * <i>ev</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#inputMethodEvent">inputMethodEvent</a></b> ( QInputMethodEvent * <i>ev</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#keyPressEvent">keyPressEvent</a></b> ( QKeyEvent * <i>ev</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#keyReleaseEvent">keyReleaseEvent</a></b> ( QKeyEvent * <i>ev</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#mouseDoubleClickEvent">mouseDoubleClickEvent</a></b> ( QGraphicsSceneMouseEvent * <i>ev</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#mouseMoveEvent">mouseMoveEvent</a></b> ( QGraphicsSceneMouseEvent * <i>ev</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#mousePressEvent">mousePressEvent</a></b> ( QGraphicsSceneMouseEvent * <i>ev</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#mouseReleaseEvent">mouseReleaseEvent</a></b> ( QGraphicsSceneMouseEvent * <i>ev</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#sceneEvent">sceneEvent</a></b> ( QEvent * <i>event</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#wheelEvent">wheelEvent</a></b> ( QGraphicsSceneWheelEvent * <i>ev</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>24 protected functions inherited from <a href="qgraphicswidget.html#protected-functions">QGraphicsWidget</a></li>
+<li><div bar="2" class="fn"></div>3 protected functions inherited from <a href="qgraphicslayoutitem.html#protected-functions">QGraphicsLayoutItem</a></li>
+<li><div bar="2" class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+<li><div bar="2" class="fn"></div>23 protected functions inherited from <a href="qgraphicsitem.html#protected-functions">QGraphicsItem</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li><div class="fn"></div>1 static public member inherited from <a href="qgraphicswidget.html#static-public-members">QGraphicsWidget</a></li>
+<li><div class="fn"></div>5 static public members inherited from <a href="qobject.html#static-public-members">QObject</a></li>
+<li><div class="fn"></div>1 static public member inherited from <a href="qgraphicsitem.html#static-public-members">QGraphicsItem</a></li>
+<li><div class="fn"></div>24 protected functions inherited from <a href="qgraphicswidget.html#protected-functions">QGraphicsWidget</a></li>
+<li><div class="fn"></div>3 protected functions inherited from <a href="qgraphicslayoutitem.html#protected-functions">QGraphicsLayoutItem</a></li>
+<li><div class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+<li><div class="fn"></div>23 protected functions inherited from <a href="qgraphicsitem.html#protected-functions">QGraphicsItem</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QGraphicsWebView class allows Web content to be added to a <a href="graphicsview.html#graphicsview">GraphicsView</a>.</p>
+<p>An instance of this class renders Web content from a URL or supplied as data, using features of the <a href="qtwebkit.html">QtWebKit</a> module.</p>
+<p>If the width and height of the item are not set, they will default to 800 and 600, respectively. If the Web page contents is larger than that, scrollbars will be shown if not disabled explicitly.</p>
+<a name="browser-features"></a>
+<h3>Browser Features</h3>
+<p>Many of the functions, signals and properties provided by <a href="qwebview.html">QWebView</a> are also available for this item, making it simple to adapt existing code to use QGraphicsWebView instead of <a href="qwebview.html">QWebView</a>.</p>
+<p>The item uses a <a href="qwebpage.html">QWebPage</a> object to perform the rendering of Web content, and this can be obtained with the <a href="qgraphicswebview.html#page">page</a>() function, enabling the document itself to be accessed and modified.</p>
+<p>As with <a href="qwebview.html">QWebView</a>, the item records the browsing history using a <a href="qwebhistory.html">QWebHistory</a> object, accessible using the <a href="qgraphicswebview.html#history">history</a>() function. The <a href="qwebsettings.html">QWebSettings</a> object that defines the configuration of the browser can be obtained with the <a href="qgraphicswebview.html#settings">settings</a>() function, enabling features like plugin support to be customized for each item.</p>
+<p>See also <a href="qwebview.html">QWebView</a> and <a href="qgraphicstextitem.html">QGraphicsTextItem</a>.</p>
+<hr />
+<h2>Property Documentation</h2>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/icon" />
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/iconChanged" />
+<h3 class="fn"><a name="icon-prop"></a>icon : const <a href="qicon.html">QIcon</a></h3>
+<p>This property holds the icon associated with the web page currently viewed.</p>
+<p>By default, this property contains a null icon.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">QIcon </td><td class="memItemRight" valign="bottom"><b>icon</b> () const</td></tr>
+</table>
+<p><b>Notifier signal:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#iconChanged">iconChanged</a></b> ()</td></tr>
+</table>
+<p>See also <a href="qgraphicswebview.html#iconChanged">iconChanged</a>() and <a href="qwebsettings.html#iconForUrl">QWebSettings::iconForUrl</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/isModified" />
+<h3 class="fn"><a name="modified-prop"></a>modified : const bool</h3>
+<p>This property holds whether the document was modified by the user.</p>
+<p>Parts of HTML documents can be editable for example through the <tt>contenteditable</tt> attribute on HTML elements.</p>
+<p>By default, this property is false.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b>isModified</b> () const</td></tr>
+</table>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/title" />
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/titleChanged" />
+<h3 class="fn"><a name="title-prop"></a>title : const <a href="qstring.html">QString</a></h3>
+<p>This property holds the title of the web page currently viewed.</p>
+<p>By default, this property contains an empty string.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b>title</b> () const</td></tr>
+</table>
+<p><b>Notifier signal:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#titleChanged">titleChanged</a></b> ( const QString &amp; <i>title</i> )</td></tr>
+</table>
+<p>See also <a href="qgraphicswebview.html#titleChanged">titleChanged</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/url" />
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/setUrl" />
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/urlChanged" />
+<h3 class="fn"><a name="url-prop"></a>url : <a href="qurl.html">QUrl</a></h3>
+<p>This property holds the url of the web page currently viewed.</p>
+<p>Setting this property clears the view and loads the URL.</p>
+<p>By default, this property contains an empty, invalid URL.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">QUrl </td><td class="memItemRight" valign="bottom"><b>url</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setUrl</b> ( const QUrl &amp; )</td></tr>
+</table>
+<p><b>Notifier signal:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicswebview.html#urlChanged">urlChanged</a></b> ( const QUrl &amp; <i>url</i> )</td></tr>
+</table>
+<p>See also <a href="qgraphicswebview.html#load">load</a>() and <a href="qgraphicswebview.html#urlChanged">urlChanged</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/zoomFactor" />
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/setZoomFactor" />
+<h3 class="fn"><a name="zoomFactor-prop"></a>zoomFactor : <a href="qtglobal.html#qreal-typedef">qreal</a></h3>
+<p>This property holds the zoom factor for the view.</p>
+<p>This property was introduced in Qt 4.5.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">qreal </td><td class="memItemRight" valign="bottom"><b>zoomFactor</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setZoomFactor</b> ( qreal )</td></tr>
+</table>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/QGraphicsWebView" />
+<h3 class="fn"><a name="QGraphicsWebView"></a>QGraphicsWebView::QGraphicsWebView ( <a href="qgraphicsitem.html">QGraphicsItem</a> * <i>parent</i> = 0 )</h3>
+<p>Constructs an empty <a href="qgraphicswebview.html">QGraphicsWebView</a> with parent <i>parent</i>.</p>
+<p>See also <a href="qgraphicswebview.html#load">load</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/~QGraphicsWebView" />
+<h3 class="fn"><a name="dtor.QGraphicsWebView"></a>QGraphicsWebView::~QGraphicsWebView ()</h3>
+<p>Destroys the item.</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/back" />
+<h3 class="fn"><a name="back"></a>void QGraphicsWebView::back ()&nbsp;&nbsp;<tt> [slot]</tt></h3>
+<p>Convenience slot that loads the previous document in the list of documents built by navigating links. Does nothing if there is no previous document.</p>
+<p>See also <a href="qgraphicswebview.html#forward">forward</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/contextMenuEvent" />
+<h3 class="fn"><a name="contextMenuEvent"></a>void QGraphicsWebView::contextMenuEvent ( <a href="qgraphicsscenecontextmenuevent.html">QGraphicsSceneContextMenuEvent</a> * <i>ev</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qgraphicsitem.html#contextMenuEvent">QGraphicsItem::contextMenuEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/dragEnterEvent" />
+<h3 class="fn"><a name="dragEnterEvent"></a>void QGraphicsWebView::dragEnterEvent ( <a href="qgraphicsscenedragdropevent.html">QGraphicsSceneDragDropEvent</a> * <i>ev</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qgraphicsitem.html#dragEnterEvent">QGraphicsItem::dragEnterEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/dragLeaveEvent" />
+<h3 class="fn"><a name="dragLeaveEvent"></a>void QGraphicsWebView::dragLeaveEvent ( <a href="qgraphicsscenedragdropevent.html">QGraphicsSceneDragDropEvent</a> * <i>ev</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qgraphicsitem.html#dragLeaveEvent">QGraphicsItem::dragLeaveEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/dragMoveEvent" />
+<h3 class="fn"><a name="dragMoveEvent"></a>void QGraphicsWebView::dragMoveEvent ( <a href="qgraphicsscenedragdropevent.html">QGraphicsSceneDragDropEvent</a> * <i>ev</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qgraphicsitem.html#dragMoveEvent">QGraphicsItem::dragMoveEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/dropEvent" />
+<h3 class="fn"><a name="dropEvent"></a>void QGraphicsWebView::dropEvent ( <a href="qgraphicsscenedragdropevent.html">QGraphicsSceneDragDropEvent</a> * <i>ev</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qgraphicsitem.html#dropEvent">QGraphicsItem::dropEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/event" />
+<h3 class="fn"><a name="event"></a>bool QGraphicsWebView::event ( <a href="qevent.html">QEvent</a> * <i>event</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qobject.html#event">QObject::event</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/findText" />
+<h3 class="fn"><a name="findText"></a>bool QGraphicsWebView::findText ( const <a href="qstring.html">QString</a> &amp; <i>subString</i>, <a href="qwebpage.html#FindFlag-enum">QWebPage::FindFlags</a> <i>options</i> = 0 )</h3>
+<p>Finds the specified string, <i>subString</i>, in the page, using the given <i>options</i>.</p>
+<p>If the HighlightAllOccurrences flag is passed, the function will highlight all occurrences that exist in the page. All subsequent calls will extend the highlight, rather than replace it, with occurrences of the new string.</p>
+<p>If the HighlightAllOccurrences flag is not passed, the function will select an occurrence and all subsequent calls will replace the current occurrence with the next one.</p>
+<p>To clear the selection, just pass an empty string.</p>
+<p>Returns true if <i>subString</i> was found; otherwise returns false.</p>
+<p>See also <a href="qwebpage.html#selectedText-prop">QWebPage::selectedText</a>() and <a href="qwebpage.html#selectionChanged">QWebPage::selectionChanged</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/focusInEvent" />
+<h3 class="fn"><a name="focusInEvent"></a>void QGraphicsWebView::focusInEvent ( <a href="qfocusevent.html">QFocusEvent</a> * <i>ev</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qgraphicsitem.html#focusInEvent">QGraphicsItem::focusInEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/focusNextPrevChild" />
+<h3 class="fn"><a name="focusNextPrevChild"></a>bool QGraphicsWebView::focusNextPrevChild ( bool <i>next</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qgraphicswidget.html#focusNextPrevChild">QGraphicsWidget::focusNextPrevChild</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/focusOutEvent" />
+<h3 class="fn"><a name="focusOutEvent"></a>void QGraphicsWebView::focusOutEvent ( <a href="qfocusevent.html">QFocusEvent</a> * <i>ev</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qgraphicsitem.html#focusOutEvent">QGraphicsItem::focusOutEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/forward" />
+<h3 class="fn"><a name="forward"></a>void QGraphicsWebView::forward ()&nbsp;&nbsp;<tt> [slot]</tt></h3>
+<p>Convenience slot that loads the next document in the list of documents built by navigating links. Does nothing if there is no next document.</p>
+<p>See also <a href="qgraphicswebview.html#back">back</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/history" />
+<h3 class="fn"><a name="history"></a><a href="qwebhistory.html">QWebHistory</a> * QGraphicsWebView::history () const</h3>
+<p>Returns a pointer to the view's history of navigated web pages.</p>
+<p>It is equivalent to</p>
+<pre>     view-&gt;page()-&gt;history();</pre>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/hoverLeaveEvent" />
+<h3 class="fn"><a name="hoverLeaveEvent"></a>void QGraphicsWebView::hoverLeaveEvent ( <a href="qgraphicsscenehoverevent.html">QGraphicsSceneHoverEvent</a> * <i>ev</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qgraphicsitem.html#hoverLeaveEvent">QGraphicsItem::hoverLeaveEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/hoverMoveEvent" />
+<h3 class="fn"><a name="hoverMoveEvent"></a>void QGraphicsWebView::hoverMoveEvent ( <a href="qgraphicsscenehoverevent.html">QGraphicsSceneHoverEvent</a> * <i>ev</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qgraphicsitem.html#hoverMoveEvent">QGraphicsItem::hoverMoveEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/iconChanged" />
+<h3 class="fn"><a name="iconChanged"></a>void QGraphicsWebView::iconChanged ()&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted whenever the icon of the page is loaded or changes.</p>
+<p>In order for icons to be loaded, you will need to set an icon database path using <a href="qwebsettings.html#setIconDatabasePath">QWebSettings::setIconDatabasePath</a>().</p>
+<p>See also <a href="qgraphicswebview.html#icon-prop">icon</a>() and <a href="qwebsettings.html#setIconDatabasePath">QWebSettings::setIconDatabasePath</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/inputMethodEvent" />
+<h3 class="fn"><a name="inputMethodEvent"></a>void QGraphicsWebView::inputMethodEvent ( <a href="qinputmethodevent.html">QInputMethodEvent</a> * <i>ev</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qgraphicsitem.html#inputMethodEvent">QGraphicsItem::inputMethodEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/inputMethodQuery" />
+<h3 class="fn"><a name="inputMethodQuery"></a><a href="qvariant.html">QVariant</a> QGraphicsWebView::inputMethodQuery ( <a href="qt.html#InputMethodQuery-enum">Qt::InputMethodQuery</a> <i>query</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qgraphicsitem.html#inputMethodQuery">QGraphicsItem::inputMethodQuery</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/itemChange" />
+<h3 class="fn"><a name="itemChange"></a><a href="qvariant.html">QVariant</a> QGraphicsWebView::itemChange ( <a href="qgraphicsitem.html#GraphicsItemChange-enum">GraphicsItemChange</a> <i>change</i>, const <a href="qvariant.html">QVariant</a> &amp; <i>value</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qgraphicsitem.html#itemChange">QGraphicsItem::itemChange</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/keyPressEvent" />
+<h3 class="fn"><a name="keyPressEvent"></a>void QGraphicsWebView::keyPressEvent ( <a href="qkeyevent.html">QKeyEvent</a> * <i>ev</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qgraphicsitem.html#keyPressEvent">QGraphicsItem::keyPressEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/keyReleaseEvent" />
+<h3 class="fn"><a name="keyReleaseEvent"></a>void QGraphicsWebView::keyReleaseEvent ( <a href="qkeyevent.html">QKeyEvent</a> * <i>ev</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qgraphicsitem.html#keyReleaseEvent">QGraphicsItem::keyReleaseEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/linkClicked" />
+<h3 class="fn"><a name="linkClicked"></a>void QGraphicsWebView::linkClicked ( const <a href="qurl.html">QUrl</a> &amp; <i>url</i> )&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted whenever the user clicks on a link and the page's linkDelegationPolicy property is set to delegate the link handling for the specified <i>url</i>.</p>
+<p>See also <a href="qwebpage.html#linkDelegationPolicy-prop">QWebPage::linkDelegationPolicy</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/load" />
+<h3 class="fn"><a name="load"></a>void QGraphicsWebView::load ( const <a href="qurl.html">QUrl</a> &amp; <i>url</i> )</h3>
+<p>Loads the specified <i>url</i> and displays it.</p>
+<p><b>Note:</b> The view remains the same until enough data has arrived to display the new <i>url</i>.</p>
+<p>See also <a href="qgraphicswebview.html#url-prop">setUrl</a>(), <a href="qgraphicswebview.html#url-prop">url</a>(), and <a href="qgraphicswebview.html#urlChanged">urlChanged</a>().</p>
+<h3 class="fn"><a name="load-2"></a>void QGraphicsWebView::load ( const <a href="qnetworkrequest.html">QNetworkRequest</a> &amp; <i>request</i>, <a href="qnetworkaccessmanager.html#Operation-enum">QNetworkAccessManager::Operation</a> <i>operation</i> = QNetworkAccessManager::GetOperation, const <a href="qbytearray.html">QByteArray</a> &amp; <i>body</i> = QByteArray() )</h3>
+<p>Loads a network request, <i>request</i>, using the method specified in <i>operation</i>.</p>
+<p><i>body</i> is optional and is only used for POST operations.</p>
+<p><b>Note:</b> The view remains the same until enough data has arrived to display the new url.</p>
+<p>See also <a href="qgraphicswebview.html#url-prop">url</a>() and <a href="qgraphicswebview.html#urlChanged">urlChanged</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/loadFinished" />
+<h3 class="fn"><a name="loadFinished"></a>void QGraphicsWebView::loadFinished ( bool <i>ok</i> )&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted when a load of the page is finished. <i>ok</i> will indicate whether the load was successful or any error occurred.</p>
+<p>See also <a href="qgraphicswebview.html#loadStarted">loadStarted</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/loadProgress" />
+<h3 class="fn"><a name="loadProgress"></a>void QGraphicsWebView::loadProgress ( int <i>progress</i> )&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted every time an element in the web page completes loading and the overall loading progress advances.</p>
+<p>This signal tracks the progress of all child frames.</p>
+<p>The current value is provided by <i>progress</i> and scales from 0 to 100, which is the default range of <a href="qprogressbar.html">QProgressBar</a>.</p>
+<p>See also <a href="qgraphicswebview.html#loadStarted">loadStarted</a>() and <a href="qgraphicswebview.html#loadFinished">loadFinished</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/loadStarted" />
+<h3 class="fn"><a name="loadStarted"></a>void QGraphicsWebView::loadStarted ()&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted when a new load of the page is started.</p>
+<p>See also <a href="qgraphicswebview.html#loadProgress">loadProgress</a>() and <a href="qgraphicswebview.html#loadFinished">loadFinished</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/mouseDoubleClickEvent" />
+<h3 class="fn"><a name="mouseDoubleClickEvent"></a>void QGraphicsWebView::mouseDoubleClickEvent ( <a href="qgraphicsscenemouseevent.html">QGraphicsSceneMouseEvent</a> * <i>ev</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qgraphicsitem.html#mouseDoubleClickEvent">QGraphicsItem::mouseDoubleClickEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/mouseMoveEvent" />
+<h3 class="fn"><a name="mouseMoveEvent"></a>void QGraphicsWebView::mouseMoveEvent ( <a href="qgraphicsscenemouseevent.html">QGraphicsSceneMouseEvent</a> * <i>ev</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qgraphicsitem.html#mouseMoveEvent">QGraphicsItem::mouseMoveEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/mousePressEvent" />
+<h3 class="fn"><a name="mousePressEvent"></a>void QGraphicsWebView::mousePressEvent ( <a href="qgraphicsscenemouseevent.html">QGraphicsSceneMouseEvent</a> * <i>ev</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qgraphicsitem.html#mousePressEvent">QGraphicsItem::mousePressEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/mouseReleaseEvent" />
+<h3 class="fn"><a name="mouseReleaseEvent"></a>void QGraphicsWebView::mouseReleaseEvent ( <a href="qgraphicsscenemouseevent.html">QGraphicsSceneMouseEvent</a> * <i>ev</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qgraphicsitem.html#mouseReleaseEvent">QGraphicsItem::mouseReleaseEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/page" />
+<h3 class="fn"><a name="page"></a><a href="qwebpage.html">QWebPage</a> * QGraphicsWebView::page () const</h3>
+<p>Returns a pointer to the underlying web page.</p>
+<p>See also <a href="qgraphicswebview.html#setPage">setPage</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/pageAction" />
+<h3 class="fn"><a name="pageAction"></a><a href="qaction.html">QAction</a> * QGraphicsWebView::pageAction ( <a href="qwebpage.html#WebAction-enum">QWebPage::WebAction</a> <i>action</i> ) const</h3>
+<p>Returns a pointer to a <a href="qaction.html">QAction</a> that encapsulates the specified web action <i>action</i>.</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/paint" />
+<h3 class="fn"><a name="paint"></a>void QGraphicsWebView::paint ( <a href="qpainter.html">QPainter</a> * <i>painter</i>, const <a href="qstyleoptiongraphicsitem.html">QStyleOptionGraphicsItem</a> * <i>option</i>, <a href="qwidget.html">QWidget</a> * <i>widget</i> = 0 )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qgraphicsitem.html#paint">QGraphicsItem::paint</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/reload" />
+<h3 class="fn"><a name="reload"></a>void QGraphicsWebView::reload ()&nbsp;&nbsp;<tt> [slot]</tt></h3>
+<p>Reloads the current document.</p>
+<p>See also <a href="qgraphicswebview.html#stop">stop</a>() and <a href="qgraphicswebview.html#loadStarted">loadStarted</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/sceneEvent" />
+<h3 class="fn"><a name="sceneEvent"></a>bool QGraphicsWebView::sceneEvent ( <a href="qevent.html">QEvent</a> * <i>event</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qgraphicsitem.html#sceneEvent">QGraphicsItem::sceneEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/setContent" />
+<h3 class="fn"><a name="setContent"></a>void QGraphicsWebView::setContent ( const <a href="qbytearray.html">QByteArray</a> &amp; <i>data</i>, const <a href="qstring.html">QString</a> &amp; <i>mimeType</i> = QString(), const <a href="qurl.html">QUrl</a> &amp; <i>baseUrl</i> = QUrl() )</h3>
+<p>Sets the content of the web graphicsitem to the specified content <i>data</i>. If the <i>mimeType</i> argument is empty it is currently assumed that the content is HTML but in future versions we may introduce auto-detection.</p>
+<p>External objects referenced in the content are located relative to <i>baseUrl</i>.</p>
+<p>The <i>data</i> is loaded immediately; external objects are loaded asynchronously.</p>
+<p>See also <a href="qgraphicswebview.html#load">load</a>(), <a href="qgraphicswebview.html#setHtml">setHtml</a>(), and <a href="qwebframe.html#toHtml">QWebFrame::toHtml</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/setGeometry" />
+<h3 class="fn"><a name="setGeometry"></a>void QGraphicsWebView::setGeometry ( const <a href="qrectf.html">QRectF</a> &amp; <i>rect</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qgraphicslayoutitem.html#setGeometry">QGraphicsLayoutItem::setGeometry</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/setHtml" />
+<h3 class="fn"><a name="setHtml"></a>void QGraphicsWebView::setHtml ( const <a href="qstring.html">QString</a> &amp; <i>html</i>, const <a href="qurl.html">QUrl</a> &amp; <i>baseUrl</i> = QUrl() )</h3>
+<p>Sets the content of the web view to the specified <i>html</i>.</p>
+<p>External objects such as stylesheets or images referenced in the HTML document are located relative to <i>baseUrl</i>.</p>
+<p>The <i>html</i> is loaded immediately; external objects are loaded asynchronously.</p>
+<p>When using this method, WebKit assumes that external resources such as JavaScript programs or style sheets are encoded in UTF-8 unless otherwise specified. For example, the encoding of an external script can be specified through the charset attribute of the HTML script tag. Alternatively, the encoding can also be specified by the web server.</p>
+<p>See also <a href="qgraphicswebview.html#load">load</a>(), <a href="qgraphicswebview.html#setContent">setContent</a>(), and <a href="qwebframe.html#toHtml">QWebFrame::toHtml</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/setPage" />
+<h3 class="fn"><a name="setPage"></a>void QGraphicsWebView::setPage ( <a href="qwebpage.html">QWebPage</a> * <i>page</i> )</h3>
+<p>Makes <i>page</i> the new web page of the web graphicsitem.</p>
+<p>The parent <a href="qobject.html">QObject</a> of the provided page remains the owner of the object. If the current document is a child of the web view, it will be deleted.</p>
+<p>See also <a href="qgraphicswebview.html#page">page</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/settings" />
+<h3 class="fn"><a name="settings"></a><a href="qwebsettings.html">QWebSettings</a> * QGraphicsWebView::settings () const</h3>
+<p>Returns a pointer to the view/page specific settings object.</p>
+<p>It is equivalent to</p>
+<pre>     view-&gt;page()-&gt;settings();</pre>
+<p>See also <a href="qwebsettings.html#globalSettings">QWebSettings::globalSettings</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/sizeHint" />
+<h3 class="fn"><a name="sizeHint"></a><a href="qsizef.html">QSizeF</a> QGraphicsWebView::sizeHint ( <a href="qt.html#SizeHint-enum">Qt::SizeHint</a> <i>which</i>, const <a href="qsizef.html">QSizeF</a> &amp; <i>constraint</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qgraphicslayoutitem.html#sizeHint">QGraphicsLayoutItem::sizeHint</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/statusBarMessage" />
+<h3 class="fn"><a name="statusBarMessage"></a>void QGraphicsWebView::statusBarMessage ( const <a href="qstring.html">QString</a> &amp; <i>text</i> )&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted when the statusbar <i>text</i> is changed by the page.</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/stop" />
+<h3 class="fn"><a name="stop"></a>void QGraphicsWebView::stop ()&nbsp;&nbsp;<tt> [slot]</tt></h3>
+<p>Convenience slot that stops loading the document.</p>
+<p>See also <a href="qgraphicswebview.html#reload">reload</a>() and <a href="qgraphicswebview.html#loadFinished">loadFinished</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/titleChanged" />
+<h3 class="fn"><a name="titleChanged"></a>void QGraphicsWebView::titleChanged ( const <a href="qstring.html">QString</a> &amp; <i>title</i> )&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted whenever the <i>title</i> of the main frame changes.</p>
+<p>See also <a href="qgraphicswebview.html#title-prop">title</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/triggerPageAction" />
+<h3 class="fn"><a name="triggerPageAction"></a>void QGraphicsWebView::triggerPageAction ( <a href="qwebpage.html#WebAction-enum">QWebPage::WebAction</a> <i>action</i>, bool <i>checked</i> = false )</h3>
+<p>Triggers the specified <i>action</i>. If it is a checkable action the specified <i>checked</i> state is assumed.</p>
+<p>See also <a href="qgraphicswebview.html#pageAction">pageAction</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/updateGeometry" />
+<h3 class="fn"><a name="updateGeometry"></a>void QGraphicsWebView::updateGeometry ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qgraphicslayoutitem.html#updateGeometry">QGraphicsLayoutItem::updateGeometry</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/urlChanged" />
+<h3 class="fn"><a name="urlChanged"></a>void QGraphicsWebView::urlChanged ( const <a href="qurl.html">QUrl</a> &amp; <i>url</i> )&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted when the <i>url</i> of the view changes.</p>
+<p>See also <a href="qgraphicswebview.html#url-prop">url</a>() and <a href="qgraphicswebview.html#load">load</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsWebView/wheelEvent" />
+<h3 class="fn"><a name="wheelEvent"></a>void QGraphicsWebView::wheelEvent ( <a href="qgraphicsscenewheelevent.html">QGraphicsSceneWheelEvent</a> * <i>ev</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qgraphicsitem.html#wheelEvent">QGraphicsItem::wheelEvent</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

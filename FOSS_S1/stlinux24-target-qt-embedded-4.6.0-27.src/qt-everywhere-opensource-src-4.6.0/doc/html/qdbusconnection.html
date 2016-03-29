@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qdbusconnection.cpp -->
+<head>
+  <title>Qt 4.6: QDBusConnection Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QDBusConnection" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QDBusConnection Class Reference<br /><span class="small-subtitle">[<a href="qtdbus.html">QtDBus</a> module]</span>
+</h1>
+<p>The QDBusConnection class represents a connection to the D-Bus bus daemon. <a href="#details">More...</a></p>
+<pre> #include &lt;QDBusConnection&gt;</pre><p>This class was introduced in Qt 4.2.</p>
+<ul>
+<li><a href="qdbusconnection-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-types"></a>
+<h2>Public Types</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnection.html#BusType-enum">BusType</a></b> { SessionBus, SystemBus, ActivationBus }</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnection.html#RegisterOption-enum">RegisterOption</a></b> { ExportAdaptors, ExportScriptableSlots, ExportScriptableSignals, ExportScriptableProperties, ..., ExportChildObjects }</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">flags </td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnection.html#RegisterOption-enum">RegisterOptions</a></b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnection.html#UnregisterMode-enum">UnregisterMode</a></b> { UnregisterNode, UnregisterTree }</td></tr>
+</table>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnection.html#QDBusConnection">QDBusConnection</a></b> ( const QString &amp; <i>name</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnection.html#QDBusConnection-2">QDBusConnection</a></b> ( const QDBusConnection &amp; <i>other</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnection.html#dtor.QDBusConnection">~QDBusConnection</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QDBusPendingCall </td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnection.html#asyncCall">asyncCall</a></b> ( const QDBusMessage &amp; <i>message</i>, int <i>timeout</i> = -1 ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnection.html#baseService">baseService</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QDBusMessage </td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnection.html#call">call</a></b> ( const QDBusMessage &amp; <i>message</i>, QDBus::CallMode <i>mode</i> = QDBus::Block, int <i>timeout</i> = -1 ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnection.html#callWithCallback">callWithCallback</a></b> ( const QDBusMessage &amp; <i>message</i>, QObject * <i>receiver</i>, const char * <i>returnMethod</i>, const char * <i>errorMethod</i>, int <i>timeout</i> = -1 ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnection.html#callWithCallback-2">callWithCallback</a></b> ( const QDBusMessage &amp; <i>message</i>, QObject * <i>receiver</i>, const char * <i>returnMethod</i>, int <i>timeout</i> = -1 ) const&nbsp;&nbsp;<tt> (deprecated)</tt></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnection.html#connect">connect</a></b> ( const QString &amp; <i>service</i>, const QString &amp; <i>path</i>, const QString &amp; <i>interface</i>, const QString &amp; <i>name</i>, QObject * <i>receiver</i>, const char * <i>slot</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnection.html#connect-2">connect</a></b> ( const QString &amp; <i>service</i>, const QString &amp; <i>path</i>, const QString &amp; <i>interface</i>, const QString &amp; <i>name</i>, const QString &amp; <i>signature</i>, QObject * <i>receiver</i>, const char * <i>slot</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnection.html#connect-3">connect</a></b> ( const QString &amp; <i>service</i>, const QString &amp; <i>path</i>, const QString &amp; <i>interface</i>, const QString &amp; <i>name</i>, const QStringList &amp; <i>argumentMatch</i>, const QString &amp; <i>signature</i>, QObject * <i>receiver</i>, const char * <i>slot</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnection.html#disconnect">disconnect</a></b> ( const QString &amp; <i>service</i>, const QString &amp; <i>path</i>, const QString &amp; <i>interface</i>, const QString &amp; <i>name</i>, QObject * <i>receiver</i>, const char * <i>slot</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnection.html#disconnect-2">disconnect</a></b> ( const QString &amp; <i>service</i>, const QString &amp; <i>path</i>, const QString &amp; <i>interface</i>, const QString &amp; <i>name</i>, const QString &amp; <i>signature</i>, QObject * <i>receiver</i>, const char * <i>slot</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnection.html#disconnect-3">disconnect</a></b> ( const QString &amp; <i>service</i>, const QString &amp; <i>path</i>, const QString &amp; <i>interface</i>, const QString &amp; <i>name</i>, const QStringList &amp; <i>argumentMatch</i>, const QString &amp; <i>signature</i>, QObject * <i>receiver</i>, const char * <i>slot</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QDBusConnectionInterface * </td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnection.html#interface">interface</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnection.html#isConnected">isConnected</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QDBusError </td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnection.html#lastError">lastError</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnection.html#name">name</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QObject * </td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnection.html#objectRegisteredAt">objectRegisteredAt</a></b> ( const QString &amp; <i>path</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnection.html#registerObject">registerObject</a></b> ( const QString &amp; <i>path</i>, QObject * <i>object</i>, RegisterOptions <i>options</i> = ExportAdaptors )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnection.html#registerService">registerService</a></b> ( const QString &amp; <i>serviceName</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnection.html#send">send</a></b> ( const QDBusMessage &amp; <i>message</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnection.html#unregisterObject">unregisterObject</a></b> ( const QString &amp; <i>path</i>, UnregisterMode <i>mode</i> = UnregisterNode )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnection.html#unregisterService">unregisterService</a></b> ( const QString &amp; <i>serviceName</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QDBusConnection &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnection.html#operator-eq">operator=</a></b> ( const QDBusConnection &amp; <i>other</i> )</td></tr>
+</table>
+<hr />
+<a name="static-public-members"></a>
+<h2>Static Public Members</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">QDBusConnection </td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnection.html#connectToBus">connectToBus</a></b> ( BusType <i>type</i>, const QString &amp; <i>name</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QDBusConnection </td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnection.html#connectToBus-2">connectToBus</a></b> ( const QString &amp; <i>address</i>, const QString &amp; <i>name</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnection.html#disconnectFromBus">disconnectFromBus</a></b> ( const QString &amp; <i>name</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QDBusConnection </td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnection.html#sender">sender</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QDBusConnection </td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnection.html#sessionBus">sessionBus</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QDBusConnection </td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnection.html#systemBus">systemBus</a></b> ()</td></tr>
+</table>
+<hr />
+<a name="related-non-members"></a>
+<h2>Related Non-Members</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">QDBusConnection </td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnection.html#sessionBus">sessionBus</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QDBusConnection </td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnection.html#systemBus">systemBus</a></b> ()</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QDBusConnection class represents a connection to the D-Bus bus daemon.</p>
+<p>This class is the initial point in a D-Bus session. Using it, you can get access to remote objects, interfaces; connect remote signals to your object's slots; register objects, etc.</p>
+<p>D-Bus connections are created using the <a href="qdbusconnection.html#connectToBus">connectToBus</a>() function, which opens a connection to the server daemon and does the initial handshaking, associating that connection with a name. Further attempts to connect using the same name will return the same connection.</p>
+<p>The connection is then torn down using the <a href="qdbusconnection.html#disconnectFromBus">disconnectFromBus</a>() function.</p>
+<p>As a convenience for the two most common connection types, the <a href="qdbusconnection.html#sessionBus">sessionBus</a>() and <a href="qdbusconnection.html#systemBus">systemBus</a>() functions return open connections to the session server daemon and the system server daemon, respectively. Those connections are opened when first used and are closed when the <a href="qcoreapplication.html">QCoreApplication</a> destructor is run.</p>
+<p>D-Bus also supports peer-to-peer connections, without the need for a bus server daemon. Using this facility, two applications can talk to each other and exchange messages. This can be achieved by passing an address to <a href="qdbusconnection.html#connectToBus">connectToBus</a>() function, which was opened by another D-Bus application using <a href="qdbusserver.html">QDBusServer</a>.</p>
+<hr />
+<h2>Member Type Documentation</h2>
+<a name="//apple_ref/cpp/tag/QDBusConnection/BusType" />
+<a name="//apple_ref/cpp/econst/QDBusConnection/SessionBus" />
+<a name="//apple_ref/cpp/econst/QDBusConnection/SystemBus" />
+<a name="//apple_ref/cpp/econst/QDBusConnection/ActivationBus" />
+<h3 class="fn"><a name="BusType-enum"></a>enum QDBusConnection::BusType</h3>
+<p>Specifies the type of the bus connection. The valid bus types are:</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QDBusConnection::SessionBus</tt></td><td align="center" valign="top"><tt>0</tt></td><td valign="top">the session bus, associated with the running desktop session</td></tr>
+<tr><td valign="top"><tt>QDBusConnection::SystemBus</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">the system bus, used to communicate with system-wide processes</td></tr>
+<tr><td valign="top"><tt>QDBusConnection::ActivationBus</tt></td><td align="center" valign="top"><tt>2</tt></td><td valign="top">the activation bus, the &quot;alias&quot; for the bus that started the service</td></tr>
+</table></p>
+<p>On the Session Bus, one can find other applications by the same user that are sharing the same desktop session (hence the name). On the System Bus, however, processes shared for the whole system are usually found.</p>
+<a name="//apple_ref/cpp/tag/QDBusConnection/RegisterOption" />
+<a name="//apple_ref/cpp/econst/QDBusConnection/ExportAdaptors" />
+<a name="//apple_ref/cpp/econst/QDBusConnection/ExportScriptableSlots" />
+<a name="//apple_ref/cpp/econst/QDBusConnection/ExportScriptableSignals" />
+<a name="//apple_ref/cpp/econst/QDBusConnection/ExportScriptableProperties" />
+<a name="//apple_ref/cpp/econst/QDBusConnection/ExportScriptableContents" />
+<a name="//apple_ref/cpp/econst/QDBusConnection/ExportNonScriptableSlots" />
+<a name="//apple_ref/cpp/econst/QDBusConnection/ExportNonScriptableSignals" />
+<a name="//apple_ref/cpp/econst/QDBusConnection/ExportNonScriptableProperties" />
+<a name="//apple_ref/cpp/econst/QDBusConnection/ExportNonScriptableContents" />
+<a name="//apple_ref/cpp/econst/QDBusConnection/ExportAllSlots" />
+<a name="//apple_ref/cpp/econst/QDBusConnection/ExportAllSignals" />
+<a name="//apple_ref/cpp/econst/QDBusConnection/ExportAllProperties" />
+<a name="//apple_ref/cpp/econst/QDBusConnection/ExportAllContents" />
+<a name="//apple_ref/cpp/econst/QDBusConnection/ExportChildObjects" />
+<a name="//apple_ref/cpp/tdef/QDBusConnection/RegisterOptions" />
+<h3 class="flags"><a name="RegisterOption-enum"></a>enum QDBusConnection::RegisterOption<br />flags QDBusConnection::RegisterOptions</h3>
+<p>Specifies the options for registering objects with the connection. The possible values are:</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QDBusConnection::ExportAdaptors</tt></td><td align="center" valign="top"><tt>0x01</tt></td><td valign="top">export the contents of adaptors found in this object</td></tr>
+<tr><td valign="top"><tt>QDBusConnection::ExportScriptableSlots</tt></td><td align="center" valign="top"><tt>0x10</tt></td><td valign="top">export this object's scriptable slots</td></tr>
+<tr><td valign="top"><tt>QDBusConnection::ExportScriptableSignals</tt></td><td align="center" valign="top"><tt>0x20</tt></td><td valign="top">export this object's scriptable signals</td></tr>
+<tr><td valign="top"><tt>QDBusConnection::ExportScriptableProperties</tt></td><td align="center" valign="top"><tt>0x40</tt></td><td valign="top">export this object's scriptable properties</td></tr>
+<tr><td valign="top"><tt>QDBusConnection::ExportScriptableContents</tt></td><td align="center" valign="top"><tt>0xf0</tt></td><td valign="top">shorthand form for ExportScriptableSlots | ExportScriptableSignals | ExportScriptableProperties</td></tr>
+<tr><td valign="top"><tt>QDBusConnection::ExportNonScriptableSlots</tt></td><td align="center" valign="top"><tt>0x100</tt></td><td valign="top">export this object's non-scriptable slots</td></tr>
+<tr><td valign="top"><tt>QDBusConnection::ExportNonScriptableSignals</tt></td><td align="center" valign="top"><tt>0x200</tt></td><td valign="top">export this object's non-scriptable signals</td></tr>
+<tr><td valign="top"><tt>QDBusConnection::ExportNonScriptableProperties</tt></td><td align="center" valign="top"><tt>0x400</tt></td><td valign="top">export this object's non-scriptable properties</td></tr>
+<tr><td valign="top"><tt>QDBusConnection::ExportNonScriptableContents</tt></td><td align="center" valign="top"><tt>0xf00</tt></td><td valign="top">shorthand form for ExportNonScriptableSlots | ExportNonScriptableSignals | ExportNonScriptableProperties</td></tr>
+<tr><td valign="top"><tt>QDBusConnection::ExportAllSlots</tt></td><td align="center" valign="top"><tt>ExportScriptableSlots | ExportNonScriptableSlots</tt></td><td valign="top">export all of this object's slots</td></tr>
+<tr><td valign="top"><tt>QDBusConnection::ExportAllSignals</tt></td><td align="center" valign="top"><tt>ExportScriptableSignals | ExportNonScriptableSignals</tt></td><td valign="top">export all of this object's signals</td></tr>
+<tr><td valign="top"><tt>QDBusConnection::ExportAllProperties</tt></td><td align="center" valign="top"><tt>ExportScriptableProperties | ExportNonScriptableProperties</tt></td><td valign="top">export all of this object's properties</td></tr>
+<tr><td valign="top"><tt>QDBusConnection::ExportAllContents</tt></td><td align="center" valign="top"><tt>ExportScriptableContents | ExportNonScriptableContents</tt></td><td valign="top">export all of this object's contents</td></tr>
+<tr><td valign="top"><tt>QDBusConnection::ExportChildObjects</tt></td><td align="center" valign="top"><tt>0x1000</tt></td><td valign="top">export this object's child objects</td></tr>
+</table></p>
+<p>The RegisterOptions type is a typedef for <a href="qflags.html">QFlags</a>&lt;RegisterOption&gt;. It stores an OR combination of RegisterOption values.</p>
+<p>See also <a href="qdbusconnection.html#registerObject">registerObject</a>(), <a href="qdbusabstractadaptor.html">QDBusAbstractAdaptor</a>, and <a href="usingadaptors.html">Using adaptors</a>.</p>
+<a name="//apple_ref/cpp/tag/QDBusConnection/UnregisterMode" />
+<a name="//apple_ref/cpp/econst/QDBusConnection/UnregisterNode" />
+<a name="//apple_ref/cpp/econst/QDBusConnection/UnregisterTree" />
+<h3 class="fn"><a name="UnregisterMode-enum"></a>enum QDBusConnection::UnregisterMode</h3>
+<p>The mode for unregistering an object path:</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QDBusConnection::UnregisterNode</tt></td><td align="center" valign="top"><tt>0</tt></td><td valign="top">unregister this node only: do not unregister child objects</td></tr>
+<tr><td valign="top"><tt>QDBusConnection::UnregisterTree</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">unregister this node and all its sub-tree</td></tr>
+</table></p>
+<p>Note, however, if this object was registered with the <a href="qdbusconnection.html#RegisterOption-enum">ExportChildObjects</a> option, UnregisterNode will unregister the child objects too.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QDBusConnection/QDBusConnection" />
+<h3 class="fn"><a name="QDBusConnection"></a>QDBusConnection::QDBusConnection ( const <a href="qstring.html">QString</a> &amp; <i>name</i> )</h3>
+<p>Creates a <a href="qdbusconnection.html">QDBusConnection</a> object attached to the connection with name <i>name</i>.</p>
+<p>This does not open the connection. You have to call <a href="qdbusconnection.html#connectToBus">connectToBus</a>() to open it.</p>
+<h3 class="fn"><a name="QDBusConnection-2"></a>QDBusConnection::QDBusConnection ( const QDBusConnection &amp; <i>other</i> )</h3>
+<p>Creates a copy of the <i>other</i> connection.</p>
+<a name="//apple_ref/cpp/instm/QDBusConnection/~QDBusConnection" />
+<h3 class="fn"><a name="dtor.QDBusConnection"></a>QDBusConnection::~QDBusConnection ()</h3>
+<p>Disposes of this object. This does not close the connection: you have to call <a href="qdbusconnection.html#disconnectFromBus">disconnectFromBus</a>() to do that.</p>
+<a name="//apple_ref/cpp/instm/QDBusConnection/asyncCall" />
+<h3 class="fn"><a name="asyncCall"></a><a href="qdbuspendingcall.html">QDBusPendingCall</a> QDBusConnection::asyncCall ( const <a href="qdbusmessage.html">QDBusMessage</a> &amp; <i>message</i>, int <i>timeout</i> = -1 ) const</h3>
+<p>Sends the <i>message</i> over this connection and returns immediately. This function is suitable for method calls only. It returns an object of type <a href="qdbuspendingcall.html">QDBusPendingCall</a> which can be used to track the status of the reply. The <i>timeout</i> parameter is used to determine when an auto-generated error reply may be emitted and is also the upper limit for waiting in QDBusPendingCall::waitForFinished().</p>
+<p>See the <a href="qdbusabstractinterface.html#asyncCall">QDBusInterface::asyncCall</a>() function for a more friendly way of placing calls.</p>
+<p>This function was introduced in Qt 4.5.</p>
+<a name="//apple_ref/cpp/instm/QDBusConnection/baseService" />
+<h3 class="fn"><a name="baseService"></a><a href="qstring.html">QString</a> QDBusConnection::baseService () const</h3>
+<p>Returns the unique connection name for this connection, if this <a href="qdbusconnection.html">QDBusConnection</a> object is connected, or an empty <a href="qstring.html">QString</a> otherwise.</p>
+<p>A Unique Connection Name is a string in the form &quot;:x.xxx&quot; (where x are decimal digits) that is assigned by the D-Bus server daemon upon connection. It uniquely identifies this client in the bus.</p>
+<p>This function returns an empty <a href="qstring.html">QString</a> for peer-to-peer connections.</p>
+<a name="//apple_ref/cpp/instm/QDBusConnection/call" />
+<h3 class="fn"><a name="call"></a><a href="qdbusmessage.html">QDBusMessage</a> QDBusConnection::call ( const <a href="qdbusmessage.html">QDBusMessage</a> &amp; <i>message</i>, <a href="qdbus.html#CallMode-enum">QDBus::CallMode</a> <i>mode</i> = QDBus::Block, int <i>timeout</i> = -1 ) const</h3>
+<p>Sends the <i>message</i> over this connection and blocks, waiting for a reply, for at most <i>timeout</i> milliseconds. This function is suitable for method calls only. It returns the reply message as its return value, which will be either of type <a href="qdbusmessage.html#MessageType-enum">QDBusMessage::ReplyMessage</a> or <a href="qdbusmessage.html#MessageType-enum">QDBusMessage::ErrorMessage</a>.</p>
+<p>See the <a href="qdbusabstractinterface.html#call">QDBusInterface::call</a>() function for a more friendly way of placing calls.</p>
+<p><b>Warning:</b> If <i>mode</i> is <a href="qdbus.html#CallMode-enum">QDBus::BlockWithGui</a>, this function will reenter the Qt event loop in order to wait for the reply. During the wait, it may deliver signals and other method calls to your application. Therefore, it must be prepared to handle a reentrancy whenever a call is placed with call().</p>
+<a name="//apple_ref/cpp/instm/QDBusConnection/callWithCallback" />
+<h3 class="fn"><a name="callWithCallback"></a>bool QDBusConnection::callWithCallback ( const <a href="qdbusmessage.html">QDBusMessage</a> &amp; <i>message</i>, <a href="qobject.html">QObject</a> * <i>receiver</i>, const char * <i>returnMethod</i>, const char * <i>errorMethod</i>, int <i>timeout</i> = -1 ) const</h3>
+<p>Sends the <i>message</i> over this connection and returns immediately. When the reply is received, the method <i>returnMethod</i> is called in the <i>receiver</i> object. If an error occurs, the method <i>errorMethod</i> will be called instead.</p>
+<p>If no reply is received within <i>timeout</i> milliseconds, an automatic error will be delivered indicating the expiration of the call. The default <i>timeout</i> is -1, which will be replaced with an implementation-defined value that is suitable for inter-process communications (generally, 25 seconds).</p>
+<p>This function is suitable for method calls only. It is guaranteed that the slot will be called exactly once with the reply, as long as the parameter types match and no error occurs.</p>
+<p>Returns true if the message was sent, or false if the message could not be sent.</p>
+<h3 class="fn"><a name="callWithCallback-2"></a>bool QDBusConnection::callWithCallback ( const <a href="qdbusmessage.html">QDBusMessage</a> &amp; <i>message</i>, <a href="qobject.html">QObject</a> * <i>receiver</i>, const char * <i>returnMethod</i>, int <i>timeout</i> = -1 ) const</h3>
+<p>This function is deprecated.</p>
+<p>This is an overloaded function.</p>
+<p>Sends the <i>message</i> over this connection and returns immediately. When the reply is received, the method <i>returnMethod</i> is called in the <i>receiver</i> object.</p>
+<p>This function is suitable for method calls only. It is guaranteed that the slot will be called exactly once with the reply, as long as the parameter types match and no error occurs.</p>
+<p>This function is dangerous because it cannot report errors, including the expiration of the timeout.</p>
+<p>Returns true if the message was sent, or false if the message could not be sent.</p>
+<a name="//apple_ref/cpp/instm/QDBusConnection/connect" />
+<h3 class="fn"><a name="connect"></a>bool QDBusConnection::connect ( const <a href="qstring.html">QString</a> &amp; <i>service</i>, const <a href="qstring.html">QString</a> &amp; <i>path</i>, const <a href="qstring.html">QString</a> &amp; <i>interface</i>, const <a href="qstring.html">QString</a> &amp; <i>name</i>, <a href="qobject.html">QObject</a> * <i>receiver</i>, const char * <i>slot</i> )</h3>
+<p>Connects the signal specified by the <i>service</i>, <i>path</i>, <i>interface</i> and <i>name</i> parameters to the slot <i>slot</i> in object <i>receiver</i>. The arguments <i>service</i> and <i>path</i> can be empty, denoting a connection to any signal of the (<i>interface</i>, <i>name</i>) pair, from any remote application.</p>
+<p>Returns true if the connection was successful.</p>
+<p><b>Warning:</b> The signal will only be delivered to the slot if the parameters match. This verification can be done only when the signal is received, not at connection time.</p>
+<h3 class="fn"><a name="connect-2"></a>bool QDBusConnection::connect ( const <a href="qstring.html">QString</a> &amp; <i>service</i>, const <a href="qstring.html">QString</a> &amp; <i>path</i>, const <a href="qstring.html">QString</a> &amp; <i>interface</i>, const <a href="qstring.html">QString</a> &amp; <i>name</i>, const <a href="qstring.html">QString</a> &amp; <i>signature</i>, <a href="qobject.html">QObject</a> * <i>receiver</i>, const char * <i>slot</i> )</h3>
+<p>This is an overloaded function.</p>
+<p>Connects the signal to the slot <i>slot</i> in object <i>receiver</i>. Unlike the previous <a href="qdbusconnection.html#connect">connect</a>() overload, this function allows one to specify the parameter signature to be connected using the <i>signature</i> variable. The function will then verify that this signature can be delivered to the slot specified by <i>slot</i> and return false otherwise.</p>
+<p>Returns true if the connection was successful.</p>
+<p><b>Note:</b> This function verifies that the signal signature matches the slot's parameters, but it does not verify that the actual signal exists with the given signature in the remote service.</p>
+<h3 class="fn"><a name="connect-3"></a>bool QDBusConnection::connect ( const <a href="qstring.html">QString</a> &amp; <i>service</i>, const <a href="qstring.html">QString</a> &amp; <i>path</i>, const <a href="qstring.html">QString</a> &amp; <i>interface</i>, const <a href="qstring.html">QString</a> &amp; <i>name</i>, const <a href="qstringlist.html">QStringList</a> &amp; <i>argumentMatch</i>, const <a href="qstring.html">QString</a> &amp; <i>signature</i>, <a href="qobject.html">QObject</a> * <i>receiver</i>, const char * <i>slot</i> )</h3>
+<p>This is an overloaded function.</p>
+<p>Connects the signal to the slot <i>slot</i> in object <i>receiver</i>. Unlike the previous <a href="qdbusconnection.html#connect">connect</a>() overload, this function allows one to specify the parameter signature to be connected using the <i>signature</i> variable. The function will then verify that this signature can be delivered to the slot specified by <i>slot</i> and return false otherwise.</p>
+<p>The <i>argumentMatch</i> parameter lists the string parameters to be matched, in sequential order. Note that, to match an empty string, you need to pass a <a href="qstring.html">QString</a> that is empty but not null (i.e&#x2e;, <a href="qstring.html">QString</a>(&quot;&quot;)). A null <a href="qstring.html">QString</a> skips matching at that position.</p>
+<p>Returns true if the connection was successful.</p>
+<p><b>Note:</b> This function verifies that the signal signature matches the slot's parameters, but it does not verify that the actual signal exists with the given signature in the remote service.</p>
+<p>This function was introduced in Qt 4.6.</p>
+<a name="//apple_ref/cpp/clm/QDBusConnection/connectToBus" />
+<h3 class="fn"><a name="connectToBus"></a>QDBusConnection QDBusConnection::connectToBus ( <a href="qdbusconnection.html#BusType-enum">BusType</a> <i>type</i>, const <a href="qstring.html">QString</a> &amp; <i>name</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Opens a connection of type <i>type</i> to one of the known busses and associate with it the connection name <i>name</i>. Returns a <a href="qdbusconnection.html">QDBusConnection</a> object associated with that connection.</p>
+<h3 class="fn"><a name="connectToBus-2"></a>QDBusConnection QDBusConnection::connectToBus ( const <a href="qstring.html">QString</a> &amp; <i>address</i>, const <a href="qstring.html">QString</a> &amp; <i>name</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Opens a peer-to-peer connection on address <i>address</i> and associate with it the connection name <i>name</i>. Returns a <a href="qdbusconnection.html">QDBusConnection</a> object associated with that connection.</p>
+<a name="//apple_ref/cpp/instm/QDBusConnection/disconnect" />
+<h3 class="fn"><a name="disconnect"></a>bool QDBusConnection::disconnect ( const <a href="qstring.html">QString</a> &amp; <i>service</i>, const <a href="qstring.html">QString</a> &amp; <i>path</i>, const <a href="qstring.html">QString</a> &amp; <i>interface</i>, const <a href="qstring.html">QString</a> &amp; <i>name</i>, <a href="qobject.html">QObject</a> * <i>receiver</i>, const char * <i>slot</i> )</h3>
+<p>Disconnects the signal specified by the <i>service</i>, <i>path</i>, <i>interface</i> and <i>name</i> parameters from the slot <i>slot</i> in object <i>receiver</i>. The arguments must be the same as passed to the <a href="qdbusconnection.html#connect">connect</a>() function.</p>
+<p>Returns true if the disconnection was successful.</p>
+<h3 class="fn"><a name="disconnect-2"></a>bool QDBusConnection::disconnect ( const <a href="qstring.html">QString</a> &amp; <i>service</i>, const <a href="qstring.html">QString</a> &amp; <i>path</i>, const <a href="qstring.html">QString</a> &amp; <i>interface</i>, const <a href="qstring.html">QString</a> &amp; <i>name</i>, const <a href="qstring.html">QString</a> &amp; <i>signature</i>, <a href="qobject.html">QObject</a> * <i>receiver</i>, const char * <i>slot</i> )</h3>
+<p>This is an overloaded function.</p>
+<p>Disconnects the signal specified by the <i>service</i>, <i>path</i>, <i>interface</i>, <i>name</i>, and <i>signature</i> parameters from the slot <i>slot</i> in object <i>receiver</i>. The arguments must be the same as passed to the <a href="qdbusconnection.html#connect">connect</a>() function.</p>
+<p>Returns true if the disconnection was successful.</p>
+<h3 class="fn"><a name="disconnect-3"></a>bool QDBusConnection::disconnect ( const <a href="qstring.html">QString</a> &amp; <i>service</i>, const <a href="qstring.html">QString</a> &amp; <i>path</i>, const <a href="qstring.html">QString</a> &amp; <i>interface</i>, const <a href="qstring.html">QString</a> &amp; <i>name</i>, const <a href="qstringlist.html">QStringList</a> &amp; <i>argumentMatch</i>, const <a href="qstring.html">QString</a> &amp; <i>signature</i>, <a href="qobject.html">QObject</a> * <i>receiver</i>, const char * <i>slot</i> )</h3>
+<p>This is an overloaded function.</p>
+<p>Disconnects the signal specified by the <i>service</i>, <i>path</i>, <i>interface</i>, <i>name</i>, <i>argumentMatch</i>, and <i>signature</i> parameters from the slot <i>slot</i> in object <i>receiver</i>. The arguments must be the same as passed to the <a href="qdbusconnection.html#connect">connect</a>() function.</p>
+<p>Returns true if the disconnection was successful.</p>
+<p>This function was introduced in Qt 4.6.</p>
+<a name="//apple_ref/cpp/clm/QDBusConnection/disconnectFromBus" />
+<h3 class="fn"><a name="disconnectFromBus"></a>void QDBusConnection::disconnectFromBus ( const <a href="qstring.html">QString</a> &amp; <i>name</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Closes the connection of name <i>name</i>.</p>
+<p>Note that if there are still <a href="qdbusconnection.html">QDBusConnection</a> objects associated with the same connection, the connection will not be closed until all references are dropped. However, no further references can be created using the <a href="qdbusconnection.html">QDBusConnection</a> constructor.</p>
+<a name="//apple_ref/cpp/instm/QDBusConnection/interface" />
+<h3 class="fn"><a name="interface"></a><a href="qdbusconnectioninterface.html">QDBusConnectionInterface</a> * QDBusConnection::interface () const</h3>
+<p>Returns a <a href="qdbusconnectioninterface.html">QDBusConnectionInterface</a> object that represents the D-Bus server interface on this connection.</p>
+<a name="//apple_ref/cpp/instm/QDBusConnection/isConnected" />
+<h3 class="fn"><a name="isConnected"></a>bool QDBusConnection::isConnected () const</h3>
+<p>Returns true if this <a href="qdbusconnection.html">QDBusConnection</a> object is connected.</p>
+<p>If it isn't connected, calling <a href="qdbusconnection.html#connectToBus">connectToBus</a>() on the same connection name will not make be connected. You need to call the <a href="qdbusconnection.html">QDBusConnection</a> constructor again.</p>
+<a name="//apple_ref/cpp/instm/QDBusConnection/lastError" />
+<h3 class="fn"><a name="lastError"></a><a href="qdbuserror.html">QDBusError</a> QDBusConnection::lastError () const</h3>
+<p>Returns the last error that happened in this connection.</p>
+<p>This function is provided for low-level code. If you're using <a href="qdbusabstractinterface.html#call">QDBusInterface::call</a>(), error codes are reported by its return value.</p>
+<p>See also <a href="qdbusinterface.html">QDBusInterface</a> and <a href="qdbusmessage.html">QDBusMessage</a>.</p>
+<a name="//apple_ref/cpp/instm/QDBusConnection/name" />
+<h3 class="fn"><a name="name"></a><a href="qstring.html">QString</a> QDBusConnection::name () const</h3>
+<p>Returns the connection name for this connection, as given as the name parameter to <a href="qdbusconnection.html#connectToBus">connectToBus</a>().</p>
+<p>The connection name can be used to uniquely identify actual underlying connections to buses. Copies made from a single connection will always implicitly share the underlying connection, and hence will have the same connection name.</p>
+<p>Inversely, two connections having different connection names will always either be connected to different buses, or have a different unique name (as returned by <a href="qdbusconnection.html#baseService">baseService</a>()) on that bus.</p>
+<p>This function was introduced in Qt 4.5.</p>
+<p>See also <a href="qdbusconnection.html#connectToBus">connectToBus</a>() and <a href="qdbusconnection.html#disconnectFromBus">disconnectFromBus</a>().</p>
+<a name="//apple_ref/cpp/instm/QDBusConnection/objectRegisteredAt" />
+<h3 class="fn"><a name="objectRegisteredAt"></a><a href="qobject.html">QObject</a> * QDBusConnection::objectRegisteredAt ( const <a href="qstring.html">QString</a> &amp; <i>path</i> ) const</h3>
+<p>Return the object that was registered with the <a href="qdbusconnection.html#registerObject">registerObject</a>() at the object path given by <i>path</i>.</p>
+<a name="//apple_ref/cpp/instm/QDBusConnection/registerObject" />
+<h3 class="fn"><a name="registerObject"></a>bool QDBusConnection::registerObject ( const <a href="qstring.html">QString</a> &amp; <i>path</i>, <a href="qobject.html">QObject</a> * <i>object</i>, <a href="qdbusconnection.html#RegisterOption-enum">RegisterOptions</a> <i>options</i> = ExportAdaptors )</h3>
+<p>Registers the object <i>object</i> at path <i>path</i> and returns true if the registration was successful. The <i>options</i> parameter specifies how much of the object <i>object</i> will be exposed through D-Bus.</p>
+<p>This function does not replace existing objects: if there is already an object registered at path <i>path</i>, this function will return false. Use <a href="qdbusconnection.html#unregisterObject">unregisterObject</a>() to unregister it first.</p>
+<p>You cannot register an object as a child object of an object that was registered with <a href="qdbusconnection.html#RegisterOption-enum">QDBusConnection::ExportChildObjects</a>.</p>
+<a name="//apple_ref/cpp/instm/QDBusConnection/registerService" />
+<h3 class="fn"><a name="registerService"></a>bool QDBusConnection::registerService ( const <a href="qstring.html">QString</a> &amp; <i>serviceName</i> )</h3>
+<p>Attempts to register the <i>serviceName</i> on the D-Bus server and returns true if the registration succeded. The registration will fail if the name is already registered by another application.</p>
+<p>See also <a href="qdbusconnection.html#unregisterService">unregisterService</a>() and <a href="qdbusconnectioninterface.html#registerService">QDBusConnectionInterface::registerService</a>().</p>
+<a name="//apple_ref/cpp/instm/QDBusConnection/send" />
+<h3 class="fn"><a name="send"></a>bool QDBusConnection::send ( const <a href="qdbusmessage.html">QDBusMessage</a> &amp; <i>message</i> ) const</h3>
+<p>Sends the <i>message</i> over this connection, without waiting for a reply. This is suitable for errors, signals, and return values as well as calls whose return values are not necessary.</p>
+<p>Returns true if the message was queued successfully, false otherwise.</p>
+<a name="//apple_ref/cpp/clm/QDBusConnection/sender" />
+<h3 class="fn"><a name="sender"></a>QDBusConnection QDBusConnection::sender ()&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Returns the connection that sent the signal, if called in a slot activated by <a href="qdbus.html">QDBus</a>; otherwise it returns 0.</p>
+<p><b>Note:</b> Please avoid this function. This function is not thread-safe, so if there's any other thread delivering a D-Bus call, this function may return the wrong connection. In new code, please use <a href="qdbuscontext.html#connection">QDBusContext::connection</a>() (see that class for a description on how to use it).</p>
+<p><b>Warning:</b> This function is not <a href="threads-reentrancy.html#reentrant">reentrant</a>.</p>
+<a name="//apple_ref/cpp/clm/QDBusConnection/sessionBus" />
+<h3 class="fn"><a name="sessionBus"></a>QDBusConnection QDBusConnection::sessionBus ()&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Returns a <a href="qdbusconnection.html">QDBusConnection</a> object opened with the session bus. The object reference returned by this function is valid until the <a href="qcoreapplication.html">QCoreApplication</a>'s destructor is run, when the connection will be closed and the object, deleted.</p>
+<a name="//apple_ref/cpp/clm/QDBusConnection/systemBus" />
+<h3 class="fn"><a name="systemBus"></a>QDBusConnection QDBusConnection::systemBus ()&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Returns a <a href="qdbusconnection.html">QDBusConnection</a> object opened with the system bus. The object reference returned by this function is valid until the <a href="qcoreapplication.html">QCoreApplication</a>'s destructor is run, when the connection will be closed and the object, deleted.</p>
+<a name="//apple_ref/cpp/instm/QDBusConnection/unregisterObject" />
+<h3 class="fn"><a name="unregisterObject"></a>void QDBusConnection::unregisterObject ( const <a href="qstring.html">QString</a> &amp; <i>path</i>, <a href="qdbusconnection.html#UnregisterMode-enum">UnregisterMode</a> <i>mode</i> = UnregisterNode )</h3>
+<p>Unregisters an object that was registered with the <a href="qdbusconnection.html#registerObject">registerObject</a>() at the object path given by <i>path</i> and, if <i>mode</i> is <a href="qdbusconnection.html#UnregisterMode-enum">QDBusConnection::UnregisterTree</a>, all of its sub-objects too.</p>
+<p>Note that you cannot unregister objects that were not registered with <a href="qdbusconnection.html#registerObject">registerObject</a>().</p>
+<a name="//apple_ref/cpp/instm/QDBusConnection/unregisterService" />
+<h3 class="fn"><a name="unregisterService"></a>bool QDBusConnection::unregisterService ( const <a href="qstring.html">QString</a> &amp; <i>serviceName</i> )</h3>
+<p>Unregisters the service <i>serviceName</i> that was previously registered with <a href="qdbusconnection.html#registerService">registerService</a>() and returns true if it succeeded.</p>
+<p>See also <a href="qdbusconnection.html#registerService">registerService</a>() and <a href="qdbusconnectioninterface.html#unregisterService">QDBusConnectionInterface::unregisterService</a>().</p>
+<a name="//apple_ref/cpp/instm/QDBusConnection/operator=" />
+<h3 class="fn"><a name="operator-eq"></a>QDBusConnection &amp; QDBusConnection::operator= ( const QDBusConnection &amp; <i>other</i> )</h3>
+<p>Creates a copy of the connection <i>other</i> in this object. Note that the connection this object referenced before the copy, is not spontaneously disconnected.</p>
+<p>See also <a href="qdbusconnection.html#disconnectFromBus">disconnectFromBus</a>().</p>
+<hr />
+<h2>Related Non-Members</h2>
+<a name="//apple_ref/cpp/clm/QDBusConnection/sessionBus" />
+<h3 class="fn"><a name="sessionBus"></a>QDBusConnection QDBusConnection::sessionBus ()&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Returns a <a href="qdbusconnection.html">QDBusConnection</a> object opened with the session bus. The object reference returned by this function is valid until the <a href="qcoreapplication.html">QCoreApplication</a>'s destructor is run, when the connection will be closed and the object, deleted.</p>
+<a name="//apple_ref/cpp/clm/QDBusConnection/systemBus" />
+<h3 class="fn"><a name="systemBus"></a>QDBusConnection QDBusConnection::systemBus ()&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Returns a <a href="qdbusconnection.html">QDBusConnection</a> object opened with the system bus. The object reference returned by this function is valid until the <a href="qcoreapplication.html">QCoreApplication</a>'s destructor is run, when the connection will be closed and the object, deleted.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- addressbook-fr.qdoc -->
+<head>
+  <title>Qt 4.6: Carnet d'Adresses 4 - &#xe9;diter et supprimer des adresses</title>
+  <link rel="prev" href="tutorials-addressbook-fr-part3.html" />
+  <link rel="contents" href="tutorials-addressbook-fr.html" />
+  <link rel="next" href="tutorials-addressbook-fr-part5.html" />
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><p>
+[Previous: <a href="tutorials-addressbook-fr-part3.html">Chapitre 3</a>]
+[<a href="tutorials-addressbook-fr.html">Sommaire</a>]
+[Next: <a href="tutorials-addressbook-fr-part5.html">Chapitre 5</a>]
+</p>
+<h1 class="title">Carnet d'Adresses 4 - &#xe9;diter et supprimer des adresses<br /><span class="subtitle"></span>
+</h1>
+<p>Files:</p>
+<ul>
+<li><a href="tutorials-addressbook-fr-part4-addressbook-cpp.html">tutorials/addressbook-fr/part4/addressbook.cpp</a></li>
+<li><a href="tutorials-addressbook-fr-part4-addressbook-h.html">tutorials/addressbook-fr/part4/addressbook.h</a></li>
+<li><a href="tutorials-addressbook-fr-part4-main-cpp.html">tutorials/addressbook-fr/part4/main.cpp</a></li>
+<li><a href="tutorials-addressbook-fr-part4-part4-pro.html">tutorials/addressbook-fr/part4/part4.pro</a></li>
+</ul>
+<p>Dans ce chapitre, nous verrons comment modifier les donn&#xe9;es des contacts contenus dans l'application carnet d'adresses.</p>
+<p align="center"><img src="images/addressbook-tutorial-screenshot.png" /></p><p>Nous avons maintenant un carnet d'adresses qui ne se contente pas de lister des contacts de fa&#xe7;on ordonn&#xe9;e, mais permet &#xe9;galement la navigation. Il serait pratique d'inclure des fonctions telles qu'&#xe9;diter et supprimer, afin que les d&#xe9;tails associ&#xe9;s &#xe0; un contact puissent &#xea;tre modifi&#xe9;s lorsque c'est n&#xe9;cessaire. Cependant, cela requiert une l&#xe9;g&#xe8;re modification, sous la forme d'&#xe9;num&#xe9;rations. Au chapitre pr&#xe9;c&#xe9;dent, nous avions deux modes: <tt>AddingMode</tt> et <tt>NavigationMode</tt>, mais ils n'&#xe9;taient pas d&#xe9;finis en tant qu'&#xe9;num&#xe9;rations. Au lieu de &#xe7;a, on activait et d&#xe9;sactivait les boutons correspondants manuellement, au prix de multiples redondances dans le code.</p>
+<p>Dans ce chapitre, on d&#xe9;finit l'&#xe9;num&#xe9;ration <tt>Mode</tt> avec trois valeurs possibles.</p>
+<ul>
+<li><tt>NavigationMode</tt>,</li>
+<li><tt>AddingMode</tt>, et</li>
+<li><tt>EditingMode</tt>.</li>
+</ul>
+<a name="d-finition-de-la-classe-addressbook"></a>
+<h2>D&#xe9;finition de la classe AddressBook</h2>
+<p>Le fichier <tt>addressbook.h</tt> est mis a jour pour contenir l'&#xe9;num&#xe9;ration <tt>Mode</tt> :</p>
+<pre>     enum Mode { NavigationMode, AddingMode, EditingMode };</pre>
+<p>On ajoute &#xe9;galement deux nouveaux slots, <tt>editContact()</tt> et <tt>removeContact()</tt>, &#xe0; notre liste de slots publics.</p>
+<pre>     void editContact();
+     void removeContact();</pre>
+<p>Afin de basculer d'un mode &#xe0; l'autre, on introduit la m&#xe9;thode <tt>updateInterface()</tt> pour contr&#xf4;ller l'activation et la d&#xe9;sactivation de tous les objets <a href="qpushbutton.html">QPushButton</a>. On ajoute &#xe9;galement deux nouveaux boutons, <tt>editButton</tt> et <tt>removeButton</tt>, pour les fonctions d'&#xe9;dition et de suppression mentionn&#xe9;es plus haut.</p>
+<pre>     void updateInterface(Mode mode);
+     ...
+     QPushButton *editButton;
+     QPushButton *removeButton;
+     ...
+     Mode currentMode;</pre>
+<p>Enfin, on d&#xe9;clare <tt>currentMode</tt> pour garder une trace du mode actuellement utilis&#xe9;.</p>
+<a name="impl-mentation-de-la-classe-addressbook"></a>
+<h2>Impl&#xe9;mentation de la classe AddressBook</h2>
+<p>Il nous faut maintenant impl&#xe9;menter les fonctionnalit&#xe9;s de changement de mode de l'application carnet d'adresses. Les boutons <tt>editButton</tt> et <tt>removeButton</tt> sont instanci&#xe9;s et d&#xe9;sactiv&#xe9;s par d&#xe9;faut, puisque le carnet d'adresses d&#xe9;marre sans aucun contact en m&#xe9;moire.</p>
+<pre>     editButton = new QPushButton(tr(&quot;&amp;Edit&quot;));
+     editButton-&gt;setEnabled(false);
+     removeButton = new QPushButton(tr(&quot;&amp;Remove&quot;));
+     removeButton-&gt;setEnabled(false);</pre>
+<p>Ces boutons sont ensuite connect&#xe9;s &#xe0; leurs slots respectifs, <tt>editContact()</tt> et <tt>removeContact()</tt>, avant d'&#xea;tre ajout&#xe9;s &#xe0; <tt>buttonLayout1</tt>.</p>
+<pre>     connect(editButton, SIGNAL(clicked()), this, SLOT(editContact()));
+     connect(removeButton, SIGNAL(clicked()), this, SLOT(removeContact()));
+     ...
+     buttonLayout1-&gt;addWidget(editButton);
+     buttonLayout1-&gt;addWidget(removeButton);</pre>
+<p>La methode <tt>editContact()</tt> place les anciens d&#xe9;tails du contact dans <tt>oldName</tt> et <tt>oldAddress</tt>, avant de basculer vers le mode <tt>EditingMode</tt>. Dans ce mode, les boutons <tt>submitButton</tt> et <tt>cancelButton</tt> sont tous deux activ&#xe9;s, l'utilisateur peut par cons&#xe9;quent modifier les d&#xe9;tails du contact et cliquer sur l'un de ces deux boutons par la suite.</p>
+<pre> void AddressBook::editContact()
+ {
+     oldName = nameLine-&gt;text();
+     oldAddress = addressText-&gt;toPlainText();
+
+     updateInterface(EditingMode);
+ }</pre>
+<p>La m&#xe9;thode <tt>submitContact()</tt> a &#xe9;t&#xe9; divis&#xe9;e en deux avec un bloc <tt>if-else</tt>. On teste <tt>currentMode</tt> pour voir si le mode courant est <tt>AddingMode</tt>. Si c'est le cas, on proc&#xe8;de &#xe0; l'ajout.</p>
+<pre> void AddressBook::submitContact()
+ {
+     ...
+     if (currentMode == AddingMode) {
+
+         if (!contacts.contains(name)) {
+             contacts.insert(name, address);
+             QMessageBox::information(this, tr(&quot;Add Successful&quot;),
+                 tr(&quot;\&quot;%1\&quot; has been added to your address book.&quot;).arg(name));
+         } else {
+             QMessageBox::information(this, tr(&quot;Add Unsuccessful&quot;),
+                 tr(&quot;Sorry, \&quot;%1\&quot; is already in your address book.&quot;).arg(name));
+         }</pre>
+<p>Sinon, on s'assure que <tt>currentMode</tt> est en <tt>EditingMode</tt>. Si c'est le cas, on compare <tt>oldName</tt> et <tt>name</tt>. Si le nom a chang&#xe9;, on supprime l'ancien contact de <tt>contacts</tt> et on ins&#xe8;re le contact mis a jour.</p>
+<pre>     } else if (currentMode == EditingMode) {
+
+         if (oldName != name) {
+             if (!contacts.contains(name)) {
+                 QMessageBox::information(this, tr(&quot;Edit Successful&quot;),
+                     tr(&quot;\&quot;%1\&quot; has been edited in your address book.&quot;).arg(oldName));
+                 contacts.remove(oldName);
+                 contacts.insert(name, address);
+             } else {
+                 QMessageBox::information(this, tr(&quot;Edit Unsuccessful&quot;),
+                     tr(&quot;Sorry, \&quot;%1\&quot; is already in your address book.&quot;).arg(name));
+             }
+         } else if (oldAddress != address) {
+             QMessageBox::information(this, tr(&quot;Edit Successful&quot;),
+                 tr(&quot;\&quot;%1\&quot; has been edited in your address book.&quot;).arg(name));
+             contacts[name] = address;
+         }
+     }
+
+     updateInterface(NavigationMode);
+ }</pre>
+<p>Si seule l'adresse a chang&#xe9; (i.e&#x2e; <tt>oldAddress</tt> n'est pas identique &#xe0; <tt>address</tt>), on met &#xe0; jour l'adresse du contact. Enfin on r&#xe8;gle <tt>currentMode</tt> &#xe0; <tt>NavigationMode</tt>. C'est une &#xe9;tape importante puisque c'est cela qui r&#xe9;active tous les boutons d&#xe9;sactiv&#xe9;s.</p>
+<p>Afin de retirer un contact du carnet d'adresses, on impl&#xe9;mente la m&#xe9;thode <tt>removeContact()</tt>. Cette m&#xe9;thode v&#xe9;rifie que le contact est pr&#xe9;sent dans <tt>contacts</tt>.</p>
+<pre> void AddressBook::removeContact()
+ {
+     QString name = nameLine-&gt;text();
+     QString address = addressText-&gt;toPlainText();
+
+     if (contacts.contains(name)) {
+
+         int button = QMessageBox::question(this,
+             tr(&quot;Confirm Remove&quot;),
+             tr(&quot;Are you sure you want to remove \&quot;%1\&quot;?&quot;).arg(name),
+             QMessageBox::Yes | QMessageBox::No);
+
+         if (button == QMessageBox::Yes) {
+
+             previous();
+             contacts.remove(name);
+
+             QMessageBox::information(this, tr(&quot;Remove Successful&quot;),
+                 tr(&quot;\&quot;%1\&quot; has been removed from your address book.&quot;).arg(name));
+         }
+     }
+
+     updateInterface(NavigationMode);
+ }</pre>
+<p>Si c'est le cas, on affiche une bo&#xee;te de dialogue <a href="qmessagebox.html">QMessageBox</a>, demandant confirmation de la suppression &#xe0; l'utilisateur. Une fois la confirmation effectu&#xe9;e, on appelle <tt>previous()</tt>, afin de s'assurer que l'interface utilisateur affiche une autre entr&#xe9;e, et on supprime le contact en utilisant le m&#xe9;thode <a href="qmap.html#remove">remove()</a> de <a href="qmap.html">QMap</a>. Dans un souci pratique, on informe l'utilisateur de la suppression par le biais d'une autre <a href="qmessagebox.html">QMessageBox</a>. Les deux bo&#xee;tes de dialogue utilis&#xe9;es dans cette m&#xe9;thode sont repr&#xe9;sent&#xe9;es ci-dessous.</p>
+<p align="center"><img src="images/addressbook-tutorial-part4-remove.png" /></p><a name="mise-jour-de-l-interface-utilisateur"></a>
+<h3>Mise &#xe0; jour de l'Interface utilisateur</h3>
+<p>On a &#xe9;voqu&#xe9; plus haut la m&#xe9;thode <tt>updateInterface()</tt> comme moyen d'activer et de d&#xe9;sactiver les diff&#xe9;rents boutons de l'interface en fonction du mode. Cette m&#xe9;thode met &#xe0; jour le mode courant selon l'argument <tt>mode</tt> qui lui est pass&#xe9;, en l'assignant &#xe0; <tt>currentMode</tt>, avant de tester sa valeur.</p>
+<p>Chacun des boutons est ensuite activ&#xe9; ou d&#xe9;sactiv&#xe9;, en fonction du mode. Le code source pour les cas <tt>AddingMode</tt> et <tt>EditingMode</tt> est visible ci-dessous:</p>
+<pre> void AddressBook::updateInterface(Mode mode)
+ {
+     currentMode = mode;
+
+     switch (currentMode) {
+
+     case AddingMode:
+     case EditingMode:
+
+         nameLine-&gt;setReadOnly(false);
+         nameLine-&gt;setFocus(Qt::OtherFocusReason);
+         addressText-&gt;setReadOnly(false);
+
+         addButton-&gt;setEnabled(false);
+         editButton-&gt;setEnabled(false);
+         removeButton-&gt;setEnabled(false);
+
+         nextButton-&gt;setEnabled(false);
+         previousButton-&gt;setEnabled(false);
+
+         submitButton-&gt;show();
+         cancelButton-&gt;show();
+         break;</pre>
+<p>Dans le cas de <tt>NavigationMode</tt>, en revanche, des tests conditionnels sont pass&#xe9;s en param&#xe8;tre de <a href="qwidget.html#enabled-prop">QPushButton::setEnabled</a>(). Ceci permet de s'assurer que les boutons <tt>editButton</tt> et <tt>removeButton</tt> ne sont activ&#xe9;s que s'il existe au moins un contact dans le carnet d'adresses; <tt>nextButton</tt> et <tt>previousButton</tt> ne sont activ&#xe9;s que lorsqu'il existe plus d'un contact dans le carnet d'adresses.</p>
+<pre>     case NavigationMode:
+
+         if (contacts.isEmpty()) {
+             nameLine-&gt;clear();
+             addressText-&gt;clear();
+         }
+
+         nameLine-&gt;setReadOnly(true);
+         addressText-&gt;setReadOnly(true);
+         addButton-&gt;setEnabled(true);
+
+         int number = contacts.size();
+         editButton-&gt;setEnabled(number &gt;= 1);
+         removeButton-&gt;setEnabled(number &gt;= 1);
+         nextButton-&gt;setEnabled(number &gt; 1);
+         previousButton-&gt;setEnabled(number &gt;1 );
+
+         submitButton-&gt;hide();
+         cancelButton-&gt;hide();
+         break;
+     }
+ }</pre>
+<p>En effectuant les op&#xe9;rations de r&#xe9;glage du mode et de mise &#xe0; jour de l'interface utilisateur au sein de la m&#xea;me m&#xe9;thode, on est &#xe0; l'abri de l'&#xe9;ventualit&#xe9; o&#xf9; l'interface utilisateur se &quot;d&#xe9;synchronise&quot; de l'&#xe9;tat interne de l'application.</p>
+<p>
+[Previous: <a href="tutorials-addressbook-fr-part3.html">Chapitre 3</a>]
+[<a href="tutorials-addressbook-fr.html">Sommaire</a>]
+[Next: <a href="tutorials-addressbook-fr-part5.html">Chapitre 5</a>]
+</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

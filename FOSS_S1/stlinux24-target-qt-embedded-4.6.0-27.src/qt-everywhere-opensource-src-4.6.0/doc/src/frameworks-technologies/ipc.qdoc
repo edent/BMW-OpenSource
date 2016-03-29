@@ -1,0 +1,89 @@
+/****************************************************************************
+**
+** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+** All rights reserved.
+** Contact: Nokia Corporation (qt-info@nokia.com)
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:LGPL$
+** Commercial Usage
+** Licensees holding valid Qt Commercial licenses may use this file in
+** accordance with the Qt Commercial License Agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and Nokia.
+**
+** GNU Lesser General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU Lesser
+** General Public License version 2.1 as published by the Free Software
+** Foundation and appearing in the file LICENSE.LGPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU Lesser General Public License version 2.1 requirements
+** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+**
+** In addition, as a special exception, Nokia gives you certain additional
+** rights.  These rights are described in the Nokia Qt LGPL Exception
+** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+**
+** GNU General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU
+** General Public License version 3.0 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU General Public License version 3.0 requirements will be
+** met: http://www.gnu.org/copyleft/gpl.html.
+**
+** If you have questions regarding the use of this file, please contact
+** Nokia at qt-info@nokia.com.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \page ipc.html
+    \title Inter-Process Communication in Qt
+    \brief Inter-Process communication in Qt applications.
+
+    \ingroup frameworks-technologies
+
+    Qt provides several ways to implement Inter-Process Communication
+    (IPC) in Qt applications.
+
+    \section1 TCP/IP
+
+    The cross-platform \l{QtNetwork} module provides classes that make
+    network programming portable and easy. It offers high-level
+    classes (e.g., QNetworkAccessManager, QFtp) that communicate using
+    specific application-level protocols, and lower-level classes
+    (e.g., QTcpSocket, QTcpServer, QSslSocket) for implementing
+    protocols.
+
+    \section1 Shared Memory
+
+    The cross-platform shared memory class, QSharedMemory, provides
+    access to the operating system's shared memory implementation.
+    It allows safe access to shared memory segments by multiple threads
+    and processes. Additionally, QSystemSemaphore can be used to control
+    access to resources shared by the system, as well as to communicate
+    between processes.
+
+    \section1 D-Bus
+
+    The \l{QtDBus} module is a Unix-only library
+    you can use to implement IPC using the D-Bus protocol. It extends
+    Qt's \l{signalsandslots.html} {Signals and Slots} mechanism to the
+    IPC level, allowing a signal emitted by one process to be
+    connected to a slot in another process. This \l {Introduction to
+    D-Bus} page has detailed information on how to use the \l{QtDBus}
+    module.
+
+    \section1 Qt COmmunications Protocol (QCOP)
+
+    The QCopChannel class implements a protocol for transferring messages
+    between client processes across named channels. QCopChannel is
+    only available in \l{Qt for Embedded Linux}. Like the \l{QtDBus}
+    module, QCOP extends Qt's \l{Signals and Slots} mechanism to the
+    IPC level, allowing a signal emitted by one process to be
+    connected to a slot in another process, but unlike QtDBus, QCOP
+    does not depend on a third party library.
+*/

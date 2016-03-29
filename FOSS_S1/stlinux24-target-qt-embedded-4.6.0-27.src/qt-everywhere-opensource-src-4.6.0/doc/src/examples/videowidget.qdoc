@@ -1,0 +1,187 @@
+/****************************************************************************
+**
+** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+** All rights reserved.
+** Contact: Nokia Corporation (qt-info@nokia.com)
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:LGPL$
+** Commercial Usage
+** Licensees holding valid Qt Commercial licenses may use this file in
+** accordance with the Qt Commercial License Agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and Nokia.
+**
+** GNU Lesser General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU Lesser
+** General Public License version 2.1 as published by the Free Software
+** Foundation and appearing in the file LICENSE.LGPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU Lesser General Public License version 2.1 requirements
+** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+**
+** In addition, as a special exception, Nokia gives you certain additional
+** rights.  These rights are described in the Nokia Qt LGPL Exception
+** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+**
+** GNU General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU
+** General Public License version 3.0 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU General Public License version 3.0 requirements will be
+** met: http://www.gnu.org/copyleft/gpl.html.
+**
+** If you have questions regarding the use of this file, please contact
+** Nokia at qt-info@nokia.com.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \example multimedia/videowidget
+    \title Video Widget Example
+
+    The Video Widget example shows how to implement a video widget using
+    QtMultimedia's QAbstractVideoSurface
+
+    \image video-videowidget.png
+
+    \section1 VideoWidgetSurface Class Definition
+
+    \snippet examples/multimedia/videowidget/videowidgetsurface.h 0
+
+    The VideoWidgetSurface class inherits QAbstractVideoSurface and paints
+    video frames on a QWidget.  This is a separate class to VideoWidget as both
+    QAbstractVideoSurface and QWidget inherit QObject.
+
+    In addition to the functions from QAbstractVideoSurface, VideoWidgetSurface
+    has functions for determining the video display rectangle, and painting
+    the video.
+
+    \section1 VideoWidgetSurface Class Implementation
+
+    \snippet examples/multimedia/videowidget/videowidgetsurface.cpp 0
+
+    From the supportedPixelFormats() function we return a list of pixel formats
+    the surface can paint. The order of the list hints at which formats are
+    preferred by the surface.  Assuming a 32-bit RGB backbuffer, we'd expect
+    that a 32-bit RGB type with no alpha to be fastest to paint so
+    QVideoFrame::Image_RGB32 is first in the list.
+
+    Since we don't support rendering using any special frame handles we don't
+    return any pixel formats if handleType is not
+    QAbstractVideoBuffer::NoHandle.
+
+    \snippet examples/multimedia/videowidget/videowidgetsurface.cpp 1
+
+    In isFormatSupported() we test if the frame type of a surface format maps
+    to a valid QImage format, that the frame size is not empty, and the handle
+    type is QAbstractVideoBuffer::NoHandle.  Note that the
+    QAbstractVideoSurface implementation of isFormatSupported() will verify
+    that the list of supported pixel formats returned by
+    \c supportedPixelFormats(format.handleType()) contains the pixel format and
+    that the size is not empty so a reimplementation wasn't strictly necessary
+    in this case.
+
+    \snippet examples/multimedia/videowidget/videowidgetsurface.cpp 2
+
+    To start our surface we'll extract the image format and size from the
+    selected video format and save it for use in the paint() function.  If the
+    image format, or size are invalid then we'll set an error and return false.
+    Otherwise we'll save the format and confirm the surface has been started,
+    by calling QAbstractVideoSurface::start(). Finally since the video size may
+    have changed we'll trigger an update of the widget, and video geometry.
+
+    \snippet examples/multimedia/videowidget/videowidgetsurface.cpp 5
+
+    The updateVideoRect() function calculates the region within the widget the
+    video occupies.  The \l {QVideoSurfaceFormat::sizeHint()}{size hint} of the
+    video format gives a suggested size for the video calculated from the
+    \l {QVideoSurfaceFormat::viewport()}{viewport} and
+    \l {QVideoSurfaceFormat::pixelAspectRatio()}{pixel aspect ratio}.  If the
+    suggested size fits within the widget then we create a new rect of that
+    size in the center of the widget.  Otherwise we shrink the size maintaining
+    the aspect ratio so that it does fit.
+
+    \snippet examples/multimedia/videowidget/videowidgetsurface.cpp 4
+
+    We can't paint from outside a paint event, so when a new frame is received
+    in present() we save a reference to it and force an immediate repaint of
+    the video region.  We retain the saved reference to the frame after the
+    repaint so that the widget can be repainted between frame changes if
+    necessary.
+
+    If the format of the frame doesn't match the surface format we can't paint
+    it or very likely any future frames.  So we set an
+    \l {QAbstractVideoSurface::UnsupportedFormatError}{UnsupportedFormatError}
+    on our surface and stop it immediately.
+
+    \snippet examples/multimedia/videowidget/videowidgetsurface.cpp 6
+
+    The paint() function is called by the video widget to paint the current
+    video frame.  Before we draw the frame first we'll check the format for
+    the scan line direction and if the scan lines are arranged from bottom to
+    top we'll flip the painter so the frame isn't drawn upside down.  Then
+    using the image format information saved in the start() function we'll
+    construct a new QImage from the current video frame, and draw it to the
+    the widget.
+
+    \snippet examples/multimedia/videowidget/videowidgetsurface.cpp 3
+
+    When the surface is stopped we need to release the current frame and
+    invalidate the video region.   Then we confirm the surface has been
+    stopped by calling QAbstractVideoSurface::stop() which sets the started
+    state to false and finally we update so the video widget so paints over
+    the last frame.
+
+    \section1 VideoWidget Class Definition
+
+    The VideoWidget class uses the VideoWidgetSurface class to implement a
+    video widget.
+
+    \snippet examples/multimedia/videowidget/videowidget.h 0
+
+    The VideoWidget QWidget implementation is minimal with just the sizeHint(),
+    paintEvent(), and resizeEvent() functions in addition to the constructor,
+    destructor and an instance of VideoWidgetSurface.
+
+    \section1 VideoWidget Class Implementation
+
+    \snippet examples/multimedia/videowidget/videowidget.cpp 0
+
+    In the VideoWidget constructor we set some flags to speed up re-paints a
+    little.  Setting the Qt::WA_NoSystemBackground flag and disabling automatic
+    background fills will stop Qt from a painting a background that'll be
+    completely obscured by the video.  The Qt::WA_PaintOnScreen flag will
+    allow us to paint to the screen instead of the back buffer where supported.
+
+    Next we set the background color to black, so that any borders around the
+    video are filled in black rather the default background color.
+
+    Finally we construct an instance of the VideoWidgetSurface class.
+
+    \snippet examples/multimedia/videowidget/videowidget.cpp 1
+
+    In the destructor we simply delete the VideoWidgetSurface instance.
+
+    \snippet examples/multimedia/videowidget/videowidget.cpp 2
+
+    We get the size hint for the widget from the video format of the surface
+    which is calculated from viewport and pixel aspect ratio of the video
+    format.
+
+    \snippet examples/multimedia/videowidget/videowidget.cpp 3
+
+    When the video widget receives a paint event we first check if the surface
+    is started,  if not then we simply fill the widget with the background
+    color.  If it is then we draw a border around the video region clipped
+    by the paint region, before calling paint on the video surface to draw the
+    current frame.
+
+    \snippet examples/multimedia/videowidget/videowidget.cpp 4
+
+    The resizeEvent() function is reimplemented to trigger an update of the
+    video region when the widget is resized.
+*/

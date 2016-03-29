@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: cube.h Example File (opengl/pbuffers/cube.h)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">cube.h Example File<br /><span class="small-subtitle">opengl/pbuffers/cube.h</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the examples of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+
+ #ifndef CUBE_H
+ #define CUBE_H
+
+ #include &lt;QtOpenGL/qgl.h&gt;
+ #include &lt;QtCore/qvector.h&gt;
+ #include &lt;QtGui/qmatrix4x4.h&gt;
+ #include &lt;QtGui/qvector3d.h&gt;
+ #include &lt;QtGui/qvector2d.h&gt;
+
+ class QPropertyAnimation;
+
+ class Geometry
+ {
+ public:
+     void loadArrays() const;
+     void addQuad(const QVector3D &amp;a, const QVector3D &amp;b,
+                  const QVector3D &amp;c, const QVector3D &amp;d,
+                  const QVector&lt;QVector2D&gt; &amp;tex);
+     void setColors(int start, GLfloat colors[4][4]);
+     const GLushort *indices() const { return faces.constData(); }
+     int count() const { return faces.count(); }
+ private:
+     QVector&lt;GLushort&gt; faces;
+     QVector&lt;QVector3D&gt; vertices;
+     QVector&lt;QVector3D&gt; normals;
+     QVector&lt;QVector2D&gt; texCoords;
+     QVector&lt;QVector4D&gt; colors;
+     int append(const QVector3D &amp;a, const QVector3D &amp;n, const QVector2D &amp;t);
+     void addTri(const QVector3D &amp;a, const QVector3D &amp;b, const QVector3D &amp;c, const QVector3D &amp;n);
+     friend class Tile;
+ };
+
+ class Tile
+ {
+ public:
+     void draw() const;
+     void setColors(GLfloat[4][4]);
+ protected:
+     Tile(const QVector3D &amp;loc = QVector3D());
+     QVector3D location;
+     QQuaternion orientation;
+ private:
+     int start;
+     int count;
+     bool useFlatColor;
+     GLfloat faceColor[4];
+     Geometry *geom;
+     friend class TileBuilder;
+ };
+
+ class TileBuilder
+ {
+ public:
+     enum { bl, br, tr, tl };
+     TileBuilder(Geometry *, qreal depth = 0.0f, qreal size = 1.0f);
+     Tile *newTile(const QVector3D &amp;loc = QVector3D()) const;
+     void setColor(QColor c) { color = c; }
+ protected:
+     void initialize(Tile *) const;
+     QVector&lt;QVector3D&gt; verts;
+     QVector&lt;QVector2D&gt; tex;
+     int start;
+     int count;
+     Geometry *geom;
+     QColor color;
+ };
+
+ class Cube : public QObject, public Tile
+ {
+     Q_OBJECT
+     Q_PROPERTY(qreal range READ range WRITE setRange)
+     Q_PROPERTY(qreal altitude READ altitude WRITE setAltitude)
+     Q_PROPERTY(qreal rotation READ rotation WRITE setRotation)
+ public:
+     Cube(const QVector3D &amp;loc = QVector3D());
+     ~Cube();
+     qreal range() { return location.x(); }
+     void setRange(qreal r);
+     qreal altitude() { return location.y(); }
+     void setAltitude(qreal a);
+     qreal rotation() { return rot; }
+     void setRotation(qreal r);
+     void removeBounce();
+     void startAnimation();
+     void setAnimationPaused(bool paused);
+ signals:
+     void changed();
+ private:
+     qreal rot;
+     QPropertyAnimation *r;
+     QPropertyAnimation *a;
+     QPropertyAnimation *rtn;
+     qreal startx;
+     friend class CubeBuilder;
+ };
+
+ class CubeBuilder : public TileBuilder
+ {
+ public:
+     CubeBuilder(Geometry *, qreal depth = 0.0f, qreal size = 1.0f);
+     Cube *newCube(const QVector3D &amp;loc = QVector3D()) const;
+ private:
+     mutable int ix;
+ };
+
+ #endif <span class="comment">// CUBE_H</span></pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

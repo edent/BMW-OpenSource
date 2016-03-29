@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qmouse_qws.cpp -->
+<head>
+  <title>Qt 4.6: QWSCalibratedMouseHandler Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QWSCalibratedMouseHandler" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QWSCalibratedMouseHandler Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QWSCalibratedMouseHandler class provides mouse calibration and noise reduction in Qt for Embedded Linux. <a href="#details">More...</a></p>
+<pre> #include &lt;QWSCalibratedMouseHandler&gt;</pre><p>Inherits <a href="qwsmousehandler.html">QWSMouseHandler</a>.</p>
+<ul>
+<li><a href="qwscalibratedmousehandler-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="reimplemented-public-functions"></a>
+<h2>Reimplemented Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qwscalibratedmousehandler.html#calibrate">calibrate</a></b> ( const QWSPointerCalibrationData * <i>data</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qwscalibratedmousehandler.html#clearCalibration">clearCalibration</a></b> ()</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>9 public functions inherited from <a href="qwsmousehandler.html#public-functions">QWSMouseHandler</a></li>
+</ul>
+<hr />
+<a name="protected-functions"></a>
+<h2>Protected Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qwscalibratedmousehandler.html#readCalibration">readCalibration</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qwscalibratedmousehandler.html#sendFiltered">sendFiltered</a></b> ( const QPoint &amp; <i>position</i>, int <i>state</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qwscalibratedmousehandler.html#setFilterSize">setFilterSize</a></b> ( int <i>size</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QPoint </td><td class="memItemRight" valign="bottom"><b><a href="qwscalibratedmousehandler.html#transform">transform</a></b> ( const QPoint &amp; <i>position</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qwscalibratedmousehandler.html#writeCalibration">writeCalibration</a></b> ()</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QWSCalibratedMouseHandler class provides mouse calibration and noise reduction in Qt for Embedded Linux.</p>
+<p>Note that this class is only available in <a href="qt-embedded-linux.html">Qt for Embedded Linux</a>.</p>
+<p><a href="qt-embedded-linux.html">Qt for Embedded Linux</a> provides ready-made drivers for several mouse protocols, see the <a href="qt-embedded-pointer.html">pointer handling</a> documentation for details. In general, custom mouse drivers can be implemented by subclassing the <a href="qwsmousehandler.html">QWSMouseHandler</a> class. But when the system device does not have a fixed mapping between device and screen coordinates and/or produces noisy events (e.g&#x2e;, a touchscreen), you should derive from the QWSCalibratedMouseHandler class instead to take advantage of its calibration functionality. As always, you must also create a mouse driver plugin (derived from <a href="qmousedriverplugin.html">QMouseDriverPlugin</a>); the implementation of the <a href="qmousedriverfactory.html">QMouseDriverFactory</a> class will then automatically detect the plugin, and load the driver into the server application at run-time using Qt's <a href="plugins-howto.html">plugin system</a>.</p>
+<p>QWSCalibratedMouseHandler provides an implementation of the <a href="qwscalibratedmousehandler.html#calibrate">calibrate</a>() function to update the calibration parameters based on coordinate mapping of the given calibration data. The calibration data is represented by an <a href="qwspointercalibrationdata.html">QWSPointerCalibrationData</a> object. The linear transformation between device coordinates and screen coordinates is performed by calling the <a href="qwscalibratedmousehandler.html#transform">transform</a>() function explicitly on the points passed to the <a href="qwsmousehandler.html#mouseChanged">QWSMouseHandler::mouseChanged</a>() function. Use the <a href="qwscalibratedmousehandler.html#clearCalibration">clearCalibration</a>() function to make the mouse driver return mouse events in raw device coordinates and not in screen coordinates.</p>
+<p>The calibration parameters are recalculated whenever <a href="qwscalibratedmousehandler.html#calibrate">calibrate</a>() is called, and they can be stored using the <a href="qwscalibratedmousehandler.html#writeCalibration">writeCalibration</a>() function. Previously written parameters can be retrieved at any time using the <a href="qwscalibratedmousehandler.html#readCalibration">readCalibration</a>() function (calibration parameters are always read when the class is instantiated). Note that the calibration parameters is written to and read from the file currently specified by the <a href="qt-embedded-envvars.html#pointercal-file">POINTERCAL_FILE</a> environment variable; the default file is <tt>/etc/pointercal</tt>.</p>
+<p>To achieve noise reduction, QWSCalibratedMouseHandler provides the <a href="qwscalibratedmousehandler.html#sendFiltered">sendFiltered</a>() function. Use this function instead of <a href="qwsmousehandler.html#mouseChanged">mouseChanged</a>() whenever a mouse event occurs. The filter's size can be manipulated using the <a href="qwscalibratedmousehandler.html#setFilterSize">setFilterSize</a>() function.</p>
+<p>See also <a href="qwsmousehandler.html">QWSMouseHandler</a>, <a href="qwspointercalibrationdata.html">QWSPointerCalibrationData</a>, and <a href="qws-mousecalibration.html">Mouse Calibration Example</a>.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QWSCalibratedMouseHandler/calibrate" />
+<h3 class="fn"><a name="calibrate"></a>void QWSCalibratedMouseHandler::calibrate ( const <a href="qwspointercalibrationdata.html">QWSPointerCalibrationData</a> * <i>data</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qwsmousehandler.html#calibrate">QWSMouseHandler::calibrate</a>().</p>
+<p>Updates the calibration parameters based on coordinate mapping of the given <i>data</i>.</p>
+<p>Create an instance of the <a href="qwspointercalibrationdata.html">QWSPointerCalibrationData</a> class, fill in the device and screen coordinates and pass that object to the mouse driver using this function.</p>
+<p>See also <a href="qwscalibratedmousehandler.html#clearCalibration">clearCalibration</a>() and <a href="qwscalibratedmousehandler.html#transform">transform</a>().</p>
+<a name="//apple_ref/cpp/instm/QWSCalibratedMouseHandler/clearCalibration" />
+<h3 class="fn"><a name="clearCalibration"></a>void QWSCalibratedMouseHandler::clearCalibration ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qwsmousehandler.html#clearCalibration">QWSMouseHandler::clearCalibration</a>().</p>
+<p>Clears the current calibration, i.e&#x2e;, makes the mouse driver return mouse events in raw device coordinates instead of screen coordinates.</p>
+<p>See also <a href="qwscalibratedmousehandler.html#calibrate">calibrate</a>().</p>
+<a name="//apple_ref/cpp/instm/QWSCalibratedMouseHandler/readCalibration" />
+<h3 class="fn"><a name="readCalibration"></a>void QWSCalibratedMouseHandler::readCalibration ()&nbsp;&nbsp;<tt> [protected]</tt></h3>
+<p>Reads previously written calibration parameters which are stored in <tt>/etc/pointercal</tt> (separated by whitespace and in alphabetical order).</p>
+<p>You can override the default <tt>/etc/pointercal</tt> by specifying another file using the <a href="qt-embedded-envvars.html#pointercal-file">POINTERCAL_FILE</a> environment variable.</p>
+<p>See also <a href="qwscalibratedmousehandler.html#writeCalibration">writeCalibration</a>().</p>
+<a name="//apple_ref/cpp/instm/QWSCalibratedMouseHandler/sendFiltered" />
+<h3 class="fn"><a name="sendFiltered"></a>bool QWSCalibratedMouseHandler::sendFiltered ( const <a href="qpoint.html">QPoint</a> &amp; <i>position</i>, int <i>state</i> )&nbsp;&nbsp;<tt> [protected]</tt></h3>
+<p>Notifies the system of a new mouse event <i>after</i> applying a noise reduction filter. Returns true if the filtering process is successful; otherwise returns false. Note that if the filtering process failes, the system is not notified about the event.</p>
+<p>The given <i>position</i> is the global position of the mouse. The <i>state</i> parameter is a bitmask of the <a href="qt.html#MouseButton-enum">Qt::MouseButton</a> enum's values indicating which mouse buttons are pressed.</p>
+<p>The noice is reduced by calculating an average position from a collection of mouse event positions and then calling the <a href="qwsmousehandler.html#mouseChanged">mouseChanged</a>() function with the new position. The number of positions that is used is determined by the filter size.</p>
+<p>See also <a href="qwsmousehandler.html#mouseChanged">mouseChanged</a>() and <a href="qwscalibratedmousehandler.html#setFilterSize">setFilterSize</a>().</p>
+<a name="//apple_ref/cpp/instm/QWSCalibratedMouseHandler/setFilterSize" />
+<h3 class="fn"><a name="setFilterSize"></a>void QWSCalibratedMouseHandler::setFilterSize ( int <i>size</i> )&nbsp;&nbsp;<tt> [protected]</tt></h3>
+<p>Sets the size of the filter used in noise reduction to the given <i>size</i>.</p>
+<p>The <a href="qwscalibratedmousehandler.html#sendFiltered">sendFiltered</a>() function reduces noice by calculating an average position from a collection of mouse event positions. The filter size determines the number of positions that forms the basis for these calculations.</p>
+<p>See also <a href="qwscalibratedmousehandler.html#sendFiltered">sendFiltered</a>().</p>
+<a name="//apple_ref/cpp/instm/QWSCalibratedMouseHandler/transform" />
+<h3 class="fn"><a name="transform"></a><a href="qpoint.html">QPoint</a> QWSCalibratedMouseHandler::transform ( const <a href="qpoint.html">QPoint</a> &amp; <i>position</i> )&nbsp;&nbsp;<tt> [protected]</tt></h3>
+<p>Transforms the given <i>position</i> from device coordinates to screen coordinates, and returns the transformed position.</p>
+<p>This function is typically called explicitly on the points passed to the <a href="qwsmousehandler.html#mouseChanged">QWSMouseHandler::mouseChanged</a>() function.</p>
+<p>This implementation is a linear transformation using 7 parameters (<tt>a</tt>, <tt>b</tt>, <tt>c</tt>, <tt>d</tt>, <tt>e</tt>, <tt>f</tt> and <tt>s</tt>) to transform the device coordinates (<tt>Xd</tt>, <tt>Yd</tt>) into screen coordinates (<tt>Xs</tt>, <tt>Ys</tt>) using the following equations:</p>
+<pre> s*Xs = a*Xd + b*Yd + c
+ s*Ys = d*Xd + e*Yd + f</pre>
+<p>See also <a href="qwsmousehandler.html#mouseChanged">mouseChanged</a>().</p>
+<a name="//apple_ref/cpp/instm/QWSCalibratedMouseHandler/writeCalibration" />
+<h3 class="fn"><a name="writeCalibration"></a>void QWSCalibratedMouseHandler::writeCalibration ()&nbsp;&nbsp;<tt> [protected]</tt></h3>
+<p>Saves the current calibration parameters in <tt>/etc/pointercal</tt> (separated by whitespace and in alphabetical order).</p>
+<p>You can override the default <tt>/etc/pointercal</tt> by specifying another file using the <a href="qt-embedded-envvars.html#pointercal-file">POINTERCAL_FILE</a> environment variable.</p>
+<p>See also <a href="qwscalibratedmousehandler.html#readCalibration">readCalibration</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

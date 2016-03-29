@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: main.cpp Example File (demos/boxes/main.cpp)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">main.cpp Example File<br /><span class="small-subtitle">demos/boxes/main.cpp</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the demonstration applications of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+
+<span class="comment"> //#include &lt;GL/glew.h&gt;</span>
+ #include &quot;glextensions.h&quot;
+
+ #include &quot;scene.h&quot;
+
+ #include &lt;QtGui&gt;
+ #include &lt;QGLWidget&gt;
+
+ class GraphicsView : public QGraphicsView
+ {
+ public:
+     GraphicsView()
+     {
+         setWindowTitle(tr(&quot;Boxes&quot;));
+         setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+         <span class="comment">//setRenderHints(QPainter::SmoothPixmapTransform);</span>
+     }
+
+ protected:
+     void resizeEvent(QResizeEvent *event) {
+         if (scene())
+             scene()-&gt;setSceneRect(QRect(QPoint(0, 0), event-&gt;size()));
+         QGraphicsView::resizeEvent(event);
+     }
+ };
+
+ inline bool matchString(const char *extensionString, const char *subString)
+ {
+     int subStringLength = strlen(subString);
+     return (strncmp(extensionString, subString, subStringLength) == 0)
+         &amp;&amp; ((extensionString[subStringLength] == ' ') || (extensionString[subStringLength] == '\0'));
+ }
+
+ bool necessaryExtensionsSupported()
+ {
+     const char *extensionString = reinterpret_cast&lt;const char *&gt;(glGetString(GL_EXTENSIONS));
+     const char *p = extensionString;
+
+     const int GL_EXT_FBO = 1;
+     const int GL_ARB_VS = 2;
+     const int GL_ARB_FS = 4;
+     const int GL_ARB_SO = 8;
+     int extensions = 0;
+
+     while (*p) {
+         if (matchString(p, &quot;GL_EXT_framebuffer_object&quot;))
+             extensions |= GL_EXT_FBO;
+         else if (matchString(p, &quot;GL_ARB_vertex_shader&quot;))
+             extensions |= GL_ARB_VS;
+         else if (matchString(p, &quot;GL_ARB_fragment_shader&quot;))
+             extensions |= GL_ARB_FS;
+         else if (matchString(p, &quot;GL_ARB_shader_objects&quot;))
+             extensions |= GL_ARB_SO;
+         while ((*p != ' ') &amp;&amp; (*p != '\0'))
+             ++p;
+         if (*p == ' ')
+             ++p;
+     }
+     return (extensions == 15);
+ }
+
+ int main(int argc, char **argv)
+ {
+     QApplication app(argc, argv);
+
+     if ((QGLFormat::openGLVersionFlags() &amp; QGLFormat::OpenGL_Version_1_5) == 0) {
+         QMessageBox::critical(0, &quot;OpenGL features missing&quot;,
+             &quot;OpenGL version 1.5 or higher is required to run this demo.\n&quot;
+             &quot;The program will now exit.&quot;);
+         return -1;
+     }
+
+     int maxTextureSize = 1024;
+     QGLWidget *widget = new QGLWidget(QGLFormat(QGL::SampleBuffers));
+     widget-&gt;makeCurrent();
+
+     if (!necessaryExtensionsSupported()) {
+         QMessageBox::critical(0, &quot;OpenGL features missing&quot;,
+             &quot;The OpenGL extensions required to run this demo are missing.\n&quot;
+             &quot;The program will now exit.&quot;);
+         delete widget;
+         return -2;
+     }
+
+     <span class="comment">// Check if all the necessary functions are resolved.</span>
+     if (!getGLExtensionFunctions().resolve(widget-&gt;context())) {
+         QMessageBox::critical(0, &quot;OpenGL features missing&quot;,
+             &quot;Failed to resolve OpenGL functions required to run this demo.\n&quot;
+             &quot;The program will now exit.&quot;);
+         delete widget;
+         return -3;
+     }
+
+     <span class="comment">// TODO: Make conditional for final release</span>
+     QMessageBox::information(0, &quot;For your information&quot;,
+         &quot;This demo can be GPU and CPU intensive and may\n&quot;
+         &quot;work poorly or not at all on your system.&quot;);
+
+     widget-&gt;makeCurrent(); <span class="comment">// The current context must be set before calling Scene's constructor</span>
+     Scene scene(1024, 768, maxTextureSize);
+     GraphicsView view;
+     view.setViewport(widget);
+     view.setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
+     view.setScene(&amp;scene);
+     view.show();
+
+     return app.exec();
+ }</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

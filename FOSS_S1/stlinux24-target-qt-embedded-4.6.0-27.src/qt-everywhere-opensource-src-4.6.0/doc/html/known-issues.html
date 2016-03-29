@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- known-issues.qdoc -->
+<head>
+  <title>Qt 4.6: Known Issues in 4.6&#x2e;0</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">Known Issues in 4.6&#x2e;0<br /><span class="subtitle"></span>
+</h1>
+<p>This page documents known problems with the packaging and installation in Qt 4.6&#x2e;0, as well as issues with third party software that we have not been able to work around. For a list of such issues in previous Qt versions refer to this page in the respective documentation.</p>
+<p>For a list list of known bugs in Qt 4.6&#x2e;0, see the <a href="http://bugreports.qt.nokia.com">Task Tracker</a> on the Qt website.</p>
+<p>An overview of known issues may also be found at: <a href="http://qt.gitorious.org/qt/pages/Qt460BetaKnownIssues">Known Issues Wiki</a>.</p>
+<a name="installation-issues"></a>
+<h3>Installation Issues</h3>
+<a name="installing-the-source-package-on-unix-systems"></a>
+<h4>Installing the Source Package on Unix systems</h4>
+<p>If you download a Zip source package, you will need to convert Windows-style line endings (CR/LF) to Unix-style line-endings (LF) when you uncompress the package. To do this, give the &quot;-a&quot; option when you run the &quot;unzip' command.</p>
+<p>If you fail to supply the &quot;-a&quot; option when unzipping the package, you will see the following error message when you attempt to execute the configure command: &quot;bash: ./configure: /bin/sh^M: bad interpreter: No such file or directory&quot;</p>
+<a name="installing-on-mac-os-x-10-6-snow-leopard"></a>
+<h4>Installing on Mac OS X 10.6 &quot;Snow Leopard&quot;</h4>
+<ul>
+<li>Performing a new install of the Qt 4.6 beta on Snow Leopard triggers a bug in the installer that causes the install to fail. Updating an existing Qt installation works fine.<p>There are two workarounds, either disable spotlight for the target drive during the install, or do a custom install where you deselect documentation and examples. Run the installer again as a full install to get the documentation and examples installed.</p>
+</li>
+</ul>
+<a name="issues-with-third-party-software"></a>
+<h3>Issues with Third Party Software</h3>
+<a name="x11"></a>
+<h4>X11</h4>
+<ul>
+<li>There is a bug in the 169.xx NVIDIA drivers on certain GeForce 8 series cards that is triggered by the OpenGL paint engine when using <a href="qpainter.html">QPainter</a> on a <a href="qglwidget.html">QGLWidget</a> to draw paths and polygons. Some other painting operations that end up in the path fallback are affected as well. The bug causes the whole X server to repeatedly hang for several seconds at a time.</li>
+<li>There is an issue with NVIDIA's 9xxx driver series on X11 that causes a crash in cases where there are several <a href="qglcontext.html">QGLContext</a>s and the extended composition modes are used (the composition modes between and including <a href="qpainter.html#CompositionMode-enum">QPainter::CompositionMode_Multiply</a> and <a href="qpainter.html#CompositionMode-enum">QPainter::CompositionMode_Exclusion</a>). This affects the composition mode demo in Qt 4.5, for example. The crash does not occur in newer versions of the drivers.</li>
+</ul>
+<a name="windows"></a>
+<h4>Windows</h4>
+<ul>
+<li>When using version 6.14.11.6921 of the NVIDIA drivers for the GeForce 6600 GT under Windows XP, Qt applications which use drag and drop will display reduced size drag and drop icons when run alongside applications that use OpenGL. This problem can be worked around by reducing the level of graphics acceleration provided by the driver, or by disabling hardware acceleration completely.</li>
+<li>With NVIDIA GeForce 7950 GT (driver version 6.14.11.7824), a fullscreen <a href="qglwidget.html">QGLWidget</a> flickers when child widgets are shown/hidden. The workaround for this is to use <a href="qwidget.html#geometry-prop">setGeometry()</a> with a width/height 1 pixel bigger than your geometry and call <a href="qwidget.html#show">show()</a>.</li>
+<li>A bug in the Firebird database can cause an application to crash when <tt>fbembed.dll</tt> is unloaded. The bug is fixed in version 2.5&#x2e;</li>
+<li>On Windows 7, resizing windows is slower than on Vista/Xp. This is because the gesture initialization process (required for native gesture support) currently calls winId() on widgets, which causes whole widget hierarchies to use native window handles. This slows down resizing.</li>
+</ul>
+<a name="mac-os-x"></a>
+<h4>Mac OS X</h4>
+<ul>
+<li>If a sheet is opened for a given window, clicking the title bar of that window will cause it to flash. This behavior has been reported to Apple (bug number 5827676).</li>
+</ul>
+<a name="symbian"></a>
+<h4>Symbian</h4>
+<ul>
+<li>Check known issues for Symbian at <a href="http://qt.gitorious.org/qt/pages/Qt460KnownIssues">Known Issues Wiki</a>.</li>
+</ul>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

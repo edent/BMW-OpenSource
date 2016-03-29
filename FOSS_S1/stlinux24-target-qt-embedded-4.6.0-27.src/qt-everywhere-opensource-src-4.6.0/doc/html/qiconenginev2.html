@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qiconengine.cpp -->
+<head>
+  <title>Qt 4.6: QIconEngineV2 Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QIconEngineV2" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QIconEngineV2 Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QIconEngineV2 class provides an abstract base class for <a href="qicon.html">QIcon</a> renderers. <a href="#details">More...</a></p>
+<pre> #include &lt;QIconEngineV2&gt;</pre><p>Inherits <a href="qiconengine.html">QIconEngine</a>.</p>
+<p>This class was introduced in Qt 4.3.</p>
+<ul>
+<li><a href="qiconenginev2-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-types"></a>
+<h2>Public Types</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">class </td><td class="memItemRight" valign="bottom"><b><a href="qiconenginev2-availablesizesargument.html">AvailableSizesArgument</a></b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qiconenginev2.html#IconEngineHook-enum">IconEngineHook</a></b> { AvailableSizesHook }</td></tr>
+</table>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">QList&lt;QSize&gt; </td><td class="memItemRight" valign="bottom"><b><a href="qiconenginev2.html#availableSizes">availableSizes</a></b> ( QIcon::Mode <i>mode</i> = QIcon::Normal, QIcon::State <i>state</i> = QIcon::Off )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QIconEngineV2 * </td><td class="memItemRight" valign="bottom"><b><a href="qiconenginev2.html#clone">clone</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QString </td><td class="memItemRight" valign="bottom"><b><a href="qiconenginev2.html#key">key</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qiconenginev2.html#read">read</a></b> ( QDataStream &amp; <i>in</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qiconenginev2.html#virtual_hook">virtual_hook</a></b> ( int <i>id</i>, void * <i>data</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qiconenginev2.html#write">write</a></b> ( QDataStream &amp; <i>out</i> ) const</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>5 public functions inherited from <a href="qiconengine.html#public-functions">QIconEngine</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QIconEngineV2 class provides an abstract base class for <a href="qicon.html">QIcon</a> renderers.</p>
+<p>An icon engine renders <a href="qicon.html">QIcon</a>s. With icon engines, you can customize icons. Qt provides a default engine that makes icons adhere to the current style by scaling the icons and providing a disabled appearance.</p>
+<p>An engine is installed on an icon either through a <a href="qicon.html">QIcon</a> constructor or through a <a href="qiconenginepluginv2.html">QIconEnginePluginV2</a>. The plugins are used by Qt if a specific engine is not given when the icon is created. See the QIconEngineV2 class description to learn how to create icon engine plugins.</p>
+<p>An icon engine provides the rendering functions for a <a href="qicon.html">QIcon</a>. Each icon has a corresponding icon engine that is responsible for drawing the icon with a requested size, mode and state.</p>
+<p>QIconEngineV2 extends the API of <a href="qiconengine.html">QIconEngine</a> to allow streaming of the icon engine contents, and should be used instead of <a href="qiconengine.html">QIconEngine</a> for implementing new icon engines.</p>
+<p>See also <a href="qiconenginepluginv2.html">QIconEnginePluginV2</a>.</p>
+<hr />
+<h2>Member Type Documentation</h2>
+<a name="//apple_ref/cpp/tag/QIconEngineV2/IconEngineHook" />
+<a name="//apple_ref/cpp/econst/QIconEngineV2/AvailableSizesHook" />
+<h3 class="fn"><a name="IconEngineHook-enum"></a>enum QIconEngineV2::IconEngineHook</h3>
+<p>These enum values are used for <a href="qiconenginev2.html#virtual_hook">virtual_hook</a>() to allow additional queries to icon engine without breaking binary compatibility.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QIconEngineV2::AvailableSizesHook</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">Allows to query the sizes of the contained pixmaps for pixmap-based engines. The <i>data</i> argument of the <a href="qiconenginev2.html#virtual_hook">virtual_hook</a>() function is a <a href="qiconenginev2-availablesizesargument.html">AvailableSizesArgument</a> pointer that should be filled with icon sizes. Engines that work in terms of a scalable, vectorial format normally return an empty list.</td></tr>
+</table></p>
+<p>This enum was introduced in Qt 4.5.</p>
+<p>See also <a href="qiconenginev2.html#virtual_hook">virtual_hook</a>().</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QIconEngineV2/availableSizes" />
+<h3 class="fn"><a name="availableSizes"></a><a href="qlist.html">QList</a>&lt;<a href="qsize.html">QSize</a>&gt; QIconEngineV2::availableSizes ( <a href="qicon.html#Mode-enum">QIcon::Mode</a> <i>mode</i> = QIcon::Normal, <a href="qicon.html#State-enum">QIcon::State</a> <i>state</i> = QIcon::Off )</h3>
+<p>Returns sizes of all images that are contained in the engine for the specific <i>mode</i> and <i>state</i>.</p>
+<p><b>Note:</b> This is a helper method and the actual work is done by <a href="qiconenginev2.html#virtual_hook">virtual_hook</a>() method, hence this method depends on icon engine support and may not work with all icon engines.</p>
+<p>This function was introduced in Qt 4.5.</p>
+<a name="//apple_ref/cpp/instm/QIconEngineV2/clone" />
+<h3 class="fn"><a name="clone"></a>QIconEngineV2 * QIconEngineV2::clone () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Returns a clone of this icon engine.</p>
+<a name="//apple_ref/cpp/instm/QIconEngineV2/key" />
+<h3 class="fn"><a name="key"></a><a href="qstring.html">QString</a> QIconEngineV2::key () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Returns a key that identifies this icon engine.</p>
+<a name="//apple_ref/cpp/instm/QIconEngineV2/read" />
+<h3 class="fn"><a name="read"></a>bool QIconEngineV2::read ( <a href="qdatastream.html">QDataStream</a> &amp; <i>in</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reads icon engine contents from the <a href="qdatastream.html">QDataStream</a> <i>in</i>. Returns true if the contents were read; otherwise returns false.</p>
+<p><a href="qiconenginev2.html">QIconEngineV2</a>'s default implementation always return false.</p>
+<a name="//apple_ref/cpp/instm/QIconEngineV2/virtual_hook" />
+<h3 class="fn"><a name="virtual_hook"></a>void QIconEngineV2::virtual_hook ( int <i>id</i>, void * <i>data</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Additional method to allow extending <a href="qiconenginev2.html">QIconEngineV2</a> without adding new virtual methods (and without breaking binary compatibility). The actual action and format of <i>data</i> depends on <i>id</i> argument which is in fact a constant from <a href="qiconenginev2.html#IconEngineHook-enum">IconEngineHook</a> enum.</p>
+<p>This function was introduced in Qt 4.5.</p>
+<p>See also <a href="qiconenginev2.html#IconEngineHook-enum">IconEngineHook</a>.</p>
+<a name="//apple_ref/cpp/instm/QIconEngineV2/write" />
+<h3 class="fn"><a name="write"></a>bool QIconEngineV2::write ( <a href="qdatastream.html">QDataStream</a> &amp; <i>out</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Writes the contents of this engine to the <a href="qdatastream.html">QDataStream</a> <i>out</i>. Returns true if the contents were written; otherwise returns false.</p>
+<p><a href="qiconenginev2.html">QIconEngineV2</a>'s default implementation always return false.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

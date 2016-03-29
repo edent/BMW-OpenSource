@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qfontdialog.cpp -->
+<head>
+  <title>Qt 4.6: QFontDialog Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QFontDialog" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QFontDialog Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QFontDialog class provides a dialog widget for selecting a font. <a href="#details">More...</a></p>
+<pre> #include &lt;QFontDialog&gt;</pre><p>Inherits <a href="qdialog.html">QDialog</a>.</p>
+<ul>
+<li><a href="qfontdialog-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-types"></a>
+<h2>Public Types</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qfontdialog.html#FontDialogOption-enum">FontDialogOption</a></b> { NoButtons, DontUseNativeDialog }</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">flags </td><td class="memItemRight" valign="bottom"><b><a href="qfontdialog.html#FontDialogOption-enum">FontDialogOptions</a></b></td></tr>
+</table>
+<hr />
+<a name="properties"></a>
+<h2>Properties</h2>
+<ul>
+<li><div class="fn"><b><a href="qfontdialog.html#currentFont-prop">currentFont</a></b> : QFont</div></li>
+<li><div class="fn"><b><a href="qfontdialog.html#options-prop">options</a></b> : FontDialogOptions</div></li>
+</ul>
+<ul>
+<li><div bar="2" class="fn"></div>2 properties inherited from <a href="qdialog.html#properties">QDialog</a></li>
+<li><div bar="2" class="fn"></div>58 properties inherited from <a href="qwidget.html#properties">QWidget</a></li>
+<li><div bar="2" class="fn"></div>1 property inherited from <a href="qobject.html#properties">QObject</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qfontdialog.html#QFontDialog">QFontDialog</a></b> ( QWidget * <i>parent</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qfontdialog.html#QFontDialog-2">QFontDialog</a></b> ( const QFont &amp; <i>initial</i>, QWidget * <i>parent</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QFont </td><td class="memItemRight" valign="bottom"><b><a href="qfontdialog.html#currentFont-prop">currentFont</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qfontdialog.html#open">open</a></b> ( QObject * <i>receiver</i>, const char * <i>member</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">FontDialogOptions </td><td class="memItemRight" valign="bottom"><b><a href="qfontdialog.html#options-prop">options</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QFont </td><td class="memItemRight" valign="bottom"><b><a href="qfontdialog.html#selectedFont">selectedFont</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qfontdialog.html#currentFont-prop">setCurrentFont</a></b> ( const QFont &amp; <i>font</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qfontdialog.html#setOption">setOption</a></b> ( FontDialogOption <i>option</i>, bool <i>on</i> = true )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qfontdialog.html#options-prop">setOptions</a></b> ( FontDialogOptions <i>options</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qfontdialog.html#testOption">testOption</a></b> ( FontDialogOption <i>option</i> ) const</td></tr>
+</table>
+<hr />
+<a name="reimplemented-public-functions"></a>
+<h2>Reimplemented Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qfontdialog.html#setVisible">setVisible</a></b> ( bool <i>visible</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>8 public functions inherited from <a href="qdialog.html#public-functions">QDialog</a></li>
+<li><div bar="2" class="fn"></div>216 public functions inherited from <a href="qwidget.html#public-functions">QWidget</a></li>
+<li><div bar="2" class="fn"></div>29 public functions inherited from <a href="qobject.html#public-functions">QObject</a></li>
+<li><div bar="2" class="fn"></div>12 public functions inherited from <a href="qpaintdevice.html#public-functions">QPaintDevice</a></li>
+</ul>
+<hr />
+<a name="signals"></a>
+<h2>Signals</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qfontdialog.html#currentFontChanged">currentFontChanged</a></b> ( const QFont &amp; <i>font</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qfontdialog.html#fontSelected">fontSelected</a></b> ( const QFont &amp; <i>font</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>3 signals inherited from <a href="qdialog.html#signals">QDialog</a></li>
+<li><div bar="2" class="fn"></div>1 signal inherited from <a href="qwidget.html#signals">QWidget</a></li>
+<li><div bar="2" class="fn"></div>1 signal inherited from <a href="qobject.html#signals">QObject</a></li>
+</ul>
+<hr />
+<a name="static-public-members"></a>
+<h2>Static Public Members</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">QFont </td><td class="memItemRight" valign="bottom"><b><a href="qfontdialog.html#getFont">getFont</a></b> ( bool * <i>ok</i>, const QFont &amp; <i>initial</i>, QWidget * <i>parent</i>, const QString &amp; <i>title</i>, FontDialogOptions <i>options</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QFont </td><td class="memItemRight" valign="bottom"><b><a href="qfontdialog.html#getFont-2">getFont</a></b> ( bool * <i>ok</i>, const QFont &amp; <i>initial</i>, QWidget * <i>parent</i>, const char * <i>name</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QFont </td><td class="memItemRight" valign="bottom"><b><a href="qfontdialog.html#getFont-3">getFont</a></b> ( bool * <i>ok</i>, QWidget * <i>parent</i>, const char * <i>name</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QFont </td><td class="memItemRight" valign="bottom"><b><a href="qfontdialog.html#getFont-4">getFont</a></b> ( bool * <i>ok</i>, const QFont &amp; <i>initial</i>, QWidget * <i>parent</i>, const QString &amp; <i>title</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QFont </td><td class="memItemRight" valign="bottom"><b><a href="qfontdialog.html#getFont-5">getFont</a></b> ( bool * <i>ok</i>, const QFont &amp; <i>initial</i>, QWidget * <i>parent</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QFont </td><td class="memItemRight" valign="bottom"><b><a href="qfontdialog.html#getFont-6">getFont</a></b> ( bool * <i>ok</i>, QWidget * <i>parent</i> = 0 )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>4 static public members inherited from <a href="qwidget.html#static-public-members">QWidget</a></li>
+<li><div bar="2" class="fn"></div>5 static public members inherited from <a href="qobject.html#static-public-members">QObject</a></li>
+</ul>
+<hr />
+<a name="reimplemented-protected-functions"></a>
+<h2>Reimplemented Protected Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qfontdialog.html#changeEvent">changeEvent</a></b> ( QEvent * <i>e</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qfontdialog.html#done">done</a></b> ( int <i>result</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>7 protected functions inherited from <a href="qdialog.html#protected-functions">QDialog</a></li>
+<li><div bar="2" class="fn"></div>37 protected functions inherited from <a href="qwidget.html#protected-functions">QWidget</a></li>
+<li><div bar="2" class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+<li><div bar="2" class="fn"></div>1 protected function inherited from <a href="qpaintdevice.html#protected-functions">QPaintDevice</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li><div class="fn"></div>5 public slots inherited from <a href="qdialog.html#public-slots">QDialog</a></li>
+<li><div class="fn"></div>19 public slots inherited from <a href="qwidget.html#public-slots">QWidget</a></li>
+<li><div class="fn"></div>1 public slot inherited from <a href="qobject.html#public-slots">QObject</a></li>
+<li><div class="fn"></div>7 protected functions inherited from <a href="qdialog.html#protected-functions">QDialog</a></li>
+<li><div class="fn"></div>37 protected functions inherited from <a href="qwidget.html#protected-functions">QWidget</a></li>
+<li><div class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+<li><div class="fn"></div>1 protected function inherited from <a href="qpaintdevice.html#protected-functions">QPaintDevice</a></li>
+<li><div class="fn"></div>1 protected slot inherited from <a href="qwidget.html#protected-slots">QWidget</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QFontDialog class provides a dialog widget for selecting a font.</p>
+<p>A font dialog is created through one of the static <a href="qfontdialog.html#getFont">getFont</a>() functions.</p>
+<p>Examples:</p>
+<pre> bool ok;
+ QFont font = QFontDialog::getFont(
+                 &amp;ok, QFont(&quot;Helvetica [Cronyx]&quot;, 10), this);
+ if (ok) {
+     <span class="comment">// the user clicked OK and font is set to the font the user selected</span>
+ } else {
+     <span class="comment">// the user canceled the dialog; font is set to the initial</span>
+     <span class="comment">// value, in this case Helvetica [Cronyx], 10</span>
+ }</pre>
+<p>The dialog can also be used to set a widget's font directly:</p>
+<pre> myWidget.setFont(QFontDialog::getFont(0, myWidget.font()));</pre>
+<p>If the user clicks OK the font they chose will be used for myWidget, and if they click Cancel the original font is used.</p>
+<p align="center"><img src="images/plastique-fontdialog.png" alt="A font dialog in the Plastique widget style." /></p><p>See also <a href="qfont.html">QFont</a>, <a href="qfontinfo.html">QFontInfo</a>, <a href="qfontmetrics.html">QFontMetrics</a>, <a href="qcolordialog.html">QColorDialog</a>, <a href="qfiledialog.html">QFileDialog</a>, <a href="qprintdialog.html">QPrintDialog</a>, and <a href="dialogs-standarddialogs.html">Standard Dialogs Example</a>.</p>
+<hr />
+<h2>Member Type Documentation</h2>
+<a name="//apple_ref/cpp/tag/QFontDialog/FontDialogOption" />
+<a name="//apple_ref/cpp/econst/QFontDialog/NoButtons" />
+<a name="//apple_ref/cpp/econst/QFontDialog/DontUseNativeDialog" />
+<a name="//apple_ref/cpp/tdef/QFontDialog/FontDialogOptions" />
+<h3 class="flags"><a name="FontDialogOption-enum"></a>enum QFontDialog::FontDialogOption<br />flags QFontDialog::FontDialogOptions</h3>
+<p>This enum specifies various options that affect the look and feel of a font dialog.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QFontDialog::NoButtons</tt></td><td align="center" valign="top"><tt>0x00000001</tt></td><td valign="top">Don't display <b>OK</b> and <b>Cancel</b> buttons. (Useful for &quot;live dialogs&quot;.)</td></tr>
+<tr><td valign="top"><tt>QFontDialog::DontUseNativeDialog</tt></td><td align="center" valign="top"><tt>0x00000002</tt></td><td valign="top">Use Qt's standard font dialog on the Mac instead of Apple's native font panel. (Currently, the native dialog is never used, but this is likely to change in future Qt releases.)</td></tr>
+</table></p>
+<p>This enum was introduced in Qt 4.5.</p>
+<p>The FontDialogOptions type is a typedef for <a href="qflags.html">QFlags</a>&lt;FontDialogOption&gt;. It stores an OR combination of FontDialogOption values.</p>
+<p>See also <a href="qfontdialog.html#options-prop">options</a>, <a href="qfontdialog.html#setOption">setOption</a>(), and <a href="qfontdialog.html#testOption">testOption</a>().</p>
+<hr />
+<h2>Property Documentation</h2>
+<a name="//apple_ref/cpp/instm/QFontDialog/currentFont" />
+<a name="//apple_ref/cpp/instm/QFontDialog/setCurrentFont" />
+<a name="//apple_ref/cpp/instm/QFontDialog/currentFontChanged" />
+<h3 class="fn"><a name="currentFont-prop"></a>currentFont : <a href="qfont.html">QFont</a></h3>
+<p>This property holds the current font of the dialog.</p>
+<p>This property was introduced in Qt 4.5.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">QFont </td><td class="memItemRight" valign="bottom"><b>currentFont</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setCurrentFont</b> ( const QFont &amp; <i>font</i> )</td></tr>
+</table>
+<p><b>Notifier signal:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qfontdialog.html#currentFontChanged">currentFontChanged</a></b> ( const QFont &amp; <i>font</i> )</td></tr>
+</table>
+<a name="//apple_ref/cpp/instm/QFontDialog/options" />
+<a name="//apple_ref/cpp/instm/QFontDialog/setOptions" />
+<h3 class="fn"><a name="options-prop"></a>options : <a href="qfontdialog.html#FontDialogOption-enum">FontDialogOptions</a></h3>
+<p>This property holds the various options that affect the look and feel of the dialog.</p>
+<p>By default, all options are disabled.</p>
+<p>Options should be set before showing the dialog. Setting them while the dialog is visible is not guaranteed to have an immediate effect on the dialog (depending on the option and on the platform).</p>
+<p>This property was introduced in Qt 4.5.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">FontDialogOptions </td><td class="memItemRight" valign="bottom"><b>options</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setOptions</b> ( FontDialogOptions <i>options</i> )</td></tr>
+</table>
+<p>See also <a href="qfontdialog.html#setOption">setOption</a>() and <a href="qfontdialog.html#testOption">testOption</a>().</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QFontDialog/QFontDialog" />
+<h3 class="fn"><a name="QFontDialog"></a>QFontDialog::QFontDialog ( <a href="qwidget.html">QWidget</a> * <i>parent</i> = 0 )</h3>
+<p>Constructs a standard font dialog.</p>
+<p>Use <a href="qfontdialog.html#currentFont-prop">setCurrentFont</a>() to set the initial font attributes.</p>
+<p>The <i>parent</i> parameter is passed to the <a href="qdialog.html">QDialog</a> constructor.</p>
+<p>This function was introduced in Qt 4.5.</p>
+<p>See also <a href="qfontdialog.html#getFont">getFont</a>().</p>
+<h3 class="fn"><a name="QFontDialog-2"></a>QFontDialog::QFontDialog ( const <a href="qfont.html">QFont</a> &amp; <i>initial</i>, <a href="qwidget.html">QWidget</a> * <i>parent</i> = 0 )</h3>
+<p>Constructs a standard font dialog with the given <i>parent</i> and specified <i>initial</i> color.</p>
+<p>This function was introduced in Qt 4.5.</p>
+<a name="//apple_ref/cpp/instm/QFontDialog/changeEvent" />
+<h3 class="fn"><a name="changeEvent"></a>void QFontDialog::changeEvent ( <a href="qevent.html">QEvent</a> * <i>e</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#changeEvent">QWidget::changeEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QFontDialog/currentFontChanged" />
+<h3 class="fn"><a name="currentFontChanged"></a>void QFontDialog::currentFontChanged ( const <a href="qfont.html">QFont</a> &amp; <i>font</i> )&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted when the current font is changed. The new font is specified in <i>font</i>.</p>
+<p>The signal is emitted while a user is selecting a font. Ultimately, the chosen font may differ from the font currently selected.</p>
+<p>This function was introduced in Qt 4.5.</p>
+<p>See also <a href="qfontdialog.html#currentFont-prop">currentFont</a>, <a href="qfontdialog.html#fontSelected">fontSelected</a>(), and <a href="qfontdialog.html#selectedFont">selectedFont</a>().</p>
+<a name="//apple_ref/cpp/instm/QFontDialog/done" />
+<h3 class="fn"><a name="done"></a>void QFontDialog::done ( int <i>result</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qdialog.html#done">QDialog::done</a>().</p>
+<p>Closes the dialog and sets its result code to <i>result</i>. If this dialog is shown with <a href="qdialog.html#exec">exec</a>(), done() causes the local event loop to finish, and <a href="qdialog.html#exec">exec</a>() to return <i>result</i>.</p>
+<p>See also <a href="qdialog.html#done">QDialog::done</a>().</p>
+<a name="//apple_ref/cpp/instm/QFontDialog/fontSelected" />
+<h3 class="fn"><a name="fontSelected"></a>void QFontDialog::fontSelected ( const <a href="qfont.html">QFont</a> &amp; <i>font</i> )&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted when a font has been selected. The selected font is specified in <i>font</i>.</p>
+<p>The signal is only emitted when a user has chosen the final font to be used. It is not emitted while the user is changing the current font in the font dialog.</p>
+<p>This function was introduced in Qt 4.5.</p>
+<p>See also <a href="qfontdialog.html#selectedFont">selectedFont</a>(), <a href="qfontdialog.html#currentFontChanged">currentFontChanged</a>(), and <a href="qfontdialog.html#currentFont-prop">currentFont</a>.</p>
+<a name="//apple_ref/cpp/clm/QFontDialog/getFont" />
+<h3 class="fn"><a name="getFont"></a><a href="qfont.html">QFont</a> QFontDialog::getFont ( bool * <i>ok</i>, const <a href="qfont.html">QFont</a> &amp; <i>initial</i>, <a href="qwidget.html">QWidget</a> * <i>parent</i>, const <a href="qstring.html">QString</a> &amp; <i>title</i>, <a href="qfontdialog.html#FontDialogOption-enum">FontDialogOptions</a> <i>options</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Executes a modal font dialog and returns a font.</p>
+<p>If the user clicks <b>OK</b>, the selected font is returned. If the user clicks <b>Cancel</b>, the <i>initial</i> font is returned.</p>
+<p>The dialog is constructed with the given <i>parent</i> and the options specified in <i>options</i>. <i>title</i> is shown as the window title of the dialog and <i>initial</i> is the initially selected font. If the <i>ok</i> parameter is not-null, the value it refers to is set to true if the user clicks <b>OK</b>, and set to false if the user clicks <b>Cancel</b>.</p>
+<p>Examples:</p>
+<pre> bool ok;
+ QFont font = QFontDialog::getFont(&amp;ok, QFont(&quot;Times&quot;, 12), this);
+ if (ok) {
+     <span class="comment">// font is set to the font the user selected</span>
+ } else {
+     <span class="comment">// the user canceled the dialog; font is set to the initial</span>
+     <span class="comment">// value, in this case Times, 12.</span>
+ }</pre>
+<p>The dialog can also be used to set a widget's font directly:</p>
+<pre> myWidget.setFont(QFontDialog::getFont(0, myWidget.font()));</pre>
+<p>In this example, if the user clicks OK the font they chose will be used, and if they click Cancel the original font is used.</p>
+<p><b>Warning:</b> Do not delete <i>parent</i> during the execution of the dialog. If you want to do this, you should create the dialog yourself using one of the <a href="qfontdialog.html">QFontDialog</a> constructors.</p>
+<h3 class="fn"><a name="getFont-2"></a><a href="qfont.html">QFont</a> QFontDialog::getFont ( bool * <i>ok</i>, const <a href="qfont.html">QFont</a> &amp; <i>initial</i>, <a href="qwidget.html">QWidget</a> * <i>parent</i>, const char * <i>name</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Call getFont(<i>ok</i>, <i>initial</i>, <i>parent</i>) instead.</p>
+<p><b>Warning:</b> Do not delete <i>parent</i> during the execution of the dialog. If you want to do this, you should create the dialog yourself using one of the <a href="qfontdialog.html">QFontDialog</a> constructors.</p>
+<p>The <i>name</i> parameter is ignored.</p>
+<p>This function was introduced in Qt 4.5.</p>
+<h3 class="fn"><a name="getFont-3"></a><a href="qfont.html">QFont</a> QFontDialog::getFont ( bool * <i>ok</i>, <a href="qwidget.html">QWidget</a> * <i>parent</i>, const char * <i>name</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Call getFont(<i>ok</i>, <i>parent</i>) instead.</p>
+<p><b>Warning:</b> Do not delete <i>parent</i> during the execution of the dialog. If you want to do this, you should create the dialog yourself using one of the <a href="qfontdialog.html">QFontDialog</a> constructors.</p>
+<p>The <i>name</i> parameter is ignored.</p>
+<h3 class="fn"><a name="getFont-4"></a><a href="qfont.html">QFont</a> QFontDialog::getFont ( bool * <i>ok</i>, const <a href="qfont.html">QFont</a> &amp; <i>initial</i>, <a href="qwidget.html">QWidget</a> * <i>parent</i>, const <a href="qstring.html">QString</a> &amp; <i>title</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>This is an overloaded function.</p>
+<p>This function was introduced in Qt 4.5.</p>
+<h3 class="fn"><a name="getFont-5"></a><a href="qfont.html">QFont</a> QFontDialog::getFont ( bool * <i>ok</i>, const <a href="qfont.html">QFont</a> &amp; <i>initial</i>, <a href="qwidget.html">QWidget</a> * <i>parent</i> = 0 )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>This is an overloaded function.</p>
+<h3 class="fn"><a name="getFont-6"></a><a href="qfont.html">QFont</a> QFontDialog::getFont ( bool * <i>ok</i>, <a href="qwidget.html">QWidget</a> * <i>parent</i> = 0 )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>This is an overloaded function.</p>
+<p>Executes a modal font dialog and returns a font.</p>
+<p>If the user clicks <b>OK</b>, the selected font is returned. If the user clicks <b>Cancel</b>, the Qt default font is returned.</p>
+<p>The dialog is constructed with the given <i>parent</i>. If the <i>ok</i> parameter is not-null, the value it refers to is set to true if the user clicks <b>OK</b>, and false if the user clicks <b>Cancel</b>.</p>
+<p>Example:</p>
+<pre> bool ok;
+ QFont font = QFontDialog::getFont(&amp;ok, this);
+ if (ok) {
+     <span class="comment">// font is set to the font the user selected</span>
+ } else {
+     <span class="comment">// the user canceled the dialog; font is set to the default</span>
+     <span class="comment">// application font, QApplication::font()</span>
+ }</pre>
+<p><b>Warning:</b> Do not delete <i>parent</i> during the execution of the dialog. If you want to do this, you should create the dialog yourself using one of the <a href="qfontdialog.html">QFontDialog</a> constructors.</p>
+<a name="//apple_ref/cpp/instm/QFontDialog/open" />
+<h3 class="fn"><a name="open"></a>void QFontDialog::open ( <a href="qobject.html">QObject</a> * <i>receiver</i>, const char * <i>member</i> )</h3>
+<p>This is an overloaded function.</p>
+<p>Opens the dialog and connects its <a href="qfontdialog.html#fontSelected">fontSelected</a>() signal to the slot specified by <i>receiver</i> and <i>member</i>.</p>
+<p>The signal will be disconnected from the slot when the dialog is closed.</p>
+<p>This function was introduced in Qt 4.5.</p>
+<a name="//apple_ref/cpp/instm/QFontDialog/selectedFont" />
+<h3 class="fn"><a name="selectedFont"></a><a href="qfont.html">QFont</a> QFontDialog::selectedFont () const</h3>
+<p>Returns the font that the user selected by clicking the <b>OK</b> or equivalent button.</p>
+<p><b>Note:</b> This font is not always the same as the font held by the <a href="qfontdialog.html#currentFont-prop">currentFont</a> property since the user can choose different fonts before finally selecting the one to use.</p>
+<a name="//apple_ref/cpp/instm/QFontDialog/setOption" />
+<h3 class="fn"><a name="setOption"></a>void QFontDialog::setOption ( <a href="qfontdialog.html#FontDialogOption-enum">FontDialogOption</a> <i>option</i>, bool <i>on</i> = true )</h3>
+<p>Sets the given <i>option</i> to be enabled if <i>on</i> is true; otherwise, clears the given <i>option</i>.</p>
+<p>See also <a href="qfontdialog.html#options-prop">options</a> and <a href="qfontdialog.html#testOption">testOption</a>().</p>
+<a name="//apple_ref/cpp/instm/QFontDialog/setVisible" />
+<h3 class="fn"><a name="setVisible"></a>void QFontDialog::setVisible ( bool <i>visible</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#visible-prop">QWidget::setVisible</a>().</p>
+<a name="//apple_ref/cpp/instm/QFontDialog/testOption" />
+<h3 class="fn"><a name="testOption"></a>bool QFontDialog::testOption ( <a href="qfontdialog.html#FontDialogOption-enum">FontDialogOption</a> <i>option</i> ) const</h3>
+<p>Returns true if the given <i>option</i> is enabled; otherwise, returns false.</p>
+<p>See also <a href="qfontdialog.html#options-prop">options</a> and <a href="qfontdialog.html#setOption">setOption</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

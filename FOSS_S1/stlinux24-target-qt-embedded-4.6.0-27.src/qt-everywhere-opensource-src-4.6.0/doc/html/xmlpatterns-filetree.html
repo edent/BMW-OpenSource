@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- filetree.qdoc -->
+<head>
+  <title>Qt 4.6: File System Example</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">File System Example<br /><span class="subtitle"></span>
+</h1>
+<p>Files:</p>
+<ul>
+<li><a href="xmlpatterns-filetree-filetree-cpp.html">xmlpatterns/filetree/filetree.cpp</a></li>
+<li><a href="xmlpatterns-filetree-filetree-h.html">xmlpatterns/filetree/filetree.h</a></li>
+<li><a href="xmlpatterns-filetree-mainwindow-cpp.html">xmlpatterns/filetree/mainwindow.cpp</a></li>
+<li><a href="xmlpatterns-filetree-mainwindow-h.html">xmlpatterns/filetree/mainwindow.h</a></li>
+<li><a href="xmlpatterns-filetree-forms-mainwindow-ui.html">xmlpatterns/filetree/forms/mainwindow.ui</a></li>
+<li><a href="xmlpatterns-filetree-queries-listcppfiles-xq.html">xmlpatterns/filetree/queries/listCPPFiles.xq</a></li>
+<li><a href="xmlpatterns-filetree-queries-wholetree-xq.html">xmlpatterns/filetree/queries/wholeTree.xq</a></li>
+<li><a href="xmlpatterns-filetree-main-cpp.html">xmlpatterns/filetree/main.cpp</a></li>
+<li><a href="xmlpatterns-filetree-filetree-pro.html">xmlpatterns/filetree/filetree.pro</a></li>
+<li><a href="xmlpatterns-filetree-queries-qrc.html">xmlpatterns/filetree/queries.qrc</a></li>
+</ul>
+<p>This example shows how to use <a href="qtxmlpatterns.html">QtXmlPatterns</a> for querying non-XML data that is modeled to look like XML.</p>
+<ul><li><a href="#introduction">Introduction</a></li>
+<ul><li><a href="#the-user-inteface">The User Inteface</a></li>
+<li><a href="#running-your-own-xqueries">Running your own XQueries</a></li>
+</ul>
+<li><a href="#code-walk-through">Code Walk-Through</a></li>
+<ul><li><a href="#the-custom-node-model-class-filetree">The Custom Node Model Class: FileTree</a></li>
+<ul><li><a href="#accessing-the-node-model">Accessing The Node Model</a></li>
+<li><a href="#building-and-traversing-the-node-model">Building And Traversing The Node Model</a></li>
+</ul>
+<li><a href="#the-ui-class-mainwindow">The UI Class: MainWindow</a></li>
+<ul><li><a href="#selecting-a-directory-to-model">Selecting A Directory To Model</a></li>
+<li><a href="#selecting-and-running-an-xquery">Selecting And Running An XQuery</a></li>
+</ul>
+<li><a href="#node-model-building-strategy">Node Model Building Strategy</a></li>
+</ul>
+</ul>
+<a name="introduction"></a>
+<h2>Introduction</h2>
+<p>The example models your computer's file system to look like XML and allows you to query the file system with XQuery. Suppose we want to find all the <tt>cpp</tt> files in the subtree beginning at <tt>/filetree</tt>:</p>
+<p align="center"><img src="images/filetree_1-example.png" /></p><a name="the-user-inteface"></a>
+<h3>The User Inteface</h3>
+<p>The example is shown below. First, we use <tt>File-&gt;Open Directory</tt> (not shown) to select the <tt>/filetree</tt> directory. Then we use the combobox on the right to select the XQuery that searches for <tt>cpp</tt> files (<tt>listCPPFiles.xq</tt>). Selecting an XQuery runs the query, which in this case traverses the model looking for all the <tt>cpp</tt> files. The XQuery text and the query results are shown on the right:</p>
+<p align="center"><img src="images/filetree_2-example.png" /></p><p>Don't be mislead by the XML representation of the <tt>/filetree</tt> directory shown on the left. This is not the node model itself but the XML obtained by traversing the node model and outputting it as XML. Constructing and using the custom node model is explained in the code walk-through.</p>
+<a name="running-your-own-xqueries"></a>
+<h3>Running your own XQueries</h3>
+<p>You can write your own XQuery files and run them in the example program. The file <tt>xmlpatterns/filetree/queries.qrc</tt> is the <a href="resources.html">resource file</a> for this example. It is used in <tt>main.cpp</tt> (<tt>Q_INIT_RESOURCE(queries);</tt>). It lists the XQuery files (<tt>.xq</tt>) that can be selected in the combobox.</p>
+<pre> &lt;!DOCTYPE RCC&gt;
+  &lt;RCC version=&quot;1.0&quot;&gt;
+ &lt;qresource&gt;
+     &lt;file&gt;queries/listCPPFiles.xq&lt;/file&gt;
+     &lt;file&gt;queries/wholeTree.xq&lt;/file&gt;
+ &lt;/qresource&gt;
+ &lt;/RCC&gt;</pre>
+<p>To add your own queries to the example's combobox, store your <tt>.xq</tt> files in the <tt>examples/xmlpatterns/filetree/queries</tt> directory and add them to <tt>queries.qrc</tt> as shown above.</p>
+<a name="code-walk-through"></a>
+<h2>Code Walk-Through</h2>
+<p>The strategy is to create a custom node model that represents the directory tree of the computer's file system. That tree structure is non-XML data. The custom node model must have the same callback interface as the XML node models that the <a href="qtxmlpatterns.html">QtXmlPatterns</a> query engine uses to execute queries. The query engine can then traverse the custom node model as if it were traversing the node model built from an XML document.</p>
+<p>The required callback interface is in <a href="qabstractxmlnodemodel.html">QAbstractXmlNodeModel</a>, so we create a custom node model by subclassing <a href="qabstractxmlnodemodel.html">QAbstractXmlNodeModel</a> and providing implementations for its pure virtual functions. For many cases, the implementations of several of the virtual functions are always the same, so <a href="qtxmlpatterns.html">QtXmlPatterns</a> also provides <a href="qsimplexmlnodemodel.html">QSimpleXmlNodeModel</a>, which subclasses <a href="qabstractxmlnodemodel.html">QAbstractXmlNodeModel</a> and provides implementations for the callback functions that you can ignore. By subclassing <a href="qsimplexmlnodemodel.html">QSimpleXmlNodeModel</a> instead of <a href="qabstractxmlnodemodel.html">QAbstractXmlNodeModel</a>, you can reduce development time.</p>
+<a name="the-custom-node-model-class-filetree"></a>
+<h3>The Custom Node Model Class: FileTree</h3>
+<p>The custom node model for this example is class <tt>FileTree</tt>, which is derived from <a href="qsimplexmlnodemodel.html">QSimpleXmlNodeModel</a>. <tt>FileTree</tt> implements all the callback functions that don't have standard implementations in <a href="qsimplexmlnodemodel.html">QSimpleXmlNodeModel</a>. When you implement your own custom node model, you must provide implementations for these callback functions:</p>
+<pre>     virtual QXmlNodeModelIndex::DocumentOrder compareOrder(const QXmlNodeModelIndex&amp;, const QXmlNodeModelIndex&amp;) const;
+     virtual QXmlName name(const QXmlNodeModelIndex &amp;node) const;
+     virtual QUrl documentUri(const QXmlNodeModelIndex &amp;node) const;
+     virtual QXmlNodeModelIndex::NodeKind kind(const QXmlNodeModelIndex &amp;node) const;
+     virtual QXmlNodeModelIndex root(const QXmlNodeModelIndex &amp;node) const;
+     virtual QVariant typedValue(const QXmlNodeModelIndex &amp;node) const;
+     virtual QVector&lt;QXmlNodeModelIndex&gt; attributes(const QXmlNodeModelIndex &amp;element) const;
+     virtual QXmlNodeModelIndex nextFromSimpleAxis(SimpleAxis, const QXmlNodeModelIndex&amp;) const;</pre>
+<p>The <tt>FileTree</tt> class declares four data members:</p>
+<pre>     mutable QVector&lt;QFileInfo&gt;  m_fileInfos;
+     const QDir::Filters         m_filterAllowAll;
+     const QDir::SortFlags       m_sortFlags;
+     QVector&lt;QXmlName&gt;           m_names;</pre>
+<p>The <a href="qvector.html">QVector</a> <tt>m_fileInfos</tt> will contain the node model. Each <a href="qfileinfo.html">QFileInfo</a> in the vector will represent a file or a directory in the file system. At this point it is instructive to note that although the node model class for this example (<tt>FileTree</tt>) actually builds and contains the custom node model, building the custom node model isn't always required. The node model class for the <a href="xmlpatterns-qobjectxmlmodel.html">QObject node model example</a> does not build its node model but instead uses an already existing <a href="qobject.html">QObject</a> tree as its node model and just implements the callback interface for that already existing data structure. In this file system example, however, although we have an already existing data structure, i.e&#x2e; the file system, that data structure is not in memory and is not in a form we can use. So we must build an analog of the file system in memory from instances of <a href="qfileinfo.html">QFileInfo</a>, and we use that analog as the custom node model.</p>
+<p>The two sets of flags, <tt>m_filterAllowAll</tt> and <tt>m_sortFlags</tt>, contain OR'ed flags from <a href="qdir.html#Filter-enum">QDir::Filters</a> and <a href="qdir.html#SortFlag-enum">QDir::SortFlags</a> respectively. They are set by the <tt>FileTree</tt> constructor and used in calls to <a href="qdir.html#entryInfoList">QDir::entryInfoList</a>() for getting the child list for a directory node, i.e&#x2e; a <a href="qfileinfo.html#QFileInfoList-typedef">QFileInfoList</a> containing the file and directory nodes for all the immediate children of a directory.</p>
+<p>The <a href="qvector.html">QVector</a> <tt>m_names</tt> is an auxiliary component of the node model. It holds the XML element and attribute names (<a href="qxmlname.html">QXmlName</a>) for all the node types that will be found in the node model. <tt>m_names</tt> is indexed by the enum <tt>FileTree::Type</tt>, which specifies the node types:</p>
+<a name="node-type"></a><pre>     enum Type {
+         File,
+         Directory,
+         AttributeFileName,
+         AttributeFilePath,
+         AttributeSize,
+         AttributeMIMEType,
+         AttributeSuffix
+     };</pre>
+<p><tt>Directory</tt> and <tt>File</tt> will represent the XML element nodes for directories and files respectively, and the other enum values will represent the XML attribute nodes for a file's path, name, suffix, its size in bytes, and its mime type. The <tt>FileTree</tt> constructor initializes <tt>m_names</tt> with an appropriate <a href="qxmlname.html">QXmlName</a> for each element and attribute type:</p>
+<pre> FileTree::FileTree(const QXmlNamePool&amp; pool)
+   : QSimpleXmlNodeModel(pool),
+     m_filterAllowAll(QDir::AllEntries |
+                      QDir::AllDirs |
+                      QDir::NoDotAndDotDot |
+                      QDir::Hidden),
+     m_sortFlags(QDir::Name)
+ {
+     QXmlNamePool np = namePool();
+     m_names.resize(7);
+     m_names[File]               = QXmlName(np, QLatin1String(&quot;file&quot;));
+     m_names[Directory]          = QXmlName(np, QLatin1String(&quot;directory&quot;));
+     m_names[AttributeFileName]  = QXmlName(np, QLatin1String(&quot;fileName&quot;));
+     m_names[AttributeFilePath]  = QXmlName(np, QLatin1String(&quot;filePath&quot;));
+     m_names[AttributeSize]      = QXmlName(np, QLatin1String(&quot;size&quot;));
+     m_names[AttributeMIMEType]  = QXmlName(np, QLatin1String(&quot;mimeType&quot;));
+     m_names[AttributeSuffix]    = QXmlName(np, QLatin1String(&quot;suffix&quot;));
+ }</pre>
+<p>Note that the constructor does <i>not</i> pre-build the entire node model. Instead, the node model is built <i>incrementally</i> as the query engine evaluates a query. To see how the query engine causes the node model to be built incrementally, see <a href="#building-and-traversing-the-node-model">Building And Traversing The Node Model</a>. To see how the query engine accesses the node model, see <a href="#accessing-the-node-model">Accessing the node model</a>. See also: <a href="#node-model-building-strategy">Node Model Building Strategy</a>.</p>
+<a name="accessing-the-node-model"></a>
+<h4>Accessing The Node Model</h4>
+<p>Since the node model is stored outside the query engine in the <tt>FileTree</tt> class, the query engine knows nothing about it and can only access it by calling functions in the callback interface. When the query engine calls any callback function to access data in the node model, it passes a <a href="qxmlnodemodelindex.html">QXmlNodeModelIndex</a> to identify the node in the node model that it wants to access. Hence all the virtual functions in the callback interface use a <a href="qxmlnodemodelindex.html">QXmlNodeModelIndex</a> to uniquely identify a node in the model.</p>
+<p>We use the index of a <a href="qfileinfo.html">QFileInfo</a> in <tt>m_fileInfos</tt> to uniquely identify a node in the node model. To get the <a href="qxmlnodemodelindex.html">QXmlNodeModelIndex</a> for a <a href="qfileinfo.html">QFileInfo</a>, the class uses the private function <tt>toNodeIndex()</tt>:</p>
+<a name="main-tonodeindex"></a><pre> QXmlNodeModelIndex
+ FileTree::toNodeIndex(const QFileInfo &amp;fileInfo, Type attributeName) const
+ {
+     const int indexOf = m_fileInfos.indexOf(fileInfo);
+
+     if (indexOf == -1) {
+         m_fileInfos.append(fileInfo);
+         return createIndex(m_fileInfos.count()-1, attributeName);
+     }
+     else
+         return createIndex(indexOf, attributeName);
+ }</pre>
+<p>It searches the <tt>m_fileInfos</tt> vector for a <a href="qfileinfo.html">QFileInfo</a> that matches <tt>fileInfo</tt>. If a match is found, its array index is passed to <a href="qabstractxmlnodemodel.html#createIndex">QAbstractXmlNodeModel::createIndex</a>() as the <tt>data</tt> value for the QXmlNodeIndex. If no match is found, the unmatched <a href="qfileinfo.html">QFileInfo</a> is appended to the vector, so this function is also doing the actual incremental model building (see <a href="#building-and-traversing-the-node-model">Building And Traversing The Node Model</a>).</p>
+<p>Note that <tt>toNodeIndex()</tt> gets a <a href="#node-type">node type</a> as the second parameter, which it just passes on to <a href="qabstractxmlnodemodel.html#createIndex">createIndex()</a> as the <tt>additionalData</tt> value. Logically, this second parameter represents a second dimension in the node model, where the first dimension represents the <i>element</i> nodes, and the second dimension represents each element's attribute nodes. The meaning is that each <a href="qfileinfo.html">QFileInfo</a> in the <tt>m_fileInfos</tt> vector can represent an <i>element</i> node <i>and</i> one or more <i>attribute</i> nodes. In particular, the <a href="qfileinfo.html">QFileInfo</a> for a file will contain the values for the attribute nodes path, name, suffix, size, and mime type (see <tt>FileTree::attributes()</tt>). Since the attributes are contained in the <a href="qfileinfo.html">QFileInfo</a> of the file element, there aren't actually any attribute nodes in the node model. Hence, we can use a <a href="qvector.html">QVector</a> for <tt>m_fileInfos</tt>.</p>
+<p>A convenience overloading of <a href="#tonodeindex-of-convenience">toNodeIndex()</a> is also called in several places, wherever it is known that the <a href="qxmlnodemodelindex.html">QXmlNodeModelIndex</a> being requested is for a directory or a file and not for an attribute. The convenience function takes only the <a href="qfileinfo.html">QFileInfo</a> parameter and calls the other <a href="#main-tonodeindex">toNodeIndex()</a>, after obtaining either the Directory or File node type directly from the <a href="qfileinfo.html">QFileInfo</a>:</p>
+<a name="tonodeindex-of-convenience"></a><pre> QXmlNodeModelIndex FileTree::toNodeIndex(const QFileInfo &amp;fileInfo) const
+ {
+     return toNodeIndex(fileInfo, fileInfo.isDir() ? Directory : File);
+ }</pre>
+<p>Note that the auxiliary vector <tt>m_names</tt> is accessed using the <a href="#node-type">node type</a>, for example:</p>
+<pre> QXmlName FileTree::name(const QXmlNodeModelIndex &amp;node) const
+ {
+     return m_names.at(node.additionalData());
+ }</pre>
+<p>Most of the virtual functions in the callback interface are as simple as the ones described so far, but the callback function used for traversing (and building) the node model is more complex.</p>
+<a name="building-and-traversing-the-node-model"></a>
+<h4>Building And Traversing The Node Model</h4>
+<p>The node model in <tt>FileTree</tt> is not fully built before the query engine begins evaluating the query. In fact, when the query engine begins evaluating its first query, the only node in the node model is the one representing the root directory for the selected part of the file system. See <a href="#the-ui-class-mainwindow">The UI Class: MainWindow</a> below for details about how the UI triggers creation of the model.</p>
+<p>The query engine builds the node model incrementally each time it calls the <a href="#next-node-on-axis">nextFromSimpleAxis()</a> callback function, as it traverses the node model to evaluate a query. Thus the query engine only builds the region of the node model that it needs for evaluating the query.</p>
+<p><a href="#next-node-on-axis">nextFromSimpleAxis()</a> takes an <a href="qabstractxmlnodemodel.html#SimpleAxis-enum">axis identifier</a> and a <a href="qxmlnodemodelindex.html">node identifier</a> as parameters. The <a href="qxmlnodemodelindex.html">node identifier</a> represents the <i>context node</i> (i.e&#x2e; the query engine's current location in the model), and the <a href="qabstractxmlnodemodel.html#SimpleAxis-enum">axis identifier</a> represents the direction we want to move from the context node. The function finds the appropriate next node and returns its <a href="qxmlnodemodelindex.html">QXmlNodeModelIndex</a>.</p>
+<p><a href="#next-node-on-axis">nextFromSimpleAxis()</a> is where most of the work of implementing a custom node model will be required. The obvious way to do it is to use a switch statement with a case for each <a href="qabstractxmlnodemodel.html#SimpleAxis-enum">axis</a>.</p>
+<a name="next-node-on-axis"></a><pre> QXmlNodeModelIndex
+ FileTree::nextFromSimpleAxis(SimpleAxis axis, const QXmlNodeModelIndex &amp;nodeIndex) const
+ {
+     const QFileInfo fi(toFileInfo(nodeIndex));
+     const Type type = Type(nodeIndex.additionalData());
+
+     if (type != File &amp;&amp; type != Directory) {
+         Q_ASSERT_X(axis == Parent, Q_FUNC_INFO, &quot;An attribute only has a parent!&quot;);
+         return toNodeIndex(fi, Directory);
+     }
+
+     switch (axis) {
+         case Parent:
+             return toNodeIndex(QFileInfo(fi.path()), Directory);
+
+         case FirstChild:
+         {
+             if (type == File) <span class="comment">// A file has no children.</span>
+                 return QXmlNodeModelIndex();
+             else {
+                 Q_ASSERT(type == Directory);
+                 Q_ASSERT_X(fi.isDir(), Q_FUNC_INFO, &quot;It isn't really a directory!&quot;);
+                 const QDir dir(fi.absoluteFilePath());
+                 Q_ASSERT(dir.exists());
+
+                 const QFileInfoList children(dir.entryInfoList(QStringList(),
+                                                                m_filterAllowAll,
+                                                                m_sortFlags));
+                 if (children.isEmpty())
+                     return QXmlNodeModelIndex();
+                 const QFileInfo firstChild(children.first());
+                 return toNodeIndex(firstChild);
+             }
+         }
+
+         case PreviousSibling:
+             return nextSibling(nodeIndex, fi, -1);
+
+         case NextSibling:
+             return nextSibling(nodeIndex, fi, 1);
+     }
+
+     Q_ASSERT_X(false, Q_FUNC_INFO, &quot;Don't ever get here!&quot;);
+     return QXmlNodeModelIndex();
+ }</pre>
+<p>The first thing this function does is call <a href="#to-file-info">toFileInfo()</a> to get the <a href="qfileinfo.html">QFileInfo</a> of the context node. The use of <a href="qvector.html#at">QVector::at</a>() here is guaranteed to succeed because the context node must already be in the node model, and hence must have a <a href="qfileinfo.html">QFileInfo</a> in <tt>m_fileInfos</tt>.</p>
+<a name="to-file-info"></a><pre> const QFileInfo&amp;
+ FileTree::toFileInfo(const QXmlNodeModelIndex &amp;nodeIndex) const
+ {
+     return m_fileInfos.at(nodeIndex.data());
+ }</pre>
+<p>The <a href="qabstractxmlnodemodel.html#SimpleAxis-enum">Parent</a> case looks up the context node's parent by constructing a <a href="qfileinfo.html">QFileInfo</a> from the context node's <a href="qfileinfo.html#absoluteFilePath">path</a> and passing it to <a href="#main-tonodeindex">toNodeIndex()</a> to find the <a href="qfileinfo.html">QFileInfo</a> in <tt>m_fileInfos</tt>.</p>
+<p>The <a href="qabstractxmlnodemodel.html#SimpleAxis-enum">FirstChild</a> case requires that the context node must be a directory, because a file doesn't have children. If the context node is not a directory, a default constructed <a href="qxmlnodemodelindex.html">QXmlNodeModelIndex</a> is returned. Otherwise, <a href="qdir.html#entryInfoList">QDir::entryInfoList</a>() constructs a <a href="qfileinfo.html#QFileInfoList-typedef">QFileInfoList</a> of the context node's children. The first <a href="qfileinfo.html">QFileInfo</a> in the list is passed to <a href="#tonodeindex-of-convenience">toNodeIndex()</a> to get its <a href="qxmlnodemodelindex.html">QXmlNodeModelIndex</a>. Note that this will add the child to the node model, if it isn't in the model yet.</p>
+<p>The <a href="qabstractxmlnodemodel.html#SimpleAxis-enum">PreviousSibling</a> and <a href="qabstractxmlnodemodel.html#SimpleAxis-enum">NextSibling</a> cases call the <a href="#nextsibling-helper">nextSibling() helper function</a>. It takes the <a href="qxmlnodemodelindex.html">QXmlNodeModelIndex</a> of the context node, the <a href="qfileinfo.html">QFileInfo</a> of the context node, and an offest of +1 or -1. The context node is a child of some parent, so the function gets the parent and then gets the child list for the parent. The child list is searched to find the <a href="qfileinfo.html">QFileInfo</a> of the context node. It must be there. Then the offset is applied, -1 for the previous sibling and +1 for the next sibling. The resulting index is passed to <a href="#tonodeindex-of-convenience">toNodeIndex()</a> to get its <a href="qxmlnodemodelindex.html">QXmlNodeModelIndex</a>. Note again that this will add the sibling to the node model, if it isn't in the model yet.</p>
+<a name="nextsibling-helper"></a><pre> QXmlNodeModelIndex FileTree::nextSibling(const QXmlNodeModelIndex &amp;nodeIndex,
+                                          const QFileInfo &amp;fileInfo,
+                                          qint8 offset) const
+ {
+     Q_ASSERT(offset == -1 || offset == 1);
+
+     <span class="comment">// Get the context node's parent.</span>
+     const QXmlNodeModelIndex parent(nextFromSimpleAxis(Parent, nodeIndex));
+
+     if (parent.isNull())
+         return QXmlNodeModelIndex();
+
+     <span class="comment">// Get the parent's child list.</span>
+     const QFileInfo parentFI(toFileInfo(parent));
+     Q_ASSERT(Type(parent.additionalData()) == Directory);
+     const QFileInfoList siblings(QDir(parentFI.absoluteFilePath()).entryInfoList(QStringList(),
+                                                                                  m_filterAllowAll,
+                                                                                  m_sortFlags));
+     Q_ASSERT_X(!siblings.isEmpty(), Q_FUNC_INFO, &quot;Can't happen! We started at a child.&quot;);
+
+     <span class="comment">// Find the index of the child where we started.</span>
+     const int indexOfMe = siblings.indexOf(fileInfo);
+
+     <span class="comment">// Apply the offset.</span>
+     const int siblingIndex = indexOfMe + offset;
+     if (siblingIndex &lt; 0 || siblingIndex &gt; siblings.count() - 1)
+         return QXmlNodeModelIndex();
+     else
+         return toNodeIndex(siblings.at(siblingIndex));
+ }</pre>
+<a name="the-ui-class-mainwindow"></a>
+<h3>The UI Class: MainWindow</h3>
+<p>The example's UI is a conventional Qt GUI application inheriting <a href="qmainwindow.html">QMainWindow</a> and the Ui_MainWindow base class generated by <a href="designer-manual.html">Qt Designer</a>.</p>
+<pre> #include &quot;filetree.h&quot;
+ #include &quot;ui_mainwindow.h&quot;
+
+ class MainWindow : public QMainWindow, private Ui_MainWindow
+ {
+     Q_OBJECT
+
+   public:
+     MainWindow();
+
+   private slots:
+     void on_actionOpenDirectory_triggered();
+     void on_actionAbout_triggered();
+     void on_queryBox_currentIndexChanged();
+
+   private:
+     void loadDirectory(const QString &amp;directory);
+     void evaluateResult();
+
+     const QXmlNamePool  m_namePool;
+     const FileTree      m_fileTree;
+     QXmlNodeModelIndex  m_fileNode;
+ };</pre>
+<p>It contains the custom node model (<tt>m_fileTree</tt>) and an instance of <a href="qxmlnodemodelindex.html">QXmlNodeModelIndex</a> (<tt>m_fileNode</tt>) used for holding the node index for the root of the file system subtree. <tt>m_fileNode</tt> will be bound to a $variable in the XQuery to be evaluated.</p>
+<p>Two actions of interest are handled by slot functions: <a href="#selecting-a-directory-to-model">Selecting A Directory To Model</a> and <a href="#selecting-and-running-an-xquery">Selecting And Running An XQuery</a>.</p>
+<a name="selecting-a-directory-to-model"></a>
+<h4>Selecting A Directory To Model</h4>
+<p>The user selects <tt>File-&gt;Open Directory</tt> to choose a directory to be loaded into the custom node model. Choosing a directory signals the <tt>on_actionOpenDirectory_triggered()</tt> slot:</p>
+<pre> void MainWindow::on_actionOpenDirectory_triggered()
+ {
+     const QString directoryName = QFileDialog::getExistingDirectory(this);
+     if (!directoryName.isEmpty())
+         loadDirectory(directoryName);
+ }</pre>
+<p>The slot function simply calls the private function <tt>loadDirectory()</tt> with the path of the chosen directory:</p>
+<a name="the-standard-code-pattern"></a><pre> void MainWindow::loadDirectory(const QString &amp;directory)
+ {
+     Q_ASSERT(QDir(directory).exists());
+
+     m_fileNode = m_fileTree.nodeFor(directory);
+
+     QXmlQuery query(m_namePool);
+     query.bindVariable(&quot;fileTree&quot;, m_fileNode);
+     query.setQuery(QUrl(&quot;qrc:/queries/wholeTree.xq&quot;));
+
+     QByteArray output;
+     QBuffer buffer(&amp;output);
+     buffer.open(QIODevice::WriteOnly);
+
+     QXmlFormatter formatter(query, &amp;buffer);
+     query.evaluateTo(&amp;formatter);
+
+     treeInfo-&gt;setText((QString(tr(&quot;Model of %1 output as XML.&quot;)).arg(directory)));
+     fileTree-&gt;setText(QString::fromLatin1(output.constData()));
+     evaluateResult();
+ }</pre>
+<p><tt>loadDirectory()</tt> demonstrates a standard code pattern for using <a href="qtxmlpatterns.html">QtXmlPatterns</a> programatically. First it gets the node model index for the root of the selected directory. Then it creates an instance of <a href="qxmlquery.html">QXmlQuery</a> and calls <a href="qxmlquery.html#bindVariable">QXmlQuery::bindVariable</a>() to bind the node index to the XQuery variable <tt>$fileTree</tt>. It then calls <a href="qxmlquery.html#setQuery">QXmlQuery::setQuery</a>() to load the XQuery text.</p>
+<p><b>Note:</b> <a href="qxmlquery.html#bindVariable">QXmlQuery::bindVariable</a>() must be called <i>before</i> calling <a href="qxmlquery.html#setQuery">QXmlQuery::setQuery</a>(), which loads and parses the XQuery text and must have access to the variable binding as the text is parsed.</p>
+<p>The next lines create an output device for outputting the query result, which is then used to create a <a href="qxmlformatter.html">QXmlFormatter</a> to format the query result as XML. <a href="qxmlquery.html#evaluateTo">QXmlQuery::evaluateTo</a>() is called to run the query, and the formatted XML output is displayed in the left panel of the UI window.</p>
+<p>Finally, the private function <a href="#selecting-and-running-an-xquery">evaluateResult()</a> is called to run the currently selected XQuery over the custom node model.</p>
+<p><b>Note:</b> As described in <a href="#building-and-traversing-the-node-model">Building And Traversing The Node Model</a>, the <tt>FileTree</tt> class wants to build the custom node model incrementally as it evaluates the XQuery. But, because the <tt>loadDirectory()</tt> function runs the <tt>wholeTree.xq</tt> XQuery, it actually builds the entire node model anyway. See <a href="#node-model-building-strategy">Node Model Building Strategy</a> for a discussion about building your custom node model.</p>
+<a name="selecting-and-running-an-xquery"></a>
+<h4>Selecting And Running An XQuery</h4>
+<p>The user chooses an XQuery from the menu in the combobox on the right. Choosing an XQuery signals the <tt>on_queryBox_currentIndexChanged()</tt> slot:</p>
+<pre> void MainWindow::on_queryBox_currentIndexChanged()
+ {
+     QFile queryFile(&quot;:/queries/&quot; + queryBox-&gt;currentText());
+     queryFile.open(QIODevice::ReadOnly);
+
+     queryEdit-&gt;setPlainText(QString::fromLatin1(queryFile.readAll()));
+     evaluateResult();
+ }</pre>
+<p>The slot function opens and loads the query file and then calls the private function <tt>evaluateResult()</tt> to run the query:</p>
+<pre> void MainWindow::evaluateResult()
+ {
+     if (queryBox-&gt;currentText().isEmpty())
+         return;
+
+     QXmlQuery query(m_namePool);
+     query.bindVariable(&quot;fileTree&quot;, m_fileNode);
+     query.setQuery(QUrl(&quot;qrc:/queries/&quot; + queryBox-&gt;currentText()));
+
+     QByteArray formatterOutput;
+     QBuffer buffer(&amp;formatterOutput);
+     buffer.open(QIODevice::WriteOnly);
+
+     QXmlFormatter formatter(query, &amp;buffer);
+     query.evaluateTo(&amp;formatter);
+
+     output-&gt;setText(QString::fromLatin1(formatterOutput.constData()));
+ }</pre>
+<p><tt>evaluateResult()</tt> is a second example of the same code pattern shown in <a href="#the-standard-code-pattern">loadDirectory()</a>. In this case, it runs the XQuery currently selected in the combobox instead of <tt>qrc:/queries/wholeTree.xq</tt>, and it outputs the query result to the panel on the lower right of the UI window.</p>
+<a name="node-model-building-strategy"></a>
+<h3>Node Model Building Strategy</h3>
+<p>We saw that the <a href="#the-custom-node-model-class-filetree">FileTree</a> tries to build its custom node model incrementally, but we also saw that the <a href="#the-standard-code-pattern">MainWindow::loadDirectory()</a> function in the UI class immediately subverts the incremental build by running the <tt>wholeTree.xq</tt> XQuery, which traverses the entire selected directory, thereby causing the entire node model to be built.</p>
+<p>If we want to preserve the incremental build capability of the <tt>FileTree</tt> class, we can strip the running of <tt>wholeTree.xq</tt> out of <a href="#the-standard-code-pattern">MainWindow::loadDirectory()</a>:</p>
+<pre> void MainWindow::loadDirectory(const QString &amp;directory)
+ {
+     Q_ASSERT(QDir(directory).exists());
+
+     m_fileNode = m_fileTree.nodeFor(directory);
+ }</pre>
+<p>Note, however, that <tt>FileTree</tt> doesn't have the capability of deleting all or part of the node model. The node model, once built, is only deleted when the <tt>FileTree</tt> instance goes out of scope.</p>
+<p>In this example, each element node in the node model represents a directory or a file in the computer's file system, and each node is represented by an instance of <a href="qfileinfo.html">QFileInfo</a>. An instance of <a href="qfileinfo.html">QFileInfo</a> is not costly to produce, but you might imagine a node model where building new nodes is very costly. In such cases, the capability to build the node model incrementally is important, because it allows us to only build the region of the model we need for evaluating the query. In other cases, it will be simpler to just build the entire node model.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

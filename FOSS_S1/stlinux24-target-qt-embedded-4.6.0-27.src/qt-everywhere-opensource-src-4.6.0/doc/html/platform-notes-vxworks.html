@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- platform-notes-rtos.qdoc -->
+<head>
+  <title>Qt 4.6: Platform Notes - VxWorks</title>
+  <link rel="contents" href="platform-notes.html" />
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><p>
+[<a href="platform-notes.html">Platform Notes</a>]
+</p>
+<h1 class="title">Platform Notes - VxWorks<br /><span class="subtitle"></span>
+</h1>
+<a name="vxworks"></a><p><b>Note:</b> <a href="#vxworks">VxWorks</a> is a community supported platform. See the <a href="supported-platforms.html">Supported Platforms</a> page for more information.</p>
+<p>This page contains information about the Qt for <a href="#vxworks">VxWorks</a> port. More information about the combinations of platforms and compilers supported by Qt can be found on the <a href="supported-platforms.html">Supported Platforms</a> page.</p>
+<ul><li><a href="#supported-versions">Supported Versions</a></li>
+<li><a href="#limitations">Limitations</a></li>
+<li><a href="#build-instructions">Build Instructions</a></li>
+<li><a href="#general-notes">General Notes</a></li>
+</ul>
+<a name="supported-versions"></a>
+<h2>Supported Versions</h2>
+<p>Qt has been tested on WindRiver <a href="#vxworks">VxWorks</a> 6.7 in kernel mode using the vendor supplied GCC compiler, targetting both the x86 simulator (simpentium) and Power-PC devices (ppc). <a href="#vxworks">VxWorks</a>' RTP mode is currently not supported.</p>
+<a name="limitations"></a>
+<h2>Limitations</h2>
+<p>The <a href="#vxworks">VxWorks</a> kernel has an optional POSIX compatibility layer, but this layer does not implement all POSIX functionality needed for a complete Qt port.</p>
+<p><table class="generic" align="center" cellpadding="2" cellspacing="1" border="0">
+<thead><tr valign="top" class="qt-style"><th>Function</th><th>Notes</th></tr></thead>
+<tr valign="top" class="odd"><td><a href="qprocess.html">QProcess</a></td><td>Not available - <a href="#vxworks">VxWorks</a> has no concept of processes.</td></tr>
+<tr valign="top" class="even"><td><a href="qsharedmemory.html">QSharedMemory</a></td><td>Not available - <a href="#vxworks">VxWorks</a> has only a global, flat address space.</td></tr>
+<tr valign="top" class="odd"><td><a href="qsystemsemaphore.html">QSystemSemaphore</a></td><td>Not available - <a href="#vxworks">VxWorks</a> has no concept of processes.</td></tr>
+<tr valign="top" class="even"><td><a href="qlibrary.html">QLibrary</a></td><td><a href="qlibrary.html">QLibrary</a> is only a small stub to make it possible to build static plugins.</td></tr>
+<tr valign="top" class="odd"><td><a href="qcoreapplication.html">QCoreApplication</a></td><td>Can only be instantiated once. Qt's Q(CoreE)Application is tightly coupled to one address space and process, while <a href="#vxworks">VxWorks</a> only supports one global address space and has no concept of processes.</td></tr>
+<tr valign="top" class="even"><td>Phonon</td><td>There is no standard audio backend, which could be integrated into Phonon.</td></tr>
+<tr valign="top" class="odd"><td><a href="qt3support.html">Qt3Support</a></td><td>The <a href="qt3support.html">Qt3Support</a> library is not available on <a href="#vxworks">VxWorks</a>.</td></tr>
+</table></p>
+<a name="build-instructions"></a>
+<h2>Build Instructions</h2>
+<p>Qt for <a href="#vxworks">VxWorks</a> needs to be <a href="qt-embedded-crosscompiling.html">cross-compiled</a> on a Linux host. <tt>configure</tt> and <tt>make</tt> the build like you would with a standard <a href="qt-embedded-crosscompiling.html">embedded Linux cross build</a>. Building the <a href="#vxworks">VxWorks</a> simulator would be done like this:</p>
+<pre> &lt;path/to/qt/sources&gt;/configure -xplatform unsupported/vxworks-simpentium-g++ -embedded vxworks -exceptions -no-gfx-linuxfb -no-mouse-linuxtp -no-mouse-pc -no-kbd-tty
+ make</pre>
+<ul>
+<li><tt>-xplatform unsupported/qws/vxworks-simpentium-g++</tt> - selects the x86 simulator mkspec for <a href="#vxworks">VxWorks</a></li>
+<li><tt>-embedded vxworks</tt> - builds the embedded version of Qt and sets the architecture to <a href="#vxworks">VxWorks</a></li>
+<li><tt>-exceptions</tt> - see General Notes below</li>
+<li><tt>-no-gfx-linuxfb</tt>, <tt>-no-mouse-linuxtp</tt>, <tt>-no-mouse-pc</tt> and <tt>-no-kbd-tty</tt> are Linux specific and won't work on <a href="#vxworks">VxWorks</a></li>
+</ul>
+<a name="general-notes"></a>
+<h2>General Notes</h2>
+<ul>
+<li>Configuring with <tt>-exceptions</tt> is necessary, because the <a href="#vxworks">VxWorks</a> 6.7 g++ headers require exceptions to be enabled when compiling C++ code.</li>
+<li>Configure's <tt>-xplatform</tt> can be any of <tt>unsupported/vxworks-(simpentium|ppc)-(g++|dcc)</tt>, but <tt>dcc</tt> (WindRiver DIAB compiler) has not yet tested been tested with Qt 4.6 and <a href="#vxworks">VxWorks</a> 6.7&#x2e;</li>
+<li>Building shared libraries with <tt>-shared</tt> (the default) doesn't really build shared libraries, like e.g&#x2e; on Linux, since these are not supported by <a href="#vxworks">VxWorks</a>. Instead, qmake will created partially linked objects, that can be loaded at runtime with <tt>ld</tt>.</li>
+<li>Creating static builds with <tt>-static</tt> is fully supported.</li>
+<li>&quot;Munching&quot; (generating constructors/destructors for static C++ objects) is done automatically by a special qmake extension (for both shared libraries and executables)</li>
+<li><a href="#vxworks">VxWorks</a> does not have a file system layer, but the low level storage drivers have to supply a file system like interface to the applications. Since each driver implements a different subset of the functionality supported by this interface, Qt's file system auto-tests show wildly differing results running on different &quot;file systems&quot;. The best results can be achieved when running on a (writable) NFS mount, since that provides the most Unix-ish interface. The worst results come from the FTP file system driver, which may crash when accessed by a <tt>QFileInfo</tt>.</li>
+<li>Keep in mind that <a href="#vxworks">VxWorks</a> doesn't call your <tt>main()</tt> function with the standard <tt>argc</tt>/<tt>argv</tt> parameters. So either add a special <tt>vxmain()</tt> function or use a tool like <tt>callmain</tt> to translate <a href="#vxworks">VxWorks</a>' commandline arguments to an <tt>argc</tt>/<tt>argv</tt> array.</li>
+<li>Some example will fail to build, due to some missing dependencies (e.g&#x2e; shared memory) - this will be fixed in a later release.</li>
+</ul>
+<p>
+[<a href="platform-notes.html">Platform Notes</a>]
+</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

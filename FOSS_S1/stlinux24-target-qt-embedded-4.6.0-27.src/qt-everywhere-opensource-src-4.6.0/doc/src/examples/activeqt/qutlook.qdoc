@@ -1,0 +1,116 @@
+/****************************************************************************
+**
+** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+** All rights reserved.
+** Contact: Nokia Corporation (qt-info@nokia.com)
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:LGPL$
+** Commercial Usage
+** Licensees holding valid Qt Commercial licenses may use this file in
+** accordance with the Qt Commercial License Agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and Nokia.
+**
+** GNU Lesser General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU Lesser
+** General Public License version 2.1 as published by the Free Software
+** Foundation and appearing in the file LICENSE.LGPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU Lesser General Public License version 2.1 requirements
+** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+**
+** In addition, as a special exception, Nokia gives you certain additional
+** rights.  These rights are described in the Nokia Qt LGPL Exception
+** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+**
+** GNU General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU
+** General Public License version 3.0 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU General Public License version 3.0 requirements will be
+** met: http://www.gnu.org/copyleft/gpl.html.
+**
+** If you have questions regarding the use of this file, please contact
+** Nokia at qt-info@nokia.com.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*! 
+    \example activeqt/qutlook
+    \title Qutlook Example (ActiveQt)
+
+    The Qutlook example demonstrates the use of ActiveQt to automate
+    Outlook. The example makes use of the \l dumpcpp tool to generate
+    a C++ namespace for the type library describing the Outlook
+    Object Model.
+
+    The project file for the example looks like this:
+
+    \snippet examples/activeqt/qutlook/qutlook.pro 1
+    \snippet examples/activeqt/qutlook/qutlook.pro 2
+
+    The project file uses the \c dumpcpp tool to add an MS Outlook type library to the project.
+    If this fails, then the generated makefile will just print an error message, otherwise
+    the build step will now run the \e dumpcpp tool on the type library, and 
+    generate a header and a cpp file (in this case, \c msoutl.h and \c msoutl.cpp) that 
+    declares and implement an easy to use API to the Outlook objects.
+
+    \snippet examples/activeqt/qutlook/addressview.h 0
+
+    The AddressView class is a QWidget subclass for the user interface. The QTreeView widget
+    will display the contents of Outlook's Contact folder as provided by the \c{model}.
+
+    \snippet examples/activeqt/qutlook/addressview.cpp 0
+    The AddressBookModel class is a QAbstractListModel subclass that communicates directly with 
+    Outlook, using a QHash for caching.
+
+    \snippet examples/activeqt/qutlook/addressview.cpp 1
+    The constructor initializes Outlook. The various signals Outlook provides to notify about 
+    contents changes are connected to the \c updateOutlook() slot.
+
+    \snippet examples/activeqt/qutlook/addressview.cpp 2
+    The destructor logs off from the session.
+
+    \snippet examples/activeqt/qutlook/addressview.cpp 3
+    The \c rowCount() implementation returns the number of entries as reported by Outlook. \c columnCount
+    and \c headerData are implemented to show four columns in the tree view.
+
+    \snippet examples/activeqt/qutlook/addressview.cpp 4
+    The \c headerData() implementation returns hardcoded strings.
+
+    \snippet examples/activeqt/qutlook/addressview.cpp 5
+    The \c data() implementation is the core of the model. If the requested data is in the cache the
+    cached value is used, otherwise the data is acquired from Outlook.
+
+    \snippet examples/activeqt/qutlook/addressview.cpp 6
+    The \c changeItem() slot is called when the user changes the current entry using the user interface.
+    The Outlook item is accessed using the Outlook API, and is modified using the property setters.
+    Finally, the item is saved to Outlook, and removed from the cache. Note that the model does not
+    signal the view of the data change, as Outlook will emit a signal on its own.
+
+    \snippet examples/activeqt/qutlook/addressview.cpp 7
+    The \c addItem() slot calls the CreateItem method of Outlook to create a new contact item,
+    sets the properties of the new item to the values entered by the user and saves the item.
+
+    \snippet examples/activeqt/qutlook/addressview.cpp 8
+    The \c update() slot clears the cache, and emits the reset() signal to notify the view about the
+    data change requiring a redraw of the contents.
+
+    \snippet examples/activeqt/qutlook/addressview.cpp 9
+    \snippet examples/activeqt/qutlook/addressview.cpp 10
+    The rest of the file implements the user interface using only Qt APIs, i.e. without communicating
+    with Outlook directly.
+
+    \snippet examples/activeqt/qutlook/main.cpp 0
+
+    The \c main() entry point function finally instantiates the user interface and enters the
+    event loop.
+
+    To build the example you must first build the QAxContainer
+    library. Then run your make tool in \c examples/activeqt/qutlook
+    and run the resulting \c qutlook.exe.
+*/

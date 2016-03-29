@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- stickman.qdoc -->
+<head>
+  <title>Qt 4.6: Stickman Example</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">Stickman Example<br /><span class="subtitle"></span>
+</h1>
+<p>Files:</p>
+<ul>
+<li><a href="animation-stickman-animation-cpp.html">animation/stickman/animation.cpp</a></li>
+<li><a href="animation-stickman-animation-h.html">animation/stickman/animation.h</a></li>
+<li><a href="animation-stickman-graphicsview-cpp.html">animation/stickman/graphicsview.cpp</a></li>
+<li><a href="animation-stickman-graphicsview-h.html">animation/stickman/graphicsview.h</a></li>
+<li><a href="animation-stickman-lifecycle-cpp.html">animation/stickman/lifecycle.cpp</a></li>
+<li><a href="animation-stickman-lifecycle-h.html">animation/stickman/lifecycle.h</a></li>
+<li><a href="animation-stickman-node-cpp.html">animation/stickman/node.cpp</a></li>
+<li><a href="animation-stickman-node-h.html">animation/stickman/node.h</a></li>
+<li><a href="animation-stickman-stickman-cpp.html">animation/stickman/stickman.cpp</a></li>
+<li><a href="animation-stickman-stickman-h.html">animation/stickman/stickman.h</a></li>
+<li><a href="animation-stickman-main-cpp.html">animation/stickman/main.cpp</a></li>
+<li><a href="animation-stickman-stickman-pro.html">animation/stickman/stickman.pro</a></li>
+<li><a href="animation-stickman-stickman-qrc.html">animation/stickman/stickman.qrc</a></li>
+</ul>
+<p>The Stickman example shows how to animate transitions in a state machine to implement key frame animations.</p>
+<p align="center"><img src="images/stickman-example.png" /></p><p>In this example, we will write a small application which animates the joints in a skeleton and projects a stickman figure on top. The stickman can be either &quot;alive&quot; or &quot;dead&quot;, and when in the &quot;alive&quot; state, he can be performing different actions defined by key frame animations.</p>
+<p>Animations are implemented as composite states. Each child state of the animation state represents a frame in the animation by setting the position of each joint in the stickman's skeleton to the positions defined for the particular frame. The frames are then bound together with animated transitions that trigger on the source state's propertiesAssigned() signal. Thus, the machine will enter the state representing the next frame in the animation immediately after it has finished animating into the previous frame.</p>
+<p align="center"><img src="images/stickman-example1.png" /></p><p>The states for an animation is constructed by reading a custom animation file format and creating states that assign values to the the &quot;position&quot; properties of each of the nodes in the skeleton graph.</p>
+<pre>         QState *frameState = new QState(topLevel);
+         const int nodeCount = animation.nodeCount();
+         for (int j=0; j&lt;nodeCount; ++j)
+             frameState-&gt;assignProperty(m_stickMan-&gt;node(j), &quot;pos&quot;, animation.nodePos(j));</pre>
+<p>The states are then bound together with signal transitions that listen to the propertiesAssigned() signal.</p>
+<pre>             previousState-&gt;addTransition(previousState, SIGNAL(propertiesAssigned()), frameState);</pre>
+<p>The last frame state is given a transition to the first one, so that the animation will loop until it is interrupted when a transition out from the animation state is taken. To get smooth animations between the different key frames, we set a default animation on the state machine. This is a parallel animation group which contains animations for all the &quot;position&quot; properties and will be selected by default when taking any transition that leads into a state that assigns values to these properties.</p>
+<pre>     m_machine = new QStateMachine();
+     m_machine-&gt;addDefaultAnimation(m_animationGroup);</pre>
+<p>Several such animation states are constructed, and are placed together as children of a top level &quot;alive&quot; state which represents the stickman life cycle. Transitions go from the parent state to the child state to ensure that each of the child states inherit them.</p>
+<p align="center"><img src="images/stickman-example2.png" /></p><p>This saves us the effort of connect every state to every state with identical transitions. The state machine makes sure that transitions between the key frame animations are also smooth by applying the default animation when interrupting one and starting another.</p>
+<p>Finally, there is a transition out from the &quot;alive&quot; state and into the &quot;dead&quot; state. This is a custom transition type called LightningSrikesTransition which samples every second and triggers at random (one out of fifty times on average.)</p>
+<pre> class LightningStrikesTransition: public QEventTransition
+ {
+ public:
+     LightningStrikesTransition(QAbstractState *target)
+         : QEventTransition(this, QEvent::Timer)
+     {
+         setTargetState(target);
+         qsrand((uint)QDateTime::currentDateTime().toTime_t());
+         startTimer(1000);
+     }
+
+     virtual bool eventTest(QEvent *e)
+     {
+         return QEventTransition::eventTest(e) &amp;&amp; ((qrand() % 50) == 0);
+     }
+ };</pre>
+<p>When it triggers, the machine will first enter a &quot;lightningBlink&quot; state which uses a timer to pause for a brief period of time while the background color of the scene is white. This gives us a flash effect when the lightning strikes.</p>
+<pre>     QTimer *timer = new QTimer(lightningBlink);
+     timer-&gt;setSingleShot(true);
+     timer-&gt;setInterval(100);
+     QObject::connect(lightningBlink, SIGNAL(entered()), timer, SLOT(start()));
+     QObject::connect(lightningBlink, SIGNAL(exited()), timer, SLOT(stop()));</pre>
+<p>We start and stop a <a href="qtimer.html">QTimer</a> object when entering and exiting the state. Then we transition into the &quot;dead&quot; state when the timer times out.</p>
+<pre>     lightningBlink-&gt;addTransition(timer, SIGNAL(timeout()), m_dead);</pre>
+<p>When the machine is in the &quot;dead&quot; state, it will be unresponsive. This is because the &quot;dead&quot; state has no transitions leading out.</p>
+<p align="center"><img src="images/stickman-example3.png" /></p><p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

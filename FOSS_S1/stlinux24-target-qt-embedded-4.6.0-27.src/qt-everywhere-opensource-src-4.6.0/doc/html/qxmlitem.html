@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qabstractxmlnodemodel.cpp -->
+<head>
+  <title>Qt 4.6: QXmlItem Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QXmlItem" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QXmlItem Class Reference<br /><span class="small-subtitle">[<a href="qtxmlpatterns.html">QtXmlPatterns</a> module]</span>
+</h1>
+<p>The QXmlItem class contains either an XML node or an atomic value. <a href="#details">More...</a></p>
+<pre> #include &lt;QXmlItem&gt;</pre><p><b>This class is not part of the Qt GUI Framework Edition.</b></p>
+<p><b>Note:</b> All functions in this class are <a href="threads-reentrancy.html#reentrant">reentrant</a>.</p>
+<p>This class was introduced in Qt 4.4.</p>
+<ul>
+<li><a href="qxmlitem-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-types"></a>
+<h2>Public Types</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">typedef </td><td class="memItemRight" valign="bottom"><b><a href="qxmlitem.html#Iterator-typedef">Iterator</a></b></td></tr>
+</table>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qxmlitem.html#QXmlItem">QXmlItem</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qxmlitem.html#QXmlItem-2">QXmlItem</a></b> ( const QXmlItem &amp; <i>other</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qxmlitem.html#QXmlItem-3">QXmlItem</a></b> ( const QXmlNodeModelIndex &amp; <i>node</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qxmlitem.html#QXmlItem-4">QXmlItem</a></b> ( const QVariant &amp; <i>atomicValue</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qxmlitem.html#dtor.QXmlItem">~QXmlItem</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qxmlitem.html#isAtomicValue">isAtomicValue</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qxmlitem.html#isNode">isNode</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qxmlitem.html#isNull">isNull</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QVariant </td><td class="memItemRight" valign="bottom"><b><a href="qxmlitem.html#toAtomicValue">toAtomicValue</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QXmlNodeModelIndex </td><td class="memItemRight" valign="bottom"><b><a href="qxmlitem.html#toNodeModelIndex">toNodeModelIndex</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QXmlItem &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qxmlitem.html#operator-eq">operator=</a></b> ( const QXmlItem &amp; <i>other</i> )</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QXmlItem class contains either an XML node or an atomic value.</p>
+<p>In XQuery, all expressions evaluate to a sequence of items, where each item is either an XML node or an atomic value. The query in the following snippet evaluates to sequence of five items.</p>
+<pre> &lt;aNode/&gt;,
+ xs:base64Binary(&quot;FFFF&quot;),
+ current-date(),
+ 3e3, (: A floating point value :)
+ attribute {&quot;name&quot;} {()}</pre>
+<p>The five items are: An element, an atomic value (binary data encoded in base64), a date, a float, and an attribute.</p>
+<p>QXmlItem is the class that represents these XQuery items in the <a href="qtxmlpatterns.html">QtXmlPatterns</a> API. A non-null instance of QXmlItem is either a node or an atomic value. Calling <a href="qxmlitem.html#isNode">isNode</a>() or <a href="qxmlitem.html#isAtomicValue">isAtomicValue</a>() tells you which it is. Atomic values are represented elsewhere in the Qt API as instances of <a href="qvariant.html">QVariant</a>, and an instance of QXmlItem that represents an atomic value can be converted to a <a href="qvariant.html">QVariant</a> by calling <a href="qxmlitem.html#toAtomicValue">toAtomicValue</a>(). A QXmlItem that wraps a node is represented elsewhere as an instance of <a href="qxmlnodemodelindex.html">QXmlNodeModelIndex</a>. A node QXmlItem can be converted to a <a href="qxmlnodemodelindex.html">QXmlNodeModelIndex</a> by calling <a href="qxmlitem.html#toNodeModelIndex">toNodeModelIndex</a>().</p>
+<p>A default constructed QXmlItem instance is neither a node nor an atomic value. It is considered null, in which case <a href="qxmlitem.html#isNull">isNull</a>() returns true.</p>
+<p>An instance of QXmlItem will be left dangling if the <a href="qabstractxmlnodemodel.html">XML node model</a> it refers to is deleted, if it is a <a href="qxmlnodemodelindex.html">QXmlNodeModelIndex</a>.</p>
+<hr />
+<h2>Member Type Documentation</h2>
+<a name="//apple_ref/cpp/tdef/QXmlItem/Iterator" />
+<h3 class="fn"><a name="Iterator-typedef"></a>typedef QXmlItem::Iterator</h3>
+<p>A QAbstractXmlForwardIterator over <a href="qxmlitem.html">QXmlItem</a>.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QXmlItem/QXmlItem" />
+<h3 class="fn"><a name="QXmlItem"></a>QXmlItem::QXmlItem ()</h3>
+<p>Constructs a null <a href="qxmlitem.html">QXmlItem</a> that is neither a node nor an atomic value. <a href="qxmlitem.html#isNull">isNull</a>() returns true for a default constructed instance.</p>
+<h3 class="fn"><a name="QXmlItem-2"></a>QXmlItem::QXmlItem ( const QXmlItem &amp; <i>other</i> )</h3>
+<p>The copy constructor constructs a copy of <i>other</i>.</p>
+<h3 class="fn"><a name="QXmlItem-3"></a>QXmlItem::QXmlItem ( const <a href="qxmlnodemodelindex.html">QXmlNodeModelIndex</a> &amp; <i>node</i> )</h3>
+<p>Constructs a node <a href="qxmlitem.html">QXmlItem</a> that is a copy of <i>node</i>.</p>
+<p>See also <a href="qxmlitem.html#isNode">isNode</a>().</p>
+<h3 class="fn"><a name="QXmlItem-4"></a>QXmlItem::QXmlItem ( const <a href="qvariant.html">QVariant</a> &amp; <i>atomicValue</i> )</h3>
+<p>Constructs an atomic value <a href="qxmlitem.html">QXmlItem</a> with <i>atomicValue</i>.</p>
+<p>See also <a href="qxmlitem.html#isAtomicValue">isAtomicValue</a>().</p>
+<a name="//apple_ref/cpp/instm/QXmlItem/~QXmlItem" />
+<h3 class="fn"><a name="dtor.QXmlItem"></a>QXmlItem::~QXmlItem ()</h3>
+<p>Destructor.</p>
+<a name="//apple_ref/cpp/instm/QXmlItem/isAtomicValue" />
+<h3 class="fn"><a name="isAtomicValue"></a>bool QXmlItem::isAtomicValue () const</h3>
+<p>Returns true if this item is an atomic value. Returns false if it is a node or null.</p>
+<p>See also <a href="qxmlitem.html#isNull">isNull</a>() and <a href="qxmlitem.html#isNode">isNode</a>().</p>
+<a name="//apple_ref/cpp/instm/QXmlItem/isNode" />
+<h3 class="fn"><a name="isNode"></a>bool QXmlItem::isNode () const</h3>
+<p>Returns true if this item is a Node. Returns false if it is an atomic value or null.</p>
+<p>See also <a href="qxmlitem.html#isNull">isNull</a>() and <a href="qxmlitem.html#isAtomicValue">isAtomicValue</a>().</p>
+<a name="//apple_ref/cpp/instm/QXmlItem/isNull" />
+<h3 class="fn"><a name="isNull"></a>bool QXmlItem::isNull () const</h3>
+<p>Returns true if this <a href="qxmlitem.html">QXmlItem</a> is neither a node nor an atomic value. Default constructed instances of <a href="qxmlitem.html">QXmlItem</a> are null.</p>
+<a name="//apple_ref/cpp/instm/QXmlItem/toAtomicValue" />
+<h3 class="fn"><a name="toAtomicValue"></a><a href="qvariant.html">QVariant</a> QXmlItem::toAtomicValue () const</h3>
+<p>If this <a href="qxmlitem.html">QXmlItem</a> represents an atomic value, it is converted to an appropriate <a href="qvariant.html">QVariant</a> and returned. If this <a href="qxmlitem.html">QXmlItem</a> is not an atomic value, the return value is a default constructed <a href="qvariant.html">QVariant</a>. You can call <a href="qxmlitem.html#isAtomicValue">isAtomicValue</a>() to test whether the item is an atomic value.</p>
+<p>See also <a href="qxmlitem.html#isAtomicValue">isAtomicValue</a>().</p>
+<a name="//apple_ref/cpp/instm/QXmlItem/toNodeModelIndex" />
+<h3 class="fn"><a name="toNodeModelIndex"></a><a href="qxmlnodemodelindex.html">QXmlNodeModelIndex</a> QXmlItem::toNodeModelIndex () const</h3>
+<p>If this <a href="qxmlitem.html">QXmlItem</a> represents a node, it returns the item as a <a href="qxmlnodemodelindex.html">QXmlNodeModelIndex</a>. If this <a href="qxmlitem.html">QXmlItem</a> is not a node, the return value is undefined. You can call <a href="qxmlitem.html#isNode">isNode</a>() to test whether the item is a node.</p>
+<p>See also <a href="qxmlitem.html#isNode">isNode</a>().</p>
+<a name="//apple_ref/cpp/instm/QXmlItem/operator=" />
+<h3 class="fn"><a name="operator-eq"></a>QXmlItem &amp; QXmlItem::operator= ( const QXmlItem &amp; <i>other</i> )</h3>
+<p>Assigns <i>other</i> to <tt>this</tt>.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

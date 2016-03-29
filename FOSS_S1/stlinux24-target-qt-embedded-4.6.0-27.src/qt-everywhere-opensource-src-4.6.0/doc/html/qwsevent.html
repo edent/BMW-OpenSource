@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qwsevent_qws.cpp -->
+<head>
+  <title>Qt 4.6: QWSEvent Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QWSEvent" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QWSEvent Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QWSEvent class encapsulates an event in Qt for Embedded Linux. <a href="#details">More...</a></p>
+<pre> #include &lt;QWSEvent&gt;</pre><ul>
+<li><a href="qwsevent-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-types"></a>
+<h2>Public Types</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qwsevent.html#Type-enum">Type</a></b> { NoEvent, Connected, Mouse, Focus, ..., ScreenTransformation }</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QWSEvent class encapsulates an event in Qt for Embedded Linux.</p>
+<p>When running a <a href="qt-embedded-linux.html">Qt for Embedded Linux</a> application, it either runs as a server or connects to an existing server. All system generated events are passed to the server application which then propagates the event to the appropriate client.</p>
+<p>Whenever the server receives an event, it queries its stack of top-level windows to find the window containing the event's position. Each window can identify the client application that created it, and returns its ID to the server upon request. Finally, the server forwards the event, encapsulated by an instance of the QWSEvent class, to the appropriate client.</p>
+<p align="center"><img src="images/qt-embedded-client.png" /></p><p>The server communicates with the client applications over the UNIX domain socket. You can retrieve direct access to all the events a client receives from the server, by reimplementing <a href="qapplication.html">QApplication</a>'s <a href="qapplication.html#qwsEventFilter">qwsEventFilter()</a> function.</p>
+<p>QWSEvent provides the <a href="qwsevent.html#Type-enum">Type</a> enum specifying the origin of the event. Internally, each type is represented by a QWSEvent subclass, e.g&#x2e;, <tt>QWSKeyEvent</tt>.</p>
+<p>See also <a href="qwsserver.html">QWSServer</a>, <a href="qwsclient.html">QWSClient</a>, and <a href="qt-embedded-architecture.html">Qt for Embedded Linux Architecture</a>.</p>
+<hr />
+<h2>Member Type Documentation</h2>
+<a name="//apple_ref/cpp/tag/QWSEvent/Type" />
+<a name="//apple_ref/cpp/econst/QWSEvent/NoEvent" />
+<a name="//apple_ref/cpp/econst/QWSEvent/Connected" />
+<a name="//apple_ref/cpp/econst/QWSEvent/Mouse" />
+<a name="//apple_ref/cpp/econst/QWSEvent/Focus" />
+<a name="//apple_ref/cpp/econst/QWSEvent/Key" />
+<a name="//apple_ref/cpp/econst/QWSEvent/Region" />
+<a name="//apple_ref/cpp/econst/QWSEvent/Creation" />
+<a name="//apple_ref/cpp/econst/QWSEvent/PropertyNotify" />
+<a name="//apple_ref/cpp/econst/QWSEvent/PropertyReply" />
+<a name="//apple_ref/cpp/econst/QWSEvent/SelectionClear" />
+<a name="//apple_ref/cpp/econst/QWSEvent/SelectionRequest" />
+<a name="//apple_ref/cpp/econst/QWSEvent/SelectionNotify" />
+<a name="//apple_ref/cpp/econst/QWSEvent/MaxWindowRect" />
+<a name="//apple_ref/cpp/econst/QWSEvent/QCopMessage" />
+<a name="//apple_ref/cpp/econst/QWSEvent/WindowOperation" />
+<a name="//apple_ref/cpp/econst/QWSEvent/IMEvent" />
+<a name="//apple_ref/cpp/econst/QWSEvent/IMQuery" />
+<a name="//apple_ref/cpp/econst/QWSEvent/NEvent" />
+<a name="//apple_ref/cpp/econst/QWSEvent/Embed" />
+<a name="//apple_ref/cpp/econst/QWSEvent/ScreenTransformation" />
+<a name="//apple_ref/cpp/econst/QWSEvent/Font" />
+<a name="//apple_ref/cpp/econst/QWSEvent/IMInit" />
+<h3 class="fn"><a name="Type-enum"></a>enum QWSEvent::Type</h3>
+<p>This enum describes the origin of the event.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QWSEvent::NoEvent</tt></td><td align="center" valign="top"><tt>0</tt></td><td valign="top">No event has occurred.</td></tr>
+<tr><td valign="top"><tt>QWSEvent::Connected</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">An application has connected to the server.</td></tr>
+<tr><td valign="top"><tt>QWSEvent::Mouse</tt></td><td align="center" valign="top"><tt>2</tt></td><td valign="top">A mouse button is pressed or released, or the mouse cursor is moved. See also <a href="qt-embedded-pointer.html">Qt for Embedded Linux Pointer Handling</a>.</td></tr>
+<tr><td valign="top"><tt>QWSEvent::Focus</tt></td><td align="center" valign="top"><tt>3</tt></td><td valign="top">A window has lost or received focus.</td></tr>
+<tr><td valign="top"><tt>QWSEvent::Key</tt></td><td align="center" valign="top"><tt>4</tt></td><td valign="top">A key is pressed or released. See also <a href="qt-embedded-charinput.html">Qt for Embedded Linux Character Input</a>.</td></tr>
+<tr><td valign="top"><tt>QWSEvent::Region</tt></td><td align="center" valign="top"><tt>5</tt></td><td valign="top">A region has changed.</td></tr>
+<tr><td valign="top"><tt>QWSEvent::Creation</tt></td><td align="center" valign="top"><tt>6</tt></td><td valign="top">The server has created an ID, typically for a window.</td></tr>
+<tr><td valign="top"><tt>QWSEvent::PropertyNotify</tt></td><td align="center" valign="top"><tt>7</tt></td><td valign="top">A property has changed.</td></tr>
+<tr><td valign="top"><tt>QWSEvent::PropertyReply</tt></td><td align="center" valign="top"><tt>8</tt></td><td valign="top">The server is responding to a request for a property's value.</td></tr>
+<tr><td valign="top"><tt>QWSEvent::SelectionClear</tt></td><td align="center" valign="top"><tt>9</tt></td><td valign="top">A selection is deleted.</td></tr>
+<tr><td valign="top"><tt>QWSEvent::SelectionRequest</tt></td><td align="center" valign="top"><tt>10</tt></td><td valign="top">The server has queried for a selection.</td></tr>
+<tr><td valign="top"><tt>QWSEvent::SelectionNotify</tt></td><td align="center" valign="top"><tt>11</tt></td><td valign="top">A new selection has been created.</td></tr>
+<tr><td valign="top"><tt>QWSEvent::MaxWindowRect</tt></td><td align="center" valign="top"><tt>12</tt></td><td valign="top">The server has changed the maximum window for an application.</td></tr>
+<tr><td valign="top"><tt>QWSEvent::QCopMessage</tt></td><td align="center" valign="top"><tt>13</tt></td><td valign="top">A new Qt Cop message has appeared. See also <a href="qcopchannel.html">QCopChannel</a></td></tr>
+<tr><td valign="top"><tt>QWSEvent::WindowOperation</tt></td><td align="center" valign="top"><tt>14</tt></td><td valign="top">A window operation, e.g&#x2e; resizing, has occurred.</td></tr>
+<tr><td valign="top"><tt>QWSEvent::IMEvent</tt></td><td align="center" valign="top"><tt>15</tt></td><td valign="top">An input method has been used to enter text for languages with non-Latin alphabets. See also <a href="qwsinputmethod.html">QWSInputMethod</a>.</td></tr>
+<tr><td valign="top"><tt>QWSEvent::IMQuery</tt></td><td align="center" valign="top"><tt>16</tt></td><td valign="top">An input method query for a specified property has occurred. See also <a href="qwsinputmethod.html">QWSInputMethod</a>.</td></tr>
+<tr><td valign="top"><tt>QWSEvent::NEvent</tt></td><td align="center" valign="top"><tt>21</tt></td><td valign="top">The number of events has changed.</td></tr>
+<tr><td valign="top"><tt>QWSEvent::Embed</tt></td><td align="center" valign="top"><tt>18</tt></td><td valign="top">An event used internally to implement embedded windows. See also <a href="qwsembedwidget.html">QWSEmbedWidget</a>.</td></tr>
+<tr><td valign="top"><tt>QWSEvent::ScreenTransformation</tt></td><td align="center" valign="top"><tt>20</tt></td><td valign="top">An event used internally to notify the client processes that the screen has changed for example, rotation, etc.</td></tr>
+</table></p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qvideosurfaceformat.cpp -->
+<head>
+  <title>Qt 4.6: QVideoSurfaceFormat Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QVideoSurfaceFormat" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QVideoSurfaceFormat Class Reference<br /><span class="small-subtitle">[<a href="qtmultimedia.html">QtMultimedia</a> module]</span>
+</h1>
+<p>The QVideoSurfaceFormat class specifies the stream format of a video presentation surface. <a href="#details">More...</a></p>
+<pre> #include &lt;QVideoSurfaceFormat&gt;</pre><p><b>This class is under development and is subject to change.</b></p>
+<p><b>This class is not part of the Qt GUI Framework Edition.</b></p>
+<p>This class was introduced in Qt 4.6.</p>
+<ul>
+<li><a href="qvideosurfaceformat-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-types"></a>
+<h2>Public Types</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qvideosurfaceformat.html#Direction-enum">Direction</a></b> { TopToBottom, BottomToTop }</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qvideosurfaceformat.html#YCbCrColorSpace-enum">YCbCrColorSpace</a></b> { YCbCr_Undefined, YCbCr_BT601, YCbCr_BT709, YCbCr_xvYCC601, YCbCr_xvYCC709, YCbCr_JPEG }</td></tr>
+</table>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qvideosurfaceformat.html#QVideoSurfaceFormat">QVideoSurfaceFormat</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qvideosurfaceformat.html#QVideoSurfaceFormat-2">QVideoSurfaceFormat</a></b> ( const QSize &amp; <i>size</i>, QVideoFrame::PixelFormat <i>format</i>, QAbstractVideoBuffer::HandleType <i>type</i> = QAbstractVideoBuffer::NoHandle )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qvideosurfaceformat.html#QVideoSurfaceFormat-3">QVideoSurfaceFormat</a></b> ( const QVideoSurfaceFormat &amp; <i>other</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qvideosurfaceformat.html#dtor.QVideoSurfaceFormat">~QVideoSurfaceFormat</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qvideosurfaceformat.html#frameHeight">frameHeight</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">qreal </td><td class="memItemRight" valign="bottom"><b><a href="qvideosurfaceformat.html#frameRate">frameRate</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QSize </td><td class="memItemRight" valign="bottom"><b><a href="qvideosurfaceformat.html#frameSize">frameSize</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qvideosurfaceformat.html#frameWidth">frameWidth</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QAbstractVideoBuffer::HandleType </td><td class="memItemRight" valign="bottom"><b><a href="qvideosurfaceformat.html#handleType">handleType</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qvideosurfaceformat.html#isValid">isValid</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QSize </td><td class="memItemRight" valign="bottom"><b><a href="qvideosurfaceformat.html#pixelAspectRatio">pixelAspectRatio</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QVideoFrame::PixelFormat </td><td class="memItemRight" valign="bottom"><b><a href="qvideosurfaceformat.html#pixelFormat">pixelFormat</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QVariant </td><td class="memItemRight" valign="bottom"><b><a href="qvideosurfaceformat.html#property">property</a></b> ( const char * <i>name</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QList&lt;QByteArray&gt; </td><td class="memItemRight" valign="bottom"><b><a href="qvideosurfaceformat.html#propertyNames">propertyNames</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Direction </td><td class="memItemRight" valign="bottom"><b><a href="qvideosurfaceformat.html#scanLineDirection">scanLineDirection</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qvideosurfaceformat.html#setFrameRate">setFrameRate</a></b> ( qreal <i>rate</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qvideosurfaceformat.html#setFrameSize">setFrameSize</a></b> ( const QSize &amp; <i>size</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qvideosurfaceformat.html#setFrameSize-2">setFrameSize</a></b> ( int <i>width</i>, int <i>height</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qvideosurfaceformat.html#setPixelAspectRatio">setPixelAspectRatio</a></b> ( const QSize &amp; <i>ratio</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qvideosurfaceformat.html#setPixelAspectRatio-2">setPixelAspectRatio</a></b> ( int <i>horizontal</i>, int <i>vertical</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qvideosurfaceformat.html#setProperty">setProperty</a></b> ( const char * <i>name</i>, const QVariant &amp; <i>value</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qvideosurfaceformat.html#setScanLineDirection">setScanLineDirection</a></b> ( Direction <i>direction</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qvideosurfaceformat.html#setViewport">setViewport</a></b> ( const QRect &amp; <i>viewport</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qvideosurfaceformat.html#setYCbCrColorSpace">setYCbCrColorSpace</a></b> ( YCbCrColorSpace <i>space</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QSize </td><td class="memItemRight" valign="bottom"><b><a href="qvideosurfaceformat.html#sizeHint">sizeHint</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QRect </td><td class="memItemRight" valign="bottom"><b><a href="qvideosurfaceformat.html#viewport">viewport</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">YCbCrColorSpace </td><td class="memItemRight" valign="bottom"><b><a href="qvideosurfaceformat.html#yCbCrColorSpace">yCbCrColorSpace</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qvideosurfaceformat.html#operator-not-eq">operator!=</a></b> ( const QVideoSurfaceFormat &amp; <i>other</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QVideoSurfaceFormat &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qvideosurfaceformat.html#operator-eq">operator=</a></b> ( const QVideoSurfaceFormat &amp; <i>other</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qvideosurfaceformat.html#operator-eq-eq">operator==</a></b> ( const QVideoSurfaceFormat &amp; <i>other</i> ) const</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QVideoSurfaceFormat class specifies the stream format of a video presentation surface.</p>
+<p>A video surface presents a stream of video frames. The surface's format describes the type of the frames and determines how they should be presented.</p>
+<p>The core properties of a video stream required to setup a video surface are the pixel format given by <a href="qvideosurfaceformat.html#pixelFormat">pixelFormat</a>(), and the frame dimensions given by <a href="qvideosurfaceformat.html#frameSize">frameSize</a>().</p>
+<p>If the surface is to present frames using a frame's handle a surface format will also include a handle type which is given by the <a href="qvideosurfaceformat.html#handleType">handleType</a>() function.</p>
+<p>The region of a frame that is actually displayed on a video surface is given by the <a href="qvideosurfaceformat.html#viewport">viewport</a>(). A stream may have a viewport less than the entire region of a frame to allow for videos smaller than the nearest optimal size of a video frame. For example the width of a frame may be extended so that the start of each scan line is eight byte aligned.</p>
+<p>Other common properties are the <a href="qvideosurfaceformat.html#pixelAspectRatio">pixelAspectRatio</a>(), <a href="qvideosurfaceformat.html#scanLineDirection">scanLineDirection</a>(), and <a href="qvideosurfaceformat.html#frameRate">frameRate</a>(). Additionally a stream may have some additional type specific properties which are listed by the dynamicPropertyNames() function and can be accessed using the <a href="qvideosurfaceformat.html#property">property</a>(), and <a href="qvideosurfaceformat.html#setProperty">setProperty</a>() functions.</p>
+<hr />
+<h2>Member Type Documentation</h2>
+<a name="//apple_ref/cpp/tag/QVideoSurfaceFormat/Direction" />
+<a name="//apple_ref/cpp/econst/QVideoSurfaceFormat/TopToBottom" />
+<a name="//apple_ref/cpp/econst/QVideoSurfaceFormat/BottomToTop" />
+<h3 class="fn"><a name="Direction-enum"></a>enum QVideoSurfaceFormat::Direction</h3>
+<p>Enumerates the layout direction of video scan lines.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QVideoSurfaceFormat::TopToBottom</tt></td><td align="center" valign="top"><tt>0</tt></td><td valign="top">Scan lines are arranged from the top of the frame to the bottom.</td></tr>
+<tr><td valign="top"><tt>QVideoSurfaceFormat::BottomToTop</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">Scan lines are arranged from the bottom of the frame to the top.</td></tr>
+</table></p>
+<a name="//apple_ref/cpp/tag/QVideoSurfaceFormat/YCbCrColorSpace" />
+<a name="//apple_ref/cpp/econst/QVideoSurfaceFormat/YCbCr_Undefined" />
+<a name="//apple_ref/cpp/econst/QVideoSurfaceFormat/YCbCr_BT601" />
+<a name="//apple_ref/cpp/econst/QVideoSurfaceFormat/YCbCr_BT709" />
+<a name="//apple_ref/cpp/econst/QVideoSurfaceFormat/YCbCr_xvYCC601" />
+<a name="//apple_ref/cpp/econst/QVideoSurfaceFormat/YCbCr_xvYCC709" />
+<a name="//apple_ref/cpp/econst/QVideoSurfaceFormat/YCbCr_JPEG" />
+<h3 class="fn"><a name="YCbCrColorSpace-enum"></a>enum QVideoSurfaceFormat::YCbCrColorSpace</h3>
+<p>Enumerates the Y'CbCr color space of video frames.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QVideoSurfaceFormat::YCbCr_Undefined</tt></td><td align="center" valign="top"><tt>0</tt></td><td valign="top">No color space is specified.</td></tr>
+<tr><td valign="top"><tt>QVideoSurfaceFormat::YCbCr_BT601</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">A Y'CbCr color space defined by ITU-R recommendation BT.601 with Y value range from 16 to 235, and Cb/Cr range from 16 to 240. Used in standard definition video.</td></tr>
+<tr><td valign="top"><tt>QVideoSurfaceFormat::YCbCr_BT709</tt></td><td align="center" valign="top"><tt>2</tt></td><td valign="top">A Y'CbCr color space defined by ITU-R BT.709 with the same values range as YCbCr_BT601. Used for HDTV.</td></tr>
+<tr><td valign="top"><tt>QVideoSurfaceFormat::YCbCr_xvYCC601</tt></td><td align="center" valign="top"><tt>3</tt></td><td valign="top">The BT.601 color space with the value range extended to 0 to 255. It is backward compatibile with BT.601 and uses values outside BT.601 range to represent wider colors range.</td></tr>
+<tr><td valign="top"><tt>QVideoSurfaceFormat::YCbCr_xvYCC709</tt></td><td align="center" valign="top"><tt>4</tt></td><td valign="top">The BT.709 color space with the value range extended to 0 to 255.</td></tr>
+<tr><td valign="top"><tt>QVideoSurfaceFormat::YCbCr_JPEG</tt></td><td align="center" valign="top"><tt>5</tt></td><td valign="top">The full range Y'CbCr color space used in JPEG files.</td></tr>
+</table></p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QVideoSurfaceFormat/QVideoSurfaceFormat" />
+<h3 class="fn"><a name="QVideoSurfaceFormat"></a>QVideoSurfaceFormat::QVideoSurfaceFormat ()</h3>
+<p>Constructs a null video stream format.</p>
+<h3 class="fn"><a name="QVideoSurfaceFormat-2"></a>QVideoSurfaceFormat::QVideoSurfaceFormat ( const <a href="qsize.html">QSize</a> &amp; <i>size</i>, <a href="qvideoframe.html#PixelFormat-enum">QVideoFrame::PixelFormat</a> <i>format</i>, <a href="qabstractvideobuffer.html#HandleType-enum">QAbstractVideoBuffer::HandleType</a> <i>type</i> = QAbstractVideoBuffer::NoHandle )</h3>
+<p>Contructs a description of stream which receives stream of <i>type</i> buffers with given frame <i>size</i> and pixel <i>format</i>.</p>
+<h3 class="fn"><a name="QVideoSurfaceFormat-3"></a>QVideoSurfaceFormat::QVideoSurfaceFormat ( const QVideoSurfaceFormat &amp; <i>other</i> )</h3>
+<p>Constructs a copy of <i>other</i>.</p>
+<a name="//apple_ref/cpp/instm/QVideoSurfaceFormat/~QVideoSurfaceFormat" />
+<h3 class="fn"><a name="dtor.QVideoSurfaceFormat"></a>QVideoSurfaceFormat::~QVideoSurfaceFormat ()</h3>
+<p>Destroys a video stream description.</p>
+<a name="//apple_ref/cpp/instm/QVideoSurfaceFormat/frameHeight" />
+<h3 class="fn"><a name="frameHeight"></a>int QVideoSurfaceFormat::frameHeight () const</h3>
+<p>Returns the height of frame in a video stream.</p>
+<a name="//apple_ref/cpp/instm/QVideoSurfaceFormat/frameRate" />
+<h3 class="fn"><a name="frameRate"></a><a href="qtglobal.html#qreal-typedef">qreal</a> QVideoSurfaceFormat::frameRate () const</h3>
+<p>Returns the frame rate of a video stream in frames per second.</p>
+<p>See also <a href="qvideosurfaceformat.html#setFrameRate">setFrameRate</a>().</p>
+<a name="//apple_ref/cpp/instm/QVideoSurfaceFormat/frameSize" />
+<h3 class="fn"><a name="frameSize"></a><a href="qsize.html">QSize</a> QVideoSurfaceFormat::frameSize () const</h3>
+<p>Returns the size of frames in a video stream.</p>
+<p>See also <a href="qvideosurfaceformat.html#setFrameSize">setFrameSize</a>(), <a href="qvideosurfaceformat.html#frameWidth">frameWidth</a>(), and <a href="qvideosurfaceformat.html#frameHeight">frameHeight</a>().</p>
+<a name="//apple_ref/cpp/instm/QVideoSurfaceFormat/frameWidth" />
+<h3 class="fn"><a name="frameWidth"></a>int QVideoSurfaceFormat::frameWidth () const</h3>
+<p>Returns the width of frames in a video stream.</p>
+<p>See also <a href="qvideosurfaceformat.html#frameSize">frameSize</a>() and <a href="qvideosurfaceformat.html#frameHeight">frameHeight</a>().</p>
+<a name="//apple_ref/cpp/instm/QVideoSurfaceFormat/handleType" />
+<h3 class="fn"><a name="handleType"></a><a href="qabstractvideobuffer.html#HandleType-enum">QAbstractVideoBuffer::HandleType</a> QVideoSurfaceFormat::handleType () const</h3>
+<p>Returns the type of handle the surface uses to present the frame data.</p>
+<p>If the handle type is <a href="qabstractvideobuffer.html#HandleType-enum">QAbstractVideoBuffer::NoHandle</a> buffers with any handle type are valid provided they can be <a href="qabstractvideobuffer.html#map">mapped</a> with the <a href="qabstractvideobuffer.html#MapMode-enum">QAbstractVideoBuffer::ReadOnly</a> flag. If the handleType() is not <a href="qabstractvideobuffer.html#HandleType-enum">QAbstractVideoBuffer::NoHandle</a> then the handle type of the buffer be the same as that of the surface format.</p>
+<a name="//apple_ref/cpp/instm/QVideoSurfaceFormat/isValid" />
+<h3 class="fn"><a name="isValid"></a>bool QVideoSurfaceFormat::isValid () const</h3>
+<p>Identifies if a video surface format has a valid pixel format and frame size.</p>
+<p>Returns true if the format is valid, and false otherwise.</p>
+<a name="//apple_ref/cpp/instm/QVideoSurfaceFormat/pixelAspectRatio" />
+<h3 class="fn"><a name="pixelAspectRatio"></a><a href="qsize.html">QSize</a> QVideoSurfaceFormat::pixelAspectRatio () const</h3>
+<p>Returns a video stream's pixel aspect ratio.</p>
+<p>See also <a href="qvideosurfaceformat.html#setPixelAspectRatio">setPixelAspectRatio</a>().</p>
+<a name="//apple_ref/cpp/instm/QVideoSurfaceFormat/pixelFormat" />
+<h3 class="fn"><a name="pixelFormat"></a><a href="qvideoframe.html#PixelFormat-enum">QVideoFrame::PixelFormat</a> QVideoSurfaceFormat::pixelFormat () const</h3>
+<p>Returns the pixel format of frames in a video stream.</p>
+<a name="//apple_ref/cpp/instm/QVideoSurfaceFormat/property" />
+<h3 class="fn"><a name="property"></a><a href="qvariant.html">QVariant</a> QVideoSurfaceFormat::property ( const char * <i>name</i> ) const</h3>
+<p>Returns the value of the video format's <i>name</i> property.</p>
+<p>See also <a href="qvideosurfaceformat.html#setProperty">setProperty</a>().</p>
+<a name="//apple_ref/cpp/instm/QVideoSurfaceFormat/propertyNames" />
+<h3 class="fn"><a name="propertyNames"></a><a href="qlist.html">QList</a>&lt;<a href="qbytearray.html">QByteArray</a>&gt; QVideoSurfaceFormat::propertyNames () const</h3>
+<p>Returns a list of video format dynamic property names.</p>
+<a name="//apple_ref/cpp/instm/QVideoSurfaceFormat/scanLineDirection" />
+<h3 class="fn"><a name="scanLineDirection"></a><a href="qvideosurfaceformat.html#Direction-enum">Direction</a> QVideoSurfaceFormat::scanLineDirection () const</h3>
+<p>Returns the direction of scan lines.</p>
+<p>See also <a href="qvideosurfaceformat.html#setScanLineDirection">setScanLineDirection</a>().</p>
+<a name="//apple_ref/cpp/instm/QVideoSurfaceFormat/setFrameRate" />
+<h3 class="fn"><a name="setFrameRate"></a>void QVideoSurfaceFormat::setFrameRate ( <a href="qtglobal.html#qreal-typedef">qreal</a> <i>rate</i> )</h3>
+<p>Sets the frame <i>rate</i> of a video stream in frames per second.</p>
+<p>See also <a href="qvideosurfaceformat.html#frameRate">frameRate</a>().</p>
+<a name="//apple_ref/cpp/instm/QVideoSurfaceFormat/setFrameSize" />
+<h3 class="fn"><a name="setFrameSize"></a>void QVideoSurfaceFormat::setFrameSize ( const <a href="qsize.html">QSize</a> &amp; <i>size</i> )</h3>
+<p>Sets the size of frames in a video stream to <i>size</i>.</p>
+<p>This will reset the <a href="qvideosurfaceformat.html#viewport">viewport</a>() to fill the entire frame.</p>
+<p>See also <a href="qvideosurfaceformat.html#frameSize">frameSize</a>().</p>
+<h3 class="fn"><a name="setFrameSize-2"></a>void QVideoSurfaceFormat::setFrameSize ( int <i>width</i>, int <i>height</i> )</h3>
+<p>This is an overloaded function.</p>
+<p>Sets the <i>width</i> and <i>height</i> of frames in a video stream.</p>
+<p>This will reset the <a href="qvideosurfaceformat.html#viewport">viewport</a>() to fill the entire frame.</p>
+<a name="//apple_ref/cpp/instm/QVideoSurfaceFormat/setPixelAspectRatio" />
+<h3 class="fn"><a name="setPixelAspectRatio"></a>void QVideoSurfaceFormat::setPixelAspectRatio ( const <a href="qsize.html">QSize</a> &amp; <i>ratio</i> )</h3>
+<p>Sets a video stream's pixel aspect <i>ratio</i>.</p>
+<p>See also <a href="qvideosurfaceformat.html#pixelAspectRatio">pixelAspectRatio</a>().</p>
+<h3 class="fn"><a name="setPixelAspectRatio-2"></a>void QVideoSurfaceFormat::setPixelAspectRatio ( int <i>horizontal</i>, int <i>vertical</i> )</h3>
+<p>This is an overloaded function.</p>
+<p>Sets the <i>horizontal</i> and <i>vertical</i> elements of a video stream's pixel aspect ratio.</p>
+<a name="//apple_ref/cpp/instm/QVideoSurfaceFormat/setProperty" />
+<h3 class="fn"><a name="setProperty"></a>void QVideoSurfaceFormat::setProperty ( const char * <i>name</i>, const <a href="qvariant.html">QVariant</a> &amp; <i>value</i> )</h3>
+<p>Sets the video format's <i>name</i> property to <i>value</i>.</p>
+<p>See also <a href="qvideosurfaceformat.html#property">property</a>().</p>
+<a name="//apple_ref/cpp/instm/QVideoSurfaceFormat/setScanLineDirection" />
+<h3 class="fn"><a name="setScanLineDirection"></a>void QVideoSurfaceFormat::setScanLineDirection ( <a href="qvideosurfaceformat.html#Direction-enum">Direction</a> <i>direction</i> )</h3>
+<p>Sets the <i>direction</i> of scan lines.</p>
+<p>See also <a href="qvideosurfaceformat.html#scanLineDirection">scanLineDirection</a>().</p>
+<a name="//apple_ref/cpp/instm/QVideoSurfaceFormat/setViewport" />
+<h3 class="fn"><a name="setViewport"></a>void QVideoSurfaceFormat::setViewport ( const <a href="qrect.html">QRect</a> &amp; <i>viewport</i> )</h3>
+<p>Sets the viewport of a video stream to <i>viewport</i>.</p>
+<p>See also <a href="qvideosurfaceformat.html#viewport">viewport</a>().</p>
+<a name="//apple_ref/cpp/instm/QVideoSurfaceFormat/setYCbCrColorSpace" />
+<h3 class="fn"><a name="setYCbCrColorSpace"></a>void QVideoSurfaceFormat::setYCbCrColorSpace ( <a href="qvideosurfaceformat.html#YCbCrColorSpace-enum">YCbCrColorSpace</a> <i>space</i> )</h3>
+<p>Sets the Y'CbCr color <i>space</i> of a video stream. It is only used with raw YUV frame types.</p>
+<p>See also <a href="qvideosurfaceformat.html#yCbCrColorSpace">yCbCrColorSpace</a>().</p>
+<a name="//apple_ref/cpp/instm/QVideoSurfaceFormat/sizeHint" />
+<h3 class="fn"><a name="sizeHint"></a><a href="qsize.html">QSize</a> QVideoSurfaceFormat::sizeHint () const</h3>
+<p>Returns a suggested size in pixels for the video stream.</p>
+<p>This is the size of the viewport scaled according to the pixel aspect ratio.</p>
+<a name="//apple_ref/cpp/instm/QVideoSurfaceFormat/viewport" />
+<h3 class="fn"><a name="viewport"></a><a href="qrect.html">QRect</a> QVideoSurfaceFormat::viewport () const</h3>
+<p>Returns the viewport of a video stream.</p>
+<p>The viewport is the region of a video frame that is actually displayed.</p>
+<p>By default the viewport covers an entire frame.</p>
+<p>See also <a href="qvideosurfaceformat.html#setViewport">setViewport</a>().</p>
+<a name="//apple_ref/cpp/instm/QVideoSurfaceFormat/yCbCrColorSpace" />
+<h3 class="fn"><a name="yCbCrColorSpace"></a><a href="qvideosurfaceformat.html#YCbCrColorSpace-enum">YCbCrColorSpace</a> QVideoSurfaceFormat::yCbCrColorSpace () const</h3>
+<p>Returns the Y'CbCr color space of a video stream.</p>
+<p>See also <a href="qvideosurfaceformat.html#setYCbCrColorSpace">setYCbCrColorSpace</a>().</p>
+<a name="//apple_ref/cpp/instm/QVideoSurfaceFormat/operator!=" />
+<h3 class="fn"><a name="operator-not-eq"></a>bool QVideoSurfaceFormat::operator!= ( const QVideoSurfaceFormat &amp; <i>other</i> ) const</h3>
+<p>Returns true if <i>other</i> is different to a video format, and false if they are the same.</p>
+<a name="//apple_ref/cpp/instm/QVideoSurfaceFormat/operator=" />
+<h3 class="fn"><a name="operator-eq"></a>QVideoSurfaceFormat &amp; QVideoSurfaceFormat::operator= ( const QVideoSurfaceFormat &amp; <i>other</i> )</h3>
+<p>Assigns the values of <i>other</i> to a video stream description.</p>
+<a name="//apple_ref/cpp/instm/QVideoSurfaceFormat/operator==" />
+<h3 class="fn"><a name="operator-eq-eq"></a>bool QVideoSurfaceFormat::operator== ( const QVideoSurfaceFormat &amp; <i>other</i> ) const</h3>
+<p>Returns true if <i>other</i> is the same as a video format, and false if they are the different.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

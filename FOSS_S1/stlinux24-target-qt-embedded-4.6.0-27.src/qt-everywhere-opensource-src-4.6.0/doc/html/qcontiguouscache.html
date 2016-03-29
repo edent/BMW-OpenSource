@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qcontiguouscache.cpp -->
+<head>
+  <title>Qt 4.6: QContiguousCache Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QContiguousCache" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QContiguousCache Class Reference<br /><span class="small-subtitle">[<a href="qtcore.html">QtCore</a> module]</span>
+</h1>
+<p>The QContiguousCache class is a template class that provides a contiguous cache. <a href="#details">More...</a></p>
+<pre> #include &lt;QContiguousCache&gt;</pre><p><b>Note:</b> All functions in this class are <a href="threads-reentrancy.html#reentrant">reentrant</a>.</p>
+<p>This class was introduced in Qt 4.6.</p>
+<ul>
+<li><a href="qcontiguouscache-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qcontiguouscache.html#QContiguousCache">QContiguousCache</a></b> ( int <i>capacity</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qcontiguouscache.html#QContiguousCache-2">QContiguousCache</a></b> ( const QContiguousCache&lt;T&gt; &amp; <i>other</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qcontiguouscache.html#dtor.QContiguousCache">~QContiguousCache</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qcontiguouscache.html#append">append</a></b> ( const T &amp; <i>value</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qcontiguouscache.html#areIndexesValid">areIndexesValid</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const T &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qcontiguouscache.html#at">at</a></b> ( int <i>i</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qcontiguouscache.html#available">available</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qcontiguouscache.html#capacity">capacity</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qcontiguouscache.html#clear">clear</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qcontiguouscache.html#containsIndex">containsIndex</a></b> ( int <i>i</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qcontiguouscache.html#count">count</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qcontiguouscache.html#first">first</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const T &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qcontiguouscache.html#first-2">first</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qcontiguouscache.html#firstIndex">firstIndex</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qcontiguouscache.html#insert">insert</a></b> ( int <i>i</i>, const T &amp; <i>value</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qcontiguouscache.html#isEmpty">isEmpty</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qcontiguouscache.html#isFull">isFull</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qcontiguouscache.html#last">last</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const T &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qcontiguouscache.html#last-2">last</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qcontiguouscache.html#lastIndex">lastIndex</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qcontiguouscache.html#normalizeIndexes">normalizeIndexes</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qcontiguouscache.html#prepend">prepend</a></b> ( const T &amp; <i>value</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qcontiguouscache.html#removeFirst">removeFirst</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qcontiguouscache.html#removeLast">removeLast</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qcontiguouscache.html#setCapacity">setCapacity</a></b> ( int <i>size</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qcontiguouscache.html#size">size</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T </td><td class="memItemRight" valign="bottom"><b><a href="qcontiguouscache.html#takeFirst">takeFirst</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T </td><td class="memItemRight" valign="bottom"><b><a href="qcontiguouscache.html#takeLast">takeLast</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qcontiguouscache.html#operator-not-eq">operator!=</a></b> ( const QContiguousCache&lt;T&gt; &amp; <i>other</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QContiguousCache&lt;T&gt; &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qcontiguouscache.html#operator-eq">operator=</a></b> ( const QContiguousCache&lt;T&gt; &amp; <i>other</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qcontiguouscache.html#operator-eq-eq">operator==</a></b> ( const QContiguousCache&lt;T&gt; &amp; <i>other</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qcontiguouscache.html#operator-5b-5d">operator[]</a></b> ( int <i>i</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const T &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qcontiguouscache.html#operator-5b-5d-2">operator[]</a></b> ( int <i>i</i> ) const</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QContiguousCache class is a template class that provides a contiguous cache.</p>
+<p>The QContiguousCache class provides an efficient way of caching items for display in a user interface view. Unlike <a href="qcache.html">QCache</a>, it adds a restriction that elements within the cache are contiguous. This has the advantage of matching how user interface views most commonly request data, as a set of rows localized around the current scrolled position. This restriction allows the cache to consume less memory and processor cycles than <a href="qcache.html">QCache</a>. The QContiguousCache class also can provide an upper bound on memory usage via <a href="qcontiguouscache.html#setCapacity">setCapacity</a>().</p>
+<p>The simplest way of using a contiguous cache is to use the <a href="qcontiguouscache.html#append">append</a>() and <a href="qcontiguouscache.html#prepend">prepend</a>().</p>
+<pre> MyRecord record(int row) const
+ {
+     Q_ASSERT(row &gt;= 0 &amp;&amp; row &lt; count());
+
+     while(row &gt; cache.lastIndex())
+         cache.append(slowFetchRecord(cache.lastIndex()+1));
+     while(row &lt; cache.firstIndex())
+         cache.prepend(slowFetchRecord(cache.firstIndex()-1));
+
+     return cache.at(row);
+ }</pre>
+<p>If the cache is full then the item at the opposite end of the cache from where the new item is appended or prepended will be removed.</p>
+<p>This usage can be further optimized by using the <a href="qcontiguouscache.html#insert">insert</a>() function in the case where the requested row is a long way from the currently cached items. If there is a gap between where the new item is inserted and the currently cached items then the existing cached items are first removed to retain the contiguous nature of the cache. Hence it is important to take some care then when using <a href="qcontiguouscache.html#insert">insert</a>() in order to avoid unwanted clearing of the cache.</p>
+<p>The range of valid indexes for the QContiguousCache class are from 0 to INT_MAX. Calling <a href="qcontiguouscache.html#prepend">prepend</a>() such that the first index would become less than 0 or <a href="qcontiguouscache.html#append">append</a>() such that the last index would become greater than INT_MAX can result in the indexes of the cache being invalid. When the cache indexes are invalid it is important to call <a href="qcontiguouscache.html#normalizeIndexes">normalizeIndexes</a>() before calling any of <a href="qcontiguouscache.html#containsIndex">containsIndex</a>(), <a href="qcontiguouscache.html#firstIndex">firstIndex</a>(), <a href="qcontiguouscache.html#lastIndex">lastIndex</a>(), <a href="qcontiguouscache.html#at">at</a>() or <a href="qcontiguouscache.html#operator-5b-5d">operator[]</a>(). Calling these functions when the cache has invalid indexes will result in undefined behavior. The indexes can be checked by using <a href="qcontiguouscache.html#areIndexesValid">areIndexesValid</a>()</p>
+<p>In most cases the indexes will not exceed 0 to INT_MAX, and <a href="qcontiguouscache.html#normalizeIndexes">normalizeIndexes</a>() will not need to be used.</p>
+<p>See the <a href="tools-contiguouscache.html">Contiguous Cache</a> example.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QContiguousCache/QContiguousCache" />
+<h3 class="fn"><a name="QContiguousCache"></a>QContiguousCache::QContiguousCache ( int <i>capacity</i> = 0 )</h3>
+<p>Constructs a cache with the given <i>capacity</i>.</p>
+<p>See also <a href="qcontiguouscache.html#setCapacity">setCapacity</a>().</p>
+<h3 class="fn"><a name="QContiguousCache-2"></a>QContiguousCache::QContiguousCache ( const QContiguousCache&lt;T&gt; &amp; <i>other</i> )</h3>
+<p>Constructs a copy of <i>other</i>.</p>
+<p>This operation takes <a href="containers.html#constant-time">constant time</a>, because <a href="qcontiguouscache.html">QContiguousCache</a> is <a href="implicit-sharing.html#implicitly-shared">implicitly shared</a>. This makes returning a <a href="qcontiguouscache.html">QContiguousCache</a> from a function very fast. If a shared instance is modified, it will be copied (copy-on-write), and that takes <a href="containers.html#linear-time">linear time</a>.</p>
+<p>See also <a href="qcontiguouscache.html#operator-eq">operator=</a>().</p>
+<a name="//apple_ref/cpp/instm/QContiguousCache/~QContiguousCache" />
+<h3 class="fn"><a name="dtor.QContiguousCache"></a>QContiguousCache::~QContiguousCache ()</h3>
+<p>Destroys the cache.</p>
+<a name="//apple_ref/cpp/instm/QContiguousCache/append" />
+<h3 class="fn"><a name="append"></a>void QContiguousCache::append ( const T &amp; <i>value</i> )</h3>
+<p>Inserts <i>value</i> at the end of the cache. If the cache is already full the item at the start of the cache will be removed.</p>
+<p>See also <a href="qcontiguouscache.html#prepend">prepend</a>(), <a href="qcontiguouscache.html#insert">insert</a>(), and <a href="qcontiguouscache.html#isFull">isFull</a>().</p>
+<a name="//apple_ref/cpp/instm/QContiguousCache/areIndexesValid" />
+<h3 class="fn"><a name="areIndexesValid"></a>bool QContiguousCache::areIndexesValid () const</h3>
+<p>Returns whether the indexes for items stored in the cache are valid. Indexes can become invalid if items are appended after the index position INT_MAX or prepended before the index position 0. This is only expected to occur in very long lived circular buffer style usage of the contiguous cache. Indexes can be made valid again by calling normalizeIndexs().</p>
+<p>See also <a href="qcontiguouscache.html#normalizeIndexes">normalizeIndexes</a>(), <a href="qcontiguouscache.html#append">append</a>(), and <a href="qcontiguouscache.html#prepend">prepend</a>().</p>
+<a name="//apple_ref/cpp/instm/QContiguousCache/at" />
+<h3 class="fn"><a name="at"></a>const T &amp; QContiguousCache::at ( int <i>i</i> ) const</h3>
+<p>Returns the item at index position <i>i</i> in the cache. <i>i</i> must be a valid index position in the cache (i.e, <a href="qcontiguouscache.html#firstIndex">firstIndex</a>() &lt;= <i>i</i> &lt;= <a href="qcontiguouscache.html#lastIndex">lastIndex</a>()).</p>
+<p>The indexes in the cache refer to the number of positions the item is from the first item appended into the cache. That is to say a cache with a capacity of 100, that has had 150 items appended will have a valid index range of 50 to 149. This allows inserting and retrieving items into the cache based on a theoretical infinite list</p>
+<p>See also <a href="qcontiguouscache.html#firstIndex">firstIndex</a>(), <a href="qcontiguouscache.html#lastIndex">lastIndex</a>(), <a href="qcontiguouscache.html#insert">insert</a>(), and <a href="qcontiguouscache.html#operator-5b-5d">operator[]</a>().</p>
+<a name="//apple_ref/cpp/instm/QContiguousCache/available" />
+<h3 class="fn"><a name="available"></a>int QContiguousCache::available () const</h3>
+<p>Returns the number of items that can be added to the cache before it becomes full.</p>
+<p>See also <a href="qcontiguouscache.html#size">size</a>(), <a href="qcontiguouscache.html#capacity">capacity</a>(), and <a href="qcontiguouscache.html#isFull">isFull</a>().</p>
+<a name="//apple_ref/cpp/instm/QContiguousCache/capacity" />
+<h3 class="fn"><a name="capacity"></a>int QContiguousCache::capacity () const</h3>
+<p>Returns the number of items the cache can store before it is full. When a cache contains a number of items equal to its capacity, adding new items will cause items farthest from the added item to be removed.</p>
+<p>See also <a href="qcontiguouscache.html#setCapacity">setCapacity</a>() and <a href="qcontiguouscache.html#size">size</a>().</p>
+<a name="//apple_ref/cpp/instm/QContiguousCache/clear" />
+<h3 class="fn"><a name="clear"></a>void QContiguousCache::clear ()</h3>
+<p>Removes all items from the cache. The capacity is unchanged.</p>
+<a name="//apple_ref/cpp/instm/QContiguousCache/containsIndex" />
+<h3 class="fn"><a name="containsIndex"></a>bool QContiguousCache::containsIndex ( int <i>i</i> ) const</h3>
+<p>Returns true if the cache's index range includes the given index <i>i</i>.</p>
+<p>See also <a href="qcontiguouscache.html#firstIndex">firstIndex</a>() and <a href="qcontiguouscache.html#lastIndex">lastIndex</a>().</p>
+<a name="//apple_ref/cpp/instm/QContiguousCache/count" />
+<h3 class="fn"><a name="count"></a>int QContiguousCache::count () const</h3>
+<p>Same as <a href="qcontiguouscache.html#size">size</a>().</p>
+<a name="//apple_ref/cpp/instm/QContiguousCache/first" />
+<h3 class="fn"><a name="first"></a>T &amp; QContiguousCache::first ()</h3>
+<p>Returns a reference to the first item in the cache. This function assumes that the cache isn't empty.</p>
+<p>See also <a href="qcontiguouscache.html#last">last</a>() and <a href="qcontiguouscache.html#isEmpty">isEmpty</a>().</p>
+<h3 class="fn"><a name="first-2"></a>const T &amp; QContiguousCache::first () const</h3>
+<p>This is an overloaded function.</p>
+<a name="//apple_ref/cpp/instm/QContiguousCache/firstIndex" />
+<h3 class="fn"><a name="firstIndex"></a>int QContiguousCache::firstIndex () const</h3>
+<p>Returns the first valid index in the cache. The index will be invalid if the cache is empty.</p>
+<p>See also <a href="qcontiguouscache.html#capacity">capacity</a>(), <a href="qcontiguouscache.html#size">size</a>(), and <a href="qcontiguouscache.html#lastIndex">lastIndex</a>().</p>
+<a name="//apple_ref/cpp/instm/QContiguousCache/insert" />
+<h3 class="fn"><a name="insert"></a>void QContiguousCache::insert ( int <i>i</i>, const T &amp; <i>value</i> )</h3>
+<p>Inserts the <i>value</i> at the index position <i>i</i>. If the cache already contains an item at <i>i</i> then that value is replaced. If <i>i</i> is either one more than <a href="qcontiguouscache.html#lastIndex">lastIndex</a>() or one less than <a href="qcontiguouscache.html#firstIndex">firstIndex</a>() it is the equivalent to an <a href="qcontiguouscache.html#append">append</a>() or a <a href="qcontiguouscache.html#prepend">prepend</a>().</p>
+<p>If the given index <i>i</i> is not within the current range of the cache nor adjacent to the bounds of the cache's index range, the cache is first cleared before inserting the item. At this point the cache will have a size of 1. It is worthwhile taking effort to insert items in an order that starts adjacent to the current index range for the cache.</p>
+<p>The range of valid indexes for the <a href="qcontiguouscache.html">QContiguousCache</a> class are from 0 to INT_MAX. Inserting outside of this range has undefined behavior.</p>
+<p>See also <a href="qcontiguouscache.html#prepend">prepend</a>(), <a href="qcontiguouscache.html#append">append</a>(), <a href="qcontiguouscache.html#isFull">isFull</a>(), <a href="qcontiguouscache.html#firstIndex">firstIndex</a>(), and <a href="qcontiguouscache.html#lastIndex">lastIndex</a>().</p>
+<a name="//apple_ref/cpp/instm/QContiguousCache/isEmpty" />
+<h3 class="fn"><a name="isEmpty"></a>bool QContiguousCache::isEmpty () const</h3>
+<p>Returns true if no items are stored within the cache.</p>
+<p>See also <a href="qcontiguouscache.html#size">size</a>() and <a href="qcontiguouscache.html#capacity">capacity</a>().</p>
+<a name="//apple_ref/cpp/instm/QContiguousCache/isFull" />
+<h3 class="fn"><a name="isFull"></a>bool QContiguousCache::isFull () const</h3>
+<p>Returns true if the number of items stored within the cache is equal to the capacity of the cache.</p>
+<p>See also <a href="qcontiguouscache.html#size">size</a>() and <a href="qcontiguouscache.html#capacity">capacity</a>().</p>
+<a name="//apple_ref/cpp/instm/QContiguousCache/last" />
+<h3 class="fn"><a name="last"></a>T &amp; QContiguousCache::last ()</h3>
+<p>Returns a reference to the last item in the cache. This function assumes that the cache isn't empty.</p>
+<p>See also <a href="qcontiguouscache.html#first">first</a>() and <a href="qcontiguouscache.html#isEmpty">isEmpty</a>().</p>
+<h3 class="fn"><a name="last-2"></a>const T &amp; QContiguousCache::last () const</h3>
+<p>This is an overloaded function.</p>
+<a name="//apple_ref/cpp/instm/QContiguousCache/lastIndex" />
+<h3 class="fn"><a name="lastIndex"></a>int QContiguousCache::lastIndex () const</h3>
+<p>Returns the last valid index in the cache. The index will be invalid if the cache is empty.</p>
+<p>See also <a href="qcontiguouscache.html#capacity">capacity</a>(), <a href="qcontiguouscache.html#size">size</a>(), and <a href="qcontiguouscache.html#firstIndex">firstIndex</a>().</p>
+<a name="//apple_ref/cpp/instm/QContiguousCache/normalizeIndexes" />
+<h3 class="fn"><a name="normalizeIndexes"></a>void QContiguousCache::normalizeIndexes ()</h3>
+<p>Moves the first index and last index of the cache such that they point to valid indexes. The function does not modify the contents of the cache or the ordering of elements within the cache.</p>
+<p>It is provided so that index overflows can be corrected when using the cache as a circular buffer.</p>
+<pre> QContiguousCache&lt;int&gt; cache(10);
+ cache.insert(INT_MAX, 1); <span class="comment">// cache contains one value and has valid indexes, INT_MAX to INT_MAX</span>
+ cache.append(2); <span class="comment">// cache contains two values but does not have valid indexes.</span>
+ cache.normalizeIndexes(); <span class="comment">// cache has two values, 1 and 2.  New first index will be in the range of 0 to capacity().</span></pre>
+<p>See also <a href="qcontiguouscache.html#areIndexesValid">areIndexesValid</a>(), <a href="qcontiguouscache.html#append">append</a>(), and <a href="qcontiguouscache.html#prepend">prepend</a>().</p>
+<a name="//apple_ref/cpp/instm/QContiguousCache/prepend" />
+<h3 class="fn"><a name="prepend"></a>void QContiguousCache::prepend ( const T &amp; <i>value</i> )</h3>
+<p>Inserts <i>value</i> at the start of the cache. If the cache is already full the item at the end of the cache will be removed.</p>
+<p>See also <a href="qcontiguouscache.html#append">append</a>(), <a href="qcontiguouscache.html#insert">insert</a>(), and <a href="qcontiguouscache.html#isFull">isFull</a>().</p>
+<a name="//apple_ref/cpp/instm/QContiguousCache/removeFirst" />
+<h3 class="fn"><a name="removeFirst"></a>void QContiguousCache::removeFirst ()</h3>
+<p>Removes the first item from the cache. This function assumes that the cache isn't empty.</p>
+<p>See also <a href="qcontiguouscache.html#removeLast">removeLast</a>().</p>
+<a name="//apple_ref/cpp/instm/QContiguousCache/removeLast" />
+<h3 class="fn"><a name="removeLast"></a>void QContiguousCache::removeLast ()</h3>
+<p>Removes the last item from the cache. This function assumes that the cache isn't empty.</p>
+<p>See also <a href="qcontiguouscache.html#removeFirst">removeFirst</a>().</p>
+<a name="//apple_ref/cpp/instm/QContiguousCache/setCapacity" />
+<h3 class="fn"><a name="setCapacity"></a>void QContiguousCache::setCapacity ( int <i>size</i> )</h3>
+<p>Sets the capacity of the cache to the given <i>size</i>. A cache can hold a number of items equal to its capacity. When inserting, appending or prepending items to the cache, if the cache is already full then the item farthest from the added item will be removed.</p>
+<p>If the given <i>size</i> is smaller than the current count of items in the cache then only the last <i>size</i> items from the cache will remain.</p>
+<p>See also <a href="qcontiguouscache.html#capacity">capacity</a>() and <a href="qcontiguouscache.html#isFull">isFull</a>().</p>
+<a name="//apple_ref/cpp/instm/QContiguousCache/size" />
+<h3 class="fn"><a name="size"></a>int QContiguousCache::size () const</h3>
+<p>Returns the number of items contained within the cache.</p>
+<p>See also <a href="qcontiguouscache.html#capacity">capacity</a>().</p>
+<a name="//apple_ref/cpp/instm/QContiguousCache/takeFirst" />
+<h3 class="fn"><a name="takeFirst"></a>T QContiguousCache::takeFirst ()</h3>
+<p>Removes the first item in the cache and returns it. This function assumes that the cache isn't empty.</p>
+<p>If you don't use the return value, <a href="qcontiguouscache.html#removeFirst">removeFirst</a>() is more efficient.</p>
+<p>See also <a href="qcontiguouscache.html#takeLast">takeLast</a>() and <a href="qcontiguouscache.html#removeFirst">removeFirst</a>().</p>
+<a name="//apple_ref/cpp/instm/QContiguousCache/takeLast" />
+<h3 class="fn"><a name="takeLast"></a>T QContiguousCache::takeLast ()</h3>
+<p>Removes the last item in the cache and returns it. This function assumes that the cache isn't empty.</p>
+<p>If you don't use the return value, <a href="qcontiguouscache.html#removeLast">removeLast</a>() is more efficient.</p>
+<p>See also <a href="qcontiguouscache.html#takeFirst">takeFirst</a>() and <a href="qcontiguouscache.html#removeLast">removeLast</a>().</p>
+<a name="//apple_ref/cpp/instm/QContiguousCache/operator!=" />
+<h3 class="fn"><a name="operator-not-eq"></a>bool QContiguousCache::operator!= ( const QContiguousCache&lt;T&gt; &amp; <i>other</i> ) const</h3>
+<p>Returns true if <i>other</i> is not equal to this cache; otherwise returns false.</p>
+<p>Two caches are considered equal if they contain the same values at the same indexes. This function requires the value type to implement the <tt>operator==()</tt>.</p>
+<p>See also <a href="qcontiguouscache.html#operator-eq-eq">operator==</a>().</p>
+<a name="//apple_ref/cpp/instm/QContiguousCache/operator=" />
+<h3 class="fn"><a name="operator-eq"></a>QContiguousCache&lt;T&gt; &amp; QContiguousCache::operator= ( const QContiguousCache&lt;T&gt; &amp; <i>other</i> )</h3>
+<p>Assigns <i>other</i> to this cache and returns a reference to this cache.</p>
+<a name="//apple_ref/cpp/instm/QContiguousCache/operator==" />
+<h3 class="fn"><a name="operator-eq-eq"></a>bool QContiguousCache::operator== ( const QContiguousCache&lt;T&gt; &amp; <i>other</i> ) const</h3>
+<p>Returns true if <i>other</i> is equal to this cache; otherwise returns false.</p>
+<p>Two caches are considered equal if they contain the same values at the same indexes. This function requires the value type to implement the <tt>operator==()</tt>.</p>
+<p>See also <a href="qcontiguouscache.html#operator-not-eq">operator!=</a>().</p>
+<a name="//apple_ref/cpp/instm/QContiguousCache/operator[]" />
+<h3 class="fn"><a name="operator-5b-5d"></a>T &amp; QContiguousCache::operator[] ( int <i>i</i> )</h3>
+<p>Returns the item at index position <i>i</i> as a modifiable reference. If the cache does not contain an item at the given index position <i>i</i> then it will first insert an empty item at that position.</p>
+<p>In most cases it is better to use either <a href="qcontiguouscache.html#at">at</a>() or <a href="qcontiguouscache.html#insert">insert</a>().</p>
+<p><b>Note:</b> This non-const overload of operator[] requires <a href="qcontiguouscache.html">QContiguousCache</a> to make a deep copy. Use <a href="qcontiguouscache.html#at">at</a>() for read-only access to a non-const <a href="qcontiguouscache.html">QContiguousCache</a>.</p>
+<p>See also <a href="qcontiguouscache.html#insert">insert</a>() and <a href="qcontiguouscache.html#at">at</a>().</p>
+<h3 class="fn"><a name="operator-5b-5d-2"></a>const T &amp; QContiguousCache::operator[] ( int <i>i</i> ) const</h3>
+<p>This is an overloaded function.</p>
+<p>Same as at(<i>i</i>).</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

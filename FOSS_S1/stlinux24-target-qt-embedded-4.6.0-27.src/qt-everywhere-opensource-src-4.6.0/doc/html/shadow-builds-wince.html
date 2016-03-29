@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- wince-customization.qdoc -->
+<head>
+  <title>Qt 4.6: Windows CE - Using shadow builds</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">Windows CE - Using shadow builds<br /><span class="subtitle"></span>
+</h1>
+<p>While developing for Windows CE you might want to compile a version of Qt for several different platforms and SDKs. In order to create those different builds of Qt you do not have to copy the whole Qt package or the Qt source. You are able to create multiple Qt builds from a single source tree. Such builds are called shadow builds.</p>
+<p>Basically a shadow build is created by calling configure.exe from a different directory.</p>
+<p>To make sure that the shadow build compiles correctly it is important that you following these guidelines:</p>
+<ul>
+<li>The original Qt source package must be left untouched - configure must never have been run in the source tree directory.</li>
+<li>The shadow build directory must be on the same level as the Qt source package.<br /> If the Qt package is in <tt>C:\Qt\4.6.0</tt> the shadow build directory could be <tt>C:\Qt\shadowbuild</tt>. A shadow build from a directory like <tt>C:\shadowbuild</tt> will not compile.</li>
+<li>Avoid using &quot;release&quot; and &quot;debug&quot; in the path to the shadow build directory. (This is an internal limitation of the build system.)</li>
+<li>The <tt>\bin</tt> directory of the shadow build directory must be added to the <tt>PATH</tt> environment variable.</li>
+<li>Perl has been installed on your system. (<a href="http://www.activestate.com/Products/activeperl/index.mhtml">ActivePerl</a> is a popular distribution of Perl on Windows.)</li>
+</ul>
+<p>So lets assume you have installed Qt in <tt>C:\Qt\4.6.0</tt> and you want to create a shadow build in <tt>C:\Qt\mobile5-shadow</tt>:</p>
+<ul>
+<li>First add <tt>C:\Qt\mobile5-shadow\bin</tt> to the <tt>PATH</tt> variable.<pre> set PATH=C:\Qt\mobile5-shadow\bin;%PATH%</pre>
+</li>
+<li>Make sure the enviroment variables for your compiler are set.<p>Visual Studio includes <tt>vcvars32.bat</tt> for that purpose - or simply use the &quot;Visual Studio Command Prompt&quot; from the Start menu.</p>
+</li>
+<li>Now navigate to your shadow build directory and run configure:<pre> cd c:\Qt\mobile5-shadow
+ C:\Qt\4.6.0\configure.exe -platform win32-msvc2005 -xplatform wincewm50pocket-msvc2005 -release</pre>
+</li>
+<li>To build Qt, you have to update your <tt>PATH, INCLUDE</tt> and <tt>LIB</tt> paths to point to your target platforms.<p>For a default installation of the Windows Mobile 5.0 Pocket PC SDK, you can do the following:</p>
+<pre> set INCLUDE=C:\Program Files\Microsoft Visual Studio 8\VC\ce\include;
+     C:\Program Files\Windows CE Tools\wce500\Windows Mobile 5.0 Pocket PC SDK\Include\Armv4i
+ set LIB=C:\Program Files\Microsoft Visual Studio 8\VC\ce\lib\armv4i;
+     C:\Program Files\Windows CE Tools\wce500\Windows Mobile 5.0 Pocket PC SDK\Lib\ARMV4I
+ set PATH=C:\Program Files\Microsoft Visual Studio 8\VC\ce\bin\x86_arm;
+     %PATH%</pre>
+<p>We have provided a convenience script for this called <tt>setcepaths</tt>. Simply type:</p>
+<pre> setcepaths wincewm50pocket-msvc2005</pre>
+</li>
+<li>Finally, to build the shadow build type:<pre> nmake</pre>
+</li>
+<li>That's all. You have successfully created a shadow build of Qt in <tt>C:\Qt\mobile5-shadow</tt>.</li>
+</ul>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: submarine.cpp Example File (demos/sub-attaq/submarine.cpp)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">submarine.cpp Example File<br /><span class="small-subtitle">demos/sub-attaq/submarine.cpp</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the QtCore module of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+
+<span class="comment"> //Own</span>
+ #include &quot;submarine.h&quot;
+ #include &quot;submarine_p.h&quot;
+ #include &quot;torpedo.h&quot;
+ #include &quot;pixmapitem.h&quot;
+ #include &quot;graphicsscene.h&quot;
+ #include &quot;animationmanager.h&quot;
+ #include &quot;qanimationstate.h&quot;
+
+ #include &lt;QtCore/QPropertyAnimation&gt;
+ #include &lt;QtCore/QStateMachine&gt;
+ #include &lt;QtCore/QFinalState&gt;
+ #include &lt;QtCore/QSequentialAnimationGroup&gt;
+
+ static QAbstractAnimation *setupDestroyAnimation(SubMarine *sub)
+ {
+     QSequentialAnimationGroup *group = new QSequentialAnimationGroup(sub);
+     for (int i = 1; i &lt;= 4; ++i) {
+         PixmapItem *step = new PixmapItem(QString::fromLatin1(&quot;explosion/submarine/step%1&quot;).arg(i), GraphicsScene::Big, sub);
+         step-&gt;setZValue(6);
+         step-&gt;setOpacity(0);
+         QPropertyAnimation *anim = new QPropertyAnimation(step, &quot;opacity&quot;, group);
+         anim-&gt;setDuration(100);
+         anim-&gt;setEndValue(1);
+     }
+     AnimationManager::self()-&gt;registerAnimation(group);
+     return group;
+ }
+
+ SubMarine::SubMarine(int type, const QString &amp;name, int points) : PixmapItem(QString(&quot;submarine&quot;), GraphicsScene::Big),
+     subType(type), subName(name), subPoints(points), speed(0), direction(SubMarine::None)
+ {
+     setZValue(5);
+     setTransformOriginPoint(boundingRect().center());
+
+     graphicsRotation = new QGraphicsRotation(this);
+     graphicsRotation-&gt;setAxis(Qt::YAxis);
+     graphicsRotation-&gt;setOrigin(QVector3D(size().width()/2, size().height()/2, 0));
+     QList&lt;QGraphicsTransform *&gt; r;
+     r.append(graphicsRotation);
+     setTransformations(r);
+
+     <span class="comment">//We setup the state machine of the submarine</span>
+     QStateMachine *machine = new QStateMachine(this);
+
+     <span class="comment">//This state is when the boat is moving/rotating</span>
+     QState *moving = new QState(machine);
+
+     <span class="comment">//This state is when the boat is moving from left to right</span>
+     MovementState *movement = new MovementState(this, moving);
+
+     <span class="comment">//This state is when the boat is moving from left to right</span>
+     ReturnState *rotation = new ReturnState(this, moving);
+
+     <span class="comment">//This is the initial state of the moving root state</span>
+     moving-&gt;setInitialState(movement);
+
+     movement-&gt;addTransition(this, SIGNAL(subMarineStateChanged()), moving);
+
+     <span class="comment">//This is the initial state of the machine</span>
+     machine-&gt;setInitialState(moving);
+
+     <span class="comment">//End</span>
+     QFinalState *final = new QFinalState(machine);
+
+     <span class="comment">//If the moving animation is finished we move to the return state</span>
+     movement-&gt;addTransition(movement, SIGNAL(animationFinished()), rotation);
+
+     <span class="comment">//If the return animation is finished we move to the moving state</span>
+     rotation-&gt;addTransition(rotation, SIGNAL(animationFinished()), movement);
+
+     <span class="comment">//This state play the destroyed animation</span>
+     QAnimationState *destroyedState = new QAnimationState(machine);
+     destroyedState-&gt;setAnimation(setupDestroyAnimation(this));
+
+     <span class="comment">//Play a nice animation when the submarine is destroyed</span>
+     moving-&gt;addTransition(this, SIGNAL(subMarineDestroyed()), destroyedState);
+
+     <span class="comment">//Transition to final state when the destroyed animation is finished</span>
+     destroyedState-&gt;addTransition(destroyedState, SIGNAL(animationFinished()), final);
+
+     <span class="comment">//The machine has finished to be executed, then the submarine is dead</span>
+     connect(machine,SIGNAL(finished()),this, SIGNAL(subMarineExecutionFinished()));
+
+     machine-&gt;start();
+ }
+
+ int SubMarine::points() const
+ {
+     return subPoints;
+ }
+
+ void SubMarine::setCurrentDirection(SubMarine::Movement direction)
+ {
+     if (this-&gt;direction == direction)
+         return;
+     if (direction == SubMarine::Right &amp;&amp; this-&gt;direction == SubMarine::None) {
+           graphicsRotation-&gt;setAngle(180);
+     }
+     this-&gt;direction = direction;
+ }
+
+ enum SubMarine::Movement SubMarine::currentDirection() const
+ {
+     return direction;
+ }
+
+ void SubMarine::setCurrentSpeed(int speed)
+ {
+     if (speed &lt; 0 || speed &gt; 3) {
+         qWarning(&quot;SubMarine::setCurrentSpeed : The speed is invalid&quot;);
+     }
+     this-&gt;speed = speed;
+     emit subMarineStateChanged();
+ }
+
+ int SubMarine::currentSpeed() const
+ {
+     return speed;
+ }
+
+ void SubMarine::launchTorpedo(int speed)
+ {
+     Torpedo * torp = new Torpedo();
+     GraphicsScene *scene = static_cast&lt;GraphicsScene *&gt;(this-&gt;scene());
+     scene-&gt;addItem(torp);
+     torp-&gt;setPos(pos());
+     torp-&gt;setCurrentSpeed(speed);
+     torp-&gt;launch();
+ }
+
+ void SubMarine::destroy()
+ {
+     emit subMarineDestroyed();
+ }
+
+ int SubMarine::type() const
+ {
+     return Type;
+ }</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

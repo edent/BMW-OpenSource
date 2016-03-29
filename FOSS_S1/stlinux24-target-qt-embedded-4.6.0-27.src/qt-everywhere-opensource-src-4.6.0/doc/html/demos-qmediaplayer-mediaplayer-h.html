@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: mediaplayer.h Example File (demos/qmediaplayer/mediaplayer.h)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">mediaplayer.h Example File<br /><span class="small-subtitle">demos/qmediaplayer/mediaplayer.h</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the demonstration applications of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ***************************************************************************/</span>
+
+ #ifndef MEDIALAYER_H
+ #define MEDIAPLAYER_H
+
+ #include &lt;QtGui/QWidget&gt;
+ #include &lt;QtGui/QApplication&gt;
+ #include &lt;QtCore/QTimerEvent&gt;
+ #include &lt;QtGui/QShowEvent&gt;
+ #include &lt;QtGui/QIcon&gt;
+
+ #include &lt;Phonon/AudioOutput&gt;
+ #include &lt;Phonon/BackendCapabilities&gt;
+ #include &lt;Phonon/Effect&gt;
+ #include &lt;Phonon/EffectParameter&gt;
+ #include &lt;Phonon/EffectWidget&gt;
+ #include &lt;Phonon/MediaObject&gt;
+ #include &lt;Phonon/SeekSlider&gt;
+ #include &lt;Phonon/VideoWidget&gt;
+ #include &lt;Phonon/VolumeSlider&gt;
+
+ class QPushButton;
+ class QLabel;
+ class QSlider;
+ class QTextEdit;
+ class QMenu;
+ class Ui_settings;
+
+ class MediaPlayer :
+             public QWidget
+ {
+     Q_OBJECT
+ public:
+     MediaPlayer(const QString &amp;,
+                 const bool hasSmallScreen);
+
+     void dragEnterEvent(QDragEnterEvent *e);
+     void dragMoveEvent(QDragMoveEvent *e);
+     void dropEvent(QDropEvent *e);
+     void handleDrop(QDropEvent *e);
+     void setFile(const QString &amp;text);
+     void initVideoWindow();
+     void initSettingsDialog();
+
+ public slots:
+     void openFile();
+     void rewind();
+     void forward();
+     void updateInfo();
+     void updateTime();
+     void finished();
+     void playPause();
+     void scaleChanged(QAction *);
+     void aspectChanged(QAction *);
+
+ private slots:
+     void setAspect(int);
+     void setScale(int);
+     void setSaturation(int);
+     void setContrast(int);
+     void setHue(int);
+     void setBrightness(int);
+     void stateChanged(Phonon::State newstate, Phonon::State oldstate);
+     void effectChanged();
+     void showSettingsDialog();
+     void showContextMenu(const QPoint &amp;);
+     void bufferStatus(int percent);
+     void openUrl();
+     void configureEffect();
+     void hasVideoChanged(bool);
+
+ private:
+     QIcon playIcon;
+     QIcon pauseIcon;
+     QMenu *fileMenu;
+     QPushButton *playButton;
+     QPushButton *rewindButton;
+     QPushButton *forwardButton;
+     Phonon::SeekSlider *slider;
+     QLabel *timeLabel;
+     QLabel *progressLabel;
+     Phonon::VolumeSlider *volume;
+     QSlider *m_hueSlider;
+     QSlider *m_satSlider;
+     QSlider *m_contSlider;
+     QLabel *info;
+     Phonon::Effect *nextEffect;
+     QDialog *settingsDialog;
+     Ui_settings *ui;
+
+     QWidget m_videoWindow;
+     Phonon::MediaObject m_MediaObject;
+     Phonon::AudioOutput m_AudioOutput;
+     Phonon::VideoWidget *m_videoWidget;
+     Phonon::Path m_audioOutputPath;
+     const bool m_hasSmallScreen;
+ };
+
+ #endif <span class="comment">//MEDIAPLAYER_H</span></pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

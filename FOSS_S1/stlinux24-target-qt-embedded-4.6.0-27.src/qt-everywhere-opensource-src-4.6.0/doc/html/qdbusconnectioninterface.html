@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qdbusconnectioninterface.cpp -->
+<head>
+  <title>Qt 4.6: QDBusConnectionInterface Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QDBusConnectionInterface" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QDBusConnectionInterface Class Reference<br /><span class="small-subtitle">[<a href="qtdbus.html">QtDBus</a> module]</span>
+</h1>
+<p>The QDBusConnectionInterface class provides access to the D-Bus bus daemon service. <a href="#details">More...</a></p>
+<pre> #include &lt;QDBusConnectionInterface&gt;</pre><p>Inherits <a href="qdbusabstractinterface.html">QDBusAbstractInterface</a>.</p>
+<p>This class was introduced in Qt 4.2.</p>
+<ul>
+<li><a href="qdbusconnectioninterface-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-types"></a>
+<h2>Public Types</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnectioninterface.html#RegisterServiceReply-enum">RegisterServiceReply</a></b> { ServiceNotRegistered, ServiceRegistered, ServiceQueued }</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnectioninterface.html#ServiceQueueOptions-enum">ServiceQueueOptions</a></b> { DontQueueService, QueueService, ReplaceExistingService }</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnectioninterface.html#ServiceReplacementOptions-enum">ServiceReplacementOptions</a></b> { DontAllowReplacement, AllowReplacement }</td></tr>
+</table>
+<hr />
+<a name="properties"></a>
+<h2>Properties</h2>
+<ul>
+<li><div class="fn"><b><a href="qdbusconnectioninterface.html#registeredServiceNames-prop">registeredServiceNames</a></b> : const QDBusReply&lt;QStringList&gt;</div></li>
+</ul>
+<ul>
+<li><div bar="2" class="fn"></div>1 property inherited from <a href="qobject.html#properties">QObject</a></li>
+</ul>
+<hr />
+<a name="public-slots"></a>
+<h2>Public Slots</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">QDBusReply&lt;bool&gt; </td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnectioninterface.html#isServiceRegistered">isServiceRegistered</a></b> ( const QString &amp; <i>serviceName</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QDBusReply&lt;QDBusConnectionInterface::RegisterServiceReply&gt; </td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnectioninterface.html#registerService">registerService</a></b> ( const QString &amp; <i>serviceName</i>, ServiceQueueOptions <i>qoption</i> = DontQueueService, ServiceReplacementOptions <i>roption</i> = DontAllowReplacement )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QDBusReply&lt;QStringList&gt; </td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnectioninterface.html#registeredServiceNames-prop">registeredServiceNames</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QDBusReply&lt;QString&gt; </td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnectioninterface.html#serviceOwner">serviceOwner</a></b> ( const QString &amp; <i>name</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QDBusReply&lt;uint&gt; </td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnectioninterface.html#servicePid">servicePid</a></b> ( const QString &amp; <i>serviceName</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QDBusReply&lt;uint&gt; </td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnectioninterface.html#serviceUid">serviceUid</a></b> ( const QString &amp; <i>serviceName</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QDBusReply&lt;void&gt; </td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnectioninterface.html#startService">startService</a></b> ( const QString &amp; <i>name</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QDBusReply&lt;bool&gt; </td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnectioninterface.html#unregisterService">unregisterService</a></b> ( const QString &amp; <i>serviceName</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>1 public slot inherited from <a href="qobject.html#public-slots">QObject</a></li>
+</ul>
+<hr />
+<a name="signals"></a>
+<h2>Signals</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnectioninterface.html#callWithCallbackFailed">callWithCallbackFailed</a></b> ( const QDBusError &amp; <i>error</i>, const QDBusMessage &amp; <i>call</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnectioninterface.html#serviceOwnerChanged">serviceOwnerChanged</a></b> ( const QString &amp; <i>name</i>, const QString &amp; <i>oldOwner</i>, const QString &amp; <i>newOwner</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnectioninterface.html#serviceRegistered">serviceRegistered</a></b> ( const QString &amp; <i>serviceName</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qdbusconnectioninterface.html#serviceUnregistered">serviceUnregistered</a></b> ( const QString &amp; <i>serviceName</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>1 signal inherited from <a href="qobject.html#signals">QObject</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li><div class="fn"></div>13 public functions inherited from <a href="qdbusabstractinterface.html#public-functions">QDBusAbstractInterface</a></li>
+<li><div class="fn"></div>29 public functions inherited from <a href="qobject.html#public-functions">QObject</a></li>
+<li><div class="fn"></div>5 static public members inherited from <a href="qobject.html#static-public-members">QObject</a></li>
+<li><div class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QDBusConnectionInterface class provides access to the D-Bus bus daemon service.</p>
+<p>The D-Bus bus server daemon provides one special interface <tt>org.freedesktop.DBus</tt> that allows clients to access certain properties of the bus, such as the current list of clients connected. The QDBusConnectionInterface class provides access to that interface.</p>
+<p>The most common uses of this class are to register and unregister service names on the bus using the <a href="qdbusconnectioninterface.html#registerService">registerService</a>() and <a href="qdbusconnectioninterface.html#unregisterService">unregisterService</a>() functions, query about existing names using the <a href="qdbusconnectioninterface.html#isServiceRegistered">isServiceRegistered</a>(), <a href="qdbusconnectioninterface.html#registeredServiceNames-prop">registeredServiceNames</a>() and <a href="qdbusconnectioninterface.html#serviceOwner">serviceOwner</a>() functions, and to receive notification that a client has registered or de-registered through the <a href="qdbusconnectioninterface.html#serviceRegistered">serviceRegistered</a>(), <a href="qdbusconnectioninterface.html#serviceUnregistered">serviceUnregistered</a>() and <a href="qdbusconnectioninterface.html#serviceOwnerChanged">serviceOwnerChanged</a>() signals.</p>
+<hr />
+<h2>Member Type Documentation</h2>
+<a name="//apple_ref/cpp/tag/QDBusConnectionInterface/RegisterServiceReply" />
+<a name="//apple_ref/cpp/econst/QDBusConnectionInterface/ServiceNotRegistered" />
+<a name="//apple_ref/cpp/econst/QDBusConnectionInterface/ServiceRegistered" />
+<a name="//apple_ref/cpp/econst/QDBusConnectionInterface/ServiceQueued" />
+<h3 class="fn"><a name="RegisterServiceReply-enum"></a>enum QDBusConnectionInterface::RegisterServiceReply</h3>
+<p>The possible return values from <a href="qdbusconnectioninterface.html#registerService">registerService</a>():</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QDBusConnectionInterface::ServiceNotRegistered</tt></td><td align="center" valign="top"><tt>0</tt></td><td valign="top">The call failed and the service name was not registered.</td></tr>
+<tr><td valign="top"><tt>QDBusConnectionInterface::ServiceRegistered</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">The caller is now the owner of the service name.</td></tr>
+<tr><td valign="top"><tt>QDBusConnectionInterface::ServiceQueued</tt></td><td align="center" valign="top"><tt>2</tt></td><td valign="top">The caller specified the <a href="qdbusconnectioninterface.html#ServiceQueueOptions-enum">QueueService</a> flag and the service was already registered, so we are in queue.</td></tr>
+</table></p>
+<p>The <a href="qdbusconnectioninterface.html#serviceRegistered">serviceRegistered</a>() signal will be emitted when the service is acquired by this application.</p>
+<a name="//apple_ref/cpp/tag/QDBusConnectionInterface/ServiceQueueOptions" />
+<a name="//apple_ref/cpp/econst/QDBusConnectionInterface/DontQueueService" />
+<a name="//apple_ref/cpp/econst/QDBusConnectionInterface/QueueService" />
+<a name="//apple_ref/cpp/econst/QDBusConnectionInterface/ReplaceExistingService" />
+<h3 class="fn"><a name="ServiceQueueOptions-enum"></a>enum QDBusConnectionInterface::ServiceQueueOptions</h3>
+<p>Flags for determining how a service registration should behave, in case the service name is already registered.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QDBusConnectionInterface::DontQueueService</tt></td><td align="center" valign="top"><tt>0</tt></td><td valign="top">If an application requests a name that is already owned, no queueing will be performed. The registeredService() call will simply fail. This is the default.</td></tr>
+<tr><td valign="top"><tt>QDBusConnectionInterface::QueueService</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">Attempts to register the requested service, but do not try to replace it if another application already has it registered. Instead, simply put this application in queue, until it is given up. The <a href="qdbusconnectioninterface.html#serviceRegistered">serviceRegistered</a>() signal will be emitted when that happens.</td></tr>
+<tr><td valign="top"><tt>QDBusConnectionInterface::ReplaceExistingService</tt></td><td align="center" valign="top"><tt>2</tt></td><td valign="top">If another application already has the service name registered, attempt to replace it.</td></tr>
+</table></p>
+<p>See also <a href="qdbusconnectioninterface.html#ServiceReplacementOptions-enum">ServiceReplacementOptions</a>.</p>
+<a name="//apple_ref/cpp/tag/QDBusConnectionInterface/ServiceReplacementOptions" />
+<a name="//apple_ref/cpp/econst/QDBusConnectionInterface/DontAllowReplacement" />
+<a name="//apple_ref/cpp/econst/QDBusConnectionInterface/AllowReplacement" />
+<h3 class="fn"><a name="ServiceReplacementOptions-enum"></a>enum QDBusConnectionInterface::ServiceReplacementOptions</h3>
+<p>Flags for determining if the D-Bus server should allow another application to replace a name that this application has registered with the <a href="qdbusconnectioninterface.html#ServiceQueueOptions-enum">ReplaceExistingService</a> option.</p>
+<p>The possible values are:</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QDBusConnectionInterface::DontAllowReplacement</tt></td><td align="center" valign="top"><tt>0</tt></td><td valign="top">Do not allow another application to replace us. The service must be explicitly unregistered with <a href="qdbusconnectioninterface.html#unregisterService">unregisterService</a>() for another application to acquire it. This is the default.</td></tr>
+<tr><td valign="top"><tt>QDBusConnectionInterface::AllowReplacement</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">Allow other applications to replace us with the <a href="qdbusconnectioninterface.html#ServiceQueueOptions-enum">ReplaceExistingService</a> option to <a href="qdbusconnectioninterface.html#registerService">registerService</a>() without intervention. If that happens, the <a href="qdbusconnectioninterface.html#serviceUnregistered">serviceUnregistered</a>() signal will be emitted.</td></tr>
+</table></p>
+<p>See also <a href="qdbusconnectioninterface.html#ServiceQueueOptions-enum">ServiceQueueOptions</a>.</p>
+<hr />
+<h2>Property Documentation</h2>
+<a name="//apple_ref/cpp/instm/QDBusConnectionInterface/registeredServiceNames" />
+<h3 class="fn"><a name="registeredServiceNames-prop"></a>registeredServiceNames : const <a href="qdbusreply.html">QDBusReply</a>&lt;<a href="qstringlist.html">QStringList</a>&gt;</h3>
+<p>This property holds the registered service names.</p>
+<p>Lists all names currently registered on the bus.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">QDBusReply&lt;QStringList&gt; </td><td class="memItemRight" valign="bottom"><b>registeredServiceNames</b> () const</td></tr>
+</table>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QDBusConnectionInterface/callWithCallbackFailed" />
+<h3 class="fn"><a name="callWithCallbackFailed"></a>void QDBusConnectionInterface::callWithCallbackFailed ( const <a href="qdbuserror.html">QDBusError</a> &amp; <i>error</i>, const <a href="qdbusmessage.html">QDBusMessage</a> &amp; <i>call</i> )&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted when there is an error during a <a href="qdbusconnection.html#callWithCallback">QDBusConnection::callWithCallback</a>(). <i>error</i> specifies the error. <i>call</i> is the message that couldn't be delivered.</p>
+<p>See also <a href="qdbusconnection.html#callWithCallback">QDBusConnection::callWithCallback</a>().</p>
+<a name="//apple_ref/cpp/instm/QDBusConnectionInterface/isServiceRegistered" />
+<h3 class="fn"><a name="isServiceRegistered"></a><a href="qdbusreply.html">QDBusReply</a>&lt;bool&gt; QDBusConnectionInterface::isServiceRegistered ( const <a href="qstring.html">QString</a> &amp; <i>serviceName</i> ) const&nbsp;&nbsp;<tt> [slot]</tt></h3>
+<p>Returns true if the service name <i>serviceName</i> has is currently registered.</p>
+<a name="//apple_ref/cpp/instm/QDBusConnectionInterface/registerService" />
+<h3 class="fn"><a name="registerService"></a><a href="qdbusreply.html">QDBusReply</a>&lt;<a href="qdbusconnectioninterface.html#RegisterServiceReply-enum">QDBusConnectionInterface::RegisterServiceReply</a>&gt; QDBusConnectionInterface::registerService ( const <a href="qstring.html">QString</a> &amp; <i>serviceName</i>, <a href="qdbusconnectioninterface.html#ServiceQueueOptions-enum">ServiceQueueOptions</a> <i>qoption</i> = DontQueueService, <a href="qdbusconnectioninterface.html#ServiceReplacementOptions-enum">ServiceReplacementOptions</a> <i>roption</i> = DontAllowReplacement )&nbsp;&nbsp;<tt> [slot]</tt></h3>
+<p>Requests to register the service name <i>serviceName</i> on the bus. The <i>qoption</i> flag specifies how the D-Bus server should behave if <i>serviceName</i> is already registered. The <i>roption</i> flag specifies if the server should allow another application to replace our registered name.</p>
+<p>If the service registration succeeds, the <a href="qdbusconnectioninterface.html#serviceRegistered">serviceRegistered</a>() signal will be emitted. If we are placed in queue, the signal will be emitted when we obtain the name. If <i>roption</i> is <a href="qdbusconnectioninterface.html#ServiceReplacementOptions-enum">AllowReplacement</a>, the <a href="qdbusconnectioninterface.html#serviceUnregistered">serviceUnregistered</a>() signal will be emitted if another application replaces this one.</p>
+<p>See also <a href="qdbusconnectioninterface.html#unregisterService">unregisterService</a>().</p>
+<a name="//apple_ref/cpp/instm/QDBusConnectionInterface/serviceOwner" />
+<h3 class="fn"><a name="serviceOwner"></a><a href="qdbusreply.html">QDBusReply</a>&lt;<a href="qstring.html">QString</a>&gt; QDBusConnectionInterface::serviceOwner ( const <a href="qstring.html">QString</a> &amp; <i>name</i> ) const&nbsp;&nbsp;<tt> [slot]</tt></h3>
+<p>Returns the unique connection name of the primary owner of the name <i>name</i>. If the requested name doesn't have an owner, returns a <tt>org.freedesktop.DBus.Error.NameHasNoOwner</tt> error.</p>
+<a name="//apple_ref/cpp/instm/QDBusConnectionInterface/serviceOwnerChanged" />
+<h3 class="fn"><a name="serviceOwnerChanged"></a>void QDBusConnectionInterface::serviceOwnerChanged ( const <a href="qstring.html">QString</a> &amp; <i>name</i>, const <a href="qstring.html">QString</a> &amp; <i>oldOwner</i>, const <a href="qstring.html">QString</a> &amp; <i>newOwner</i> )&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted by the D-Bus server whenever a service ownership change happens in the bus, including apparition and disparition of names.</p>
+<p>This signal means the application <i>oldOwner</i> lost ownership of bus name <i>name</i> to application <i>newOwner</i>. If <i>oldOwner</i> is an empty string, it means the name <i>name</i> has just been created; if <i>newOwner</i> is empty, the name <i>name</i> has no current owner and is no longer available.</p>
+<a name="//apple_ref/cpp/instm/QDBusConnectionInterface/servicePid" />
+<h3 class="fn"><a name="servicePid"></a><a href="qdbusreply.html">QDBusReply</a>&lt;<a href="qtglobal.html#uint-typedef">uint</a>&gt; QDBusConnectionInterface::servicePid ( const <a href="qstring.html">QString</a> &amp; <i>serviceName</i> ) const&nbsp;&nbsp;<tt> [slot]</tt></h3>
+<p>Returns the Unix Process ID (PID) for the process currently holding the bus service <i>serviceName</i>.</p>
+<a name="//apple_ref/cpp/instm/QDBusConnectionInterface/serviceRegistered" />
+<h3 class="fn"><a name="serviceRegistered"></a>void QDBusConnectionInterface::serviceRegistered ( const <a href="qstring.html">QString</a> &amp; <i>serviceName</i> )&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted by the D-Bus server when the bus service name (unique connection name or well-known service name) given by <i>serviceName</i> is acquired by this application.</p>
+<p>Acquisition happens after this application has requested a name using <a href="qdbusconnectioninterface.html#registerService">registerService</a>().</p>
+<a name="//apple_ref/cpp/instm/QDBusConnectionInterface/serviceUid" />
+<h3 class="fn"><a name="serviceUid"></a><a href="qdbusreply.html">QDBusReply</a>&lt;<a href="qtglobal.html#uint-typedef">uint</a>&gt; QDBusConnectionInterface::serviceUid ( const <a href="qstring.html">QString</a> &amp; <i>serviceName</i> ) const&nbsp;&nbsp;<tt> [slot]</tt></h3>
+<p>Returns the Unix User ID (UID) for the process currently holding the bus service <i>serviceName</i>.</p>
+<a name="//apple_ref/cpp/instm/QDBusConnectionInterface/serviceUnregistered" />
+<h3 class="fn"><a name="serviceUnregistered"></a>void QDBusConnectionInterface::serviceUnregistered ( const <a href="qstring.html">QString</a> &amp; <i>serviceName</i> )&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted by the D-Bus server when this application loses ownership of the bus service name given by <i>serviceName</i>.</p>
+<a name="//apple_ref/cpp/instm/QDBusConnectionInterface/startService" />
+<h3 class="fn"><a name="startService"></a><a href="qdbusreply.html">QDBusReply</a>&lt;void&gt; QDBusConnectionInterface::startService ( const <a href="qstring.html">QString</a> &amp; <i>name</i> )&nbsp;&nbsp;<tt> [slot]</tt></h3>
+<p>Requests that the bus start the service given by the name <i>name</i>.</p>
+<a name="//apple_ref/cpp/instm/QDBusConnectionInterface/unregisterService" />
+<h3 class="fn"><a name="unregisterService"></a><a href="qdbusreply.html">QDBusReply</a>&lt;bool&gt; QDBusConnectionInterface::unregisterService ( const <a href="qstring.html">QString</a> &amp; <i>serviceName</i> )&nbsp;&nbsp;<tt> [slot]</tt></h3>
+<p>Releases the claim on the bus service name <i>serviceName</i>, that had been previously registered with <a href="qdbusconnectioninterface.html#registerService">registerService</a>(). If this application had ownership of the name, it will be released for other applications to claim. If it only had the name queued, it gives up its position in the queue.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: calibration.cpp Example File (qws/mousecalibration/calibration.cpp)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">calibration.cpp Example File<br /><span class="small-subtitle">qws/mousecalibration/calibration.cpp</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the examples of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+
+ #include &quot;calibration.h&quot;
+
+ #include &lt;QWSPointerCalibrationData&gt;
+ #include &lt;QPainter&gt;
+ #include &lt;QFile&gt;
+ #include &lt;QTimer&gt;
+ #include &lt;QApplication&gt;
+ #include &lt;QDesktopWidget&gt;
+ #include &lt;QMouseEvent&gt;
+ #include &lt;QScreen&gt;
+ #include &lt;QWSServer&gt;
+
+ Calibration::Calibration()
+ {
+     QRect desktop = QApplication::desktop()-&gt;geometry();
+     desktop.moveTo(QPoint(0, 0));
+     setGeometry(desktop);
+
+     setFocusPolicy(Qt::StrongFocus);
+     setFocus();
+     setModal(true);
+
+     int width = qt_screen-&gt;deviceWidth();
+     int height = qt_screen-&gt;deviceHeight();
+
+     int dx = width / 10;
+     int dy = height / 10;
+
+     QPoint *points = data.screenPoints;
+     points[QWSPointerCalibrationData::TopLeft] = QPoint(dx, dy);
+     points[QWSPointerCalibrationData::BottomLeft] = QPoint(dx, height - dy);
+     points[QWSPointerCalibrationData::BottomRight] = QPoint(width - dx, height - dy);
+     points[QWSPointerCalibrationData::TopRight] = QPoint(width - dx, dy);
+     points[QWSPointerCalibrationData::Center] = QPoint(width / 2, height / 2);
+
+     pressCount = 0;
+ }
+
+ Calibration::~Calibration()
+ {
+ }
+
+ int Calibration::exec()
+ {
+     QWSServer::mouseHandler()-&gt;clearCalibration();
+     grabMouse();
+     activateWindow();
+     int ret = QDialog::exec();
+     releaseMouse();
+     return ret;
+ }
+
+ void Calibration::paintEvent(QPaintEvent*)
+ {
+     QPainter p(this);
+     p.fillRect(rect(), Qt::white);
+
+     QPoint point = data.screenPoints[pressCount];
+
+     <span class="comment">// Map to logical coordinates in case the screen is transformed</span>
+     QSize screenSize(qt_screen-&gt;deviceWidth(), qt_screen-&gt;deviceHeight());
+     point = qt_screen-&gt;mapFromDevice(point, screenSize);
+
+     p.fillRect(point.x() - 6, point.y() - 1, 13, 3, Qt::black);
+     p.fillRect(point.x() - 1, point.y() - 6, 3, 13, Qt::black);
+ }
+
+ void Calibration::mouseReleaseEvent(QMouseEvent *event)
+ {
+     <span class="comment">// Map from device coordinates in case the screen is transformed</span>
+     QSize screenSize(qt_screen-&gt;width(), qt_screen-&gt;height());
+     QPoint p = qt_screen-&gt;mapToDevice(event-&gt;pos(), screenSize);
+
+     data.devPoints[pressCount] = p;
+
+     if (++pressCount &lt; 5)
+         repaint();
+     else
+         accept();
+ }
+
+ void Calibration::accept()
+ {
+     Q_ASSERT(pressCount == 5);
+     QWSServer::mouseHandler()-&gt;calibrate(&amp;data);
+     QDialog::accept();
+ }</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

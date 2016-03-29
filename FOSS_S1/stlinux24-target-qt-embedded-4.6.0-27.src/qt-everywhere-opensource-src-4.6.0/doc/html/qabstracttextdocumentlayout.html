@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qabstracttextdocumentlayout.cpp -->
+<head>
+  <title>Qt 4.6: QAbstractTextDocumentLayout Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QAbstractTextDocumentLayout" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QAbstractTextDocumentLayout Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QAbstractTextDocumentLayout class is an abstract base class used to implement custom layouts for QTextDocuments. <a href="#details">More...</a></p>
+<pre> #include &lt;QAbstractTextDocumentLayout&gt;</pre><p>Inherits <a href="qobject.html">QObject</a>.</p>
+<p>Inherited by <a href="qplaintextdocumentlayout.html">QPlainTextDocumentLayout</a>.</p>
+<p><b>Note:</b> All functions in this class are <a href="threads-reentrancy.html#reentrant">reentrant</a>.</p>
+<ul>
+<li><a href="qabstracttextdocumentlayout-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-types"></a>
+<h2>Public Types</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">class </td><td class="memItemRight" valign="bottom"><b><a href="qabstracttextdocumentlayout-paintcontext.html">PaintContext</a></b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class </td><td class="memItemRight" valign="bottom"><b><a href="qabstracttextdocumentlayout-selection.html">Selection</a></b></td></tr>
+</table>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qabstracttextdocumentlayout.html#QAbstractTextDocumentLayout">QAbstractTextDocumentLayout</a></b> ( QTextDocument * <i>document</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qabstracttextdocumentlayout.html#anchorAt">anchorAt</a></b> ( const QPointF &amp; <i>position</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QRectF </td><td class="memItemRight" valign="bottom"><b><a href="qabstracttextdocumentlayout.html#blockBoundingRect">blockBoundingRect</a></b> ( const QTextBlock &amp; <i>block</i> ) const = 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QTextDocument * </td><td class="memItemRight" valign="bottom"><b><a href="qabstracttextdocumentlayout.html#document">document</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QSizeF </td><td class="memItemRight" valign="bottom"><b><a href="qabstracttextdocumentlayout.html#documentSize">documentSize</a></b> () const = 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qabstracttextdocumentlayout.html#draw">draw</a></b> ( QPainter * <i>painter</i>, const PaintContext &amp; <i>context</i> ) = 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QRectF </td><td class="memItemRight" valign="bottom"><b><a href="qabstracttextdocumentlayout.html#frameBoundingRect">frameBoundingRect</a></b> ( QTextFrame * <i>frame</i> ) const = 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QTextObjectInterface * </td><td class="memItemRight" valign="bottom"><b><a href="qabstracttextdocumentlayout.html#handlerForObject">handlerForObject</a></b> ( int <i>objectType</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual int </td><td class="memItemRight" valign="bottom"><b><a href="qabstracttextdocumentlayout.html#hitTest">hitTest</a></b> ( const QPointF &amp; <i>point</i>, Qt::HitTestAccuracy <i>accuracy</i> ) const = 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual int </td><td class="memItemRight" valign="bottom"><b><a href="qabstracttextdocumentlayout.html#pageCount">pageCount</a></b> () const = 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QPaintDevice * </td><td class="memItemRight" valign="bottom"><b><a href="qabstracttextdocumentlayout.html#paintDevice">paintDevice</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qabstracttextdocumentlayout.html#registerHandler">registerHandler</a></b> ( int <i>objectType</i>, QObject * <i>component</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qabstracttextdocumentlayout.html#setPaintDevice">setPaintDevice</a></b> ( QPaintDevice * <i>device</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>29 public functions inherited from <a href="qobject.html#public-functions">QObject</a></li>
+</ul>
+<hr />
+<a name="signals"></a>
+<h2>Signals</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qabstracttextdocumentlayout.html#documentSizeChanged">documentSizeChanged</a></b> ( const QSizeF &amp; <i>newSize</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qabstracttextdocumentlayout.html#pageCountChanged">pageCountChanged</a></b> ( int <i>newPages</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qabstracttextdocumentlayout.html#update">update</a></b> ( const QRectF &amp; <i>rect</i> = QRectF( 0., 0., 1000000000., 1000000000. ) )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qabstracttextdocumentlayout.html#updateBlock">updateBlock</a></b> ( const QTextBlock &amp; <i>block</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>1 signal inherited from <a href="qobject.html#signals">QObject</a></li>
+</ul>
+<hr />
+<a name="protected-functions"></a>
+<h2>Protected Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qabstracttextdocumentlayout.html#documentChanged">documentChanged</a></b> ( int <i>position</i>, int <i>charsRemoved</i>, int <i>charsAdded</i> ) = 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qabstracttextdocumentlayout.html#drawInlineObject">drawInlineObject</a></b> ( QPainter * <i>painter</i>, const QRectF &amp; <i>rect</i>, QTextInlineObject <i>object</i>, int <i>posInDocument</i>, const QTextFormat &amp; <i>format</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QTextCharFormat </td><td class="memItemRight" valign="bottom"><b><a href="qabstracttextdocumentlayout.html#format">format</a></b> ( int <i>position</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qabstracttextdocumentlayout.html#positionInlineObject">positionInlineObject</a></b> ( QTextInlineObject <i>item</i>, int <i>posInDocument</i>, const QTextFormat &amp; <i>format</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qabstracttextdocumentlayout.html#resizeInlineObject">resizeInlineObject</a></b> ( QTextInlineObject <i>item</i>, int <i>posInDocument</i>, const QTextFormat &amp; <i>format</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li><div class="fn"></div>1 property inherited from <a href="qobject.html#properties">QObject</a></li>
+<li><div class="fn"></div>1 public slot inherited from <a href="qobject.html#public-slots">QObject</a></li>
+<li><div class="fn"></div>5 static public members inherited from <a href="qobject.html#static-public-members">QObject</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QAbstractTextDocumentLayout class is an abstract base class used to implement custom layouts for QTextDocuments.</p>
+<p>The standard layout provided by Qt can handle simple word processing including inline images, lists and tables.</p>
+<p>Some applications, e.g&#x2e;, a word processor or a DTP application might need more features than the ones provided by Qt's layout engine, in which case you can subclass QAbstractTextDocumentLayout to provide custom layout behavior for your text documents.</p>
+<p>An instance of the QAbstractTextDocumentLayout subclass can be installed on a <a href="qtextdocument.html">QTextDocument</a> object with the <a href="qtextdocument.html#setDocumentLayout">setDocumentLayout()</a> function.</p>
+<p>You can insert custom objects into a <a href="qtextdocument.html">QTextDocument</a>; see the <a href="qtextobjectinterface.html">QTextObjectInterface</a> class description for details.</p>
+<p>See also <a href="qtextobjectinterface.html">QTextObjectInterface</a>.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QAbstractTextDocumentLayout/QAbstractTextDocumentLayout" />
+<h3 class="fn"><a name="QAbstractTextDocumentLayout"></a>QAbstractTextDocumentLayout::QAbstractTextDocumentLayout ( <a href="qtextdocument.html">QTextDocument</a> * <i>document</i> )</h3>
+<p>Creates a new text document layout for the given <i>document</i>.</p>
+<a name="//apple_ref/cpp/instm/QAbstractTextDocumentLayout/anchorAt" />
+<h3 class="fn"><a name="anchorAt"></a><a href="qstring.html">QString</a> QAbstractTextDocumentLayout::anchorAt ( const <a href="qpointf.html">QPointF</a> &amp; <i>position</i> ) const</h3>
+<p>Returns the reference of the anchor the given <i>position</i>, or an empty string if no anchor exists at that point.</p>
+<a name="//apple_ref/cpp/instm/QAbstractTextDocumentLayout/blockBoundingRect" />
+<h3 class="fn"><a name="blockBoundingRect"></a><a href="qrectf.html">QRectF</a> QAbstractTextDocumentLayout::blockBoundingRect ( const <a href="qtextblock.html">QTextBlock</a> &amp; <i>block</i> ) const&nbsp;&nbsp;<tt> [pure virtual]</tt></h3>
+<p>Returns the bounding rectangle of <i>block</i>.</p>
+<a name="//apple_ref/cpp/instm/QAbstractTextDocumentLayout/document" />
+<h3 class="fn"><a name="document"></a><a href="qtextdocument.html">QTextDocument</a> * QAbstractTextDocumentLayout::document () const</h3>
+<p>Returns the text document that this layout is operating on.</p>
+<a name="//apple_ref/cpp/instm/QAbstractTextDocumentLayout/documentChanged" />
+<h3 class="fn"><a name="documentChanged"></a>void QAbstractTextDocumentLayout::documentChanged ( int <i>position</i>, int <i>charsRemoved</i>, int <i>charsAdded</i> )&nbsp;&nbsp;<tt> [pure virtual protected]</tt></h3>
+<p>This function is called whenever the contents of the document change. A change occurs when text is inserted, removed, or a combination of these two. The change is specified by <i>position</i>, <i>charsRemoved</i>, and <i>charsAdded</i> corresponding to the starting character position of the change, the number of characters removed from the document, and the number of characters added.</p>
+<p>For example, when inserting the text &quot;Hello&quot; into an empty document, <i>charsRemoved</i> would be 0 and <i>charsAdded</i> would be 5 (the length of the string).</p>
+<p>Replacing text is a combination of removing and inserting. For example, if the text &quot;Hello&quot; gets replaced by &quot;Hi&quot;, <i>charsRemoved</i> would be 5 and <i>charsAdded</i> would be 2.</p>
+<p>For subclasses of <a href="qabstracttextdocumentlayout.html">QAbstractTextDocumentLayout</a>, this is the central function where a large portion of the work to lay out and position document contents is done.</p>
+<p>For example, in a subclass that only arranges blocks of text, an implementation of this function would have to do the following:</p>
+<ul>
+<li>Determine the list of changed <a href="qtextblock.html">QTextBlock</a>(s) using the parameters provided.</li>
+<li>Each <a href="qtextblock.html">QTextBlock</a> object's corresponding <a href="qtextlayout.html">QTextLayout</a> object needs to be processed. You can access the <a href="qtextblock.html">QTextBlock</a>'s layout using the <a href="qtextblock.html#layout">QTextBlock::layout</a>() function. This processing should take the document's page size into consideration.</li>
+<li>If the total number of pages changed, the <a href="qabstracttextdocumentlayout.html#pageCountChanged">pageCountChanged</a>() signal should be emitted.</li>
+<li>If the total size changed, the <a href="qabstracttextdocumentlayout.html#documentSizeChanged">documentSizeChanged</a>() signal should be emitted.</li>
+<li>The <a href="qabstracttextdocumentlayout.html#update">update</a>() signal should be emitted to schedule a repaint of areas in the layout that require repainting.</li>
+</ul>
+<p>See also <a href="qtextlayout.html">QTextLayout</a>.</p>
+<a name="//apple_ref/cpp/instm/QAbstractTextDocumentLayout/documentSize" />
+<h3 class="fn"><a name="documentSize"></a><a href="qsizef.html">QSizeF</a> QAbstractTextDocumentLayout::documentSize () const&nbsp;&nbsp;<tt> [pure virtual]</tt></h3>
+<p>Returns the total size of the document's layout.</p>
+<p>This information can be used by display widgets to update their scroll bars correctly.</p>
+<p>See also <a href="qabstracttextdocumentlayout.html#documentSizeChanged">documentSizeChanged</a>() and <a href="qtextdocument.html#pageSize-prop">QTextDocument::pageSize</a>.</p>
+<a name="//apple_ref/cpp/instm/QAbstractTextDocumentLayout/documentSizeChanged" />
+<h3 class="fn"><a name="documentSizeChanged"></a>void QAbstractTextDocumentLayout::documentSizeChanged ( const <a href="qsizef.html">QSizeF</a> &amp; <i>newSize</i> )&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted when the size of the document layout changes to <i>newSize</i>.</p>
+<p>Subclasses of <a href="qabstracttextdocumentlayout.html">QAbstractTextDocumentLayout</a> should emit this signal when the document's entire layout size changes. This signal is useful for widgets that display text documents since it enables them to update their scroll bars correctly.</p>
+<p>See also <a href="qabstracttextdocumentlayout.html#documentSize">documentSize</a>().</p>
+<a name="//apple_ref/cpp/instm/QAbstractTextDocumentLayout/draw" />
+<h3 class="fn"><a name="draw"></a>void QAbstractTextDocumentLayout::draw ( <a href="qpainter.html">QPainter</a> * <i>painter</i>, const <a href="qabstracttextdocumentlayout-paintcontext.html">PaintContext</a> &amp; <i>context</i> )&nbsp;&nbsp;<tt> [pure virtual]</tt></h3>
+<p>Draws the layout with the given <i>painter</i> using the given <i>context</i>.</p>
+<a name="//apple_ref/cpp/instm/QAbstractTextDocumentLayout/drawInlineObject" />
+<h3 class="fn"><a name="drawInlineObject"></a>void QAbstractTextDocumentLayout::drawInlineObject ( <a href="qpainter.html">QPainter</a> * <i>painter</i>, const <a href="qrectf.html">QRectF</a> &amp; <i>rect</i>, <a href="qtextinlineobject.html">QTextInlineObject</a> <i>object</i>, int <i>posInDocument</i>, const <a href="qtextformat.html">QTextFormat</a> &amp; <i>format</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>This function is called to draw the inline object, <i>object</i>, with the given <i>painter</i> within the rectangle specified by <i>rect</i> using the specified text <i>format</i>.</p>
+<p><i>posInDocument</i> specifies the position of the object within the document.</p>
+<p>The default implementation calls drawObject() on the object handlers. This function is called only within Qt. Subclasses can reimplement this function to customize the drawing of inline objects.</p>
+<p>See also <a href="qabstracttextdocumentlayout.html#draw">draw</a>().</p>
+<a name="//apple_ref/cpp/instm/QAbstractTextDocumentLayout/format" />
+<h3 class="fn"><a name="format"></a><a href="qtextcharformat.html">QTextCharFormat</a> QAbstractTextDocumentLayout::format ( int <i>position</i> )&nbsp;&nbsp;<tt> [protected]</tt></h3>
+<p>Returns the character format that is applicable at the given <i>position</i>.</p>
+<a name="//apple_ref/cpp/instm/QAbstractTextDocumentLayout/frameBoundingRect" />
+<h3 class="fn"><a name="frameBoundingRect"></a><a href="qrectf.html">QRectF</a> QAbstractTextDocumentLayout::frameBoundingRect ( <a href="qtextframe.html">QTextFrame</a> * <i>frame</i> ) const&nbsp;&nbsp;<tt> [pure virtual]</tt></h3>
+<p>Returns the bounding rectangle of <i>frame</i>.</p>
+<a name="//apple_ref/cpp/instm/QAbstractTextDocumentLayout/handlerForObject" />
+<h3 class="fn"><a name="handlerForObject"></a><a href="qtextobjectinterface.html">QTextObjectInterface</a> * QAbstractTextDocumentLayout::handlerForObject ( int <i>objectType</i> ) const</h3>
+<p>Returns a handler for objects of the given <i>objectType</i>.</p>
+<a name="//apple_ref/cpp/instm/QAbstractTextDocumentLayout/hitTest" />
+<h3 class="fn"><a name="hitTest"></a>int QAbstractTextDocumentLayout::hitTest ( const <a href="qpointf.html">QPointF</a> &amp; <i>point</i>, <a href="qt.html#HitTestAccuracy-enum">Qt::HitTestAccuracy</a> <i>accuracy</i> ) const&nbsp;&nbsp;<tt> [pure virtual]</tt></h3>
+<p>Returns the cursor postion for the given <i>point</i> with the specified <i>accuracy</i>. Returns -1 if no valid cursor position was found.</p>
+<a name="//apple_ref/cpp/instm/QAbstractTextDocumentLayout/pageCount" />
+<h3 class="fn"><a name="pageCount"></a>int QAbstractTextDocumentLayout::pageCount () const&nbsp;&nbsp;<tt> [pure virtual]</tt></h3>
+<p>Returns the number of pages contained in the layout.</p>
+<p>See also <a href="qabstracttextdocumentlayout.html#pageCountChanged">pageCountChanged</a>().</p>
+<a name="//apple_ref/cpp/instm/QAbstractTextDocumentLayout/pageCountChanged" />
+<h3 class="fn"><a name="pageCountChanged"></a>void QAbstractTextDocumentLayout::pageCountChanged ( int <i>newPages</i> )&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted when the number of pages in the layout changes; <i>newPages</i> is the updated page count.</p>
+<p>Subclasses of <a href="qabstracttextdocumentlayout.html">QAbstractTextDocumentLayout</a> should emit this signal when the number of pages in the layout has changed. Changes to the page count are caused by changes to the layout or the document content itself.</p>
+<p>See also <a href="qabstracttextdocumentlayout.html#pageCount">pageCount</a>().</p>
+<a name="//apple_ref/cpp/instm/QAbstractTextDocumentLayout/paintDevice" />
+<h3 class="fn"><a name="paintDevice"></a><a href="qpaintdevice.html">QPaintDevice</a> * QAbstractTextDocumentLayout::paintDevice () const</h3>
+<p>Returns the paint device used to render the document's layout.</p>
+<p>See also <a href="qabstracttextdocumentlayout.html#setPaintDevice">setPaintDevice</a>().</p>
+<a name="//apple_ref/cpp/instm/QAbstractTextDocumentLayout/positionInlineObject" />
+<h3 class="fn"><a name="positionInlineObject"></a>void QAbstractTextDocumentLayout::positionInlineObject ( <a href="qtextinlineobject.html">QTextInlineObject</a> <i>item</i>, int <i>posInDocument</i>, const <a href="qtextformat.html">QTextFormat</a> &amp; <i>format</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Lays out the inline object <i>item</i> using the given text <i>format</i>.</p>
+<p><i>posInDocument</i> specifies the position of the object within the document.</p>
+<p>The default implementation does nothing. This function is called only within Qt. Subclasses can reimplement this function to customize the position of inline objects.</p>
+<p>See also <a href="qabstracttextdocumentlayout.html#drawInlineObject">drawInlineObject</a>().</p>
+<a name="//apple_ref/cpp/instm/QAbstractTextDocumentLayout/registerHandler" />
+<h3 class="fn"><a name="registerHandler"></a>void QAbstractTextDocumentLayout::registerHandler ( int <i>objectType</i>, <a href="qobject.html">QObject</a> * <i>component</i> )</h3>
+<p>Registers the given <i>component</i> as a handler for items of the given <i>objectType</i>.</p>
+<p><b>Note:</b> registerHandler() has to be called once for each object type. This means that there is only one handler for multiple replacement characters of the same object type.</p>
+<a name="//apple_ref/cpp/instm/QAbstractTextDocumentLayout/resizeInlineObject" />
+<h3 class="fn"><a name="resizeInlineObject"></a>void QAbstractTextDocumentLayout::resizeInlineObject ( <a href="qtextinlineobject.html">QTextInlineObject</a> <i>item</i>, int <i>posInDocument</i>, const <a href="qtextformat.html">QTextFormat</a> &amp; <i>format</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Sets the size of the inline object <i>item</i> corresponding to the text <i>format</i>.</p>
+<p><i>posInDocument</i> specifies the position of the object within the document.</p>
+<p>The default implementation resizes the <i>item</i> to the size returned by the object handler's intrinsicSize() function. This function is called only within Qt. Subclasses can reimplement this function to customize the resizing of inline objects.</p>
+<a name="//apple_ref/cpp/instm/QAbstractTextDocumentLayout/setPaintDevice" />
+<h3 class="fn"><a name="setPaintDevice"></a>void QAbstractTextDocumentLayout::setPaintDevice ( <a href="qpaintdevice.html">QPaintDevice</a> * <i>device</i> )</h3>
+<p>Sets the paint device used for rendering the document's layout to the given <i>device</i>.</p>
+<p>See also <a href="qabstracttextdocumentlayout.html#paintDevice">paintDevice</a>().</p>
+<a name="//apple_ref/cpp/instm/QAbstractTextDocumentLayout/update" />
+<h3 class="fn"><a name="update"></a>void QAbstractTextDocumentLayout::update ( const <a href="qrectf.html">QRectF</a> &amp; <i>rect</i> = QRectF( 0., 0., 1000000000., 1000000000. ) )&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted when the rectangle <i>rect</i> has been updated.</p>
+<p>Subclasses of <a href="qabstracttextdocumentlayout.html">QAbstractTextDocumentLayout</a> should emit this signal when the layout of the contents change in order to repaint.</p>
+<a name="//apple_ref/cpp/instm/QAbstractTextDocumentLayout/updateBlock" />
+<h3 class="fn"><a name="updateBlock"></a>void QAbstractTextDocumentLayout::updateBlock ( const <a href="qtextblock.html">QTextBlock</a> &amp; <i>block</i> )&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted when the specified <i>block</i> has been updated.</p>
+<p>Subclasses of <a href="qabstracttextdocumentlayout.html">QAbstractTextDocumentLayout</a> should emit this signal when the layout of <i>block</i> has changed in order to repaint.</p>
+<p>This function was introduced in Qt 4.4.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

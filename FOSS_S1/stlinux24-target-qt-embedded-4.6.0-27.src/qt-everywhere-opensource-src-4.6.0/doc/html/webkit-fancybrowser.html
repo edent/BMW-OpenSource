@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- fancybrowser.qdoc -->
+<head>
+  <title>Qt 4.6: Fancy Browser Example</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">Fancy Browser Example<br /><span class="subtitle"></span>
+</h1>
+<p>Files:</p>
+<ul>
+<li><a href="webkit-fancybrowser-jquery-min-js.html">webkit/fancybrowser/jquery.min.js</a></li>
+<li><a href="webkit-fancybrowser-mainwindow-cpp.html">webkit/fancybrowser/mainwindow.cpp</a></li>
+<li><a href="webkit-fancybrowser-mainwindow-h.html">webkit/fancybrowser/mainwindow.h</a></li>
+<li><a href="webkit-fancybrowser-main-cpp.html">webkit/fancybrowser/main.cpp</a></li>
+<li><a href="webkit-fancybrowser-fancybrowser-pro.html">webkit/fancybrowser/fancybrowser.pro</a></li>
+<li><a href="webkit-fancybrowser-jquery-qrc.html">webkit/fancybrowser/jquery.qrc</a></li>
+</ul>
+<p>The Fancy Browser example shows how to use jQuery with <a href="qtwebkit.html">QtWebKit</a> to create a web browser with special effects and content manipulation.</p>
+<p align="center"><img src="images/fancybrowser-example.png" /></p><p>The application makes use of QWebFrame::evaluateJavaScript to evaluate the jQuery JavaScript code. A <a href="qmainwindow.html">QMainWindow</a> with a <a href="qwebview.html">QWebView</a> as central widget builds up the browser itself.</p>
+<a name="mainwindow-class-definition"></a>
+<h2>MainWindow Class Definition</h2>
+<p>The <tt>MainWindow</tt> class inherits <a href="qmainwindow.html">QMainWindow</a>. It implements a number of slots to perform actions on both the application and on the web content.</p>
+<pre> class MainWindow : public QMainWindow
+ {
+     Q_OBJECT
+
+ public:
+     MainWindow();
+
+ protected slots:
+
+     void adjustLocation();
+     void changeLocation();
+     void adjustTitle();
+     void setProgress(int p);
+     void finishLoading(bool);
+
+     void highlightAllLinks();
+     void rotateImages(bool invert);
+     void removeGifImages();
+     void removeInlineFrames();
+     void removeObjectElements();
+     void removeEmbeddedElements();
+
+ private:
+     QString jQuery;
+     QWebView *view;
+     QLineEdit *locationEdit;
+     QAction *rotateAction;
+     int progress;</pre>
+<p>We also declare a <a href="qstring.html">QString</a> that contains the jQuery, a <a href="qwebview.html">QWebView</a> that displays the web content, and a <a href="qlineedit.html">QLineEdit</a> that acts as the address bar.</p>
+<a name="mainwindow-class-implementation"></a>
+<h2>MainWindow Class Implementation</h2>
+<p>We start by implementing the constructor.</p>
+<pre> MainWindow::MainWindow()
+ {
+     progress = 0;
+
+     QFile file;
+     file.setFileName(&quot;:/jquery.min.js&quot;);
+     file.open(QIODevice::ReadOnly);
+     jQuery = file.readAll();
+     file.close();</pre>
+<p>The first part of the constructor sets the value of <tt>progress</tt> to 0. This value will be used later in the code to visualize the loading of a webpage.</p>
+<p>Next, the jQuery library is loaded using a <a href="qfile.html">QFile</a> and reading the file content. The jQuery library is a JavaScript library that provides different functions for manipulating HTML.</p>
+<pre>     view = new QWebView(this);
+     view-&gt;load(QUrl(&quot;http:<span class="comment">//www.google.com/ncr&quot;));</span>
+     connect(view, SIGNAL(loadFinished(bool)), SLOT(adjustLocation()));
+     connect(view, SIGNAL(titleChanged(const QString&amp;)), SLOT(adjustTitle()));
+     connect(view, SIGNAL(loadProgress(int)), SLOT(setProgress(int)));
+     connect(view, SIGNAL(loadFinished(bool)), SLOT(finishLoading(bool)));
+
+     locationEdit = new QLineEdit(this);
+     locationEdit-&gt;setSizePolicy(QSizePolicy::Expanding, locationEdit-&gt;sizePolicy().verticalPolicy());
+     connect(locationEdit, SIGNAL(returnPressed()), SLOT(changeLocation()));
+
+     QToolBar *toolBar = addToolBar(tr(&quot;Navigation&quot;));
+     toolBar-&gt;addAction(view-&gt;pageAction(QWebPage::Back));
+     toolBar-&gt;addAction(view-&gt;pageAction(QWebPage::Forward));
+     toolBar-&gt;addAction(view-&gt;pageAction(QWebPage::Reload));
+     toolBar-&gt;addAction(view-&gt;pageAction(QWebPage::Stop));
+     toolBar-&gt;addWidget(locationEdit);</pre>
+<p>The second part of the constructor creates a <a href="qwebview.html">QWebView</a> and connects slots to the views signals. Furthermore, we create a <a href="qlineedit.html">QLineEdit</a> as the browsers address bar. We then set the horizontal <a href="qsizepolicy.html">QSizePolicy</a> to fill the available area in the browser at all times. We add the <a href="qlineedit.html">QLineEdit</a> to a <a href="porting4.html#qtoolbar">QToolbar</a> together with a set of navigation actions from QWebView::pageAction.</p>
+<pre>     QMenu *effectMenu = menuBar()-&gt;addMenu(tr(&quot;&amp;Effect&quot;));
+     effectMenu-&gt;addAction(&quot;Highlight all links&quot;, this, SLOT(highlightAllLinks()));
+
+     rotateAction = new QAction(this);
+     rotateAction-&gt;setIcon(style()-&gt;standardIcon(QStyle::SP_FileDialogDetailedView));
+     rotateAction-&gt;setCheckable(true);
+     rotateAction-&gt;setText(tr(&quot;Turn images upside down&quot;));
+     connect(rotateAction, SIGNAL(toggled(bool)), this, SLOT(rotateImages(bool)));
+     effectMenu-&gt;addAction(rotateAction);
+
+     QMenu *toolsMenu = menuBar()-&gt;addMenu(tr(&quot;&amp;Tools&quot;));
+     toolsMenu-&gt;addAction(tr(&quot;Remove GIF images&quot;), this, SLOT(removeGifImages()));
+     toolsMenu-&gt;addAction(tr(&quot;Remove all inline frames&quot;), this, SLOT(removeInlineFrames()));
+     toolsMenu-&gt;addAction(tr(&quot;Remove all object elements&quot;), this, SLOT(removeObjectElements()));
+     toolsMenu-&gt;addAction(tr(&quot;Remove all embedded elements&quot;), this, SLOT(removeEmbeddedElements()));
+
+     setCentralWidget(view);
+     setUnifiedTitleAndToolBarOnMac(true);
+ }</pre>
+<p>The third and last part of the constructor implements two QMenus and assigns a set of actions to them. The last line sets the <a href="qwebview.html">QWebView</a> as the central widget in the <a href="qmainwindow.html">QMainWindow</a>.</p>
+<pre> void MainWindow::adjustLocation()
+ {
+     locationEdit-&gt;setText(view-&gt;url().toString());
+ }
+
+ void MainWindow::changeLocation()
+ {
+     QUrl url = QUrl(locationEdit-&gt;text());
+     view-&gt;load(url);
+     view-&gt;setFocus();
+ }</pre>
+<p>When the page is loaded, <tt>adjustLocation()</tt> updates the address bar; <tt>adjustLocation()</tt> is triggered by the <tt>loadFinished()</tt> signal in <a href="qwebview.html">QWebView</a>. In <tt>changeLocation()</tt> we create a <a href="qurl.html">QUrl</a> object, and then use it to load the page into the <a href="qwebview.html">QWebView</a>. When the new web page has finished loading, <tt>adjustLocation()</tt> will be run once more to update the address bar.</p>
+<pre> void MainWindow::adjustTitle()
+ {
+     if (progress &lt;= 0 || progress &gt;= 100)
+         setWindowTitle(view-&gt;title());
+     else
+         setWindowTitle(QString(&quot;%1 (%2%)&quot;).arg(view-&gt;title()).arg(progress));
+ }
+
+ void MainWindow::setProgress(int p)
+ {
+     progress = p;
+     adjustTitle();
+ }</pre>
+<p><tt>adjustTitle()</tt> sets the window title and displays the loading progress. This slot is triggered by the <tt>titleChanged()</tt> signal in <a href="qwebview.html">QWebView</a>.</p>
+<pre> void MainWindow::finishLoading(bool)
+ {
+     progress = 100;
+     adjustTitle();
+     view-&gt;page()-&gt;mainFrame()-&gt;evaluateJavaScript(jQuery);
+
+     rotateImages(rotateAction-&gt;isChecked());
+ }</pre>
+<p>When a web page has loaded, <tt>finishLoading()</tt> is triggered by the <tt>loadFinished()</tt> signal in <a href="qwebview.html">QWebView</a>. <tt>finishLoading()</tt> then updates the progress in the title bar and calls <tt>evaluateJavaScript()</tt> to evaluate the jQuery library. This evaluates the JavaScript against the current web page. What that means is that the JavaScript can be viewed as part of the content loaded into the <a href="qwebview.html">QWebView</a>, and therefore needs to be loaded every time a new page is loaded. Once the jQuery library is loaded, we can start executing the different jQuery functions in the browser.</p>
+<p>The rotateImages() function is then called explicitely to make sure that the images of the newly loaded page respect the state of the toggle action.</p>
+<pre> void MainWindow::highlightAllLinks()
+ {
+     QString code = &quot;$('a').each( function () { $(this).css('background-color', 'yellow') } )&quot;;
+     view-&gt;page()-&gt;mainFrame()-&gt;evaluateJavaScript(code);
+ }</pre>
+<p>The first jQuery-based function, <tt>highlightAllLinks()</tt>, is designed to highlight all links in the current webpage. The JavaScript code looks for web elements named <i>a</i>, which is the tag for a hyperlink. For each such element, the background color is set to be yellow by using CSS.</p>
+<pre> void MainWindow::rotateImages(bool invert)
+ {
+     QString code;
+     if (invert)
+         code = &quot;$('img').each( function () { $(this).css('-webkit-transition', '-webkit-transform 2s'); $(this).css('-webkit-transform', 'rotate(180deg)') } )&quot;;
+     else
+         code = &quot;$('img').each( function () { $(this).css('-webkit-transition', '-webkit-transform 2s'); $(this).css('-webkit-transform', 'rotate(0deg)') } )&quot;;
+     view-&gt;page()-&gt;mainFrame()-&gt;evaluateJavaScript(code);
+ }</pre>
+<p>The <tt>rotateImages()</tt> function rotates the images on the current web page. Webkit supports CSS transforms and this JavaScript code looks up all <i>img</i> elements and rotates the images 180 degrees and then back again.</p>
+<pre> void MainWindow::removeGifImages()
+ {
+     QString code = &quot;$('[src*=gif]').remove()&quot;;
+     view-&gt;page()-&gt;mainFrame()-&gt;evaluateJavaScript(code);
+ }
+
+ void MainWindow::removeInlineFrames()
+ {
+     QString code = &quot;$('iframe').remove()&quot;;
+     view-&gt;page()-&gt;mainFrame()-&gt;evaluateJavaScript(code);
+ }
+
+ void MainWindow::removeObjectElements()
+ {
+     QString code = &quot;$('object').remove()&quot;;
+     view-&gt;page()-&gt;mainFrame()-&gt;evaluateJavaScript(code);
+ }
+
+ void MainWindow::removeEmbeddedElements()
+ {
+     QString code = &quot;$('embed').remove()&quot;;
+     view-&gt;page()-&gt;mainFrame()-&gt;evaluateJavaScript(code);
+ }</pre>
+<p>The remaining four methods remove different elements from the current web page. <tt>removeGifImages()</tt> removes all Gif images on the page by looking up the <i>src</i> attribute of all the elements on the web page. Any element with a <i>gif</i> file as its source is removed. <tt>removeInlineFrames()</tt> removes all <i>iframe</i> or inline elements. <tt>removeObjectElements()</tt> removes all <i>object</i> elements, and <tt>removeEmbeddedElements()</tt> removes any elements such as plugins embedded on the page using the <i>embed</i> tag.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

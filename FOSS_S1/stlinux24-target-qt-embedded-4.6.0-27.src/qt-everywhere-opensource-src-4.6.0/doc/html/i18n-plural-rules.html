@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- i18n.qdoc -->
+<head>
+  <title>Qt 4.6: Translation Rules for Plurals</title>
+  <link rel="prev" href="i18n-source-translation.html" />
+  <link rel="contents" href="internationalization.html" />
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><p>
+[Previous: <a href="i18n-source-translation.html">Writing Source Code for Translation</a>]
+[<a href="internationalization.html">Internationalization with Qt</a>]
+</p>
+<h1 class="title">Translation Rules for Plurals<br /><span class="subtitle"></span>
+</h1>
+<p>The table below shows the specific rules that are produced by Qt Linguist and <tt>lrelease</tt> for a selection of languages. Cells marked <i>otherwise</i> indicate the form used when none of the other rules are appropriate for a specific language.</p>
+<p><table class="generic" width="80%" align="center" cellpadding="2" cellspacing="1" border="0">
+<thead><tr valign="top" class="qt-style"><th>Language</th><th>Rule 1</th><th>Rule 2</th><th>Rule 3</th></tr></thead>
+<tr valign="top" class="odd"><td>English</td><td><tt>n == 1</tt></td><td><i>otherwise</i></td><td>N/A</td></tr>
+<tr valign="top" class="even"><td>French</td><td><tt>n &lt; 2</tt></td><td><i>otherwise</i></td><td>N/A</td></tr>
+<tr valign="top" class="odd"><td>Czech</td><td><tt>n % 100 == 1</tt></td><td><tt>n % 100 &gt;= 2 &amp;&amp; n % 100 &lt;= 4</tt></td><td><i>otherwise</i></td></tr>
+<tr valign="top" class="even"><td>Irish</td><td><tt>n == 1</tt></td><td><tt>n == 2</tt></td><td><i>otherwise</i></td></tr>
+<tr valign="top" class="odd"><td>Latvian</td><td><tt>n % 10 == 1&amp;&amp; n % 100 != 11</tt></td><td><tt>n != 0</tt></td><td><i>otherwise</i></td></tr>
+<tr valign="top" class="even"><td>Lithuanian</td><td><tt>n % 10 == 1&amp;&amp; n % 100 != 11</tt></td><td><tt>n % 100 != 12 &amp;&amp; n % 10 == 2</tt></td><td><i>otherwise</i></td></tr>
+<tr valign="top" class="odd"><td>Macedonian</td><td><tt>n % 10 == 1</tt></td><td><tt>n % 10 == 2</tt></td><td><i>otherwise</i></td></tr>
+<tr valign="top" class="even"><td>Polish</td><td><tt>n == 1</tt></td><td><tt>n % 10 &gt;= 2 &amp;&amp; n % 10 &lt;= 4 &amp;&amp; (n % 100 &lt; 10 || n % 100 &gt; 20)</tt></td><td><i>otherwise</i></td></tr>
+<tr valign="top" class="odd"><td>Romanian</td><td><tt>n == 1</tt></td><td><tt>n == 0|| (n % 100 &gt;= 1 &amp;&amp; n % 100 &lt;= 20)</tt></td><td><i>otherwise</i></td></tr>
+<tr valign="top" class="even"><td>Russian</td><td><tt>n % 10 == 1&amp;&amp; n % 100 != 11</tt></td><td><tt>n % 10 &gt;= 2 &amp;&amp; n % 10 &lt;= 4 &amp;&amp; (n % 100 &lt; 10 || n % 100 &gt; 20)</tt></td><td><i>otherwise</i></td></tr>
+<tr valign="top" class="odd"><td>Slovak</td><td><tt>n == 1</tt></td><td><tt>n &gt;= 2 &amp;&amp; n &lt;= 4</tt></td><td><i>otherwise</i></td></tr>
+<tr valign="top" class="even"><td>Japanese</td><td><i>otherwise</i></td><td>N/A</td><td>N/A</td></tr>
+</table></p>
+<p>The rules themselves are not documented and are internal to Qt Linguist and <tt>lrelease</tt>.</p>
+<p>
+[Previous: <a href="i18n-source-translation.html">Writing Source Code for Translation</a>]
+[<a href="internationalization.html">Internationalization with Qt</a>]
+</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

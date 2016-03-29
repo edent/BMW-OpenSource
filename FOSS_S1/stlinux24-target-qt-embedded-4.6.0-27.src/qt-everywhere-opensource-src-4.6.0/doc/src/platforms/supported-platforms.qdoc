@@ -1,0 +1,175 @@
+/****************************************************************************
+**
+** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+** All rights reserved.
+** Contact: Nokia Corporation (qt-info@nokia.com)
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:LGPL$
+** Commercial Usage
+** Licensees holding valid Qt Commercial licenses may use this file in
+** accordance with the Qt Commercial License Agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and Nokia.
+**
+** GNU Lesser General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU Lesser
+** General Public License version 2.1 as published by the Free Software
+** Foundation and appearing in the file LICENSE.LGPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU Lesser General Public License version 2.1 requirements
+** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+**
+** In addition, as a special exception, Nokia gives you certain additional
+** rights.  These rights are described in the Nokia Qt LGPL Exception
+** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+**
+** GNU General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU
+** General Public License version 3.0 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU General Public License version 3.0 requirements will be
+** met: http://www.gnu.org/copyleft/gpl.html.
+**
+** If you have questions regarding the use of this file, please contact
+** Nokia at qt-info@nokia.com.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \page supported-platforms.html
+    \title Supported Platforms
+    \brief The platforms supported by Nokia for Qt.
+    \ingroup platform-specific
+
+    The Qt team strives to provide support for the platforms most
+    frequently used by Qt users. We have designed our internal testing procedure to
+    divide platforms into three test categories (Tier 1, Tier 2 and Tier 3) in order
+    to prioritize internal testing and development resources so that the most
+    frequently used platforms are subjected to our most rigorous testing processes.
+
+    Qt is supported on a variety of 32-bit and 64-bit platforms, and can
+    usually be built on each platform with GCC, a vendor-supplied compiler, or
+    a third party compiler. Although Qt may be built on a range of platform-compiler
+    combinations, only a subset of these are actively supported by Nokia.
+
+    \tableofcontents
+
+    Information about the specific platforms Qt runs on can be found on the
+    \l{Platform Notes} page. Information about the compilers used on each platform
+    can be found on the \l{Compiler Notes} page.
+
+    \section1 Tier 1 Platforms
+
+    All Tier 1 platforms are subjected to our unit test suite and other internal
+    testing tools on a frequent basis (prior to new version releases, source tree
+    branching, and at other significant period points in the development process).
+    Errors or bugs discovered in these platforms are prioritized for correction
+    by the development team. Significant errors discovered in Tier 1 platforms can
+    impact release dates and Qt Development Frameworks strives to resolve all known
+    high priority errors in Tier 1 platforms prior to new version releases.
+
+    \table
+    \header \o Platform
+                                     \o Compilers
+    \row    \o Linux (32 and 64-bit)
+                                     \o gcc 4.2
+    \row    \o Microsoft Windows XP
+                                     \o gcc 4.4 (MinGW) (32-bit), MSVC 2003, 2005 (32 and 64-bit)
+    \row    \o Microsoft Windows Vista
+                                     \o MSVC 2005, 2008
+    \row    \o Microsoft Windows Vista 64bit
+                                     \o MSVC 2008
+    \row    \o Apple Mac OS X 10.5 "Leopard" x86_64 (Carbon, Cocoa 32 and 64bit)
+                                     \o As provided by Apple
+    \row    \o Embedded Linux QWS (ARM)
+                                     \o gcc (\l{http://www.codesourcery.com/}{Codesourcery version)}
+    \row    \o Windows CE 5.0 (ARMv4i, x86, MIPS)
+                                     \o MSVC 2005 WinCE 5.0 Standard (x86, pocket, smart, mipsii)
+    \row    \o Symbian (Symbian/S60 3.1, 3.2 and 5.0)
+                                     \o RVCT 2.2 [build 686 or later], WINSCW 3.2.5 [build 482 or later], GCCE (for applications)
+    \endtable
+
+    \section1 Tier 2 Platforms
+
+    Tier 2 platforms are subjected to our unit test suite and other internal testing
+    tools prior to release of new product versions.  Qt users should note, however,
+    that errors may be present in released product versions for Tier 2 platforms and,
+    subject to resource availability, known errors in Tier 2 platforms may or may not
+    be corrected prior to new version releases.
+
+    \table
+    \header \o Platform
+                                     \o Compilers
+    \row    \o Windows XP, Vista
+                                     \o gcc 3.4.2 (MinGW)
+    \row    \o Windows 7
+                                     \o MSVC 2008
+    \row    \o Apple Mac OS X 10.6 "Snow Leopard"
+                                     \o As provided by Apple
+    \row    \o Apple Mac OS X 10.4 "Tiger"
+                                     \o As provided by Apple
+    \row    \o HPUXi 11.11
+                                     \o aCC 3.57, gcc 3.4
+    \row    \o HPUXi 11.23
+                                     \o aCC 6.10
+    \row    \o Solaris 10 UltraSparc
+                                     \o Sun Studio 12
+    \row    \o AIX 6
+                                     \o Power5 xlC 7
+    \row    \o Microsoft Windows XP
+                                     \o Intel Compiler
+    \row    \o Linux
+                                     \o Intel Compiler
+    \row    \o Embedded Linux QWS (Mips, PowerPC)
+                                     \o gcc (\l{http://www.codesourcery.com/}{Codesourcery version)}
+    \row    \o Embedded Linux X11 (ARM)
+                                     \o gcc (\l{http://www.scratchbox.org/}{Scratchbox)}
+    \row    \o Windows CE 6.0 (ARMv4i, x86, MIPS)
+                                     \o MSVC 2008 WinCE 6.0 Professional
+    \endtable
+
+    \section1 Tier 3 Platforms (Not supported by Nokia)
+
+    All platforms not specifically listed above are not supported by Nokia. Nokia does
+    not run its unit test suite or perform any other internal tests on platforms not
+    listed above.
+
+    Even though some Tier 3 platforms are available under the Qt Commercial License,
+    technical support is not included in that license.
+    However, \l{How to Order}{contact our sales team} to find out about the
+    availability of other services for those platforms.
+
+    Qt users should note, however, that there may be various open source
+    projects, community users and/or Qt partners who are able to provide assistance with
+    platforms not supported by Nokia.
+
+    \section1 General Legal Disclaimer
+
+    Please note that Qt is offered on an "as is" basis without warranty
+    of any kind and that our products are not error or bug free. To the maximum extent
+    permitted by applicable law, Nokia on behalf of itself and its suppliers, disclaims all
+    warranties and conditions, either express or implied, including, but not limited to,
+    implied warranties of merchantability, fitness for a particular purpose, title and
+    non-infringement with regard to the Licensed Software.
+    
+    \section1 Planned Changes for Qt 4.7
+
+    The following changes to the list of supported platforms are at time of publishing
+    planned for Qt 4.7:
+
+    \list
+    \o Upgrade Windows 7 to Tier 1
+    \o Upgrade Mac OS X 10.6 to Tier 1
+    \o Add support for Visual Studio 2010 (Tier 2)
+    \o Move support for Carbon implementation of Qt on Mac OS X from Tier 1 to Tier 2
+    \o Drop support for MinGW 3.4
+    \o Drop support for Visual Studio 2003
+    \o Drop support for HP-UX on PA-RISC
+    \o Drop support for Windows Mobile 5
+    \o Drop support for OpenGL ES Common Lite
+    \endlist
+*/

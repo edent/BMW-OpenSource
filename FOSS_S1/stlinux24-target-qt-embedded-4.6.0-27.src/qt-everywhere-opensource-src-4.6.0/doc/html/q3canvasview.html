@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- q3canvas.cpp -->
+<head>
+  <title>Qt 4.6: Q3CanvasView Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//Q3CanvasView" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">Q3CanvasView Class Reference<br /><span class="small-subtitle">[<a href="qt3support.html">Qt3Support</a> module]</span>
+</h1>
+<p>The Q3CanvasView class provides an on-screen view of a <a href="q3canvas.html">Q3Canvas</a>. <a href="#details">More...</a></p>
+<pre> #include &lt;Q3CanvasView&gt;</pre><p><b>This class is part of the Qt 3 support library.</b> It is provided to keep old source code working. We strongly advise against using it in new code. See <a href="porting4.html">Porting to Qt 4</a> for more information.</p>
+<p><b>This class is not part of the Qt GUI Framework Edition.</b></p>
+<p>Inherits <a href="q3scrollview.html">Q3ScrollView</a>.</p>
+<ul>
+<li><a href="q3canvasview-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="q3canvasview.html#Q3CanvasView">Q3CanvasView</a></b> ( QWidget * <i>parent</i> = 0, const char * <i>name</i> = 0, Qt::WindowFlags <i>f</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="q3canvasview.html#Q3CanvasView-2">Q3CanvasView</a></b> ( Q3Canvas * <i>canvas</i>, QWidget * <i>parent</i> = 0, const char * <i>name</i> = 0, Qt::WindowFlags <i>f</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="q3canvasview.html#dtor.Q3CanvasView">~Q3CanvasView</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Q3Canvas * </td><td class="memItemRight" valign="bottom"><b><a href="q3canvasview.html#canvas">canvas</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const QMatrix &amp; </td><td class="memItemRight" valign="bottom"><b><a href="q3canvasview.html#inverseWorldMatrix">inverseWorldMatrix</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="q3canvasview.html#setCanvas">setCanvas</a></b> ( Q3Canvas * <i>canvas</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="q3canvasview.html#setWorldMatrix">setWorldMatrix</a></b> ( const QMatrix &amp; <i>wm</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const QMatrix &amp; </td><td class="memItemRight" valign="bottom"><b><a href="q3canvasview.html#worldMatrix">worldMatrix</a></b> () const</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>49 public functions inherited from <a href="q3scrollview.html#public-functions">Q3ScrollView</a></li>
+<li><div bar="2" class="fn"></div>4 public functions inherited from <a href="q3frame.html#public-functions">Q3Frame</a></li>
+<li><div bar="2" class="fn"></div>14 public functions inherited from <a href="qframe.html#public-functions">QFrame</a></li>
+<li><div bar="2" class="fn"></div>216 public functions inherited from <a href="qwidget.html#public-functions">QWidget</a></li>
+<li><div bar="2" class="fn"></div>29 public functions inherited from <a href="qobject.html#public-functions">QObject</a></li>
+<li><div bar="2" class="fn"></div>12 public functions inherited from <a href="qpaintdevice.html#public-functions">QPaintDevice</a></li>
+</ul>
+<hr />
+<a name="reimplemented-protected-functions"></a>
+<h2>Reimplemented Protected Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="q3canvasview.html#drawContents">drawContents</a></b> ( QPainter * <i>p</i>, int <i>cx</i>, int <i>cy</i>, int <i>cw</i>, int <i>ch</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QSize </td><td class="memItemRight" valign="bottom"><b><a href="q3canvasview.html#sizeHint">sizeHint</a></b> () const</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>26 protected functions inherited from <a href="q3scrollview.html#protected-functions">Q3ScrollView</a></li>
+<li><div bar="2" class="fn"></div>5 protected functions inherited from <a href="q3frame.html#protected-functions">Q3Frame</a></li>
+<li><div bar="2" class="fn"></div>3 protected functions inherited from <a href="qframe.html#protected-functions">QFrame</a></li>
+<li><div bar="2" class="fn"></div>37 protected functions inherited from <a href="qwidget.html#protected-functions">QWidget</a></li>
+<li><div bar="2" class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+<li><div bar="2" class="fn"></div>1 protected function inherited from <a href="qpaintdevice.html#protected-functions">QPaintDevice</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li><div class="fn"></div>10 properties inherited from <a href="q3scrollview.html#properties">Q3ScrollView</a></li>
+<li><div class="fn"></div>2 properties inherited from <a href="q3frame.html#properties">Q3Frame</a></li>
+<li><div class="fn"></div>6 properties inherited from <a href="qframe.html#properties">QFrame</a></li>
+<li><div class="fn"></div>58 properties inherited from <a href="qwidget.html#properties">QWidget</a></li>
+<li><div class="fn"></div>1 property inherited from <a href="qobject.html#properties">QObject</a></li>
+<li><div class="fn"></div>8 public slots inherited from <a href="q3scrollview.html#public-slots">Q3ScrollView</a></li>
+<li><div class="fn"></div>19 public slots inherited from <a href="qwidget.html#public-slots">QWidget</a></li>
+<li><div class="fn"></div>1 public slot inherited from <a href="qobject.html#public-slots">QObject</a></li>
+<li><div class="fn"></div>5 signals inherited from <a href="q3scrollview.html#signals">Q3ScrollView</a></li>
+<li><div class="fn"></div>1 signal inherited from <a href="qwidget.html#signals">QWidget</a></li>
+<li><div class="fn"></div>1 signal inherited from <a href="qobject.html#signals">QObject</a></li>
+<li><div class="fn"></div>4 static public members inherited from <a href="qwidget.html#static-public-members">QWidget</a></li>
+<li><div class="fn"></div>5 static public members inherited from <a href="qobject.html#static-public-members">QObject</a></li>
+<li><div class="fn"></div>26 protected functions inherited from <a href="q3scrollview.html#protected-functions">Q3ScrollView</a></li>
+<li><div class="fn"></div>5 protected functions inherited from <a href="q3frame.html#protected-functions">Q3Frame</a></li>
+<li><div class="fn"></div>3 protected functions inherited from <a href="qframe.html#protected-functions">QFrame</a></li>
+<li><div class="fn"></div>37 protected functions inherited from <a href="qwidget.html#protected-functions">QWidget</a></li>
+<li><div class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+<li><div class="fn"></div>1 protected function inherited from <a href="qpaintdevice.html#protected-functions">QPaintDevice</a></li>
+<li><div class="fn"></div>1 protected slot inherited from <a href="qwidget.html#protected-slots">QWidget</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The Q3CanvasView class provides an on-screen view of a <a href="q3canvas.html">Q3Canvas</a>.</p>
+<p>A Q3CanvasView is widget which provides a view of a <a href="q3canvas.html">Q3Canvas</a>.</p>
+<p>If you want users to be able to interact with a canvas view, subclass Q3CanvasView. You might then reimplement <a href="q3scrollview.html#contentsMousePressEvent">Q3ScrollView::contentsMousePressEvent</a>(). For example:</p>
+<pre> void MyCanvasView::contentsMousePressEvent(QMouseEvent* e)
+ {
+     Q3CanvasItemList l = canvas()-&gt;collisions(e-&gt;pos());
+     for (Q3CanvasItemList::Iterator it=l.begin(); it!=l.end(); ++it) {
+         if ((*it)-&gt;rtti() == Q3CanvasRectangle::RTTI)
+             qDebug(&quot;A Q3CanvasRectangle lies somewhere at this point&quot;);
+     }
+ }</pre>
+<p>The canvas view shows canvas <a href="q3canvasview.html#canvas">canvas</a>(); this can be changed using <a href="q3canvasview.html#setCanvas">setCanvas</a>().</p>
+<p>A transformation matrix can be used to transform the view of the canvas in various ways, for example, zooming in or out or rotating. For example:</p>
+<pre> QMatrix wm;
+ wm.scale(2, 2);   <span class="comment">// Zooms in by 2 times</span>
+ wm.rotate(90);    <span class="comment">// Rotates 90 degrees counter clockwise</span>
+                   <span class="comment">// around the origin.</span>
+ wm.translate(0, -canvas-&gt;height());
+                   <span class="comment">// moves the canvas down so what was visible</span>
+                   <span class="comment">// before is still visible.</span>
+ myCanvasView-&gt;setWorldMatrix(wm);</pre>
+<p>Use <a href="q3canvasview.html#setWorldMatrix">setWorldMatrix</a>() to set the canvas view's world matrix: you must ensure that the world matrix is invertible. The current world matrix is retrievable with <a href="q3canvasview.html#worldMatrix">worldMatrix</a>(), and its inversion is retrievable with <a href="q3canvasview.html#inverseWorldMatrix">inverseWorldMatrix</a>().</p>
+<p>Example:</p>
+<p>The following code finds the part of the canvas that is visible in this view, i.e&#x2e; the bounding rectangle of the view in canvas coordinates.</p>
+<pre> QRect rc = QRect(myCanvasView-&gt;contentsX(), myCanvasView-&gt;contentsY(),
+                  myCanvasView-&gt;visibleWidth(), myCanvasView-&gt;visibleHeight());
+ QRect canvasRect = myCanvasView-&gt;inverseWorldMatrix().mapRect(rc);</pre>
+<p>See also <a href="qmatrix.html" class="obsolete">QMatrix</a>, <a href="qpainter-obsolete.html#setWorldMatrix" class="obsolete">QPainter::setWorldMatrix</a>(), <a href="http://qt.nokia.com/doc/qtcanvas">QtCanvas</a>, and <a href="graphicsview-porting.html">Porting to Graphics View</a>.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/Q3CanvasView/Q3CanvasView" />
+<h3 class="fn"><a name="Q3CanvasView"></a>Q3CanvasView::Q3CanvasView ( <a href="qwidget.html">QWidget</a> * <i>parent</i> = 0, const char * <i>name</i> = 0, <a href="qt.html#WindowType-enum">Qt::WindowFlags</a> <i>f</i> = 0 )</h3>
+<p>Constructs a <a href="q3canvasview.html" class="compat">Q3CanvasView</a> with parent <i>parent</i>, and name <i>name</i>, using the widget flags <i>f</i>. The canvas view is not associated with a canvas, so you must to call <a href="q3canvasview.html#setCanvas">setCanvas</a>() to view a canvas.</p>
+<h3 class="fn"><a name="Q3CanvasView-2"></a>Q3CanvasView::Q3CanvasView ( <a href="q3canvas.html">Q3Canvas</a> * <i>canvas</i>, <a href="qwidget.html">QWidget</a> * <i>parent</i> = 0, const char * <i>name</i> = 0, <a href="qt.html#WindowType-enum">Qt::WindowFlags</a> <i>f</i> = 0 )</h3>
+<p>This is an overloaded function.</p>
+<p>Constructs a <a href="q3canvasview.html" class="compat">Q3CanvasView</a> which views canvas <i>canvas</i>, with parent <i>parent</i>, and name <i>name</i>, using the widget flags <i>f</i>.</p>
+<a name="//apple_ref/cpp/instm/Q3CanvasView/~Q3CanvasView" />
+<h3 class="fn"><a name="dtor.Q3CanvasView"></a>Q3CanvasView::~Q3CanvasView ()</h3>
+<p>Destroys the canvas view. The associated canvas is <i>not</i> deleted.</p>
+<a name="//apple_ref/cpp/instm/Q3CanvasView/canvas" />
+<h3 class="fn"><a name="canvas"></a><a href="q3canvas.html">Q3Canvas</a> * Q3CanvasView::canvas () const</h3>
+<p>Returns a pointer to the canvas which the <a href="q3canvasview.html" class="compat">Q3CanvasView</a> is currently showing.</p>
+<p>See also <a href="q3canvasview.html#setCanvas">setCanvas</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3CanvasView/drawContents" />
+<h3 class="fn"><a name="drawContents"></a>void Q3CanvasView::drawContents ( <a href="qpainter.html">QPainter</a> * <i>p</i>, int <i>cx</i>, int <i>cy</i>, int <i>cw</i>, int <i>ch</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="q3scrollview.html#drawContents">Q3ScrollView::drawContents</a>().</p>
+<p>Repaints part of the <a href="q3canvas.html" class="compat">Q3Canvas</a> that the canvas view is showing starting at <i>cx</i> by <i>cy</i>, with a width of <i>cw</i> and a height of <i>ch</i> using the painter <i>p</i>.</p>
+<a name="//apple_ref/cpp/instm/Q3CanvasView/inverseWorldMatrix" />
+<h3 class="fn"><a name="inverseWorldMatrix"></a>const <a href="qmatrix.html">QMatrix</a> &amp; Q3CanvasView::inverseWorldMatrix () const</h3>
+<p>Returns a reference to the inverse of the canvas view's current transformation matrix.</p>
+<p>See also <a href="q3canvasview.html#setWorldMatrix">setWorldMatrix</a>() and <a href="q3canvasview.html#worldMatrix">worldMatrix</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3CanvasView/setCanvas" />
+<h3 class="fn"><a name="setCanvas"></a>void Q3CanvasView::setCanvas ( <a href="q3canvas.html">Q3Canvas</a> * <i>canvas</i> )</h3>
+<p>Sets the canvas that the <a href="q3canvasview.html" class="compat">Q3CanvasView</a> is showing to the canvas <i>canvas</i>.</p>
+<p>See also <a href="q3canvasview.html#canvas">canvas</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3CanvasView/setWorldMatrix" />
+<h3 class="fn"><a name="setWorldMatrix"></a>bool Q3CanvasView::setWorldMatrix ( const <a href="qmatrix.html">QMatrix</a> &amp; <i>wm</i> )</h3>
+<p>Sets the transformation matrix of the <a href="q3canvasview.html" class="compat">Q3CanvasView</a> to <i>wm</i>. The matrix must be invertible (i.e&#x2e; if you create a world matrix that zooms out by 2 times, then the inverse of this matrix is one that will zoom in by 2 times).</p>
+<p>When you use this, you should note that the performance of the <a href="q3canvasview.html" class="compat">Q3CanvasView</a> will decrease considerably.</p>
+<p>Returns false if <i>wm</i> is not invertable; otherwise returns true.</p>
+<p>See also <a href="q3canvasview.html#worldMatrix">worldMatrix</a>(), <a href="q3canvasview.html#inverseWorldMatrix">inverseWorldMatrix</a>(), and <a href="qmatrix.html#isInvertible">QMatrix::isInvertible</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3CanvasView/sizeHint" />
+<h3 class="fn"><a name="sizeHint"></a><a href="qsize.html">QSize</a> Q3CanvasView::sizeHint () const&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#sizeHint-prop">QWidget::sizeHint</a>().</p>
+<p>Suggests a size sufficient to view the entire canvas.</p>
+<a name="//apple_ref/cpp/instm/Q3CanvasView/worldMatrix" />
+<h3 class="fn"><a name="worldMatrix"></a>const <a href="qmatrix.html">QMatrix</a> &amp; Q3CanvasView::worldMatrix () const</h3>
+<p>Returns a reference to the canvas view's current transformation matrix.</p>
+<p>See also <a href="q3canvasview.html#setWorldMatrix">setWorldMatrix</a>() and <a href="q3canvasview.html#inverseWorldMatrix">inverseWorldMatrix</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

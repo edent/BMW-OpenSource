@@ -1,0 +1,35 @@
+Fix up the ARM support so that it works inside the STLinux build system.
+Most important is to use the cross compiled QMAKE, otherwise pkg-config 
+stops working correctly
+
+Signed-off-by: David McKay <david.mckay@st.com>
+
+
+--- qt-embedded-linux-opensource-src-4.5.2/mkspecs/qws/linux-arm-g++/qmake.conf.orig	2009-09-08 15:26:56.000000000 +0100
++++ qt-embedded-linux-opensource-src-4.5.2/mkspecs/qws/linux-arm-g++/qmake.conf	2009-09-08 15:30:10.000000000 +0100
+@@ -6,15 +6,24 @@
+ include(../../common/linux.conf)
+ include(../../common/qws.conf)
+ 
++QMAKE = $$[QT_INSTALL_BINS]/arm-linux-qmake
++
+ # modifications to g++.conf
+ QMAKE_CC                = arm-linux-gcc
+ QMAKE_CXX               = arm-linux-g++
+ QMAKE_LINK              = arm-linux-g++
+ QMAKE_LINK_SHLIB        = arm-linux-g++
++QMAKE_CFLAGS_RELEASE    = -Os
++QMAKE_CXXFLAGS_RELEASE   = -Os
+ 
+ # modifications to linux.conf
+ QMAKE_AR                = arm-linux-ar cqs
+ QMAKE_OBJCOPY           = arm-linux-objcopy
+-QMAKE_STRIP             = arm-linux-strip
++QMAKE_STRIP             = true
++
++QMAKE_MOC               = $$[QT_INSTALL_BINS]/arm-linux-moc
++QMAKE_UIC               = $$[QT_INSTALL_BINS]/arm-linux-uic
++QMAKE_RCC               = $$[QT_INSTALL_BINS]/arm-linux-rcc
++
+ 
+ load(qt_config)

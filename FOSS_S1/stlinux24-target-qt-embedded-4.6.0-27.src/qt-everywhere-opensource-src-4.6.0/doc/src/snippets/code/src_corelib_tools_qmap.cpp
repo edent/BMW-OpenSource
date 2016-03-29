@@ -1,0 +1,314 @@
+/****************************************************************************
+**
+** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+** All rights reserved.
+** Contact: Nokia Corporation (qt-info@nokia.com)
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:LGPL$
+** Commercial Usage
+** Licensees holding valid Qt Commercial licenses may use this file in
+** accordance with the Qt Commercial License Agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and Nokia.
+**
+** GNU Lesser General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU Lesser
+** General Public License version 2.1 as published by the Free Software
+** Foundation and appearing in the file LICENSE.LGPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU Lesser General Public License version 2.1 requirements
+** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+**
+** In addition, as a special exception, Nokia gives you certain additional
+** rights.  These rights are described in the Nokia Qt LGPL Exception
+** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+**
+** GNU General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU
+** General Public License version 3.0 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU General Public License version 3.0 requirements will be
+** met: http://www.gnu.org/copyleft/gpl.html.
+**
+** If you have questions regarding the use of this file, please contact
+** Nokia at qt-info@nokia.com.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+//! [0]
+QMap<QString, int> map;
+//! [0]
+
+
+//! [1]
+map["one"] = 1;
+map["three"] = 3;
+map["seven"] = 7;
+//! [1]
+
+
+//! [2]
+map.insert("twelve", 12);
+//! [2]
+
+
+//! [3]
+int num1 = map["thirteen"];
+int num2 = map.value("thirteen");
+//! [3]
+
+
+//! [4]
+int timeout = 30;
+if (map.contains("TIMEOUT"))
+    timeout = map.value("TIMEOUT");
+//! [4]
+
+
+//! [5]
+int timeout = map.value("TIMEOUT", 30);
+//! [5]
+
+
+//! [6]
+// WRONG
+QMap<int, QWidget *> map;
+...
+for (int i = 0; i < 1000; ++i) {
+    if (map[i] == okButton)
+        cout << "Found button at index " << i << endl;
+}
+//! [6]
+
+
+//! [7]
+QMapIterator<QString, int> i(map);
+while (i.hasNext()) {
+    i.next();
+    cout << i.key() << ": " << i.value() << endl;
+}
+//! [7]
+
+
+//! [8]
+QMap<QString, int>::const_iterator i = map.constBegin();
+while (i != map.constEnd()) {
+    cout << i.key() << ": " << i.value() << endl;
+    ++i;
+}
+//! [8]
+
+
+//! [9]
+map.insert("plenty", 100);
+map.insert("plenty", 2000);
+// map.value("plenty") == 2000
+//! [9]
+
+
+//! [10]
+QList<int> values = map.values("plenty");
+for (int i = 0; i < values.size(); ++i)
+    cout << values.at(i) << endl;
+//! [10]
+
+
+//! [11]
+QMap<QString, int>::iterator i = map.find("plenty");
+while (i != map.end() && i.key() == "plenty") {
+    cout << i.value() << endl;
+    ++i;
+}
+//! [11]
+
+
+//! [12]
+QMap<QString, int> map;
+...
+foreach (int value, map)
+    cout << value << endl;
+//! [12]
+
+
+//! [13]
+#ifndef EMPLOYEE_H
+#define EMPLOYEE_H
+
+class Employee
+{
+public:
+    Employee() {}
+    Employee(const QString &name, const QDate &dateOfBirth);
+    ...
+
+private:
+    QString myName;
+    QDate myDateOfBirth;
+};
+
+inline bool operator<(const Employee &e1, const Employee &e2)
+{
+    if (e1.name() != e2.name())
+        return e1.name() < e2.name();
+    return e1.dateOfBirth() < e2.dateOfBirth();
+}
+
+#endif // EMPLOYEE_H
+//! [13]
+
+
+//! [14]
+QMap<QString, int> map;
+...
+QMap<QString, int>::const_iterator i = map.find("HDR");
+while (i != map.end() && i.key() == "HDR") {
+    cout << i.value() << endl;
+    ++i;
+}
+//! [14]
+
+
+//! [15]
+QMap<int, QString> map;
+map.insert(1, "one");
+map.insert(5, "five");
+map.insert(10, "ten");
+
+map.lowerBound(0);      // returns iterator to (1, "one")
+map.lowerBound(1);      // returns iterator to (1, "one")
+map.lowerBound(2);      // returns iterator to (5, "five")
+map.lowerBound(10);     // returns iterator to (10, "ten")
+map.lowerBound(999);    // returns end()
+//! [15]
+
+
+//! [16]
+QMap<QString, int> map;
+...
+QMap<QString, int>::const_iterator i = map.lowerBound("HDR");
+QMap<QString, int>::const_iterator upperBound = map.upperBound("HDR");
+while (i != upperBound) {
+    cout << i.value() << endl;
+    ++i;
+}
+//! [16]
+
+
+//! [17]
+QMap<int, QString> map;
+map.insert(1, "one");
+map.insert(5, "five");
+map.insert(10, "ten");
+
+map.upperBound(0);      // returns iterator to (1, "one")
+map.upperBound(1);      // returns iterator to (5, "five")
+map.upperBound(2);      // returns iterator to (5, "five")
+map.upperBound(10);     // returns end()
+map.upperBound(999);    // returns end()
+//! [17]
+
+
+//! [18]
+QMap<QString, int> map;
+map.insert("January", 1);
+map.insert("February", 2);
+...
+map.insert("December", 12);
+
+QMap<QString, int>::iterator i;
+for (i = map.begin(); i != map.end(); ++i)
+    cout << i.key() << ": " << i.value() << endl;
+//! [18]
+
+
+//! [19]
+QMap<QString, int>::iterator i;
+for (i = map.begin(); i != map.end(); ++i)
+    i.value() += 2;
+//! [19]
+
+
+//! [20]
+QMap<QString, int>::iterator i = map.begin();
+while (i != map.end()) {
+    if (i.key().startsWith("_"))
+        i = map.erase(i);
+    else
+        ++i;
+}
+//! [20]
+
+
+//! [21]
+QMap<QString, int>::iterator i = map.begin();
+while (i != map.end()) {
+    QMap<QString, int>::iterator prev = i;
+    ++i;
+    if (prev.key().startsWith("_"))
+        map.erase(prev);
+}
+//! [21]
+
+
+//! [22]
+// WRONG
+while (i != map.end()) {
+    if (i.key().startsWith("_"))
+        map.erase(i);
+    ++i;
+}
+//! [22]
+
+
+//! [23]
+if (i.key() == "Hello")
+    i.value() = "Bonjour";
+//! [23]
+
+
+//! [24]
+QMap<QString, int> map;
+map.insert("January", 1);
+map.insert("February", 2);
+...
+map.insert("December", 12);
+
+QMap<QString, int>::const_iterator i;
+for (i = map.constBegin(); i != map.constEnd(); ++i)
+    cout << i.key() << ": " << i.value() << endl;
+//! [24]
+
+
+//! [25]
+QMultiMap<QString, int> map1, map2, map3;
+
+map1.insert("plenty", 100);
+map1.insert("plenty", 2000);
+// map1.size() == 2
+
+map2.insert("plenty", 5000);
+// map2.size() == 1
+
+map3 = map1 + map2;
+// map3.size() == 3
+//! [25]
+
+
+//! [26]
+QList<int> values = map.values("plenty");
+for (int i = 0; i < values.size(); ++i)
+    cout << values.at(i) << endl;
+//! [26]
+
+
+//! [27]
+QMultiMap<QString, int>::iterator i = map.find("plenty");
+while (i != map.end() && i.key() == "plenty") {
+    cout << i.value() << endl;
+    ++i;
+}
+//! [27]

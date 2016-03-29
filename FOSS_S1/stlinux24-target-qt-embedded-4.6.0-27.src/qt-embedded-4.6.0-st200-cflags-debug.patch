@@ -1,0 +1,18 @@
+Fix st200 compiler flags for debug build of Qt.
+
+Signed-off-by: Stephen Clarke <stephen.clarke@st.com>
+
+--- qt-everywhere-opensource-src-4.6.0/mkspecs/qws/linux-st231-g++/qmake.conf~	2009-12-23 13:43:41.000000000 +0000
++++ qt-everywhere-opensource-src-4.6.0/mkspecs/qws/linux-st231-g++/qmake.conf	2009-12-23 15:24:49.000000000 +0000
+@@ -14,7 +14,9 @@
+ QMAKE_LINK              = st231-linux-g++
+ QMAKE_LINK_SHLIB        = st231-linux-g++
+-QMAKE_CFLAGS_RELEASE    = -Os -INLINE:all_inline
+-QMAKE_CXXFLAGS_RELEASE	 = -Os -INLINE:all_inline
++QMAKE_CFLAGS_RELEASE    = -Os -OPT:olimit=12000
++QMAKE_CXXFLAGS_RELEASE  = -Os -OPT:olimit=12000
++QMAKE_CFLAGS_DEBUG      = -g -O1 -OPT:olimit=12000
++QMAKE_CXXFLAGS_DEBUG    = -g -O1 -OPT:olimit=12000
+ QMAKE_LFLAGS_RELEASE    = -Wl,-O1,--gc-sections
+ 
+ # modifications to linux.conf

@@ -1,0 +1,110 @@
+		<div>
+			<h3>
+			<! Test Name Here>
+			</h3>
+			<div id=
+                <! Chart ID Here>
+             style="width:900px;height:350px;"></div>
+
+            <table cellspacing = "10"><tr>
+            
+            <td valign = "top">
+            <form id=
+                <! Form ID Here>
+            <b> Data series </b><br>
+            </form>
+            </td>
+
+            <td valign = "top">
+            <form id=
+                <! ChartTypeForm ID Here>
+            <b> Chart Type </b><br>
+            </form>
+            </td>
+
+            <td valign = "top">
+            <form id=
+                <! ScaleForm ID Here>
+            <b> Scale </b><br>
+            </form>
+            </td>
+
+            </tr></table>
+
+     	</div>
+		<script type="text/javascript">
+            var chartId = 
+            <! Chart ID Here>
+            ;
+
+            var chartType = 
+            <! Chart Type Here>
+            ;
+
+           var seriesLabels = 
+           <! Series Labels Here>
+
+			var dataset = [];
+			<! Data Goes Here>
+
+            var labels = [
+                <! Labels Go Here>
+            ];
+            
+            var colors = new Hash({
+                <! ColorScheme Here>
+            });
+
+            var shouldFill = 
+           <! Fill Setting Here>
+           ;
+
+           var form = document.getElementById(
+           <! Form ID Here>
+           );
+
+           var chartTypeForm = document.getElementById(
+           <! ChartTypeForm ID Here>
+           );
+
+           var scaleForm = document.getElementById(
+           <! ScaleForm ID Here>
+           );
+
+
+
+           var chartOptions = new Object();
+           chartOptions.chartId = chartId;
+           chartOptions.chartType = chartType;
+           chartOptions.dataset = dataset;
+           chartOptions.colors = colors;
+           chartOptions.shouldFill = shouldFill;
+           chartOptions.labels = labels;
+           chartOptions.seriesLabels = seriesLabels;
+           chartOptions.useLineChart = true;
+           chartOptions.useLinearScale = true;
+           chartOptions.createChart = createChart;
+
+           chartOptions.ticks = labels;
+           chartOptions.barWidth = 0.5;
+           chartOptions.tickOffset = 0.25;
+
+           chartOptions.useLineChart = 
+                <! Use Line Chart Here>
+
+           chartOptions.chartTypeForm = chartTypeForm;
+           chartOptions.buildChartTypeSelector = buildChartTypeSelector;
+           chartOptions.buildChartTypeSelector();
+
+           chartOptions.scaleForm = scaleForm;
+           chartOptions.buildScaleSelector = buildScaleSelector;
+           chartOptions.buildScaleSelector();
+
+           chartOptions.selectedDataset = dataset;
+           chartOptions.checkform = checkform;
+           chartOptions.form = form;
+           chartOptions.buildSeriesSelector = buildSeriesSelector;
+           chartOptions.buildSeriesSelector(form, chartOptions);
+           chartOptions.checkform();
+		</script>
+

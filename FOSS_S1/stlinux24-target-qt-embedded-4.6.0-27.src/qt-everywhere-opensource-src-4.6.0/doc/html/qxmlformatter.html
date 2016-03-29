@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qxmlformatter.cpp -->
+<head>
+  <title>Qt 4.6: QXmlFormatter Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QXmlFormatter" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QXmlFormatter Class Reference<br /><span class="small-subtitle">[<a href="qtxmlpatterns.html">QtXmlPatterns</a> module]</span>
+</h1>
+<p>The QXmlFormatter class is an implementation of <a href="qxmlserializer.html">QXmlSerializer</a> for transforming XQuery output into formatted XML. <a href="#details">More...</a></p>
+<pre> #include &lt;QXmlFormatter&gt;</pre><p><b>This class is not part of the Qt GUI Framework Edition.</b></p>
+<p>Inherits <a href="qxmlserializer.html">QXmlSerializer</a>.</p>
+<p><b>Note:</b> All functions in this class are <a href="threads-reentrancy.html#reentrant">reentrant</a>.</p>
+<p>This class was introduced in Qt 4.4.</p>
+<ul>
+<li><a href="qxmlformatter-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qxmlformatter.html#QXmlFormatter">QXmlFormatter</a></b> ( const QXmlQuery &amp; <i>query</i>, QIODevice * <i>outputDevice</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qxmlformatter.html#indentationDepth">indentationDepth</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qxmlformatter.html#setIndentationDepth">setIndentationDepth</a></b> ( int <i>depth</i> )</td></tr>
+</table>
+<hr />
+<a name="reimplemented-public-functions"></a>
+<h2>Reimplemented Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qxmlformatter.html#atomicValue">atomicValue</a></b> ( const QVariant &amp; <i>value</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qxmlformatter.html#attribute">attribute</a></b> ( const QXmlName &amp; <i>name</i>, const QStringRef &amp; <i>value</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qxmlformatter.html#characters">characters</a></b> ( const QStringRef &amp; <i>value</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qxmlformatter.html#comment">comment</a></b> ( const QString &amp; <i>value</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qxmlformatter.html#endDocument">endDocument</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qxmlformatter.html#endElement">endElement</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qxmlformatter.html#endOfSequence">endOfSequence</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qxmlformatter.html#processingInstruction">processingInstruction</a></b> ( const QXmlName &amp; <i>name</i>, const QString &amp; <i>value</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qxmlformatter.html#startDocument">startDocument</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qxmlformatter.html#startElement">startElement</a></b> ( const QXmlName &amp; <i>name</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qxmlformatter.html#startOfSequence">startOfSequence</a></b> ()</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>15 public functions inherited from <a href="qxmlserializer.html#public-functions">QXmlSerializer</a></li>
+<li><div bar="2" class="fn"></div>12 public functions inherited from <a href="qabstractxmlreceiver.html#public-functions">QAbstractXmlReceiver</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QXmlFormatter class is an implementation of <a href="qxmlserializer.html">QXmlSerializer</a> for transforming XQuery output into formatted XML.</p>
+<p>QXmlFormatter is a subclass of <a href="qxmlserializer.html">QXmlSerializer</a> that formats the XML output to make it easier for humans to read.</p>
+<p><a href="qxmlserializer.html">QXmlSerializer</a> outputs XML without adding unnecessary whitespace. In particular, it does not add <i>newlines</i> and indentation. To make the XML output easier to read, QXmlFormatter adds <i>newlines</i> and indentation by adding, removing, and modifying <a href="qabstractxmlreceiver.html#xquery-sequence">sequence nodes</a> that only consist of whitespace. It also modifies whitespace in other places where it is not significant; e.g&#x2e;, between attributes and in the document prologue.</p>
+<p>For example, where the base class <a href="qxmlserializer.html">QXmlSerializer</a> would output this:</p>
+<pre> &lt;a&gt;&lt;b/&gt;&lt;c/&gt;&lt;p&gt;Some Text&lt;/p&gt;&lt;/a&gt;</pre>
+<p>QXmlFormatter outputs this:</p>
+<pre> &lt;a&gt;
+    &lt;b/&gt;
+    &lt;c/&gt;
+    &lt;p&gt;Some Text&lt;/p&gt;
+ &lt;/a&gt;</pre>
+<p>If you just want to serialize your XML in a human-readable format, use QXmlFormatter as it is. The default indentation level is 4 spaces, but you can set your own indentation value <a href="qxmlformatter.html#setIndentationDepth">setIndentationDepth</a>().</p>
+<p>The <i>newlines</i> and indentation added by QXmlFormatter are suitable for common formats, such as XHTML, SVG, or Docbook, where whitespace is not significant. However, if your XML will be used as input where whitespace is significant, then you must write your own subclass of <a href="qxmlserializer.html">QXmlSerializer</a> or <a href="qabstractxmlreceiver.html">QAbstractXmlReceiver</a>.</p>
+<p>Note that using QXmlFormatter instead of <a href="qxmlserializer.html">QXmlSerializer</a> will increase computational overhead and document storage size due to the insertion of whitespace.</p>
+<p>Note also that the indentation style used by QXmlFormatter remains loosely defined and may change in future versions of Qt. If a specific indentation style is required then either use the base class <a href="qxmlserializer.html">QXmlSerializer</a> directly, or write your own subclass of <a href="qxmlserializer.html">QXmlSerializer</a> or <a href="qabstractxmlreceiver.html">QAbstractXmlReceiver</a>. Alternatively, you can subclass QXmlFormatter and reimplement the callbacks there.</p>
+<pre> QXmlQuery query;
+ query.setQuery(&quot;doc('index.html')/html/body/p[1]&quot;);
+
+ QXmlFormatter formatter(query, myOutputDevice);
+ formatter.setIndentationDepth(2);
+ query.evaluateTo(&amp;formatter);</pre>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QXmlFormatter/QXmlFormatter" />
+<h3 class="fn"><a name="QXmlFormatter"></a>QXmlFormatter::QXmlFormatter ( const <a href="qxmlquery.html">QXmlQuery</a> &amp; <i>query</i>, <a href="qiodevice.html">QIODevice</a> * <i>outputDevice</i> )</h3>
+<p>Constructs a formatter that uses the name pool and message handler in <i>query</i>, and writes the result to <i>outputDevice</i> as formatted XML.</p>
+<p><i>outputDevice</i> is passed directly to <a href="qxmlserializer.html">QXmlSerializer</a>'s constructor.</p>
+<p>See also <a href="qxmlserializer.html">QXmlSerializer</a>.</p>
+<a name="//apple_ref/cpp/instm/QXmlFormatter/atomicValue" />
+<h3 class="fn"><a name="atomicValue"></a>void QXmlFormatter::atomicValue ( const <a href="qvariant.html">QVariant</a> &amp; <i>value</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qabstractxmlreceiver.html#atomicValue">QAbstractXmlReceiver::atomicValue</a>().</p>
+<a name="//apple_ref/cpp/instm/QXmlFormatter/attribute" />
+<h3 class="fn"><a name="attribute"></a>void QXmlFormatter::attribute ( const <a href="qxmlname.html">QXmlName</a> &amp; <i>name</i>, const <a href="qstringref.html">QStringRef</a> &amp; <i>value</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qabstractxmlreceiver.html#attribute">QAbstractXmlReceiver::attribute</a>().</p>
+<a name="//apple_ref/cpp/instm/QXmlFormatter/characters" />
+<h3 class="fn"><a name="characters"></a>void QXmlFormatter::characters ( const <a href="qstringref.html">QStringRef</a> &amp; <i>value</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qabstractxmlreceiver.html#characters">QAbstractXmlReceiver::characters</a>().</p>
+<a name="//apple_ref/cpp/instm/QXmlFormatter/comment" />
+<h3 class="fn"><a name="comment"></a>void QXmlFormatter::comment ( const <a href="qstring.html">QString</a> &amp; <i>value</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qabstractxmlreceiver.html#comment">QAbstractXmlReceiver::comment</a>().</p>
+<a name="//apple_ref/cpp/instm/QXmlFormatter/endDocument" />
+<h3 class="fn"><a name="endDocument"></a>void QXmlFormatter::endDocument ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qabstractxmlreceiver.html#endDocument">QAbstractXmlReceiver::endDocument</a>().</p>
+<a name="//apple_ref/cpp/instm/QXmlFormatter/endElement" />
+<h3 class="fn"><a name="endElement"></a>void QXmlFormatter::endElement ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qabstractxmlreceiver.html#endElement">QAbstractXmlReceiver::endElement</a>().</p>
+<a name="//apple_ref/cpp/instm/QXmlFormatter/endOfSequence" />
+<h3 class="fn"><a name="endOfSequence"></a>void QXmlFormatter::endOfSequence ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qabstractxmlreceiver.html#endOfSequence">QAbstractXmlReceiver::endOfSequence</a>().</p>
+<a name="//apple_ref/cpp/instm/QXmlFormatter/indentationDepth" />
+<h3 class="fn"><a name="indentationDepth"></a>int QXmlFormatter::indentationDepth () const</h3>
+<p>Returns the number of spaces <a href="qxmlformatter.html">QXmlFormatter</a> will output for each indentation level. The default is four.</p>
+<p>See also <a href="qxmlformatter.html#setIndentationDepth">setIndentationDepth</a>().</p>
+<a name="//apple_ref/cpp/instm/QXmlFormatter/processingInstruction" />
+<h3 class="fn"><a name="processingInstruction"></a>void QXmlFormatter::processingInstruction ( const <a href="qxmlname.html">QXmlName</a> &amp; <i>name</i>, const <a href="qstring.html">QString</a> &amp; <i>value</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qabstractxmlreceiver.html#processingInstruction">QAbstractXmlReceiver::processingInstruction</a>().</p>
+<a name="//apple_ref/cpp/instm/QXmlFormatter/setIndentationDepth" />
+<h3 class="fn"><a name="setIndentationDepth"></a>void QXmlFormatter::setIndentationDepth ( int <i>depth</i> )</h3>
+<p>Sets <i>depth</i> to be the number of spaces <a href="qxmlformatter.html">QXmlFormatter</a> will output for level of indentation. The default is four.</p>
+<p>See also <a href="qxmlformatter.html#indentationDepth">indentationDepth</a>().</p>
+<a name="//apple_ref/cpp/instm/QXmlFormatter/startDocument" />
+<h3 class="fn"><a name="startDocument"></a>void QXmlFormatter::startDocument ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qabstractxmlreceiver.html#startDocument">QAbstractXmlReceiver::startDocument</a>().</p>
+<a name="//apple_ref/cpp/instm/QXmlFormatter/startElement" />
+<h3 class="fn"><a name="startElement"></a>void QXmlFormatter::startElement ( const <a href="qxmlname.html">QXmlName</a> &amp; <i>name</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qabstractxmlreceiver.html#startElement">QAbstractXmlReceiver::startElement</a>().</p>
+<a name="//apple_ref/cpp/instm/QXmlFormatter/startOfSequence" />
+<h3 class="fn"><a name="startOfSequence"></a>void QXmlFormatter::startOfSequence ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qabstractxmlreceiver.html#startOfSequence">QAbstractXmlReceiver::startOfSequence</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

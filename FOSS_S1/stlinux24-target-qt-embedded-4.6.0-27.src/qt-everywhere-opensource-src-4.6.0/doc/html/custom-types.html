@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- custom-types.qdoc -->
+<head>
+  <title>Qt 4.6: Creating Custom Qt Types</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">Creating Custom Qt Types<br /><span class="subtitle"></span>
+</h1>
+<ul><li><a href="#overview">Overview</a></li>
+<li><a href="#creating-a-custom-type">Creating a Custom Type</a></li>
+<li><a href="#declaring-the-type-with-qmetatype">Declaring the Type with QMetaType</a></li>
+<li><a href="#creating-and-destroying-custom-objects">Creating and Destroying Custom Objects</a></li>
+<li><a href="#making-the-type-printable">Making the Type Printable</a></li>
+<li><a href="#further-reading">Further Reading</a></li>
+</ul>
+<a name="overview"></a>
+<h3>Overview</h3>
+<p>When creating user interfaces with Qt, particularly those with specialized controls and features, developers sometimes need to create new data types that can be used alongside or in place of Qt's existing set of value types.</p>
+<p>Standard types such as <a href="qsize.html">QSize</a>, <a href="qcolor.html">QColor</a> and <a href="qstring.html">QString</a> can all be stored in <a href="qvariant.html">QVariant</a> objects, used as the types of properties in <a href="qobject.html">QObject</a>-based classes, and emitted in signal-slot communication.</p>
+<p>In this document, we take a custom type and describe how to integrate it into Qt's object model so that it can be stored in the same way as standard Qt types. We then show how to register the custom type to allow it to be used in signals and slots connections.</p>
+<a name="creating-a-custom-type"></a>
+<h3>Creating a Custom Type</h3>
+<p>Before we begin, we need to ensure that the custom type we are creating meets all the requirements imposed by <a href="qmetatype.html">QMetaType</a>. In other words, it must provide:</p>
+<ul>
+<li>a public default constructor,</li>
+<li>a public copy constructor, and</li>
+<li>a public destructor.</li>
+</ul>
+<p>The following <tt>Message</tt> class definition includes these members:</p>
+<pre> class Message
+ {
+ public:
+     Message();
+     Message(const Message &amp;other);
+     ~Message();
+
+     Message(const QString &amp;body, const QStringList &amp;headers);
+
+     QString body() const;
+     QStringList headers() const;
+
+ private:
+     QString m_body;
+     QStringList m_headers;
+ };</pre>
+<p>The class also provides a constructor for normal use and two public member functions that are used to obtain the private data.</p>
+<a name="declaring-the-type-with-qmetatype"></a>
+<h3>Declaring the Type with QMetaType</h3>
+<p>The <tt>Message</tt> class only needs a suitable implementation in order to be usable. However, Qt's type system will not be able to understand how to store, retrieve and serialize instances of this class without some assistance. For example, we will be unable to store <tt>Message</tt> values in <a href="qvariant.html">QVariant</a>.</p>
+<p>The class in Qt responsible for custom types is <a href="qmetatype.html">QMetaType</a>. To make the type known to this class, we invoke the <a href="qmetatype.html#Q_DECLARE_METATYPE">Q_DECLARE_METATYPE</a>() macro on the class in the header file where it is defined:</p>
+<pre> Q_DECLARE_METATYPE(Message);</pre>
+<p>This now makes it possible for <tt>Message</tt> values to be stored in <a href="qvariant.html">QVariant</a> objects and retrieved later. See the <a href="tools-customtype.html">Custom Type Example</a> for code that demonstrates this.</p>
+<p>The <a href="qmetatype.html#Q_DECLARE_METATYPE">Q_DECLARE_METATYPE</a>() macro also makes it possible for these values to be used as arguments to signals, but <i>only in direct signal-slot connections</i>. To make the custom type generally usable with the signals and slots mechanism, we need to perform some extra work.</p>
+<a name="creating-and-destroying-custom-objects"></a>
+<h3>Creating and Destroying Custom Objects</h3>
+<p>Although the declaration in the previous section makes the type available for use in direct signal-slot connections, it cannot be used for queued signal-slot connections, such as those that are made between objects in different threads. This is because the meta-object system does not know how to handle creation and destruction of objects of the custom type at run-time.</p>
+<p>To enable creation of objects at run-time, call the <a href="qmetatype.html#qRegisterMetaType">qRegisterMetaType</a>() template function to register it with the meta-object system. This also makes the type available for queued signal-slot communication as long as you call it before you make the first connection that uses the type.</p>
+<p>The <a href="threads-queuedcustomtype.html">Queued Custom Type Example</a> declares a <tt>Block</tt> class which is registered in the <tt>main.cpp</tt> file:</p>
+<pre> int main(int argc, char *argv[])
+ {
+     QApplication app(argc, argv);
+     ...
+     qRegisterMetaType&lt;Block&gt;();
+     ...
+     return app.exec();
+ }</pre>
+<p>This type is later used in a signal-slot connection in the <tt>window.cpp</tt> file:</p>
+<pre> Window::Window()
+ {
+     thread = new RenderThread();
+     ...
+     connect(thread, SIGNAL(sendBlock(Block)), this, SLOT(addBlock(Block)));
+     ...
+     setWindowTitle(tr(&quot;Queued Custom Type&quot;));
+ }</pre>
+<p>If a type is used in a queued connection without being registered, a warning will be printed at the console; for example:</p>
+<pre> QObject::connect: Cannot queue arguments of type 'Block'
+ (Make sure 'Block' is registered using qRegisterMetaType().)</pre>
+<a name="making-the-type-printable"></a>
+<h3>Making the Type Printable</h3>
+<p>It is often quite useful to make a custom type printable for debugging purposes, as in the following code:</p>
+<pre>     Message message(body, headers);
+     qDebug() &lt;&lt; &quot;Original:&quot; &lt;&lt; message;</pre>
+<p>This is achieved by creating a streaming operator for the type, which is often defined in the header file for that type:</p>
+<pre> QDebug &amp;operator&lt;&lt;(QDebug &amp;dbg, const Message &amp;message);</pre>
+<p>The implementation for the <tt>Message</tt> type in the <a href="tools-customtype.html">Custom Type Example</a> goes to some effort to make the printable representation as readable as possible:</p>
+<pre> QDebug &amp;operator&lt;&lt;(QDebug &amp;dbg, const Message &amp;message)
+ {
+     QStringList pieces = message.body().split(&quot;\r\n&quot;, QString::SkipEmptyParts);
+     if (pieces.isEmpty())
+         dbg.nospace() &lt;&lt; &quot;Message()&quot;;
+     else if (pieces.size() == 1)
+         dbg.nospace() &lt;&lt; &quot;Message(&quot; &lt;&lt; pieces.first() &lt;&lt; &quot;)&quot;;
+     else
+         dbg.nospace() &lt;&lt; &quot;Message(&quot; &lt;&lt; pieces.first() &lt;&lt; &quot; ...)&quot;;
+     return dbg.maybeSpace();
+ }</pre>
+<p>The output sent to the debug stream can, of course, be made as simple or as complicated as you like. Note that the value returned by this function is the <a href="qdebug.html">QDebug</a> object itself, though this is often obtained by calling the maybeSpace() member function of <a href="qdebug.html">QDebug</a> that pads out the stream with space characters to make it more readable.</p>
+<a name="further-reading"></a>
+<h3>Further Reading</h3>
+<p>The <a href="qmetatype.html#Q_DECLARE_METATYPE">Q_DECLARE_METATYPE</a>() macro and <a href="qmetatype.html#qRegisterMetaType">qRegisterMetaType</a>() function documentation contain more detailed information about their uses and limitations.</p>
+<p>The <a href="tools-customtype.html">Custom Type</a>, <a href="tools-customtypesending.html">Custom Type Sending</a> and <a href="threads-queuedcustomtype.html">Queued Custom Type</a> examples show how to implement a custom type with the features outlined in this document.</p>
+<p>The <a href="debug.html">Debugging Techniques</a> document provides an overview of the debugging mechanisms discussed above.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

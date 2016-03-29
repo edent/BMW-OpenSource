@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: svgalibscreen.cpp Example File (qws/svgalib/svgalibscreen.cpp)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">svgalibscreen.cpp Example File<br /><span class="small-subtitle">qws/svgalib/svgalibscreen.cpp</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the examples of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+
+ #include &quot;svgalibscreen.h&quot;
+ #include &quot;svgalibsurface.h&quot;
+
+ #include &lt;QVector&gt;
+ #include &lt;QApplication&gt;
+ #include &lt;QColor&gt;
+ #include &lt;QWidget&gt;
+
+ #include &lt;math.h&gt;
+
+ static int getModeDepth(vga_modeinfo *mode)
+ {
+     const int bits = int(log2(mode-&gt;colors));
+     if (bits == 24 &amp;&amp; mode-&gt;bytesperpixel == 4)
+         return 32;
+     return bits;
+ }
+
+ bool SvgalibScreen::connect(const QString &amp;displaySpec)
+ {
+     int mode = vga_getdefaultmode();
+     if (mode &lt;= 0) {
+         qCritical(&quot;SvgalibScreen::connect(): invalid vga mode&quot;);
+         return false;
+     }
+
+     vga_modeinfo *modeinfo = vga_getmodeinfo(mode);
+
+     QScreen::lstep = modeinfo-&gt;linewidth;
+     QScreen::dw = QScreen::w = modeinfo-&gt;width;
+     QScreen::dh = QScreen::h = modeinfo-&gt;height;
+     QScreen::d = getModeDepth(modeinfo);
+     QScreen::size = QScreen::lstep * dh;
+     QScreen::data = 0;
+
+     switch (depth()) {
+     case 32:
+         setPixelFormat(QImage::Format_ARGB32_Premultiplied);
+         break;
+     case 24:
+         setPixelFormat(QImage::Format_RGB888);
+         break;
+     case 16:
+         setPixelFormat(QImage::Format_RGB16);
+         break;
+     case 15:
+         setPixelFormat(QImage::Format_RGB555);
+         break;
+     default:
+         break;
+     }
+
+     const int dpi = 72;
+     QScreen::physWidth = qRound(QScreen::dw * 25.4 / dpi);
+     QScreen::physHeight = qRound(QScreen::dh * 25.4 / dpi);
+
+     const QStringList args = displaySpec.split(QLatin1Char(':'),
+                                                QString::SkipEmptyParts);
+     grayscale = args.contains(QLatin1String(&quot;grayscale&quot;), Qt::CaseInsensitive);
+
+     return true;
+ }
+
+ void SvgalibScreen::initColorMap()
+ {
+     const int numColors = vga_getcolors();
+     if (numColors == 2 || numColors &gt; 256) {
+         screencols = 0;
+         return; <span class="comment">// not a palette based mode</span>
+     }
+
+     if (numColors == 16) {
+         if (grayscale) {
+             for (int i = 0; i &lt; 256; ++i) {
+                 const int c = i * 16 / 256;
+                 vga_setpalette(i, c, c, c);
+             }
+             screencols = 256; <span class="comment">// XXX: takes advantage of optimization in alloc()</span>
+         } else { <span class="comment">// read in EGA palette</span>
+             int r, g, b;
+             for (int i = 0; i &lt; 16; ++i) {
+                 vga_getpalette(i, &amp;r, &amp;g, &amp;b);
+                 screenclut[i] = qRgb(r, g, b);
+             }
+             screencols = 16;
+         }
+
+         return;
+     }
+
+     Q_ASSERT(numColors == 256);
+
+     if (grayscale) {
+         for (int i = 0; i &lt; 256; ++i) {
+             const int c = i * 64 / 256;
+             vga_setpalette(i, c, c, c);
+         }
+     } else {
+         int i = 0;
+
+ #if 0
+         <span class="comment">// read in EGA palette</span>
+         while (i &lt; 16) {
+             int r, g, b;
+             vga_getpalette(i, &amp;r, &amp;g, &amp;b);
+             screenclut[i] = qRgb(r, g, b);
+             ++i;
+         }
+         screencols = 16;
+ #endif
+
+         <span class="comment">// 6 * 6 * 6 color cube</span>
+         for (int r = 0; r &lt; 6; ++r) {
+             for (int g = 0; g &lt; 6; ++g) {
+                 for (int b = 0; b &lt; 6; ++b) {
+                     vga_setpalette(i, r * 64/6, g * 64/6, b * 64/6);
+                     screenclut[i] = qRgb(r * 256/6, g * 256/6, b * 256/6);
+                     ++i;
+                 }
+             }
+         }
+         screencols = i;
+
+         while (i &lt; 256) {
+             screenclut[i] = qRgb(0, 0, 0);
+             ++i;
+         }
+     }
+ }
+
+ bool SvgalibScreen::initDevice()
+ {
+     if (vga_init() != 0) {
+         qCritical(&quot;SvgalibScreen::initDevice(): unable to initialize svgalib&quot;);
+         return false;
+     }
+
+     int mode = vga_getdefaultmode();
+     if (vga_setmode(mode) == -1) {
+         qCritical(&quot;SvgalibScreen::initialize(): unable to set graphics mode&quot;);
+         return false;
+     }
+
+     if (gl_setcontextvga(mode) != 0) {
+         qCritical(&quot;SvgalibScreen::initDevice(): unable to set vga context&quot;);
+         return false;
+     }
+     context = gl_allocatecontext();
+     gl_getcontext(context);
+
+     vga_modeinfo *modeinfo = vga_getmodeinfo(mode);
+     if (modeinfo-&gt;flags &amp; IS_LINEAR)
+         QScreen::data = vga_getgraphmem();
+
+     initColorMap();
+
+     QScreenCursor::initSoftwareCursor();
+     return true;
+ }
+
+ void SvgalibScreen::shutdownDevice()
+ {
+     gl_freecontext(context);
+     vga_setmode(TEXT);
+ }
+
+ void SvgalibScreen::disconnect()
+ {
+ }
+
+ void SvgalibScreen::solidFill(const QColor &amp;color, const QRegion &amp;reg)
+ {
+     int c;
+     if (depth() == 4 || depth() == 8)
+         c = alloc(color.red(), color.green(), color.blue());
+     else
+         c = gl_rgbcolor(color.red(), color.green(), color.blue());
+
+     const QVector&lt;QRect&gt; rects = (reg &amp; region()).rects();
+     for (int i = 0; i &lt; rects.size(); ++i) {
+         const QRect r = rects.at(i);
+         gl_fillbox(r.left(), r.top(), r.width(), r.height(), c);
+     }
+ }
+
+ void SvgalibScreen::blit16To8(const QImage &amp;image,
+                               const QPoint &amp;topLeft, const QRegion &amp;region)
+ {
+     const int imageStride = image.bytesPerLine() / 2;
+     const QVector&lt;QRect&gt; rects = region.rects();
+
+     for (int i = 0; i &lt; rects.size(); ++i) {
+         const QRect r = rects.at(i).translated(-topLeft);
+         int y = r.y();
+         const quint16 *s = reinterpret_cast&lt;const quint16*&gt;(image.scanLine(y));
+
+         while (y &lt;= r.bottom()) {
+             int x1 = r.x();
+             while (x1 &lt;= r.right()) {
+                 const quint16 c = s[x1];
+                 int x2 = x1;
+                 <span class="comment">// find span length</span>
+                 while ((x2+1 &lt; r.right()) &amp;&amp; (s[x2+1] == c))
+                     ++x2;
+                 gl_hline(x1 + topLeft.x(), y + topLeft.y(), x2 + topLeft.x(),
+                          qt_colorConvert&lt;quint8, quint16&gt;(c, 0));
+                 x1 = x2 + 1;
+             }
+             s += imageStride;
+             ++y;
+         }
+     }
+ }
+
+ void SvgalibScreen::blit32To8(const QImage &amp;image,
+                               const QPoint &amp;topLeft, const QRegion &amp;region)
+ {
+     const int imageStride = image.bytesPerLine() / 4;
+     const QVector&lt;QRect&gt; rects = region.rects();
+
+     for (int i = 0; i &lt; rects.size(); ++i) {
+         const QRect r = rects.at(i).translated(-topLeft);
+         int y = r.y();
+         const quint32 *s = reinterpret_cast&lt;const quint32*&gt;(image.scanLine(y));
+
+         while (y &lt;= r.bottom()) {
+             int x1 = r.x();
+             while (x1 &lt;= r.right()) {
+                 const quint32 c = s[x1];
+                 int x2 = x1;
+                 <span class="comment">// find span length</span>
+                 while ((x2+1 &lt; r.right()) &amp;&amp; (s[x2+1] == c))
+                     ++x2;
+                 gl_hline(x1 + topLeft.x(), y + topLeft.y(), x2 + topLeft.x(),
+                          qt_colorConvert&lt;quint8, quint32&gt;(c, 0));
+                 x1 = x2 + 1;
+             }
+             s += imageStride;
+             ++y;
+         }
+     }
+ }
+
+ void SvgalibScreen::blit(const QImage &amp;img, const QPoint &amp;topLeft,
+                          const QRegion &amp;reg)
+ {
+     if (depth() == 8) {
+         switch (img.format()) {
+         case QImage::Format_RGB16:
+             blit16To8(img, topLeft, reg);
+             return;
+         case QImage::Format_RGB32:
+         case QImage::Format_ARGB32:
+         case QImage::Format_ARGB32_Premultiplied:
+             blit32To8(img, topLeft, reg);
+             return;
+         default:
+             break;
+         }
+     }
+
+     if (img.format() != pixelFormat()) {
+         if (base())
+             QScreen::blit(img, topLeft, reg);
+         return;
+     }
+
+     const QVector&lt;QRect&gt; rects = (reg &amp; region()).rects();
+
+     for (int i = 0; i &lt; rects.size(); ++i) {
+         const QRect r = rects.at(i);
+         gl_putboxpart(r.x(), r.y(), r.width(), r.height(),
+                       img.width(), img.height(),
+                       static_cast&lt;void*&gt;(const_cast&lt;uchar*&gt;(img.bits())),
+                       r.x() - topLeft.x(), r.y() - topLeft.y());
+     }
+ }
+
+ QWSWindowSurface* SvgalibScreen::createSurface(QWidget *widget) const
+ {
+     if (base()) {
+         static int onScreenPaint = -1;
+         if (onScreenPaint == -1)
+             onScreenPaint = qgetenv(&quot;QT_ONSCREEN_PAINT&quot;).toInt();
+
+         if (onScreenPaint &gt; 0 || widget-&gt;testAttribute(Qt::WA_PaintOnScreen))
+             return new SvgalibSurface(widget);
+     }
+     return QScreen::createSurface(widget);
+ }
+
+ QWSWindowSurface* SvgalibScreen::createSurface(const QString &amp;key) const
+ {
+     if (key == QLatin1String(&quot;svgalib&quot;))
+         return new SvgalibSurface;
+     return QScreen::createSurface(key);
+ }</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: main.cpp Example File (animation/states/main.cpp)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">main.cpp Example File<br /><span class="small-subtitle">animation/states/main.cpp</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the QtCore module of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+
+ #include &lt;QtGui&gt;
+
+ class Pixmap : public QGraphicsObject
+ {
+     Q_OBJECT
+ public:
+     Pixmap(const QPixmap &amp;pix) : QGraphicsObject(), p(pix)
+     {
+     }
+
+     void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
+     {
+         painter-&gt;drawPixmap(QPointF(), p);
+     }
+
+     QRectF boundingRect() const
+     {
+         return QRectF( QPointF(0, 0), p.size());
+     }
+
+ private:
+     QPixmap p;
+ };
+
+ int main(int argc, char *argv[])
+ {
+     Q_INIT_RESOURCE(states);
+
+     QApplication app(argc, argv);
+
+     <span class="comment">// Text edit and button</span>
+     QTextEdit *edit = new QTextEdit;
+     edit-&gt;setText(&quot;asdf lkjha yuoiqwe asd iuaysd u iasyd uiy &quot;
+                   &quot;asdf lkjha yuoiqwe asd iuaysd u iasyd uiy &quot;
+                   &quot;asdf lkjha yuoiqwe asd iuaysd u iasyd uiy &quot;
+                   &quot;asdf lkjha yuoiqwe asd iuaysd u iasyd uiy!&quot;);
+
+     QPushButton *button = new QPushButton;
+     QGraphicsProxyWidget *buttonProxy = new QGraphicsProxyWidget;
+     buttonProxy-&gt;setWidget(button);
+     QGraphicsProxyWidget *editProxy = new QGraphicsProxyWidget;
+     editProxy-&gt;setWidget(edit);
+
+     QGroupBox *box = new QGroupBox;
+     box-&gt;setFlat(true);
+     box-&gt;setTitle(&quot;Options&quot;);
+
+     QVBoxLayout *layout2 = new QVBoxLayout;
+     box-&gt;setLayout(layout2);
+     layout2-&gt;addWidget(new QRadioButton(&quot;Herring&quot;));
+     layout2-&gt;addWidget(new QRadioButton(&quot;Blue Parrot&quot;));
+     layout2-&gt;addWidget(new QRadioButton(&quot;Petunias&quot;));
+     layout2-&gt;addStretch();
+
+     QGraphicsProxyWidget *boxProxy = new QGraphicsProxyWidget;
+     boxProxy-&gt;setWidget(box);
+
+     <span class="comment">// Parent widget</span>
+     QGraphicsWidget *widget = new QGraphicsWidget;
+     QGraphicsLinearLayout *layout = new QGraphicsLinearLayout(Qt::Vertical, widget);
+     layout-&gt;addItem(editProxy);
+     layout-&gt;addItem(buttonProxy);
+     widget-&gt;setLayout(layout);
+
+     Pixmap *p1 = new Pixmap(QPixmap(&quot;:/digikam.png&quot;));
+     Pixmap *p2 = new Pixmap(QPixmap(&quot;:/akregator.png&quot;));
+     Pixmap *p3 = new Pixmap(QPixmap(&quot;:/accessories-dictionary.png&quot;));
+     Pixmap *p4 = new Pixmap(QPixmap(&quot;:/k3b.png&quot;));
+     Pixmap *p5 = new Pixmap(QPixmap(&quot;:/help-browser.png&quot;));
+     Pixmap *p6 = new Pixmap(QPixmap(&quot;:/kchart.png&quot;));
+
+     QGraphicsScene scene(0, 0, 400, 300);
+     scene.setBackgroundBrush(scene.palette().window());
+     scene.addItem(widget);
+     scene.addItem(boxProxy);
+     scene.addItem(p1);
+     scene.addItem(p2);
+     scene.addItem(p3);
+     scene.addItem(p4);
+     scene.addItem(p5);
+     scene.addItem(p6);
+
+     QStateMachine machine;
+     QState *state1 = new QState(&amp;machine);
+     QState *state2 = new QState(&amp;machine);
+     QState *state3 = new QState(&amp;machine);
+     machine.setInitialState(state1);
+
+     <span class="comment">// State 1</span>
+     state1-&gt;assignProperty(button, &quot;text&quot;, &quot;Switch to state 2&quot;);
+     state1-&gt;assignProperty(widget, &quot;geometry&quot;, QRectF(0, 0, 400, 150));
+     state1-&gt;assignProperty(box, &quot;geometry&quot;, QRect(-200, 150, 200, 150));
+     state1-&gt;assignProperty(p1, &quot;pos&quot;, QPointF(68, 185));
+     state1-&gt;assignProperty(p2, &quot;pos&quot;, QPointF(168, 185));
+     state1-&gt;assignProperty(p3, &quot;pos&quot;, QPointF(268, 185));
+     state1-&gt;assignProperty(p4, &quot;pos&quot;, QPointF(68-150, 48-150));
+     state1-&gt;assignProperty(p5, &quot;pos&quot;, QPointF(168, 48-150));
+     state1-&gt;assignProperty(p6, &quot;pos&quot;, QPointF(268+150, 48-150));
+     state1-&gt;assignProperty(p1, &quot;rotation&quot;, qreal(0));
+     state1-&gt;assignProperty(p2, &quot;rotation&quot;, qreal(0));
+     state1-&gt;assignProperty(p3, &quot;rotation&quot;, qreal(0));
+     state1-&gt;assignProperty(p4, &quot;rotation&quot;, qreal(-270));
+     state1-&gt;assignProperty(p5, &quot;rotation&quot;, qreal(-90));
+     state1-&gt;assignProperty(p6, &quot;rotation&quot;, qreal(270));
+     state1-&gt;assignProperty(boxProxy, &quot;opacity&quot;, qreal(0));
+     state1-&gt;assignProperty(p1, &quot;opacity&quot;, qreal(1));
+     state1-&gt;assignProperty(p2, &quot;opacity&quot;, qreal(1));
+     state1-&gt;assignProperty(p3, &quot;opacity&quot;, qreal(1));
+     state1-&gt;assignProperty(p4, &quot;opacity&quot;, qreal(0));
+     state1-&gt;assignProperty(p5, &quot;opacity&quot;, qreal(0));
+     state1-&gt;assignProperty(p6, &quot;opacity&quot;, qreal(0));
+
+     <span class="comment">// State 2</span>
+     state2-&gt;assignProperty(button, &quot;text&quot;, &quot;Switch to state 3&quot;);
+     state2-&gt;assignProperty(widget, &quot;geometry&quot;, QRectF(200, 150, 200, 150));
+     state2-&gt;assignProperty(box, &quot;geometry&quot;, QRect(9, 150, 190, 150));
+     state2-&gt;assignProperty(p1, &quot;pos&quot;, QPointF(68-150, 185+150));
+     state2-&gt;assignProperty(p2, &quot;pos&quot;, QPointF(168, 185+150));
+     state2-&gt;assignProperty(p3, &quot;pos&quot;, QPointF(268+150, 185+150));
+     state2-&gt;assignProperty(p4, &quot;pos&quot;, QPointF(64, 48));
+     state2-&gt;assignProperty(p5, &quot;pos&quot;, QPointF(168, 48));
+     state2-&gt;assignProperty(p6, &quot;pos&quot;, QPointF(268, 48));
+     state2-&gt;assignProperty(p1, &quot;rotation&quot;, qreal(-270));
+     state2-&gt;assignProperty(p2, &quot;rotation&quot;, qreal(90));
+     state2-&gt;assignProperty(p3, &quot;rotation&quot;, qreal(270));
+     state2-&gt;assignProperty(p4, &quot;rotation&quot;, qreal(0));
+     state2-&gt;assignProperty(p5, &quot;rotation&quot;, qreal(0));
+     state2-&gt;assignProperty(p6, &quot;rotation&quot;, qreal(0));
+     state2-&gt;assignProperty(boxProxy, &quot;opacity&quot;, qreal(1));
+     state2-&gt;assignProperty(p1, &quot;opacity&quot;, qreal(0));
+     state2-&gt;assignProperty(p2, &quot;opacity&quot;, qreal(0));
+     state2-&gt;assignProperty(p3, &quot;opacity&quot;, qreal(0));
+     state2-&gt;assignProperty(p4, &quot;opacity&quot;, qreal(1));
+     state2-&gt;assignProperty(p5, &quot;opacity&quot;, qreal(1));
+     state2-&gt;assignProperty(p6, &quot;opacity&quot;, qreal(1));
+
+     <span class="comment">// State 3</span>
+     state3-&gt;assignProperty(button, &quot;text&quot;, &quot;Switch to state 1&quot;);
+     state3-&gt;assignProperty(p1, &quot;pos&quot;, QPointF(0, 5));
+     state3-&gt;assignProperty(p2, &quot;pos&quot;, QPointF(0, 5 + 64 + 5));
+     state3-&gt;assignProperty(p3, &quot;pos&quot;, QPointF(5, 5 + (64 + 5) + 64));
+     state3-&gt;assignProperty(p4, &quot;pos&quot;, QPointF(5 + 64 + 5, 5));
+     state3-&gt;assignProperty(p5, &quot;pos&quot;, QPointF(5 + 64 + 5, 5 + 64 + 5));
+     state3-&gt;assignProperty(p6, &quot;pos&quot;, QPointF(5 + 64 + 5, 5 + (64 + 5) + 64));
+     state3-&gt;assignProperty(widget, &quot;geometry&quot;, QRectF(138, 5, 400 - 138, 200));
+     state3-&gt;assignProperty(box, &quot;geometry&quot;, QRect(5, 205, 400, 90));
+     state3-&gt;assignProperty(p1, &quot;opacity&quot;, qreal(1));
+     state3-&gt;assignProperty(p2, &quot;opacity&quot;, qreal(1));
+     state3-&gt;assignProperty(p3, &quot;opacity&quot;, qreal(1));
+     state3-&gt;assignProperty(p4, &quot;opacity&quot;, qreal(1));
+     state3-&gt;assignProperty(p5, &quot;opacity&quot;, qreal(1));
+     state3-&gt;assignProperty(p6, &quot;opacity&quot;, qreal(1));
+
+     QAbstractTransition *t1 = state1-&gt;addTransition(button, SIGNAL(clicked()), state2);
+     QSequentialAnimationGroup *animation1SubGroup = new QSequentialAnimationGroup;
+     animation1SubGroup-&gt;addPause(250);
+     animation1SubGroup-&gt;addAnimation(new QPropertyAnimation(box, &quot;geometry&quot;));
+     t1-&gt;addAnimation(animation1SubGroup);
+     t1-&gt;addAnimation(new QPropertyAnimation(widget, &quot;geometry&quot;));
+     t1-&gt;addAnimation(new QPropertyAnimation(p1, &quot;pos&quot;));
+     t1-&gt;addAnimation(new QPropertyAnimation(p2, &quot;pos&quot;));
+     t1-&gt;addAnimation(new QPropertyAnimation(p3, &quot;pos&quot;));
+     t1-&gt;addAnimation(new QPropertyAnimation(p4, &quot;pos&quot;));
+     t1-&gt;addAnimation(new QPropertyAnimation(p5, &quot;pos&quot;));
+     t1-&gt;addAnimation(new QPropertyAnimation(p6, &quot;pos&quot;));
+     t1-&gt;addAnimation(new QPropertyAnimation(p1, &quot;rotation&quot;));
+     t1-&gt;addAnimation(new QPropertyAnimation(p2, &quot;rotation&quot;));
+     t1-&gt;addAnimation(new QPropertyAnimation(p3, &quot;rotation&quot;));
+     t1-&gt;addAnimation(new QPropertyAnimation(p4, &quot;rotation&quot;));
+     t1-&gt;addAnimation(new QPropertyAnimation(p5, &quot;rotation&quot;));
+     t1-&gt;addAnimation(new QPropertyAnimation(p6, &quot;rotation&quot;));
+     t1-&gt;addAnimation(new QPropertyAnimation(p1, &quot;opacity&quot;));
+     t1-&gt;addAnimation(new QPropertyAnimation(p2, &quot;opacity&quot;));
+     t1-&gt;addAnimation(new QPropertyAnimation(p3, &quot;opacity&quot;));
+     t1-&gt;addAnimation(new QPropertyAnimation(p4, &quot;opacity&quot;));
+     t1-&gt;addAnimation(new QPropertyAnimation(p5, &quot;opacity&quot;));
+     t1-&gt;addAnimation(new QPropertyAnimation(p6, &quot;opacity&quot;));
+
+     QAbstractTransition *t2 = state2-&gt;addTransition(button, SIGNAL(clicked()), state3);
+     t2-&gt;addAnimation(new QPropertyAnimation(box, &quot;geometry&quot;));
+     t2-&gt;addAnimation(new QPropertyAnimation(widget, &quot;geometry&quot;));
+     t2-&gt;addAnimation(new QPropertyAnimation(p1, &quot;pos&quot;));
+     t2-&gt;addAnimation(new QPropertyAnimation(p2, &quot;pos&quot;));
+     t2-&gt;addAnimation(new QPropertyAnimation(p3, &quot;pos&quot;));
+     t2-&gt;addAnimation(new QPropertyAnimation(p4, &quot;pos&quot;));
+     t2-&gt;addAnimation(new QPropertyAnimation(p5, &quot;pos&quot;));
+     t2-&gt;addAnimation(new QPropertyAnimation(p6, &quot;pos&quot;));
+     t2-&gt;addAnimation(new QPropertyAnimation(p1, &quot;rotation&quot;));
+     t2-&gt;addAnimation(new QPropertyAnimation(p2, &quot;rotation&quot;));
+     t2-&gt;addAnimation(new QPropertyAnimation(p3, &quot;rotation&quot;));
+     t2-&gt;addAnimation(new QPropertyAnimation(p4, &quot;rotation&quot;));
+     t2-&gt;addAnimation(new QPropertyAnimation(p5, &quot;rotation&quot;));
+     t2-&gt;addAnimation(new QPropertyAnimation(p6, &quot;rotation&quot;));
+     t2-&gt;addAnimation(new QPropertyAnimation(p1, &quot;opacity&quot;));
+     t2-&gt;addAnimation(new QPropertyAnimation(p2, &quot;opacity&quot;));
+     t2-&gt;addAnimation(new QPropertyAnimation(p3, &quot;opacity&quot;));
+     t2-&gt;addAnimation(new QPropertyAnimation(p4, &quot;opacity&quot;));
+     t2-&gt;addAnimation(new QPropertyAnimation(p5, &quot;opacity&quot;));
+     t2-&gt;addAnimation(new QPropertyAnimation(p6, &quot;opacity&quot;));
+
+     QAbstractTransition *t3 = state3-&gt;addTransition(button, SIGNAL(clicked()), state1);
+     t3-&gt;addAnimation(new QPropertyAnimation(box, &quot;geometry&quot;));
+     t3-&gt;addAnimation(new QPropertyAnimation(widget, &quot;geometry&quot;));
+     t3-&gt;addAnimation(new QPropertyAnimation(p1, &quot;pos&quot;));
+     t3-&gt;addAnimation(new QPropertyAnimation(p2, &quot;pos&quot;));
+     t3-&gt;addAnimation(new QPropertyAnimation(p3, &quot;pos&quot;));
+     t3-&gt;addAnimation(new QPropertyAnimation(p4, &quot;pos&quot;));
+     t3-&gt;addAnimation(new QPropertyAnimation(p5, &quot;pos&quot;));
+     t3-&gt;addAnimation(new QPropertyAnimation(p6, &quot;pos&quot;));
+     t3-&gt;addAnimation(new QPropertyAnimation(p1, &quot;rotation&quot;));
+     t3-&gt;addAnimation(new QPropertyAnimation(p2, &quot;rotation&quot;));
+     t3-&gt;addAnimation(new QPropertyAnimation(p3, &quot;rotation&quot;));
+     t3-&gt;addAnimation(new QPropertyAnimation(p4, &quot;rotation&quot;));
+     t3-&gt;addAnimation(new QPropertyAnimation(p5, &quot;rotation&quot;));
+     t3-&gt;addAnimation(new QPropertyAnimation(p6, &quot;rotation&quot;));
+     t3-&gt;addAnimation(new QPropertyAnimation(p1, &quot;opacity&quot;));
+     t3-&gt;addAnimation(new QPropertyAnimation(p2, &quot;opacity&quot;));
+     t3-&gt;addAnimation(new QPropertyAnimation(p3, &quot;opacity&quot;));
+     t3-&gt;addAnimation(new QPropertyAnimation(p4, &quot;opacity&quot;));
+     t3-&gt;addAnimation(new QPropertyAnimation(p5, &quot;opacity&quot;));
+     t3-&gt;addAnimation(new QPropertyAnimation(p6, &quot;opacity&quot;));
+
+     machine.start();
+
+     QGraphicsView view(&amp;scene);
+     view.show();
+
+     return app.exec();
+ }
+
+ #include &quot;main.moc&quot;</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

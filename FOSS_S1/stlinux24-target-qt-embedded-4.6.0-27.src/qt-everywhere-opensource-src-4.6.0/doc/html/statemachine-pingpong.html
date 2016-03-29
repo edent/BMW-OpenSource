@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- pingpong.qdoc -->
+<head>
+  <title>Qt 4.6: Ping Pong States Example</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">Ping Pong States Example<br /><span class="subtitle"></span>
+</h1>
+<p>Files:</p>
+<ul>
+<li><a href="statemachine-pingpong-main-cpp.html">statemachine/pingpong/main.cpp</a></li>
+<li><a href="statemachine-pingpong-pingpong-pro.html">statemachine/pingpong/pingpong.pro</a></li>
+</ul>
+<p>The Ping Pong States example shows how to use parallel states together with custom events and transitions in <a href="statemachine-api.html">The State Machine Framework</a>.</p>
+<p>This example implements a statechart where two states communicate by posting events to the state machine. The state chart looks as follows:</p>
+<p align="center"><img src="images/pingpong-example.png" /></p><p>The <tt>pinger</tt> and <tt>ponger</tt> states are parallel states, i.e&#x2e; they are entered simultaneously and will take transitions independently of eachother.</p>
+<p>The <tt>pinger</tt> state will post the first <tt>ping</tt> event upon entry; the <tt>ponger</tt> state will respond by posting a <tt>pong</tt> event; this will cause the <tt>pinger</tt> state to post a new <tt>ping</tt> event; and so on.</p>
+<pre> class PingEvent : public QEvent
+ {
+ public:
+     PingEvent() : QEvent(QEvent::Type(QEvent::User+2))
+         {}
+ };
+
+ class PongEvent : public QEvent
+ {
+ public:
+     PongEvent() : QEvent(QEvent::Type(QEvent::User+3))
+         {}
+ };</pre>
+<p>Two custom events are defined, <tt>PingEvent</tt> and <tt>PongEvent</tt>.</p>
+<pre> class Pinger : public QState
+ {
+ public:
+     Pinger(QState *parent)
+         : QState(parent) {}
+
+ protected:
+     virtual void onEntry(QEvent *)
+     {
+         machine()-&gt;postEvent(new PingEvent());
+         fprintf(stdout, &quot;ping?\n&quot;);
+     }
+ };</pre>
+<p>The <tt>Pinger</tt> class defines a state that posts a <tt>PingEvent</tt> to the state machine when the state is entered.</p>
+<pre> class PingTransition : public QAbstractTransition
+ {
+ public:
+     PingTransition() {}
+
+ protected:
+     virtual bool eventTest(QEvent *e) {
+         return (e-&gt;type() == QEvent::User+2);
+     }
+     virtual void onTransition(QEvent *)
+     {
+         machine()-&gt;postDelayedEvent(new PongEvent(), 500);
+         fprintf(stdout, &quot;pong!\n&quot;);
+     }
+ };</pre>
+<p>The <tt>PingTransition</tt> class defines a transition that is triggered by events of type <tt>PingEvent</tt>, and that posts a <tt>PongEvent</tt> (with a delay of 500 milliseconds) to the state machine when the transition is triggered.</p>
+<pre> class PongTransition : public QAbstractTransition
+ {
+ public:
+     PongTransition() {}
+
+ protected:
+     virtual bool eventTest(QEvent *e) {
+         return (e-&gt;type() == QEvent::User+3);
+     }
+     virtual void onTransition(QEvent *)
+     {
+         machine()-&gt;postDelayedEvent(new PingEvent(), 500);
+         fprintf(stdout, &quot;ping?\n&quot;);
+     }
+ };</pre>
+<p>The <tt>PongTransition</tt> class defines a transition that is triggered by events of type <tt>PongEvent</tt>, and that posts a <tt>PingEvent</tt> (with a delay of 500 milliseconds) to the state machine when the transition is triggered.</p>
+<pre> int main(int argc, char **argv)
+ {
+     QCoreApplication app(argc, argv);
+
+     QStateMachine machine;
+     QState *group = new QState(QState::ParallelStates);
+     group-&gt;setObjectName(&quot;group&quot;);</pre>
+<p>The main() function begins by creating a state machine and a parallel state group.</p>
+<pre>     Pinger *pinger = new Pinger(group);
+     pinger-&gt;setObjectName(&quot;pinger&quot;);
+     pinger-&gt;addTransition(new PongTransition());
+
+     QState *ponger = new QState(group);
+     ponger-&gt;setObjectName(&quot;ponger&quot;);
+     ponger-&gt;addTransition(new PingTransition());</pre>
+<p>Next, the <tt>pinger</tt> and <tt>ponger</tt> states are created, with the parallel state group as their parent state. Note that the transitions are <i>targetless</i>. When such a transition is triggered, the source state won't be exited and re-entered; only the transition's onTransition() function will be called, and the state machine's configuration will remain the same, which is precisely what we want in this case.</p>
+<pre>     machine.addState(group);
+     machine.setInitialState(group);
+     machine.start();
+
+     return app.exec();
+ }</pre>
+<p>Finally, the group is added to the state machine, the machine is started, and the application event loop is entered.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

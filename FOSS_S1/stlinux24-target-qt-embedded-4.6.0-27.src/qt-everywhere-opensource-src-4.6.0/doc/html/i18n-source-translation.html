@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- i18n.qdoc -->
+<head>
+  <title>Qt 4.6: Writing Source Code for Translation</title>
+  <link rel="prev" href="internationalization.html" />
+  <link rel="contents" href="internationalization.html" />
+  <link rel="next" href="i18n-plural-rules.html" />
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><p>
+[Previous: <a href="internationalization.html">Internationalization with Qt</a>]
+[<a href="internationalization.html">Internationalization with Qt</a>]
+[Next: <a href="i18n-plural-rules.html">Translation Rules for Plurals</a>]
+</p>
+<h1 class="title">Writing Source Code for Translation<br /><span class="subtitle"></span>
+</h1>
+<ul><li><a href="#the-basics">The Basics</a></li>
+<li><a href="#defining-a-translation-context">Defining a Translation Context</a></li>
+<li><a href="#using-tr-to-obtain-a-translation">Using tr() to Obtain a Translation</a></li>
+<li><a href="#translator-comments">Translator Comments</a></li>
+<li><a href="#adding-meta-data-to-strings">Adding Meta-Data to Strings</a></li>
+<li><a href="#disambiguation">Disambiguation</a></li>
+<li><a href="#character-encodings">Character Encodings</a></li>
+<li><a href="#handling-plurals">Handling Plurals</a></li>
+<li><a href="#enabling-translation">Enabling Translation</a></li>
+<li><a href="#further-reading">Further Reading</a></li>
+</ul>
+<a name="the-basics"></a>
+<h3>The Basics</h3>
+<p>Developers use the <a href="qobject.html#tr">tr()</a> function to obtain translated text for their classes, typically for display purposes. This function is also used to indicate which text strings in an application are translatable.</p>
+<p>Qt indexes each translatable string by the <i>translation context</i> it is associated with; this is generally the name of the <a href="qobject.html">QObject</a> subclass it is used in.</p>
+<p>Translation contexts are defined for new <a href="qobject.html">QObject</a>-based classes by the use of the <a href="qobject.html#Q_OBJECT">Q_OBJECT</a> macro in each new class definition.</p>
+<p>When tr() is called, it looks up the translatable string using a <a href="qtranslator.html">QTranslator</a> object. For translation to work, one or more of these must have been installed on the application object in the way described in the <a href="#enabling-translation">Enabling Translation</a> section below.</p>
+<a name="defining-a-translation-context"></a>
+<h3>Defining a Translation Context</h3>
+<p>The translation context for <a href="qobject.html">QObject</a> and each <a href="qobject.html">QObject</a> subclass is the class name itself. Developers subclassing <a href="qobject.html">QObject</a> must use the <a href="qobject.html#Q_OBJECT">Q_OBJECT</a> macro in their class definition to override the translation context. This macro sets the context to the name of the subclass.</p>
+<p>For example, the following class definition includes the <a href="qobject.html#Q_OBJECT">Q_OBJECT</a> macro, implementing a new tr() that uses the <tt>MainWindow</tt> context:</p>
+<pre> class MainWindow : public QMainWindow
+ {
+     Q_OBJECT
+
+ public:
+     MainWindow();
+     ...</pre>
+<p>If <a href="qobject.html#Q_OBJECT">Q_OBJECT</a> is not used in a class definition, the context will be inherited from the base class. For example, since all <a href="qobject.html">QObject</a>-based classes in Qt provide a context, a new <a href="qwidget.html">QWidget</a> subclass defined without a <a href="qobject.html#Q_OBJECT">Q_OBJECT</a> macro will use the <tt>QWidget</tt> context if its tr() function is invoked.</p>
+<a name="using-tr-to-obtain-a-translation"></a>
+<h3>Using tr() to Obtain a Translation</h3>
+<p>The following example shows how a translation is obtained for the class shown in the previous section:</p>
+<pre> void MainWindow::createMenus()
+ {
+     fileMenu = menuBar()-&gt;addMenu(tr(&quot;&amp;File&quot;));
+     ...</pre>
+<p>Here, the translation context is <tt>MainWindow</tt> because it is the <tt>MainWindow::tr()</tt> function that is invoked. The text returned by the tr() function is a translation of &quot;&amp;File&quot; obtained from the <tt>MainWindow</tt> context.</p>
+<p>When Qt's translation tool, <a href="linguist-manager.html#lupdate">lupdate</a>, is used to process a set of source files, the text wrapped in tr() calls is stored in a section of the translation file that corresponds to its translation context.</p>
+<p>In some situations, it is useful to give a translation context explicitly by fully qualifying the call to tr(); for example:</p>
+<pre> QString text = QScrollBar::tr(&quot;Page up&quot;);</pre>
+<p>This call obtains the translated text for &quot;Page up&quot; from the <tt>QScrollBar</tt> context. Developers can also use the <a href="qcoreapplication.html#translate">QCoreApplication::translate</a>() function to obtain a translation for a particular translation context.</p>
+<a name="translator-comments"></a>
+<h3>Translator Comments</h3>
+<p>Developers can include information about each translatable string to help translators with the translation process. These are extracted when <a href="linguist-manager.html#lupdate">lupdate</a> is used to process the source files. The recommended way to add comments is to annotate the tr() calls in your code with comments of the form:</p>
+<p><tt>//: ..&#x2e;</tt></p>
+<p>or</p>
+<p><tt><tt>/*</tt>: ..&#x2e; <tt>*/</tt></tt></p>
+<p>Examples:</p>
+<pre><span class="comment"> //: This name refers to a host name.</span>
+ hostNameLabel-&gt;setText(tr(&quot;Name:&quot;));
+
+<span class="comment"> /*: This text refers to a C++ code example. */</span>
+ QString example = tr(&quot;Example&quot;);</pre>
+<p>In these examples, the comments will be associated with the strings passed to tr() in the context of each call.</p>
+<a name="adding-meta-data-to-strings"></a>
+<h3>Adding Meta-Data to Strings</h3>
+<p>Additional data can be attached to each translatable message. These are extracted when <a href="linguist-manager.html#lupdate">lupdate</a> is used to process the source files. The recommended way to add meta-data is to annotate the tr() calls in your code with comments of the form:</p>
+<p><tt>//= &lt;id&gt;</tt></p>
+<p>This can be used to give the message a unique identifier to support tools which need it.</p>
+<p>An alternative way to attach meta-data is to use the following syntax:</p>
+<p><tt>//~ &lt;field name&gt; &lt;field contents&gt;</tt></p>
+<p>This can be used to attach meta-data to the message. The field name should consist of a domain prefix (possibly the conventional file extension of the file format the field is inspired by), a hyphen and the actual field name in underscore-delimited notation. For storage in TS files, the field name together with the prefix &quot;extra-&quot; will form an XML element name. The field contents will be XML-escaped, but otherwise appear verbatim as the element's contents. Any number of unique fields can be added to each message.</p>
+<p>Example:</p>
+<pre><span class="comment"> //: This is a comment for the translator.</span>
+<span class="comment"> //= qtn_foo_bar</span>
+<span class="comment"> //~ loc-layout_id foo_dialog</span>
+<span class="comment"> //~ loc-blank False</span>
+<span class="comment"> //~ magic-stuff This might mean something magic.</span>
+ QString text = MyMagicClass::tr(&quot;Sim sala bim.&quot;);</pre>
+<p>Meta-data appearing right in front of a magic TRANSLATOR comment applies to the whole TS file.</p>
+<a name="disambiguation"></a>
+<h3>Disambiguation</h3>
+<p>If the same translatable string is used in different roles within the same translation context, an additional identifying string may be passed in the call to <a href="qobject.html#tr">tr()</a>. This optional disambiguation argument is used to distinguish between otherwise identical strings.</p>
+<p>Example:</p>
+<pre> MyWindow::MyWindow()
+ {
+     QLabel *senderLabel = new QLabel(tr(&quot;Name:&quot;));
+     QLabel *recipientLabel = new QLabel(tr(&quot;Name:&quot;, &quot;recipient&quot;));
+     ...</pre>
+<p>In Qt 4.4 and earlier, this disambiguation parameter was the preferred way to specify comments to translators.</p>
+<a name="character-encodings"></a>
+<h3>Character Encodings</h3>
+<p>You can set the encoding for the source text by calling <a href="qtextcodec.html#setCodecForTr">QTextCodec::setCodecForTr</a>(). By default, the source text is assumed to be in Latin-1 encoding.</p>
+<a name="handling-plurals"></a>
+<h3>Handling Plurals</h3>
+<p>Some translatable strings contain placeholders for integer values and need to be translated differently depending on the values in use.</p>
+<p>To help with this problem, developers pass an additional integer argument to the <a href="qobject.html#tr">tr()</a> function, and typically use a special notation for plurals in each translatable string.</p>
+<p>If this argument is equal or greater than zero, all occurrences of <tt>%n</tt> in the resulting string are replaced with a decimal representation of the value supplied. In addition, the translation used will adapt to the value according to the rules for each language.</p>
+<p>Example:</p>
+<pre> int n = messages.count();
+ showMessage(tr(&quot;%n message(s) saved&quot;, &quot;&quot;, n));</pre>
+<p>The table below shows what string is returned depending on the active translation:</p>
+<p><table class="generic" align="center" cellpadding="2" cellspacing="1" border="0">
+<thead><tr valign="top" class="qt-style"><th></th><th colspan="3">Active Translation</th></tr>
+<tr valign="top" class="qt-style"><th><i>n</i></th><th>No Translation</th><th>French</th><th>English</th></tr></thead>
+<tr valign="top" class="odd"><td>0</td><td>&quot;0 message(s) saved&quot;</td><td>&quot;0 message sauvegard&#xe9;&quot;</td><td>&quot;0 message<b>s</b> saved&quot;</td></tr>
+<tr valign="top" class="even"><td>1</td><td>&quot;1 message(s) saved&quot;</td><td>&quot;1 message sauvegard&#xe9;&quot;</td><td>&quot;1 message saved&quot;</td></tr>
+<tr valign="top" class="odd"><td>2</td><td>&quot;2 message(s) saved&quot;</td><td>&quot;2 message<b>s</b> sauvegard&#xe9;<b>s</b>&quot;</td><td>&quot;2 message<b>s</b> saved&quot;</td></tr>
+<tr valign="top" class="even"><td>37</td><td>&quot;37 message(s) saved&quot;</td><td>&quot;37 message<b>s</b> sauvegard&#xe9;<b>s</b>&quot;</td><td>&quot;37 message<b>s</b> saved&quot;</td></tr>
+</table></p>
+<p>This idiom is more flexible than the traditional approach; e.g&#x2e;,</p>
+<pre> n == 1 ? tr(&quot;%n message saved&quot;) : tr(&quot;%n messages saved&quot;)</pre>
+<p>because it also works with target languages that have several plural forms (e.g&#x2e;, Irish has a special &quot;dual&quot; form that should be used when <tt>n</tt> is 2), and it handles the <i>n</i> == 0 case correctly for languages such as French that require the singular. See the <a href="linguist-manual.html">Qt Linguist Manual</a> for details.</p>
+<p>Instead of <tt>%n</tt>, you can use <tt>%Ln</tt> to produce a localized representation of <i>n</i>. The conversion uses the default locale, set using <a href="qlocale.html#setDefault">QLocale::setDefault</a>(). (If no default locale was specified, the &quot;C&quot; locale is used.)</p>
+<p>A summary of the rules used to translate strings containing plurals can be found in the <a href="i18n-plural-rules.html">Translation Rules for Plurals</a> document.</p>
+<a name="enabling-translation"></a>
+<h3>Enabling Translation</h3>
+<p>Typically, your application's <tt>main()</tt> function will look like this:</p>
+<pre> int main(int argc, char *argv[])
+ {
+     QApplication app(argc, argv);
+
+     QTranslator qtTranslator;
+     qtTranslator.load(&quot;qt_&quot; + QLocale::system().name(),
+             QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+     app.installTranslator(&amp;qtTranslator);
+
+     QTranslator myappTranslator;
+     myappTranslator.load(&quot;myapp_&quot; + QLocale::system().name());
+     app.installTranslator(&amp;myappTranslator);
+
+     ...
+     return app.exec();
+ }</pre>
+<p>Note the use of <a href="qlibraryinfo.html#location">QLibraryInfo::location</a>() to locate the Qt translations. Developers should request the path to the translations at run-time by passing <a href="qlibraryinfo.html#LibraryLocation-enum">QLibraryInfo::TranslationsPath</a> to this function instead of using the <tt>QTDIR</tt> environment variable in their applications.</p>
+<a name="further-reading"></a>
+<h3>Further Reading</h3>
+<p><a href="linguist-manual.html">Qt Linguist Manual</a>, <a href="linguist-hellotr.html">Hello tr Example</a>, <a href="i18n-plural-rules.html">Translation Rules for Plurals</a></p>
+<p>
+[Previous: <a href="internationalization.html">Internationalization with Qt</a>]
+[<a href="internationalization.html">Internationalization with Qt</a>]
+[Next: <a href="i18n-plural-rules.html">Translation Rules for Plurals</a>]
+</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

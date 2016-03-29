@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qaxscript.cpp -->
+<head>
+  <title>Qt 4.6: QAxScriptEngine Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QAxScriptEngine" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QAxScriptEngine Class Reference<br /><span class="small-subtitle">[<a href="qaxcontainer.html">QAxContainer</a> module]</span>
+</h1>
+<p>The QAxScriptEngine class provides a wrapper around a script engine. <a href="#details">More...</a></p>
+<pre> #include &lt;QAxScriptEngine&gt;</pre><p><b>This class is not part of the Qt GUI Framework Edition.</b></p>
+<p>Inherits <a href="qaxobject.html">QAxObject</a>.</p>
+<ul>
+<li><a href="qaxscriptengine-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-types"></a>
+<h2>Public Types</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qaxscriptengine.html#State-enum">State</a></b> { Uninitialized, Initialized, Started, Connected, Disconnected, Closed }</td></tr>
+</table>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qaxscriptengine.html#QAxScriptEngine">QAxScriptEngine</a></b> ( const QString &amp; <i>language</i>, QAxScript * <i>script</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qaxscriptengine.html#dtor.QAxScriptEngine">~QAxScriptEngine</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qaxscriptengine.html#addItem">addItem</a></b> ( const QString &amp; <i>name</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qaxscriptengine.html#hasIntrospection">hasIntrospection</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qaxscriptengine.html#isValid">isValid</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">long </td><td class="memItemRight" valign="bottom"><b><a href="qaxscriptengine.html#queryInterface">queryInterface</a></b> ( const QUuid &amp; <i>uuid</i>, void ** <i>iface</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qaxscriptengine.html#scriptLanguage">scriptLanguage</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qaxscriptengine.html#setState">setState</a></b> ( State <i>st</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">State </td><td class="memItemRight" valign="bottom"><b><a href="qaxscriptengine.html#state">state</a></b> () const</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>1 public function inherited from <a href="qaxobject.html#public-functions">QAxObject</a></li>
+<li><div bar="2" class="fn"></div>29 public functions inherited from <a href="qobject.html#public-functions">QObject</a></li>
+<li><div bar="2" class="fn"></div>19 public functions inherited from <a href="qaxbase.html#public-functions">QAxBase</a></li>
+</ul>
+<hr />
+<a name="reimplemented-protected-functions"></a>
+<h2>Reimplemented Protected Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qaxscriptengine.html#initialize">initialize</a></b> ( IUnknown ** <i>ptr</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>1 protected function inherited from <a href="qaxobject.html#protected-functions">QAxObject</a></li>
+<li><div bar="2" class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+<li><div bar="2" class="fn"></div>5 protected functions inherited from <a href="qaxbase.html#protected-functions">QAxBase</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li><div class="fn"></div>1 property inherited from <a href="qobject.html#properties">QObject</a></li>
+<li><div class="fn"></div>1 property inherited from <a href="qaxbase.html#properties">QAxBase</a></li>
+<li><div class="fn"></div>1 public slot inherited from <a href="qobject.html#public-slots">QObject</a></li>
+<li><div class="fn"></div>1 signal inherited from <a href="qobject.html#signals">QObject</a></li>
+<li><div class="fn"></div>3 signals inherited from <a href="qaxbase.html#signals">QAxBase</a></li>
+<li><div class="fn"></div>5 static public members inherited from <a href="qobject.html#static-public-members">QObject</a></li>
+<li><div class="fn"></div>1 protected function inherited from <a href="qaxobject.html#protected-functions">QAxObject</a></li>
+<li><div class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+<li><div class="fn"></div>5 protected functions inherited from <a href="qaxbase.html#protected-functions">QAxBase</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QAxScriptEngine class provides a wrapper around a script engine.</p>
+<p>Every instance of the QAxScriptEngine class represents an interpreter for script code in a particular scripting language. The class is usually not used directly. The <a href="qaxscript.html">QAxScript</a> and <a href="qaxscriptmanager.html">QAxScriptManager</a> classes provide convenient functions to handle and call script code.</p>
+<p>Direct access to the script engine is provided through <a href="qaxscriptengine.html#queryInterface">queryInterface</a>().</p>
+<p><b>Warning:</b> This class is not available with the bcc5.5 and MingW compilers.</p>
+<p>See also <a href="qaxscript.html">QAxScript</a>, <a href="qaxscriptmanager.html">QAxScriptManager</a>, <a href="qaxbase.html">QAxBase</a>, and <a href="activeqt.html">ActiveQt Framework</a>.</p>
+<hr />
+<h2>Member Type Documentation</h2>
+<a name="//apple_ref/cpp/tag/QAxScriptEngine/State" />
+<a name="//apple_ref/cpp/econst/QAxScriptEngine/Uninitialized" />
+<a name="//apple_ref/cpp/econst/QAxScriptEngine/Initialized" />
+<a name="//apple_ref/cpp/econst/QAxScriptEngine/Started" />
+<a name="//apple_ref/cpp/econst/QAxScriptEngine/Connected" />
+<a name="//apple_ref/cpp/econst/QAxScriptEngine/Disconnected" />
+<a name="//apple_ref/cpp/econst/QAxScriptEngine/Closed" />
+<h3 class="fn"><a name="State-enum"></a>enum QAxScriptEngine::State</h3>
+<p>The State enumeration defines the different states a script engine can be in.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QAxScriptEngine::Uninitialized</tt></td><td align="center" valign="top"><tt>0</tt></td><td valign="top">The script has been created, but not yet initialized</td></tr>
+<tr><td valign="top"><tt>QAxScriptEngine::Initialized</tt></td><td align="center" valign="top"><tt>5</tt></td><td valign="top">The script has been initialized, but is not running</td></tr>
+<tr><td valign="top"><tt>QAxScriptEngine::Started</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">The script can execute code, but does not yet handle events</td></tr>
+<tr><td valign="top"><tt>QAxScriptEngine::Connected</tt></td><td align="center" valign="top"><tt>2</tt></td><td valign="top">The script can execute code and is connected so that it can handle events</td></tr>
+<tr><td valign="top"><tt>QAxScriptEngine::Disconnected</tt></td><td align="center" valign="top"><tt>3</tt></td><td valign="top">The script is loaded, but is not connected to event sources</td></tr>
+<tr><td valign="top"><tt>QAxScriptEngine::Closed</tt></td><td align="center" valign="top"><tt>4</tt></td><td valign="top">The script has been closed.</td></tr>
+</table></p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QAxScriptEngine/QAxScriptEngine" />
+<h3 class="fn"><a name="QAxScriptEngine"></a>QAxScriptEngine::QAxScriptEngine ( const <a href="qstring.html">QString</a> &amp; <i>language</i>, <a href="qaxscript.html">QAxScript</a> * <i>script</i> )</h3>
+<p>Constructs a <a href="qaxscriptengine.html">QAxScriptEngine</a> object interpreting script code in <i>language</i> provided by the code in <i>script</i>. This is usually done by the <a href="qaxscript.html">QAxScript</a> class when <a href="qaxscript.html#load">loading a script</a>.</p>
+<p>Instances of <a href="qaxscriptengine.html">QAxScriptEngine</a> should always have both a language and a script.</p>
+<a name="//apple_ref/cpp/instm/QAxScriptEngine/~QAxScriptEngine" />
+<h3 class="fn"><a name="dtor.QAxScriptEngine"></a>QAxScriptEngine::~QAxScriptEngine ()</h3>
+<p>Destroys the <a href="qaxscriptengine.html">QAxScriptEngine</a> object, releasing all allocated resources.</p>
+<a name="//apple_ref/cpp/instm/QAxScriptEngine/addItem" />
+<h3 class="fn"><a name="addItem"></a>void QAxScriptEngine::addItem ( const <a href="qstring.html">QString</a> &amp; <i>name</i> )</h3>
+<p>Registers an item with the script engine. Script code can refer to this item using <i>name</i>.</p>
+<a name="//apple_ref/cpp/instm/QAxScriptEngine/hasIntrospection" />
+<h3 class="fn"><a name="hasIntrospection"></a>bool QAxScriptEngine::hasIntrospection () const</h3>
+<p>Returns true if the script engine supports introspection; otherwise returns false.</p>
+<a name="//apple_ref/cpp/instm/QAxScriptEngine/initialize" />
+<h3 class="fn"><a name="initialize"></a>bool QAxScriptEngine::initialize ( IUnknown ** <i>ptr</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qaxbase.html#initialize">QAxBase::initialize</a>().</p>
+<a name="//apple_ref/cpp/instm/QAxScriptEngine/isValid" />
+<h3 class="fn"><a name="isValid"></a>bool QAxScriptEngine::isValid () const</h3>
+<p>Returns true if the script engine has been initialized correctly; otherwise returns false.</p>
+<a name="//apple_ref/cpp/instm/QAxScriptEngine/queryInterface" />
+<h3 class="fn"><a name="queryInterface"></a>long QAxScriptEngine::queryInterface ( const <a href="quuid.html">QUuid</a> &amp; <i>uuid</i>, void ** <i>iface</i> ) const</h3>
+<p>Requests the interface <i>uuid</i> from the script engine object and sets the value of <i>iface</i> to the provided interface, or to 0 if the requested interface could not be provided.</p>
+<p>Returns the result of the QueryInterface implementation of the COM object.</p>
+<a name="//apple_ref/cpp/instm/QAxScriptEngine/scriptLanguage" />
+<h3 class="fn"><a name="scriptLanguage"></a><a href="qstring.html">QString</a> QAxScriptEngine::scriptLanguage () const</h3>
+<p>Returns the scripting language, for example &quot;VBScript&quot;, or &quot;JScript&quot;.</p>
+<a name="//apple_ref/cpp/instm/QAxScriptEngine/setState" />
+<h3 class="fn"><a name="setState"></a>void QAxScriptEngine::setState ( <a href="qaxscriptengine.html#State-enum">State</a> <i>st</i> )</h3>
+<p>Sets the state of the script engine to <i>st</i>. Calling this function is usually not necessary.</p>
+<p>See also <a href="qaxscriptengine.html#state">state</a>().</p>
+<a name="//apple_ref/cpp/instm/QAxScriptEngine/state" />
+<h3 class="fn"><a name="state"></a><a href="qaxscriptengine.html#State-enum">State</a> QAxScriptEngine::state () const</h3>
+<p>Returns the state of the script engine.</p>
+<p>See also <a href="qaxscriptengine.html#setState">setState</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

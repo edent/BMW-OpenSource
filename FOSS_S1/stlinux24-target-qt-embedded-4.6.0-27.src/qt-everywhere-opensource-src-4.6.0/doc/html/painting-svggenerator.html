@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- svggenerator.qdoc -->
+<head>
+  <title>Qt 4.6: SVG Generator Example</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">SVG Generator Example<br /><span class="subtitle"></span>
+</h1>
+<p>Files:</p>
+<ul>
+<li><a href="painting-svggenerator-displaywidget-cpp.html">painting/svggenerator/displaywidget.cpp</a></li>
+<li><a href="painting-svggenerator-displaywidget-h.html">painting/svggenerator/displaywidget.h</a></li>
+<li><a href="painting-svggenerator-window-cpp.html">painting/svggenerator/window.cpp</a></li>
+<li><a href="painting-svggenerator-window-h.html">painting/svggenerator/window.h</a></li>
+<li><a href="painting-svggenerator-forms-window-ui.html">painting/svggenerator/forms/window.ui</a></li>
+<li><a href="painting-svggenerator-main-cpp.html">painting/svggenerator/main.cpp</a></li>
+<li><a href="painting-svggenerator-svggenerator-pro.html">painting/svggenerator/svggenerator.pro</a></li>
+<li><a href="painting-svggenerator-svggenerator-qrc.html">painting/svggenerator/svggenerator.qrc</a></li>
+</ul>
+<p>The SVG Generator example shows how to add SVG file export to applications.</p>
+<p align="center"><img src="images/svggenerator-example.png" /></p><p>Scalable Vector Graphics (SVG) is an XML-based language for describing two-dimensional vector graphics. Qt provides classes for rendering and generating SVG drawings. This example allows the user to create a simple picture and save it to an SVG file.</p>
+<p>The example consists of two classes: <tt>Window</tt> and <tt>DisplayWidget</tt>.</p>
+<p>The <tt>Window</tt> class contains the application logic and constructs the user interface from a Qt Designer UI file as described in the <a href="designer-using-a-ui-file.html#the-multiple-inheritance-approach">Qt Designer manual</a>. It also contains the code to write an SVG file.</p>
+<p>The <tt>DisplayWidget</tt> class performs all the work of painting a picture on screen. Since we want the SVG to resemble this picture as closely as possible, we make this code available to the <tt>Window</tt> class so that it can be used to generate SVG files.</p>
+<a name="the-displaywidget-class"></a>
+<h2>The DisplayWidget Class</h2>
+<p>The <tt>DisplayWidget</tt> class displays a drawing consisting of a selection of elements chosen by the user. These are defined using <tt>Shape</tt> and <tt>Background</tt> enums that are included within the class definition:</p>
+<pre> class DisplayWidget : public QWidget
+ {
+     Q_OBJECT
+
+ public:
+     enum Shape { House = 0, Car = 1 };
+     enum Background { Sky = 0, Trees = 1, Road = 2 };
+
+     DisplayWidget(QWidget *parent = 0);
+     QColor color() const;
+     void paint(QPainter &amp;painter);
+
+ public slots:
+     void setBackground(Background background);
+     void setColor(const QColor &amp;color);
+     void setShape(Shape shape);
+
+ protected:
+     void paintEvent(QPaintEvent *event);
+
+ private:
+     Background background;
+     QColor shapeColor;
+     Shape shape;
+     QHash&lt;Shape,QPainterPath&gt; shapeMap;
+     QPainterPath moon;
+     QPainterPath tree;
+ };</pre>
+<p>Much of this class is used to configure the appearance of the drawing. The <tt>paintEvent()</tt> and <tt>paint()</tt> functions are most relevant to the purpose of this example, so we will describe these here and leave the reader to look at the source code for the example to see how shapes and colors are handled.</p>
+<p>We reimplement the <a href="qwidget.html#paintEvent">QWidget::paintEvent</a>() function to display the drawing on screen:</p>
+<pre> void DisplayWidget::paintEvent(QPaintEvent * <span class="comment">/* event */</span>)
+ {
+     QPainter painter;
+     painter.begin(this);
+     painter.setRenderHint(QPainter::Antialiasing);
+     paint(painter);
+     painter.end();
+ }</pre>
+<p>Here, we only construct a <a href="qpainter.html">QPainter</a> object, begin painting on the device and set a render hint for improved output quality before calling the <tt>paint()</tt> function to perform the painting itself. When this returns, we close the painter and return.</p>
+<p>The <tt>paint()</tt> function is designed to be used for different painting tasks. In this example, we use it to draw on a <tt>DisplayWidget</tt> instance and on a <a href="qsvggenerator.html">QSvgGenerator</a> object. We show how the painting is performed to demonstrate that there is nothing device-specific about the process:</p>
+<pre> void DisplayWidget::paint(QPainter &amp;painter)
+ {
+     painter.setClipRect(QRect(0, 0, 200, 200));
+     painter.setPen(Qt::NoPen);
+
+     switch (background) {
+     case Sky:
+     default:
+         painter.fillRect(QRect(0, 0, 200, 200), Qt::darkBlue);
+         painter.translate(145, 10);
+         painter.setBrush(Qt::white);
+         painter.drawPath(moon);
+         painter.translate(-145, -10);
+         break;
+     case Trees:
+     {
+         painter.fillRect(QRect(0, 0, 200, 200), Qt::darkGreen);
+         painter.setBrush(Qt::green);
+         painter.setPen(Qt::black);
+         for (int y = -55, row = 0; y &lt; 200; y += 50, ++row) {
+             int xs;
+             if (row == 2 || row == 3)
+                 xs = 150;
+             else
+                 xs = 50;
+             for (int x = 0; x &lt; 200; x += xs) {
+                 painter.save();
+                 painter.translate(x, y);
+                 painter.drawPath(tree);
+                 painter.restore();
+             }
+         }
+         break;
+     }
+     case Road:
+         painter.fillRect(QRect(0, 0, 200, 200), Qt::gray);
+         painter.setPen(QPen(Qt::white, 4, Qt::DashLine));
+         painter.drawLine(QLine(0, 35, 200, 35));
+         painter.drawLine(QLine(0, 165, 200, 165));
+         break;
+     }
+
+     painter.setBrush(shapeColor);
+     painter.setPen(Qt::black);
+     painter.translate(100, 100);
+     painter.drawPath(shapeMap[shape]);
+ }</pre>
+<a name="the-window-class"></a>
+<h2>The Window Class</h2>
+<p>The <tt>Window</tt> class represents the example's window, containing the user interface, which has been created using Qt Designer:</p>
+<pre> class Window : public QWidget, private Ui::Window
+ {
+     Q_OBJECT
+
+ public:
+     Window(QWidget *parent = 0);
+
+ public slots:
+     void saveSvg();
+     void updateBackground(int background);
+     void updateColor();
+     void updateShape(int shape);
+
+ private:
+     QString path;
+ };</pre>
+<p>As with the <tt>DisplayWidget</tt> class, we concentrate on the parts of the code which are concerned with painting and SVG generation. In the <tt>Window</tt> class, the <tt>saveSvg()</tt> function is called whenever the <b>Save As..&#x2e;</b> button is clicked; this connection was defined in the <tt>window.ui</tt> file using Qt Designer.</p>
+<p>The start of the <tt>saveSvg()</tt> function performs the task of showing a file dialog so that the user can specify a SVG file to save the drawing to.</p>
+<pre> void Window::saveSvg()
+ {
+     QString newPath = QFileDialog::getSaveFileName(this, tr(&quot;Save SVG&quot;),
+         path, tr(&quot;SVG files (*.svg)&quot;));
+
+     if (newPath.isEmpty())
+         return;
+
+     path = newPath;
+
+     QSvgGenerator generator;
+     generator.setFileName(path);
+     generator.setSize(QSize(200, 200));
+     generator.setViewBox(QRect(0, 0, 200, 200));
+     generator.setTitle(tr(&quot;SVG Generator Example Drawing&quot;));
+     generator.setDescription(tr(&quot;An SVG drawing created by the SVG Generator &quot;
+                                 &quot;Example provided with Qt.&quot;));
+     QPainter painter;
+     painter.begin(&amp;generator);
+     displayWidget-&gt;paint(painter);
+     painter.end();
+ }</pre>
+<p>In the rest of the function, we set up the generator and configure it to generate output with the appropriate dimensions and write to the user-specified file. We paint on the <a href="qsvggenerator.html">QSvgGenerator</a> object in the same way that we paint on a widget, calling the <tt>DisplayWidget::paint()</tt> function so that we use exactly the same code that we used to display the drawing.</p>
+<p>The generation process itself begins with the call to the painter's <a href="qpainter.html#begin">begin()</a> function and ends with call to its <a href="qpainter.html#end">end()</a> function. The <a href="qsvggenerator.html">QSvgGenerator</a> paint device relies on the explicit use of these functions to ensure that output is written to the file.</p>
+<a name="further-reading"></a>
+<h2>Further Reading</h2>
+<p>The <a href="painting-svgviewer.html">SVG Viewer Example</a> shows how to display SVG drawings in an application, and can be used to show the contents of SVG files created by this example.</p>
+<p>See the <a href="qtsvg.html">QtSvg</a> module documentation for more information about SVG and Qt's SVG classes.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

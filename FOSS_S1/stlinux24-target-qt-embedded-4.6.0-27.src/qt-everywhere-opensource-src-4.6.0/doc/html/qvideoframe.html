@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qvideoframe.cpp -->
+<head>
+  <title>Qt 4.6: QVideoFrame Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QVideoFrame" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QVideoFrame Class Reference<br /><span class="small-subtitle">[<a href="qtmultimedia.html">QtMultimedia</a> module]</span>
+</h1>
+<p>The QVideoFrame class provides a representation of a frame of video data. <a href="#details">More...</a></p>
+<pre> #include &lt;QVideoFrame&gt;</pre><p><b>This class is under development and is subject to change.</b></p>
+<p><b>This class is not part of the Qt GUI Framework Edition.</b></p>
+<p>This class was introduced in Qt 4.6.</p>
+<ul>
+<li><a href="qvideoframe-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-types"></a>
+<h2>Public Types</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qvideoframe.html#FieldType-enum">FieldType</a></b> { ProgressiveFrame, TopField, BottomField, InterlacedFrame }</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qvideoframe.html#PixelFormat-enum">PixelFormat</a></b> { Format_Invalid, Format_ARGB32, Format_ARGB32_Premultiplied, Format_RGB32, ..., Format_User }</td></tr>
+</table>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qvideoframe.html#QVideoFrame">QVideoFrame</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qvideoframe.html#QVideoFrame-2">QVideoFrame</a></b> ( QAbstractVideoBuffer * <i>buffer</i>, const QSize &amp; <i>size</i>, PixelFormat <i>format</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qvideoframe.html#QVideoFrame-3">QVideoFrame</a></b> ( int <i>bytes</i>, const QSize &amp; <i>size</i>, int <i>bytesPerLine</i>, PixelFormat <i>format</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qvideoframe.html#QVideoFrame-4">QVideoFrame</a></b> ( const QImage &amp; <i>image</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qvideoframe.html#QVideoFrame-5">QVideoFrame</a></b> ( const QVideoFrame &amp; <i>other</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qvideoframe.html#dtor.QVideoFrame">~QVideoFrame</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">uchar * </td><td class="memItemRight" valign="bottom"><b><a href="qvideoframe.html#bits">bits</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const uchar * </td><td class="memItemRight" valign="bottom"><b><a href="qvideoframe.html#bits-2">bits</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qvideoframe.html#bytesPerLine">bytesPerLine</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">qint64 </td><td class="memItemRight" valign="bottom"><b><a href="qvideoframe.html#endTime">endTime</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">FieldType </td><td class="memItemRight" valign="bottom"><b><a href="qvideoframe.html#fieldType">fieldType</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QVariant </td><td class="memItemRight" valign="bottom"><b><a href="qvideoframe.html#handle">handle</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QAbstractVideoBuffer::HandleType </td><td class="memItemRight" valign="bottom"><b><a href="qvideoframe.html#handleType">handleType</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qvideoframe.html#height">height</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qvideoframe.html#isMapped">isMapped</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qvideoframe.html#isReadable">isReadable</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qvideoframe.html#isValid">isValid</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qvideoframe.html#isWritable">isWritable</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qvideoframe.html#map">map</a></b> ( QAbstractVideoBuffer::MapMode <i>mode</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QAbstractVideoBuffer::MapMode </td><td class="memItemRight" valign="bottom"><b><a href="qvideoframe.html#mapMode">mapMode</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qvideoframe.html#mappedBytes">mappedBytes</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">PixelFormat </td><td class="memItemRight" valign="bottom"><b><a href="qvideoframe.html#pixelFormat">pixelFormat</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qvideoframe.html#setEndTime">setEndTime</a></b> ( qint64 <i>time</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qvideoframe.html#setFieldType">setFieldType</a></b> ( FieldType <i>field</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qvideoframe.html#setStartTime">setStartTime</a></b> ( qint64 <i>time</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QSize </td><td class="memItemRight" valign="bottom"><b><a href="qvideoframe.html#size">size</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">qint64 </td><td class="memItemRight" valign="bottom"><b><a href="qvideoframe.html#startTime">startTime</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qvideoframe.html#unmap">unmap</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qvideoframe.html#width">width</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QVideoFrame &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qvideoframe.html#operator-eq">operator=</a></b> ( const QVideoFrame &amp; <i>other</i> )</td></tr>
+</table>
+<hr />
+<a name="static-public-members"></a>
+<h2>Static Public Members</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">QImage::Format </td><td class="memItemRight" valign="bottom"><b><a href="qvideoframe.html#imageFormatFromPixelFormat">imageFormatFromPixelFormat</a></b> ( PixelFormat <i>format</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">PixelFormat </td><td class="memItemRight" valign="bottom"><b><a href="qvideoframe.html#pixelFormatFromImageFormat">pixelFormatFromImageFormat</a></b> ( QImage::Format <i>format</i> )</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QVideoFrame class provides a representation of a frame of video data.</p>
+<p>A QVideoFrame encapsulates the data of a video frame, and information about the frame.</p>
+<p>The contents of a video frame can be mapped to memory using the <a href="qvideoframe.html#map">map</a>() function. While mapped the video data can accessed using the <a href="qvideoframe.html#bits">bits</a>() function which returns a pointer to a buffer, the total size of which is given by the <a href="qvideoframe.html#mappedBytes">mappedBytes</a>(), and the size of each line is given by <a href="qvideoframe.html#bytesPerLine">bytesPerLine</a>(). The return value of the <a href="qvideoframe.html#handle">handle</a>() function may be used to access frame data using the internal buffer's native APIs.</p>
+<p>The video data in a QVideoFrame is encapsulated in a <a href="qabstractvideobuffer.html">QAbstractVideoBuffer</a>. A QVideoFrame may be constructed from any buffer type by subclassing the <a href="qabstractvideobuffer.html">QAbstractVideoBuffer</a> class.</p>
+<p><b>Note:</b> QVideoFrame is explicitly shared, any change made to video frame will also apply to any copies.</p>
+<hr />
+<h2>Member Type Documentation</h2>
+<a name="//apple_ref/cpp/tag/QVideoFrame/FieldType" />
+<a name="//apple_ref/cpp/econst/QVideoFrame/ProgressiveFrame" />
+<a name="//apple_ref/cpp/econst/QVideoFrame/TopField" />
+<a name="//apple_ref/cpp/econst/QVideoFrame/BottomField" />
+<a name="//apple_ref/cpp/econst/QVideoFrame/InterlacedFrame" />
+<h3 class="fn"><a name="FieldType-enum"></a>enum QVideoFrame::FieldType</h3>
+<p>Specifies the field an interlaced video frame belongs to.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QVideoFrame::ProgressiveFrame</tt></td><td align="center" valign="top"><tt>0</tt></td><td valign="top">The frame is not interlaced.</td></tr>
+<tr><td valign="top"><tt>QVideoFrame::TopField</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">The frame contains a top field.</td></tr>
+<tr><td valign="top"><tt>QVideoFrame::BottomField</tt></td><td align="center" valign="top"><tt>2</tt></td><td valign="top">The frame contains a bottom field.</td></tr>
+<tr><td valign="top"><tt>QVideoFrame::InterlacedFrame</tt></td><td align="center" valign="top"><tt>3</tt></td><td valign="top">The frame contains a merged top and bottom field.</td></tr>
+</table></p>
+<a name="//apple_ref/cpp/tag/QVideoFrame/PixelFormat" />
+<a name="//apple_ref/cpp/econst/QVideoFrame/Format_Invalid" />
+<a name="//apple_ref/cpp/econst/QVideoFrame/Format_ARGB32" />
+<a name="//apple_ref/cpp/econst/QVideoFrame/Format_ARGB32_Premultiplied" />
+<a name="//apple_ref/cpp/econst/QVideoFrame/Format_RGB32" />
+<a name="//apple_ref/cpp/econst/QVideoFrame/Format_RGB24" />
+<a name="//apple_ref/cpp/econst/QVideoFrame/Format_RGB565" />
+<a name="//apple_ref/cpp/econst/QVideoFrame/Format_RGB555" />
+<a name="//apple_ref/cpp/econst/QVideoFrame/Format_ARGB8565_Premultiplied" />
+<a name="//apple_ref/cpp/econst/QVideoFrame/Format_BGRA32" />
+<a name="//apple_ref/cpp/econst/QVideoFrame/Format_BGRA32_Premultiplied" />
+<a name="//apple_ref/cpp/econst/QVideoFrame/Format_BGR32" />
+<a name="//apple_ref/cpp/econst/QVideoFrame/Format_BGR24" />
+<a name="//apple_ref/cpp/econst/QVideoFrame/Format_BGR565" />
+<a name="//apple_ref/cpp/econst/QVideoFrame/Format_BGR555" />
+<a name="//apple_ref/cpp/econst/QVideoFrame/Format_BGRA5658_Premultiplied" />
+<a name="//apple_ref/cpp/econst/QVideoFrame/Format_AYUV444" />
+<a name="//apple_ref/cpp/econst/QVideoFrame/Format_AYUV444_Premultiplied" />
+<a name="//apple_ref/cpp/econst/QVideoFrame/Format_YUV444" />
+<a name="//apple_ref/cpp/econst/QVideoFrame/Format_YUV420P" />
+<a name="//apple_ref/cpp/econst/QVideoFrame/Format_YV12" />
+<a name="//apple_ref/cpp/econst/QVideoFrame/Format_UYVY" />
+<a name="//apple_ref/cpp/econst/QVideoFrame/Format_YUYV" />
+<a name="//apple_ref/cpp/econst/QVideoFrame/Format_NV12" />
+<a name="//apple_ref/cpp/econst/QVideoFrame/Format_NV21" />
+<a name="//apple_ref/cpp/econst/QVideoFrame/Format_IMC1" />
+<a name="//apple_ref/cpp/econst/QVideoFrame/Format_IMC2" />
+<a name="//apple_ref/cpp/econst/QVideoFrame/Format_IMC3" />
+<a name="//apple_ref/cpp/econst/QVideoFrame/Format_IMC4" />
+<a name="//apple_ref/cpp/econst/QVideoFrame/Format_Y8" />
+<a name="//apple_ref/cpp/econst/QVideoFrame/Format_Y16" />
+<a name="//apple_ref/cpp/econst/QVideoFrame/Format_User" />
+<h3 class="fn"><a name="PixelFormat-enum"></a>enum QVideoFrame::PixelFormat</h3>
+<p>Enumerates video data types.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QVideoFrame::Format_Invalid</tt></td><td align="center" valign="top"><tt>0</tt></td><td valign="top">The frame is invalid.</td></tr>
+<tr><td valign="top"><tt>QVideoFrame::Format_ARGB32</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">The frame is stored using a 32-bit ARGB format (0xAARRGGBB). This is equivalent to <a href="qimage.html#Format-enum">QImage::Format_ARGB32</a>.</td></tr>
+<tr><td valign="top"><tt>QVideoFrame::Format_ARGB32_Premultiplied</tt></td><td align="center" valign="top"><tt>2</tt></td><td valign="top">The frame stored using a premultiplied 32-bit ARGB format (0xAARRGGBB). This is equivalent to <a href="qimage.html#Format-enum">QImage::Format_ARGB32_Premultiplied</a>.</td></tr>
+<tr><td valign="top"><tt>QVideoFrame::Format_RGB32</tt></td><td align="center" valign="top"><tt>3</tt></td><td valign="top">The frame stored using a 32-bit RGB format (0xffRRGGBB). This is equivalent to <a href="qimage.html#Format-enum">QImage::Format_RGB32</a></td></tr>
+<tr><td valign="top"><tt>QVideoFrame::Format_RGB24</tt></td><td align="center" valign="top"><tt>4</tt></td><td valign="top">The frame is stored using a 24-bit RGB format (8-8-8). This is equivalent to <a href="qimage.html#Format-enum">QImage::Format_RGB888</a></td></tr>
+<tr><td valign="top"><tt>QVideoFrame::Format_RGB565</tt></td><td align="center" valign="top"><tt>5</tt></td><td valign="top">The frame is stored using a 16-bit RGB format (5-6-5). This is equivalent to <a href="qimage.html#Format-enum">QImage::Format_RGB16</a>.</td></tr>
+<tr><td valign="top"><tt>QVideoFrame::Format_RGB555</tt></td><td align="center" valign="top"><tt>6</tt></td><td valign="top">The frame is stored using a 16-bit RGB format (5-5-5). This is equivalent to <a href="qimage.html#Format-enum">QImage::Format_RGB555</a>.</td></tr>
+<tr><td valign="top"><tt>QVideoFrame::Format_ARGB8565_Premultiplied</tt></td><td align="center" valign="top"><tt>7</tt></td><td valign="top">The frame is stored using a 24-bit premultiplied ARGB format (8-6-6-5).</td></tr>
+<tr><td valign="top"><tt>QVideoFrame::Format_BGRA32</tt></td><td align="center" valign="top"><tt>8</tt></td><td valign="top">The frame is stored using a 32-bit ARGB format (0xBBGGRRAA).</td></tr>
+<tr><td valign="top"><tt>QVideoFrame::Format_BGRA32_Premultiplied</tt></td><td align="center" valign="top"><tt>9</tt></td><td valign="top">The frame is stored using a premultiplied 32bit BGRA format.</td></tr>
+<tr><td valign="top"><tt>QVideoFrame::Format_BGR32</tt></td><td align="center" valign="top"><tt>10</tt></td><td valign="top">The frame is stored using a 32-bit BGR format (0xBBGGRRff).</td></tr>
+<tr><td valign="top"><tt>QVideoFrame::Format_BGR24</tt></td><td align="center" valign="top"><tt>11</tt></td><td valign="top">The frame is stored using a 24-bit BGR format (0xBBGGRR).</td></tr>
+<tr><td valign="top"><tt>QVideoFrame::Format_BGR565</tt></td><td align="center" valign="top"><tt>12</tt></td><td valign="top">The frame is stored using a 16-bit BGR format (5-6-5).</td></tr>
+<tr><td valign="top"><tt>QVideoFrame::Format_BGR555</tt></td><td align="center" valign="top"><tt>13</tt></td><td valign="top">The frame is stored using a 16-bit BGR format (5-5-5).</td></tr>
+<tr><td valign="top"><tt>QVideoFrame::Format_BGRA5658_Premultiplied</tt></td><td align="center" valign="top"><tt>14</tt></td><td valign="top">The frame is stored using a 24-bit premultiplied BGRA format (5-6-5-8).</td></tr>
+<tr><td valign="top"><tt>QVideoFrame::Format_AYUV444</tt></td><td align="center" valign="top"><tt>15</tt></td><td valign="top">The frame is stored using a packed 32-bit AYUV format (0xAAYYUUVV).</td></tr>
+<tr><td valign="top"><tt>QVideoFrame::Format_AYUV444_Premultiplied</tt></td><td align="center" valign="top"><tt>16</tt></td><td valign="top">The frame is stored using a packed premultiplied 32-bit AYUV format (0xAAYYUUVV).</td></tr>
+<tr><td valign="top"><tt>QVideoFrame::Format_YUV444</tt></td><td align="center" valign="top"><tt>17</tt></td><td valign="top">The frame is stored using a 24-bit packed YUV format (8-8-8).</td></tr>
+<tr><td valign="top"><tt>QVideoFrame::Format_YUV420P</tt></td><td align="center" valign="top"><tt>18</tt></td><td valign="top">The frame is stored using an 8-bit per component planar YUV format with the U and V planes horizontally and vertically sub-sampled, i.e&#x2e; the height and width of the U and V planes are half that of the Y plane.</td></tr>
+<tr><td valign="top"><tt>QVideoFrame::Format_YV12</tt></td><td align="center" valign="top"><tt>19</tt></td><td valign="top">The frame is stored using an 8-bit per component planar YVU format with the V and U planes horizontally and vertically sub-sampled, i.e&#x2e; the height and width of the V and U planes are half that of the Y plane.</td></tr>
+<tr><td valign="top"><tt>QVideoFrame::Format_UYVY</tt></td><td align="center" valign="top"><tt>20</tt></td><td valign="top">The frame is stored using an 8-bit per component packed YUV format with the U and V planes horizontally sub-sampled (U-Y-V-Y), i.e&#x2e; two horizontally adjacent pixels are stored as a 32-bit macropixel which has a Y value for each pixel and common U and V values.</td></tr>
+<tr><td valign="top"><tt>QVideoFrame::Format_YUYV</tt></td><td align="center" valign="top"><tt>21</tt></td><td valign="top">The frame is stored using an 8-bit per component packed YUV format with the U and V planes horizontally sub-sampled (Y-U-Y-V), i.e&#x2e; two horizontally adjacent pixels are stored as a 32-bit macropixel which has a Y value for each pixel and common U and V values.</td></tr>
+<tr><td valign="top"><tt>QVideoFrame::Format_NV12</tt></td><td align="center" valign="top"><tt>22</tt></td><td valign="top">The frame is stored using an 8-bit per component semi-planar YUV format with a Y plane (Y) followed by a horizontally and vertically sub-sampled, packed UV plane (U-V).</td></tr>
+<tr><td valign="top"><tt>QVideoFrame::Format_NV21</tt></td><td align="center" valign="top"><tt>23</tt></td><td valign="top">The frame is stored using an 8-bit per component semi-planar YUV format with a Y plane (Y) followed by a horizontally and vertically sub-sampled, packed VU plane (V-U).</td></tr>
+<tr><td valign="top"><tt>QVideoFrame::Format_IMC1</tt></td><td align="center" valign="top"><tt>24</tt></td><td valign="top">The frame is stored using an 8-bit per component planar YUV format with the U and V planes horizontally and vertically sub-sampled. This is similar to the Format_YUV420P type, except that the bytes per line of the U and V planes are padded out to the same stride as the Y plane.</td></tr>
+<tr><td valign="top"><tt>QVideoFrame::Format_IMC2</tt></td><td align="center" valign="top"><tt>25</tt></td><td valign="top">The frame is stored using an 8-bit per component planar YUV format with the U and V planes horizontally and vertically sub-sampled. This is similar to the Format_YUV420P type, except that the lines of the U and V planes are interleaved, i.e&#x2e; each line of U data is followed by a line of V data creating a single line of the same stride as the Y data.</td></tr>
+<tr><td valign="top"><tt>QVideoFrame::Format_IMC3</tt></td><td align="center" valign="top"><tt>26</tt></td><td valign="top">The frame is stored using an 8-bit per component planar YVU format with the V and U planes horizontally and vertically sub-sampled. This is similar to the Format_YV12 type, except that the bytes per line of the V and U planes are padded out to the same stride as the Y plane.</td></tr>
+<tr><td valign="top"><tt>QVideoFrame::Format_IMC4</tt></td><td align="center" valign="top"><tt>27</tt></td><td valign="top">The frame is stored using an 8-bit per component planar YVU format with the V and U planes horizontally and vertically sub-sampled. This is similar to the Format_YV12 type, except that the lines of the V and U planes are interleaved, i.e&#x2e; each line of V data is followed by a line of U data creating a single line of the same stride as the Y data.</td></tr>
+<tr><td valign="top"><tt>QVideoFrame::Format_Y8</tt></td><td align="center" valign="top"><tt>28</tt></td><td valign="top">The frame is stored using an 8-bit greyscale format.</td></tr>
+<tr><td valign="top"><tt>QVideoFrame::Format_Y16</tt></td><td align="center" valign="top"><tt>29</tt></td><td valign="top">The frame is stored using a 16-bit linear greyscale format. Little endian.</td></tr>
+<tr><td valign="top"><tt>QVideoFrame::Format_User</tt></td><td align="center" valign="top"><tt>1000</tt></td><td valign="top">Start value for user defined pixel formats.</td></tr>
+</table></p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QVideoFrame/QVideoFrame" />
+<h3 class="fn"><a name="QVideoFrame"></a>QVideoFrame::QVideoFrame ()</h3>
+<p>Constructs a null video frame.</p>
+<h3 class="fn"><a name="QVideoFrame-2"></a>QVideoFrame::QVideoFrame ( <a href="qabstractvideobuffer.html">QAbstractVideoBuffer</a> * <i>buffer</i>, const <a href="qsize.html">QSize</a> &amp; <i>size</i>, <a href="qvideoframe.html#PixelFormat-enum">PixelFormat</a> <i>format</i> )</h3>
+<p>Constructs a video frame from a <i>buffer</i> of the given pixel <i>format</i> and <i>size</i> in pixels.</p>
+<p><b>Note:</b> This doesn't increment the reference count of the video buffer.</p>
+<h3 class="fn"><a name="QVideoFrame-3"></a>QVideoFrame::QVideoFrame ( int <i>bytes</i>, const <a href="qsize.html">QSize</a> &amp; <i>size</i>, int <i>bytesPerLine</i>, <a href="qvideoframe.html#PixelFormat-enum">PixelFormat</a> <i>format</i> )</h3>
+<p>Constructs a video frame of the given pixel <i>format</i> and <i>size</i> in pixels.</p>
+<p>The <i>bytesPerLine</i> (stride) is the length of each scan line in bytes, and <i>bytes</i> is the total number of bytes that must be allocated for the frame.</p>
+<h3 class="fn"><a name="QVideoFrame-4"></a>QVideoFrame::QVideoFrame ( const <a href="qimage.html">QImage</a> &amp; <i>image</i> )</h3>
+<p>Constructs a video frame from an <i>image</i>.</p>
+<p><b>Note:</b> This will construct an invalid video frame if there is no frame type equivalent to the image format.</p>
+<p>See also <a href="qvideoframe.html#pixelFormatFromImageFormat">pixelFormatFromImageFormat</a>().</p>
+<h3 class="fn"><a name="QVideoFrame-5"></a>QVideoFrame::QVideoFrame ( const QVideoFrame &amp; <i>other</i> )</h3>
+<p>Constructs a copy of <i>other</i>.</p>
+<a name="//apple_ref/cpp/instm/QVideoFrame/~QVideoFrame" />
+<h3 class="fn"><a name="dtor.QVideoFrame"></a>QVideoFrame::~QVideoFrame ()</h3>
+<p>Destroys a video frame.</p>
+<a name="//apple_ref/cpp/instm/QVideoFrame/bits" />
+<h3 class="fn"><a name="bits"></a><a href="qtglobal.html#uchar-typedef">uchar</a> * QVideoFrame::bits ()</h3>
+<p>Returns a pointer to the start of the frame data buffer.</p>
+<p>This value is only valid while the frame data is <a href="qvideoframe.html#map">mapped</a>.</p>
+<p>See also <a href="qvideoframe.html#map">map</a>(), <a href="qvideoframe.html#mappedBytes">mappedBytes</a>(), and <a href="qvideoframe.html#bytesPerLine">bytesPerLine</a>().</p>
+<h3 class="fn"><a name="bits-2"></a>const <a href="qtglobal.html#uchar-typedef">uchar</a> * QVideoFrame::bits () const</h3>
+<p>Returns a pointer to the start of the frame data buffer.</p>
+<p>This value is only valid while the frame data is <a href="qvideoframe.html#map">mapped</a>.</p>
+<p>See also <a href="qvideoframe.html#map">map</a>(), <a href="qvideoframe.html#mappedBytes">mappedBytes</a>(), and <a href="qvideoframe.html#bytesPerLine">bytesPerLine</a>().</p>
+<a name="//apple_ref/cpp/instm/QVideoFrame/bytesPerLine" />
+<h3 class="fn"><a name="bytesPerLine"></a>int QVideoFrame::bytesPerLine () const</h3>
+<p>Returns the number of bytes in a scan line.</p>
+<p><b>Note:</b> This is the bytes per line of the first plane only. The bytes per line of subsequent planes should be calculated as per the frame type.</p>
+<p>This value is only valid while the frame data is <a href="qvideoframe.html#map">mapped</a>.</p>
+<p>See also <a href="qvideoframe.html#bits">bits</a>(), <a href="qvideoframe.html#map">map</a>(), and <a href="qvideoframe.html#mappedBytes">mappedBytes</a>().</p>
+<a name="//apple_ref/cpp/instm/QVideoFrame/endTime" />
+<h3 class="fn"><a name="endTime"></a><a href="qtglobal.html#qint64-typedef">qint64</a> QVideoFrame::endTime () const</h3>
+<p>Returns the presentation time when a frame should stop being displayed.</p>
+<p>See also <a href="qvideoframe.html#setEndTime">setEndTime</a>().</p>
+<a name="//apple_ref/cpp/instm/QVideoFrame/fieldType" />
+<h3 class="fn"><a name="fieldType"></a><a href="qvideoframe.html#FieldType-enum">FieldType</a> QVideoFrame::fieldType () const</h3>
+<p>Returns the field an interlaced video frame belongs to.</p>
+<p>If the video is not interlaced this will return WholeFrame.</p>
+<p>See also <a href="qvideoframe.html#setFieldType">setFieldType</a>().</p>
+<a name="//apple_ref/cpp/instm/QVideoFrame/handle" />
+<h3 class="fn"><a name="handle"></a><a href="qvariant.html">QVariant</a> QVideoFrame::handle () const</h3>
+<p>Returns a type specific handle to a video frame's buffer.</p>
+<p>For an OpenGL texture this would be the texture ID.</p>
+<p>See also <a href="qabstractvideobuffer.html#handle">QAbstractVideoBuffer::handle</a>().</p>
+<a name="//apple_ref/cpp/instm/QVideoFrame/handleType" />
+<h3 class="fn"><a name="handleType"></a><a href="qabstractvideobuffer.html#HandleType-enum">QAbstractVideoBuffer::HandleType</a> QVideoFrame::handleType () const</h3>
+<p>Returns the type of a video frame's handle.</p>
+<a name="//apple_ref/cpp/instm/QVideoFrame/height" />
+<h3 class="fn"><a name="height"></a>int QVideoFrame::height () const</h3>
+<p>Returns the height of a video frame.</p>
+<a name="//apple_ref/cpp/clm/QVideoFrame/imageFormatFromPixelFormat" />
+<h3 class="fn"><a name="imageFormatFromPixelFormat"></a><a href="qimage.html#Format-enum">QImage::Format</a> QVideoFrame::imageFormatFromPixelFormat ( <a href="qvideoframe.html#PixelFormat-enum">PixelFormat</a> <i>format</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Returns an image format equivalent to a video frame pixel <i>format</i>. If there is no equivalent format <a href="qimage.html#Format-enum">QImage::Format_Invalid</a> is returned instead.</p>
+<a name="//apple_ref/cpp/instm/QVideoFrame/isMapped" />
+<h3 class="fn"><a name="isMapped"></a>bool QVideoFrame::isMapped () const</h3>
+<p>Identifies if a video frame's contents are currently mapped to system memory.</p>
+<p>This is a convenience function which checks that the <a href="qabstractvideobuffer.html#MapMode-enum">MapMode</a> of the frame is not equal to <a href="qabstractvideobuffer.html#MapMode-enum">QAbstractVideoBuffer::NotMapped</a>.</p>
+<p>Returns true if the contents of the video frame are mapped to system memory, and false otherwise.</p>
+<p>See also <a href="qvideoframe.html#mapMode">mapMode</a>() and <a href="qabstractvideobuffer.html#MapMode-enum">QAbstractVideoBuffer::MapMode</a>.</p>
+<a name="//apple_ref/cpp/instm/QVideoFrame/isReadable" />
+<h3 class="fn"><a name="isReadable"></a>bool QVideoFrame::isReadable () const</h3>
+<p>Identifies if the mapped contents of a video frame were read from the frame when it was mapped.</p>
+<p>This is a convenience function which checks if the <a href="qabstractvideobuffer.html#MapMode-enum">MapMode</a> contains the <a href="qabstractvideobuffer.html#MapMode-enum">QAbstractVideoBuffer::WriteOnly</a> flag.</p>
+<p>Returns true if the contents of the mapped memory were read from the video frame, and false otherwise.</p>
+<p>See also <a href="qvideoframe.html#mapMode">mapMode</a>() and <a href="qabstractvideobuffer.html#MapMode-enum">QAbstractVideoBuffer::MapMode</a>.</p>
+<a name="//apple_ref/cpp/instm/QVideoFrame/isValid" />
+<h3 class="fn"><a name="isValid"></a>bool QVideoFrame::isValid () const</h3>
+<p>Identifies whether a video frame is valid.</p>
+<p>An invalid frame has no video buffer associated with it.</p>
+<p>Returns true if the frame is valid, and false if it is not.</p>
+<a name="//apple_ref/cpp/instm/QVideoFrame/isWritable" />
+<h3 class="fn"><a name="isWritable"></a>bool QVideoFrame::isWritable () const</h3>
+<p>Identifies if the mapped contents of a video frame will be persisted when the frame is unmapped.</p>
+<p>This is a convenience function which checks if the <a href="qabstractvideobuffer.html#MapMode-enum">MapMode</a> contains the <a href="qabstractvideobuffer.html#MapMode-enum">QAbstractVideoBuffer::WriteOnly</a> flag.</p>
+<p>Returns true if the video frame will be updated when unmapped, and false otherwise.</p>
+<p><b>Note:</b> The result of altering the data of a frame that is mapped in read-only mode is undefined. Depending on the buffer implementation the changes may be persisted, or worse alter a shared buffer.</p>
+<p>See also <a href="qvideoframe.html#mapMode">mapMode</a>() and <a href="qabstractvideobuffer.html#MapMode-enum">QAbstractVideoBuffer::MapMode</a>.</p>
+<a name="//apple_ref/cpp/instm/QVideoFrame/map" />
+<h3 class="fn"><a name="map"></a>bool QVideoFrame::map ( <a href="qabstractvideobuffer.html#MapMode-enum">QAbstractVideoBuffer::MapMode</a> <i>mode</i> )</h3>
+<p>Maps the contents of a video frame to memory.</p>
+<p>The map <i>mode</i> indicates whether the contents of the mapped memory should be read from and/or written to the frame. If the map mode includes the <a href="qabstractvideobuffer.html#MapMode-enum">QAbstractVideoBuffer::ReadOnly</a> flag the mapped memory will be populated with the content of the video frame when mapped. If the map mode inclues the <a href="qabstractvideobuffer.html#MapMode-enum">QAbstractVideoBuffer::WriteOnly</a> flag the content of the mapped memory will be persisted in the frame when unmapped.</p>
+<p>While mapped the contents of a video frame can be accessed directly through the pointer returned by the <a href="qvideoframe.html#bits">bits</a>() function.</p>
+<p>When access to the data is no longer needed be sure to call the <a href="qvideoframe.html#unmap">unmap</a>() function to release the mapped memory.</p>
+<p>Returns true if the buffer was mapped to memory in the given <i>mode</i> and false otherwise.</p>
+<p>See also <a href="qvideoframe.html#unmap">unmap</a>(), <a href="qvideoframe.html#mapMode">mapMode</a>(), and <a href="qvideoframe.html#bits">bits</a>().</p>
+<a name="//apple_ref/cpp/instm/QVideoFrame/mapMode" />
+<h3 class="fn"><a name="mapMode"></a><a href="qabstractvideobuffer.html#MapMode-enum">QAbstractVideoBuffer::MapMode</a> QVideoFrame::mapMode () const</h3>
+<p>Returns the mode a video frame was mapped to system memory in.</p>
+<p>See also <a href="qvideoframe.html#map">map</a>() and <a href="qabstractvideobuffer.html#MapMode-enum">QAbstractVideoBuffer::MapMode</a>.</p>
+<a name="//apple_ref/cpp/instm/QVideoFrame/mappedBytes" />
+<h3 class="fn"><a name="mappedBytes"></a>int QVideoFrame::mappedBytes () const</h3>
+<p>Returns the number of bytes occupied by the mapped frame data.</p>
+<p>This value is only valid while the frame data is <a href="qvideoframe.html#map">mapped</a>.</p>
+<p>See also <a href="qvideoframe.html#map">map</a>().</p>
+<a name="//apple_ref/cpp/instm/QVideoFrame/pixelFormat" />
+<h3 class="fn"><a name="pixelFormat"></a><a href="qvideoframe.html#PixelFormat-enum">PixelFormat</a> QVideoFrame::pixelFormat () const</h3>
+<p>Returns the color format of a video frame.</p>
+<a name="//apple_ref/cpp/clm/QVideoFrame/pixelFormatFromImageFormat" />
+<h3 class="fn"><a name="pixelFormatFromImageFormat"></a><a href="qvideoframe.html#PixelFormat-enum">PixelFormat</a> QVideoFrame::pixelFormatFromImageFormat ( <a href="qimage.html#Format-enum">QImage::Format</a> <i>format</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Returns an video pixel format equivalent to an image <i>format</i>. If there is no equivalent format QVideoFrame::InvalidType is returned instead.</p>
+<a name="//apple_ref/cpp/instm/QVideoFrame/setEndTime" />
+<h3 class="fn"><a name="setEndTime"></a>void QVideoFrame::setEndTime ( <a href="qtglobal.html#qint64-typedef">qint64</a> <i>time</i> )</h3>
+<p>Sets the presentation <i>time</i> when a frame should stop being displayed.</p>
+<p>See also <a href="qvideoframe.html#endTime">endTime</a>().</p>
+<a name="//apple_ref/cpp/instm/QVideoFrame/setFieldType" />
+<h3 class="fn"><a name="setFieldType"></a>void QVideoFrame::setFieldType ( <a href="qvideoframe.html#FieldType-enum">FieldType</a> <i>field</i> )</h3>
+<p>Sets the <i>field</i> an interlaced video frame belongs to.</p>
+<p>See also <a href="qvideoframe.html#fieldType">fieldType</a>().</p>
+<a name="//apple_ref/cpp/instm/QVideoFrame/setStartTime" />
+<h3 class="fn"><a name="setStartTime"></a>void QVideoFrame::setStartTime ( <a href="qtglobal.html#qint64-typedef">qint64</a> <i>time</i> )</h3>
+<p>Sets the presentation <i>time</i> when the frame should be displayed.</p>
+<p>See also <a href="qvideoframe.html#startTime">startTime</a>().</p>
+<a name="//apple_ref/cpp/instm/QVideoFrame/size" />
+<h3 class="fn"><a name="size"></a><a href="qsize.html">QSize</a> QVideoFrame::size () const</h3>
+<p>Returns the size of a video frame.</p>
+<a name="//apple_ref/cpp/instm/QVideoFrame/startTime" />
+<h3 class="fn"><a name="startTime"></a><a href="qtglobal.html#qint64-typedef">qint64</a> QVideoFrame::startTime () const</h3>
+<p>Returns the presentation time when the frame should be displayed.</p>
+<p>See also <a href="qvideoframe.html#setStartTime">setStartTime</a>().</p>
+<a name="//apple_ref/cpp/instm/QVideoFrame/unmap" />
+<h3 class="fn"><a name="unmap"></a>void QVideoFrame::unmap ()</h3>
+<p>Releases the memory mapped by the <a href="qvideoframe.html#map">map</a>() function.</p>
+<p>If the <a href="qabstractvideobuffer.html#MapMode-enum">MapMode</a> included the <a href="qabstractvideobuffer.html#MapMode-enum">QAbstractVideoBuffer::WriteOnly</a> flag this will persist the current content of the mapped memory to the video frame.</p>
+<p>See also <a href="qvideoframe.html#map">map</a>().</p>
+<a name="//apple_ref/cpp/instm/QVideoFrame/width" />
+<h3 class="fn"><a name="width"></a>int QVideoFrame::width () const</h3>
+<p>Returns the width of a video frame.</p>
+<a name="//apple_ref/cpp/instm/QVideoFrame/operator=" />
+<h3 class="fn"><a name="operator-eq"></a>QVideoFrame &amp; QVideoFrame::operator= ( const QVideoFrame &amp; <i>other</i> )</h3>
+<p>Assigns the contents of <i>other</i> to a video frame.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

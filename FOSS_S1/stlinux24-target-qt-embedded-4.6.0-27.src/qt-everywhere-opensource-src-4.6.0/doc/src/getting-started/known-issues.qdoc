@@ -1,0 +1,146 @@
+/****************************************************************************
+**
+** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+** All rights reserved.
+** Contact: Nokia Corporation (qt-info@nokia.com)
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:LGPL$
+** Commercial Usage
+** Licensees holding valid Qt Commercial licenses may use this file in
+** accordance with the Qt Commercial License Agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and Nokia.
+**
+** GNU Lesser General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU Lesser
+** General Public License version 2.1 as published by the Free Software
+** Foundation and appearing in the file LICENSE.LGPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU Lesser General Public License version 2.1 requirements
+** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+**
+** In addition, as a special exception, Nokia gives you certain additional
+** rights.  These rights are described in the Nokia Qt LGPL Exception
+** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+**
+** GNU General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU
+** General Public License version 3.0 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU General Public License version 3.0 requirements will be
+** met: http://www.gnu.org/copyleft/gpl.html.
+**
+** If you have questions regarding the use of this file, please contact
+** Nokia at qt-info@nokia.com.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \page known-issues.html
+    \title Known Issues in 4.6.0
+    \ingroup platform-specific
+    \brief A summary of known issues in Qt 4.6.0 at the time of release.
+
+    This page documents known problems with the packaging and installation in
+    Qt 4.6.0, as well as issues with third party software that we have
+    not been able to work around. For a list of such issues in previous Qt
+    versions refer to this page in the respective documentation.
+
+    For a list list of known bugs in Qt 4.6.0, see the \l{Task Tracker}
+    on the Qt website.
+
+    An overview of known issues may also be found at:
+    \l{http://qt.gitorious.org/qt/pages/Qt460BetaKnownIssues}
+    {Known Issues Wiki}.
+
+    \section1 Installation Issues
+
+    \section2 Installing the Source Package on Unix systems
+
+    \o  If you download a Zip source package, you will need to convert
+        Windows-style line endings (CR/LF) to Unix-style line-endings (LF) when
+        you uncompress the package.  To do this, give the "-a" option when you
+        run the "unzip' command.
+    
+        If you fail to supply the "-a" option when unzipping the package, you
+        will see the following error message when you attempt to execute the
+        configure command:
+        "bash: ./configure: /bin/sh^M: bad interpreter: No such file or directory"
+    \endlist
+
+    \section2 Installing on Mac OS X 10.6 "Snow Leopard"
+    \list
+    \o Performing a new install of the Qt 4.6 beta on Snow Leopard
+       triggers a bug in the installer that causes the install to fail.
+       Updating an existing Qt installation works fine.
+
+       There are two workarounds, either disable spotlight for the target
+       drive during the install, or do a custom install where you deselect
+       documentation and examples. Run the installer again as a full
+       install to get the documentation and examples installed.
+    \endlist
+
+    \section1 Issues with Third Party Software
+
+    \section2 X11
+
+    \list
+    \o  There is a bug in the 169.xx NVIDIA drivers on certain GeForce 8 series
+        cards that is triggered by the OpenGL paint engine when using QPainter
+        on a QGLWidget to draw paths and polygons. Some other painting
+        operations that end up in the path fallback are affected as well. The
+        bug causes the whole X server to repeatedly hang for several seconds at
+        a time.
+    \o  There is an issue with NVIDIA's 9xxx driver series on X11 that causes a
+        crash in cases where there are several \l{QGLContext}s and the extended
+        composition modes are used (the composition modes between and including
+        QPainter::CompositionMode_Multiply and
+        QPainter::CompositionMode_Exclusion). This affects the composition mode
+        demo in Qt 4.5, for example. The crash does not occur in newer versions
+        of the drivers.
+    \endlist
+
+    \section2 Windows
+
+    \list
+    \o  When using version 6.14.11.6921 of the NVIDIA drivers for the GeForce
+        6600 GT under Windows XP, Qt applications which use drag and drop will
+        display reduced size drag and drop icons when run alongside
+        applications that use OpenGL. This problem can be worked around by
+        reducing the level of graphics acceleration provided by the driver, or
+        by disabling hardware acceleration completely.
+
+    \o  With NVIDIA GeForce 7950 GT (driver version 6.14.11.7824), a fullscreen
+        QGLWidget flickers when child widgets are shown/hidden. The workaround
+        for this is to use \l{QWidget::}{setGeometry()} with a width/height 1
+        pixel bigger than your geometry and call \l{QWidget::}{show()}.
+
+    \o  A bug in the Firebird database can cause an application to crash when
+        \c{fbembed.dll} is unloaded. The bug is fixed in version 2.5.
+
+    \o  On Windows 7, resizing windows is slower than on Vista/Xp. This is because
+        the gesture initialization process (required for native gesture support)
+        currently calls winId() on widgets, which causes whole widget hierarchies
+        to use native window handles. This slows down resizing.
+
+    \endlist
+
+    \section2 Mac OS X
+
+    \list
+    \o  If a sheet is opened for a given window, clicking the title bar of that
+        window will cause it to flash. This behavior has been reported to Apple
+        (bug number 5827676).
+    \endlist
+
+    \section2 Symbian
+
+    \list
+    \o  Check known issues for Symbian at
+    \l{http://qt.gitorious.org/qt/pages/Qt460KnownIssues} {Known Issues Wiki}.
+    \endlist
+*/

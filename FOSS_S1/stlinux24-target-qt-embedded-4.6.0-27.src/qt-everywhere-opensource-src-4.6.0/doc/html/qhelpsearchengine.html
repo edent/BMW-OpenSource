@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qhelpsearchengine.cpp -->
+<head>
+  <title>Qt 4.6: QHelpSearchEngine Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QHelpSearchEngine" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QHelpSearchEngine Class Reference<br /><span class="small-subtitle">[<a href="qthelp.html">QtHelp</a> module]</span>
+</h1>
+<p>The QHelpSearchEngine class provides access to widgets reusable to integrate fulltext search as well as to index and search documentation. <a href="#details">More...</a></p>
+<pre> #include &lt;QHelpSearchEngine&gt;</pre><p><b>This class is not part of the Qt GUI Framework Edition.</b></p>
+<p>Inherits <a href="qobject.html">QObject</a>.</p>
+<p>This class was introduced in Qt 4.4.</p>
+<ul>
+<li><a href="qhelpsearchengine-members.html">List of all members, including inherited members</a></li>
+<li><a href="qhelpsearchengine-qt3.html">Qt 3 support members</a></li>
+</ul>
+<hr />
+<a name="public-types"></a>
+<h2>Public Types</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">typedef </td><td class="memItemRight" valign="bottom"><b><a href="qhelpsearchengine.html#SearchHit-typedef">SearchHit</a></b></td></tr>
+</table>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qhelpsearchengine.html#QHelpSearchEngine">QHelpSearchEngine</a></b> ( QHelpEngineCore * <i>helpEngine</i>, QObject * <i>parent</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qhelpsearchengine.html#dtor.QHelpSearchEngine">~QHelpSearchEngine</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qhelpsearchengine.html#hitCount">hitCount</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QList&lt;SearchHit&gt; </td><td class="memItemRight" valign="bottom"><b><a href="qhelpsearchengine.html#hits">hits</a></b> ( int <i>start</i>, int <i>end</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QList&lt;QHelpSearchQuery&gt; </td><td class="memItemRight" valign="bottom"><b><a href="qhelpsearchengine.html#query">query</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QHelpSearchQueryWidget * </td><td class="memItemRight" valign="bottom"><b><a href="qhelpsearchengine.html#queryWidget">queryWidget</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QHelpSearchResultWidget * </td><td class="memItemRight" valign="bottom"><b><a href="qhelpsearchengine.html#resultWidget">resultWidget</a></b> ()</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>29 public functions inherited from <a href="qobject.html#public-functions">QObject</a></li>
+</ul>
+<hr />
+<a name="public-slots"></a>
+<h2>Public Slots</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qhelpsearchengine.html#cancelIndexing">cancelIndexing</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qhelpsearchengine.html#cancelSearching">cancelSearching</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qhelpsearchengine.html#reindexDocumentation">reindexDocumentation</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qhelpsearchengine.html#search">search</a></b> ( const QList&lt;QHelpSearchQuery&gt; &amp; <i>queryList</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>1 public slot inherited from <a href="qobject.html#public-slots">QObject</a></li>
+</ul>
+<hr />
+<a name="signals"></a>
+<h2>Signals</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qhelpsearchengine.html#indexingFinished">indexingFinished</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qhelpsearchengine.html#indexingStarted">indexingStarted</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qhelpsearchengine.html#searchingFinished">searchingFinished</a></b> ( int <i>hits</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qhelpsearchengine.html#searchingStarted">searchingStarted</a></b> ()</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>1 signal inherited from <a href="qobject.html#signals">QObject</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li><div class="fn"></div>1 property inherited from <a href="qobject.html#properties">QObject</a></li>
+<li><div class="fn"></div>5 static public members inherited from <a href="qobject.html#static-public-members">QObject</a></li>
+<li><div class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QHelpSearchEngine class provides access to widgets reusable to integrate fulltext search as well as to index and search documentation.</p>
+<p>Before the search engine can be used, one has to instantiate at least a <a href="qhelpenginecore.html">QHelpEngineCore</a> object that needs to be passed to the search engines constructor. This is required as the search engine needs to be connected to the help engines setupFinished() signal to know when it can start to index documentation.</p>
+<p>After starting the indexing process the signal <a href="qhelpsearchengine.html#indexingStarted">indexingStarted</a>() is emitted and on the end of the indexing process the <a href="qhelpsearchengine.html#indexingFinished">indexingFinished</a>() is emited. To stop the indexing one can call <a href="qhelpsearchengine.html#cancelIndexing">cancelIndexing</a>().</p>
+<p>While the indexing process has finished, the search engine can now be used to search thru its index for a given term. To do this one may use the possibility of creating the <a href="qhelpsearchquery.html">QHelpSearchQuery</a> list by self or reuse the <a href="qhelpsearchquerywidget.html">QHelpSearchQueryWidget</a> which has the inbuild functionality to set up a proper search querys list that get's passed to the search engines <a href="qhelpsearchengine.html#search">search</a>() function.</p>
+<p>After the list of querys has been passed to the search engine, the signal <a href="qhelpsearchengine.html#searchingStarted">searchingStarted</a>() is emited and after the search has finished the <a href="qhelpsearchengine.html#searchingFinished">searchingFinished</a>() signal is emited. The search process can be stopped by calling <a href="qhelpsearchengine.html#cancelSearching">cancelSearching</a>().</p>
+<p>If the search succeeds, the <a href="qhelpsearchengine.html#searchingFinished">searchingFinished</a>() will be called with the search hits count, which can be reused to fetch the search hits from the search engine. Calling the <a href="qhelpsearchengine.html#hits">hits</a>() function with the range of hits you would like to get will return a list of the requested SearchHits. They basically constist at the moment of a pair of strings where the values of that pair are the documentation file path and the page title.</p>
+<p>To display the given hits use the <a href="qhelpsearchresultwidget.html">QHelpSearchResultWidget</a> or build up your own one if you need more advanced functionality. Note that the <a href="qhelpsearchresultwidget.html">QHelpSearchResultWidget</a> can not be instantiated directly, you must retrieve the widget from the search engine in use as all connections will be established for you by the widget itself.</p>
+<hr />
+<h2>Member Type Documentation</h2>
+<a name="//apple_ref/cpp/tdef/QHelpSearchEngine/SearchHit" />
+<h3 class="fn"><a name="SearchHit-typedef"></a>typedef QHelpSearchEngine::SearchHit</h3>
+<p>Typedef for <a href="qpair.html">QPair</a>&lt;<a href="qstring.html">QString</a>, <a href="qstring.html">QString</a>&gt;. The values of that pair are the documentation file path and the page title.</p>
+<p>See also <a href="qhelpsearchengine.html#hits">hits</a>().</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QHelpSearchEngine/QHelpSearchEngine" />
+<h3 class="fn"><a name="QHelpSearchEngine"></a>QHelpSearchEngine::QHelpSearchEngine ( <a href="qhelpenginecore.html">QHelpEngineCore</a> * <i>helpEngine</i>, <a href="qobject.html">QObject</a> * <i>parent</i> = 0 )</h3>
+<p>Constructs a new search engine with the given <i>parent</i>. The search engine uses the given <i>helpEngine</i> to access the documentation that needs to be indexed. The <a href="qhelpengine.html">QHelpEngine</a>'s setupFinished() signal is automatically connected to the <a href="qhelpsearchengine.html">QHelpSearchEngine</a>'s indexing function, so that new documentation will be indexed after the signal is emited.</p>
+<a name="//apple_ref/cpp/instm/QHelpSearchEngine/~QHelpSearchEngine" />
+<h3 class="fn"><a name="dtor.QHelpSearchEngine"></a>QHelpSearchEngine::~QHelpSearchEngine ()</h3>
+<p>Destructs the search engine.</p>
+<a name="//apple_ref/cpp/instm/QHelpSearchEngine/cancelIndexing" />
+<h3 class="fn"><a name="cancelIndexing"></a>void QHelpSearchEngine::cancelIndexing ()&nbsp;&nbsp;<tt> [slot]</tt></h3>
+<p>Stops the indexing process.</p>
+<a name="//apple_ref/cpp/instm/QHelpSearchEngine/cancelSearching" />
+<h3 class="fn"><a name="cancelSearching"></a>void QHelpSearchEngine::cancelSearching ()&nbsp;&nbsp;<tt> [slot]</tt></h3>
+<p>Stops the search process.</p>
+<a name="//apple_ref/cpp/instm/QHelpSearchEngine/hitCount" />
+<h3 class="fn"><a name="hitCount"></a>int QHelpSearchEngine::hitCount () const</h3>
+<p>Returns the amount of hits the search engine found.</p>
+<p>This function was introduced in Qt 4.6.</p>
+<a name="//apple_ref/cpp/instm/QHelpSearchEngine/hits" />
+<h3 class="fn"><a name="hits"></a><a href="qlist.html">QList</a>&lt;<a href="qhelpsearchengine.html#SearchHit-typedef">SearchHit</a>&gt; QHelpSearchEngine::hits ( int <i>start</i>, int <i>end</i> ) const</h3>
+<p>Returns a list of search hits within the range of <i>start</i> <i>end</i>.</p>
+<a name="//apple_ref/cpp/instm/QHelpSearchEngine/indexingFinished" />
+<h3 class="fn"><a name="indexingFinished"></a>void QHelpSearchEngine::indexingFinished ()&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted when the indexing process is complete.</p>
+<a name="//apple_ref/cpp/instm/QHelpSearchEngine/indexingStarted" />
+<h3 class="fn"><a name="indexingStarted"></a>void QHelpSearchEngine::indexingStarted ()&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted when indexing process is started.</p>
+<a name="//apple_ref/cpp/instm/QHelpSearchEngine/query" />
+<h3 class="fn"><a name="query"></a><a href="qlist.html">QList</a>&lt;<a href="qhelpsearchquery.html">QHelpSearchQuery</a>&gt; QHelpSearchEngine::query () const</h3>
+<p>Returns the list of queries last searched for.</p>
+<p>This function was introduced in Qt 4.5.</p>
+<a name="//apple_ref/cpp/instm/QHelpSearchEngine/queryWidget" />
+<h3 class="fn"><a name="queryWidget"></a><a href="qhelpsearchquerywidget.html">QHelpSearchQueryWidget</a> * QHelpSearchEngine::queryWidget ()</h3>
+<p>Returns a widget to use as input widget. Depending on your search engine configuration you will get a different widget with more or less subwidgets.</p>
+<a name="//apple_ref/cpp/instm/QHelpSearchEngine/reindexDocumentation" />
+<h3 class="fn"><a name="reindexDocumentation"></a>void QHelpSearchEngine::reindexDocumentation ()&nbsp;&nbsp;<tt> [slot]</tt></h3>
+<p>Forces the search engine to reindex all documentation files.</p>
+<a name="//apple_ref/cpp/instm/QHelpSearchEngine/resultWidget" />
+<h3 class="fn"><a name="resultWidget"></a><a href="qhelpsearchresultwidget.html">QHelpSearchResultWidget</a> * QHelpSearchEngine::resultWidget ()</h3>
+<p>Returns a widget that can hold and display the search results.</p>
+<a name="//apple_ref/cpp/instm/QHelpSearchEngine/search" />
+<h3 class="fn"><a name="search"></a>void QHelpSearchEngine::search ( const <a href="qlist.html">QList</a>&lt;<a href="qhelpsearchquery.html">QHelpSearchQuery</a>&gt; &amp; <i>queryList</i> )&nbsp;&nbsp;<tt> [slot]</tt></h3>
+<p>Starts the search process using the given list of querys <i>queryList</i> build by the search field name and the values to search for.</p>
+<a name="//apple_ref/cpp/instm/QHelpSearchEngine/searchingFinished" />
+<h3 class="fn"><a name="searchingFinished"></a>void QHelpSearchEngine::searchingFinished ( int <i>hits</i> )&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted when the search process is complete. The hit count is stored in <i>hits</i>.</p>
+<a name="//apple_ref/cpp/instm/QHelpSearchEngine/searchingStarted" />
+<h3 class="fn"><a name="searchingStarted"></a>void QHelpSearchEngine::searchingStarted ()&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted when the search process is started.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

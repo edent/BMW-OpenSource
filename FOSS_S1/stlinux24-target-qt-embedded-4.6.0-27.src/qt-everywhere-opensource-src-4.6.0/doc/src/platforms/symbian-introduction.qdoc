@@ -1,0 +1,197 @@
+/****************************************************************************
+**
+** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+** All rights reserved.
+** Contact: Nokia Corporation (qt-info@nokia.com)
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:LGPL$
+** Commercial Usage
+** Licensees holding valid Qt Commercial licenses may use this file in
+** accordance with the Qt Commercial License Agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and Nokia.
+**
+** GNU Lesser General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU Lesser
+** General Public License version 2.1 as published by the Free Software
+** Foundation and appearing in the file LICENSE.LGPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU Lesser General Public License version 2.1 requirements
+** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+**
+** In addition, as a special exception, Nokia gives you certain additional
+** rights.  These rights are described in the Nokia Qt LGPL Exception
+** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+**
+** GNU General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU
+** General Public License version 3.0 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU General Public License version 3.0 requirements will be
+** met: http://www.gnu.org/copyleft/gpl.html.
+**
+** If you have questions regarding the use of this file, please contact
+** Nokia at qt-info@nokia.com.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \group qtsymbian
+    \title Qt for the Symbian platform
+    \ingroup qt-embedded
+    \brief Documents related to Qt on the Symbian platform
+
+    Qt for Symbian is a C++ framework for GUI and application development
+    for embedded devices running Symbian. Qt for Symbian provides all
+    functionality required to develop rich end-user applications for devices
+    running S60 3.1 and later.
+
+    \table 100%
+    \header \o Getting Started \o Reference \o Development
+    \row
+    \o
+     \list
+        \o \l {Qt for the Symbian platform Requirements}
+        \o \l {Installing Qt on the Symbian platform from a Binary Package}
+        \o \l {Installing Qt on the Symbian platform}
+        \o \l {The Symbian platform - Introduction to Qt}{Introduction to using Qt}
+    \endlist
+    \o
+    \list
+        \o \l {Exception Safety with Symbian}
+        \o \l {Platform Notes - Symbian} {Qt for the Symbian platform - state of support}
+        \o \l {qmake Platform Notes#Symbian platform} {Qt for Symbian extensions for qmake}
+    \endlist
+    \o
+    \list
+        \o \l {Deploying an Application on the Symbian platform}{Deploying Applications}
+    \endlist
+    \endtable
+*/
+
+/*!
+    \page symbian-with-qt-introduction.html
+
+    \title The Symbian platform - Introduction to Qt
+    \brief An introduction to Qt for the Symbian platform developers.
+    \ingroup howto
+    \ingroup qtsymbian
+
+    \tableofcontents
+
+    \section1 Required tools
+
+    See \l{Qt for the Symbian platform Requirements} to see what tools are
+    required to use Qt for the Symbian platform.
+
+    \section1 Installing Qt and running demos
+
+    Follow the instructions found in \l{Installing Qt on the Symbian platform from a Binary Package}
+    to learn how to install Qt using a binary package and how to build and run Qt demos.
+
+    Follow the instructions found in \l{Installing Qt on the Symbian platform} to learn how to install Qt using
+    using source package and how to build and run the Qt demos.
+
+    \section1 Building your own applications
+
+    If you are new to Qt development, have a look at \l{How to Learn Qt}.
+    In general, the difference between developing a
+    Qt application on the Symbian platform compared to any of the other platforms supported
+    by Qt is not that big.
+
+    Once you have created a \c .pro file for your project, generate the
+    Symbian specific \c Bld.inf and \c .mmp files this way:
+
+    \snippet doc/src/snippets/code/doc_src_symbian-introduction.qdoc 0
+
+    For more information on how to use qmake have a look at the \l
+    {qmake Tutorial}.
+
+    Now you can build the Qt for the Symbian platform application with
+    standard build tools. By default, running \c make will produce binaries for
+    the emulator. However, the Symbian platform comes with several alternative
+    build targets, as shown in the table below:
+
+    \table
+    \row \o \c debug-winscw  \o Build debug binaries for the emulator (default).
+                                It is currently not possible to build release
+                                binaries for the emulator.
+    \row \o \c debug-gcce    \o Build debug binaries for hardware using GCCE.
+    \row \o \c release-gcce  \o Build release binaries for hardware using GCCE.
+    \row \o \c debug-armv5   \o Build debug binaries for hardware using RVCT.
+    \row \o \c release-armv5 \o Build release binaries for hardware using RVCT.
+    \row \o \c run           \o Run the emulator binaries from the build directory.
+    \row \o \c sis           \o Create signed \c .sis file for project.
+    \endtable
+
+    The following lines perform a debug build for the emulator
+    and deploy all the needed files:
+
+    \snippet doc/src/snippets/code/doc_src_symbian-introduction.qdoc 1
+
+    To work on your project in Carbide, simply import the \c .pro file
+    by right clicking on the project explorer and executing "Import...".
+
+    \section1 Installing your own applications
+
+    To install your own applications on hardware, you need a signed \c .sis file.
+    (Refer to the \l{http://developer.symbian.org/wiki/index.php/Platform_Security_%28Fundamentals_of_Symbian_C%2B%2B%29#Self-Signed_Applications}
+    {Platform Security Article} for more informations about self-signing.)
+    The signed \c .sis file can be created with \c make \c sis target. \c sis target
+    is only supported for executables or projects with \c DEPLOYMENT statements.
+    By default the \c sis target will create signed \c .sis file for last build
+    target. For example, the following sequence will generate the needed makefiles,
+    build the project for \c debug-winscw and \c release-armv5, and create
+    self-signed \c .sis file for \c release-armv5 target:
+
+    \snippet doc/src/snippets/code/doc_src_symbian-introduction.qdoc 2
+
+    If you want to use different certificate information or override the default
+    target for \c .sis file creation you can use the environment variables as
+    shown in the table below:
+
+    \table
+    \row \o \c QT_SIS_OPTIONS      \o Options accepted by \c .sis creation. See
+                                   \l{Supported options for QT_SIS_OPTIONS}{Supported options}
+                                    below. By default no otions are given.
+    \row \o \c QT_SIS_TARGET       \o Target for which \c .sis file is created.
+                                       Accepted values are build targets listed in
+                                       previous table. By default last build target.
+    \row \o \c QT_SIS_CERTIFICATE  \o The certificate file used for signing.
+                                       By default self-signed certificate.
+    \row \o \c QT_SIS_KEY          \o The certificate's private key file.
+                                       By default key is associated to self-signed certificate.
+    \row \o \c QT_SIS_PASSPHRASE   \o The certificate's private key file's passphrase.
+                                       By default empty.
+    \endtable
+
+    The suppported options for \c QT_SIS_OPTIONS:
+
+    \target Supported options for QT_SIS_OPTIONS
+    \table
+    \row \o -i                  \o Install the package right away using PC suite.
+    \row \o -p                  \o Only preprocess the template \c .pkg file.
+    \row \o -c=<file>           \o Read certificate information from a file.
+    \endtable
+
+    Execute the \c{createpackage.pl} script without any
+    parameters for detailed information about options. By default no otions are given.
+
+    For example:
+
+    \snippet doc/src/snippets/code/doc_src_symbian-introduction.qdoc 4
+
+    The environment variables for \c make can also be given as parameters:
+
+    \snippet doc/src/snippets/code/doc_src_symbian-introduction.qdoc 3
+
+    If you want to install the program immediately, make sure that the device
+    is connected to the computer in "PC Suite" mode, and run \c sis target
+    with the \c QT_SIS_OPTIONS=-i, like this:
+
+    \snippet doc/src/snippets/code/doc_src_symbian-introduction.qdoc 5
+*/

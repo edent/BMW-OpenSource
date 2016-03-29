@@ -1,0 +1,130 @@
+/****************************************************************************
+**
+** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+** All rights reserved.
+** Contact: Nokia Corporation (qt-info@nokia.com)
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:LGPL$
+** Commercial Usage
+** Licensees holding valid Qt Commercial licenses may use this file in
+** accordance with the Qt Commercial License Agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and Nokia.
+**
+** GNU Lesser General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU Lesser
+** General Public License version 2.1 as published by the Free Software
+** Foundation and appearing in the file LICENSE.LGPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU Lesser General Public License version 2.1 requirements
+** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+**
+** In addition, as a special exception, Nokia gives you certain additional
+** rights.  These rights are described in the Nokia Qt LGPL Exception
+** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+**
+** GNU General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU
+** General Public License version 3.0 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU General Public License version 3.0 requirements will be
+** met: http://www.gnu.org/copyleft/gpl.html.
+**
+** If you have questions regarding the use of this file, please contact
+** Nokia at qt-info@nokia.com.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*! 
+    \page qaxserver-demo-simple.html
+
+    \title A standard ActiveX and the "simple" ActiveQt widget
+
+    \raw HTML
+    <object ID="QSimpleAX" CLASSID="CLSID:DF16845C-92CD-4AAB-A982-EB9840E74669"
+    CODEBASE="http://qt.nokia.com/demos/simpleax.cab">
+        <PARAM NAME="text" VALUE="A simple control" />
+        <PARAM NAME="value" VALUE="1" />
+    [Object not available! Did you forget to build and register the server?]
+    </object>
+
+    <FORM>
+        <INPUT TYPE="BUTTON" VALUE="About..." onClick="QSimpleAX.about()" />
+    </FORM>
+
+    <object ID="Calendar" CLASSID="CLSID:8E27C92B-1264-101C-8A2F-040224009C02">
+    [Standard Calendar control not available!]
+        <PARAM NAME="day" VALUE="1" />
+    </object>
+
+    <FORM>
+        <INPUT TYPE="BUTTON" VALUE="Today" onClick="Calendar.Today()" />
+    </FORM>
+
+    <SCRIPT LANGUAGE="VBScript">
+    Sub Calendar_Click()
+        MsgBox( "Calendar Clicked!" )
+    End Sub
+
+    Sub QSimpleAX_TextChanged( str )
+        document.title = str
+    End Sub
+    </SCRIPT>
+
+    <SCRIPT LANGUAGE="JavaScript">
+    function QSimpleAX::ValueChanged( Newvalue )
+    {
+        Calendar.Day = Newvalue;
+    }
+    </SCRIPT>
+    \endraw
+*/
+
+/*!
+    \example activeqt/simple
+    \title Simple Example (ActiveQt)
+
+    The Simple example demonstrates the use of
+    QAxBindable::requestPropertyChange() and
+    QAxBindable::propertyChanged(), and the use of the default
+    QAxFactory through the \c QAXFACTORY_DEFAULT() macro.
+    
+    The ActiveX control in this example is a laid out QWidget with a
+    QSlider, a QLCDNumber and a QLineEdit. It provides a
+    signal/slot/property interface to change the values of the slider
+    and the line edit, and to get notified of any property changes.
+
+
+    The Qt implementation of the ActiveX for this example is
+    \snippet examples/activeqt/simple/main.cpp 0
+
+    The control is exported using the default QAxFactory
+    \snippet examples/activeqt/simple/main.cpp 1
+
+    To build the example you must first build the QAxServer library.
+    Then run qmake and your make tool in \c examples/activeqt/simple.
+
+    The \l{qaxserver-demo-simple.html}{demonstration} requires your
+    WebBrowser to support ActiveX controls, and scripting to be enabled.
+
+    The simple ActiveX control is embedded using the \c <object> tag.
+
+    \snippet doc/src/examples/activeqt/simple-demo.qdocinc 0
+
+    A simple HTML button is connected to the ActiveQt's about() slot.
+
+    \snippet doc/src/examples/activeqt/simple-demo.qdocinc 1
+
+    A second ActiveX control - the standard Calendar Control - is instantiated
+
+    \snippet doc/src/examples/activeqt/simple-demo.qdocinc 2
+
+    Events from the ActiveX controls are handled using both Visual Basic Script
+    and JavaScript.
+
+    \snippet doc/src/examples/activeqt/simple-demo.qdocinc 3
+*/

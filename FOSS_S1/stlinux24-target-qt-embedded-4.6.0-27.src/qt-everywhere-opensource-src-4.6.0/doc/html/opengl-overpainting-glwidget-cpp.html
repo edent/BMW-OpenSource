@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: glwidget.cpp Example File (opengl/overpainting/glwidget.cpp)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">glwidget.cpp Example File<br /><span class="small-subtitle">opengl/overpainting/glwidget.cpp</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the examples of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+
+ #include &lt;QtGui&gt;
+ #include &lt;QtOpenGL&gt;
+ #include &lt;stdlib.h&gt;
+
+ #include &lt;math.h&gt;
+
+ #include &quot;bubble.h&quot;
+ #include &quot;qtlogo.h&quot;
+ #include &quot;glwidget.h&quot;
+
+ #ifndef GL_MULTISAMPLE
+ #define GL_MULTISAMPLE  0x809D
+ #endif
+
+ GLWidget::GLWidget(QWidget *parent)
+     : QGLWidget(QGLFormat(QGL::SampleBuffers), parent)
+ {
+     QTime midnight(0, 0, 0);
+     qsrand(midnight.secsTo(QTime::currentTime()));
+
+     logo = 0;
+     xRot = 0;
+     yRot = 0;
+     zRot = 0;
+
+     qtGreen = QColor::fromCmykF(0.40, 0.0, 1.0, 0.0);
+     qtPurple = QColor::fromCmykF(0.39, 0.39, 0.0, 0.0);
+
+     animationTimer.setSingleShot(false);
+     connect(&amp;animationTimer, SIGNAL(timeout()), this, SLOT(animate()));
+     animationTimer.start(25);
+
+     setAutoFillBackground(false);
+     setMinimumSize(200, 200);
+     setWindowTitle(tr(&quot;Overpainting a Scene&quot;));
+ }
+
+ GLWidget::~GLWidget()
+ {
+ }
+
+ static void qNormalizeAngle(int &amp;angle)
+ {
+     while (angle &lt; 0)
+         angle += 360 * 16;
+     while (angle &gt; 360 * 16)
+         angle -= 360 * 16;
+ }
+
+ void GLWidget::setXRotation(int angle)
+ {
+     qNormalizeAngle(angle);
+     if (angle != xRot)
+         xRot = angle;
+ }
+
+ void GLWidget::setYRotation(int angle)
+ {
+     qNormalizeAngle(angle);
+     if (angle != yRot)
+         yRot = angle;
+ }
+
+ void GLWidget::setZRotation(int angle)
+ {
+     qNormalizeAngle(angle);
+     if (angle != zRot)
+         zRot = angle;
+ }
+
+ void GLWidget::initializeGL()
+ {
+     glEnable(GL_MULTISAMPLE);
+
+     logo = new QtLogo(this);
+     logo-&gt;setColor(qtGreen.dark());
+ }
+
+ void GLWidget::mousePressEvent(QMouseEvent *event)
+ {
+     lastPos = event-&gt;pos();
+ }
+
+ void GLWidget::mouseMoveEvent(QMouseEvent *event)
+ {
+     int dx = event-&gt;x() - lastPos.x();
+     int dy = event-&gt;y() - lastPos.y();
+
+     if (event-&gt;buttons() &amp; Qt::LeftButton) {
+         setXRotation(xRot + 8 * dy);
+         setYRotation(yRot + 8 * dx);
+     } else if (event-&gt;buttons() &amp; Qt::RightButton) {
+         setXRotation(xRot + 8 * dy);
+         setZRotation(zRot + 8 * dx);
+     }
+     lastPos = event-&gt;pos();
+ }
+
+ void GLWidget::paintEvent(QPaintEvent *event)
+ {
+     makeCurrent();
+     glMatrixMode(GL_MODELVIEW);
+     glPushMatrix();
+
+     qglClearColor(qtPurple.dark());
+     glShadeModel(GL_SMOOTH);
+     glEnable(GL_DEPTH_TEST);
+     glEnable(GL_CULL_FACE);
+     glEnable(GL_LIGHTING);
+     glEnable(GL_LIGHT0);
+     glEnable(GL_MULTISAMPLE);
+     static GLfloat lightPosition[4] = { 0.5, 5.0, 7.0, 1.0 };
+     glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
+
+     setupViewport(width(), height());
+
+     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+     glLoadIdentity();
+     glTranslatef(0.0, 0.0, -10.0);
+     glRotatef(xRot / 16.0, 1.0, 0.0, 0.0);
+     glRotatef(yRot / 16.0, 0.0, 1.0, 0.0);
+     glRotatef(zRot / 16.0, 0.0, 0.0, 1.0);
+
+     logo-&gt;draw();
+
+     glShadeModel(GL_FLAT);
+     glDisable(GL_CULL_FACE);
+     glDisable(GL_DEPTH_TEST);
+     glDisable(GL_LIGHTING);
+
+     glMatrixMode(GL_MODELVIEW);
+     glPopMatrix();
+
+     QPainter painter(this);
+     painter.setRenderHint(QPainter::Antialiasing);
+     foreach (Bubble *bubble, bubbles) {
+         if (bubble-&gt;rect().intersects(event-&gt;rect()))
+             bubble-&gt;drawBubble(&amp;painter);
+     }
+     drawInstructions(&amp;painter);
+     painter.end();
+ }
+
+ void GLWidget::resizeGL(int width, int height)
+ {
+     setupViewport(width, height);
+ }
+
+ void GLWidget::showEvent(QShowEvent *event)
+ {
+     Q_UNUSED(event);
+     createBubbles(20 - bubbles.count());
+ }
+
+ QSize GLWidget::sizeHint() const
+ {
+     return QSize(400, 400);
+ }
+
+ void GLWidget::createBubbles(int number)
+ {
+     for (int i = 0; i &lt; number; ++i) {
+         QPointF position(width()*(0.1 + (0.8*qrand()/(RAND_MAX+1.0))),
+                         height()*(0.1 + (0.8*qrand()/(RAND_MAX+1.0))));
+         qreal radius = qMin(width(), height())*(0.0125 + 0.0875*qrand()/(RAND_MAX+1.0));
+         QPointF velocity(width()*0.0125*(-0.5 + qrand()/(RAND_MAX+1.0)),
+                         height()*0.0125*(-0.5 + qrand()/(RAND_MAX+1.0)));
+
+         bubbles.append(new Bubble(position, radius, velocity));
+     }
+ }
+
+ void GLWidget::animate()
+ {
+     QMutableListIterator&lt;Bubble*&gt; iter(bubbles);
+
+     while (iter.hasNext()) {
+         Bubble *bubble = iter.next();
+         bubble-&gt;move(rect());
+     }
+     update();
+ }
+
+ void GLWidget::setupViewport(int width, int height)
+ {
+     int side = qMin(width, height);
+     glViewport((width - side) / 2, (height - side) / 2, side, side);
+
+     glMatrixMode(GL_PROJECTION);
+     glLoadIdentity();
+ #ifdef QT_OPENGL_ES
+     glOrthof(-0.5, +0.5, -0.5, 0.5, 4.0, 15.0);
+ #else
+     glOrtho(-0.5, +0.5, -0.5, 0.5, 4.0, 15.0);
+ #endif
+     glMatrixMode(GL_MODELVIEW);
+ }
+
+ void GLWidget::drawInstructions(QPainter *painter)
+ {
+     QString text = tr(&quot;Click and drag with the left mouse button &quot;
+                       &quot;to rotate the Qt logo.&quot;);
+     QFontMetrics metrics = QFontMetrics(font());
+     int border = qMax(4, metrics.leading());
+
+     QRect rect = metrics.boundingRect(0, 0, width() - 2*border, int(height()*0.125),
+                                       Qt::AlignCenter | Qt::TextWordWrap, text);
+     painter-&gt;setRenderHint(QPainter::TextAntialiasing);
+     painter-&gt;fillRect(QRect(0, 0, width(), rect.height() + 2*border),
+                      QColor(0, 0, 0, 127));
+     painter-&gt;setPen(Qt::white);
+     painter-&gt;fillRect(QRect(0, 0, width(), rect.height() + 2*border),
+                       QColor(0, 0, 0, 127));
+     painter-&gt;drawText((width() - rect.width())/2, border,
+                       rect.width(), rect.height(),
+                       Qt::AlignCenter | Qt::TextWordWrap, text);
+ }</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

@@ -1,0 +1,534 @@
+/****************************************************************************
+**
+** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+** All rights reserved.
+** Contact: Nokia Corporation (qt-info@nokia.com)
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:LGPL$
+** Commercial Usage
+** Licensees holding valid Qt Commercial licenses may use this file in
+** accordance with the Qt Commercial License Agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and Nokia.
+**
+** GNU Lesser General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU Lesser
+** General Public License version 2.1 as published by the Free Software
+** Foundation and appearing in the file LICENSE.LGPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU Lesser General Public License version 2.1 requirements
+** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+**
+** In addition, as a special exception, Nokia gives you certain additional
+** rights.  These rights are described in the Nokia Qt LGPL Exception
+** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+**
+** GNU General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU
+** General Public License version 3.0 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU General Public License version 3.0 requirements will be
+** met: http://www.gnu.org/copyleft/gpl.html.
+**
+** If you have questions regarding the use of this file, please contact
+** Nokia at qt-info@nokia.com.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \group platform-specific
+    \title Platform-Specific Documentation
+    \brief Documents describing platform-specific features of Qt.
+
+    These documents describe platform-specific features provided by Qt, and
+    discuss issues related to particular platforms and environments.
+
+    \generatelist{related}
+*/
+
+/*!
+    \page platform-notes.html
+    \ingroup platform-specific
+    \title Platform Notes
+    \brief Information about the platforms on which Qt can be used.
+
+    This page contains information about the platforms Qt is currently known
+    to run on, with links to platform-specific notes, including any known bugs
+    or incompatibilities.
+
+    \list
+    \o \l{Platform Notes - X11}
+    \tableofcontents{1 Platform Notes - X11}
+    \o \l{Platform Notes - Windows}
+    \tableofcontents{1 Platform Notes - Windows}
+    \o \l{Platform Notes - Mac OS X}
+    \tableofcontents{1 Platform Notes - Mac OS X}
+    \o \l{Platform Notes - Symbian}
+    \tableofcontents{1 Platform Notes - Symbian}
+    \o \l{Platform Notes - Embedded Linux}
+    \tableofcontents{1 Platform Notes - Embedded Linux}
+    \o \l{Platform Notes - Windows CE}
+    \tableofcontents{1 Platform Notes - Windows CE}
+    \o \l{Platform Notes - QNX}
+    \tableofcontents{1 Platform Notes - QNX}
+    \o \l{Platform Notes - VxWorks}
+    \tableofcontents{1 Platform Notes - VxWorks}
+    \endlist
+
+    See also the \l{Compiler Notes} for information about compiler-specific
+    build issues. Information about the combinations of platforms and compilers
+    supported by Qt can be found on the \l{Supported Platforms} page.
+
+    If you have anything to add to this list or any of the platform or
+    compiler-specific pages, please submit it via the \l{Bug Report Form}
+    or through the \l{Public Qt Repository}.
+*/
+
+/*!
+    \page platform-notes-x11.html
+    \title Platform Notes - X11
+    \contentspage Platform Notes
+
+    This page contains information about the X11 platforms Qt is currently
+    known to run on, with links to platform-specific notes. More information
+    about the combinations of platforms and compilers supported by Qt can be
+    found on the \l{Supported Platforms} page.
+
+    \tableofcontents
+
+    \target AIX
+    \section1 AIX - 5.2
+
+    Qt has been tested on AIX 5.2, using the
+    \l{Compiler Notes#IBM xlC (AIX)}{xlC} compiler.
+
+    \table
+    \header \o Compiler \o Notes
+    \row    \o xlC
+    \o If Qt is built correctly but all symbols are reported to be missing
+    when you link an application, your makeC++SharedLib script might be out
+    of date. Make sure you have the latest version from the
+    \l{http://www-306.ibm.com/software/awdtools/vacpp/support/}{IBM website}.
+    \row    \o GCC
+    \o We have tested earlier versions of Qt 4 successfully with GCC version
+    3.3 and above. Some versions of GCC may fail to link Qt with a "TOC overflow"
+    message.
+    Fix this by upgrading to the latest maintenance release of the dynamic
+    linker. On AIX this is bos.rte.bind_cmds.4.1.5.3 or later.
+    Some versions of GCC may fail to build Qt with STL and large-file support
+    enabled, due to
+    \l{http://gcc.gnu.org/bugzilla/show_bug.cgi?id=9551}{a bug in GCC}.
+    Fix this by upgrading to the latest maintenance release of the compiler.
+    It is also possible to work around this problem by running configure with
+    either \c{-no-stl} or \c{-no-largefile}.
+    \endtable
+
+    \target FreeBSD
+    \section1 FreeBSD - 6.0-RELEASE
+
+    \note FreeBSD is a community supported platform. See the
+    \l{Supported Platforms} page for more information.
+
+    The system compiler on FreeBSD 4.x is gcc 2.95.4, which is not
+    officially supported by Qt 4. We develop using and recommend
+    ports/lang/gcc34. You will need to run configure with the
+    \c{-platform freebsd-g++34} arguments. Optionally, you may use
+    ports/lang/icc.
+
+    The system compiler on FreeBSD 5.x and 6.x is GCC 3.4.4, which should be
+    sufficient to build Qt. You do not need to add any special arguments when
+    running configure. Optionally, you may use ports/lang/icc.
+
+    Note that we do not actively test FreeBSD 4.x and 5.x. Our developers
+    migrated to 6.x after the Qt 4 launch. FreeBSD-CURRENT is not supported.
+
+    \target HP-UX
+    \section1 HP-UX
+
+    Qt supports HP-UX on both PA-RISC and the Itanium (IA64) architectures.
+
+    \section2 PA-RISC - B.11.11 or later
+
+    You can configure Qt for aCC in 32 and 64 bit mode (hpux-acc-64 or
+    hpux-acc-32), or gcc in 32 bit mode (hpux-g++).  The default platform is
+    hpux-acc-32. The minimum required version for aCC (HP ANSI C++) on PA-RISC
+    is A.03.57. The supported gcc compiler is gcc 3.4.3.
+
+    \section2 Itanium - B.11.23 or later
+
+    You can configure Qt for aCC in 32 and 64 bit mode (hpuxi-acc-64 or
+    hpuxi-acc-32). gcc is currently unsupported.  The default platform is
+    hpuxi-acc-64. The minimum required version for aCC (HP ANSI C++) on
+    Itanium is A.06.12.
+
+    \section2 OpenGL Support
+
+    Qt's \l{QtOpenGL}{OpenGL} module requires GLX 1.3 or later to be installed.
+    This is available for HP-UX 11i - see the
+    \l{http://docs.hp.com/en/5992-2331/ch04s02.html}{Graphics and Technical Computing Software}
+    section of the release notes for more information.
+
+    \target IRIX
+    \section1 IRIX - 6.5.x
+
+    \bold{IRIX is an unsupported platform - please see Qt's online
+    \l{Platform Support Policy} for details.}
+
+    Unpackaging and IRIX tar:
+    Because of long filenames some files will be cut off incorrectly with IRIX
+    tar. Please use GNU tar to unpack Qt packages.
+
+    \section1 Linux
+
+    There are no known problems with using Qt on production versions of
+    Linux/x86, Linux/ppc, Linux/amd64 and Linux/ia64 (including Altix(R)).
+
+    For the gcc/g++ compiler, please also see the relevant
+    \l{Compiler Notes#GCC}{compiler page}.
+
+    \section2 Installation problems
+
+    See also the \l{Installation FAQ}.
+
+    If you experience problems when installing new open source versions of Qt
+    versions, try to use the open source Qt archives (e.g., RPM)
+    provided by your Linux distribution. If you need to install the source (.tgz)
+    archive, be aware that you will probably end up with two different
+    versions of the Qt library installed on your system, which will probably
+    lead to link errors, like this:
+    \snippet doc/src/snippets/code/doc_src_platform-notes.qdoc 0
+    Fix this by removing the old version of the library.
+
+    If you have problems installing open source versions of Qt
+    provided by your Linux distribution (e.g., RPM), please consult the
+    maintainers of the distribution, not us.
+
+    Some RPM versions have problems installing some of the Qt RPM archives
+    where installation stops with an error message warning about a
+    "Failed Dependency". Use the \c{--nodeps} option to \c rpm to workaround
+    this problem.
+
+    \target Solaris
+    \section1 Solaris - 9 or later
+
+    \section2 Unpackaging and Solaris tar
+
+    On some Solaris systems, both Solaris tar and GNU tar have been reported
+    to truncate long filenames. We recommend using star instead
+    (http://star.berlios.de).
+
+    \section2 CC on Solaris
+
+    Be sure to check our \l{Compiler Notes#Sun Studio}{Forte Developer / Sun Studio}
+    notes.
+
+    \section2 GCC on Solaris
+
+    Be sure to check the installation notes for \l{GCC on Solaris}.
+    Do not use GCC with Sun's assembler/linker, this will result in link-time
+    errors in shared libraries. Use GNU binutils instead. 
+
+    GCC 3.2.* is known to miscompile Qt due to an optimizer bug that will
+    cause the resulting binaries to hang. Please use GCC 3.4.2 or later.
+*/
+
+/*!
+    \page platform-notes-windows.html
+    \title Platform Notes - Windows
+    \contentspage Platform Notes
+
+    This page contains information about the Windows platforms Qt is currently
+    known to run on, with links to platform-specific notes. More information
+    about the combinations of platforms and compilers supported by Qt can be
+    found on the \l{Supported Platforms} page.
+
+    \tableofcontents
+
+    \section1 Windows Vista
+
+    At the time Qt 4.6.0 was released, there were no known Vista-specific issues.
+
+    \target Windows NT
+    \section1 Windows XP, Windows 2000 and Windows NT
+
+    \section2 Installation location
+
+    Installing Qt into a directory with spaces, e.g. C:\\Program Files, may
+    cause linker errors like the following:
+    \snippet doc/src/snippets/code/doc_src_platform-notes.qdoc 2
+
+    Install Qt into a subdirectory without spaces to avoid this problem.
+
+    \section2 AccelGALAXY graphic card
+
+    When you use a NT 4.0 machine with the driver number
+    4,00,1381,1000,021,4.0.0 there is a problem with drag an drop and icons.
+    The computer freezes, and you have to reset. The problem disappears with
+    the newest version of the driver, available at
+    \l{http://www.es.com/}{www.es.com}.
+
+    \section2 Possible GL conflict
+
+    There is a known issue with running Microsoft NetMeeting, Lotus SameTime
+    and other applications that require screen grabbing while direct
+    rendering is enabled. Other GL-applications may not work as expected,
+    unless direct rendering is disabled.
+*/
+
+/*!
+    \page platform-notes-mac.html
+    \title Platform Notes - Mac OS X
+    \contentspage Platform Notes
+
+    This page contains information about the Mac OS X versions Qt is currently
+    known to run on, with links to platform-specific notes. More information
+    about the combinations of platforms and compilers supported by Qt can be
+    found on the \l{Supported Platforms} page.
+
+    \tableofcontents
+
+    \section1 General Information
+
+    Qt 4.4 and Qt 4.5 development is only supported on Mac OS X 10.4 and up.
+    Applications built against these version of Qt can be deployed on Mac OS X
+    10.3, but cannot be developed on that version of the operating system due
+    to compiler issues.
+
+    Qt 4.3 has been tested to run on Mac OS X 10.3.9 and up. See notes on
+    the binary package for more information.
+
+    Qt 4.1 has been tested to run on Mac OS X 10.2.8 and up. Qt 4.1.4 is the
+    last release to work with Mac OS X 10.2.
+
+    \section2 Required GCC version
+
+    Apple's gcc 4 that is shipped with the Xcode Tools for both Mac OS X 10.4
+    and 10.5 will compile Qt. There is preliminary support for gcc 4.2 which
+    is included with Xcode Tools 3.1+ (configurable with
+    \c{-platform macx-g++42}).
+
+    \section2 Binary Package
+
+    The binary package requires that you have your .qt-license file in your
+    home directory. Installer.app cannot complete without a valid .qt-license
+    file. Evaluation users of Qt will have information about how to create
+    this file in the email they receive.
+
+    The binary package was built on Mac OS X 10.4 with Xcode Tools 2.1
+    (gcc 4.0.0) for Qt 4.1.0, Xcode Tools 2.2 (gcc 4.0.1) for Qt 4.1.1-4.1.4
+    and Xcode Tools 2.3 for 4.2.0. It will only link executables built
+    against 10.4 (or a 10.4 SDK). You should be able to run applications
+    linked against these frameworks on Mac OS X 10.3.9 and Mac OS X 10.4+.
+    If you require a different configuration, you will have to use the
+    source package and build with GCC 3.3.
+
+    \section2 Mac OS X on Intel hardware
+
+    Qt 4 fully supports both the Intel and PowerPC architectures on the Mac.
+    As of Qt 4.1 it is possible to support the Intel architecture by
+    creating Universal Binaries with qmake. As of Qt 4.1 it is possible to
+    build Qt as a set of universal binaries and frameworks from configure by
+    adding these extra flags:
+
+    \snippet doc/src/snippets/code/doc_src_platform-notes.qdoc 3
+
+    If you are building on Intel hardware you can omit the sdk parameter, but
+    PowerPC hardware requires it.
+
+    You can also generate universal binaries using qmake. Simply add these
+    lines to your .pro file:
+
+    \snippet doc/src/snippets/code/doc_src_platform-notes.qdoc 4
+
+    \section2 Build Issues
+
+    If Qt does not build upon executing make, and fails with an error message
+    such as
+
+    \snippet doc/src/snippets/code/doc_src_platform-notes.qdoc 5
+
+    this could be an indication you have upgraded your version of Mac OS X
+    (e.g. 10.3 to 10.4), without upgrading your Developer Tools (Xcode Tools).
+    These must match in order to successfully compile files.
+
+    Please be sure to upgrade both simultaneously. If problems still occur,
+    contact support.
+
+    \section2 Fink
+
+    If you have installed the Qt for X11 package from \l{Fink},
+    it will set the QMAKESPEC environment variable to darwin-g++. This will
+    cause problems when you build the Qt for Mac OS X package. To fix this, simply
+    unset your QMAKESPEC or set it to macx-g++ before you run configure.
+    You need to have a fresh Qt distribution (make confclean).
+
+    \section2 MySQL and Mac OS X
+
+    There seems to be a issue when both -prebind and -multi_module are
+    defined when linking static C libraries into dynamic library. If you
+    get the following error message when linking Qt:
+
+    \snippet doc/src/snippets/code/doc_src_platform-notes.qdoc 6
+
+    re-link Qt using -single_module. This is only a problem when building the
+    MySQL driver into Qt. It does not affect plugins or static builds.
+
+    \section2 Qt and Precompiled Headers (PCH)
+
+    Starting with Qt 3.3.0 it is possible to use precompiled headers. They
+    are not enabled by default as it appears that some versions of Apple's
+    GCC and make have problems with this feature. If you want to use
+    precompiled headers when building the Qt source package, specify the
+    -pch option to configure. If, while using precompiled headers, you
+    encounter an internal compile error, try removing the -include header
+    statement from the compile line and trying again. If this solves the
+    problem, it probably is a good idea to turn off precompiled headers.
+    Also, consider filing a bug report with Apple so that they can
+    improve support for this feature.
+*/
+
+/*!
+    \page platform-notes-windows-ce.html
+    \title Platform Notes - Windows CE
+    \contentspage Platform Notes
+
+    This page contains information about the Windows CE and Windows Mobile
+    platforms Qt is currently known to run on, with links to platform-specific
+    notes. More information about the combinations of platforms and compilers
+    supported by Qt can be found on the \l{Supported Platforms} page.
+*/
+
+/*!
+    \page platform-notes-symbian.html
+    \title Platform Notes - Symbian
+    \contentspage Platform Notes
+    \ingroup platform-specific
+    \brief Information about the state of support for the Symbian platform.
+
+    As with any port, the maturity for Qt for Symbian has not yet reached the
+    same level as other established Qt ports. This page documents the current
+    notes for the Symbian port.
+
+    \section1 Source Compatibility
+
+    Qt for Symbian provides the same level of source compatibility guarantee as
+    given for other platforms.  That is, a program which compiles against a given
+    version of Qt for Symbian will also compile against all future versions of the
+    same major release.
+
+    \section1 Binary Compatibility
+
+    As with every supported platform, we will strive to maintain
+    application behavior and binary compatibility throughout the lifetime of
+    the Qt 4.x series. However, due to the fact that Symbian support is newly
+    added in 4.6.0, there is a slight possibility that minor corrections to the
+    application binary interface (ABI) might be required in 4.6.1, in order to
+    ensure compatibility going forward. Any such change will be clearly
+    documented in the release notes for 4.6.1.
+
+    \section1 Supported Devices
+
+    Qt is designed to work on any device which runs one of the following
+    versions of Symbian:
+
+    \table
+    \header \o Symbian Version
+    \row \o S60 3.1
+    \row \o S60 3.2
+    \row \o S60 5.0 (Symbian ^1)
+    \endtable
+
+    Qt has received \l{Tier 1 Platforms}{Tier 1} testing on the following phone models:
+
+    \table
+    \header \o Phone
+    \row    \o Nokia 5800
+    \row    \o Nokia E71
+    \row    \o Nokia E72
+    \row    \o Nokia N78
+    \row    \o Nokia N95
+    \row    \o Nokia N97
+    \row    \o Samsung i8910
+    \endtable
+
+    \section1 Supported Functionality
+
+    The following technologies and classes are not currently supported:
+
+    \table
+    \header \o Technology
+            \o Note
+    \row    \o QtConcurrent
+            \o Planned for future release.
+    \row    \o QtDBus
+            \o No current plans to support this feature.
+    \row    \o QtOpenGL ES
+            \o Planned for future release.
+    \row    \o Printing support
+            \o No current plans to support this feature.
+    \row    \o Qt3Support
+            \o No current plans to support this feature.
+    \endtable
+
+    The following technologies have limited support:
+
+    \table
+    \header \o Technology
+            \o Note
+    \row    \o QtSql
+            \o The only driver supported is SQLite.
+    \row    \o QtMultimedia
+            \o Although the module itself is supported, no backend for Symbian
+               is currently available. However, there is a backend available
+               for Phonon.
+    \endtable
+
+    \section1 Known Issues
+
+    Known issues can be found by visiting the
+    \l{http://qt.gitorious.org/qt/pages/Qt460KnownIssues}{wiki page} with an
+    up-to-date list of known issues, and the list of bugs can be found by
+    \l{http://bugreports.qt.nokia.com/browse/QTBUG/component/19171}{browsing} the
+    S60 component in Qt's public task tracker, located at
+    \l{http://bugreports.qt.nokia.com/}{http://bugreports.qt.nokia.com/}.
+
+    For information about mixing exceptions with Symbian leaves, see
+    \l{Exception Safety with Symbian}.
+
+    \section1 Multimedia and Phonon Support
+
+    Qt provides a backend for Qt's Phonon module, which supports
+    video and sound playback through Symbian's Multimedia Framework, MMF.
+
+    In this release the support is experimental. Video playback may have
+    flickering issues, and support for effects and playback queueing is
+    incomplete.
+
+    The audio and video formats that Phonon supports depends on what support
+    the platform provides for MMF. The emulator is known to have limited
+    codec support.
+
+    In addition, there exists a backend for the Helix framework. However, due
+    to it not shipping with Qt, its availability depends on the Symbian
+    platform in use. If available, it is loaded in preference over the MMF
+    plugin. The Helix plugin requires Symbian signed capabilities. If the
+    application does not have those capabilities, the MMF plugin, if present on
+    the device, will be loaded instead. The capabilities the Helix backend
+    requires are AllFiles, DiskAdmin and MultimediaDD.
+
+*/
+
+/*!
+    \page platform-notes-embedded-linux.html
+    \title Platform Notes - Embedded Linux
+    \contentspage Platform Notes
+
+    This page contains information about the Embedded Linux platforms Qt is
+    currently known to run on, with links to platform-specific notes. More
+    information about the combinations of platforms and compilers supported
+    by Qt can be found on the \l{Supported Platforms} page.
+*/

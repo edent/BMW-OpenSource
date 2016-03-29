@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qgraphicsitem.cpp -->
+<head>
+  <title>Qt 4.6: QGraphicsItemGroup Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QGraphicsItemGroup" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QGraphicsItemGroup Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QGraphicsItemGroup class provides treating a group of items as one. <a href="#details">More...</a></p>
+<pre> #include &lt;QGraphicsItemGroup&gt;</pre><p>Inherits <a href="qgraphicsitem.html">QGraphicsItem</a>.</p>
+<p>This class was introduced in Qt 4.2.</p>
+<ul>
+<li><a href="qgraphicsitemgroup-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qgraphicsitemgroup.html#QGraphicsItemGroup">QGraphicsItemGroup</a></b> ( QGraphicsItem * <i>parent</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qgraphicsitemgroup.html#dtor.QGraphicsItemGroup">~QGraphicsItemGroup</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicsitemgroup.html#addToGroup">addToGroup</a></b> ( QGraphicsItem * <i>item</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicsitemgroup.html#removeFromGroup">removeFromGroup</a></b> ( QGraphicsItem * <i>item</i> )</td></tr>
+</table>
+<hr />
+<a name="reimplemented-public-functions"></a>
+<h2>Reimplemented Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual QRectF </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicsitemgroup.html#boundingRect">boundingRect</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicsitemgroup.html#isObscuredBy">isObscuredBy</a></b> ( const QGraphicsItem * <i>item</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QPainterPath </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicsitemgroup.html#opaqueArea">opaqueArea</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicsitemgroup.html#paint">paint</a></b> ( QPainter * <i>painter</i>, const QStyleOptionGraphicsItem * <i>option</i>, QWidget * <i>widget</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual int </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicsitemgroup.html#type">type</a></b> () const</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>177 public functions inherited from <a href="qgraphicsitem.html#public-functions">QGraphicsItem</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li><div class="fn"></div>1 static public member inherited from <a href="qgraphicsitem.html#static-public-members">QGraphicsItem</a></li>
+<li><div class="fn"></div>23 protected functions inherited from <a href="qgraphicsitem.html#protected-functions">QGraphicsItem</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QGraphicsItemGroup class provides treating a group of items as one.</p>
+<p>A QGraphicsItemGroup is a special type of compound item that treats itself and all its children as one item (i.e&#x2e;, all events and geometries for all children are merged together). It's common to use item groups in presentation tools, when the user wants to group several smaller items into one big item in order to simplify moving and copying of items.</p>
+<p>If all you want is to store items inside other items, you can use any <a href="qgraphicsitem.html">QGraphicsItem</a> directly by passing a suitable parent to <a href="qgraphicsitem.html#setParentItem">setParentItem</a>().</p>
+<p>The <a href="qgraphicsitemgroup.html#boundingRect">boundingRect</a>() function of QGraphicsItemGroup returns the bounding rectangle of all items in the item group. QGraphicsItemGroup ignores the <a href="qgraphicsitem.html#GraphicsItemFlag-enum">ItemIgnoresTransformations</a> flag on its children (i.e&#x2e;, with respect to the geometry of the group item, the children are treated as if they were transformable).</p>
+<p>There are two ways to construct an item group. The easiest and most common approach is to pass a list of items (e.g&#x2e;, all selected items) to <a href="qgraphicsscene.html#createItemGroup">QGraphicsScene::createItemGroup</a>(), which returns a new QGraphicsItemGroup item. The other approach is to manually construct a QGraphicsItemGroup item, add it to the scene calling <a href="qgraphicsscene.html#addItem">QGraphicsScene::addItem</a>(), and then add items to the group manually, one at a time by calling <a href="qgraphicsitemgroup.html#addToGroup">addToGroup</a>(). To dismantle (&quot;ungroup&quot;) an item group, you can either call <a href="qgraphicsscene.html#destroyItemGroup">QGraphicsScene::destroyItemGroup</a>(), or you can manually remove all items from the group by calling <a href="qgraphicsitemgroup.html#removeFromGroup">removeFromGroup</a>().</p>
+<pre><span class="comment"> // Group all selected items together</span>
+ QGraphicsItemGroup *group = scene-&gt;createItemGroup(scene-&gt;selecteditems());
+
+<span class="comment"> // Destroy the group, and delete the group item</span>
+ scene-&gt;destroyItemGroup(group);</pre>
+<p>The operation of adding and removing items preserves the items' scene-relative position and transformation, as opposed to calling <a href="qgraphicsitem.html#setParentItem">setParentItem</a>(), where only the child item's parent-relative position and transformation are kept.</p>
+<p>The addtoGroup() function reparents the target item to this item group, keeping the item's position and transformation intact relative to the scene. Visually, this means that items added via <a href="qgraphicsitemgroup.html#addToGroup">addToGroup</a>() will remain completely unchanged as a result of this operation, regardless of the item or the group's current position or transformation; although the item's position and matrix are likely to change.</p>
+<p>The <a href="qgraphicsitemgroup.html#removeFromGroup">removeFromGroup</a>() function has similar semantics to <a href="qgraphicsitem.html#setParentItem">setParentItem</a>(); it reparents the item to the parent item of the item group. As with <a href="qgraphicsitemgroup.html#addToGroup">addToGroup</a>(), the item's scene-relative position and transformation remain intact.</p>
+<p>See also <a href="qgraphicsitem.html">QGraphicsItem</a> and <a href="graphicsview.html">The Graphics View Framework</a>.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QGraphicsItemGroup/QGraphicsItemGroup" />
+<h3 class="fn"><a name="QGraphicsItemGroup"></a>QGraphicsItemGroup::QGraphicsItemGroup ( <a href="qgraphicsitem.html">QGraphicsItem</a> * <i>parent</i> = 0 )</h3>
+<p>Constructs a <a href="qgraphicsitemgroup.html">QGraphicsItemGroup</a>. <i>parent</i> is passed to <a href="qgraphicsitem.html">QGraphicsItem</a>'s constructor.</p>
+<p>See also <a href="qgraphicsscene.html#addItem">QGraphicsScene::addItem</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsItemGroup/~QGraphicsItemGroup" />
+<h3 class="fn"><a name="dtor.QGraphicsItemGroup"></a>QGraphicsItemGroup::~QGraphicsItemGroup ()</h3>
+<p>Destroys the <a href="qgraphicsitemgroup.html">QGraphicsItemGroup</a>.</p>
+<a name="//apple_ref/cpp/instm/QGraphicsItemGroup/addToGroup" />
+<h3 class="fn"><a name="addToGroup"></a>void QGraphicsItemGroup::addToGroup ( <a href="qgraphicsitem.html">QGraphicsItem</a> * <i>item</i> )</h3>
+<p>Adds the given <i>item</i> to this item group. The item will be reparented to this group, but its position and transformation relative to the scene will stay intact.</p>
+<p>See also <a href="qgraphicsitemgroup.html#removeFromGroup">removeFromGroup</a>() and <a href="qgraphicsscene.html#createItemGroup">QGraphicsScene::createItemGroup</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsItemGroup/boundingRect" />
+<h3 class="fn"><a name="boundingRect"></a><a href="qrectf.html">QRectF</a> QGraphicsItemGroup::boundingRect () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qgraphicsitem.html#boundingRect">QGraphicsItem::boundingRect</a>().</p>
+<p>Returns the bounding rect of this group item, and all its children.</p>
+<a name="//apple_ref/cpp/instm/QGraphicsItemGroup/isObscuredBy" />
+<h3 class="fn"><a name="isObscuredBy"></a>bool QGraphicsItemGroup::isObscuredBy ( const <a href="qgraphicsitem.html">QGraphicsItem</a> * <i>item</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qgraphicsitem.html#isObscuredBy">QGraphicsItem::isObscuredBy</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsItemGroup/opaqueArea" />
+<h3 class="fn"><a name="opaqueArea"></a><a href="qpainterpath.html">QPainterPath</a> QGraphicsItemGroup::opaqueArea () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qgraphicsitem.html#opaqueArea">QGraphicsItem::opaqueArea</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsItemGroup/paint" />
+<h3 class="fn"><a name="paint"></a>void QGraphicsItemGroup::paint ( <a href="qpainter.html">QPainter</a> * <i>painter</i>, const <a href="qstyleoptiongraphicsitem.html">QStyleOptionGraphicsItem</a> * <i>option</i>, <a href="qwidget.html">QWidget</a> * <i>widget</i> = 0 )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qgraphicsitem.html#paint">QGraphicsItem::paint</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsItemGroup/removeFromGroup" />
+<h3 class="fn"><a name="removeFromGroup"></a>void QGraphicsItemGroup::removeFromGroup ( <a href="qgraphicsitem.html">QGraphicsItem</a> * <i>item</i> )</h3>
+<p>Removes the specified <i>item</i> from this group. The item will be reparented to this group's parent item, or to 0 if this group has no parent. Its position and transformation relative to the scene will stay intact.</p>
+<p>See also <a href="qgraphicsitemgroup.html#addToGroup">addToGroup</a>() and <a href="qgraphicsscene.html#destroyItemGroup">QGraphicsScene::destroyItemGroup</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsItemGroup/type" />
+<h3 class="fn"><a name="type"></a>int QGraphicsItemGroup::type () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qgraphicsitem.html#type">QGraphicsItem::type</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

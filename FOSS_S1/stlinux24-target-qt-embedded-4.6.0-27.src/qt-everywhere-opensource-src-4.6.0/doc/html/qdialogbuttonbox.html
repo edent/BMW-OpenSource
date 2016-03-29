@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qdialogbuttonbox.cpp -->
+<head>
+  <title>Qt 4.6: QDialogButtonBox Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QDialogButtonBox" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QDialogButtonBox Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QDialogButtonBox class is a widget that presents buttons in a layout that is appropriate to the current widget style. <a href="#details">More...</a></p>
+<pre> #include &lt;QDialogButtonBox&gt;</pre><p>Inherits <a href="qwidget.html">QWidget</a>.</p>
+<p>This class was introduced in Qt 4.2.</p>
+<ul>
+<li><a href="qdialogbuttonbox-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-types"></a>
+<h2>Public Types</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qdialogbuttonbox.html#ButtonLayout-enum">ButtonLayout</a></b> { WinLayout, MacLayout, KdeLayout, GnomeLayout }</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qdialogbuttonbox.html#ButtonRole-enum">ButtonRole</a></b> { InvalidRole, AcceptRole, RejectRole, DestructiveRole, ..., ResetRole }</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qdialogbuttonbox.html#StandardButton-enum">StandardButton</a></b> { Ok, Open, Save, Cancel, ..., NoButton }</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">flags </td><td class="memItemRight" valign="bottom"><b><a href="qdialogbuttonbox.html#StandardButton-enum">StandardButtons</a></b></td></tr>
+</table>
+<hr />
+<a name="properties"></a>
+<h2>Properties</h2>
+<ul>
+<li><div class="fn"><b><a href="qdialogbuttonbox.html#centerButtons-prop">centerButtons</a></b> : bool</div></li>
+<li><div class="fn"><b><a href="qdialogbuttonbox.html#orientation-prop">orientation</a></b> : Qt::Orientation</div></li>
+<li><div class="fn"><b><a href="qdialogbuttonbox.html#standardButtons-prop">standardButtons</a></b> : StandardButtons</div></li>
+</ul>
+<ul>
+<li><div bar="2" class="fn"></div>58 properties inherited from <a href="qwidget.html#properties">QWidget</a></li>
+<li><div bar="2" class="fn"></div>1 property inherited from <a href="qobject.html#properties">QObject</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qdialogbuttonbox.html#QDialogButtonBox">QDialogButtonBox</a></b> ( QWidget * <i>parent</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qdialogbuttonbox.html#QDialogButtonBox-2">QDialogButtonBox</a></b> ( Qt::Orientation <i>orientation</i>, QWidget * <i>parent</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qdialogbuttonbox.html#QDialogButtonBox-3">QDialogButtonBox</a></b> ( StandardButtons <i>buttons</i>, Qt::Orientation <i>orientation</i> = Qt::Horizontal, QWidget * <i>parent</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qdialogbuttonbox.html#dtor.QDialogButtonBox">~QDialogButtonBox</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qdialogbuttonbox.html#addButton">addButton</a></b> ( QAbstractButton * <i>button</i>, ButtonRole <i>role</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QPushButton * </td><td class="memItemRight" valign="bottom"><b><a href="qdialogbuttonbox.html#addButton-2">addButton</a></b> ( const QString &amp; <i>text</i>, ButtonRole <i>role</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QPushButton * </td><td class="memItemRight" valign="bottom"><b><a href="qdialogbuttonbox.html#addButton-3">addButton</a></b> ( StandardButton <i>button</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QPushButton * </td><td class="memItemRight" valign="bottom"><b><a href="qdialogbuttonbox.html#button">button</a></b> ( StandardButton <i>which</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">ButtonRole </td><td class="memItemRight" valign="bottom"><b><a href="qdialogbuttonbox.html#buttonRole">buttonRole</a></b> ( QAbstractButton * <i>button</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QList&lt;QAbstractButton *&gt; </td><td class="memItemRight" valign="bottom"><b><a href="qdialogbuttonbox.html#buttons">buttons</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qdialogbuttonbox.html#centerButtons-prop">centerButtons</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qdialogbuttonbox.html#clear">clear</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Qt::Orientation </td><td class="memItemRight" valign="bottom"><b><a href="qdialogbuttonbox.html#orientation-prop">orientation</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qdialogbuttonbox.html#removeButton">removeButton</a></b> ( QAbstractButton * <i>button</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qdialogbuttonbox.html#centerButtons-prop">setCenterButtons</a></b> ( bool <i>center</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qdialogbuttonbox.html#orientation-prop">setOrientation</a></b> ( Qt::Orientation <i>orientation</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qdialogbuttonbox.html#standardButtons-prop">setStandardButtons</a></b> ( StandardButtons <i>buttons</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">StandardButton </td><td class="memItemRight" valign="bottom"><b><a href="qdialogbuttonbox.html#standardButton">standardButton</a></b> ( QAbstractButton * <i>button</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">StandardButtons </td><td class="memItemRight" valign="bottom"><b><a href="qdialogbuttonbox.html#standardButtons-prop">standardButtons</a></b> () const</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>216 public functions inherited from <a href="qwidget.html#public-functions">QWidget</a></li>
+<li><div bar="2" class="fn"></div>29 public functions inherited from <a href="qobject.html#public-functions">QObject</a></li>
+<li><div bar="2" class="fn"></div>12 public functions inherited from <a href="qpaintdevice.html#public-functions">QPaintDevice</a></li>
+</ul>
+<hr />
+<a name="signals"></a>
+<h2>Signals</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qdialogbuttonbox.html#accepted">accepted</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qdialogbuttonbox.html#clicked">clicked</a></b> ( QAbstractButton * <i>button</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qdialogbuttonbox.html#helpRequested">helpRequested</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qdialogbuttonbox.html#rejected">rejected</a></b> ()</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>1 signal inherited from <a href="qwidget.html#signals">QWidget</a></li>
+<li><div bar="2" class="fn"></div>1 signal inherited from <a href="qobject.html#signals">QObject</a></li>
+</ul>
+<hr />
+<a name="reimplemented-protected-functions"></a>
+<h2>Reimplemented Protected Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qdialogbuttonbox.html#changeEvent">changeEvent</a></b> ( QEvent * <i>event</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qdialogbuttonbox.html#event">event</a></b> ( QEvent * <i>event</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>37 protected functions inherited from <a href="qwidget.html#protected-functions">QWidget</a></li>
+<li><div bar="2" class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+<li><div bar="2" class="fn"></div>1 protected function inherited from <a href="qpaintdevice.html#protected-functions">QPaintDevice</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li><div class="fn"></div>19 public slots inherited from <a href="qwidget.html#public-slots">QWidget</a></li>
+<li><div class="fn"></div>1 public slot inherited from <a href="qobject.html#public-slots">QObject</a></li>
+<li><div class="fn"></div>4 static public members inherited from <a href="qwidget.html#static-public-members">QWidget</a></li>
+<li><div class="fn"></div>5 static public members inherited from <a href="qobject.html#static-public-members">QObject</a></li>
+<li><div class="fn"></div>37 protected functions inherited from <a href="qwidget.html#protected-functions">QWidget</a></li>
+<li><div class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+<li><div class="fn"></div>1 protected function inherited from <a href="qpaintdevice.html#protected-functions">QPaintDevice</a></li>
+<li><div class="fn"></div>1 protected slot inherited from <a href="qwidget.html#protected-slots">QWidget</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QDialogButtonBox class is a widget that presents buttons in a layout that is appropriate to the current widget style.</p>
+<p>Dialogs and message boxes typically present buttons in a layout that conforms to the interface guidelines for that platform. Invariably, different platforms have different layouts for their dialogs. QDialogButtonBox allows a developer to add buttons to it and will automatically use the appropriate layout for the user's desktop environment.</p>
+<p>Most buttons for a dialog follow certain roles. Such roles include:</p>
+<ul>
+<li>Accepting or rejecting the dialog.</li>
+<li>Asking for help.</li>
+<li>Performing actions on the dialog itself (such as resetting fields or applying changes).</li>
+</ul>
+<p>There can also be alternate ways of dismissing the dialog which may cause destructive results.</p>
+<p>Most dialogs have buttons that can almost be considered standard (e.g&#x2e; <b>OK</b> and <b>Cancel</b> buttons). It is sometimes convenient to create these buttons in a standard way.</p>
+<p>There are a couple ways of using QDialogButtonBox. One ways is to create the buttons (or button texts) yourself and add them to the button box, specifying their role.</p>
+<pre>     findButton = new QPushButton(tr(&quot;&amp;Find&quot;));
+     findButton-&gt;setDefault(true);
+
+     moreButton = new QPushButton(tr(&quot;&amp;More&quot;));
+     moreButton-&gt;setCheckable(true);
+     moreButton-&gt;setAutoDefault(false);
+
+     buttonBox = new QDialogButtonBox(Qt::Vertical);
+     buttonBox-&gt;addButton(findButton, QDialogButtonBox::ActionRole);
+     buttonBox-&gt;addButton(moreButton, QDialogButtonBox::ActionRole);</pre>
+<p>Alternatively, QDialogButtonBox provides several standard buttons (e.g&#x2e; OK, Cancel, Save) that you can use. They exist as flags so you can OR them together in the constructor.</p>
+<pre>     buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok
+                                      | QDialogButtonBox::Cancel);
+
+     connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
+     connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));</pre>
+<p>You can mix and match normal buttons and standard buttons.</p>
+<p>Currently the buttons are laid out in the following way if the button box is horizontal:</p>
+<p><table class="generic" width="100%" align="center" cellpadding="2" cellspacing="1" border="0">
+<tr valign="top" class="odd"><td><img src="images/buttonbox-gnomelayout-horizontal.png" alt="GnomeLayout Horizontal" /></td><td>Button box laid out in horizontal <a href="qdialogbuttonbox.html#ButtonLayout-enum">GnomeLayout</a></td></tr>
+<tr valign="top" class="even"><td><img src="images/buttonbox-kdelayout-horizontal.png" alt="KdeLayout Horizontal" /></td><td>Button box laid out in horizontal <a href="qdialogbuttonbox.html#ButtonLayout-enum">KdeLayout</a></td></tr>
+<tr valign="top" class="odd"><td><img src="images/buttonbox-maclayout-horizontal.png" alt="MacLayout Horizontal" /></td><td>Button box laid out in horizontal <a href="qdialogbuttonbox.html#ButtonLayout-enum">MacLayout</a></td></tr>
+<tr valign="top" class="even"><td><img src="images/buttonbox-winlayout-horizontal.png" alt="WinLayout Horizontal" /></td><td>Button box laid out in horizontal <a href="qdialogbuttonbox.html#ButtonLayout-enum">WinLayout</a></td></tr>
+</table></p>
+<p>The buttons are laid out the following way if the button box is vertical:</p>
+<p><table class="generic" width="100%" align="center" cellpadding="2" cellspacing="1" border="0">
+<tr valign="top" class="odd"><td><img src="images/buttonbox-gnomelayout-vertical.png" alt="GnomeLayout Vertical" /></td><td>Button box laid out in vertical <a href="qdialogbuttonbox.html#ButtonLayout-enum">GnomeLayout</a></td></tr>
+<tr valign="top" class="even"><td><img src="images/buttonbox-kdelayout-vertical.png" alt="KdeLayout Vertical" /></td><td>Button box laid out in vertical <a href="qdialogbuttonbox.html#ButtonLayout-enum">KdeLayout</a></td></tr>
+<tr valign="top" class="odd"><td><img src="images/buttonbox-maclayout-vertical.png" alt="MacLayout Vertical" /></td><td>Button box laid out in vertical <a href="qdialogbuttonbox.html#ButtonLayout-enum">MacLayout</a></td></tr>
+<tr valign="top" class="even"><td><img src="images/buttonbox-winlayout-vertical.png" alt="WinLayout Vertical" /></td><td>Button box laid out in vertical <a href="qdialogbuttonbox.html#ButtonLayout-enum">WinLayout</a></td></tr>
+</table></p>
+<p>Additionally, button boxes that contain only buttons with <a href="qdialogbuttonbox.html#ButtonRole-enum">ActionRole</a> or <a href="qdialogbuttonbox.html#ButtonRole-enum">HelpRole</a> can be considered modeless and have an alternate look on the mac:</p>
+<p><table class="generic" width="100%" align="center" cellpadding="2" cellspacing="1" border="0">
+<tr valign="top" class="odd"><td><img src="images/buttonbox-mac-modeless-horizontal.png" alt="Screenshot of modeless horizontal MacLayout" /></td><td>modeless horizontal <a href="qdialogbuttonbox.html#ButtonLayout-enum">MacLayout</a></td></tr>
+<tr valign="top" class="even"><td><img src="images/buttonbox-mac-modeless-vertical.png" alt="Screenshot of modeless vertical MacLayout" /></td><td>modeless vertical <a href="qdialogbuttonbox.html#ButtonLayout-enum">MacLayout</a></td></tr>
+</table></p>
+<p>When a button is clicked in the button box, the <a href="qdialogbuttonbox.html#clicked">clicked</a>() signal is emitted for the actual button is that is pressed. For convenience, if the button has an <a href="qdialogbuttonbox.html#ButtonRole-enum">AcceptRole</a>, <a href="qdialogbuttonbox.html#ButtonRole-enum">RejectRole</a>, or <a href="qdialogbuttonbox.html#ButtonRole-enum">HelpRole</a>, the <a href="qdialogbuttonbox.html#accepted">accepted</a>(), <a href="qdialogbuttonbox.html#rejected">rejected</a>(), or <a href="qdialogbuttonbox.html#helpRequested">helpRequested</a>() signals are emitted respectively.</p>
+<p>If you want a specific button to be default you need to call <a href="qpushbutton.html#default-prop">QPushButton::setDefault</a>() on it yourself. However, if there is no default button set and to preserve which button is the default button across platforms when using the <a href="qpushbutton.html#autoDefault-prop">QPushButton::autoDefault</a> property, the first push button with the accept role is made the default button when the QDialogButtonBox is shown,</p>
+<p>See also <a href="qmessagebox.html">QMessageBox</a>, <a href="qpushbutton.html">QPushButton</a>, and <a href="qdialog.html">QDialog</a>.</p>
+<hr />
+<h2>Member Type Documentation</h2>
+<a name="//apple_ref/cpp/tag/QDialogButtonBox/ButtonLayout" />
+<a name="//apple_ref/cpp/econst/QDialogButtonBox/WinLayout" />
+<a name="//apple_ref/cpp/econst/QDialogButtonBox/MacLayout" />
+<a name="//apple_ref/cpp/econst/QDialogButtonBox/KdeLayout" />
+<a name="//apple_ref/cpp/econst/QDialogButtonBox/GnomeLayout" />
+<h3 class="fn"><a name="ButtonLayout-enum"></a>enum QDialogButtonBox::ButtonLayout</h3>
+<p>This enum describes the layout policy to be used when arranging the buttons contained in the button box.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QDialogButtonBox::WinLayout</tt></td><td align="center" valign="top"><tt>0</tt></td><td valign="top">Use a policy appropriate for applications on Windows.</td></tr>
+<tr><td valign="top"><tt>QDialogButtonBox::MacLayout</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">Use a policy appropriate for applications on Mac OS X.</td></tr>
+<tr><td valign="top"><tt>QDialogButtonBox::KdeLayout</tt></td><td align="center" valign="top"><tt>2</tt></td><td valign="top">Use a policy appropriate for applications on KDE.</td></tr>
+<tr><td valign="top"><tt>QDialogButtonBox::GnomeLayout</tt></td><td align="center" valign="top"><tt>3</tt></td><td valign="top">Use a policy appropriate for applications on GNOME.</td></tr>
+</table></p>
+<p>The button layout is specified by the <a href="qwidget.html#style">current style</a>. However, on the X11 platform, it may be influenced by the desktop environment.</p>
+<a name="//apple_ref/cpp/tag/QDialogButtonBox/ButtonRole" />
+<a name="//apple_ref/cpp/econst/QDialogButtonBox/InvalidRole" />
+<a name="//apple_ref/cpp/econst/QDialogButtonBox/AcceptRole" />
+<a name="//apple_ref/cpp/econst/QDialogButtonBox/RejectRole" />
+<a name="//apple_ref/cpp/econst/QDialogButtonBox/DestructiveRole" />
+<a name="//apple_ref/cpp/econst/QDialogButtonBox/ActionRole" />
+<a name="//apple_ref/cpp/econst/QDialogButtonBox/HelpRole" />
+<a name="//apple_ref/cpp/econst/QDialogButtonBox/YesRole" />
+<a name="//apple_ref/cpp/econst/QDialogButtonBox/NoRole" />
+<a name="//apple_ref/cpp/econst/QDialogButtonBox/ApplyRole" />
+<a name="//apple_ref/cpp/econst/QDialogButtonBox/ResetRole" />
+<a name="//apple_ref/cpp/econst/QDialogButtonBox/NRoles" />
+<h3 class="fn"><a name="ButtonRole-enum"></a>enum QDialogButtonBox::ButtonRole</h3>
+<p>This enum describes the roles that can be used to describe buttons in the button box. Combinations of these roles are as flags used to describe different aspects of their behavior.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QDialogButtonBox::InvalidRole</tt></td><td align="center" valign="top"><tt>-1</tt></td><td valign="top">The button is invalid.</td></tr>
+<tr><td valign="top"><tt>QDialogButtonBox::AcceptRole</tt></td><td align="center" valign="top"><tt>0</tt></td><td valign="top">Clicking the button causes the dialog to be accepted (e.g&#x2e; OK).</td></tr>
+<tr><td valign="top"><tt>QDialogButtonBox::RejectRole</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">Clicking the button causes the dialog to be rejected (e.g&#x2e; Cancel).</td></tr>
+<tr><td valign="top"><tt>QDialogButtonBox::DestructiveRole</tt></td><td align="center" valign="top"><tt>2</tt></td><td valign="top">Clicking the button causes a destructive change (e.g&#x2e; for Discarding Changes) and closes the dialog.</td></tr>
+<tr><td valign="top"><tt>QDialogButtonBox::ActionRole</tt></td><td align="center" valign="top"><tt>3</tt></td><td valign="top">Clicking the button causes changes to the elements within the dialog.</td></tr>
+<tr><td valign="top"><tt>QDialogButtonBox::HelpRole</tt></td><td align="center" valign="top"><tt>4</tt></td><td valign="top">The button can be clicked to request help.</td></tr>
+<tr><td valign="top"><tt>QDialogButtonBox::YesRole</tt></td><td align="center" valign="top"><tt>5</tt></td><td valign="top">The button is a &quot;Yes&quot;-like button.</td></tr>
+<tr><td valign="top"><tt>QDialogButtonBox::NoRole</tt></td><td align="center" valign="top"><tt>6</tt></td><td valign="top">The button is a &quot;No&quot;-like button.</td></tr>
+<tr><td valign="top"><tt>QDialogButtonBox::ApplyRole</tt></td><td align="center" valign="top"><tt>8</tt></td><td valign="top">The button applies current changes.</td></tr>
+<tr><td valign="top"><tt>QDialogButtonBox::ResetRole</tt></td><td align="center" valign="top"><tt>7</tt></td><td valign="top">The button resets the dialog's fields to default values.</td></tr>
+</table></p>
+<p>See also <a href="qdialogbuttonbox.html#StandardButton-enum">StandardButton</a>.</p>
+<a name="//apple_ref/cpp/tag/QDialogButtonBox/StandardButton" />
+<a name="//apple_ref/cpp/econst/QDialogButtonBox/Ok" />
+<a name="//apple_ref/cpp/econst/QDialogButtonBox/Open" />
+<a name="//apple_ref/cpp/econst/QDialogButtonBox/Save" />
+<a name="//apple_ref/cpp/econst/QDialogButtonBox/Cancel" />
+<a name="//apple_ref/cpp/econst/QDialogButtonBox/Close" />
+<a name="//apple_ref/cpp/econst/QDialogButtonBox/Discard" />
+<a name="//apple_ref/cpp/econst/QDialogButtonBox/Apply" />
+<a name="//apple_ref/cpp/econst/QDialogButtonBox/Reset" />
+<a name="//apple_ref/cpp/econst/QDialogButtonBox/RestoreDefaults" />
+<a name="//apple_ref/cpp/econst/QDialogButtonBox/Help" />
+<a name="//apple_ref/cpp/econst/QDialogButtonBox/SaveAll" />
+<a name="//apple_ref/cpp/econst/QDialogButtonBox/Yes" />
+<a name="//apple_ref/cpp/econst/QDialogButtonBox/YesToAll" />
+<a name="//apple_ref/cpp/econst/QDialogButtonBox/No" />
+<a name="//apple_ref/cpp/econst/QDialogButtonBox/NoToAll" />
+<a name="//apple_ref/cpp/econst/QDialogButtonBox/Abort" />
+<a name="//apple_ref/cpp/econst/QDialogButtonBox/Retry" />
+<a name="//apple_ref/cpp/econst/QDialogButtonBox/Ignore" />
+<a name="//apple_ref/cpp/econst/QDialogButtonBox/NoButton" />
+<a name="//apple_ref/cpp/econst/QDialogButtonBox/FirstButton" />
+<a name="//apple_ref/cpp/econst/QDialogButtonBox/LastButton" />
+<a name="//apple_ref/cpp/tdef/QDialogButtonBox/StandardButtons" />
+<h3 class="flags"><a name="StandardButton-enum"></a>enum QDialogButtonBox::StandardButton<br />flags QDialogButtonBox::StandardButtons</h3>
+<p>These enums describe flags for standard buttons. Each button has a defined <a href="qdialogbuttonbox.html#ButtonRole-enum">ButtonRole</a>.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QDialogButtonBox::Ok</tt></td><td align="center" valign="top"><tt>0x00000400</tt></td><td valign="top">An &quot;OK&quot; button defined with the <a href="qdialogbuttonbox.html#ButtonRole-enum">AcceptRole</a>.</td></tr>
+<tr><td valign="top"><tt>QDialogButtonBox::Open</tt></td><td align="center" valign="top"><tt>0x00002000</tt></td><td valign="top">A &quot;Open&quot; button defined with the <a href="qdialogbuttonbox.html#ButtonRole-enum">AcceptRole</a>.</td></tr>
+<tr><td valign="top"><tt>QDialogButtonBox::Save</tt></td><td align="center" valign="top"><tt>0x00000800</tt></td><td valign="top">A &quot;Save&quot; button defined with the <a href="qdialogbuttonbox.html#ButtonRole-enum">AcceptRole</a>.</td></tr>
+<tr><td valign="top"><tt>QDialogButtonBox::Cancel</tt></td><td align="center" valign="top"><tt>0x00400000</tt></td><td valign="top">A &quot;Cancel&quot; button defined with the <a href="qdialogbuttonbox.html#ButtonRole-enum">RejectRole</a>.</td></tr>
+<tr><td valign="top"><tt>QDialogButtonBox::Close</tt></td><td align="center" valign="top"><tt>0x00200000</tt></td><td valign="top">A &quot;Close&quot; button defined with the <a href="qdialogbuttonbox.html#ButtonRole-enum">RejectRole</a>.</td></tr>
+<tr><td valign="top"><tt>QDialogButtonBox::Discard</tt></td><td align="center" valign="top"><tt>0x00800000</tt></td><td valign="top">A &quot;Discard&quot; or &quot;Don't Save&quot; button, depending on the platform, defined with the <a href="qdialogbuttonbox.html#ButtonRole-enum">DestructiveRole</a>.</td></tr>
+<tr><td valign="top"><tt>QDialogButtonBox::Apply</tt></td><td align="center" valign="top"><tt>0x02000000</tt></td><td valign="top">An &quot;Apply&quot; button defined with the <a href="qdialogbuttonbox.html#ButtonRole-enum">ApplyRole</a>.</td></tr>
+<tr><td valign="top"><tt>QDialogButtonBox::Reset</tt></td><td align="center" valign="top"><tt>0x04000000</tt></td><td valign="top">A &quot;Reset&quot; button defined with the <a href="qdialogbuttonbox.html#ButtonRole-enum">ResetRole</a>.</td></tr>
+<tr><td valign="top"><tt>QDialogButtonBox::RestoreDefaults</tt></td><td align="center" valign="top"><tt>0x08000000</tt></td><td valign="top">A &quot;Restore Defaults&quot; button defined with the <a href="qdialogbuttonbox.html#ButtonRole-enum">ResetRole</a>.</td></tr>
+<tr><td valign="top"><tt>QDialogButtonBox::Help</tt></td><td align="center" valign="top"><tt>0x01000000</tt></td><td valign="top">A &quot;Help&quot; button defined with the <a href="qdialogbuttonbox.html#ButtonRole-enum">HelpRole</a>.</td></tr>
+<tr><td valign="top"><tt>QDialogButtonBox::SaveAll</tt></td><td align="center" valign="top"><tt>0x00001000</tt></td><td valign="top">A &quot;Save All&quot; button defined with the <a href="qdialogbuttonbox.html#ButtonRole-enum">AcceptRole</a>.</td></tr>
+<tr><td valign="top"><tt>QDialogButtonBox::Yes</tt></td><td align="center" valign="top"><tt>0x00004000</tt></td><td valign="top">A &quot;Yes&quot; button defined with the <a href="qdialogbuttonbox.html#ButtonRole-enum">YesRole</a>.</td></tr>
+<tr><td valign="top"><tt>QDialogButtonBox::YesToAll</tt></td><td align="center" valign="top"><tt>0x00008000</tt></td><td valign="top">A &quot;Yes to All&quot; button defined with the <a href="qdialogbuttonbox.html#ButtonRole-enum">YesRole</a>.</td></tr>
+<tr><td valign="top"><tt>QDialogButtonBox::No</tt></td><td align="center" valign="top"><tt>0x00010000</tt></td><td valign="top">A &quot;No&quot; button defined with the <a href="qdialogbuttonbox.html#ButtonRole-enum">NoRole</a>.</td></tr>
+<tr><td valign="top"><tt>QDialogButtonBox::NoToAll</tt></td><td align="center" valign="top"><tt>0x00020000</tt></td><td valign="top">A &quot;No to All&quot; button defined with the <a href="qdialogbuttonbox.html#ButtonRole-enum">NoRole</a>.</td></tr>
+<tr><td valign="top"><tt>QDialogButtonBox::Abort</tt></td><td align="center" valign="top"><tt>0x00040000</tt></td><td valign="top">An &quot;Abort&quot; button defined with the <a href="qdialogbuttonbox.html#ButtonRole-enum">RejectRole</a>.</td></tr>
+<tr><td valign="top"><tt>QDialogButtonBox::Retry</tt></td><td align="center" valign="top"><tt>0x00080000</tt></td><td valign="top">A &quot;Retry&quot; button defined with the <a href="qdialogbuttonbox.html#ButtonRole-enum">AcceptRole</a>.</td></tr>
+<tr><td valign="top"><tt>QDialogButtonBox::Ignore</tt></td><td align="center" valign="top"><tt>0x00100000</tt></td><td valign="top">An &quot;Ignore&quot; button defined with the <a href="qdialogbuttonbox.html#ButtonRole-enum">AcceptRole</a>.</td></tr>
+<tr><td valign="top"><tt>QDialogButtonBox::NoButton</tt></td><td align="center" valign="top"><tt>0x00000000</tt></td><td valign="top">An invalid button.</td></tr>
+</table></p>
+<p>The StandardButtons type is a typedef for <a href="qflags.html">QFlags</a>&lt;StandardButton&gt;. It stores an OR combination of StandardButton values.</p>
+<p>See also <a href="qdialogbuttonbox.html#ButtonRole-enum">ButtonRole</a> and <a href="qdialogbuttonbox.html#standardButtons-prop">standardButtons</a>.</p>
+<hr />
+<h2>Property Documentation</h2>
+<a name="//apple_ref/cpp/instm/QDialogButtonBox/centerButtons" />
+<a name="//apple_ref/cpp/instm/QDialogButtonBox/setCenterButtons" />
+<h3 class="fn"><a name="centerButtons-prop"></a>centerButtons : bool</h3>
+<p>This property holds whether the buttons in the button box are centered.</p>
+<p>By default, this property is false. This behavior is appopriate for most types of dialogs. A notable exception is message boxes on most platforms (e.g&#x2e; Windows), where the button box is centered horizontally.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b>centerButtons</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setCenterButtons</b> ( bool <i>center</i> )</td></tr>
+</table>
+<p>See also <a href="qmessagebox.html">QMessageBox</a>.</p>
+<a name="//apple_ref/cpp/instm/QDialogButtonBox/orientation" />
+<a name="//apple_ref/cpp/instm/QDialogButtonBox/setOrientation" />
+<h3 class="fn"><a name="orientation-prop"></a>orientation : <a href="qt.html#Orientation-enum">Qt::Orientation</a></h3>
+<p>This property holds the orientation of the button box.</p>
+<p>By default, the orientation is horizontal (i.e&#x2e; the buttons are laid out side by side). The possible orientations are <a href="qt.html#Orientation-enum">Qt::Horizontal</a> and <a href="qt.html#Orientation-enum">Qt::Vertical</a>.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">Qt::Orientation </td><td class="memItemRight" valign="bottom"><b>orientation</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setOrientation</b> ( Qt::Orientation <i>orientation</i> )</td></tr>
+</table>
+<a name="//apple_ref/cpp/instm/QDialogButtonBox/standardButtons" />
+<a name="//apple_ref/cpp/instm/QDialogButtonBox/setStandardButtons" />
+<h3 class="fn"><a name="standardButtons-prop"></a>standardButtons : <a href="qdialogbuttonbox.html#StandardButton-enum">StandardButtons</a></h3>
+<p>This property holds collection of standard buttons in the button box.</p>
+<p>This property controls which standard buttons are used by the button box.</p>
+<p><b>Access functions:</b></p>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">StandardButtons </td><td class="memItemRight" valign="bottom"><b>standardButtons</b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b>setStandardButtons</b> ( StandardButtons <i>buttons</i> )</td></tr>
+</table>
+<p>See also <a href="qdialogbuttonbox.html#addButton">addButton</a>().</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QDialogButtonBox/QDialogButtonBox" />
+<h3 class="fn"><a name="QDialogButtonBox"></a>QDialogButtonBox::QDialogButtonBox ( <a href="qwidget.html">QWidget</a> * <i>parent</i> = 0 )</h3>
+<p>Constructs an empty, horizontal button box with the given <i>parent</i>.</p>
+<p>See also <a href="qdialogbuttonbox.html#orientation-prop">orientation</a> and <a href="qdialogbuttonbox.html#addButton">addButton</a>().</p>
+<h3 class="fn"><a name="QDialogButtonBox-2"></a>QDialogButtonBox::QDialogButtonBox ( <a href="qt.html#Orientation-enum">Qt::Orientation</a> <i>orientation</i>, <a href="qwidget.html">QWidget</a> * <i>parent</i> = 0 )</h3>
+<p>Constructs an empty button box with the given <i>orientation</i> and <i>parent</i>.</p>
+<p>See also <a href="qdialogbuttonbox.html#orientation-prop">orientation</a> and <a href="qdialogbuttonbox.html#addButton">addButton</a>().</p>
+<h3 class="fn"><a name="QDialogButtonBox-3"></a>QDialogButtonBox::QDialogButtonBox ( <a href="qdialogbuttonbox.html#StandardButton-enum">StandardButtons</a> <i>buttons</i>, <a href="qt.html#Orientation-enum">Qt::Orientation</a> <i>orientation</i> = Qt::Horizontal, <a href="qwidget.html">QWidget</a> * <i>parent</i> = 0 )</h3>
+<p>Constructs a button box with the given <i>orientation</i> and <i>parent</i>, containing the standard buttons specified by <i>buttons</i>.</p>
+<p>See also <a href="qdialogbuttonbox.html#orientation-prop">orientation</a> and <a href="qdialogbuttonbox.html#addButton">addButton</a>().</p>
+<a name="//apple_ref/cpp/instm/QDialogButtonBox/~QDialogButtonBox" />
+<h3 class="fn"><a name="dtor.QDialogButtonBox"></a>QDialogButtonBox::~QDialogButtonBox ()</h3>
+<p>Destroys the button box.</p>
+<a name="//apple_ref/cpp/instm/QDialogButtonBox/accepted" />
+<h3 class="fn"><a name="accepted"></a>void QDialogButtonBox::accepted ()&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted when a button inside the button box is clicked, as long as it was defined with the <a href="qdialogbuttonbox.html#ButtonRole-enum">AcceptRole</a> or <a href="qdialogbuttonbox.html#ButtonRole-enum">YesRole</a>.</p>
+<p>See also <a href="qdialogbuttonbox.html#rejected">rejected</a>(), <a href="qdialogbuttonbox.html#clicked">clicked</a>(), and <a href="qdialogbuttonbox.html#helpRequested">helpRequested</a>().</p>
+<a name="//apple_ref/cpp/instm/QDialogButtonBox/addButton" />
+<h3 class="fn"><a name="addButton"></a>void QDialogButtonBox::addButton ( <a href="qabstractbutton.html">QAbstractButton</a> * <i>button</i>, <a href="qdialogbuttonbox.html#ButtonRole-enum">ButtonRole</a> <i>role</i> )</h3>
+<p>Adds the given <i>button</i> to the button box with the specified <i>role</i>. If the role is invalid, the button is not added.</p>
+<p>If the button has already been added, it is removed and added again with the new role.</p>
+<p>See also <a href="qdialogbuttonbox.html#removeButton">removeButton</a>() and <a href="qdialogbuttonbox.html#clear">clear</a>().</p>
+<h3 class="fn"><a name="addButton-2"></a><a href="qpushbutton.html">QPushButton</a> * QDialogButtonBox::addButton ( const <a href="qstring.html">QString</a> &amp; <i>text</i>, <a href="qdialogbuttonbox.html#ButtonRole-enum">ButtonRole</a> <i>role</i> )</h3>
+<p>Creates a push button with the given <i>text</i>, adds it to the button box for the specified <i>role</i>, and returns the corresponding push button. If <i>role</i> is invalid, no button is created, and zero is returned.</p>
+<p>See also <a href="qdialogbuttonbox.html#removeButton">removeButton</a>() and <a href="qdialogbuttonbox.html#clear">clear</a>().</p>
+<h3 class="fn"><a name="addButton-3"></a><a href="qpushbutton.html">QPushButton</a> * QDialogButtonBox::addButton ( <a href="qdialogbuttonbox.html#StandardButton-enum">StandardButton</a> <i>button</i> )</h3>
+<p>Adds a standard <i>button</i> to the button box if it is valid to do so, and returns a push button. If <i>button</i> is invalid, it is not added to the button box, and zero is returned.</p>
+<p>See also <a href="qdialogbuttonbox.html#removeButton">removeButton</a>() and <a href="qdialogbuttonbox.html#clear">clear</a>().</p>
+<a name="//apple_ref/cpp/instm/QDialogButtonBox/button" />
+<h3 class="fn"><a name="button"></a><a href="qpushbutton.html">QPushButton</a> * QDialogButtonBox::button ( <a href="qdialogbuttonbox.html#StandardButton-enum">StandardButton</a> <i>which</i> ) const</h3>
+<p>Returns the <a href="qpushbutton.html">QPushButton</a> corresponding to the standard button <i>which</i>, or 0 if the standard button doesn't exist in this button box.</p>
+<p>See also <a href="qdialogbuttonbox.html#standardButton">standardButton</a>(), <a href="qdialogbuttonbox.html#standardButtons-prop">standardButtons</a>(), and <a href="qdialogbuttonbox.html#buttons">buttons</a>().</p>
+<a name="//apple_ref/cpp/instm/QDialogButtonBox/buttonRole" />
+<h3 class="fn"><a name="buttonRole"></a><a href="qdialogbuttonbox.html#ButtonRole-enum">ButtonRole</a> QDialogButtonBox::buttonRole ( <a href="qabstractbutton.html">QAbstractButton</a> * <i>button</i> ) const</h3>
+<p>Returns the button role for the specified <i>button</i>. This function returns <a href="qdialogbuttonbox.html#ButtonRole-enum">InvalidRole</a> if <i>button</i> is 0 or has not been added to the button box.</p>
+<p>See also <a href="qdialogbuttonbox.html#buttons">buttons</a>() and <a href="qdialogbuttonbox.html#addButton">addButton</a>().</p>
+<a name="//apple_ref/cpp/instm/QDialogButtonBox/buttons" />
+<h3 class="fn"><a name="buttons"></a><a href="qlist.html">QList</a>&lt;<a href="qabstractbutton.html">QAbstractButton</a> *&gt; QDialogButtonBox::buttons () const</h3>
+<p>Returns a list of all the buttons that have been added to the button box.</p>
+<p>See also <a href="qdialogbuttonbox.html#buttonRole">buttonRole</a>(), <a href="qdialogbuttonbox.html#addButton">addButton</a>(), and <a href="qdialogbuttonbox.html#removeButton">removeButton</a>().</p>
+<a name="//apple_ref/cpp/instm/QDialogButtonBox/changeEvent" />
+<h3 class="fn"><a name="changeEvent"></a>void QDialogButtonBox::changeEvent ( <a href="qevent.html">QEvent</a> * <i>event</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qwidget.html#changeEvent">QWidget::changeEvent</a>().</p>
+<a name="//apple_ref/cpp/instm/QDialogButtonBox/clear" />
+<h3 class="fn"><a name="clear"></a>void QDialogButtonBox::clear ()</h3>
+<p>Clears the button box, deleting all buttons within it.</p>
+<p>See also <a href="qdialogbuttonbox.html#removeButton">removeButton</a>() and <a href="qdialogbuttonbox.html#addButton">addButton</a>().</p>
+<a name="//apple_ref/cpp/instm/QDialogButtonBox/clicked" />
+<h3 class="fn"><a name="clicked"></a>void QDialogButtonBox::clicked ( <a href="qabstractbutton.html">QAbstractButton</a> * <i>button</i> )&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted when a button inside the button box is clicked. The specific button that was pressed is specified by <i>button</i>.</p>
+<p>See also <a href="qdialogbuttonbox.html#accepted">accepted</a>(), <a href="qdialogbuttonbox.html#rejected">rejected</a>(), and <a href="qdialogbuttonbox.html#helpRequested">helpRequested</a>().</p>
+<a name="//apple_ref/cpp/instm/QDialogButtonBox/event" />
+<h3 class="fn"><a name="event"></a>bool QDialogButtonBox::event ( <a href="qevent.html">QEvent</a> * <i>event</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qobject.html#event">QObject::event</a>().</p>
+<a name="//apple_ref/cpp/instm/QDialogButtonBox/helpRequested" />
+<h3 class="fn"><a name="helpRequested"></a>void QDialogButtonBox::helpRequested ()&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted when a button inside the button box is clicked, as long as it was defined with the <a href="qdialogbuttonbox.html#ButtonRole-enum">HelpRole</a>.</p>
+<p>See also <a href="qdialogbuttonbox.html#accepted">accepted</a>(), <a href="qdialogbuttonbox.html#rejected">rejected</a>(), and <a href="qdialogbuttonbox.html#clicked">clicked</a>().</p>
+<a name="//apple_ref/cpp/instm/QDialogButtonBox/rejected" />
+<h3 class="fn"><a name="rejected"></a>void QDialogButtonBox::rejected ()&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted when a button inside the button box is clicked, as long as it was defined with the <a href="qdialogbuttonbox.html#ButtonRole-enum">RejectRole</a> or <a href="qdialogbuttonbox.html#ButtonRole-enum">NoRole</a>.</p>
+<p>See also <a href="qdialogbuttonbox.html#accepted">accepted</a>(), <a href="qdialogbuttonbox.html#helpRequested">helpRequested</a>(), and <a href="qdialogbuttonbox.html#clicked">clicked</a>().</p>
+<a name="//apple_ref/cpp/instm/QDialogButtonBox/removeButton" />
+<h3 class="fn"><a name="removeButton"></a>void QDialogButtonBox::removeButton ( <a href="qabstractbutton.html">QAbstractButton</a> * <i>button</i> )</h3>
+<p>Removes <i>button</i> from the button box without deleting it and sets its parent to zero.</p>
+<p>See also <a href="qdialogbuttonbox.html#clear">clear</a>(), <a href="qdialogbuttonbox.html#buttons">buttons</a>(), and <a href="qdialogbuttonbox.html#addButton">addButton</a>().</p>
+<a name="//apple_ref/cpp/instm/QDialogButtonBox/standardButton" />
+<h3 class="fn"><a name="standardButton"></a><a href="qdialogbuttonbox.html#StandardButton-enum">StandardButton</a> QDialogButtonBox::standardButton ( <a href="qabstractbutton.html">QAbstractButton</a> * <i>button</i> ) const</h3>
+<p>Returns the standard button enum value corresponding to the given <i>button</i>, or <a href="qdialogbuttonbox.html#StandardButton-enum">NoButton</a> if the given <i>button</i> isn't a standard button.</p>
+<p>See also <a href="qdialogbuttonbox.html#button">button</a>(), <a href="qdialogbuttonbox.html#buttons">buttons</a>(), and <a href="qdialogbuttonbox.html#standardButtons-prop">standardButtons</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

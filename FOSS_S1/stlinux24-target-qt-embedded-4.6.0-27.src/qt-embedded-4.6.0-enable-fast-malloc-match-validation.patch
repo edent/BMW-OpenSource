@@ -1,0 +1,64 @@
+This patch enables the tcmalloc internal validation checks.  Apply only when debugging Qt.
+
+Signed-off-by: Stephen Clarke <stephen.clarke@st.com>
+
+--- qt-everywhere-opensource-src-4.6.0/mkspecs/qws/linux-st231-g++/qmake.conf~	2009-12-23 13:43:41.000000000 +0000
++++ qt-everywhere-opensource-src-4.6.0/mkspecs/qws/linux-st231-g++/qmake.conf	2009-12-23 15:24:49.000000000 +0000
+@@ -14,9 +14,9 @@
+ QMAKE_LINK              = st231-linux-g++
+ QMAKE_LINK_SHLIB        = st231-linux-g++
+-QMAKE_CFLAGS_RELEASE    = -Os -OPT:olimit=12000
+-QMAKE_CXXFLAGS_RELEASE  = -Os -OPT:olimit=12000
+-QMAKE_CFLAGS_DEBUG      = -g -O1 -OPT:olimit=12000
+-QMAKE_CXXFLAGS_DEBUG    = -g -O1 -OPT:olimit=12000
++QMAKE_CFLAGS_RELEASE    = -Os -OPT:olimit=12000 -DENABLE_FAST_MALLOC_MATCH_VALIDATION=1
++QMAKE_CXXFLAGS_RELEASE  = -Os -OPT:olimit=12000 -DENABLE_FAST_MALLOC_MATCH_VALIDATION=1
++QMAKE_CFLAGS_DEBUG      = -g -O1 -OPT:olimit=12000 -DENABLE_FAST_MALLOC_MATCH_VALIDATION=1
++QMAKE_CXXFLAGS_DEBUG    = -g -O1 -OPT:olimit=12000 -DENABLE_FAST_MALLOC_MATCH_VALIDATION=1
+ QMAKE_LFLAGS_RELEASE    = -Wl,-O1,--gc-sections
+ 
+ # modifications to linux.conf
+--- qt-everywhere-opensource-src-4.6.0/src/3rdparty/webkit/JavaScriptCore/wtf/FastMalloc.cpp.orig	2010-01-15 17:30:28.000000000 +0000
++++ qt-everywhere-opensource-src-4.6.0/src/3rdparty/webkit/JavaScriptCore/wtf/FastMalloc.cpp	2010-01-15 17:30:54.000000000 +0000
+@@ -3795,7 +3795,7 @@
+     return new_ptr;
+   } else {
+ #if ENABLE(FAST_MALLOC_MATCH_VALIDATION)
+-    old_ptr = pByte + sizeof(AllocAlignmentInteger);  // Set old_ptr back to the user pointer.
++    old_ptr = static_cast<AllocAlignmentInteger*>(old_ptr) + 1;  // Set old_ptr back to the user pointer.
+ #endif
+     return old_ptr;
+   }
+--- qt-everywhere-opensource-src-4.6.0/src/3rdparty/javascriptcore/JavaScriptCore/wtf/FastMalloc.cpp.orig	2010-01-15 17:30:38.000000000 +0000
++++ qt-everywhere-opensource-src-4.6.0/src/3rdparty/javascriptcore/JavaScriptCore/wtf/FastMalloc.cpp	2010-01-15 17:31:08.000000000 +0000
+@@ -3800,7 +3800,7 @@
+     return new_ptr;
+   } else {
+ #if ENABLE(FAST_MALLOC_MATCH_VALIDATION)
+-    old_ptr = pByte + sizeof(AllocAlignmentInteger);  // Set old_ptr back to the user pointer.
++    old_ptr = static_cast<AllocAlignmentInteger*>(old_ptr) + 1;  // Set old_ptr back to the user pointer.
+ #endif
+     return old_ptr;
+   }
+--- qt-everywhere-opensource-src-4.6.0/src/3rdparty/webkit/WebCore/css/CSSSelector.h.orig	2010-02-12 11:14:34.000000000 +0000
++++ qt-everywhere-opensource-src-4.6.0/src/3rdparty/webkit/WebCore/css/CSSSelector.h	2010-02-12 11:15:08.000000000 +0000
+@@ -60,7 +60,7 @@
+             if (m_hasRareData)
+                 delete m_data.m_rareData;
+             else
+-                delete m_data.m_tagHistory;
++	        fastDelete(m_data.m_tagHistory);
+         }
+ 
+         /**
+--- qt-everywhere-opensource-src-4.6.0/src/3rdparty/webkit/WebCore/css/CSSSelectorList.cpp.orig	2010-02-12 11:15:29.000000000 +0000
++++ qt-everywhere-opensource-src-4.6.0/src/3rdparty/webkit/WebCore/css/CSSSelectorList.cpp	2010-02-12 11:15:57.000000000 +0000
+@@ -76,7 +76,7 @@
+     CSSSelector* s = m_selectorArray;
+     bool done = s->isLastInSelectorList();
+     if (done)
+-        delete s;
++        fastDelete(s);
+     else {
+         while (1) {
+             s->~CSSSelector();

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qanimationgroup.cpp -->
+<head>
+  <title>Qt 4.6: QAnimationGroup Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QAnimationGroup" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QAnimationGroup Class Reference<br /><span class="small-subtitle">[<a href="qtcore.html">QtCore</a> module]</span>
+</h1>
+<p>The QAnimationGroup class is an abstract base class for groups of animations. <a href="#details">More...</a></p>
+<pre> #include &lt;QAnimationGroup&gt;</pre><p>Inherits <a href="qabstractanimation.html">QAbstractAnimation</a>.</p>
+<p>Inherited by <a href="qparallelanimationgroup.html">QParallelAnimationGroup</a> and <a href="qsequentialanimationgroup.html">QSequentialAnimationGroup</a>.</p>
+<p>This class was introduced in Qt 4.6.</p>
+<ul>
+<li><a href="qanimationgroup-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qanimationgroup.html#QAnimationGroup">QAnimationGroup</a></b> ( QObject * <i>parent</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qanimationgroup.html#dtor.QAnimationGroup">~QAnimationGroup</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qanimationgroup.html#addAnimation">addAnimation</a></b> ( QAbstractAnimation * <i>animation</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QAbstractAnimation * </td><td class="memItemRight" valign="bottom"><b><a href="qanimationgroup.html#animationAt">animationAt</a></b> ( int <i>index</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qanimationgroup.html#animationCount">animationCount</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qanimationgroup.html#clear">clear</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qanimationgroup.html#indexOfAnimation">indexOfAnimation</a></b> ( QAbstractAnimation * <i>animation</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qanimationgroup.html#insertAnimation">insertAnimation</a></b> ( int <i>index</i>, QAbstractAnimation * <i>animation</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qanimationgroup.html#removeAnimation">removeAnimation</a></b> ( QAbstractAnimation * <i>animation</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QAbstractAnimation * </td><td class="memItemRight" valign="bottom"><b><a href="qanimationgroup.html#takeAnimation">takeAnimation</a></b> ( int <i>index</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>11 public functions inherited from <a href="qabstractanimation.html#public-functions">QAbstractAnimation</a></li>
+<li><div bar="2" class="fn"></div>29 public functions inherited from <a href="qobject.html#public-functions">QObject</a></li>
+</ul>
+<hr />
+<a name="reimplemented-protected-functions"></a>
+<h2>Reimplemented Protected Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qanimationgroup.html#event">event</a></b> ( QEvent * <i>event</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>4 protected functions inherited from <a href="qabstractanimation.html#protected-functions">QAbstractAnimation</a></li>
+<li><div bar="2" class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li><div class="fn"></div>6 properties inherited from <a href="qabstractanimation.html#properties">QAbstractAnimation</a></li>
+<li><div class="fn"></div>1 property inherited from <a href="qobject.html#properties">QObject</a></li>
+<li><div class="fn"></div>6 public slots inherited from <a href="qabstractanimation.html#public-slots">QAbstractAnimation</a></li>
+<li><div class="fn"></div>1 public slot inherited from <a href="qobject.html#public-slots">QObject</a></li>
+<li><div class="fn"></div>4 signals inherited from <a href="qabstractanimation.html#signals">QAbstractAnimation</a></li>
+<li><div class="fn"></div>1 signal inherited from <a href="qobject.html#signals">QObject</a></li>
+<li><div class="fn"></div>5 static public members inherited from <a href="qobject.html#static-public-members">QObject</a></li>
+<li><div class="fn"></div>4 protected functions inherited from <a href="qabstractanimation.html#protected-functions">QAbstractAnimation</a></li>
+<li><div class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QAnimationGroup class is an abstract base class for groups of animations.</p>
+<p>An animation group is a container for animations (subclasses of <a href="qabstractanimation.html">QAbstractAnimation</a>). A group is usually responsible for managing the <a href="qabstractanimation.html#State-enum">state</a> of its animations, i.e&#x2e;, it decides when to start, stop, resume, and pause them. Currently, Qt provides two such groups: <a href="qparallelanimationgroup.html">QParallelAnimationGroup</a> and <a href="qsequentialanimationgroup.html">QSequentialAnimationGroup</a>. Look up their class descriptions for details.</p>
+<p>Since QAnimationGroup inherits from <a href="qabstractanimation.html">QAbstractAnimation</a>, you can combine groups, and easily construct complex animation graphs. You can query <a href="qabstractanimation.html">QAbstractAnimation</a> for the group it belongs to (using the <a href="qabstractanimation.html#group">group()</a> function).</p>
+<p>To start a top-level animation group, you simply use the <a href="qabstractanimation.html#start">start()</a> function from <a href="qabstractanimation.html">QAbstractAnimation</a>. By a top-level animation group, we think of a group that itself is not contained within another group. Starting sub groups directly is not supported, and may lead to unexpected behavior.</p>
+<p>QAnimationGroup provides methods for adding and retrieving animations. Besides that, you can remove animations by calling remove(), and clear the animation group by calling <a href="qanimationgroup.html#clear">clear</a>(). You may keep track of changes in the group's animations by listening to <a href="qevent.html#Type-enum">QEvent::ChildAdded</a> and <a href="qevent.html#Type-enum">QEvent::ChildRemoved</a> events.</p>
+<p>QAnimationGroup takes ownership of the animations it manages, and ensures that they are deleted when the animation group is deleted.</p>
+<p>See also <a href="qabstractanimation.html">QAbstractAnimation</a>, <a href="qvariantanimation.html">QVariantAnimation</a>, and <a href="animation-overview.html">The Animation Framework</a>.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QAnimationGroup/QAnimationGroup" />
+<h3 class="fn"><a name="QAnimationGroup"></a>QAnimationGroup::QAnimationGroup ( <a href="qobject.html">QObject</a> * <i>parent</i> = 0 )</h3>
+<p>Constructs a <a href="qanimationgroup.html">QAnimationGroup</a>. <i>parent</i> is passed to <a href="qobject.html">QObject</a>'s constructor.</p>
+<a name="//apple_ref/cpp/instm/QAnimationGroup/~QAnimationGroup" />
+<h3 class="fn"><a name="dtor.QAnimationGroup"></a>QAnimationGroup::~QAnimationGroup ()</h3>
+<p>Destroys the animation group. It will also destroy all its animations.</p>
+<a name="//apple_ref/cpp/instm/QAnimationGroup/addAnimation" />
+<h3 class="fn"><a name="addAnimation"></a>void QAnimationGroup::addAnimation ( <a href="qabstractanimation.html">QAbstractAnimation</a> * <i>animation</i> )</h3>
+<p>Adds <i>animation</i> to this group. This will call insertAnimation with index equals to <a href="qanimationgroup.html#animationCount">animationCount</a>().</p>
+<p><b>Note:</b> The group takes ownership of the animation.</p>
+<p>See also <a href="qanimationgroup.html#removeAnimation">removeAnimation</a>().</p>
+<a name="//apple_ref/cpp/instm/QAnimationGroup/animationAt" />
+<h3 class="fn"><a name="animationAt"></a><a href="qabstractanimation.html">QAbstractAnimation</a> * QAnimationGroup::animationAt ( int <i>index</i> ) const</h3>
+<p>Returns a pointer to the animation at <i>index</i> in this group. This function is useful when you need access to a particular animation. <i>index</i> is between 0 and <a href="qanimationgroup.html#animationCount">animationCount</a>() - 1.</p>
+<p>See also <a href="qanimationgroup.html#animationCount">animationCount</a>() and <a href="qanimationgroup.html#indexOfAnimation">indexOfAnimation</a>().</p>
+<a name="//apple_ref/cpp/instm/QAnimationGroup/animationCount" />
+<h3 class="fn"><a name="animationCount"></a>int QAnimationGroup::animationCount () const</h3>
+<p>Returns the number of animations managed by this group.</p>
+<p>See also <a href="qanimationgroup.html#indexOfAnimation">indexOfAnimation</a>(), <a href="qanimationgroup.html#addAnimation">addAnimation</a>(), and <a href="qanimationgroup.html#animationAt">animationAt</a>().</p>
+<a name="//apple_ref/cpp/instm/QAnimationGroup/clear" />
+<h3 class="fn"><a name="clear"></a>void QAnimationGroup::clear ()</h3>
+<p>Removes and deletes all animations in this animation group, and resets the current time to 0.</p>
+<p>See also <a href="qanimationgroup.html#addAnimation">addAnimation</a>() and <a href="qanimationgroup.html#removeAnimation">removeAnimation</a>().</p>
+<a name="//apple_ref/cpp/instm/QAnimationGroup/event" />
+<h3 class="fn"><a name="event"></a>bool QAnimationGroup::event ( <a href="qevent.html">QEvent</a> * <i>event</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qobject.html#event">QObject::event</a>().</p>
+<a name="//apple_ref/cpp/instm/QAnimationGroup/indexOfAnimation" />
+<h3 class="fn"><a name="indexOfAnimation"></a>int QAnimationGroup::indexOfAnimation ( <a href="qabstractanimation.html">QAbstractAnimation</a> * <i>animation</i> ) const</h3>
+<p>Returns the index of <i>animation</i>. The returned index can be passed to the other functions that take an index as an argument.</p>
+<p>See also <a href="qanimationgroup.html#insertAnimation">insertAnimation</a>(), <a href="qanimationgroup.html#animationAt">animationAt</a>(), and <a href="qanimationgroup.html#takeAnimation">takeAnimation</a>().</p>
+<a name="//apple_ref/cpp/instm/QAnimationGroup/insertAnimation" />
+<h3 class="fn"><a name="insertAnimation"></a>void QAnimationGroup::insertAnimation ( int <i>index</i>, <a href="qabstractanimation.html">QAbstractAnimation</a> * <i>animation</i> )</h3>
+<p>Inserts <i>animation</i> into this animation group at <i>index</i>. If <i>index</i> is 0 the animation is inserted at the beginning. If <i>index</i> is <a href="qanimationgroup.html#animationCount">animationCount</a>(), the animation is inserted at the end.</p>
+<p><b>Note:</b> The group takes ownership of the animation.</p>
+<p>See also <a href="qanimationgroup.html#takeAnimation">takeAnimation</a>(), <a href="qanimationgroup.html#addAnimation">addAnimation</a>(), <a href="qanimationgroup.html#indexOfAnimation">indexOfAnimation</a>(), and <a href="qanimationgroup.html#removeAnimation">removeAnimation</a>().</p>
+<a name="//apple_ref/cpp/instm/QAnimationGroup/removeAnimation" />
+<h3 class="fn"><a name="removeAnimation"></a>void QAnimationGroup::removeAnimation ( <a href="qabstractanimation.html">QAbstractAnimation</a> * <i>animation</i> )</h3>
+<p>Removes <i>animation</i> from this group. The ownership of <i>animation</i> is transferred to the caller.</p>
+<p>See also <a href="qanimationgroup.html#takeAnimation">takeAnimation</a>(), <a href="qanimationgroup.html#insertAnimation">insertAnimation</a>(), and <a href="qanimationgroup.html#addAnimation">addAnimation</a>().</p>
+<a name="//apple_ref/cpp/instm/QAnimationGroup/takeAnimation" />
+<h3 class="fn"><a name="takeAnimation"></a><a href="qabstractanimation.html">QAbstractAnimation</a> * QAnimationGroup::takeAnimation ( int <i>index</i> )</h3>
+<p>Returns the animation at <i>index</i> and removes it from the animation group.</p>
+<p><b>Note:</b> The ownership of the animation is transferred to the caller.</p>
+<p>See also <a href="qanimationgroup.html#removeAnimation">removeAnimation</a>(), <a href="qanimationgroup.html#addAnimation">addAnimation</a>(), <a href="qanimationgroup.html#insertAnimation">insertAnimation</a>(), and <a href="qanimationgroup.html#indexOfAnimation">indexOfAnimation</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

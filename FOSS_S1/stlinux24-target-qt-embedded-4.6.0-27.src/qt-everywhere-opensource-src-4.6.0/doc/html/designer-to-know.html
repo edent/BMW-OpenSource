@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- designer-manual.qdoc -->
+<head>
+  <title>Qt 4.6: Getting to Know Qt Designer</title>
+  <link rel="contents" href="designer-manual.html" />
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><p>
+[<a href="designer-manual.html">Contents</a>]
+</p>
+<h1 class="title">Getting to Know Qt Designer<br /><span class="subtitle"></span>
+</h1>
+<ul><li><a href="#launching-designer">Launching Designer</a></li>
+<li><a href="#the-user-interface">The User Interface</a></li>
+<li><a href="#the-concept-of-layouts-in-qt">The Concept of Layouts in Qt</a></li>
+</ul>
+<p align="center"><img src="images/designer-screenshot.png" /></p><a name="launching-designer"></a>
+<h2>Launching Designer</h2>
+<p>The way that you launch <i>Qt Designer</i> depends on your platform:</p>
+<ul>
+<li>On Windows, click the Start button, under the <b>Programs</b> submenu, open the <b>Qt 4</b> submenu and click <b>Designer</b>.</li>
+<li>On Unix or Linux, you might find a <i>Qt Designer</i> icon on the desktop background or in the desktop start menu under the <b>Programming</b> or <b>Development</b> submenus. You can launch <i>Qt Designer</i> from this icon. Alternatively, you can type <tt>designer</tt> in a terminal window.</li>
+<li>On Mac OS X, double click on <i>Qt Designer</i> in <b>Finder</b>.</li>
+</ul>
+<a name="the-user-interface"></a>
+<h2>The User Interface</h2>
+<p>When used as a standalone application, <i>Qt Designer</i>'s user interface can be configured to provide either a multi-window user interface (the default mode), or it can be used in docked window mode. When used from within an integrated development environment (IDE) only the multi-window user interface is available. You can switch modes in the <b>Preferences</b> dialog from the <b>Edit</b> menu.</p>
+<p>In multi-window mode, you can arrange each of the tool windows to suit your working style. The main window consists of a menu bar, a tool bar, and a widget box that contains the widgets you can use to create your user interface.</p>
+<a name="mainwindow"></a><p><table class="generic" align="center" cellpadding="2" cellspacing="1" border="0">
+<tr valign="top" class="odd"><td><img src="images/designer-main-window.png" /></td><td><b>Qt Designer's Main Window</b><p>The menu bar provides all the standard actions for managing forms, using the clipboard, and accessing application-specific help. The current editing mode, the tool windows, and the forms in use can also be accessed via the menu bar.</p>
+<p>The tool bar displays common actions that are used when editing a form. These are also available via the main menu.</p>
+<p>The widget box provides common widgets and layouts that are used to design components. These are grouped into categories that reflect their uses or features.</p>
+</td></tr>
+</table></p>
+<p>Most features of <i>Qt Designer</i> are accessible via the menu bar, the tool bar, or the widget box. Some features are also available through context menus that can be opened over the form windows. On most platforms, the right mouse is used to open context menus.</p>
+<a name="widgetbox"></a><p><table class="generic" align="center" cellpadding="2" cellspacing="1" border="0">
+<tr valign="top" class="odd"><td><img src="images/designer-widget-box.png" /></td><td><b>Qt Designer's Widget Box</b><p>The widget box provides a selection of standard Qt widgets, layouts, and other objects that can be used to create user interfaces on forms. Each of the categories in the widget box contain widgets with similar uses or related features.</p>
+<p><b>Note:</b> Since Qt 4.4, new widgets have been included, e.g&#x2e;, <a href="qplaintextedit.html">QPlainTextEdit</a>, <a href="qcommandlinkbutton.html">QCommandLinkButton</a>, <a href="qscrollarea.html">QScrollArea</a>, <a href="qmdiarea.html">QMdiArea</a>, and <a href="qwebview.html">QWebView</a>.</p>
+<p>You can display all of the available objects in a category by clicking on the handle next to the category label. When in <a href="designer-widget-mode.html">Widget Editing Mode</a>, you can add objects to a form by dragging the appropriate items from the widget box onto the form, and dropping them in the required locations.</p>
+<p><i>Qt Designer</i> provides a scratch pad feature that allows you to collect frequently used objects in a separate category. The scratch pad category can be filled with any widget currently displayed in a form by dragging them from the form and dropping them onto the widget box. These widgets can be used in the same way as any other widgets, but they can also contain child widgets. Open a context menu over a widget to change its name or remove it from the scratch pad.</p>
+</td></tr>
+</table></p>
+<a name="the-concept-of-layouts-in-qt"></a>
+<h2>The Concept of Layouts in Qt</h2>
+<p>A layout is used to arrange and manage the elements that make up a user interface. Qt provides a number of classes to automatically handle layouts -- <a href="qhboxlayout.html">QHBoxLayout</a>, <a href="qvboxlayout.html">QVBoxLayout</a>, <a href="qgridlayout.html">QGridLayout</a>, and <a href="qformlayout.html">QFormLayout</a>. These classes solve the challenge of laying out widgets automatically, providing a user interface that behaves predictably. Fortunately knowledge of the layout classes is not required to arrange widgets with <i>Qt Designer</i>. Instead, select one of the <b>Lay Out Horizontally</b>, <b>Lay Out in a Grid</b>, etc., options from the context menu.</p>
+<p>Each Qt widget has a recommended size, known as <a href="qwidget.html#sizeHint-prop">sizeHint()</a>. The layout manager will attempt to resize a widget to meet its size hint. In some cases, there is no need to have a different size. For example, the height of a <a href="qlineedit.html">QLineEdit</a> is always a fixed value, depending on font size and style. In other cases, you may require the size to change, e.g&#x2e;, the width of a <a href="qlineedit.html">QLineEdit</a> or the width and height of item view widgets. This is where the widget size constraints -- <a href="qwidget.html#minimumSize-prop">minimumSize</a> and <a href="qwidget.html#maximumSize-prop">maximumSize</a> constraints come into play. These are properties you can set in the property editor. For example, to override the default <a href="qwidget.html#sizeHint-prop">sizeHint()</a>, simply set <a href="qwidget.html#minimumSize-prop">minimumSize</a> and <a href="qwidget.html#maximumSize-prop">maximumSize</a> to the same value. Alternatively, to use the current size as a size constraint value, choose one of the <b>Size Constraint</b> options from the widget's context menu. The layout will then ensure that those constraints are met. To control the size of your widgets via code, you can reimplement <a href="qwidget.html#sizeHint-prop">sizeHint()</a> in your code.</p>
+<p>The screenshot below shows the breakdown of a basic user interface designed using a grid. The coordinates on the screenshot show the position of each widget within the grid.</p>
+<p align="center"><img src="images/addressbook-tutorial-part3-labeled-layout.png" /></p><p><b>Note:</b> Inside the grid, the <a href="qpushbutton.html">QPushButton</a> objects are actually nested. The buttons on the right are first placed in a <a href="qvboxlayout.html">QVBoxLayout</a>; the buttons at the bottom are first placed in a <a href="qhboxlayout.html">QHBoxLayout</a>. Finally, they are put into coordinates (1,2) and (3,1) of the <a href="qgridlayout.html">QGridLayout</a>.</p>
+<p>To visualize, imagine the layout as a box that shrinks as much as possible, attempting to <i>squeeze</i> your widgets in a neat arrangement, and, at the same time, maximize the use of available space.</p>
+<p>Qt's layouts help when you:</p>
+<ol type="1">
+<li>Resize the user face to fit different window sizes.</li>
+<li>Resize elements within the user interface to suit different localizations.</li>
+<li>Arrange elements to adhere to layout guidelines for different platforms.</li>
+</ol>
+<p>So, you no longer have to worry about rearranging widgets for different platforms, settings, and languages.</p>
+<p>The example below shows how different localizations can affect the user interface. When a localization requires more space for longer text strings the Qt layout automatically scales to accommodate this, while ensuring that the user interface looks presentable and still matches the platform guidelines.</p>
+<p><table class="generic" align="center" cellpadding="2" cellspacing="1" border="0">
+<thead><tr valign="top" class="qt-style"><th>A Dialog in English</th><th>A Dialog in French</th></tr></thead>
+<tr valign="top" class="odd"><td><p align="center"><img src="images/designer-english-dialog.png" /></p></td><td><p align="center"><img src="images/designer-french-dialog.png" /></p></td></tr>
+</table></p>
+<p>The process of laying out widgets consists of creating the layout hierarchy while setting as few widget size constraints as possible.</p>
+<p>For a more technical perspective on Qt's layout classes, refer to the <a href="layout.html">Layout Management</a> documentation.</p>
+<p>
+[<a href="designer-manual.html">Contents</a>]
+</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: audiodevices.cpp Example File (multimedia/audiodevices/audiodevices.cpp)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">audiodevices.cpp Example File<br /><span class="small-subtitle">multimedia/audiodevices/audiodevices.cpp</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the examples of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+
+ #include &lt;QDebug&gt;
+ #include &lt;QAudioDeviceInfo&gt;
+
+ #include &quot;audiodevices.h&quot;
+
+ AudioDevicesBase::AudioDevicesBase( QMainWindow *parent, Qt::WFlags f )
+ {
+     Q_UNUSED(parent)
+     Q_UNUSED(f)
+     setupUi( this );
+ }
+
+ AudioDevicesBase::~AudioDevicesBase() {}
+
+ AudioTest::AudioTest( QMainWindow *parent, Qt::WFlags f )
+     : AudioDevicesBase( parent, f )
+ {
+     nearestFreq-&gt;setDisabled(true);
+     nearestChannel-&gt;setDisabled(true);
+     nearestCodec-&gt;setDisabled(true);
+     nearestSampleSize-&gt;setDisabled(true);
+     nearestSampleType-&gt;setDisabled(true);
+     nearestEndian-&gt;setDisabled(true);
+     logOutput-&gt;setDisabled(true);
+
+     mode = QAudio::AudioOutput;
+     modeBox-&gt;addItem(&quot;Input&quot;);
+     modeBox-&gt;addItem(&quot;Output&quot;);
+
+     connect(testButton,SIGNAL(clicked()),SLOT(test()));
+     connect(modeBox,SIGNAL(activated(int)),SLOT(modeChanged(int)));
+     connect(deviceBox,SIGNAL(activated(int)),SLOT(deviceChanged(int)));
+     connect(frequencyBox,SIGNAL(activated(int)),SLOT(freqChanged(int)));
+     connect(channelsBox,SIGNAL(activated(int)),SLOT(channelChanged(int)));
+     connect(codecsBox,SIGNAL(activated(int)),SLOT(codecChanged(int)));
+     connect(sampleSizesBox,SIGNAL(activated(int)),SLOT(sampleSizeChanged(int)));
+     connect(sampleTypesBox,SIGNAL(activated(int)),SLOT(sampleTypeChanged(int)));
+     connect(endianBox,SIGNAL(activated(int)),SLOT(endianChanged(int)));
+
+     modeBox-&gt;setCurrentIndex(0);
+     modeChanged(0);
+     deviceBox-&gt;setCurrentIndex(0);
+     deviceChanged(0);
+ }
+
+ AudioTest::~AudioTest()
+ {
+ }
+
+ void AudioTest::test()
+ {
+     <span class="comment">// tries to set all the settings picked.</span>
+     logOutput-&gt;clear();
+     logOutput-&gt;append(&quot;NOTE: an invalid codec audio/test exists for testing, to get a fail condition.&quot;);
+
+     if (!deviceInfo.isNull()) {
+         if (deviceInfo.isFormatSupported(settings)) {
+             logOutput-&gt;append(&quot;Success&quot;);
+             nearestFreq-&gt;setText(&quot;&quot;);
+             nearestChannel-&gt;setText(&quot;&quot;);
+             nearestCodec-&gt;setText(&quot;&quot;);
+             nearestSampleSize-&gt;setText(&quot;&quot;);
+             nearestSampleType-&gt;setText(&quot;&quot;);
+             nearestEndian-&gt;setText(&quot;&quot;);
+         } else {
+             QAudioFormat nearest = deviceInfo.nearestFormat(settings);
+             logOutput-&gt;append(tr(&quot;Failed&quot;));
+             nearestFreq-&gt;setText(QString(&quot;%1&quot;).arg(nearest.frequency()));
+             nearestChannel-&gt;setText(QString(&quot;%1&quot;).arg(nearest.channels()));
+             nearestCodec-&gt;setText(nearest.codec());
+             nearestSampleSize-&gt;setText(QString(&quot;%1&quot;).arg(nearest.sampleSize()));
+
+             switch(nearest.sampleType()) {
+                 case QAudioFormat::SignedInt:
+                     nearestSampleType-&gt;setText(&quot;SignedInt&quot;);
+                     break;
+                 case QAudioFormat::UnSignedInt:
+                     nearestSampleType-&gt;setText(&quot;UnSignedInt&quot;);
+                     break;
+                 case QAudioFormat::Float:
+                     nearestSampleType-&gt;setText(&quot;Float&quot;);
+                     break;
+                 case QAudioFormat::Unknown:
+                     nearestSampleType-&gt;setText(&quot;Unknown&quot;);
+             }
+             switch(nearest.byteOrder()) {
+                 case QAudioFormat::LittleEndian:
+                     nearestEndian-&gt;setText(&quot;LittleEndian&quot;);
+                     break;
+                 case QAudioFormat::BigEndian:
+                     nearestEndian-&gt;setText(&quot;BigEndian&quot;);
+             }
+         }
+     }
+     else
+         logOutput-&gt;append(&quot;No Device&quot;);
+ }
+
+ void AudioTest::modeChanged(int idx)
+ {
+     <span class="comment">// mode has changed</span>
+     if(idx == 0)
+         mode=QAudio::AudioInput;
+     else
+         mode=QAudio::AudioOutput;
+
+     deviceBox-&gt;clear();
+     foreach (const QAudioDeviceInfo &amp;deviceInfo, QAudioDeviceInfo::availableDevices(mode))
+         deviceBox-&gt;addItem(deviceInfo.deviceName(), qVariantFromValue(deviceInfo));
+ }
+
+ void AudioTest::deviceChanged(int idx)
+ {
+     if (deviceBox-&gt;count() == 0)
+         return;
+
+     <span class="comment">// device has changed</span>
+     deviceInfo = deviceBox-&gt;itemData(idx).value&lt;QAudioDeviceInfo&gt;();
+
+     frequencyBox-&gt;clear();
+     QList&lt;int&gt; freqz = deviceInfo.supportedFrequencies();
+     for(int i = 0; i &lt; freqz.size(); ++i)
+         frequencyBox-&gt;addItem(QString(&quot;%1&quot;).arg(freqz.at(i)));
+     if(freqz.size())
+         settings.setFrequency(freqz.at(0));
+
+     channelsBox-&gt;clear();
+     QList&lt;int&gt; chz = deviceInfo.supportedChannels();
+     for(int i = 0; i &lt; chz.size(); ++i)
+         channelsBox-&gt;addItem(QString(&quot;%1&quot;).arg(chz.at(i)));
+     if(chz.size())
+         settings.setChannels(chz.at(0));
+
+     codecsBox-&gt;clear();
+     QStringList codecz = deviceInfo.supportedCodecs();
+     for(int i = 0; i &lt; codecz.size(); ++i)
+         codecsBox-&gt;addItem(QString(&quot;%1&quot;).arg(codecz.at(i)));
+     if(codecz.size())
+         settings.setCodec(codecz.at(0));
+     <span class="comment">// Add false to create failed condition</span>!
+     codecsBox-&gt;addItem(&quot;audio/test&quot;);
+
+     sampleSizesBox-&gt;clear();
+     QList&lt;int&gt; sampleSizez = deviceInfo.supportedSampleSizes();
+     for(int i = 0; i &lt; sampleSizez.size(); ++i)
+         sampleSizesBox-&gt;addItem(QString(&quot;%1&quot;).arg(sampleSizez.at(i)));
+     if(sampleSizez.size())
+         settings.setSampleSize(sampleSizez.at(0));
+
+     sampleTypesBox-&gt;clear();
+     QList&lt;QAudioFormat::SampleType&gt; sampleTypez = deviceInfo.supportedSampleTypes();
+     for(int i = 0; i &lt; sampleTypez.size(); ++i) {
+         switch(sampleTypez.at(i)) {
+             case QAudioFormat::SignedInt:
+                 sampleTypesBox-&gt;addItem(&quot;SignedInt&quot;);
+                 break;
+             case QAudioFormat::UnSignedInt:
+                 sampleTypesBox-&gt;addItem(&quot;UnSignedInt&quot;);
+                 break;
+             case QAudioFormat::Float:
+                 sampleTypesBox-&gt;addItem(&quot;Float&quot;);
+                 break;
+             case QAudioFormat::Unknown:
+                 sampleTypesBox-&gt;addItem(&quot;Unknown&quot;);
+         }
+         if(sampleTypez.size())
+             settings.setSampleType(sampleTypez.at(0));
+     }
+
+     endianBox-&gt;clear();
+     QList&lt;QAudioFormat::Endian&gt; endianz = deviceInfo.supportedByteOrders();
+     for(int i = 0; i &lt; endianz.size(); ++i) {
+         switch(endianz.at(i)) {
+             case QAudioFormat::LittleEndian:
+                 endianBox-&gt;addItem(&quot;Little Endian&quot;);
+                 break;
+             case QAudioFormat::BigEndian:
+                 endianBox-&gt;addItem(&quot;Big Endian&quot;);
+                 break;
+         }
+     }
+     if(endianz.size())
+         settings.setByteOrder(endianz.at(0));
+ }
+
+ void AudioTest::freqChanged(int idx)
+ {
+     <span class="comment">// freq has changed</span>
+     settings.setFrequency(frequencyBox-&gt;itemText(idx).toInt());
+ }
+
+ void AudioTest::channelChanged(int idx)
+ {
+     settings.setChannels(channelsBox-&gt;itemText(idx).toInt());
+ }
+
+ void AudioTest::codecChanged(int idx)
+ {
+     settings.setCodec(codecsBox-&gt;itemText(idx));
+ }
+
+ void AudioTest::sampleSizeChanged(int idx)
+ {
+     settings.setSampleSize(sampleSizesBox-&gt;itemText(idx).toInt());
+ }
+
+ void AudioTest::sampleTypeChanged(int idx)
+ {
+     switch(sampleTypesBox-&gt;itemText(idx).toInt()) {
+         case QAudioFormat::SignedInt:
+             settings.setSampleType(QAudioFormat::SignedInt);
+             break;
+         case QAudioFormat::UnSignedInt:
+             settings.setSampleType(QAudioFormat::UnSignedInt);
+             break;
+         case QAudioFormat::Float:
+             settings.setSampleType(QAudioFormat::Float);
+     }
+ }
+
+ void AudioTest::endianChanged(int idx)
+ {
+     switch(endianBox-&gt;itemText(idx).toInt()) {
+         case QAudioFormat::LittleEndian:
+             settings.setByteOrder(QAudioFormat::LittleEndian);
+             break;
+         case QAudioFormat::BigEndian:
+             settings.setByteOrder(QAudioFormat::BigEndian);
+     }
+ }</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qwindowsystem_qws.cpp -->
+<head>
+  <title>Qt 4.6: KeyboardFilter Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl/QWSServer/KeyboardFilter" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">KeyboardFilter Class Reference<br /><span class="small-subtitle">(QWSServer::KeyboardFilter)<br />[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The KeyboardFilter class is a base class for global keyboard event filters in Qt for Embedded Linux. <a href="#details">More...</a></p>
+<pre> #include &lt;<a href="qwsserver.html">QWSServer</a>&gt;</pre><ul>
+<li><a href="qwsserver-keyboardfilter-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual </td><td class="memItemRight" valign="bottom"><b><a href="qwsserver-keyboardfilter.html#dtor.KeyboardFilter">~KeyboardFilter</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qwsserver-keyboardfilter.html#filter">filter</a></b> ( int <i>unicode</i>, int <i>keycode</i>, int <i>modifiers</i>, bool <i>isPress</i>, bool <i>autoRepeat</i> ) = 0</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The KeyboardFilter class is a base class for global keyboard event filters in Qt for Embedded Linux.</p>
+<p>Note that this class is only available in <a href="qt-embedded-linux.html">Qt for Embedded Linux</a>.</p>
+<p>In <a href="qt-embedded-linux.html">Qt for Embedded Linux</a>, all system generated events, including keyboard events, are passed to the server application which then propagates the event to the appropriate client. The KeyboardFilter class is used to implement a global, low-level filter on the server side. The server applies the filter to all keyboard events before passing them on to the clients:</p>
+<p align="center"><img src="images/qwsserver_keyboardfilter.png" /></p><p>This feature can, for example, be used to filter things like APM (advanced power management) suspended from a button without having to filter for it in all applications.</p>
+<p>To add a new keyboard filter you must first create the filter by deriving from this class, reimplementing the pure virtual <a href="qwsserver-keyboardfilter.html#filter">filter</a>() function. Then you can install the filter on the server using <a href="qwsserver.html">QWSServer</a>'s <a href="qwsserver.html#addKeyboardFilter">addKeyboardFilter()</a> function. <a href="qwsserver.html">QWSServer</a> also provides a <a href="qwsserver.html#removeKeyboardFilter">removeKeyboardFilter()</a> function.</p>
+<p>See also <a href="qt-embedded-architecture.html">Qt for Embedded Linux Architecture</a>, <a href="qwsserver.html">QWSServer</a>, and <a href="qwsinputmethod.html">QWSInputMethod</a>.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QWSServer::KeyboardFilter/~KeyboardFilter" />
+<h3 class="fn"><a name="dtor.KeyboardFilter"></a>KeyboardFilter::~KeyboardFilter ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Destroys the keyboard filter.</p>
+<a name="//apple_ref/cpp/instm/QWSServer::KeyboardFilter/filter" />
+<h3 class="fn"><a name="filter"></a>bool KeyboardFilter::filter ( int <i>unicode</i>, int <i>keycode</i>, int <i>modifiers</i>, bool <i>isPress</i>, bool <i>autoRepeat</i> )&nbsp;&nbsp;<tt> [pure virtual]</tt></h3>
+<p>Implement this function to return true if a given key event should be stopped from being processed any further; otherwise it should return false.</p>
+<p>A key event can be identified by the given <i>unicode</i> value and the <i>keycode</i>, <i>modifiers</i>, <i>isPress</i> and <i>autoRepeat</i> parameters.</p>
+<p>The <i>keycode</i> parameter is the Qt keycode value as defined by the <a href="qt.html#Key-enum">Qt::Key</a> enum. The <i>modifiers</i> is an OR combination of <a href="qt.html#KeyboardModifier-enum">Qt::KeyboardModifier</a> values, indicating whether <b>Shift/Alt/Ctrl</b> keys are pressed. The <i>isPress</i> parameter is true if the event is a key press event and <i>autoRepeat</i> is true if the event is caused by an auto-repeat mechanism and not an actual key press.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

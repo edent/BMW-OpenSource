@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- wince-introduction.qdoc -->
+<head>
+  <title>Qt 4.6: Windows CE - Introduction to using Qt</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">Windows CE - Introduction to using Qt<br /><span class="subtitle"></span>
+</h1>
+<ul><li><a href="#required-tools">Required tools</a></li>
+<li><a href="#installing-qt">Installing Qt</a></li>
+<li><a href="#building-your-own-applications">Building your own applications</a></li>
+<li><a href="#running-the-application">Running the application</a></li>
+</ul>
+<a name="required-tools"></a>
+<h3>Required tools</h3>
+<p>In order to use Qt for Windows CE you need to have Visual Studio 2005 or 2008 and at least one of the supported Windows CE/Mobile SDKs installed. Note, that the Visual Studio 2008 Standard Edition doesn't come with Windows CE support. You will need the Professional Edition, if you're using Visual Studio 2008.</p>
+<p>We recommend the <i>Windows Mobile 5.0 SDK for Pocket PC</i> SDK available <a href="http://www.microsoft.com/downloads/details.aspx?FamilyID=83a52af2-f524-4ec5-9155-717cbe5d25ed&amp;DisplayLang=en">here</a>.</p>
+<a name="installing-qt"></a>
+<h3>Installing Qt</h3>
+<p>Follow the instructions found in <a href="install-wince.html">Installing Qt on Windows CE</a>.</p>
+<a name="building-your-own-applications"></a>
+<h3>Building your own applications</h3>
+<p>If you are new to Qt development, have a look at <a href="how-to-learn-qt.html">How to Learn Qt</a> and <a href="tutorials.html">Tutorials</a>. In general there is little or no difference in developing Qt applications for Windows CE compared to any of the other platforms supported by Qt.</p>
+<p>Once you have a <tt>.pro</tt> file, there are two ways of building your application. You can either do it on the command line or inside of Visual Studio. To do it on the command line, simply write:</p>
+<pre> qmake
+ nmake</pre>
+<p>To build the project inside of Visual Studio, on the command line write:</p>
+<pre> qmake -tp vc</pre>
+<p>then start Visual Studio with the generated <tt>.vcproj</tt> or <tt>.sln</tt> file and select <i>Build project</i>.</p>
+<p>For more information on how to use qmake have a look at the <a href="qmake-tutorial.html">qmake Tutorial</a>.</p>
+<a name="running-the-application"></a>
+<h3>Running the application</h3>
+<p>In order to run the application, it needs to be deployed on the Windows CE/Mobile device you want to test it for. This can either be done manually or automated using Visual Studio.</p>
+<p>To do it manually, simply copy the executable, the Qt <tt>.dll</tt> files needed for the application to run, and the C-runtime library into a folder on the device, and then click on the executable to start the program. You can either use the <i>Explorer</i> found in ActiveSync or the <i>Remote File Viewer</i> found in Visual Studio to do this.</p>
+<p>Visual Studio can do this step automatically for you as well. If you have built the project inside Visual Studio, simply select <i>Deploy</i> and then <i>Debug</i> to deploy and then run the application. You can change the device type by changing the <i>Target Device</i> specified in the Visual Studio toolbar.</p>
+<p>Further information on deploying Qt applications for Windows can be found in the <a href="deployment-windows.html">deployment document</a>.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- q3stylesheet.cpp -->
+<head>
+  <title>Qt 4.6: Q3StyleSheetItem Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//Q3StyleSheetItem" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">Q3StyleSheetItem Class Reference<br /><span class="small-subtitle">[<a href="qt3support.html">Qt3Support</a> module]</span>
+</h1>
+<p>The Q3StyleSheetItem class provides an encapsulation of a set of text styles. <a href="#details">More...</a></p>
+<pre> #include &lt;Q3StyleSheetItem&gt;</pre><p><b>This class is part of the Qt 3 support library.</b> It is provided to keep old source code working. We strongly advise against using it in new code. See <a href="porting4.html">Porting to Qt 4</a> for more information.</p>
+<ul>
+<li><a href="q3stylesheetitem-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-types"></a>
+<h2>Public Types</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#DisplayMode-enum">DisplayMode</a></b> { DisplayBlock, DisplayInline, DisplayListItem, DisplayNone }</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#ListStyle-enum">ListStyle</a></b> { ListDisc, ListCircle, ListSquare, ListDecimal, ListLowerAlpha, ListUpperAlpha }</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#Margin-enum">Margin</a></b> { MarginLeft, MarginRight, MarginTop, MarginBottom, ..., MarginUndefined }</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#VerticalAlignment-enum">VerticalAlignment</a></b> { VAlignBaseline, VAlignSub, VAlignSuper }</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#WhiteSpaceMode-enum">WhiteSpaceMode</a></b> { WhiteSpaceNormal, WhiteSpacePre, WhiteSpaceNoWrap }</td></tr>
+</table>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#Q3StyleSheetItem">Q3StyleSheetItem</a></b> ( Q3StyleSheet * <i>parent</i>, const QString &amp; <i>name</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#Q3StyleSheetItem-2">Q3StyleSheetItem</a></b> ( const Q3StyleSheetItem &amp; <i>other</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#dtor.Q3StyleSheetItem">~Q3StyleSheetItem</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#alignment">alignment</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#allowedInContext">allowedInContext</a></b> ( const Q3StyleSheetItem * <i>s</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QColor </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#color">color</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#contexts">contexts</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#definesFontItalic">definesFontItalic</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#definesFontStrikeOut">definesFontStrikeOut</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#definesFontUnderline">definesFontUnderline</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">DisplayMode </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#displayMode">displayMode</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#fontFamily">fontFamily</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#fontItalic">fontItalic</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#fontSize">fontSize</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#fontStrikeOut">fontStrikeOut</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#fontUnderline">fontUnderline</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#fontWeight">fontWeight</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#isAnchor">isAnchor</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#lineSpacing">lineSpacing</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">ListStyle </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#listStyle">listStyle</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#logicalFontSize">logicalFontSize</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#logicalFontSizeStep">logicalFontSizeStep</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#margin">margin</a></b> ( Margin <i>m</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#name">name</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#numberOfColumns">numberOfColumns</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#selfNesting">selfNesting</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#setAlignment">setAlignment</a></b> ( int <i>f</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#setAnchor">setAnchor</a></b> ( bool <i>anc</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#setColor">setColor</a></b> ( const QColor &amp; <i>c</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#setContexts">setContexts</a></b> ( const QString &amp; <i>c</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#setDisplayMode">setDisplayMode</a></b> ( DisplayMode <i>m</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#setFontFamily">setFontFamily</a></b> ( const QString &amp; <i>fam</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#setFontItalic">setFontItalic</a></b> ( bool <i>italic</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#setFontSize">setFontSize</a></b> ( int <i>s</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#setFontStrikeOut">setFontStrikeOut</a></b> ( bool <i>strikeOut</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#setFontUnderline">setFontUnderline</a></b> ( bool <i>underline</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#setFontWeight">setFontWeight</a></b> ( int <i>w</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#setListStyle">setListStyle</a></b> ( ListStyle <i>s</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#setLogicalFontSize">setLogicalFontSize</a></b> ( int <i>s</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#setLogicalFontSizeStep">setLogicalFontSizeStep</a></b> ( int <i>s</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#setMargin">setMargin</a></b> ( Margin <i>m</i>, int <i>v</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#setNumberOfColumns">setNumberOfColumns</a></b> ( int <i>ncols</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#setSelfNesting">setSelfNesting</a></b> ( bool <i>nesting</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#setVerticalAlignment">setVerticalAlignment</a></b> ( VerticalAlignment <i>valign</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#setWhiteSpaceMode">setWhiteSpaceMode</a></b> ( WhiteSpaceMode <i>m</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Q3StyleSheet * </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#styleSheet">styleSheet</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const Q3StyleSheet * </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#styleSheet-2">styleSheet</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">VerticalAlignment </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#verticalAlignment">verticalAlignment</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">WhiteSpaceMode </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#whiteSpaceMode">whiteSpaceMode</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Q3StyleSheetItem &amp; </td><td class="memItemRight" valign="bottom"><b><a href="q3stylesheetitem.html#operator-eq">operator=</a></b> ( const Q3StyleSheetItem &amp; <i>other</i> )</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The Q3StyleSheetItem class provides an encapsulation of a set of text styles.</p>
+<p>A style sheet item consists of a name and a set of attributes that specify its font, color, etc. When used in a <a href="q3stylesheet.html">style sheet</a> (see <a href="q3stylesheetitem.html#styleSheet">styleSheet</a>()), items define the <a href="q3stylesheetitem.html#name">name</a>() of a rich text tag and the display property changes associated with it.</p>
+<p>The <a href="q3stylesheetitem.html#DisplayMode-enum">display mode</a> attribute indicates whether the item is a block, an inline element or a list element; see <a href="q3stylesheetitem.html#setDisplayMode">setDisplayMode</a>(). The treatment of whitespace is controlled by the <a href="q3stylesheetitem.html#WhiteSpaceMode-enum">white space mode</a>; see <a href="q3stylesheetitem.html#setWhiteSpaceMode">setWhiteSpaceMode</a>(). An item's margins are set with <a href="q3stylesheetitem.html#setMargin">setMargin</a>(), In the case of list items, the list style is set with <a href="q3stylesheetitem.html#setListStyle">setListStyle</a>(). An item may be a hypertext link anchor; see <a href="q3stylesheetitem.html#setAnchor">setAnchor</a>(). Other attributes are set with <a href="q3stylesheetitem.html#setAlignment">setAlignment</a>(), <a href="q3stylesheetitem.html#setVerticalAlignment">setVerticalAlignment</a>(), <a href="q3stylesheetitem.html#setFontFamily">setFontFamily</a>(), <a href="q3stylesheetitem.html#setFontSize">setFontSize</a>(), <a href="q3stylesheetitem.html#setFontWeight">setFontWeight</a>(), <a href="q3stylesheetitem.html#setFontItalic">setFontItalic</a>(), <a href="q3stylesheetitem.html#setFontUnderline">setFontUnderline</a>(), setFontStrikeOut and <a href="q3stylesheetitem.html#setColor">setColor</a>().</p>
+<hr />
+<h2>Member Type Documentation</h2>
+<a name="//apple_ref/cpp/tag/Q3StyleSheetItem/DisplayMode" />
+<a name="//apple_ref/cpp/econst/Q3StyleSheetItem/DisplayBlock" />
+<a name="//apple_ref/cpp/econst/Q3StyleSheetItem/DisplayInline" />
+<a name="//apple_ref/cpp/econst/Q3StyleSheetItem/DisplayListItem" />
+<a name="//apple_ref/cpp/econst/Q3StyleSheetItem/DisplayNone" />
+<a name="//apple_ref/cpp/econst/Q3StyleSheetItem/DisplayModeUndefined" />
+<h3 class="fn"><a name="DisplayMode-enum"></a>enum Q3StyleSheetItem::DisplayMode</h3>
+<p>This enum type defines the way adjacent elements are displayed.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>Q3StyleSheetItem::DisplayBlock</tt></td><td align="center" valign="top"><tt>0</tt></td><td valign="top">elements are displayed as a rectangular block (e.g&#x2e; <tt>&lt;p&gt;...&lt;/p&gt;</tt>).</td></tr>
+<tr><td valign="top"><tt>Q3StyleSheetItem::DisplayInline</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">elements are displayed in a horizontally flowing sequence (e.g&#x2e; <tt>&lt;em&gt;...&lt;/em&gt;</tt>).</td></tr>
+<tr><td valign="top"><tt>Q3StyleSheetItem::DisplayListItem</tt></td><td align="center" valign="top"><tt>2</tt></td><td valign="top">elements are displayed in a vertical sequence (e.g&#x2e; <tt>&lt;li&gt;...&lt;/li&gt;</tt>).</td></tr>
+<tr><td valign="top"><tt>Q3StyleSheetItem::DisplayNone</tt></td><td align="center" valign="top"><tt>3</tt></td><td valign="top">elements are not displayed at all.</td></tr>
+</table></p>
+<a name="//apple_ref/cpp/tag/Q3StyleSheetItem/ListStyle" />
+<a name="//apple_ref/cpp/econst/Q3StyleSheetItem/ListDisc" />
+<a name="//apple_ref/cpp/econst/Q3StyleSheetItem/ListCircle" />
+<a name="//apple_ref/cpp/econst/Q3StyleSheetItem/ListSquare" />
+<a name="//apple_ref/cpp/econst/Q3StyleSheetItem/ListDecimal" />
+<a name="//apple_ref/cpp/econst/Q3StyleSheetItem/ListLowerAlpha" />
+<a name="//apple_ref/cpp/econst/Q3StyleSheetItem/ListUpperAlpha" />
+<a name="//apple_ref/cpp/econst/Q3StyleSheetItem/ListStyleUndefined" />
+<h3 class="fn"><a name="ListStyle-enum"></a>enum Q3StyleSheetItem::ListStyle</h3>
+<p>This enum type defines how the items in a list are prefixed when displayed.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>Q3StyleSheetItem::ListDisc</tt></td><td align="center" valign="top"><tt>0</tt></td><td valign="top">a filled circle (i.e&#x2e; a bullet)</td></tr>
+<tr><td valign="top"><tt>Q3StyleSheetItem::ListCircle</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">an unfilled circle</td></tr>
+<tr><td valign="top"><tt>Q3StyleSheetItem::ListSquare</tt></td><td align="center" valign="top"><tt>2</tt></td><td valign="top">a filled square</td></tr>
+<tr><td valign="top"><tt>Q3StyleSheetItem::ListDecimal</tt></td><td align="center" valign="top"><tt>3</tt></td><td valign="top">an integer in base 10: <i>1</i>, <i>2</i>, <i>3</i>, ..&#x2e;</td></tr>
+<tr><td valign="top"><tt>Q3StyleSheetItem::ListLowerAlpha</tt></td><td align="center" valign="top"><tt>4</tt></td><td valign="top">a lowercase letter: <i>a</i>, <i>b</i>, <i>c</i>, ..&#x2e;</td></tr>
+<tr><td valign="top"><tt>Q3StyleSheetItem::ListUpperAlpha</tt></td><td align="center" valign="top"><tt>5</tt></td><td valign="top">an uppercase letter: <i>A</i>, <i>B</i>, <i>C</i>, ..&#x2e;</td></tr>
+</table></p>
+<a name="//apple_ref/cpp/tag/Q3StyleSheetItem/Margin" />
+<a name="//apple_ref/cpp/econst/Q3StyleSheetItem/MarginLeft" />
+<a name="//apple_ref/cpp/econst/Q3StyleSheetItem/MarginRight" />
+<a name="//apple_ref/cpp/econst/Q3StyleSheetItem/MarginTop" />
+<a name="//apple_ref/cpp/econst/Q3StyleSheetItem/MarginBottom" />
+<a name="//apple_ref/cpp/econst/Q3StyleSheetItem/MarginAll" />
+<a name="//apple_ref/cpp/econst/Q3StyleSheetItem/MarginVertical" />
+<a name="//apple_ref/cpp/econst/Q3StyleSheetItem/MarginHorizontal" />
+<a name="//apple_ref/cpp/econst/Q3StyleSheetItem/MarginFirstLine" />
+<a name="//apple_ref/cpp/econst/Q3StyleSheetItem/MarginUndefined" />
+<h3 class="fn"><a name="Margin-enum"></a>enum Q3StyleSheetItem::Margin</h3>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>Q3StyleSheetItem::MarginLeft</tt></td><td align="center" valign="top"><tt>0</tt></td><td valign="top">left margin</td></tr>
+<tr><td valign="top"><tt>Q3StyleSheetItem::MarginRight</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">right margin</td></tr>
+<tr><td valign="top"><tt>Q3StyleSheetItem::MarginTop</tt></td><td align="center" valign="top"><tt>2</tt></td><td valign="top">top margin</td></tr>
+<tr><td valign="top"><tt>Q3StyleSheetItem::MarginBottom</tt></td><td align="center" valign="top"><tt>3</tt></td><td valign="top">bottom margin</td></tr>
+<tr><td valign="top"><tt>Q3StyleSheetItem::MarginAll</tt></td><td align="center" valign="top"><tt>5</tt></td><td valign="top">all margins (left, right, top and bottom)</td></tr>
+<tr><td valign="top"><tt>Q3StyleSheetItem::MarginVertical</tt></td><td align="center" valign="top"><tt>6</tt></td><td valign="top">top and bottom margins</td></tr>
+<tr><td valign="top"><tt>Q3StyleSheetItem::MarginHorizontal</tt></td><td align="center" valign="top"><tt>7</tt></td><td valign="top">left and right margins</td></tr>
+<tr><td valign="top"><tt>Q3StyleSheetItem::MarginFirstLine</tt></td><td align="center" valign="top"><tt>4</tt></td><td valign="top">margin (indentation) of the first line of a paragarph (in addition to the MarginLeft of the paragraph)</td></tr>
+<tr><td valign="top"><tt>Q3StyleSheetItem::MarginUndefined</tt></td><td align="center" valign="top"><tt>-1</tt></td><td valign="top">&nbsp;</td></tr>
+</table></p>
+<a name="//apple_ref/cpp/tag/Q3StyleSheetItem/VerticalAlignment" />
+<a name="//apple_ref/cpp/econst/Q3StyleSheetItem/VAlignBaseline" />
+<a name="//apple_ref/cpp/econst/Q3StyleSheetItem/VAlignSub" />
+<a name="//apple_ref/cpp/econst/Q3StyleSheetItem/VAlignSuper" />
+<h3 class="fn"><a name="VerticalAlignment-enum"></a>enum Q3StyleSheetItem::VerticalAlignment</h3>
+<p>This enum type defines the way elements are aligned vertically. This is only supported for text elements.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>Q3StyleSheetItem::VAlignBaseline</tt></td><td align="center" valign="top"><tt>0</tt></td><td valign="top">align the baseline of the element (or the bottom, if the element doesn't have a baseline) with the baseline of the parent</td></tr>
+<tr><td valign="top"><tt>Q3StyleSheetItem::VAlignSub</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">subscript the element</td></tr>
+<tr><td valign="top"><tt>Q3StyleSheetItem::VAlignSuper</tt></td><td align="center" valign="top"><tt>2</tt></td><td valign="top">superscript the element</td></tr>
+</table></p>
+<a name="//apple_ref/cpp/tag/Q3StyleSheetItem/WhiteSpaceMode" />
+<a name="//apple_ref/cpp/econst/Q3StyleSheetItem/WhiteSpaceNormal" />
+<a name="//apple_ref/cpp/econst/Q3StyleSheetItem/WhiteSpacePre" />
+<a name="//apple_ref/cpp/econst/Q3StyleSheetItem/WhiteSpaceNoWrap" />
+<a name="//apple_ref/cpp/econst/Q3StyleSheetItem/WhiteSpaceModeUndefined" />
+<h3 class="fn"><a name="WhiteSpaceMode-enum"></a>enum Q3StyleSheetItem::WhiteSpaceMode</h3>
+<p>This enum defines the ways in which <a href="q3stylesheet.html" class="compat">Q3StyleSheet</a> can treat whitespace.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>Q3StyleSheetItem::WhiteSpaceNormal</tt></td><td align="center" valign="top"><tt>0</tt></td><td valign="top">any sequence of whitespace (including line-breaks) is equivalent to a single space.</td></tr>
+<tr><td valign="top"><tt>Q3StyleSheetItem::WhiteSpacePre</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">whitespace must be output exactly as given in the input.</td></tr>
+<tr><td valign="top"><tt>Q3StyleSheetItem::WhiteSpaceNoWrap</tt></td><td align="center" valign="top"><tt>2</tt></td><td valign="top">multiple spaces are collapsed as with WhiteSpaceNormal, but no automatic line-breaks occur. To break lines manually, use the <tt>&lt;br&gt;</tt> tag.</td></tr>
+</table></p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/Q3StyleSheetItem/Q3StyleSheetItem" />
+<h3 class="fn"><a name="Q3StyleSheetItem"></a>Q3StyleSheetItem::Q3StyleSheetItem ( <a href="q3stylesheet.html">Q3StyleSheet</a> * <i>parent</i>, const <a href="qstring.html">QString</a> &amp; <i>name</i> )</h3>
+<p>Constructs a new style called <i>name</i> for the stylesheet <i>parent</i>.</p>
+<p>All properties in <a href="q3stylesheetitem.html" class="compat">Q3StyleSheetItem</a> are initially in the &quot;do not change&quot; state, except <a href="q3stylesheetitem.html#DisplayMode-enum">display mode</a>, which defaults to <tt>DisplayInline</tt>.</p>
+<h3 class="fn"><a name="Q3StyleSheetItem-2"></a>Q3StyleSheetItem::Q3StyleSheetItem ( const Q3StyleSheetItem &amp; <i>other</i> )</h3>
+<p>Copy constructor. Constructs a copy of <i>other</i> that is not bound to any style sheet.</p>
+<a name="//apple_ref/cpp/instm/Q3StyleSheetItem/~Q3StyleSheetItem" />
+<h3 class="fn"><a name="dtor.Q3StyleSheetItem"></a>Q3StyleSheetItem::~Q3StyleSheetItem ()</h3>
+<p>Destroys the style. Note that <a href="q3stylesheetitem.html" class="compat">Q3StyleSheetItem</a> objects become owned by <a href="q3stylesheet.html" class="compat">Q3StyleSheet</a> when they are created.</p>
+<a name="//apple_ref/cpp/instm/Q3StyleSheetItem/alignment" />
+<h3 class="fn"><a name="alignment"></a>int Q3StyleSheetItem::alignment () const</h3>
+<p>Returns the alignment of this style. Possible values are <a href="qt.html#AlignmentFlag-enum">Qt::AlignAuto</a>, <a href="qt.html#AlignmentFlag-enum">Qt::AlignLeft</a>, <a href="qt.html#AlignmentFlag-enum">Qt::AlignRight</a>, <a href="qt.html#AlignmentFlag-enum">Qt::AlignCenter</a> or <a href="qt.html#AlignmentFlag-enum">Qt::AlignJustify</a>.</p>
+<p>See also <a href="q3stylesheetitem.html#setAlignment">setAlignment</a>() and <a href="qt.html#AlignmentFlag-enum">Qt::Alignment</a>.</p>
+<a name="//apple_ref/cpp/instm/Q3StyleSheetItem/allowedInContext" />
+<h3 class="fn"><a name="allowedInContext"></a>bool Q3StyleSheetItem::allowedInContext ( const Q3StyleSheetItem * <i>s</i> ) const</h3>
+<p>Returns true if this style can be nested into an element of style <i>s</i>; otherwise returns false.</p>
+<p>See also <a href="q3stylesheetitem.html#contexts">contexts</a>() and <a href="q3stylesheetitem.html#setContexts">setContexts</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3StyleSheetItem/color" />
+<h3 class="fn"><a name="color"></a><a href="qcolor.html">QColor</a> Q3StyleSheetItem::color () const</h3>
+<p>Returns the text color of this style or an invalid color if no color has been set.</p>
+<p>See also <a href="q3stylesheetitem.html#setColor">setColor</a>() and <a href="qcolor.html#isValid">QColor::isValid</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3StyleSheetItem/contexts" />
+<h3 class="fn"><a name="contexts"></a><a href="qstring.html">QString</a> Q3StyleSheetItem::contexts () const</h3>
+<p>Returns a space-separated list of names of styles that may contain elements of this style. If nothing has been set, contexts() returns an empty string, which indicates that this style can be nested everywhere.</p>
+<p>See also <a href="q3stylesheetitem.html#setContexts">setContexts</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3StyleSheetItem/definesFontItalic" />
+<h3 class="fn"><a name="definesFontItalic"></a>bool Q3StyleSheetItem::definesFontItalic () const</h3>
+<p>Returns true if the style defines a font shape; otherwise returns false. A style does not define any shape until <a href="q3stylesheetitem.html#setFontItalic">setFontItalic</a>() is called.</p>
+<p>See also <a href="q3stylesheetitem.html#setFontItalic">setFontItalic</a>() and <a href="q3stylesheetitem.html#fontItalic">fontItalic</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3StyleSheetItem/definesFontStrikeOut" />
+<h3 class="fn"><a name="definesFontStrikeOut"></a>bool Q3StyleSheetItem::definesFontStrikeOut () const</h3>
+<p>Returns true if the style defines a setting for the strikeOut property of the font; otherwise returns false. A style does not define this until <a href="q3stylesheetitem.html#setFontStrikeOut">setFontStrikeOut</a>() is called.</p>
+<p>See also <a href="q3stylesheetitem.html#setFontStrikeOut">setFontStrikeOut</a>() and <a href="q3stylesheetitem.html#fontStrikeOut">fontStrikeOut</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3StyleSheetItem/definesFontUnderline" />
+<h3 class="fn"><a name="definesFontUnderline"></a>bool Q3StyleSheetItem::definesFontUnderline () const</h3>
+<p>Returns true if the style defines a setting for the underline property of the font; otherwise returns false. A style does not define this until <a href="q3stylesheetitem.html#setFontUnderline">setFontUnderline</a>() is called.</p>
+<p>See also <a href="q3stylesheetitem.html#setFontUnderline">setFontUnderline</a>() and <a href="q3stylesheetitem.html#fontUnderline">fontUnderline</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3StyleSheetItem/displayMode" />
+<h3 class="fn"><a name="displayMode"></a><a href="q3stylesheetitem.html#DisplayMode-enum">DisplayMode</a> Q3StyleSheetItem::displayMode () const</h3>
+<p>Returns the <a href="q3stylesheetitem.html#DisplayMode-enum">display mode</a> of the style.</p>
+<p>See also <a href="q3stylesheetitem.html#setDisplayMode">setDisplayMode</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3StyleSheetItem/fontFamily" />
+<h3 class="fn"><a name="fontFamily"></a><a href="qstring.html">QString</a> Q3StyleSheetItem::fontFamily () const</h3>
+<p>Returns the style's font family setting. This is either a valid font family or an empty string if no family has been set.</p>
+<p>See also <a href="q3stylesheetitem.html#setFontFamily">setFontFamily</a>(), <a href="qfont.html#family">QFont::family</a>(), and <a href="qfont.html#setFamily">QFont::setFamily</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3StyleSheetItem/fontItalic" />
+<h3 class="fn"><a name="fontItalic"></a>bool Q3StyleSheetItem::fontItalic () const</h3>
+<p>Returns true if the style sets an italic font; otherwise returns false.</p>
+<p>See also <a href="q3stylesheetitem.html#setFontItalic">setFontItalic</a>() and <a href="q3stylesheetitem.html#definesFontItalic">definesFontItalic</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3StyleSheetItem/fontSize" />
+<h3 class="fn"><a name="fontSize"></a>int Q3StyleSheetItem::fontSize () const</h3>
+<p>Returns the font size setting of the style. This is either a valid point size or Q3StyleSheetItem::Undefined.</p>
+<p>See also <a href="q3stylesheetitem.html#setFontSize">setFontSize</a>(), <a href="qfont.html#pointSize">QFont::pointSize</a>(), and <a href="qfont.html#setPointSize">QFont::setPointSize</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3StyleSheetItem/fontStrikeOut" />
+<h3 class="fn"><a name="fontStrikeOut"></a>bool Q3StyleSheetItem::fontStrikeOut () const</h3>
+<p>Returns true if the style sets a strike out font; otherwise returns false.</p>
+<p>See also <a href="q3stylesheetitem.html#setFontStrikeOut">setFontStrikeOut</a>() and <a href="q3stylesheetitem.html#definesFontStrikeOut">definesFontStrikeOut</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3StyleSheetItem/fontUnderline" />
+<h3 class="fn"><a name="fontUnderline"></a>bool Q3StyleSheetItem::fontUnderline () const</h3>
+<p>Returns true if the style sets an underlined font; otherwise returns false.</p>
+<p>See also <a href="q3stylesheetitem.html#setFontUnderline">setFontUnderline</a>() and <a href="q3stylesheetitem.html#definesFontUnderline">definesFontUnderline</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3StyleSheetItem/fontWeight" />
+<h3 class="fn"><a name="fontWeight"></a>int Q3StyleSheetItem::fontWeight () const</h3>
+<p>Returns the font weight setting of the style. This is either a valid <a href="qfont.html#Weight-enum">QFont::Weight</a> or the value Q3StyleSheetItem::Undefined.</p>
+<p>See also <a href="q3stylesheetitem.html#setFontWeight">setFontWeight</a>() and <a href="qfont.html">QFont</a>.</p>
+<a name="//apple_ref/cpp/instm/Q3StyleSheetItem/isAnchor" />
+<h3 class="fn"><a name="isAnchor"></a>bool Q3StyleSheetItem::isAnchor () const</h3>
+<p>Returns whether this style is an anchor.</p>
+<p>See also <a href="q3stylesheetitem.html#setAnchor">setAnchor</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3StyleSheetItem/lineSpacing" />
+<h3 class="fn"><a name="lineSpacing"></a>int Q3StyleSheetItem::lineSpacing () const</h3>
+<p>Returns the line spacing.</p>
+<a name="//apple_ref/cpp/instm/Q3StyleSheetItem/listStyle" />
+<h3 class="fn"><a name="listStyle"></a><a href="q3stylesheetitem.html#ListStyle-enum">ListStyle</a> Q3StyleSheetItem::listStyle () const</h3>
+<p>Returns the list style of the style.</p>
+<p>See also <a href="q3stylesheetitem.html#setListStyle">setListStyle</a>() and <a href="q3stylesheetitem.html#ListStyle-enum">ListStyle</a>.</p>
+<a name="//apple_ref/cpp/instm/Q3StyleSheetItem/logicalFontSize" />
+<h3 class="fn"><a name="logicalFontSize"></a>int Q3StyleSheetItem::logicalFontSize () const</h3>
+<p>Returns the logical font size setting of the style. This is either a valid size between 1 and 7 or Q3StyleSheetItem::Undefined.</p>
+<p>See also <a href="q3stylesheetitem.html#setLogicalFontSize">setLogicalFontSize</a>(), <a href="q3stylesheetitem.html#setLogicalFontSizeStep">setLogicalFontSizeStep</a>(), <a href="qfont.html#pointSize">QFont::pointSize</a>(), and <a href="qfont.html#setPointSize">QFont::setPointSize</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3StyleSheetItem/logicalFontSizeStep" />
+<h3 class="fn"><a name="logicalFontSizeStep"></a>int Q3StyleSheetItem::logicalFontSizeStep () const</h3>
+<p>Returns the logical font size step of this style.</p>
+<p>The default is 0. Tags such as <tt>big</tt> define <tt>+1</tt>; <tt>small</tt> defines <tt>-1</tt>.</p>
+<p>See also <a href="q3stylesheetitem.html#setLogicalFontSizeStep">setLogicalFontSizeStep</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3StyleSheetItem/margin" />
+<h3 class="fn"><a name="margin"></a>int Q3StyleSheetItem::margin ( <a href="q3stylesheetitem.html#Margin-enum">Margin</a> <i>m</i> ) const</h3>
+<p>Returns the width of margin <i>m</i> in pixels.</p>
+<p>The margin, <i>m</i>, can be <a href="q3stylesheetitem.html#Margin-enum">MarginLeft</a>, <a href="q3stylesheetitem.html#Margin-enum">MarginRight</a>, <a href="q3stylesheetitem.html#Margin-enum">MarginTop</a>, <a href="q3stylesheetitem.html#Margin-enum">MarginBottom</a>, or <a href="q3stylesheetitem.html#Margin-enum">MarginFirstLine</a></p>
+<p>See also <a href="q3stylesheetitem.html#setMargin">setMargin</a>() and <a href="q3stylesheetitem.html#Margin-enum">Margin</a>.</p>
+<a name="//apple_ref/cpp/instm/Q3StyleSheetItem/name" />
+<h3 class="fn"><a name="name"></a><a href="qstring.html">QString</a> Q3StyleSheetItem::name () const</h3>
+<p>Returns the name of the style item.</p>
+<a name="//apple_ref/cpp/instm/Q3StyleSheetItem/numberOfColumns" />
+<h3 class="fn"><a name="numberOfColumns"></a>int Q3StyleSheetItem::numberOfColumns () const</h3>
+<p>Returns the number of columns for this style.</p>
+<p>See also <a href="q3stylesheetitem.html#setNumberOfColumns">setNumberOfColumns</a>(), <a href="q3stylesheetitem.html#displayMode">displayMode</a>(), and <a href="q3stylesheetitem.html#setDisplayMode">setDisplayMode</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3StyleSheetItem/selfNesting" />
+<h3 class="fn"><a name="selfNesting"></a>bool Q3StyleSheetItem::selfNesting () const</h3>
+<p>Returns true if this style has self-nesting enabled; otherwise returns false.</p>
+<p>See also <a href="q3stylesheetitem.html#setSelfNesting">setSelfNesting</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3StyleSheetItem/setAlignment" />
+<h3 class="fn"><a name="setAlignment"></a>void Q3StyleSheetItem::setAlignment ( int <i>f</i> )</h3>
+<p>Sets the alignment to <i>f</i>. This only makes sense for styles with a <a href="q3stylesheetitem.html#DisplayMode-enum">display mode</a> of <a href="q3stylesheetitem.html#DisplayMode-enum">DisplayBlock</a>. Possible values are <a href="qt.html#AlignmentFlag-enum">Qt::AlignAuto</a>, <a href="qt.html#AlignmentFlag-enum">Qt::AlignLeft</a>, <a href="qt.html#AlignmentFlag-enum">Qt::AlignRight</a>, <a href="qt.html#AlignmentFlag-enum">Qt::AlignCenter</a> or <a href="qt.html#AlignmentFlag-enum">Qt::AlignJustify</a>.</p>
+<p>See also <a href="q3stylesheetitem.html#alignment">alignment</a>(), <a href="q3stylesheetitem.html#displayMode">displayMode</a>(), and <a href="qt.html#AlignmentFlag-enum">Qt::Alignment</a>.</p>
+<a name="//apple_ref/cpp/instm/Q3StyleSheetItem/setAnchor" />
+<h3 class="fn"><a name="setAnchor"></a>void Q3StyleSheetItem::setAnchor ( bool <i>anc</i> )</h3>
+<p>If <i>anc</i> is true, sets this style to be an anchor (hypertext link); otherwise sets it to not be an anchor. Elements in this style link to other documents or anchors.</p>
+<p>See also <a href="q3stylesheetitem.html#isAnchor">isAnchor</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3StyleSheetItem/setColor" />
+<h3 class="fn"><a name="setColor"></a>void Q3StyleSheetItem::setColor ( const <a href="qcolor.html">QColor</a> &amp; <i>c</i> )</h3>
+<p>Sets the text color of this style to <i>c</i>.</p>
+<p>See also <a href="q3stylesheetitem.html#color">color</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3StyleSheetItem/setContexts" />
+<h3 class="fn"><a name="setContexts"></a>void Q3StyleSheetItem::setContexts ( const <a href="qstring.html">QString</a> &amp; <i>c</i> )</h3>
+<p>Sets a space-separated list of names of styles that may contain elements of this style. If <i>c</i> is empty, the style can be nested everywhere.</p>
+<p>See also <a href="q3stylesheetitem.html#contexts">contexts</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3StyleSheetItem/setDisplayMode" />
+<h3 class="fn"><a name="setDisplayMode"></a>void Q3StyleSheetItem::setDisplayMode ( <a href="q3stylesheetitem.html#DisplayMode-enum">DisplayMode</a> <i>m</i> )</h3>
+<p>Sets the display mode of the style to <i>m</i>.</p>
+<p>See also <a href="q3stylesheetitem.html#displayMode">displayMode</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3StyleSheetItem/setFontFamily" />
+<h3 class="fn"><a name="setFontFamily"></a>void Q3StyleSheetItem::setFontFamily ( const <a href="qstring.html">QString</a> &amp; <i>fam</i> )</h3>
+<p>Sets the font family setting of the style to <i>fam</i>.</p>
+<p>See also <a href="q3stylesheetitem.html#fontFamily">fontFamily</a>(), <a href="qfont.html#family">QFont::family</a>(), and <a href="qfont.html#setFamily">QFont::setFamily</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3StyleSheetItem/setFontItalic" />
+<h3 class="fn"><a name="setFontItalic"></a>void Q3StyleSheetItem::setFontItalic ( bool <i>italic</i> )</h3>
+<p>If <i>italic</i> is true sets italic for the style; otherwise sets upright.</p>
+<p>See also <a href="q3stylesheetitem.html#fontItalic">fontItalic</a>() and <a href="q3stylesheetitem.html#definesFontItalic">definesFontItalic</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3StyleSheetItem/setFontSize" />
+<h3 class="fn"><a name="setFontSize"></a>void Q3StyleSheetItem::setFontSize ( int <i>s</i> )</h3>
+<p>Sets the font size setting of the style to <i>s</i> points.</p>
+<p>See also <a href="q3stylesheetitem.html#fontSize">fontSize</a>(), <a href="qfont.html#pointSize">QFont::pointSize</a>(), and <a href="qfont.html#setPointSize">QFont::setPointSize</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3StyleSheetItem/setFontStrikeOut" />
+<h3 class="fn"><a name="setFontStrikeOut"></a>void Q3StyleSheetItem::setFontStrikeOut ( bool <i>strikeOut</i> )</h3>
+<p>If <i>strikeOut</i> is true, sets strike out for the style; otherwise sets no strike out.</p>
+<p>See also <a href="q3stylesheetitem.html#fontStrikeOut">fontStrikeOut</a>() and <a href="q3stylesheetitem.html#definesFontStrikeOut">definesFontStrikeOut</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3StyleSheetItem/setFontUnderline" />
+<h3 class="fn"><a name="setFontUnderline"></a>void Q3StyleSheetItem::setFontUnderline ( bool <i>underline</i> )</h3>
+<p>If <i>underline</i> is true, sets underline for the style; otherwise sets no underline.</p>
+<p>See also <a href="q3stylesheetitem.html#fontUnderline">fontUnderline</a>() and <a href="q3stylesheetitem.html#definesFontUnderline">definesFontUnderline</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3StyleSheetItem/setFontWeight" />
+<h3 class="fn"><a name="setFontWeight"></a>void Q3StyleSheetItem::setFontWeight ( int <i>w</i> )</h3>
+<p>Sets the font weight setting of the style to <i>w</i>. Valid values are those defined by <a href="qfont.html#Weight-enum">QFont::Weight</a>.</p>
+<p>See also <a href="qfont.html">QFont</a> and <a href="q3stylesheetitem.html#fontWeight">fontWeight</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3StyleSheetItem/setListStyle" />
+<h3 class="fn"><a name="setListStyle"></a>void Q3StyleSheetItem::setListStyle ( <a href="q3stylesheetitem.html#ListStyle-enum">ListStyle</a> <i>s</i> )</h3>
+<p>Sets the list style of the style to <i>s</i>.</p>
+<p>This is used by nested elements that have a display mode of <tt>DisplayListItem</tt>.</p>
+<p>See also <a href="q3stylesheetitem.html#listStyle">listStyle</a>(), <a href="q3stylesheetitem.html#DisplayMode-enum">DisplayMode</a>, and <a href="q3stylesheetitem.html#ListStyle-enum">ListStyle</a>.</p>
+<a name="//apple_ref/cpp/instm/Q3StyleSheetItem/setLogicalFontSize" />
+<h3 class="fn"><a name="setLogicalFontSize"></a>void Q3StyleSheetItem::setLogicalFontSize ( int <i>s</i> )</h3>
+<p>Sets the logical font size setting of the style to <i>s</i>. Valid logical sizes are 1 to 7.</p>
+<p>See also <a href="q3stylesheetitem.html#logicalFontSize">logicalFontSize</a>(), <a href="qfont.html#pointSize">QFont::pointSize</a>(), and <a href="qfont.html#setPointSize">QFont::setPointSize</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3StyleSheetItem/setLogicalFontSizeStep" />
+<h3 class="fn"><a name="setLogicalFontSizeStep"></a>void Q3StyleSheetItem::setLogicalFontSizeStep ( int <i>s</i> )</h3>
+<p>Sets the logical font size step of this style to <i>s</i>.</p>
+<p>See also <a href="q3stylesheetitem.html#logicalFontSizeStep">logicalFontSizeStep</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3StyleSheetItem/setMargin" />
+<h3 class="fn"><a name="setMargin"></a>void Q3StyleSheetItem::setMargin ( <a href="q3stylesheetitem.html#Margin-enum">Margin</a> <i>m</i>, int <i>v</i> )</h3>
+<p>Sets the width of margin <i>m</i> to <i>v</i> pixels.</p>
+<p>The margin, <i>m</i>, can be <tt>MarginLeft</tt>, <tt>MarginRight</tt>, <tt>MarginTop</tt>, <tt>MarginBottom</tt>, <a href="q3stylesheetitem.html#Margin-enum">MarginFirstLine</a>, <tt>MarginAll</tt>, <tt>MarginVertical</tt> or <tt>MarginHorizontal</tt>. The value <i>v</i> must be &gt;= 0.</p>
+<p>See also <a href="q3stylesheetitem.html#margin">margin</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3StyleSheetItem/setNumberOfColumns" />
+<h3 class="fn"><a name="setNumberOfColumns"></a>void Q3StyleSheetItem::setNumberOfColumns ( int <i>ncols</i> )</h3>
+<p>Sets the number of columns for this style to <i>ncols</i>. Elements in the style are divided into columns.</p>
+<p>This makes sense only if the style uses a block display mode (see <a href="q3stylesheetitem.html#DisplayMode-enum">Q3StyleSheetItem::DisplayMode</a>).</p>
+<p>See also <a href="q3stylesheetitem.html#numberOfColumns">numberOfColumns</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3StyleSheetItem/setSelfNesting" />
+<h3 class="fn"><a name="setSelfNesting"></a>void Q3StyleSheetItem::setSelfNesting ( bool <i>nesting</i> )</h3>
+<p>Sets the self-nesting property for this style to <i>nesting</i>.</p>
+<p>In order to support &quot;dirty&quot; HTML, paragraphs <tt>&lt;p&gt;</tt> and list items <tt>&lt;li&gt;</tt> are not self-nesting. This means that starting a new paragraph or list item automatically closes the previous one.</p>
+<p>See also <a href="q3stylesheetitem.html#selfNesting">selfNesting</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3StyleSheetItem/setVerticalAlignment" />
+<h3 class="fn"><a name="setVerticalAlignment"></a>void Q3StyleSheetItem::setVerticalAlignment ( <a href="q3stylesheetitem.html#VerticalAlignment-enum">VerticalAlignment</a> <i>valign</i> )</h3>
+<p>Sets the vertical alignment to <i>valign</i>. Possible values are <a href="q3stylesheetitem.html#VerticalAlignment-enum">VAlignBaseline</a>, <a href="q3stylesheetitem.html#VerticalAlignment-enum">VAlignSub</a> or <a href="q3stylesheetitem.html#VerticalAlignment-enum">VAlignSuper</a>.</p>
+<p>The vertical alignment property is not inherited.</p>
+<p>See also <a href="q3stylesheetitem.html#verticalAlignment">verticalAlignment</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3StyleSheetItem/setWhiteSpaceMode" />
+<h3 class="fn"><a name="setWhiteSpaceMode"></a>void Q3StyleSheetItem::setWhiteSpaceMode ( <a href="q3stylesheetitem.html#WhiteSpaceMode-enum">WhiteSpaceMode</a> <i>m</i> )</h3>
+<p>Sets the whitespace mode to <i>m</i>.</p>
+<p>See also <a href="q3stylesheetitem.html#whiteSpaceMode">whiteSpaceMode</a>() and <a href="q3stylesheetitem.html#WhiteSpaceMode-enum">WhiteSpaceMode</a>.</p>
+<a name="//apple_ref/cpp/instm/Q3StyleSheetItem/styleSheet" />
+<h3 class="fn"><a name="styleSheet"></a><a href="q3stylesheet.html">Q3StyleSheet</a> * Q3StyleSheetItem::styleSheet ()</h3>
+<p>Returns the style sheet this item is in.</p>
+<h3 class="fn"><a name="styleSheet-2"></a>const <a href="q3stylesheet.html">Q3StyleSheet</a> * Q3StyleSheetItem::styleSheet () const</h3>
+<p>This is an overloaded function.</p>
+<p>Returns the style sheet this item is in.</p>
+<a name="//apple_ref/cpp/instm/Q3StyleSheetItem/verticalAlignment" />
+<h3 class="fn"><a name="verticalAlignment"></a><a href="q3stylesheetitem.html#VerticalAlignment-enum">VerticalAlignment</a> Q3StyleSheetItem::verticalAlignment () const</h3>
+<p>Returns the vertical alignment of the style. Possible values are <a href="q3stylesheetitem.html#VerticalAlignment-enum">VAlignBaseline</a>, <a href="q3stylesheetitem.html#VerticalAlignment-enum">VAlignSub</a> or <a href="q3stylesheetitem.html#VerticalAlignment-enum">VAlignSuper</a>.</p>
+<p>See also <a href="q3stylesheetitem.html#setVerticalAlignment">setVerticalAlignment</a>().</p>
+<a name="//apple_ref/cpp/instm/Q3StyleSheetItem/whiteSpaceMode" />
+<h3 class="fn"><a name="whiteSpaceMode"></a><a href="q3stylesheetitem.html#WhiteSpaceMode-enum">WhiteSpaceMode</a> Q3StyleSheetItem::whiteSpaceMode () const</h3>
+<p>Returns the whitespace mode.</p>
+<p>See also <a href="q3stylesheetitem.html#setWhiteSpaceMode">setWhiteSpaceMode</a>() and <a href="q3stylesheetitem.html#WhiteSpaceMode-enum">WhiteSpaceMode</a>.</p>
+<a name="//apple_ref/cpp/instm/Q3StyleSheetItem/operator=" />
+<h3 class="fn"><a name="operator-eq"></a>Q3StyleSheetItem &amp; Q3StyleSheetItem::operator= ( const Q3StyleSheetItem &amp; <i>other</i> )</h3>
+<p>Assignment. Assings a copy of <i>other</i> that is not bound to any style sheet. Unbounds first from previous style sheet.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

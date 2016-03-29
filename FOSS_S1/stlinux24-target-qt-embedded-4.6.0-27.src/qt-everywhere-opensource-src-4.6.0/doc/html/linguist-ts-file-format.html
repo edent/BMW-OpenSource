@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- linguist-manual.qdoc -->
+<head>
+  <title>Qt 4.6: Qt Linguist Manual: TS File Format</title>
+  <link rel="prev" href="linguist-programmers.html" />
+  <link rel="contents" href="linguist-manual.html" />
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><p>
+[Previous: <a href="linguist-programmers.html">Qt Linguist Manual: Programmers</a>]
+[<a href="linguist-manual.html">Contents</a>]
+</p>
+<h1 class="title">Qt Linguist Manual: TS File Format<br /><span class="subtitle"></span>
+</h1>
+<p>The TS file format used by <i>Qt Linguist</i> is described by the <a href="http://www.w3.org/TR/1998/REC-xml-19980210">DTD</a> presented below, which we include for your convenience. Be aware that the format may change in future Qt releases.</p>
+<pre> &lt;!--
+  !
+  ! Some notes to the DTD:
+  !
+  ! The location element is set as optional since it was introduced first in Qt 4.2.
+  ! The userdata element is set as optional since it was introduced first in Qt 4.4.
+  ! The source and translation elements are optional starting with version 3.0
+  ! (Qt 4.6) to support S60 blank messages.
+  !
+   --&gt;
+ &lt;!--
+  ! Macro used in order to escape byte entities not allowed in an xml document
+  ! for instance, only #x9, #xA and #xD are allowed characters below #x20.
+  --&gt;
+ &lt;!ENTITY % evilstring '(#PCDATA | byte)*' &gt;
+ &lt;!ELEMENT byte EMPTY&gt;
+ &lt;!-- value contains decimal (e.g. 1000) or hex (e.g. x3e8) unicode encoding of one char --&gt;
+ &lt;!ATTLIST byte
+           value CDATA #REQUIRED&gt;
+ &lt;!--
+  ! This element wildcard is no valid DTD. No better solution available.
+  ! extra elements may appear in TS and message elements. Each element may appear
+  ! only once within each scope. The contents are preserved verbatim; any
+  ! attributes are dropped. Currently recognized extra tags include:
+  !   extra-po-msgid_plural, extra-po-old_msgid_plural
+  !   extra-po-flags (comma-space separated list)
+  !   extra-loc-layout_id
+  !   extra-loc-feature
+  !   extra-loc-blank
+   --&gt;
+ &lt;!ELEMENT extra-* %evilstring; &gt;
+ &lt;!ELEMENT TS (defaultcodec?, extra-**, (context|message)+) &gt;
+ &lt;!ATTLIST TS
+           version CDATA #IMPLIED
+           sourcelanguage CDATA #IMPLIED
+           language CDATA #IMPLIED&gt;
+ &lt;!-- The encoding to use in the QM file by default. Default is ISO-8859-1. --&gt;
+ &lt;!ELEMENT defaultcodec (#PCDATA) &gt;
+ &lt;!ELEMENT context (name?, comment?, (context|message)+) &gt;
+ &lt;!ATTLIST context
+           encoding CDATA #IMPLIED&gt;
+ &lt;!ELEMENT name %evilstring; &gt;
+ &lt;!-- If &quot;no&quot;, then the context nesting is for informational puposes only --&gt;
+ &lt;!ATTLIST name
+           nest (yes|no) &quot;yes&quot;&gt;
+ &lt;!-- This is &quot;disambiguation&quot; in the (new) API, or &quot;msgctxt&quot; in gettext speak --&gt;
+ &lt;!ELEMENT comment %evilstring; &gt;
+ &lt;!-- Previous content of comment (result of merge) --&gt;
+ &lt;!ELEMENT oldcomment %evilstring; &gt;
+ &lt;!-- The real comment (added by developer/designer) --&gt;
+ &lt;!ELEMENT extracomment %evilstring; &gt;
+ &lt;!-- Comment added by translator --&gt;
+ &lt;!ELEMENT translatorcomment %evilstring; &gt;
+ &lt;!ELEMENT message (location*, source?, oldsource?, comment?, oldcomment?, extracomment?, translatorcomment?, translation?, userdata?, extra-**) &gt;
+ &lt;!--
+  ! If utf8 is true, the defaultcodec is overridden and the message is encoded
+  ! in UTF-8 in the QM file.
+   --&gt;
+ &lt;!ATTLIST message
+           id CDATA #IMPLIED
+           utf8 (true|false) &quot;false&quot;
+           numerus (yes|no) &quot;no&quot;&gt;
+ &lt;!ELEMENT location EMPTY&gt;
+ &lt;!--
+  ! If the line is omitted, the location specifies only a file.
+  !
+  ! location supports relative specifications as well. Line numbers are
+  ! relative (explicitly positive or negative) to the last reference to a
+  ! given filename; each file starts with current line 0. If the filename
+  ! is omitted, the &quot;current&quot; one is used. For the 1st location in a message,
+  ! &quot;current&quot; is the filename used for the 1st location of the previous message.
+  ! For subsequent locations, it is the filename used for the previous location.
+  ! A single TS file has either all absolute or all relative locations.
+   --&gt;
+ &lt;!ATTLIST location
+           filename CDATA #IMPLIED
+           line CDATA #IMPLIED&gt;
+ &lt;!ELEMENT source %evilstring;&gt;
+ &lt;!-- Previous content of source (result of merge) --&gt;
+ &lt;!ELEMENT oldsource %evilstring;&gt;
+ &lt;!--
+  ! The following should really say one evilstring macro or several
+  ! numerusform or lengthvariant elements, but the DTD can't express this.
+   --&gt;
+ &lt;!ELEMENT translation (#PCDATA|byte|numerusform|lengthvariant)* &gt;
+ &lt;!--
+  ! If no type is set, the message is &quot;finished&quot;.
+  ! Length variants must be ordered by falling display length.
+  ! variants may not be yes if the message has numerus yes.
+   --&gt;
+ &lt;!ATTLIST translation
+           type (unfinished|obsolete) #IMPLIED
+           variants (yes|no) &quot;no&quot;&gt;
+ &lt;!-- Deprecated. Use extra-* --&gt;
+ &lt;!ELEMENT userdata (#PCDATA)* &gt;
+ &lt;!--
+  ! The following should really say one evilstring macro or several
+  ! lengthvariant elements, but the DTD can't express this.
+  ! Length variants must be ordered by falling display length.
+   --&gt;
+ &lt;!ELEMENT numerusform (#PCDATA|byte|lengthvariant)* &gt;
+ &lt;!ATTLIST numerusform
+           plurality (nullar|singular|dual|trial|paucal|greaterpaucal|plural|greaterplural) #IMPLIED&gt;
+           variants (yes|no) &quot;no&quot;&gt;
+ &lt;!ELEMENT lengthvariant %evilstring; &gt;
+ &lt;!--
+  ! The translation variants have a priority between 1 (&quot;highest&quot;) and 9 (&quot;lowest&quot;)
+  ! Typically longer translations get a higher priority.
+  ! If omitted, the order of appearance of the variants in the TS files is used.
+   --&gt;
+ &lt;!ATTLIST lengthvariant
+           priority (1|2|3|4|5|6|7|8|9) #IMPLIED&gt;</pre>
+<p>
+[Previous: <a href="linguist-programmers.html">Qt Linguist Manual: Programmers</a>]
+[<a href="linguist-manual.html">Contents</a>]
+</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

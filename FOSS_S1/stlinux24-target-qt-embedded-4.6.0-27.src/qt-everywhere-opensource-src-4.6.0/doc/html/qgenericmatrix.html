@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qgenericmatrix.cpp -->
+<head>
+  <title>Qt 4.6: QGenericMatrix Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QGenericMatrix" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QGenericMatrix Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QGenericMatrix class is a template class that represents a NxM transformation matrix with N columns and M rows. <a href="#details">More...</a></p>
+<pre> #include &lt;QGenericMatrix&gt;</pre><p>This class was introduced in Qt 4.6.</p>
+<ul>
+<li><a href="qgenericmatrix-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qgenericmatrix.html#QGenericMatrix">QGenericMatrix</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qgenericmatrix.html#QGenericMatrix-2">QGenericMatrix</a></b> ( const QGenericMatrix&lt;N, M, T&gt; &amp; <i>other</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qgenericmatrix.html#QGenericMatrix-3">QGenericMatrix</a></b> ( const T * <i>values</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const T * </td><td class="memItemRight" valign="bottom"><b><a href="qgenericmatrix.html#constData">constData</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qgenericmatrix.html#copyDataTo">copyDataTo</a></b> ( T * <i>values</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T * </td><td class="memItemRight" valign="bottom"><b><a href="qgenericmatrix.html#data">data</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const T * </td><td class="memItemRight" valign="bottom"><b><a href="qgenericmatrix.html#data-2">data</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qgenericmatrix.html#fill">fill</a></b> ( T <i>value</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qgenericmatrix.html#isIdentity">isIdentity</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qgenericmatrix.html#setToIdentity">setToIdentity</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QGenericMatrix&lt;M, N, T&gt; </td><td class="memItemRight" valign="bottom"><b><a href="qgenericmatrix.html#transposed">transposed</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qgenericmatrix.html#operator-not-eq">operator!=</a></b> ( const QGenericMatrix&lt;N, M, T&gt; &amp; <i>other</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const T &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qgenericmatrix.html#operator-28-29">operator()</a></b> ( int <i>row</i>, int <i>column</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qgenericmatrix.html#operator-28-29-2">operator()</a></b> ( int <i>row</i>, int <i>column</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QGenericMatrix&lt;N, M, T&gt; &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qgenericmatrix.html#operator-2a-eq">operator*=</a></b> ( T <i>factor</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QGenericMatrix&lt;N, M, T&gt; &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qgenericmatrix.html#operator-2b-eq">operator+=</a></b> ( const QGenericMatrix&lt;N, M, T&gt; &amp; <i>other</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QGenericMatrix&lt;N, M, T&gt; &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qgenericmatrix.html#operator--eq">operator-=</a></b> ( const QGenericMatrix&lt;N, M, T&gt; &amp; <i>other</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QGenericMatrix&lt;N, M, T&gt; &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qgenericmatrix.html#operator-2f-eq">operator/=</a></b> ( T <i>divisor</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qgenericmatrix.html#operator-eq-eq">operator==</a></b> ( const QGenericMatrix&lt;N, M, T&gt; &amp; <i>other</i> ) const</td></tr>
+</table>
+<hr />
+<a name="related-non-members"></a>
+<h2>Related Non-Members</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">typedef </td><td class="memItemRight" valign="bottom"><b><a href="qgenericmatrix.html#QMatrix2x2-typedef">QMatrix2x2</a></b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef </td><td class="memItemRight" valign="bottom"><b><a href="qgenericmatrix.html#QMatrix2x3-typedef">QMatrix2x3</a></b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef </td><td class="memItemRight" valign="bottom"><b><a href="qgenericmatrix.html#QMatrix2x4-typedef">QMatrix2x4</a></b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef </td><td class="memItemRight" valign="bottom"><b><a href="qgenericmatrix.html#QMatrix3x2-typedef">QMatrix3x2</a></b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef </td><td class="memItemRight" valign="bottom"><b><a href="qgenericmatrix.html#QMatrix3x3-typedef">QMatrix3x3</a></b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef </td><td class="memItemRight" valign="bottom"><b><a href="qgenericmatrix.html#QMatrix3x4-typedef">QMatrix3x4</a></b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef </td><td class="memItemRight" valign="bottom"><b><a href="qgenericmatrix.html#QMatrix4x2-typedef">QMatrix4x2</a></b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef </td><td class="memItemRight" valign="bottom"><b><a href="qgenericmatrix.html#QMatrix4x3-typedef">QMatrix4x3</a></b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QGenericMatrix&lt;M1, M2, T&gt; </td><td class="memItemRight" valign="bottom"><b><a href="qgenericmatrix.html#operator-2a">operator*</a></b> ( const QGenericMatrix&lt;N, M2, T&gt; &amp; <i>m1</i>, const QGenericMatrix&lt;M1, N, T&gt; &amp; <i>m2</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QGenericMatrix&lt;N, M, T&gt; </td><td class="memItemRight" valign="bottom"><b><a href="qgenericmatrix.html#operator-2a-2">operator*</a></b> ( T <i>factor</i>, const QGenericMatrix&lt;N, M, T&gt; &amp; <i>matrix</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QGenericMatrix&lt;N, M, T&gt; </td><td class="memItemRight" valign="bottom"><b><a href="qgenericmatrix.html#operator-2a-3">operator*</a></b> ( const QGenericMatrix&lt;N, M, T&gt; &amp; <i>matrix</i>, T <i>factor</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QGenericMatrix&lt;N, M, T&gt; </td><td class="memItemRight" valign="bottom"><b><a href="qgenericmatrix.html#operator-2b">operator+</a></b> ( const QGenericMatrix&lt;N, M, T&gt; &amp; <i>m1</i>, const QGenericMatrix&lt;N, M, T&gt; &amp; <i>m2</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QGenericMatrix&lt;N, M, T&gt; </td><td class="memItemRight" valign="bottom"><b><a href="qgenericmatrix.html#operator-">operator-</a></b> ( const QGenericMatrix&lt;N, M, T&gt; &amp; <i>m1</i>, const QGenericMatrix&lt;N, M, T&gt; &amp; <i>m2</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QGenericMatrix&lt;N, M, T&gt; </td><td class="memItemRight" valign="bottom"><b><a href="qgenericmatrix.html#operator--24">operator-</a></b> ( const QGenericMatrix&lt;N, M, T&gt; &amp; <i>matrix</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QGenericMatrix&lt;N, M, T&gt; </td><td class="memItemRight" valign="bottom"><b><a href="qgenericmatrix.html#operator-2f">operator/</a></b> ( const QGenericMatrix&lt;N, M, T&gt; &amp; <i>matrix</i>, T <i>divisor</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QDataStream &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qgenericmatrix.html#operator-lt-lt-6">operator&lt;&lt;</a></b> ( QDataStream &amp; <i>stream</i>, const QGenericMatrix&lt;N, M, T&gt; &amp; <i>matrix</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QDataStream &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qgenericmatrix.html#operator-gt-gt-4">operator&gt;&gt;</a></b> ( QDataStream &amp; <i>stream</i>, QGenericMatrix&lt;N, M, T&gt; &amp; <i>matrix</i> )</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QGenericMatrix class is a template class that represents a NxM transformation matrix with N columns and M rows.</p>
+<p>The QGenericMatrix template has three parameters:</p>
+<p><table class="generic" align="center" cellpadding="2" cellspacing="1" border="0">
+<tr valign="top" class="odd"><td>N</td><td>Number of columns.</td></tr>
+<tr valign="top" class="even"><td>M</td><td>Number of rows.</td></tr>
+<tr valign="top" class="odd"><td>T</td><td>Element type that is visible to users of the class.</td></tr>
+</table></p>
+<p>See also <a href="qmatrix4x4.html">QMatrix4x4</a>.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QGenericMatrix/QGenericMatrix" />
+<h3 class="fn"><a name="QGenericMatrix"></a>QGenericMatrix::QGenericMatrix ()</h3>
+<p>Constructs a NxM identity matrix.</p>
+<h3 class="fn"><a name="QGenericMatrix-2"></a>QGenericMatrix::QGenericMatrix ( const QGenericMatrix&lt;N, M, T&gt; &amp; <i>other</i> )</h3>
+<p>Constructs a copy of <i>other</i>.</p>
+<h3 class="fn"><a name="QGenericMatrix-3"></a>QGenericMatrix::QGenericMatrix ( const T * <i>values</i> )</h3>
+<p>Constructs a matrix from the given N * M floating-point <i>values</i>. The contents of the array <i>values</i> is assumed to be in row-major order.</p>
+<p>See also <a href="qgenericmatrix.html#copyDataTo">copyDataTo</a>().</p>
+<a name="//apple_ref/cpp/instm/QGenericMatrix/constData" />
+<h3 class="fn"><a name="constData"></a>const T * QGenericMatrix::constData () const</h3>
+<p>Returns a constant pointer to the raw data of this matrix.</p>
+<p>See also <a href="qgenericmatrix.html#data">data</a>().</p>
+<a name="//apple_ref/cpp/instm/QGenericMatrix/copyDataTo" />
+<h3 class="fn"><a name="copyDataTo"></a>void QGenericMatrix::copyDataTo ( T * <i>values</i> ) const</h3>
+<p>Retrieves the N * M items in this matrix and copies them to <i>values</i> in row-major order.</p>
+<a name="//apple_ref/cpp/instm/QGenericMatrix/data" />
+<h3 class="fn"><a name="data"></a>T * QGenericMatrix::data ()</h3>
+<p>Returns a pointer to the raw data of this matrix.</p>
+<p>See also <a href="qgenericmatrix.html#constData">constData</a>().</p>
+<h3 class="fn"><a name="data-2"></a>const T * QGenericMatrix::data () const</h3>
+<p>Returns a constant pointer to the raw data of this matrix.</p>
+<p>See also <a href="qgenericmatrix.html#constData">constData</a>().</p>
+<a name="//apple_ref/cpp/instm/QGenericMatrix/fill" />
+<h3 class="fn"><a name="fill"></a>void QGenericMatrix::fill ( T <i>value</i> )</h3>
+<p>Fills all elements of this matrix with <i>value</i>.</p>
+<a name="//apple_ref/cpp/instm/QGenericMatrix/isIdentity" />
+<h3 class="fn"><a name="isIdentity"></a>bool QGenericMatrix::isIdentity () const</h3>
+<p>Returns true if this matrix is the identity; false otherwise.</p>
+<p>See also <a href="qgenericmatrix.html#setToIdentity">setToIdentity</a>().</p>
+<a name="//apple_ref/cpp/instm/QGenericMatrix/setToIdentity" />
+<h3 class="fn"><a name="setToIdentity"></a>void QGenericMatrix::setToIdentity ()</h3>
+<p>Sets this matrix to the identity.</p>
+<p>See also <a href="qgenericmatrix.html#isIdentity">isIdentity</a>().</p>
+<a name="//apple_ref/cpp/instm/QGenericMatrix/transposed" />
+<h3 class="fn"><a name="transposed"></a>QGenericMatrix&lt;M, N, T&gt; QGenericMatrix::transposed () const</h3>
+<p>Returns this matrix, transposed about its diagonal.</p>
+<a name="//apple_ref/cpp/instm/QGenericMatrix/operator!=" />
+<h3 class="fn"><a name="operator-not-eq"></a>bool QGenericMatrix::operator!= ( const QGenericMatrix&lt;N, M, T&gt; &amp; <i>other</i> ) const</h3>
+<p>Returns true if this matrix is not identical to <i>other</i>; false otherwise.</p>
+<a name="//apple_ref/cpp/instm/QGenericMatrix/operator" />
+<h3 class="fn"><a name="operator-28-29"></a>const T &amp; QGenericMatrix::operator() ( int <i>row</i>, int <i>column</i> ) const</h3>
+<p>Returns a constant reference to the element at position (<i>row</i>, <i>column</i>) in this matrix.</p>
+<h3 class="fn"><a name="operator-28-29-2"></a>T &amp; QGenericMatrix::operator() ( int <i>row</i>, int <i>column</i> )</h3>
+<p>Returns a reference to the element at position (<i>row</i>, <i>column</i>) in this matrix so that the element can be assigned to.</p>
+<a name="//apple_ref/cpp/instm/QGenericMatrix/operator*=" />
+<h3 class="fn"><a name="operator-2a-eq"></a>QGenericMatrix&lt;N, M, T&gt; &amp; QGenericMatrix::operator*= ( T <i>factor</i> )</h3>
+<p>Multiplies all elements of this matrix by <i>factor</i>.</p>
+<a name="//apple_ref/cpp/instm/QGenericMatrix/operator+=" />
+<h3 class="fn"><a name="operator-2b-eq"></a>QGenericMatrix&lt;N, M, T&gt; &amp; QGenericMatrix::operator+= ( const QGenericMatrix&lt;N, M, T&gt; &amp; <i>other</i> )</h3>
+<p>Adds the contents of <i>other</i> to this matrix.</p>
+<a name="//apple_ref/cpp/instm/QGenericMatrix/operator-=" />
+<h3 class="fn"><a name="operator--eq"></a>QGenericMatrix&lt;N, M, T&gt; &amp; QGenericMatrix::operator-= ( const QGenericMatrix&lt;N, M, T&gt; &amp; <i>other</i> )</h3>
+<p>Subtracts the contents of <i>other</i> from this matrix.</p>
+<a name="//apple_ref/cpp/instm/QGenericMatrix/operator/=" />
+<h3 class="fn"><a name="operator-2f-eq"></a>QGenericMatrix&lt;N, M, T&gt; &amp; QGenericMatrix::operator/= ( T <i>divisor</i> )</h3>
+<p>Divides all elements of this matrix by <i>divisor</i>.</p>
+<a name="//apple_ref/cpp/instm/QGenericMatrix/operator==" />
+<h3 class="fn"><a name="operator-eq-eq"></a>bool QGenericMatrix::operator== ( const QGenericMatrix&lt;N, M, T&gt; &amp; <i>other</i> ) const</h3>
+<p>Returns true if this matrix is identical to <i>other</i>; false otherwise.</p>
+<hr />
+<h2>Related Non-Members</h2>
+<a name="//apple_ref/cpp/tdef//QMatrix2x2" />
+<h3 class="fn"><a name="QMatrix2x2-typedef"></a>typedef QMatrix2x2</h3>
+<p>The QMatrix2x2 type defines a convenient instantiation of the <a href="qgenericmatrix.html">QGenericMatrix</a> template for 2 columns, 2 rows, and qreal as the element type.</p>
+<a name="//apple_ref/cpp/tdef//QMatrix2x3" />
+<h3 class="fn"><a name="QMatrix2x3-typedef"></a>typedef QMatrix2x3</h3>
+<p>The QMatrix2x3 type defines a convenient instantiation of the <a href="qgenericmatrix.html">QGenericMatrix</a> template for 2 columns, 3 rows, and qreal as the element type.</p>
+<a name="//apple_ref/cpp/tdef//QMatrix2x4" />
+<h3 class="fn"><a name="QMatrix2x4-typedef"></a>typedef QMatrix2x4</h3>
+<p>The QMatrix2x4 type defines a convenient instantiation of the <a href="qgenericmatrix.html">QGenericMatrix</a> template for 2 columns, 4 rows, and qreal as the element type.</p>
+<a name="//apple_ref/cpp/tdef//QMatrix3x2" />
+<h3 class="fn"><a name="QMatrix3x2-typedef"></a>typedef QMatrix3x2</h3>
+<p>The QMatrix3x2 type defines a convenient instantiation of the <a href="qgenericmatrix.html">QGenericMatrix</a> template for 3 columns, 2 rows, and qreal as the element type.</p>
+<a name="//apple_ref/cpp/tdef//QMatrix3x3" />
+<h3 class="fn"><a name="QMatrix3x3-typedef"></a>typedef QMatrix3x3</h3>
+<p>The QMatrix3x3 type defines a convenient instantiation of the <a href="qgenericmatrix.html">QGenericMatrix</a> template for 3 columns, 3 rows, and qreal as the element type.</p>
+<a name="//apple_ref/cpp/tdef//QMatrix3x4" />
+<h3 class="fn"><a name="QMatrix3x4-typedef"></a>typedef QMatrix3x4</h3>
+<p>The QMatrix3x4 type defines a convenient instantiation of the <a href="qgenericmatrix.html">QGenericMatrix</a> template for 3 columns, 4 rows, and qreal as the element type.</p>
+<a name="//apple_ref/cpp/tdef//QMatrix4x2" />
+<h3 class="fn"><a name="QMatrix4x2-typedef"></a>typedef QMatrix4x2</h3>
+<p>The QMatrix4x2 type defines a convenient instantiation of the <a href="qgenericmatrix.html">QGenericMatrix</a> template for 4 columns, 2 rows, and qreal as the element type.</p>
+<a name="//apple_ref/cpp/tdef//QMatrix4x3" />
+<h3 class="fn"><a name="QMatrix4x3-typedef"></a>typedef QMatrix4x3</h3>
+<p>The QMatrix4x3 type defines a convenient instantiation of the <a href="qgenericmatrix.html">QGenericMatrix</a> template for 4 columns, 3 rows, and qreal as the element type.</p>
+<a name="//apple_ref/cpp/func//operator*" />
+<h3 class="fn"><a name="operator-2a"></a>QGenericMatrix&lt;M1, M2, T&gt; operator* ( const QGenericMatrix&lt;N, M2, T&gt; &amp; <i>m1</i>, const QGenericMatrix&lt;M1, N, T&gt; &amp; <i>m2</i> )</h3>
+<p>Returns the product of the NxM2 matrix <i>m1</i> and the M1xN matrix <i>m2</i> to produce a M1xM2 matrix result.</p>
+<h3 class="fn"><a name="operator-2a-2"></a>QGenericMatrix&lt;N, M, T&gt; operator* ( T <i>factor</i>, const QGenericMatrix&lt;N, M, T&gt; &amp; <i>matrix</i> )</h3>
+<p>Returns the result of multiplying all elements of <i>matrix</i> by <i>factor</i>.</p>
+<h3 class="fn"><a name="operator-2a-3"></a>QGenericMatrix&lt;N, M, T&gt; operator* ( const QGenericMatrix&lt;N, M, T&gt; &amp; <i>matrix</i>, T <i>factor</i> )</h3>
+<p>Returns the result of multiplying all elements of <i>matrix</i> by <i>factor</i>.</p>
+<a name="//apple_ref/cpp/func//operator+" />
+<h3 class="fn"><a name="operator-2b"></a>QGenericMatrix&lt;N, M, T&gt; operator+ ( const QGenericMatrix&lt;N, M, T&gt; &amp; <i>m1</i>, const QGenericMatrix&lt;N, M, T&gt; &amp; <i>m2</i> )</h3>
+<p>Returns the sum of <i>m1</i> and <i>m2</i>.</p>
+<a name="//apple_ref/cpp/func//operator-" />
+<h3 class="fn"><a name="operator-"></a>QGenericMatrix&lt;N, M, T&gt; operator- ( const QGenericMatrix&lt;N, M, T&gt; &amp; <i>m1</i>, const QGenericMatrix&lt;N, M, T&gt; &amp; <i>m2</i> )</h3>
+<p>Returns the difference of <i>m1</i> and <i>m2</i>.</p>
+<h3 class="fn"><a name="operator--24"></a>QGenericMatrix&lt;N, M, T&gt; operator- ( const QGenericMatrix&lt;N, M, T&gt; &amp; <i>matrix</i> )</h3>
+<p>This is an overloaded function.</p>
+<p>Returns the negation of <i>matrix</i>.</p>
+<a name="//apple_ref/cpp/func//operator/" />
+<h3 class="fn"><a name="operator-2f"></a>QGenericMatrix&lt;N, M, T&gt; operator/ ( const QGenericMatrix&lt;N, M, T&gt; &amp; <i>matrix</i>, T <i>divisor</i> )</h3>
+<p>Returns the result of dividing all elements of <i>matrix</i> by <i>divisor</i>.</p>
+<h3 class="fn"><a name="operator-lt-lt-6"></a><a href="qdatastream.html">QDataStream</a> &amp; operator&lt;&lt; ( <a href="qdatastream.html">QDataStream</a> &amp; <i>stream</i>, const QGenericMatrix&lt;N, M, T&gt; &amp; <i>matrix</i> )</h3>
+<p>Writes the given <i>matrix</i> to the given <i>stream</i> and returns a reference to the stream.</p>
+<p>See also <a href="datastreamformat.html">Format of the QDataStream Operators</a>.</p>
+<h3 class="fn"><a name="operator-gt-gt-4"></a><a href="qdatastream.html">QDataStream</a> &amp; operator&gt;&gt; ( <a href="qdatastream.html">QDataStream</a> &amp; <i>stream</i>, QGenericMatrix&lt;N, M, T&gt; &amp; <i>matrix</i> )</h3>
+<p>Reads a NxM matrix from the given <i>stream</i> into the given <i>matrix</i> and returns a reference to the stream.</p>
+<p>See also <a href="datastreamformat.html">Format of the QDataStream Operators</a>.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

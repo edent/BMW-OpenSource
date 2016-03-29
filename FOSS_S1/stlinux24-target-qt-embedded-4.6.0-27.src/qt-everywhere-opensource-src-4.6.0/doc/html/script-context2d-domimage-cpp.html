@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: domimage.cpp Example File (script/context2d/domimage.cpp)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">domimage.cpp Example File<br /><span class="small-subtitle">script/context2d/domimage.cpp</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the examples of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+
+ #include &quot;domimage.h&quot;
+
+ #include &lt;QVariant&gt;
+
+ #include &lt;qscriptcontext.h&gt;
+
+ QScriptValue DomImage::s_self;
+
+ DomImage::DomImage()
+ {
+ }
+
+ int DomImage::width() const
+ {
+     return m_image.width();
+ }
+
+ int DomImage::height() const
+ {
+     return m_image.height();
+ }
+
+ QString DomImage::src() const
+ {
+     return m_src;
+ }
+
+ void DomImage::setSrc(const QString &amp;src)
+ {
+     m_src = src;
+     m_image = QImage(m_src);
+ }
+
+ QString DomImage::name() const
+ {
+     return m_src;
+ }
+
+ static QScriptValue Image(QScriptContext *context, QScriptEngine *env)
+ {
+     QScriptValue val = context-&gt;thisObject();
+     DomImage *image = new DomImage();
+     QScriptValue klass = env-&gt;newVariant(qVariantFromValue(image));
+     klass.setPrototype(DomImage::s_self);
+     return klass;
+ }
+
+ static QScriptValue width(QScriptContext *context, QScriptEngine *)
+ {
+     QScriptValue val = context-&gt;thisObject();
+
+     DomImage *image = qvariant_cast&lt;DomImage*&gt; (val.toVariant());
+     if (image)
+         return image-&gt;width();
+
+     return 0;
+ }
+
+ static QScriptValue height(QScriptContext *context, QScriptEngine *)
+ {
+     QScriptValue val = context-&gt;thisObject();
+
+     DomImage *image = qvariant_cast&lt;DomImage*&gt; (val.toVariant());
+     if (image)
+         return image-&gt;height();
+
+     return 0;
+ }
+
+ static QScriptValue setSrc(QScriptContext *context, QScriptEngine *env)
+ {
+     QScriptValue val = context-&gt;thisObject();
+     QString src  = context-&gt;argument(0).toString();
+
+     DomImage *image = qvariant_cast&lt;DomImage*&gt; (val.toVariant());
+     if (image)
+         image-&gt;setSrc(src);
+
+     return env-&gt;undefinedValue();
+ }
+
+ static QScriptValue name(QScriptContext *context, QScriptEngine *)
+ {
+     QScriptValue val = context-&gt;thisObject();
+
+     DomImage *image = qvariant_cast&lt;DomImage*&gt; (val.toVariant());
+     if (image)
+         return image-&gt;name();
+
+     return QString();
+ }
+
+ void DomImage::setup(QScriptEngine *e)
+ {
+     qRegisterMetaType&lt;DomImage&gt;();
+
+     e-&gt;globalObject().setProperty(&quot;Image&quot;,
+                                   e-&gt;newFunction(::Image, 0));
+
+     s_self = e-&gt;newObject();
+     s_self.setProperty(&quot;setSrc&quot;, e-&gt;newFunction(&amp;::setSrc, 1));
+     s_self.setProperty(&quot;width&quot;, e-&gt;newFunction(&amp;::width));
+     s_self.setProperty(&quot;height&quot;, e-&gt;newFunction(&amp;::height));
+     s_self.setProperty(&quot;name&quot;, e-&gt;newFunction(&amp;::name));
+
+     e-&gt;setDefaultPrototype(qMetaTypeId&lt;DomImage&gt;(), s_self);
+ }</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

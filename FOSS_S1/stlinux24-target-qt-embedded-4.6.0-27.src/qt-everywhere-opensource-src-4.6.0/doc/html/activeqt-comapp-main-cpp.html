@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: main.cpp Example File (activeqt/comapp/main.cpp)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">main.cpp Example File<br /><span class="small-subtitle">activeqt/comapp/main.cpp</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the examples of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+
+ #include &lt;QApplication&gt;
+ #include &lt;QAxFactory&gt;
+ #include &lt;QTabWidget&gt;
+ #include &lt;QTimer&gt;
+
+ class Application;
+ class DocumentList;
+
+ class Document : public QObject
+ {
+     Q_OBJECT
+
+     Q_CLASSINFO(&quot;ClassID&quot;, &quot;{2b5775cd-72c2-43da-bc3b-b0e8d1e1c4f7}&quot;)
+     Q_CLASSINFO(&quot;InterfaceID&quot;, &quot;{2ce1761e-07a3-415c-bd11-0eab2c7283de}&quot;)
+
+     Q_PROPERTY(Application *application READ application)
+     Q_PROPERTY(QString title READ title WRITE setTitle)
+
+ public:
+     Document(DocumentList *list);
+     ~Document();
+
+     Application *application() const;
+
+     QString title() const;
+     void setTitle(const QString &amp;title);
+
+ private:
+     QWidget *page;
+ };
+
+ class DocumentList : public QObject
+ {
+     Q_OBJECT
+
+     Q_CLASSINFO(&quot;ClassID&quot;, &quot;{496b761d-924b-4554-a18a-8f3704d2a9a6}&quot;)
+     Q_CLASSINFO(&quot;InterfaceID&quot;, &quot;{6c9e30e8-3ff6-4e6a-9edc-d219d074a148}&quot;)
+
+     Q_PROPERTY(Application* application READ application)
+     Q_PROPERTY(int count READ count)
+
+ public:
+     DocumentList(Application *application);
+
+     int count() const;
+     Application *application() const;
+
+ public slots:
+     Document *addDocument();
+     Document *item(int index) const;
+
+ private:
+     QList&lt;Document*&gt; list;
+ };
+
+ class Application : public QObject
+ {
+     Q_OBJECT
+
+     Q_CLASSINFO(&quot;ClassID&quot;, &quot;{b50a71db-c4a7-4551-8d14-49983566afee}&quot;)
+     Q_CLASSINFO(&quot;InterfaceID&quot;, &quot;{4a427759-16ef-4ed8-be79-59ffe5789042}&quot;)
+     Q_CLASSINFO(&quot;RegisterObject&quot;, &quot;yes&quot;)
+
+     Q_PROPERTY(DocumentList* documents READ documents)
+     Q_PROPERTY(QString id READ id)
+     Q_PROPERTY(bool visible READ isVisible WRITE setVisible)
+
+ public:
+     Application(QObject *parent = 0);
+     DocumentList *documents() const;
+
+     QString id() const { return objectName(); }
+
+     void setVisible(bool on);
+     bool isVisible() const;
+
+     QTabWidget *window() const { return ui; }
+
+ public slots:
+     void quit();
+
+ private:
+     DocumentList *docs;
+
+     QTabWidget *ui;
+ };
+
+ Document::Document(DocumentList *list)
+ : QObject(list)
+ {
+     QTabWidget *tabs = list-&gt;application()-&gt;window();
+     page = new QWidget(tabs);
+     page-&gt;setWindowTitle(&quot;Unnamed&quot;);
+     tabs-&gt;addTab(page, page-&gt;windowTitle());
+
+     page-&gt;show();
+ }
+
+ Document::~Document()
+ {
+     delete page;
+ }
+
+ Application *Document::application() const
+ {
+     return qobject_cast&lt;DocumentList*&gt;(parent())-&gt;application();
+ }
+
+ QString Document::title() const
+ {
+     return page-&gt;windowTitle();
+ }
+
+ void Document::setTitle(const QString &amp;t)
+ {
+     page-&gt;setWindowTitle(t);
+
+     QTabWidget *tabs = application()-&gt;window();
+     int index = tabs-&gt;indexOf(page);
+     tabs-&gt;setTabText(index, page-&gt;windowTitle());
+ }
+
+ DocumentList::DocumentList(Application *application)
+ : QObject(application)
+ {
+ }
+
+ Application *DocumentList::application() const
+ {
+     return qobject_cast&lt;Application*&gt;(parent());
+ }
+
+ int DocumentList::count() const
+ {
+     return list.count();
+ }
+
+ Document *DocumentList::item(int index) const
+ {
+     if (index &gt;= list.count())
+         return 0;
+
+     return list.at(index);
+ }
+
+ Document *DocumentList::addDocument()
+ {
+     Document *document = new Document(this);
+     list.append(document);
+
+     return document;
+ }
+
+ Application::Application(QObject *parent)
+ : QObject(parent), ui(0)
+ {
+     ui = new QTabWidget;
+
+     setObjectName(&quot;From QAxFactory&quot;);
+     docs = new DocumentList(this);
+ }
+
+ DocumentList *Application::documents() const
+ {
+     return docs;
+ }
+
+ void Application::setVisible(bool on)
+ {
+     ui-&gt;setShown(on);
+ }
+
+ bool Application::isVisible() const
+ {
+     return ui-&gt;isVisible();
+ }
+
+ void Application::quit()
+ {
+     delete docs;
+     docs = 0;
+
+     delete ui;
+     ui = 0;
+     QTimer::singleShot(0, qApp, SLOT(quit()));
+ }
+
+ #include &quot;main.moc&quot;
+
+ QAXFACTORY_BEGIN(&quot;{edd3e836-f537-4c6f-be7d-6014c155cc7a}&quot;, &quot;{b7da3de8-83bb-4bbe-9ab7-99a05819e201}&quot;)
+    QAXCLASS(Application)
+    QAXTYPE(Document)
+    QAXTYPE(DocumentList)
+ QAXFACTORY_END()
+
+ int main(int argc, char **argv)
+ {
+     QApplication app(argc, argv);
+     app.setQuitOnLastWindowClosed(false);
+
+     <span class="comment">// started by COM - don't do anything</span>
+     if (QAxFactory::isServer())
+         return app.exec();
+
+     <span class="comment">// started by user</span>
+     Application appobject(0);
+     appobject.setObjectName(&quot;From Application&quot;);
+
+     QAxFactory::startServer();
+     QAxFactory::registerActiveObject(&amp;appobject);
+
+     appobject.setVisible(true);
+
+     QObject::connect(qApp, SIGNAL(lastWindowClosed()), &amp;appobject, SLOT(quit()));
+
+     return app.exec();
+ }</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

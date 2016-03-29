@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qdirectpainter_qws.cpp -->
+<head>
+  <title>Qt 4.6: QDirectPainter Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QDirectPainter" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QDirectPainter Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QDirectPainter class provides direct access to the underlying hardware in Qt for Embedded Linux. <a href="#details">More...</a></p>
+<pre> #include &lt;QDirectPainter&gt;</pre><p>Inherits <a href="qobject.html">QObject</a>.</p>
+<ul>
+<li><a href="qdirectpainter-members.html">List of all members, including inherited members</a></li>
+<li><a href="qdirectpainter-obsolete.html">Obsolete members</a></li>
+</ul>
+<hr />
+<a name="public-types"></a>
+<h2>Public Types</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qdirectpainter.html#SurfaceFlag-enum">SurfaceFlag</a></b> { NonReserved, Reserved, ReservedSynchronous }</td></tr>
+</table>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qdirectpainter.html#QDirectPainter">QDirectPainter</a></b> ( QObject * <i>parent</i> = 0, SurfaceFlag <i>flag</i> = NonReserved )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qdirectpainter.html#dtor.QDirectPainter">~QDirectPainter</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QRegion </td><td class="memItemRight" valign="bottom"><b><a href="qdirectpainter.html#allocatedRegion">allocatedRegion</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qdirectpainter.html#endPainting">endPainting</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qdirectpainter.html#endPainting-2">endPainting</a></b> ( const QRegion &amp; <i>region</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qdirectpainter.html#flush">flush</a></b> ( const QRegion &amp; <i>region</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QRect </td><td class="memItemRight" valign="bottom"><b><a href="qdirectpainter.html#geometry">geometry</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qdirectpainter.html#lower">lower</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qdirectpainter.html#raise">raise</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qdirectpainter.html#regionChanged">regionChanged</a></b> ( const QRegion &amp; <i>newRegion</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QRegion </td><td class="memItemRight" valign="bottom"><b><a href="qdirectpainter.html#requestedRegion">requestedRegion</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qdirectpainter.html#setGeometry">setGeometry</a></b> ( const QRect &amp; <i>rectangle</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qdirectpainter.html#setRegion">setRegion</a></b> ( const QRegion &amp; <i>region</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qdirectpainter.html#startPainting">startPainting</a></b> ( bool <i>lockDisplay</i> = true )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">WId </td><td class="memItemRight" valign="bottom"><b><a href="qdirectpainter.html#winId">winId</a></b> () const</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>29 public functions inherited from <a href="qobject.html#public-functions">QObject</a></li>
+</ul>
+<hr />
+<a name="static-public-members"></a>
+<h2>Static Public Members</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">uchar * </td><td class="memItemRight" valign="bottom"><b><a href="qdirectpainter.html#frameBuffer">frameBuffer</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qdirectpainter.html#linestep">linestep</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qdirectpainter.html#lock">lock</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qdirectpainter.html#screenDepth">screenDepth</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qdirectpainter.html#screenHeight">screenHeight</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qdirectpainter.html#screenWidth">screenWidth</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qdirectpainter.html#unlock">unlock</a></b> ()</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>5 static public members inherited from <a href="qobject.html#static-public-members">QObject</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li><div class="fn"></div>1 property inherited from <a href="qobject.html#properties">QObject</a></li>
+<li><div class="fn"></div>1 public slot inherited from <a href="qobject.html#public-slots">QObject</a></li>
+<li><div class="fn"></div>1 signal inherited from <a href="qobject.html#signals">QObject</a></li>
+<li><div class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QDirectPainter class provides direct access to the underlying hardware in Qt for Embedded Linux.</p>
+<p>Note that this class is only available in <a href="qt-embedded-linux.html">Qt for Embedded Linux</a>.</p>
+<p>QDirectPainter allows a client application to reserve a region of the framebuffer and render directly onto the screen. There are two ways of using the QDirectPainter class: You can either reserve a region using the provided static functions, or you can instantiate an object and make use of its more dynamic API.</p>
+<ul><li><a href="#dynamic-allocation">Dynamic Allocation</a></li>
+<li><a href="#static-allocation">Static Allocation</a></li>
+<li><a href="#rendering">Rendering</a></li>
+</ul>
+<a name="dynamic-allocation"></a>
+<h3>Dynamic Allocation</h3>
+<p>By instantiating a QDirectPainter object using the default <a href="qdirectpainter.html#SurfaceFlag-enum">QDirectPainter::NonReserved</a> surface flag, the client application only gets some control over the reserved region, i.e&#x2e;, it can still render directly onto the screen but the allocated region may change (for example, if a window with a higher focus requests parts of the same region). The currently allocated region can be retrieved using the <a href="qdirectpainter.html#allocatedRegion">allocatedRegion</a>() function, while the <a href="qdirectpainter.html#requestedRegion">requestedRegion</a>() function returns the originally reserved region.</p>
+<a name="static-allocation"></a>
+<h3>Static Allocation</h3>
+<p>Using the static approach, the client application gets complete control over the reserved region, i.e&#x2e;, the affected region will never be modified by the screen driver.</p>
+<p>To create a static region, pass the <a href="qdirectpainter.html#SurfaceFlag-enum">QDirectPainter::Reserved</a> surface flag to the constructor. After the reserved region is reported through <a href="qdirectpainter.html#regionChanged">regionChanged</a>(), the allocated region will not change, unless <a href="qdirectpainter.html#setRegion">setRegion</a>() is called.</p>
+<p>If <a href="qdirectpainter.html#SurfaceFlag-enum">QDirectPainter::ReservedSynchronous</a> is passed to the constructor, calls to <a href="qdirectpainter.html#setRegion">setRegion</a>() will block until the region is reserved, meaning that <a href="qdirectpainter.html#allocatedRegion">allocatedRegion</a>() will be available immediately. Note that in the current version <a href="qdirectpainter.html#setRegion">setRegion</a>() will cause the application event loop to be entered, potentially causing reentrancy issues.</p>
+<a name="rendering"></a>
+<h3>Rendering</h3>
+<p>To draw on a given region, the application must first get hold of a pointer to the framebuffer. In most cases, this pointer can be retrieved using the <a href="qdirectpainter.html#frameBuffer">QDirectPainter::frameBuffer</a>() function. But note that if the current screen has subscreens, you must query the screen driver instead to identify the correct subscreen. A pointer to the current screen driver can always be retrieved using the static <a href="qscreen.html#instance">QScreen::instance</a>() function. Then use <a href="qscreen.html">QScreen</a>'s <a href="qscreen.html#subScreenIndexAt">subScreenIndexAt()</a> and <a href="qscreen.html#subScreens">subScreens()</a> functions to access the correct subscreen, and the subscreen's <a href="qscreen.html#base">base()</a> function to retrieve a pointer to the framebuffer.</p>
+<p>Depending on the hardware, it might be necessary to lock the framebuffer for exclusive use while writing to it. This is possible using the <a href="qdirectpainter.html#lock">lock</a>() and <a href="qdirectpainter.html#unlock">unlock</a>() functions. Note that calling <a href="qdirectpainter.html#lock">lock</a>() will prevent all other applications from working until <a href="qdirectpainter.html#unlock">unlock</a>() is called.</p>
+<p>In addition, QDirectPainter provides several functions returning information about the framebuffer: the <a href="qdirectpainter.html#linestep">linestep</a>() function returns the length (in bytes) of each scanline of the framebuffer while the <a href="qdirectpainter.html#screenDepth">screenDepth</a>(), <a href="qdirectpainter.html#screenWidth">screenWidth</a>() and <a href="qdirectpainter.html#screenHeight">screenHeight</a>() function return the screen metrics.</p>
+<p>See also <a href="qscreen.html">QScreen</a>, <a href="qwsembedwidget.html">QWSEmbedWidget</a>, and <a href="qt-embedded-architecture.html">Qt for Embedded Linux Architecture</a>.</p>
+<hr />
+<h2>Member Type Documentation</h2>
+<a name="//apple_ref/cpp/tag/QDirectPainter/SurfaceFlag" />
+<a name="//apple_ref/cpp/econst/QDirectPainter/NonReserved" />
+<a name="//apple_ref/cpp/econst/QDirectPainter/Reserved" />
+<a name="//apple_ref/cpp/econst/QDirectPainter/ReservedSynchronous" />
+<h3 class="fn"><a name="SurfaceFlag-enum"></a>enum QDirectPainter::SurfaceFlag</h3>
+<p>This enum describes the behavior of the region reserved by this <a href="qdirectpainter.html">QDirectPainter</a> object.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QDirectPainter::NonReserved</tt></td><td align="center" valign="top"><tt>0</tt></td><td valign="top">The allocated region may change, e.g&#x2e;, if a window with a higher focus requests parts of the same region. See also <a href="qdirectpainter.html#dynamic-allocation">Dynamic Allocation</a>.</td></tr>
+<tr><td valign="top"><tt>QDirectPainter::Reserved</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">The allocated region will never change. See also <a href="qdirectpainter.html#static-allocation">Static Allocation</a>.</td></tr>
+<tr><td valign="top"><tt>QDirectPainter::ReservedSynchronous</tt></td><td align="center" valign="top"><tt>3</tt></td><td valign="top">The allocated region will never change and each function that changes the allocated region will be blocking.</td></tr>
+</table></p>
+<p>See also <a href="qdirectpainter.html#allocatedRegion">allocatedRegion</a>().</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QDirectPainter/QDirectPainter" />
+<h3 class="fn"><a name="QDirectPainter"></a>QDirectPainter::QDirectPainter ( <a href="qobject.html">QObject</a> * <i>parent</i> = 0, <a href="qdirectpainter.html#SurfaceFlag-enum">SurfaceFlag</a> <i>flag</i> = NonReserved )</h3>
+<p>Constructs a <a href="qdirectpainter.html">QDirectPainter</a> object with the given <i>parent</i> and surface <i>flag</i>.</p>
+<a name="//apple_ref/cpp/instm/QDirectPainter/~QDirectPainter" />
+<h3 class="fn"><a name="dtor.QDirectPainter"></a>QDirectPainter::~QDirectPainter ()</h3>
+<p>Destroys this <a href="qdirectpainter.html">QDirectPainter</a> object, releasing the reserved region.</p>
+<p>See also <a href="qdirectpainter.html#allocatedRegion">allocatedRegion</a>().</p>
+<a name="//apple_ref/cpp/instm/QDirectPainter/allocatedRegion" />
+<h3 class="fn"><a name="allocatedRegion"></a><a href="qregion.html">QRegion</a> QDirectPainter::allocatedRegion () const</h3>
+<p>Returns the currently reserved region.</p>
+<p>Note that if the <a href="qdirectpainter.html#SurfaceFlag-enum">QDirectPainter::Reserved</a> flag is set, the region returned by this function will always be equivalent to the region returned by the <a href="qdirectpainter.html#requestedRegion">requestedRegion</a>() function. Otherwise they might differ (see <a href="qdirectpainter.html#dynamic-allocation">Dynamic Allocation</a> for details).</p>
+<p>This function was introduced in Qt 4.2.</p>
+<p>See also <a href="qdirectpainter.html#requestedRegion">requestedRegion</a>() and <a href="qdirectpainter.html#geometry">geometry</a>().</p>
+<a name="//apple_ref/cpp/instm/QDirectPainter/endPainting" />
+<h3 class="fn"><a name="endPainting"></a>void QDirectPainter::endPainting ()</h3>
+<p>Call this function when you are done updating the screen. It will notify the hardware, if necessary, that your painting operations have ended.</p>
+<p>This function was introduced in Qt 4.2.</p>
+<h3 class="fn"><a name="endPainting-2"></a>void QDirectPainter::endPainting ( const <a href="qregion.html">QRegion</a> &amp; <i>region</i> )</h3>
+<p>This is an overloaded function.</p>
+<p>This function will automatically call <a href="qdirectpainter.html#flush">flush</a>() to flush the <i>region</i> to the display before notifying the hardware, if necessary, that painting operations have ended.</p>
+<p>This function was introduced in Qt 4.3.</p>
+<a name="//apple_ref/cpp/instm/QDirectPainter/flush" />
+<h3 class="fn"><a name="flush"></a>void QDirectPainter::flush ( const <a href="qregion.html">QRegion</a> &amp; <i>region</i> )</h3>
+<p>Flushes the <i>region</i> onto the screen.</p>
+<p>This function was introduced in Qt 4.3.</p>
+<a name="//apple_ref/cpp/clm/QDirectPainter/frameBuffer" />
+<h3 class="fn"><a name="frameBuffer"></a><a href="qtglobal.html#uchar-typedef">uchar</a> * QDirectPainter::frameBuffer ()&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Returns a pointer to the beginning of the display memory.</p>
+<p>Note that it is the application's responsibility to limit itself to modifying only the reserved region.</p>
+<p>Do not use this pointer if the current screen has subscreens, query the screen driver instead: A pointer to the current screen driver can always be retrieved using the static <a href="qscreen.html#instance">QScreen::instance</a>() function. Then use <a href="qscreen.html">QScreen</a>'s <a href="qscreen.html#subScreenIndexAt">subScreenIndexAt()</a> and <a href="qscreen.html#subScreens">subScreens()</a> functions to access the correct subscreen, and the subscreen's <a href="qscreen.html#base">base()</a> function to retrieve a pointer to the framebuffer.</p>
+<p>See also <a href="qdirectpainter.html#requestedRegion">requestedRegion</a>(), <a href="qdirectpainter.html#allocatedRegion">allocatedRegion</a>(), and <a href="qdirectpainter.html#linestep">linestep</a>().</p>
+<a name="//apple_ref/cpp/instm/QDirectPainter/geometry" />
+<h3 class="fn"><a name="geometry"></a><a href="qrect.html">QRect</a> QDirectPainter::geometry () const</h3>
+<p>Returns the bounding rectangle of the requested region.</p>
+<p>This function was introduced in Qt 4.2.</p>
+<p>See also <a href="qdirectpainter.html#setGeometry">setGeometry</a>() and <a href="qdirectpainter.html#requestedRegion">requestedRegion</a>().</p>
+<a name="//apple_ref/cpp/clm/QDirectPainter/linestep" />
+<h3 class="fn"><a name="linestep"></a>int QDirectPainter::linestep ()&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Returns the length (in bytes) of each scanline of the framebuffer.</p>
+<p>See also <a href="qdirectpainter.html#frameBuffer">frameBuffer</a>().</p>
+<a name="//apple_ref/cpp/clm/QDirectPainter/lock" />
+<h3 class="fn"><a name="lock"></a>void QDirectPainter::lock ()&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Locks access to the framebuffer.</p>
+<p>Note that calling this function will prevent all other applications from updating the display until <a href="qdirectpainter.html#unlock">unlock</a>() is called.</p>
+<p>See also <a href="qdirectpainter.html#unlock">unlock</a>().</p>
+<a name="//apple_ref/cpp/instm/QDirectPainter/lower" />
+<h3 class="fn"><a name="lower"></a>void QDirectPainter::lower ()</h3>
+<p>Lowers the reserved region to the bottom of the widget stack.</p>
+<p>After this call the reserved region will be visually behind (and therefore obscured by) any overlapping widgets.</p>
+<p>This function was introduced in Qt 4.2.</p>
+<p>See also <a href="qdirectpainter.html#raise">raise</a>() and <a href="qdirectpainter.html#requestedRegion">requestedRegion</a>().</p>
+<a name="//apple_ref/cpp/instm/QDirectPainter/raise" />
+<h3 class="fn"><a name="raise"></a>void QDirectPainter::raise ()</h3>
+<p>Raises the reserved region to the top of the widget stack.</p>
+<p>After this call the reserved region will be visually in front of any overlapping widgets.</p>
+<p>This function was introduced in Qt 4.2.</p>
+<p>See also <a href="qdirectpainter.html#lower">lower</a>() and <a href="qdirectpainter.html#requestedRegion">requestedRegion</a>().</p>
+<a name="//apple_ref/cpp/instm/QDirectPainter/regionChanged" />
+<h3 class="fn"><a name="regionChanged"></a>void QDirectPainter::regionChanged ( const <a href="qregion.html">QRegion</a> &amp; <i>newRegion</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>This function is called when the allocated region changes.</p>
+<p>This function is not called for region changes that happen while the <a href="qdirectpainter.html#startPainting">startPainting</a>() function is executing.</p>
+<p>Note that the given region, <i>newRegion</i>, is not guaranteed to be correct at the time you access the display. To prevent reentrancy problems you should always call <a href="qdirectpainter.html#startPainting">startPainting</a>() before updating the display and then use <a href="qdirectpainter.html#allocatedRegion">allocatedRegion</a>() to retrieve the correct region.</p>
+<p>This function was introduced in Qt 4.2.</p>
+<p>See also <a href="qdirectpainter.html#allocatedRegion">allocatedRegion</a>(), <a href="qdirectpainter.html#startPainting">startPainting</a>(), and <a href="qdirectpainter.html#dynamic-allocation">Dynamic Allocation</a>.</p>
+<a name="//apple_ref/cpp/instm/QDirectPainter/requestedRegion" />
+<h3 class="fn"><a name="requestedRegion"></a><a href="qregion.html">QRegion</a> QDirectPainter::requestedRegion () const</h3>
+<p>Returns the region requested by this <a href="qdirectpainter.html">QDirectPainter</a>.</p>
+<p>Note that if the <a href="qdirectpainter.html#SurfaceFlag-enum">QDirectPainter::Reserved</a> flag is set, the region returned by this function will always be equivalent to the region returned by the <a href="qdirectpainter.html#allocatedRegion">allocatedRegion</a>() function. Otherwise they might differ (see <a href="qdirectpainter.html#dynamic-allocation">Dynamic Allocation</a> for details).</p>
+<p>This function was introduced in Qt 4.2.</p>
+<p>See also <a href="qdirectpainter.html#geometry">geometry</a>(), <a href="qdirectpainter.html#setRegion">setRegion</a>(), and <a href="qdirectpainter.html#allocatedRegion">allocatedRegion</a>().</p>
+<a name="//apple_ref/cpp/clm/QDirectPainter/screenDepth" />
+<h3 class="fn"><a name="screenDepth"></a>int QDirectPainter::screenDepth ()&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Returns the bit depth of the display.</p>
+<p>See also <a href="qdirectpainter.html#screenHeight">screenHeight</a>() and <a href="qdirectpainter.html#screenWidth">screenWidth</a>().</p>
+<a name="//apple_ref/cpp/clm/QDirectPainter/screenHeight" />
+<h3 class="fn"><a name="screenHeight"></a>int QDirectPainter::screenHeight ()&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Returns the height of the display in pixels.</p>
+<p>See also <a href="qdirectpainter.html#screenWidth">screenWidth</a>() and <a href="qdirectpainter.html#screenDepth">screenDepth</a>().</p>
+<a name="//apple_ref/cpp/clm/QDirectPainter/screenWidth" />
+<h3 class="fn"><a name="screenWidth"></a>int QDirectPainter::screenWidth ()&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Returns the width of the display in pixels.</p>
+<p>See also <a href="qdirectpainter.html#screenHeight">screenHeight</a>() and <a href="qdirectpainter.html#screenDepth">screenDepth</a>().</p>
+<a name="//apple_ref/cpp/instm/QDirectPainter/setGeometry" />
+<h3 class="fn"><a name="setGeometry"></a>void QDirectPainter::setGeometry ( const <a href="qrect.html">QRect</a> &amp; <i>rectangle</i> )</h3>
+<p>Request to reserve the given <i>rectangle</i> of the framebuffer.</p>
+<p>Note that the actually allocated region might differ from the requested one, e.g&#x2e;, if the given region overlaps with the region of another <a href="qdirectpainter.html">QDirectPainter</a> object.</p>
+<p>This function was introduced in Qt 4.2.</p>
+<p>See also <a href="qdirectpainter.html#geometry">geometry</a>(), <a href="qdirectpainter.html#allocatedRegion">allocatedRegion</a>(), and <a href="qdirectpainter.html#setRegion">setRegion</a>().</p>
+<a name="//apple_ref/cpp/instm/QDirectPainter/setRegion" />
+<h3 class="fn"><a name="setRegion"></a>void QDirectPainter::setRegion ( const <a href="qregion.html">QRegion</a> &amp; <i>region</i> )</h3>
+<p>Requests to reserve the given <i>region</i> of the framebuffer.</p>
+<p>Note that the actually allocated region might differ from the requested one, e.g&#x2e;, if the given region overlaps with the region of another <a href="qdirectpainter.html">QDirectPainter</a> object.</p>
+<p>This function was introduced in Qt 4.2.</p>
+<p>See also <a href="qdirectpainter-obsolete.html#region" class="obsolete">region</a>(), <a href="qdirectpainter.html#requestedRegion">requestedRegion</a>(), <a href="qdirectpainter.html#allocatedRegion">allocatedRegion</a>(), and <a href="qdirectpainter.html#dynamic-allocation">Dynamic Allocation</a>.</p>
+<a name="//apple_ref/cpp/instm/QDirectPainter/startPainting" />
+<h3 class="fn"><a name="startPainting"></a>void QDirectPainter::startPainting ( bool <i>lockDisplay</i> = true )</h3>
+<p>Call this function before you start updating the pixels in the allocated region. The hardware will be notified, if necessary, that you are about to start painting operations.</p>
+<p>Set <i>lockDisplay</i> if you want startPainting() and <a href="qdirectpainter.html#endPainting">endPainting</a>() to <a href="qdirectpainter.html#lock">lock</a>() and <a href="qdirectpainter.html#unlock">unlock</a>() the display automatically.</p>
+<p>Note that for a <a href="qdirectpainter.html#SurfaceFlag-enum">NonReserved</a> direct painter, you must call <a href="qdirectpainter.html#allocatedRegion">allocatedRegion</a>() after calling this function, since the allocated region is only guaranteed to be correct after this function has returned.</p>
+<p>The <a href="qdirectpainter.html#regionChanged">regionChanged</a>() function will not be called between startPainting() and <a href="qdirectpainter.html#endPainting">endPainting</a>().</p>
+<p>This function was introduced in Qt 4.2.</p>
+<p>See also <a href="qdirectpainter.html#endPainting">endPainting</a>() and <a href="qdirectpainter.html#flush">flush</a>().</p>
+<a name="//apple_ref/cpp/clm/QDirectPainter/unlock" />
+<h3 class="fn"><a name="unlock"></a>void QDirectPainter::unlock ()&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Unlocks the lock on the framebuffer (set using the <a href="qdirectpainter.html#lock">lock</a>() function), allowing other applications to access the screen.</p>
+<p>See also <a href="qdirectpainter.html#lock">lock</a>().</p>
+<a name="//apple_ref/cpp/instm/QDirectPainter/winId" />
+<h3 class="fn"><a name="winId"></a><a href="qwidget.html#WId-typedef">WId</a> QDirectPainter::winId () const</h3>
+<p>Returns the window system identifier of the widget.</p>
+<p>This function was introduced in Qt 4.2.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

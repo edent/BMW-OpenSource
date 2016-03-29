@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: svgalibpaintengine.cpp Example File (qws/svgalib/svgalibpaintengine.cpp)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">svgalibpaintengine.cpp Example File<br /><span class="small-subtitle">qws/svgalib/svgalibpaintengine.cpp</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the examples of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+
+ #include &quot;svgalibpaintengine.h&quot;
+
+ #include &lt;QColor&gt;
+ #include &lt;vga.h&gt;
+ #include &lt;vgagl.h&gt;
+
+ SvgalibPaintEngine::SvgalibPaintEngine()
+ {
+ }
+
+ SvgalibPaintEngine::~SvgalibPaintEngine()
+ {
+ }
+
+ bool SvgalibPaintEngine::begin(QPaintDevice *dev)
+ {
+     device = dev;
+     pen = Qt::NoPen;
+     simplePen = true;
+     brush = Qt::NoBrush;
+     simpleBrush = true;
+     matrix = QMatrix();
+     simpleMatrix = true;
+     setClip(QRect(0, 0, device-&gt;width(), device-&gt;height()));
+     opaque = true;
+     aliased = true;
+     sourceOver = true;
+
+     return QRasterPaintEngine::begin(dev);
+ }
+
+ bool SvgalibPaintEngine::end()
+ {
+     gl_setclippingwindow(0, 0, device-&gt;width() - 1, device-&gt;height() - 1);
+     return QRasterPaintEngine::end();
+ }
+
+ void SvgalibPaintEngine::updateState(const QPaintEngineState &amp;state)
+ {
+     QPaintEngine::DirtyFlags flags = state.state();
+
+     if (flags &amp; DirtyTransform) {
+         matrix = state.matrix();
+         simpleMatrix = (matrix.m12() == 0 &amp;&amp; matrix.m21() == 0);
+     }
+
+     if (flags &amp; DirtyPen) {
+         pen = state.pen();
+         simplePen = (pen.width() == 0 || pen.widthF() &lt;= 1)
+                     &amp;&amp; (pen.style() == Qt::NoPen || pen.style() == Qt::SolidLine)
+                     &amp;&amp; (pen.color().alpha() == 255);
+     }
+
+     if (flags &amp; DirtyBrush) {
+         brush = state.brush();
+         simpleBrush = (brush.style() == Qt::SolidPattern
+                        || brush.style() == Qt::NoBrush)
+                       &amp;&amp; (brush.color().alpha() == 255);
+     }
+
+     if (flags &amp; DirtyClipRegion)
+         setClip(state.clipRegion());
+
+     if (flags &amp; DirtyClipEnabled) {
+         clipEnabled = state.isClipEnabled();
+         updateClip();
+     }
+
+     if (flags &amp; DirtyClipPath) {
+         setClip(QRegion());
+         simpleClip = false;
+     }
+
+     if (flags &amp; DirtyCompositionMode) {
+         const QPainter::CompositionMode m = state.compositionMode();
+         sourceOver = (m == QPainter::CompositionMode_SourceOver);
+     }
+
+     if (flags &amp; DirtyOpacity)
+         opaque = (state.opacity() == 256);
+
+     if (flags &amp; DirtyHints)
+         aliased = !(state.renderHints() &amp; QPainter::Antialiasing);
+
+     QRasterPaintEngine::updateState(state);
+ }
+
+ void SvgalibPaintEngine::setClip(const QRegion &amp;region)
+ {
+     if (region.isEmpty())
+         clip = QRect(0, 0, device-&gt;width(), device-&gt;height());
+     else
+         clip = matrix.map(region) &amp; QRect(0, 0, device-&gt;width(), device-&gt;height());
+     clipEnabled = true;
+     updateClip();
+ }
+
+ void SvgalibPaintEngine::updateClip()
+ {
+     QRegion clipRegion = QRect(0, 0, device-&gt;width(), device-&gt;height());
+
+     if (!systemClip().isEmpty())
+         clipRegion &amp;= systemClip();
+     if (clipEnabled)
+         clipRegion &amp;= clip;
+
+     simpleClip = (clipRegion.rects().size() &lt;= 1);
+
+     const QRect r = clipRegion.boundingRect();
+     gl_setclippingwindow(r.left(), r.top(),
+                          r.x() + r.width(),
+                          r.y() + r.height());
+ }
+
+ void SvgalibPaintEngine::drawRects(const QRect *rects, int rectCount)
+ {
+     const bool canAccelerate = simplePen &amp;&amp; simpleBrush &amp;&amp; simpleMatrix
+                                &amp;&amp; simpleClip &amp;&amp; opaque &amp;&amp; aliased
+                                &amp;&amp; sourceOver;
+     if (!canAccelerate) {
+         QRasterPaintEngine::drawRects(rects, rectCount);
+         return;
+     }
+
+     for (int i = 0; i &lt; rectCount; ++i) {
+         const QRect r = matrix.mapRect(rects[i]);
+         if (brush != Qt::NoBrush) {
+             gl_fillbox(r.left(), r.top(), r.width(), r.height(),
+                        brush.color().rgba());
+         }
+         if (pen != Qt::NoPen) {
+             const int c = pen.color().rgba();
+             gl_hline(r.left(), r.top(), r.right(), c);
+             gl_hline(r.left(), r.bottom(), r.right(), c);
+             gl_line(r.left(), r.top(), r.left(), r.bottom(), c);
+             gl_line(r.right(), r.top(), r.right(), r.bottom(), c);
+         }
+     }
+ }</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

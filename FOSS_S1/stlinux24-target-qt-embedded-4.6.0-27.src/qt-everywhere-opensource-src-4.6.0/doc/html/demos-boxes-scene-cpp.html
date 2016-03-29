@@ -1,0 +1,1104 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: scene.cpp Example File (demos/boxes/scene.cpp)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">scene.cpp Example File<br /><span class="small-subtitle">demos/boxes/scene.cpp</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the demonstration applications of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+
+ #include &lt;QDebug&gt;
+ #include &quot;scene.h&quot;
+ #include &lt;QtGui/qmatrix4x4.h&gt;
+ #include &lt;QtGui/qvector3d.h&gt;
+
+ #include &quot;3rdparty/fbm.h&quot;
+
+ void checkGLErrors(const QString&amp; prefix)
+ {
+     switch (glGetError()) {
+     case GL_NO_ERROR:
+         <span class="comment">//qDebug() &lt;&lt; prefix &lt;&lt; tr(&quot;No error.&quot;);</span>
+         break;
+     case GL_INVALID_ENUM:
+         qDebug() &lt;&lt; prefix &lt;&lt; QObject::tr(&quot;Invalid enum.&quot;);
+         break;
+     case GL_INVALID_VALUE:
+         qDebug() &lt;&lt; prefix &lt;&lt; QObject::tr(&quot;Invalid value.&quot;);
+         break;
+     case GL_INVALID_OPERATION:
+         qDebug() &lt;&lt; prefix &lt;&lt; QObject::tr(&quot;Invalid operation.&quot;);
+         break;
+     case GL_STACK_OVERFLOW:
+         qDebug() &lt;&lt; prefix &lt;&lt; QObject::tr(&quot;Stack overflow.&quot;);
+         break;
+     case GL_STACK_UNDERFLOW:
+         qDebug() &lt;&lt; prefix &lt;&lt; QObject::tr(&quot;Stack underflow.&quot;);
+         break;
+     case GL_OUT_OF_MEMORY:
+         qDebug() &lt;&lt; prefix &lt;&lt; QObject::tr(&quot;Out of memory.&quot;);
+         break;
+     default:
+         qDebug() &lt;&lt; prefix &lt;&lt; QObject::tr(&quot;Unknown error.&quot;);
+         break;
+     }
+ }
+
+<span class="comment"> //============================================================================//</span>
+<span class="comment"> //                                  ColorEdit                                 //</span>
+<span class="comment"> //============================================================================//</span>
+
+ ColorEdit::ColorEdit(QRgb initialColor, int id)
+     : m_color(initialColor), m_id(id)
+ {
+     QHBoxLayout *layout = new QHBoxLayout;
+     setLayout(layout);
+     layout-&gt;setContentsMargins(0, 0, 0, 0);
+
+     m_lineEdit = new QLineEdit(QString::number(m_color, 16));
+     layout-&gt;addWidget(m_lineEdit);
+
+     m_button = new QFrame;
+     QPalette palette = m_button-&gt;palette();
+     palette.setColor(QPalette::Window, QColor(m_color));
+     m_button-&gt;setPalette(palette);
+     m_button-&gt;setAutoFillBackground(true);
+     m_button-&gt;setMinimumSize(32, 0);
+     m_button-&gt;setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Preferred);
+     m_button-&gt;setFrameStyle(QFrame::StyledPanel | QFrame::Sunken);
+     layout-&gt;addWidget(m_button);
+
+     connect(m_lineEdit, SIGNAL(editingFinished()), this, SLOT(editDone()));
+ }
+
+ void ColorEdit::editDone()
+ {
+     bool ok;
+     QRgb newColor = m_lineEdit-&gt;text().toUInt(&amp;ok, 16);
+     if (ok)
+         setColor(newColor);
+ }
+
+ void ColorEdit::mousePressEvent(QMouseEvent *event)
+ {
+     if (event-&gt;button() == Qt::LeftButton) {
+         QColor color(m_color);
+         QColorDialog dialog(color, 0);
+         dialog.setOption(QColorDialog::ShowAlphaChannel, true);
+<span class="comment"> // The ifdef block is a workaround for the beta, TODO: remove when bug 238525 is fixed</span>
+ #ifdef Q_WS_MAC
+         dialog.setOption(QColorDialog::DontUseNativeDialog, true);
+ #endif
+         dialog.move(280, 120);
+         if (dialog.exec() == QDialog::Rejected)
+             return;
+         QRgb newColor = dialog.selectedColor().rgba();
+         if (newColor == m_color)
+             return;
+         setColor(newColor);
+     }
+ }
+
+ void ColorEdit::setColor(QRgb color)
+ {
+     m_color = color;
+     m_lineEdit-&gt;setText(QString::number(m_color, 16)); <span class="comment">// &quot;Clean up&quot; text</span>
+     QPalette palette = m_button-&gt;palette();
+     palette.setColor(QPalette::Window, QColor(m_color));
+     m_button-&gt;setPalette(palette);
+     emit colorChanged(m_color, m_id);
+ }
+
+<span class="comment"> //============================================================================//</span>
+<span class="comment"> //                                  FloatEdit                                 //</span>
+<span class="comment"> //============================================================================//</span>
+
+ FloatEdit::FloatEdit(float initialValue, int id)
+     : m_value(initialValue), m_id(id)
+ {
+     QHBoxLayout *layout = new QHBoxLayout;
+     setLayout(layout);
+     layout-&gt;setContentsMargins(0, 0, 0, 0);
+
+     m_lineEdit = new QLineEdit(QString::number(m_value));
+     layout-&gt;addWidget(m_lineEdit);
+
+     connect(m_lineEdit, SIGNAL(editingFinished()), this, SLOT(editDone()));
+ }
+
+ void FloatEdit::editDone()
+ {
+     bool ok;
+     float newValue = m_lineEdit-&gt;text().toFloat(&amp;ok);
+     if (ok) {
+         m_value = newValue;
+         m_lineEdit-&gt;setText(QString::number(m_value)); <span class="comment">// &quot;Clean up&quot; text</span>
+         emit valueChanged(m_value, m_id);
+     }
+ }
+
+<span class="comment"> //============================================================================//</span>
+<span class="comment"> //                           TwoSidedGraphicsWidget                           //</span>
+<span class="comment"> //============================================================================//</span>
+
+ TwoSidedGraphicsWidget::TwoSidedGraphicsWidget(QGraphicsScene *scene)
+     : QObject(scene)
+     , m_current(0)
+     , m_angle(0)
+     , m_delta(0)
+ {
+     for (int i = 0; i &lt; 2; ++i)
+         m_proxyWidgets[i] = 0;
+ }
+
+ void TwoSidedGraphicsWidget::setWidget(int index, QWidget *widget)
+ {
+     if (index &lt; 0 || index &gt;= 2)
+         {
+                 qWarning(&quot;TwoSidedGraphicsWidget::setWidget: Index out of bounds, index == %d&quot;, index);
+                 return;
+         }
+
+     GraphicsWidget *proxy = new GraphicsWidget;
+     proxy-&gt;setWidget(widget);
+
+     if (m_proxyWidgets[index])
+         delete m_proxyWidgets[index];
+     m_proxyWidgets[index] = proxy;
+
+     proxy-&gt;setCacheMode(QGraphicsItem::ItemCoordinateCache);
+     proxy-&gt;setZValue(1e30); <span class="comment">// Make sure the dialog is drawn on top of all other (OpenGL) items</span>
+
+     if (index != m_current)
+         proxy-&gt;setVisible(false);
+
+     qobject_cast&lt;QGraphicsScene *&gt;(parent())-&gt;addItem(proxy);
+ }
+
+ QWidget *TwoSidedGraphicsWidget::widget(int index)
+ {
+     if (index &lt; 0 || index &gt;= 2)
+         {
+                 qWarning(&quot;TwoSidedGraphicsWidget::widget: Index out of bounds, index == %d&quot;, index);
+                 return 0;
+         }
+     return m_proxyWidgets[index]-&gt;widget();
+ }
+
+ void TwoSidedGraphicsWidget::flip()
+ {
+     m_delta = (m_current == 0 ? 9 : -9);
+     animateFlip();
+ }
+
+ void TwoSidedGraphicsWidget::animateFlip()
+ {
+     m_angle += m_delta;
+     if (m_angle == 90) {
+         int old = m_current;
+         m_current ^= 1;
+         m_proxyWidgets[old]-&gt;setVisible(false);
+         m_proxyWidgets[m_current]-&gt;setVisible(true);
+         m_proxyWidgets[m_current]-&gt;setGeometry(m_proxyWidgets[old]-&gt;geometry());
+     }
+
+     QRectF r = m_proxyWidgets[m_current]-&gt;boundingRect();
+     m_proxyWidgets[m_current]-&gt;setTransform(QTransform()
+         .translate(r.width() / 2, r.height() / 2)
+         .rotate(m_angle - 180 * m_current, Qt::YAxis)
+         .translate(-r.width() / 2, -r.height() / 2));
+
+     if ((m_current == 0 &amp;&amp; m_angle &gt; 0) || (m_current == 1 &amp;&amp; m_angle &lt; 180))
+         QTimer::singleShot(25, this, SLOT(animateFlip()));
+ }
+
+ QVariant GraphicsWidget::itemChange(GraphicsItemChange change, const QVariant &amp;value)
+ {
+     if (change == ItemPositionChange &amp;&amp; scene()) {
+         QRectF rect = boundingRect();
+         QPointF pos = value.toPointF();
+         QRectF sceneRect = scene()-&gt;sceneRect();
+         if (pos.x() + rect.left() &lt; sceneRect.left())
+             pos.setX(sceneRect.left() - rect.left());
+         else if (pos.x() + rect.right() &gt;= sceneRect.right())
+             pos.setX(sceneRect.right() - rect.right());
+         if (pos.y() + rect.top() &lt; sceneRect.top())
+             pos.setY(sceneRect.top() - rect.top());
+         else if (pos.y() + rect.bottom() &gt;= sceneRect.bottom())
+             pos.setY(sceneRect.bottom() - rect.bottom());
+         return pos;
+     }
+     return QGraphicsProxyWidget::itemChange(change, value);
+ }
+
+ void GraphicsWidget::resizeEvent(QGraphicsSceneResizeEvent *event)
+ {
+     setCacheMode(QGraphicsItem::NoCache);
+     setCacheMode(QGraphicsItem::ItemCoordinateCache);
+     QGraphicsProxyWidget::resizeEvent(event);
+ }
+
+ void GraphicsWidget::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+ {
+     painter-&gt;setRenderHint(QPainter::Antialiasing, false);
+     QGraphicsProxyWidget::paint(painter, option, widget);
+     <span class="comment">//painter-&gt;setRenderHint(QPainter::Antialiasing, true);</span>
+ }
+
+<span class="comment"> //============================================================================//</span>
+<span class="comment"> //                             RenderOptionsDialog                            //</span>
+<span class="comment"> //============================================================================//</span>
+
+ RenderOptionsDialog::RenderOptionsDialog()
+     : QDialog(0, Qt::CustomizeWindowHint | Qt::WindowTitleHint)
+ {
+     setWindowOpacity(0.75);
+     setWindowTitle(tr(&quot;Options (double click to flip)&quot;));
+     QGridLayout *layout = new QGridLayout;
+     setLayout(layout);
+     layout-&gt;setColumnStretch(1, 1);
+
+     int row = 0;
+
+     QCheckBox *check = new QCheckBox(tr(&quot;Dynamic cube map&quot;));
+     check-&gt;setCheckState(Qt::Unchecked);
+     <span class="comment">// Dynamic cube maps are only enabled when multi-texturing and render to texture are available.</span>
+     check-&gt;setEnabled(glActiveTexture &amp;&amp; glGenFramebuffersEXT);
+     connect(check, SIGNAL(stateChanged(int)), this, SIGNAL(dynamicCubemapToggled(int)));
+     layout-&gt;addWidget(check, 0, 0, 1, 2);
+     ++row;
+
+     QPalette palette;
+
+     <span class="comment">// Load all .par files</span>
+     <span class="comment">// .par files have a simple syntax for specifying user adjustable uniform variables.</span>
+     QSet&lt;QByteArray&gt; uniforms;
+     QList&lt;QString&gt; filter = QStringList(&quot;*.par&quot;);
+     QList&lt;QFileInfo&gt; files = QDir(&quot;:/res/boxes/&quot;).entryInfoList(filter, QDir::Files | QDir::Readable);
+
+     foreach (QFileInfo fileInfo, files) {
+         QFile file(fileInfo.absoluteFilePath());
+         if (file.open(QIODevice::ReadOnly)) {
+             while (!file.atEnd()) {
+                 QList&lt;QByteArray&gt; tokens = file.readLine().simplified().split(' ');
+                 QList&lt;QByteArray&gt;::const_iterator it = tokens.begin();
+                 if (it == tokens.end())
+                     continue;
+                 QByteArray type = *it;
+                 if (++it == tokens.end())
+                     continue;
+                 QByteArray name = *it;
+                 bool singleElement = (tokens.size() == 3); <span class="comment">// type, name and one value</span>
+                 char counter[10] = &quot;000000000&quot;;
+                 int counterPos = 8; <span class="comment">// position of last digit</span>
+                 while (++it != tokens.end()) {
+                     m_parameterNames &lt;&lt; name;
+                     if (!singleElement) {
+                         m_parameterNames.back() += &quot;[&quot;;
+                         m_parameterNames.back() += counter + counterPos;
+                         m_parameterNames.back() += &quot;]&quot;;
+                         int j = 8; <span class="comment">// position of last digit</span>
+                         ++counter[j];
+                         while (j &gt; 0 &amp;&amp; counter[j] &gt; '9') {
+                             counter[j] = '0';
+                             ++counter[--j];
+                         }
+                         if (j &lt; counterPos)
+                             counterPos = j;
+                     }
+
+                     if (type == &quot;color&quot;) {
+                         layout-&gt;addWidget(new QLabel(m_parameterNames.back()));
+                         bool ok;
+                         ColorEdit *colorEdit = new ColorEdit(it-&gt;toUInt(&amp;ok, 16), m_parameterNames.size() - 1);
+                         m_parameterEdits &lt;&lt; colorEdit;
+                         layout-&gt;addWidget(colorEdit);
+                         connect(colorEdit, SIGNAL(colorChanged(QRgb, int)), this, SLOT(setColorParameter(QRgb, int)));
+                         ++row;
+                     } else if (type == &quot;float&quot;) {
+                         layout-&gt;addWidget(new QLabel(m_parameterNames.back()));
+                         bool ok;
+                         FloatEdit *floatEdit = new FloatEdit(it-&gt;toFloat(&amp;ok), m_parameterNames.size() - 1);
+                         m_parameterEdits &lt;&lt; floatEdit;
+                         layout-&gt;addWidget(floatEdit);
+                         connect(floatEdit, SIGNAL(valueChanged(float, int)), this, SLOT(setFloatParameter(float, int)));
+                         ++row;
+                     }
+                 }
+             }
+             file.close();
+         }
+     }
+
+     layout-&gt;addWidget(new QLabel(tr(&quot;Texture:&quot;)));
+     m_textureCombo = new QComboBox;
+     connect(m_textureCombo, SIGNAL(currentIndexChanged(int)), this, SIGNAL(textureChanged(int)));
+     layout-&gt;addWidget(m_textureCombo);
+     ++row;
+
+     layout-&gt;addWidget(new QLabel(tr(&quot;Shader:&quot;)));
+     m_shaderCombo = new QComboBox;
+     connect(m_shaderCombo, SIGNAL(currentIndexChanged(int)), this, SIGNAL(shaderChanged(int)));
+     layout-&gt;addWidget(m_shaderCombo);
+     ++row;
+
+     layout-&gt;setRowStretch(row, 1);
+ }
+
+ int RenderOptionsDialog::addTexture(const QString &amp;name)
+ {
+     m_textureCombo-&gt;addItem(name);
+     return m_textureCombo-&gt;count() - 1;
+ }
+
+ int RenderOptionsDialog::addShader(const QString &amp;name)
+ {
+     m_shaderCombo-&gt;addItem(name);
+     return m_shaderCombo-&gt;count() - 1;
+ }
+
+ void RenderOptionsDialog::emitParameterChanged()
+ {
+     foreach (ParameterEdit *edit, m_parameterEdits)
+         edit-&gt;emitChange();
+ }
+
+ void RenderOptionsDialog::setColorParameter(QRgb color, int id)
+ {
+     emit colorParameterChanged(m_parameterNames[id], color);
+ }
+
+ void RenderOptionsDialog::setFloatParameter(float value, int id)
+ {
+     emit floatParameterChanged(m_parameterNames[id], value);
+ }
+
+ void RenderOptionsDialog::mouseDoubleClickEvent(QMouseEvent *event)
+ {
+     if (event-&gt;button() == Qt::LeftButton)
+         emit doubleClicked();
+ }
+
+<span class="comment"> //============================================================================//</span>
+<span class="comment"> //                                 ItemDialog                                 //</span>
+<span class="comment"> //============================================================================//</span>
+
+ ItemDialog::ItemDialog()
+     : QDialog(0, Qt::CustomizeWindowHint | Qt::WindowTitleHint)
+ {
+     setWindowTitle(tr(&quot;Items (double click to flip)&quot;));
+     setWindowOpacity(0.75);
+     resize(160, 100);
+
+     QVBoxLayout *layout = new QVBoxLayout;
+     setLayout(layout);
+     QPushButton *button;
+
+     button = new QPushButton(tr(&quot;Add Qt box&quot;));
+     layout-&gt;addWidget(button);
+     connect(button, SIGNAL(clicked()), this, SLOT(triggerNewQtBox()));
+
+     button = new QPushButton(tr(&quot;Add circle&quot;));
+     layout-&gt;addWidget(button);
+     connect(button, SIGNAL(clicked()), this, SLOT(triggerNewCircleItem()));
+
+     button = new QPushButton(tr(&quot;Add square&quot;));
+     layout-&gt;addWidget(button);
+     connect(button, SIGNAL(clicked()), this, SLOT(triggerNewSquareItem()));
+
+     layout-&gt;addStretch(1);
+ }
+
+ void ItemDialog::triggerNewQtBox()
+ {
+     emit newItemTriggered(QtBoxItem);
+ }
+
+ void ItemDialog::triggerNewCircleItem()
+ {
+     emit newItemTriggered(CircleItem);
+ }
+
+ void ItemDialog::triggerNewSquareItem()
+ {
+     emit newItemTriggered(SquareItem);
+ }
+
+ void ItemDialog::mouseDoubleClickEvent(QMouseEvent *event)
+ {
+     if (event-&gt;button() == Qt::LeftButton)
+         emit doubleClicked();
+ }
+
+<span class="comment"> //============================================================================//</span>
+<span class="comment"> //                                    Scene                                   //</span>
+<span class="comment"> //============================================================================//</span>
+
+ const static char environmentShaderText[] =
+     &quot;uniform samplerCube env;&quot;
+     &quot;void main() {&quot;
+         &quot;gl_FragColor = textureCube(env, gl_TexCoord[1].xyz);&quot;
+     &quot;}&quot;;
+
+ Scene::Scene(int width, int height, int maxTextureSize)
+     : m_distExp(600)
+     , m_frame(0)
+     , m_maxTextureSize(maxTextureSize)
+     , m_currentShader(0)
+     , m_currentTexture(0)
+     , m_dynamicCubemap(false)
+     , m_updateAllCubemaps(true)
+     , m_box(0)
+     , m_vertexShader(0)
+     , m_environmentShader(0)
+     , m_environmentProgram(0)
+ {
+     setSceneRect(0, 0, width, height);
+
+     m_trackBalls[0] = TrackBall(0.05f, QVector3D(0, 1, 0), TrackBall::Sphere);
+     m_trackBalls[1] = TrackBall(0.005f, QVector3D(0, 0, 1), TrackBall::Sphere);
+     m_trackBalls[2] = TrackBall(0.0f, QVector3D(0, 1, 0), TrackBall::Plane);
+
+     m_renderOptions = new RenderOptionsDialog;
+     m_renderOptions-&gt;move(20, 120);
+     m_renderOptions-&gt;resize(m_renderOptions-&gt;sizeHint());
+
+     connect(m_renderOptions, SIGNAL(dynamicCubemapToggled(int)), this, SLOT(toggleDynamicCubemap(int)));
+     connect(m_renderOptions, SIGNAL(colorParameterChanged(const QString &amp;, QRgb)), this, SLOT(setColorParameter(const QString &amp;, QRgb)));
+     connect(m_renderOptions, SIGNAL(floatParameterChanged(const QString &amp;, float)), this, SLOT(setFloatParameter(const QString &amp;, float)));
+     connect(m_renderOptions, SIGNAL(textureChanged(int)), this, SLOT(setTexture(int)));
+     connect(m_renderOptions, SIGNAL(shaderChanged(int)), this, SLOT(setShader(int)));
+
+     m_itemDialog = new ItemDialog;
+     connect(m_itemDialog, SIGNAL(newItemTriggered(ItemDialog::ItemType)), this, SLOT(newItem(ItemDialog::ItemType)));
+
+     TwoSidedGraphicsWidget *twoSided = new TwoSidedGraphicsWidget(this);
+     twoSided-&gt;setWidget(0, m_renderOptions);
+     twoSided-&gt;setWidget(1, m_itemDialog);
+
+     connect(m_renderOptions, SIGNAL(doubleClicked()), twoSided, SLOT(flip()));
+     connect(m_itemDialog, SIGNAL(doubleClicked()), twoSided, SLOT(flip()));
+
+     addItem(new QtBox(64, width - 64, height - 64));
+     addItem(new QtBox(64, width - 64, 64));
+     addItem(new QtBox(64, 64, height - 64));
+     addItem(new QtBox(64, 64, 64));
+
+     initGL();
+
+     m_timer = new QTimer(this);
+     m_timer-&gt;setInterval(20);
+     connect(m_timer, SIGNAL(timeout()), this, SLOT(update()));
+     m_timer-&gt;start();
+
+     m_time.start();
+ }
+
+ Scene::~Scene()
+ {
+     if (m_box)
+         delete m_box;
+     foreach (GLTexture *texture, m_textures)
+         if (texture) delete texture;
+     if (m_mainCubemap)
+         delete m_mainCubemap;
+     foreach (QGLShaderProgram *program, m_programs)
+         if (program) delete program;
+     if (m_vertexShader)
+         delete m_vertexShader;
+     foreach (QGLShader *shader, m_fragmentShaders)
+         if (shader) delete shader;
+     foreach (GLRenderTargetCube *rt, m_cubemaps)
+         if (rt) delete rt;
+     if (m_environmentShader)
+         delete m_environmentShader;
+     if (m_environmentProgram)
+         delete m_environmentProgram;
+ }
+
+ void Scene::initGL()
+ {
+     m_box = new GLRoundedBox(0.25f, 1.0f, 10);
+
+     m_vertexShader = new QGLShader(QGLShader::Vertex);
+     m_vertexShader-&gt;compileSourceFile(QLatin1String(&quot;:/res/boxes/basic.vsh&quot;));
+
+     QStringList list;
+     list &lt;&lt; &quot;:/res/boxes/cubemap_posx.jpg&quot; &lt;&lt; &quot;:/res/boxes/cubemap_negx.jpg&quot; &lt;&lt; &quot;:/res/boxes/cubemap_posy.jpg&quot;
+          &lt;&lt; &quot;:/res/boxes/cubemap_negy.jpg&quot; &lt;&lt; &quot;:/res/boxes/cubemap_posz.jpg&quot; &lt;&lt; &quot;:/res/boxes/cubemap_negz.jpg&quot;;
+     m_environment = new GLTextureCube(list, qMin(1024, m_maxTextureSize));
+     m_environmentShader = new QGLShader(QGLShader::Fragment);
+     m_environmentShader-&gt;compileSourceCode(environmentShaderText);
+     m_environmentProgram = new QGLShaderProgram;
+     m_environmentProgram-&gt;addShader(m_vertexShader);
+     m_environmentProgram-&gt;addShader(m_environmentShader);
+     m_environmentProgram-&gt;link();
+
+     const int NOISE_SIZE = 128; <span class="comment">// for a different size, B and BM in fbm.c must also be changed</span>
+     m_noise = new GLTexture3D(NOISE_SIZE, NOISE_SIZE, NOISE_SIZE);
+     QRgb *data = new QRgb[NOISE_SIZE * NOISE_SIZE * NOISE_SIZE];
+     memset(data, 0, NOISE_SIZE * NOISE_SIZE * NOISE_SIZE * sizeof(QRgb));
+     QRgb *p = data;
+     float pos[3];
+     for (int k = 0; k &lt; NOISE_SIZE; ++k) {
+         pos[2] = k * (0x20 / (float)NOISE_SIZE);
+         for (int j = 0; j &lt; NOISE_SIZE; ++j) {
+             for (int i = 0; i &lt; NOISE_SIZE; ++i) {
+                 for (int byte = 0; byte &lt; 4; ++byte) {
+                     pos[0] = (i + (byte &amp; 1) * 16) * (0x20 / (float)NOISE_SIZE);
+                     pos[1] = (j + (byte &amp; 2) * 8) * (0x20 / (float)NOISE_SIZE);
+                     *p |= (int)(128.0f * (noise3(pos) + 1.0f)) &lt;&lt; (byte * 8);
+                 }
+                 ++p;
+             }
+         }
+     }
+     m_noise-&gt;load(NOISE_SIZE, NOISE_SIZE, NOISE_SIZE, data);
+     delete[] data;
+
+     m_mainCubemap = new GLRenderTargetCube(512);
+
+     QStringList filter;
+     QList&lt;QFileInfo&gt; files;
+
+     <span class="comment">// Load all .png files as textures</span>
+     m_currentTexture = 0;
+     filter = QStringList(&quot;*.png&quot;);
+     files = QDir(&quot;:/res/boxes/&quot;).entryInfoList(filter, QDir::Files | QDir::Readable);
+
+     foreach (QFileInfo file, files) {
+         GLTexture *texture = new GLTexture2D(file.absoluteFilePath(), qMin(256, m_maxTextureSize), qMin(256, m_maxTextureSize));
+         if (texture-&gt;failed()) {
+             delete texture;
+             continue;
+         }
+         m_textures &lt;&lt; texture;
+         m_renderOptions-&gt;addTexture(file.baseName());
+     }
+
+     if (m_textures.size() == 0)
+         m_textures &lt;&lt; new GLTexture2D(qMin(64, m_maxTextureSize), qMin(64, m_maxTextureSize));
+
+     <span class="comment">// Load all .fsh files as fragment shaders</span>
+     m_currentShader = 0;
+     filter = QStringList(&quot;*.fsh&quot;);
+     files = QDir(&quot;:/res/boxes/&quot;).entryInfoList(filter, QDir::Files | QDir::Readable);
+     foreach (QFileInfo file, files) {
+         QGLShaderProgram *program = new QGLShaderProgram;
+         QGLShader* shader = new QGLShader(QGLShader::Fragment);
+         shader-&gt;compileSourceFile(file.absoluteFilePath());
+         <span class="comment">// The program does not take ownership over the shaders, so store them in a vector so they can be deleted afterwards.</span>
+         program-&gt;addShader(m_vertexShader);
+         program-&gt;addShader(shader);
+         if (!program-&gt;link()) {
+             qWarning(&quot;Failed to compile and link shader program&quot;);
+             qWarning(&quot;Vertex shader log:&quot;);
+             qWarning() &lt;&lt; m_vertexShader-&gt;log();
+             qWarning() &lt;&lt; &quot;Fragment shader log ( file =&quot; &lt;&lt; file.absoluteFilePath() &lt;&lt; &quot;):&quot;;
+             qWarning() &lt;&lt; shader-&gt;log();
+             qWarning(&quot;Shader program log:&quot;);
+             qWarning() &lt;&lt; program-&gt;log();
+
+             delete shader;
+             delete program;
+             continue;
+         }
+
+         m_fragmentShaders &lt;&lt; shader;
+         m_programs &lt;&lt; program;
+         m_renderOptions-&gt;addShader(file.baseName());
+
+         program-&gt;bind();
+         m_cubemaps &lt;&lt; ((program-&gt;uniformLocation(&quot;env&quot;) != -1) ? new GLRenderTargetCube(qMin(256, m_maxTextureSize)) : 0);
+         program-&gt;release();
+     }
+
+     if (m_programs.size() == 0)
+         m_programs &lt;&lt; new QGLShaderProgram;
+
+     m_renderOptions-&gt;emitParameterChanged();
+ }
+
+ static void loadMatrix(const QMatrix4x4&amp; m)
+ {
+     GLfloat mat[16];
+     const qreal *data = m.constData();
+     for (int index = 0; index &lt; 16; ++index)
+         mat[index] = data[index];
+     glLoadMatrixf(mat);
+ }
+
+ static void multMatrix(const QMatrix4x4&amp; m)
+ {
+     GLfloat mat[16];
+     const qreal *data = m.constData();
+     for (int index = 0; index &lt; 16; ++index)
+         mat[index] = data[index];
+     glMultMatrixf(mat);
+ }
+
+<span class="comment"> // If one of the boxes should not be rendered, set excludeBox to its index.</span>
+<span class="comment"> // If the main box should not be rendered, set excludeBox to -1.</span>
+ void Scene::renderBoxes(const QMatrix4x4 &amp;view, int excludeBox)
+ {
+     QMatrix4x4 invView = view.inverted();
+
+     <span class="comment">// If multi-texturing is supported, use three saplers.</span>
+     if (glActiveTexture) {
+         glActiveTexture(GL_TEXTURE0);
+         m_textures[m_currentTexture]-&gt;bind();
+         glActiveTexture(GL_TEXTURE2);
+         m_noise-&gt;bind();
+         glActiveTexture(GL_TEXTURE1);
+     } else {
+         m_textures[m_currentTexture]-&gt;bind();
+     }
+
+     glDisable(GL_LIGHTING);
+     glDisable(GL_CULL_FACE);
+
+     QMatrix4x4 viewRotation(view);
+     viewRotation(3, 0) = viewRotation(3, 1) = viewRotation(3, 2) = 0.0f;
+     viewRotation(0, 3) = viewRotation(1, 3) = viewRotation(2, 3) = 0.0f;
+     viewRotation(3, 3) = 1.0f;
+     loadMatrix(viewRotation);
+     glScalef(20.0f, 20.0f, 20.0f);
+
+     <span class="comment">// Don't render the environment if the environment texture can't be set for the correct sampler.</span>
+     if (glActiveTexture) {
+         m_environment-&gt;bind();
+         m_environmentProgram-&gt;bind();
+         m_environmentProgram-&gt;setUniformValue(&quot;tex&quot;, GLint(0));
+         m_environmentProgram-&gt;setUniformValue(&quot;env&quot;, GLint(1));
+         m_environmentProgram-&gt;setUniformValue(&quot;noise&quot;, GLint(2));
+         m_box-&gt;draw();
+         m_environmentProgram-&gt;release();
+         m_environment-&gt;unbind();
+     }
+
+     loadMatrix(view);
+
+     glEnable(GL_CULL_FACE);
+     glEnable(GL_LIGHTING);
+
+     for (int i = 0; i &lt; m_programs.size(); ++i) {
+         if (i == excludeBox)
+             continue;
+
+         glPushMatrix();
+         QMatrix4x4 m;
+         m.rotate(m_trackBalls[1].rotation());
+         multMatrix(m);
+
+         glRotatef(360.0f * i / m_programs.size(), 0.0f, 0.0f, 1.0f);
+         glTranslatef(2.0f, 0.0f, 0.0f);
+         glScalef(0.3f, 0.6f, 0.6f);
+
+         if (glActiveTexture) {
+             if (m_dynamicCubemap &amp;&amp; m_cubemaps[i])
+                 m_cubemaps[i]-&gt;bind();
+             else
+                 m_environment-&gt;bind();
+         }
+         m_programs[i]-&gt;bind();
+         m_programs[i]-&gt;setUniformValue(&quot;tex&quot;, GLint(0));
+         m_programs[i]-&gt;setUniformValue(&quot;env&quot;, GLint(1));
+         m_programs[i]-&gt;setUniformValue(&quot;noise&quot;, GLint(2));
+         m_programs[i]-&gt;setUniformValue(&quot;view&quot;, view);
+         m_programs[i]-&gt;setUniformValue(&quot;invView&quot;, invView);
+         m_box-&gt;draw();
+         m_programs[i]-&gt;release();
+
+         if (glActiveTexture) {
+             if (m_dynamicCubemap &amp;&amp; m_cubemaps[i])
+                 m_cubemaps[i]-&gt;unbind();
+             else
+                 m_environment-&gt;unbind();
+         }
+         glPopMatrix();
+     }
+
+     if (-1 != excludeBox) {
+         QMatrix4x4 m;
+         m.rotate(m_trackBalls[0].rotation());
+         multMatrix(m);
+
+         if (glActiveTexture) {
+             if (m_dynamicCubemap)
+                 m_mainCubemap-&gt;bind();
+             else
+                 m_environment-&gt;bind();
+         }
+
+         m_programs[m_currentShader]-&gt;bind();
+         m_programs[m_currentShader]-&gt;setUniformValue(&quot;tex&quot;, GLint(0));
+         m_programs[m_currentShader]-&gt;setUniformValue(&quot;env&quot;, GLint(1));
+         m_programs[m_currentShader]-&gt;setUniformValue(&quot;noise&quot;, GLint(2));
+         m_programs[m_currentShader]-&gt;setUniformValue(&quot;view&quot;, view);
+         m_programs[m_currentShader]-&gt;setUniformValue(&quot;invView&quot;, invView);
+         m_box-&gt;draw();
+         m_programs[m_currentShader]-&gt;release();
+
+         if (glActiveTexture) {
+             if (m_dynamicCubemap)
+                 m_mainCubemap-&gt;unbind();
+             else
+                 m_environment-&gt;unbind();
+         }
+     }
+
+     if (glActiveTexture) {
+         glActiveTexture(GL_TEXTURE2);
+         m_noise-&gt;unbind();
+         glActiveTexture(GL_TEXTURE0);
+     }
+     m_textures[m_currentTexture]-&gt;unbind();
+ }
+
+ void Scene::setStates()
+ {
+     <span class="comment">//glClearColor(0.25f, 0.25f, 0.5f, 1.0f);</span>
+
+     glEnable(GL_DEPTH_TEST);
+     glEnable(GL_CULL_FACE);
+     glEnable(GL_LIGHTING);
+     <span class="comment">//glEnable(GL_COLOR_MATERIAL);</span>
+     glEnable(GL_TEXTURE_2D);
+     glEnable(GL_NORMALIZE);
+
+     glMatrixMode(GL_PROJECTION);
+     glPushMatrix();
+     glLoadIdentity();
+
+     glMatrixMode(GL_MODELVIEW);
+     glPushMatrix();
+     glLoadIdentity();
+
+     setLights();
+
+     float materialSpecular[] = {0.5f, 0.5f, 0.5f, 1.0f};
+     glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, materialSpecular);
+     glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, 32.0f);
+ }
+
+ void Scene::setLights()
+ {
+     glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
+     <span class="comment">//float lightColour[] = {1.0f, 1.0f, 1.0f, 1.0f};</span>
+     float lightDir[] = {0.0f, 0.0f, 1.0f, 0.0f};
+     <span class="comment">//glLightfv(GL_LIGHT0, GL_DIFFUSE, lightColour);</span>
+     <span class="comment">//glLightfv(GL_LIGHT0, GL_SPECULAR, lightColour);</span>
+     glLightfv(GL_LIGHT0, GL_POSITION, lightDir);
+     glLightModelf(GL_LIGHT_MODEL_LOCAL_VIEWER, 1.0f);
+     glEnable(GL_LIGHT0);
+ }
+
+ void Scene::defaultStates()
+ {
+     <span class="comment">//glClearColor(0.0f, 0.0f, 0.0f, 0.0f);</span>
+
+     glDisable(GL_DEPTH_TEST);
+     glDisable(GL_CULL_FACE);
+     glDisable(GL_LIGHTING);
+     <span class="comment">//glDisable(GL_COLOR_MATERIAL);</span>
+     glDisable(GL_TEXTURE_2D);
+     glDisable(GL_LIGHT0);
+     glDisable(GL_NORMALIZE);
+
+     glMatrixMode(GL_MODELVIEW);
+     glPopMatrix();
+
+     glMatrixMode(GL_PROJECTION);
+     glPopMatrix();
+
+     glLightModelf(GL_LIGHT_MODEL_LOCAL_VIEWER, 0.0f);
+     float defaultMaterialSpecular[] = {0.0f, 0.0f, 0.0f, 1.0f};
+     glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, defaultMaterialSpecular);
+     glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, 0.0f);
+ }
+
+ void Scene::renderCubemaps()
+ {
+     <span class="comment">// To speed things up, only update the cubemaps for the small cubes every N frames.</span>
+     const int N = (m_updateAllCubemaps ? 1 : 3);
+
+     QMatrix4x4 mat;
+     GLRenderTargetCube::getProjectionMatrix(mat, 0.1f, 100.0f);
+
+     glMatrixMode(GL_PROJECTION);
+     glPushMatrix();
+     loadMatrix(mat);
+
+     glMatrixMode(GL_MODELVIEW);
+     glPushMatrix();
+
+     QVector3D center;
+
+     for (int i = m_frame % N; i &lt; m_cubemaps.size(); i += N) {
+         if (0 == m_cubemaps[i])
+             continue;
+
+         float angle = 2.0f * PI * i / m_cubemaps.size();
+
+         center = m_trackBalls[1].rotation().rotatedVector(QVector3D(cos(angle), sin(angle), 0.0f));
+
+         for (int face = 0; face &lt; 6; ++face) {
+             m_cubemaps[i]-&gt;begin(face);
+
+             GLRenderTargetCube::getViewMatrix(mat, face);
+             QVector4D v = QVector4D(-center.x(), -center.y(), -center.z(), 1.0);
+             mat.setColumn(3, mat * v);
+
+             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+             renderBoxes(mat, i);
+
+             m_cubemaps[i]-&gt;end();
+         }
+     }
+
+     for (int face = 0; face &lt; 6; ++face) {
+         m_mainCubemap-&gt;begin(face);
+         GLRenderTargetCube::getViewMatrix(mat, face);
+
+         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+         renderBoxes(mat, -1);
+
+         m_mainCubemap-&gt;end();
+     }
+
+     glPopMatrix();
+
+     glMatrixMode(GL_PROJECTION);
+     glPopMatrix();
+
+     m_updateAllCubemaps = false;
+ }
+
+ void Scene::drawBackground(QPainter *painter, const QRectF &amp;)
+ {
+     float width = float(painter-&gt;device()-&gt;width());
+     float height = float(painter-&gt;device()-&gt;height());
+
+     painter-&gt;beginNativePainting();
+     setStates();
+
+     if (m_dynamicCubemap)
+         renderCubemaps();
+
+     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+     glMatrixMode(GL_PROJECTION);
+     gluPerspective(60.0, width / height, 0.01, 15.0);
+
+     glMatrixMode(GL_MODELVIEW);
+
+     QMatrix4x4 view;
+     view.rotate(m_trackBalls[2].rotation());
+     view(2, 3) -= 2.0f * exp(m_distExp / 1200.0f);
+     renderBoxes(view);
+
+     defaultStates();
+     ++m_frame;
+
+     painter-&gt;endNativePainting();
+ }
+
+ QPointF Scene::pixelPosToViewPos(const QPointF&amp; p)
+ {
+     return QPointF(2.0 * float(p.x()) / width() - 1.0,
+                    1.0 - 2.0 * float(p.y()) / height());
+ }
+
+ void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
+ {
+     QGraphicsScene::mouseMoveEvent(event);
+     if (event-&gt;isAccepted())
+         return;
+
+     if (event-&gt;buttons() &amp; Qt::LeftButton) {
+         m_trackBalls[0].move(pixelPosToViewPos(event-&gt;scenePos()), m_trackBalls[2].rotation().conjugate());
+         event-&gt;accept();
+     } else {
+         m_trackBalls[0].release(pixelPosToViewPos(event-&gt;scenePos()), m_trackBalls[2].rotation().conjugate());
+     }
+
+     if (event-&gt;buttons() &amp; Qt::RightButton) {
+         m_trackBalls[1].move(pixelPosToViewPos(event-&gt;scenePos()), m_trackBalls[2].rotation().conjugate());
+         event-&gt;accept();
+     } else {
+         m_trackBalls[1].release(pixelPosToViewPos(event-&gt;scenePos()), m_trackBalls[2].rotation().conjugate());
+     }
+
+     if (event-&gt;buttons() &amp; Qt::MidButton) {
+         m_trackBalls[2].move(pixelPosToViewPos(event-&gt;scenePos()), QQuaternion());
+         event-&gt;accept();
+     } else {
+         m_trackBalls[2].release(pixelPosToViewPos(event-&gt;scenePos()), QQuaternion());
+     }
+ }
+
+ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event)
+ {
+     QGraphicsScene::mousePressEvent(event);
+     if (event-&gt;isAccepted())
+         return;
+
+     if (event-&gt;buttons() &amp; Qt::LeftButton) {
+         m_trackBalls[0].push(pixelPosToViewPos(event-&gt;scenePos()), m_trackBalls[2].rotation().conjugate());
+         event-&gt;accept();
+     }
+
+     if (event-&gt;buttons() &amp; Qt::RightButton) {
+         m_trackBalls[1].push(pixelPosToViewPos(event-&gt;scenePos()), m_trackBalls[2].rotation().conjugate());
+         event-&gt;accept();
+     }
+
+     if (event-&gt;buttons() &amp; Qt::MidButton) {
+         m_trackBalls[2].push(pixelPosToViewPos(event-&gt;scenePos()), QQuaternion());
+         event-&gt;accept();
+     }
+ }
+
+ void Scene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
+ {
+     QGraphicsScene::mouseReleaseEvent(event);
+     if (event-&gt;isAccepted())
+         return;
+
+     if (event-&gt;button() == Qt::LeftButton) {
+         m_trackBalls[0].release(pixelPosToViewPos(event-&gt;scenePos()), m_trackBalls[2].rotation().conjugate());
+         event-&gt;accept();
+     }
+
+     if (event-&gt;button() == Qt::RightButton) {
+         m_trackBalls[1].release(pixelPosToViewPos(event-&gt;scenePos()), m_trackBalls[2].rotation().conjugate());
+         event-&gt;accept();
+     }
+
+     if (event-&gt;button() == Qt::MidButton) {
+         m_trackBalls[2].release(pixelPosToViewPos(event-&gt;scenePos()), QQuaternion());
+         event-&gt;accept();
+     }
+ }
+
+ void Scene::wheelEvent(QGraphicsSceneWheelEvent * event)
+ {
+     QGraphicsScene::wheelEvent(event);
+     if (!event-&gt;isAccepted()) {
+         m_distExp += event-&gt;delta();
+         if (m_distExp &lt; -8 * 120)
+             m_distExp = -8 * 120;
+         if (m_distExp &gt; 10 * 120)
+             m_distExp = 10 * 120;
+         event-&gt;accept();
+     }
+ }
+
+ void Scene::setShader(int index)
+ {
+     if (index &gt;= 0 &amp;&amp; index &lt; m_fragmentShaders.size())
+         m_currentShader = index;
+ }
+
+ void Scene::setTexture(int index)
+ {
+     if (index &gt;= 0 &amp;&amp; index &lt; m_textures.size())
+         m_currentTexture = index;
+ }
+
+ void Scene::toggleDynamicCubemap(int state)
+ {
+     if ((m_dynamicCubemap = (state == Qt::Checked)))
+         m_updateAllCubemaps = true;
+ }
+
+ void Scene::setColorParameter(const QString &amp;name, QRgb color)
+ {
+     <span class="comment">// set the color in all programs</span>
+     foreach (QGLShaderProgram *program, m_programs) {
+         program-&gt;bind();
+         program-&gt;setUniformValue(program-&gt;uniformLocation(name), QColor(color));
+         program-&gt;release();
+     }
+ }
+
+ void Scene::setFloatParameter(const QString &amp;name, float value)
+ {
+     <span class="comment">// set the color in all programs</span>
+     foreach (QGLShaderProgram *program, m_programs) {
+         program-&gt;bind();
+         program-&gt;setUniformValue(program-&gt;uniformLocation(name), value);
+         program-&gt;release();
+     }
+ }
+
+ void Scene::newItem(ItemDialog::ItemType type)
+ {
+     QSize size = sceneRect().size().toSize();
+     switch (type) {
+     case ItemDialog::QtBoxItem:
+         addItem(new QtBox(64, rand() % (size.width() - 64) + 32, rand() % (size.height() - 64) + 32));
+         break;
+     case ItemDialog::CircleItem:
+         addItem(new CircleItem(64, rand() % (size.width() - 64) + 32, rand() % (size.height() - 64) + 32));
+         break;
+     case ItemDialog::SquareItem:
+         addItem(new SquareItem(64, rand() % (size.width() - 64) + 32, rand() % (size.height() - 64) + 32));
+         break;
+     default:
+         break;
+     }
+ }</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

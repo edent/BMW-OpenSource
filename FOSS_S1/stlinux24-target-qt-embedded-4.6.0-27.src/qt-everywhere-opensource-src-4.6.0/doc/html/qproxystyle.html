@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qproxystyle.cpp -->
+<head>
+  <title>Qt 4.6: QProxyStyle Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QProxyStyle" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QProxyStyle Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QProxyStyle class is a convenience class that simplifies dynamically overriding <a href="qstyle.html">QStyle</a> elements. <a href="#details">More...</a></p>
+<pre> #include &lt;QProxyStyle&gt;</pre><p>Inherits <a href="qcommonstyle.html">QCommonStyle</a>.</p>
+<p>This class was introduced in Qt 4.6.</p>
+<ul>
+<li><a href="qproxystyle-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qproxystyle.html#QProxyStyle">QProxyStyle</a></b> ( QStyle * <i>style</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qproxystyle.html#dtor.QProxyStyle">~QProxyStyle</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QStyle * </td><td class="memItemRight" valign="bottom"><b><a href="qproxystyle.html#baseStyle">baseStyle</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qproxystyle.html#setBaseStyle">setBaseStyle</a></b> ( QStyle * <i>style</i> )</td></tr>
+</table>
+<hr />
+<a name="reimplemented-public-functions"></a>
+<h2>Reimplemented Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qproxystyle.html#drawComplexControl">drawComplexControl</a></b> ( ComplexControl <i>control</i>, const QStyleOptionComplex * <i>option</i>, QPainter * <i>painter</i>, const QWidget * <i>widget</i> = 0 ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qproxystyle.html#drawControl">drawControl</a></b> ( ControlElement <i>element</i>, const QStyleOption * <i>option</i>, QPainter * <i>painter</i>, const QWidget * <i>widget</i> = 0 ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qproxystyle.html#drawItemPixmap">drawItemPixmap</a></b> ( QPainter * <i>painter</i>, const QRect &amp; <i>rect</i>, int <i>alignment</i>, const QPixmap &amp; <i>pixmap</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qproxystyle.html#drawItemText">drawItemText</a></b> ( QPainter * <i>painter</i>, const QRect &amp; <i>rect</i>, int <i>flags</i>, const QPalette &amp; <i>pal</i>, bool <i>enabled</i>, const QString &amp; <i>text</i>, QPalette::ColorRole <i>textRole</i> = QPalette::NoRole ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qproxystyle.html#drawPrimitive">drawPrimitive</a></b> ( PrimitiveElement <i>element</i>, const QStyleOption * <i>option</i>, QPainter * <i>painter</i>, const QWidget * <i>widget</i> = 0 ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QPixmap </td><td class="memItemRight" valign="bottom"><b><a href="qproxystyle.html#generatedIconPixmap">generatedIconPixmap</a></b> ( QIcon::Mode <i>iconMode</i>, const QPixmap &amp; <i>pixmap</i>, const QStyleOption * <i>opt</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual SubControl </td><td class="memItemRight" valign="bottom"><b><a href="qproxystyle.html#hitTestComplexControl">hitTestComplexControl</a></b> ( ComplexControl <i>control</i>, const QStyleOptionComplex * <i>option</i>, const QPoint &amp; <i>pos</i>, const QWidget * <i>widget</i> = 0 ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QRect </td><td class="memItemRight" valign="bottom"><b><a href="qproxystyle.html#itemPixmapRect">itemPixmapRect</a></b> ( const QRect &amp; <i>r</i>, int <i>flags</i>, const QPixmap &amp; <i>pixmap</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QRect </td><td class="memItemRight" valign="bottom"><b><a href="qproxystyle.html#itemTextRect">itemTextRect</a></b> ( const QFontMetrics &amp; <i>fm</i>, const QRect &amp; <i>r</i>, int <i>flags</i>, bool <i>enabled</i>, const QString &amp; <i>text</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual int </td><td class="memItemRight" valign="bottom"><b><a href="qproxystyle.html#pixelMetric">pixelMetric</a></b> ( PixelMetric <i>metric</i>, const QStyleOption * <i>option</i> = 0, const QWidget * <i>widget</i> = 0 ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qproxystyle.html#polish">polish</a></b> ( QWidget * <i>widget</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qproxystyle.html#polish-2">polish</a></b> ( QPalette &amp; <i>pal</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qproxystyle.html#polish-3">polish</a></b> ( QApplication * <i>app</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QSize </td><td class="memItemRight" valign="bottom"><b><a href="qproxystyle.html#sizeFromContents">sizeFromContents</a></b> ( ContentsType <i>type</i>, const QStyleOption * <i>option</i>, const QSize &amp; <i>size</i>, const QWidget * <i>widget</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QPalette </td><td class="memItemRight" valign="bottom"><b><a href="qproxystyle.html#standardPalette">standardPalette</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QPixmap </td><td class="memItemRight" valign="bottom"><b><a href="qproxystyle.html#standardPixmap">standardPixmap</a></b> ( StandardPixmap <i>standardPixmap</i>, const QStyleOption * <i>opt</i>, const QWidget * <i>widget</i> = 0 ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual int </td><td class="memItemRight" valign="bottom"><b><a href="qproxystyle.html#styleHint">styleHint</a></b> ( StyleHint <i>hint</i>, const QStyleOption * <i>option</i> = 0, const QWidget * <i>widget</i> = 0, QStyleHintReturn * <i>returnData</i> = 0 ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QRect </td><td class="memItemRight" valign="bottom"><b><a href="qproxystyle.html#subControlRect">subControlRect</a></b> ( ComplexControl <i>cc</i>, const QStyleOptionComplex * <i>option</i>, SubControl <i>sc</i>, const QWidget * <i>widget</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QRect </td><td class="memItemRight" valign="bottom"><b><a href="qproxystyle.html#subElementRect">subElementRect</a></b> ( SubElement <i>element</i>, const QStyleOption * <i>option</i>, const QWidget * <i>widget</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qproxystyle.html#unpolish">unpolish</a></b> ( QWidget * <i>widget</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qproxystyle.html#unpolish-2">unpolish</a></b> ( QApplication * <i>app</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>16 public functions inherited from <a href="qcommonstyle.html#public-functions">QCommonStyle</a></li>
+<li><div bar="2" class="fn"></div>24 public functions inherited from <a href="qstyle.html#public-functions">QStyle</a></li>
+<li><div bar="2" class="fn"></div>29 public functions inherited from <a href="qobject.html#public-functions">QObject</a></li>
+</ul>
+<hr />
+<a name="reimplemented-protected-functions"></a>
+<h2>Reimplemented Protected Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qproxystyle.html#event">event</a></b> ( QEvent * <i>e</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+</ul>
+<hr />
+<a name="protected-slots"></a>
+<h2>Protected Slots</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qproxystyle.html#layoutSpacingImplementation">layoutSpacingImplementation</a></b> ( QSizePolicy::ControlType <i>control1</i>, QSizePolicy::ControlType <i>control2</i>, Qt::Orientation <i>orientation</i>, const QStyleOption * <i>option</i> = 0, const QWidget * <i>widget</i> = 0 ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QIcon </td><td class="memItemRight" valign="bottom"><b><a href="qproxystyle.html#standardIconImplementation">standardIconImplementation</a></b> ( StandardPixmap <i>standardIcon</i>, const QStyleOption * <i>option</i>, const QWidget * <i>widget</i> ) const</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>2 protected slots inherited from <a href="qstyle.html#protected-slots">QStyle</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li><div class="fn"></div>1 property inherited from <a href="qobject.html#properties">QObject</a></li>
+<li><div class="fn"></div>1 public slot inherited from <a href="qobject.html#public-slots">QObject</a></li>
+<li><div class="fn"></div>1 signal inherited from <a href="qobject.html#signals">QObject</a></li>
+<li><div class="fn"></div>6 static public members inherited from <a href="qstyle.html#static-public-members">QStyle</a></li>
+<li><div class="fn"></div>5 static public members inherited from <a href="qobject.html#static-public-members">QObject</a></li>
+<li><div class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QProxyStyle class is a convenience class that simplifies dynamically overriding <a href="qstyle.html">QStyle</a> elements.</p>
+<p>A QProxyStyle wraps a <a href="qstyle.html">QStyle</a> (usually the default system style) for the purpose of dynamically overriding painting or other specific style behavior.</p>
+<p>The following example shows how to override the shortcut underline behavior on any platform:</p>
+<pre> #include &quot;textedit.h&quot;
+ #include &lt;QApplication&gt;
+ #include &lt;QProxyStyle&gt;
+
+ class MyProxyStyle : public QProxyStyle
+ {
+   public:
+     int styleHint(StyleHint hint, const QStyleOption *option = 0,
+                   const QWidget *widget = 0, QStyleHintReturn *returnData = 0) const
+     {
+         if (hint == QStyle::SH_UnderlineShortcut)
+             return 0;
+         return QProxyStyle::styleHint(hint, option, widget, returnData);
+     }
+ };
+
+ int main(int argc, char **argv)
+ {
+     Q_INIT_RESOURCE(textedit);
+
+     QApplication a(argc, argv);
+     a.setStyle(new MyProxyStyle);
+     TextEdit mw;
+     mw.resize(700, 800);
+     mw.show();
+     <span class="comment">//...</span>
+ }</pre>
+<p>Warning: The <a href="qcommonstyle.html">common styles</a> provided by Qt will respect this hint, because they call <a href="qstyle.html#proxy">QStyle::proxy</a>(), but there is no guarantee that <a href="qstyle.html#proxy">QStyle::proxy</a>() will be called for user defined or system controlled styles. It would not work on a Mac, for example, where menus are handled by the operating system.</p>
+<p>See also <a href="qstyle.html">QStyle</a>.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QProxyStyle/QProxyStyle" />
+<h3 class="fn"><a name="QProxyStyle"></a>QProxyStyle::QProxyStyle ( <a href="qstyle.html">QStyle</a> * <i>style</i> = 0 )</h3>
+<p>Constructs a <a href="qproxystyle.html">QProxyStyle</a> object for overriding behavior in <i>style</i> or in the current application <a href="qstyle.html">style</a> if <i>style</i> is 0 (default). Normally <i>style</i> is 0, because you want to override behavior in the system style.</p>
+<p>Ownership of <i>style</i> is transferred to <a href="qproxystyle.html">QProxyStyle</a>.</p>
+<a name="//apple_ref/cpp/instm/QProxyStyle/~QProxyStyle" />
+<h3 class="fn"><a name="dtor.QProxyStyle"></a>QProxyStyle::~QProxyStyle ()</h3>
+<p>Destroys the <a href="qproxystyle.html">QProxyStyle</a> object.</p>
+<a name="//apple_ref/cpp/instm/QProxyStyle/baseStyle" />
+<h3 class="fn"><a name="baseStyle"></a><a href="qstyle.html">QStyle</a> * QProxyStyle::baseStyle () const</h3>
+<p>Returns the proxy base style object. If no base style is set on the proxy style, <a href="qproxystyle.html">QProxyStyle</a> will create an instance of the application style instead.</p>
+<p>See also <a href="qproxystyle.html#setBaseStyle">setBaseStyle</a>() and <a href="qstyle.html">QStyle</a>.</p>
+<a name="//apple_ref/cpp/instm/QProxyStyle/drawComplexControl" />
+<h3 class="fn"><a name="drawComplexControl"></a>void QProxyStyle::drawComplexControl ( <a href="qstyle.html#ComplexControl-enum">ComplexControl</a> <i>control</i>, const <a href="qstyleoptioncomplex.html">QStyleOptionComplex</a> * <i>option</i>, <a href="qpainter.html">QPainter</a> * <i>painter</i>, const <a href="qwidget.html">QWidget</a> * <i>widget</i> = 0 ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qstyle.html#drawComplexControl">QStyle::drawComplexControl</a>().</p>
+<a name="//apple_ref/cpp/instm/QProxyStyle/drawControl" />
+<h3 class="fn"><a name="drawControl"></a>void QProxyStyle::drawControl ( <a href="qstyle.html#ControlElement-enum">ControlElement</a> <i>element</i>, const <a href="qstyleoption.html">QStyleOption</a> * <i>option</i>, <a href="qpainter.html">QPainter</a> * <i>painter</i>, const <a href="qwidget.html">QWidget</a> * <i>widget</i> = 0 ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qstyle.html#drawControl">QStyle::drawControl</a>().</p>
+<a name="//apple_ref/cpp/instm/QProxyStyle/drawItemPixmap" />
+<h3 class="fn"><a name="drawItemPixmap"></a>void QProxyStyle::drawItemPixmap ( <a href="qpainter.html">QPainter</a> * <i>painter</i>, const <a href="qrect.html">QRect</a> &amp; <i>rect</i>, int <i>alignment</i>, const <a href="qpixmap.html">QPixmap</a> &amp; <i>pixmap</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qstyle.html#drawItemPixmap">QStyle::drawItemPixmap</a>().</p>
+<a name="//apple_ref/cpp/instm/QProxyStyle/drawItemText" />
+<h3 class="fn"><a name="drawItemText"></a>void QProxyStyle::drawItemText ( <a href="qpainter.html">QPainter</a> * <i>painter</i>, const <a href="qrect.html">QRect</a> &amp; <i>rect</i>, int <i>flags</i>, const <a href="qpalette.html">QPalette</a> &amp; <i>pal</i>, bool <i>enabled</i>, const <a href="qstring.html">QString</a> &amp; <i>text</i>, <a href="qpalette.html#ColorRole-enum">QPalette::ColorRole</a> <i>textRole</i> = QPalette::NoRole ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qstyle.html#drawItemText">QStyle::drawItemText</a>().</p>
+<a name="//apple_ref/cpp/instm/QProxyStyle/drawPrimitive" />
+<h3 class="fn"><a name="drawPrimitive"></a>void QProxyStyle::drawPrimitive ( <a href="qstyle.html#PrimitiveElement-enum">PrimitiveElement</a> <i>element</i>, const <a href="qstyleoption.html">QStyleOption</a> * <i>option</i>, <a href="qpainter.html">QPainter</a> * <i>painter</i>, const <a href="qwidget.html">QWidget</a> * <i>widget</i> = 0 ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qstyle.html#drawPrimitive">QStyle::drawPrimitive</a>().</p>
+<a name="//apple_ref/cpp/instm/QProxyStyle/event" />
+<h3 class="fn"><a name="event"></a>bool QProxyStyle::event ( <a href="qevent.html">QEvent</a> * <i>e</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qobject.html#event">QObject::event</a>().</p>
+<a name="//apple_ref/cpp/instm/QProxyStyle/generatedIconPixmap" />
+<h3 class="fn"><a name="generatedIconPixmap"></a><a href="qpixmap.html">QPixmap</a> QProxyStyle::generatedIconPixmap ( <a href="qicon.html#Mode-enum">QIcon::Mode</a> <i>iconMode</i>, const <a href="qpixmap.html">QPixmap</a> &amp; <i>pixmap</i>, const <a href="qstyleoption.html">QStyleOption</a> * <i>opt</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qstyle.html#generatedIconPixmap">QStyle::generatedIconPixmap</a>().</p>
+<a name="//apple_ref/cpp/instm/QProxyStyle/hitTestComplexControl" />
+<h3 class="fn"><a name="hitTestComplexControl"></a><a href="qstyle.html#SubControl-enum">SubControl</a> QProxyStyle::hitTestComplexControl ( <a href="qstyle.html#ComplexControl-enum">ComplexControl</a> <i>control</i>, const <a href="qstyleoptioncomplex.html">QStyleOptionComplex</a> * <i>option</i>, const <a href="qpoint.html">QPoint</a> &amp; <i>pos</i>, const <a href="qwidget.html">QWidget</a> * <i>widget</i> = 0 ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qstyle.html#hitTestComplexControl">QStyle::hitTestComplexControl</a>().</p>
+<a name="//apple_ref/cpp/instm/QProxyStyle/itemPixmapRect" />
+<h3 class="fn"><a name="itemPixmapRect"></a><a href="qrect.html">QRect</a> QProxyStyle::itemPixmapRect ( const <a href="qrect.html">QRect</a> &amp; <i>r</i>, int <i>flags</i>, const <a href="qpixmap.html">QPixmap</a> &amp; <i>pixmap</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qstyle.html#itemPixmapRect">QStyle::itemPixmapRect</a>().</p>
+<a name="//apple_ref/cpp/instm/QProxyStyle/itemTextRect" />
+<h3 class="fn"><a name="itemTextRect"></a><a href="qrect.html">QRect</a> QProxyStyle::itemTextRect ( const <a href="qfontmetrics.html">QFontMetrics</a> &amp; <i>fm</i>, const <a href="qrect.html">QRect</a> &amp; <i>r</i>, int <i>flags</i>, bool <i>enabled</i>, const <a href="qstring.html">QString</a> &amp; <i>text</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qstyle.html#itemTextRect">QStyle::itemTextRect</a>().</p>
+<a name="//apple_ref/cpp/instm/QProxyStyle/layoutSpacingImplementation" />
+<h3 class="fn"><a name="layoutSpacingImplementation"></a>int QProxyStyle::layoutSpacingImplementation ( <a href="qsizepolicy.html#ControlType-enum">QSizePolicy::ControlType</a> <i>control1</i>, <a href="qsizepolicy.html#ControlType-enum">QSizePolicy::ControlType</a> <i>control2</i>, <a href="qt.html#Orientation-enum">Qt::Orientation</a> <i>orientation</i>, const <a href="qstyleoption.html">QStyleOption</a> * <i>option</i> = 0, const <a href="qwidget.html">QWidget</a> * <i>widget</i> = 0 ) const&nbsp;&nbsp;<tt> [protected slot]</tt></h3>
+<p>This slot is called by <a href="qstyle.html#layoutSpacing">layoutSpacing</a>() to determine the spacing that should be used between <i>control1</i> and <i>control2</i> in a layout. <i>orientation</i> specifies whether the controls are laid out side by side or stacked vertically. The <i>option</i> parameter can be used to pass extra information about the parent widget. The <i>widget</i> parameter is optional and can also be used if <i>option</i> is 0.</p>
+<p>The default implementation returns -1.</p>
+<p>See also <a href="qstyle.html#layoutSpacing">layoutSpacing</a>() and <a href="qstyle.html#combinedLayoutSpacing">combinedLayoutSpacing</a>().</p>
+<a name="//apple_ref/cpp/instm/QProxyStyle/pixelMetric" />
+<h3 class="fn"><a name="pixelMetric"></a>int QProxyStyle::pixelMetric ( <a href="qstyle.html#PixelMetric-enum">PixelMetric</a> <i>metric</i>, const <a href="qstyleoption.html">QStyleOption</a> * <i>option</i> = 0, const <a href="qwidget.html">QWidget</a> * <i>widget</i> = 0 ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qstyle.html#pixelMetric">QStyle::pixelMetric</a>().</p>
+<a name="//apple_ref/cpp/instm/QProxyStyle/polish" />
+<h3 class="fn"><a name="polish"></a>void QProxyStyle::polish ( <a href="qwidget.html">QWidget</a> * <i>widget</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qstyle.html#polish">QStyle::polish</a>().</p>
+<h3 class="fn"><a name="polish-2"></a>void QProxyStyle::polish ( <a href="qpalette.html">QPalette</a> &amp; <i>pal</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qstyle.html#polish-3">QStyle::polish</a>().</p>
+<h3 class="fn"><a name="polish-3"></a>void QProxyStyle::polish ( <a href="qapplication.html">QApplication</a> * <i>app</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qstyle.html#polish-2">QStyle::polish</a>().</p>
+<a name="//apple_ref/cpp/instm/QProxyStyle/setBaseStyle" />
+<h3 class="fn"><a name="setBaseStyle"></a>void QProxyStyle::setBaseStyle ( <a href="qstyle.html">QStyle</a> * <i>style</i> )</h3>
+<p>Sets the base style that should be proxied.</p>
+<p>Ownership of <i>style</i> is transferred to <a href="qproxystyle.html">QProxyStyle</a>.</p>
+<p>If style is zero, a desktop-dependant style will be assigned automatically.</p>
+<p>See also <a href="qproxystyle.html#baseStyle">baseStyle</a>().</p>
+<a name="//apple_ref/cpp/instm/QProxyStyle/sizeFromContents" />
+<h3 class="fn"><a name="sizeFromContents"></a><a href="qsize.html">QSize</a> QProxyStyle::sizeFromContents ( <a href="qstyle.html#ContentsType-enum">ContentsType</a> <i>type</i>, const <a href="qstyleoption.html">QStyleOption</a> * <i>option</i>, const <a href="qsize.html">QSize</a> &amp; <i>size</i>, const <a href="qwidget.html">QWidget</a> * <i>widget</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qstyle.html#sizeFromContents">QStyle::sizeFromContents</a>().</p>
+<a name="//apple_ref/cpp/instm/QProxyStyle/standardIconImplementation" />
+<h3 class="fn"><a name="standardIconImplementation"></a><a href="qicon.html">QIcon</a> QProxyStyle::standardIconImplementation ( <a href="qstyle.html#StandardPixmap-enum">StandardPixmap</a> <i>standardIcon</i>, const <a href="qstyleoption.html">QStyleOption</a> * <i>option</i>, const <a href="qwidget.html">QWidget</a> * <i>widget</i> ) const&nbsp;&nbsp;<tt> [protected slot]</tt></h3>
+<p>Returns an icon for the given <i>standardIcon</i>.</p>
+<p>Reimplement this slot to provide your own icons in a <a href="qstyle.html">QStyle</a> subclass. The <i>option</i> argument can be used to pass extra information required to find the appropriate icon. The <i>widget</i> argument is optional and can also be used to help find the icon.</p>
+<p><b>Note:</b> Because of binary compatibility constraints, <a href="qstyle.html#standardIcon">standardIcon</a>() introduced in Qt 4.1 is not virtual. Therefore it must dynamically detect and call <i>this</i> slot. This default implementation simply calls <a href="qstyle.html#standardIcon">standardIcon</a>() with the given parameters.</p>
+<p>See also <a href="qstyle.html#standardIcon">standardIcon</a>().</p>
+<a name="//apple_ref/cpp/instm/QProxyStyle/standardPalette" />
+<h3 class="fn"><a name="standardPalette"></a><a href="qpalette.html">QPalette</a> QProxyStyle::standardPalette () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qstyle.html#standardPalette">QStyle::standardPalette</a>().</p>
+<a name="//apple_ref/cpp/instm/QProxyStyle/standardPixmap" />
+<h3 class="fn"><a name="standardPixmap"></a><a href="qpixmap.html">QPixmap</a> QProxyStyle::standardPixmap ( <a href="qstyle.html#StandardPixmap-enum">StandardPixmap</a> <i>standardPixmap</i>, const <a href="qstyleoption.html">QStyleOption</a> * <i>opt</i>, const <a href="qwidget.html">QWidget</a> * <i>widget</i> = 0 ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qstyle-obsolete.html#standardPixmap" class="obsolete">QStyle::standardPixmap</a>().</p>
+<a name="//apple_ref/cpp/instm/QProxyStyle/styleHint" />
+<h3 class="fn"><a name="styleHint"></a>int QProxyStyle::styleHint ( <a href="qstyle.html#StyleHint-enum">StyleHint</a> <i>hint</i>, const <a href="qstyleoption.html">QStyleOption</a> * <i>option</i> = 0, const <a href="qwidget.html">QWidget</a> * <i>widget</i> = 0, <a href="qstylehintreturn.html">QStyleHintReturn</a> * <i>returnData</i> = 0 ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qstyle.html#styleHint">QStyle::styleHint</a>().</p>
+<a name="//apple_ref/cpp/instm/QProxyStyle/subControlRect" />
+<h3 class="fn"><a name="subControlRect"></a><a href="qrect.html">QRect</a> QProxyStyle::subControlRect ( <a href="qstyle.html#ComplexControl-enum">ComplexControl</a> <i>cc</i>, const <a href="qstyleoptioncomplex.html">QStyleOptionComplex</a> * <i>option</i>, <a href="qstyle.html#SubControl-enum">SubControl</a> <i>sc</i>, const <a href="qwidget.html">QWidget</a> * <i>widget</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qstyle.html#subControlRect">QStyle::subControlRect</a>().</p>
+<a name="//apple_ref/cpp/instm/QProxyStyle/subElementRect" />
+<h3 class="fn"><a name="subElementRect"></a><a href="qrect.html">QRect</a> QProxyStyle::subElementRect ( <a href="qstyle.html#SubElement-enum">SubElement</a> <i>element</i>, const <a href="qstyleoption.html">QStyleOption</a> * <i>option</i>, const <a href="qwidget.html">QWidget</a> * <i>widget</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qstyle.html#subElementRect">QStyle::subElementRect</a>().</p>
+<a name="//apple_ref/cpp/instm/QProxyStyle/unpolish" />
+<h3 class="fn"><a name="unpolish"></a>void QProxyStyle::unpolish ( <a href="qwidget.html">QWidget</a> * <i>widget</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qstyle.html#unpolish">QStyle::unpolish</a>().</p>
+<h3 class="fn"><a name="unpolish-2"></a>void QProxyStyle::unpolish ( <a href="qapplication.html">QApplication</a> * <i>app</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qstyle.html#unpolish-2">QStyle::unpolish</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

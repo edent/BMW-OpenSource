@@ -1,0 +1,100 @@
+/****************************************************************************
+**
+** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+** All rights reserved.
+** Contact: Nokia Corporation (qt-info@nokia.com)
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:LGPL$
+** No Commercial Usage
+** This file contains pre-release code and may not be distributed.
+** You may use this file in accordance with the terms and conditions
+** contained in the Technology Preview License Agreement accompanying
+** this package.
+**
+** GNU Lesser General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU Lesser
+** General Public License version 2.1 as published by the Free Software
+** Foundation and appearing in the file LICENSE.LGPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU Lesser General Public License version 2.1 requirements
+** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+**
+** In addition, as a special exception, Nokia gives you certain additional
+** rights.  These rights are described in the Nokia Qt LGPL Exception
+** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+**
+** If you have questions regarding the use of this file, please contact
+** Nokia at qt-info@nokia.com.
+**
+**
+**
+**
+**
+**
+**
+**
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \page HWAcc_rendering.html
+    \title Using hardware acceleration on embedded platforms.
+
+    \ingroup best-practices
+
+    \section1 Abstract
+    This document describes how to use hardware acceleration for fast
+    rendering on embedded platforms supported by Qt. In short, it explains
+    how the graphics pipeline works. Since there might be differences to 
+	how the APIs are being used on different embedded platforms, a table
+	links to documentation dedicated to platform specific documentation
+	for each supported hardware acceleration API.
+
+    \input platforms/emb-hardwareacceleration.qdocinc
+
+    \section1 Supported platforms
+	Since there might be differences to how the APIs are being used on
+	the different embedded platforms, this table provides you with links to
+	pages dedicated to platform specific documentation for each
+	supported hardware acceleration API. Click the API link for the
+	platform to go the correct documentation.
+
+    \table
+        \header
+            \o Operating System
+            \o {3,1} Hardware Acceleration Platform
+        \row
+            \o \bold {Windows CE}
+            \o \l {Qt for Windows CE and OpenGL ES}{OpenGL ES}
+            \o \l {Qt for Windows CE and OpenVG}{OpenVG} 
+            \o
+        \row
+            \o \bold {Embedded Linux}
+            \o \l {Qt for Embedded Linux and OpenGL}{OpenGL ES}
+            \o \l {Qt for Embedded Linux and OpenVG}{OpenVG} 
+            \o \l {Qt for Embedded Linux and DirectFB}{DirectFB}
+        \row
+            \o \bold {Symbian Platform}
+            \o {3,1} \e {There are currently no support for hardware
+            acceleration.}
+    \endtable
+\omit
+    \section1 Examples using hardware acceleration on embedded platforms.
+
+    \table
+        \header
+            \o Embedded Platform
+            \o Example
+        \row
+            \o Windows CE
+        \row
+            \o Embedded Linux
+    \endtable
+\endomit
+
+
+
+*/

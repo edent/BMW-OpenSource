@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qmaccocoaviewcontainer_mac.mm -->
+<head>
+  <title>Qt 4.6: QMacCocoaViewContainer Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QMacCocoaViewContainer" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QMacCocoaViewContainer Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QMacCocoaViewContainer class provides a widget for Mac OS X that can be used to wrap arbitrary Cocoa views (i.e&#x2e;, NSView subclasses) and insert them into Qt hierarchies. <a href="#details">More...</a></p>
+<pre> #include &lt;QMacCocoaViewContainer&gt;</pre><p>Inherits <a href="qwidget.html">QWidget</a>.</p>
+<p>This class was introduced in Qt 4.5.</p>
+<ul>
+<li><a href="qmaccocoaviewcontainer-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qmaccocoaviewcontainer.html#QMacCocoaViewContainer">QMacCocoaViewContainer</a></b> ( void * <i>cocoaViewToWrap</i>, QWidget * <i>parent</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual </td><td class="memItemRight" valign="bottom"><b><a href="qmaccocoaviewcontainer.html#dtor.QMacCocoaViewContainer">~QMacCocoaViewContainer</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void * </td><td class="memItemRight" valign="bottom"><b><a href="qmaccocoaviewcontainer.html#cocoaView">cocoaView</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qmaccocoaviewcontainer.html#setCocoaView">setCocoaView</a></b> ( void * <i>cocoaViewToWrap</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>216 public functions inherited from <a href="qwidget.html#public-functions">QWidget</a></li>
+<li><div bar="2" class="fn"></div>29 public functions inherited from <a href="qobject.html#public-functions">QObject</a></li>
+<li><div bar="2" class="fn"></div>12 public functions inherited from <a href="qpaintdevice.html#public-functions">QPaintDevice</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li><div class="fn"></div>58 properties inherited from <a href="qwidget.html#properties">QWidget</a></li>
+<li><div class="fn"></div>1 property inherited from <a href="qobject.html#properties">QObject</a></li>
+<li><div class="fn"></div>19 public slots inherited from <a href="qwidget.html#public-slots">QWidget</a></li>
+<li><div class="fn"></div>1 public slot inherited from <a href="qobject.html#public-slots">QObject</a></li>
+<li><div class="fn"></div>1 signal inherited from <a href="qwidget.html#signals">QWidget</a></li>
+<li><div class="fn"></div>1 signal inherited from <a href="qobject.html#signals">QObject</a></li>
+<li><div class="fn"></div>4 static public members inherited from <a href="qwidget.html#static-public-members">QWidget</a></li>
+<li><div class="fn"></div>5 static public members inherited from <a href="qobject.html#static-public-members">QObject</a></li>
+<li><div class="fn"></div>37 protected functions inherited from <a href="qwidget.html#protected-functions">QWidget</a></li>
+<li><div class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+<li><div class="fn"></div>1 protected function inherited from <a href="qpaintdevice.html#protected-functions">QPaintDevice</a></li>
+<li><div class="fn"></div>1 protected slot inherited from <a href="qwidget.html#protected-slots">QWidget</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QMacCocoaViewContainer class provides a widget for Mac OS X that can be used to wrap arbitrary Cocoa views (i.e&#x2e;, NSView subclasses) and insert them into Qt hierarchies.</p>
+<p>While Qt offers a lot of classes for writing your application, Apple's Cocoa framework offers lots of functionality that is not currently in Qt or may never end up in Qt. Using QMacCocoaViewContainer, it is possible to put an arbitrary NSView-derived class from Cocoa and put it in a Qt hierarchy. Depending on how comfortable you are with using objective-C, you can use QMacCocoaViewContainer directly, or subclass it to wrap further functionality of the underlying NSView.</p>
+<p>QMacCocoaViewContainer works regardless if Qt is built against Carbon or Cocoa. However, QCocoaContainerView requires Mac OS X 10.5 or better to be used with Carbon.</p>
+<p>It should be also noted that at the low level on Mac OS X, there is a difference between windows (top-levels) and view (widgets that are inside a window). For this reason, make sure that the NSView that you are wrapping doesn't end up as a top-level. The best way to ensure this is to make sure you always have a parent and not set the parent to 0.</p>
+<p>If you are using QMacCocoaViewContainer as a sub-class and are mixing and matching objective-C with C++ (a.k&#x2e;a&#x2e; objective-C++). It is probably simpler to have your file end with <tt>.mm</tt> than <tt>.cpp</tt>. Most Apple tools will correctly identify the source as objective-C++.</p>
+<p>QMacCocoaViewContainer requires knowledge of how Cocoa works, especially in regard to its reference counting (retain/release) nature. It is noted in the functions below if there is any change in the reference count. Cocoa views often generate temporary objects that are released by an autorelease pool. If this is done outside of a running event loop, it is up to the developer to provide the autorelease pool.</p>
+<p>The following is a snippet of subclassing QMacCocoaViewContainer to wrap a NSSearchField.</p>
+<pre> SearchWidget::SearchWidget(QWidget *parent)
+     : QMacCocoaViewContainer(0, parent)
+ {
+     // Many Cocoa objects create temporary autorelease objects,
+     // so create a pool to catch them.
+     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+
+     // Create the NSSearchField, set it on the QCocoaViewContainer.
+     NSSearchField *search = [[NSSearchField alloc] init];
+     setCocoaView(search);
+
+     // Use a Qt menu for the search field menu.
+     QMenu *qtMenu = createMenu(this);
+     NSMenu *nsMenu = qtMenu-&gt;macMenu(0);
+     [[search cell] setSearchMenuTemplate:nsMenu];
+
+     // Release our reference, since our super class takes ownership and we
+     // don't need it anymore.
+     [search release];
+
+     // Clean up our pool as we no longer need it.
+     [pool release];
+ }</pre>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QMacCocoaViewContainer/QMacCocoaViewContainer" />
+<h3 class="fn"><a name="QMacCocoaViewContainer"></a>QMacCocoaViewContainer::QMacCocoaViewContainer ( void * <i>cocoaViewToWrap</i>, <a href="qwidget.html">QWidget</a> * <i>parent</i> = 0 )</h3>
+<p>Create a new <a href="qmaccocoaviewcontainer.html">QMacCocoaViewContainer</a> using the NSView pointer in <i>cocoaViewToWrap</i> with parent, <i>parent</i>. <a href="qmaccocoaviewcontainer.html">QMacCocoaViewContainer</a> will retain <i>cocoaViewToWrap</i>.</p>
+<p><i>cocoaViewToWrap</i> is a void pointer that allows the header to be included with C++ source.</p>
+<a name="//apple_ref/cpp/instm/QMacCocoaViewContainer/~QMacCocoaViewContainer" />
+<h3 class="fn"><a name="dtor.QMacCocoaViewContainer"></a>QMacCocoaViewContainer::~QMacCocoaViewContainer ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Destroy the <a href="qmaccocoaviewcontainer.html">QMacCocoaViewContainer</a> and release the wrapped view.</p>
+<a name="//apple_ref/cpp/instm/QMacCocoaViewContainer/cocoaView" />
+<h3 class="fn"><a name="cocoaView"></a>void * QMacCocoaViewContainer::cocoaView () const</h3>
+<p>Returns the NSView that has been set on this container. The returned view has been autoreleased, so you will need to retain it if you want to make use of it.</p>
+<p>See also <a href="qmaccocoaviewcontainer.html#setCocoaView">setCocoaView</a>().</p>
+<a name="//apple_ref/cpp/instm/QMacCocoaViewContainer/setCocoaView" />
+<h3 class="fn"><a name="setCocoaView"></a>void QMacCocoaViewContainer::setCocoaView ( void * <i>cocoaViewToWrap</i> )</h3>
+<p>Sets the NSView to contain to be <i>cocoaViewToWrap</i> and retains it. If this container already had a view set, it will release the previously set view.</p>
+<p>See also <a href="qmaccocoaviewcontainer.html#cocoaView">cocoaView</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

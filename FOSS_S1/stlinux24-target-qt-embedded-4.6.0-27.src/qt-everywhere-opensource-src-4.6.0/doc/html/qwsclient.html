@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qwindowsystem_qws.cpp -->
+<head>
+  <title>Qt 4.6: QWSClient Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QWSClient" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QWSClient Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QWSClient class encapsulates a client process in Qt for Embedded Linux. <a href="#details">More...</a></p>
+<pre> #include &lt;QWSClient&gt;</pre><p>Inherits <a href="qobject.html">QObject</a>.</p>
+<ul>
+<li><a href="qwsclient-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qwsclient.html#clientId">clientId</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qwsclient.html#identity">identity</a></b> () const</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>29 public functions inherited from <a href="qobject.html#public-functions">QObject</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li><div class="fn"></div>1 property inherited from <a href="qobject.html#properties">QObject</a></li>
+<li><div class="fn"></div>1 public slot inherited from <a href="qobject.html#public-slots">QObject</a></li>
+<li><div class="fn"></div>1 signal inherited from <a href="qobject.html#signals">QObject</a></li>
+<li><div class="fn"></div>5 static public members inherited from <a href="qobject.html#static-public-members">QObject</a></li>
+<li><div class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QWSClient class encapsulates a client process in Qt for Embedded Linux.</p>
+<p>When you run a <a href="qt-embedded-linux.html">Qt for Embedded Linux</a> application, it either runs as a server or connects to an existing server. The server and client processes have different responsibilities: The client process performs all application specific operations. The server process is responsible for managing the clients as well as taking care of the pointer handling, character input, and screen output. In addition, the server provides functionality to handle input methods.</p>
+<p>As applications add and remove windows, the server process maintains information about each window. In <a href="qt-embedded-linux.html">Qt for Embedded Linux</a>, top-level windows are encapsulated as <a href="qwswindow.html">QWSWindow</a> objects. A list of the current windows can be retrieved using the <a href="qwsserver.html#clientWindows">QWSServer::clientWindows</a>() function, and each window can tell which client that owns it through its <a href="qwswindow.html#client">QWSWindow::client</a>() function.</p>
+<p>A QWSClient object has an unique ID that can be retrieved using its <a href="qwsclient.html#clientId">clientId</a>() function. QWSClient also provides the <a href="qwsclient.html#identity">identity</a>() function which typically returns the name of this client's running application.</p>
+<p>See also <a href="qwsserver.html">QWSServer</a>, <a href="qwswindow.html">QWSWindow</a>, and <a href="qt-embedded-architecture.html">Qt for Embedded Linux Architecture</a>.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QWSClient/clientId" />
+<h3 class="fn"><a name="clientId"></a>int QWSClient::clientId () const</h3>
+<p>Returns an integer uniquely identfying this client.</p>
+<a name="//apple_ref/cpp/instm/QWSClient/identity" />
+<h3 class="fn"><a name="identity"></a><a href="qstring.html">QString</a> QWSClient::identity () const</h3>
+<p>Returns the name of this client's running application.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

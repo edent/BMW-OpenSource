@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- threads.qdoc -->
+<head>
+  <title>Qt 4.6: Synchronizing Threads</title>
+  <link rel="prev" href="threads-starting.html" />
+  <link rel="contents" href="threads.html" />
+  <link rel="next" href="threads-reentrancy.html" />
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><p>
+[Previous: <a href="threads-starting.html">Starting Threads with QThread</a>]
+[<a href="threads.html">Thread Support in Qt</a>]
+[Next: <a href="threads-reentrancy.html">Reentrancy and Thread-Safety</a>]
+</p>
+<h1 class="title">Synchronizing Threads<br /><span class="subtitle"></span>
+</h1>
+<p>The <a href="qmutex.html">QMutex</a>, <a href="qreadwritelock.html">QReadWriteLock</a>, <a href="qsemaphore.html">QSemaphore</a>, and <a href="qwaitcondition.html">QWaitCondition</a> classes provide means to synchronize threads. While the main idea with threads is that they should be as concurrent as possible, there are points where threads must stop and wait for other threads. For example, if two threads try to access the same global variable simultaneously, the results are usually undefined.</p>
+<p><a href="qmutex.html">QMutex</a> provides a mutually exclusive lock, or mutex. At most one thread can hold the mutex at any time. If a thread tries to acquire the mutex while the mutex is already locked, the thread will be put to sleep until the thread that currently holds the mutex unlocks it. Mutexes are often used to protect accesses to shared data (i.e&#x2e;, data that can be accessed from multiple threads simultaneously). In the <a href="threads-reentrancy.html">Reentrancy and Thread-Safety</a> section below, we will use it to make a class thread-safe.</p>
+<p><a href="qreadwritelock.html">QReadWriteLock</a> is similar to <a href="qmutex.html">QMutex</a>, except that it distinguishes between &quot;read&quot; and &quot;write&quot; access to shared data and allows multiple readers to access the data simultaneously. Using <a href="qreadwritelock.html">QReadWriteLock</a> instead of <a href="qmutex.html">QMutex</a> when it is possible can make multithreaded programs more concurrent.</p>
+<p><a href="qsemaphore.html">QSemaphore</a> is a generalization of <a href="qmutex.html">QMutex</a> that protects a certain number of identical resources. In contrast, a mutex protects exactly one resource. The <a href="threads-semaphores.html">Semaphores</a> example shows a typical application of semaphores: synchronizing access to a circular buffer between a producer and a consumer.</p>
+<p><a href="qwaitcondition.html">QWaitCondition</a> allows a thread to wake up other threads when some condition has been met. One or many threads can block waiting for a <a href="qwaitcondition.html">QWaitCondition</a> to set a condition with <a href="qwaitcondition.html#wakeOne">wakeOne()</a> or <a href="qwaitcondition.html#wakeAll">wakeAll()</a>. Use <a href="qwaitcondition.html#wakeOne">wakeOne()</a> to wake one randomly selected event or <a href="qwaitcondition.html#wakeAll">wakeAll()</a> to wake them all. The <a href="threads-waitconditions.html">Wait Conditions</a> example shows how to solve the producer-consumer problem using <a href="qwaitcondition.html">QWaitCondition</a> instead of <a href="qsemaphore.html">QSemaphore</a>.</p>
+<p>Note that Qt's synchronization classes rely on the use of properly aligned pointers. For instance, you cannot use packed classes with MSVC.</p>
+<p>
+[Previous: <a href="threads-starting.html">Starting Threads with QThread</a>]
+[<a href="threads.html">Thread Support in Qt</a>]
+[Next: <a href="threads-reentrancy.html">Reentrancy and Thread-Safety</a>]
+</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

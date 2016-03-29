@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: previewwindow.cpp Example File (widgets/windowflags/previewwindow.cpp)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">previewwindow.cpp Example File<br /><span class="small-subtitle">widgets/windowflags/previewwindow.cpp</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the examples of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+
+ #include &lt;QtGui&gt;
+
+ #include &quot;previewwindow.h&quot;
+
+ PreviewWindow::PreviewWindow(QWidget *parent)
+     : QWidget(parent)
+ {
+     textEdit = new QTextEdit;
+     textEdit-&gt;setReadOnly(true);
+     textEdit-&gt;setLineWrapMode(QTextEdit::NoWrap);
+
+     closeButton = new QPushButton(tr(&quot;&amp;Close&quot;));
+     connect(closeButton, SIGNAL(clicked()), this, SLOT(close()));
+
+     QVBoxLayout *layout = new QVBoxLayout;
+     layout-&gt;addWidget(textEdit);
+     layout-&gt;addWidget(closeButton);
+     setLayout(layout);
+
+     setWindowTitle(tr(&quot;Preview&quot;));
+ }
+
+ void PreviewWindow::setWindowFlags(Qt::WindowFlags flags)
+ {
+     QWidget::setWindowFlags(flags);
+
+     QString text;
+
+     Qt::WindowFlags type = (flags &amp; Qt::WindowType_Mask);
+     if (type == Qt::Window) {
+         text = &quot;Qt::Window&quot;;
+     } else if (type == Qt::Dialog) {
+         text = &quot;Qt::Dialog&quot;;
+     } else if (type == Qt::Sheet) {
+         text = &quot;Qt::Sheet&quot;;
+     } else if (type == Qt::Drawer) {
+         text = &quot;Qt::Drawer&quot;;
+     } else if (type == Qt::Popup) {
+         text = &quot;Qt::Popup&quot;;
+     } else if (type == Qt::Tool) {
+         text = &quot;Qt::Tool&quot;;
+     } else if (type == Qt::ToolTip) {
+         text = &quot;Qt::ToolTip&quot;;
+     } else if (type == Qt::SplashScreen) {
+         text = &quot;Qt::SplashScreen&quot;;
+     }
+
+     if (flags &amp; Qt::MSWindowsFixedSizeDialogHint)
+         text += &quot;\n| Qt::MSWindowsFixedSizeDialogHint&quot;;
+     if (flags &amp; Qt::X11BypassWindowManagerHint)
+         text += &quot;\n| Qt::X11BypassWindowManagerHint&quot;;
+     if (flags &amp; Qt::FramelessWindowHint)
+         text += &quot;\n| Qt::FramelessWindowHint&quot;;
+     if (flags &amp; Qt::WindowTitleHint)
+         text += &quot;\n| Qt::WindowTitleHint&quot;;
+     if (flags &amp; Qt::WindowSystemMenuHint)
+         text += &quot;\n| Qt::WindowSystemMenuHint&quot;;
+     if (flags &amp; Qt::WindowMinimizeButtonHint)
+         text += &quot;\n| Qt::WindowMinimizeButtonHint&quot;;
+     if (flags &amp; Qt::WindowMaximizeButtonHint)
+         text += &quot;\n| Qt::WindowMaximizeButtonHint&quot;;
+     if (flags &amp; Qt::WindowCloseButtonHint)
+         text += &quot;\n| Qt::WindowCloseButtonHint&quot;;
+     if (flags &amp; Qt::WindowContextHelpButtonHint)
+         text += &quot;\n| Qt::WindowContextHelpButtonHint&quot;;
+     if (flags &amp; Qt::WindowShadeButtonHint)
+         text += &quot;\n| Qt::WindowShadeButtonHint&quot;;
+     if (flags &amp; Qt::WindowStaysOnTopHint)
+         text += &quot;\n| Qt::WindowStaysOnTopHint&quot;;
+     if (flags &amp; Qt::CustomizeWindowHint)
+         text += &quot;\n| Qt::CustomizeWindowHint&quot;;
+
+     textEdit-&gt;setPlainText(text);
+ }</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

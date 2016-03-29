@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qevent.cpp -->
+<head>
+  <title>Qt 4.6: QGestureEvent Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QGestureEvent" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QGestureEvent Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QGestureEvent class provides the description of triggered gestures. <a href="#details">More...</a></p>
+<pre> #include &lt;QGestureEvent&gt;</pre><p>Inherits <a href="qevent.html">QEvent</a>.</p>
+<p>This class was introduced in Qt 4.6.</p>
+<ul>
+<li><a href="qgestureevent-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qgestureevent.html#QGestureEvent">QGestureEvent</a></b> ( const QList&lt;QGesture *&gt; &amp; <i>gestures</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qgestureevent.html#dtor.QGestureEvent">~QGestureEvent</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qgestureevent.html#accept">accept</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qgestureevent.html#accept-2">accept</a></b> ( QGesture * <i>gesture</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qgestureevent.html#accept-3">accept</a></b> ( Qt::GestureType <i>gestureType</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QList&lt;QGesture *&gt; </td><td class="memItemRight" valign="bottom"><b><a href="qgestureevent.html#activeGestures">activeGestures</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QList&lt;QGesture *&gt; </td><td class="memItemRight" valign="bottom"><b><a href="qgestureevent.html#canceledGestures">canceledGestures</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QGesture * </td><td class="memItemRight" valign="bottom"><b><a href="qgestureevent.html#gesture">gesture</a></b> ( Qt::GestureType <i>type</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QList&lt;QGesture *&gt; </td><td class="memItemRight" valign="bottom"><b><a href="qgestureevent.html#gestures">gestures</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qgestureevent.html#ignore">ignore</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qgestureevent.html#ignore-2">ignore</a></b> ( QGesture * <i>gesture</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qgestureevent.html#ignore-3">ignore</a></b> ( Qt::GestureType <i>gestureType</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qgestureevent.html#isAccepted">isAccepted</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qgestureevent.html#isAccepted-2">isAccepted</a></b> ( QGesture * <i>gesture</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qgestureevent.html#isAccepted-3">isAccepted</a></b> ( Qt::GestureType <i>gestureType</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QPointF </td><td class="memItemRight" valign="bottom"><b><a href="qgestureevent.html#mapToGraphicsScene">mapToGraphicsScene</a></b> ( const QPointF &amp; <i>gesturePoint</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qgestureevent.html#setAccepted">setAccepted</a></b> ( bool <i>accepted</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qgestureevent.html#setAccepted-2">setAccepted</a></b> ( QGesture * <i>gesture</i>, bool <i>value</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qgestureevent.html#setAccepted-3">setAccepted</a></b> ( Qt::GestureType <i>gestureType</i>, bool <i>value</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QWidget * </td><td class="memItemRight" valign="bottom"><b><a href="qgestureevent.html#widget">widget</a></b> () const</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>6 public functions inherited from <a href="qevent.html#public-functions">QEvent</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li><div class="fn"></div>1 property inherited from <a href="qevent.html#properties">QEvent</a></li>
+<li><div class="fn"></div>1 static public member inherited from <a href="qevent.html#static-public-members">QEvent</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QGestureEvent class provides the description of triggered gestures.</p>
+<p>The QGestureEvent class contains a list of gestures, which can be obtained using the <a href="qgestureevent.html#gestures">gestures</a>() function.</p>
+<p>The gestures are either active or canceled. A list of those that are currently being executed can be obtained using the <a href="qgestureevent.html#activeGestures">activeGestures</a>() function. A list of those which were previously active and have been canceled can be accessed using the <a href="qgestureevent.html#canceledGestures">canceledGestures</a>() function. A gesture might be canceled if the current window loses focus, for example, or because of a timeout, or for other reasons.</p>
+<p>If the event handler does not accept the event by calling the generic <a href="qevent.html#accept">QEvent::accept</a>() function, all individual <a href="qgesture.html">QGesture</a> object that were not accepted and in the <a href="qt.html#GestureState-enum">Qt::GestureStarted</a> state will be propagated up the parent widget chain until a widget accepts them individually, by calling <a href="qgestureevent.html#accept">QGestureEvent::accept</a>() for each of them, or an event filter consumes the event.</p>
+<p>See also <a href="qgesture.html">QGesture</a>, <a href="qgesturerecognizer.html">QGestureRecognizer</a>, <a href="qwidget.html#grabGesture">QWidget::grabGesture</a>(), and <a href="qgraphicsobject.html#grabGesture">QGraphicsObject::grabGesture</a>().</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QGestureEvent/QGestureEvent" />
+<h3 class="fn"><a name="QGestureEvent"></a>QGestureEvent::QGestureEvent ( const <a href="qlist.html">QList</a>&lt;<a href="qgesture.html">QGesture</a> *&gt; &amp; <i>gestures</i> )</h3>
+<p>Creates new <a href="qgestureevent.html">QGestureEvent</a> containing a list of <i>gestures</i>.</p>
+<a name="//apple_ref/cpp/instm/QGestureEvent/~QGestureEvent" />
+<h3 class="fn"><a name="dtor.QGestureEvent"></a>QGestureEvent::~QGestureEvent ()</h3>
+<p>Destroys <a href="qgestureevent.html">QGestureEvent</a>.</p>
+<a name="//apple_ref/cpp/instm/QGestureEvent/accept" />
+<h3 class="fn"><a name="accept"></a>void QGestureEvent::accept ()</h3>
+<p>Accepts the event, the equivalent of calling setAccepted(true).</p>
+<p>See also <a href="qevent.html#accept">QEvent::accept</a>().</p>
+<h3 class="fn"><a name="accept-2"></a>void QGestureEvent::accept ( <a href="qgesture.html">QGesture</a> * <i>gesture</i> )</h3>
+<p>Sets the accept flag of the given <i>gesture</i> object, the equivalent of calling <a href="qgestureevent.html#setAccepted">setAccepted(gesture, true)</a>.</p>
+<p>Setting the accept flag indicates that the event receiver wants the gesture. Unwanted gestures may be propagated to the parent widget.</p>
+<p>See also <a href="qgestureevent.html#ignore">QGestureEvent::ignore</a>().</p>
+<h3 class="fn"><a name="accept-3"></a>void QGestureEvent::accept ( <a href="qt.html#GestureType-enum">Qt::GestureType</a> <i>gestureType</i> )</h3>
+<p>Sets the accept flag of the given <i>gestureType</i>, the equivalent of calling <a href="qgestureevent.html#setAccepted">setAccepted(gestureType, true)</a>.</p>
+<p>Setting the accept flag indicates that the event receiver wants the gesture. Unwanted gestures may be propagated to the parent widget.</p>
+<p>See also <a href="qgestureevent.html#ignore">QGestureEvent::ignore</a>().</p>
+<a name="//apple_ref/cpp/instm/QGestureEvent/activeGestures" />
+<h3 class="fn"><a name="activeGestures"></a><a href="qlist.html">QList</a>&lt;<a href="qgesture.html">QGesture</a> *&gt; QGestureEvent::activeGestures () const</h3>
+<p>Returns a list of active (not canceled) gestures.</p>
+<a name="//apple_ref/cpp/instm/QGestureEvent/canceledGestures" />
+<h3 class="fn"><a name="canceledGestures"></a><a href="qlist.html">QList</a>&lt;<a href="qgesture.html">QGesture</a> *&gt; QGestureEvent::canceledGestures () const</h3>
+<p>Returns a list of canceled gestures.</p>
+<a name="//apple_ref/cpp/instm/QGestureEvent/gesture" />
+<h3 class="fn"><a name="gesture"></a><a href="qgesture.html">QGesture</a> * QGestureEvent::gesture ( <a href="qt.html#GestureType-enum">Qt::GestureType</a> <i>type</i> ) const</h3>
+<p>Returns a gesture object by <i>type</i>.</p>
+<a name="//apple_ref/cpp/instm/QGestureEvent/gestures" />
+<h3 class="fn"><a name="gestures"></a><a href="qlist.html">QList</a>&lt;<a href="qgesture.html">QGesture</a> *&gt; QGestureEvent::gestures () const</h3>
+<p>Returns all gestures that are delivered in the event.</p>
+<a name="//apple_ref/cpp/instm/QGestureEvent/ignore" />
+<h3 class="fn"><a name="ignore"></a>void QGestureEvent::ignore ()</h3>
+<p>Ignores the event, the equivalent of calling setAccepted(false).</p>
+<p>See also <a href="qevent.html#ignore">QEvent::ignore</a>().</p>
+<h3 class="fn"><a name="ignore-2"></a>void QGestureEvent::ignore ( <a href="qgesture.html">QGesture</a> * <i>gesture</i> )</h3>
+<p>Clears the accept flag parameter of the given <i>gesture</i> object, the equivalent of calling <a href="qgestureevent.html#setAccepted">setAccepted(gesture, false)</a>.</p>
+<p>Clearing the accept flag indicates that the event receiver does not want the gesture. Unwanted gestures may be propgated to the parent widget.</p>
+<p>See also <a href="qgestureevent.html#accept">QGestureEvent::accept</a>().</p>
+<h3 class="fn"><a name="ignore-3"></a>void QGestureEvent::ignore ( <a href="qt.html#GestureType-enum">Qt::GestureType</a> <i>gestureType</i> )</h3>
+<p>Clears the accept flag parameter of the given <i>gestureType</i>, the equivalent of calling <a href="qgestureevent.html#setAccepted">setAccepted(gesture, false)</a>.</p>
+<p>Clearing the accept flag indicates that the event receiver does not want the gesture. Unwanted gestures may be propgated to the parent widget.</p>
+<p>See also <a href="qgestureevent.html#accept">QGestureEvent::accept</a>().</p>
+<a name="//apple_ref/cpp/instm/QGestureEvent/isAccepted" />
+<h3 class="fn"><a name="isAccepted"></a>bool QGestureEvent::isAccepted () const</h3>
+<p>Returns true is the event has been accepted; otherwise returns false.</p>
+<p>See also <a href="qevent.html#accepted-prop">QEvent::accepted</a>.</p>
+<h3 class="fn"><a name="isAccepted-2"></a>bool QGestureEvent::isAccepted ( <a href="qgesture.html">QGesture</a> * <i>gesture</i> ) const</h3>
+<p>Returns true if the <i>gesture</i> is accepted; otherwise returns false.</p>
+<h3 class="fn"><a name="isAccepted-3"></a>bool QGestureEvent::isAccepted ( <a href="qt.html#GestureType-enum">Qt::GestureType</a> <i>gestureType</i> ) const</h3>
+<p>Returns true if the gesture of type <i>gestureType</i> is accepted; otherwise returns false.</p>
+<a name="//apple_ref/cpp/instm/QGestureEvent/mapToGraphicsScene" />
+<h3 class="fn"><a name="mapToGraphicsScene"></a><a href="qpointf.html">QPointF</a> QGestureEvent::mapToGraphicsScene ( const <a href="qpointf.html">QPointF</a> &amp; <i>gesturePoint</i> ) const</h3>
+<p>Returns the scene-local coordinates if the <i>gesturePoint</i> is inside a graphics view.</p>
+<p>This functional might be useful when the gesture event is delivered to a <a href="qgraphicsobject.html">QGraphicsObject</a> to translate a point in screen coordinates to scene-local coordinates.</p>
+<p>See also <a href="qpointf.html#isNull">QPointF::isNull</a>() and <a href="examples-overview.html">.</a>.</p>
+<a name="//apple_ref/cpp/instm/QGestureEvent/setAccepted" />
+<h3 class="fn"><a name="setAccepted"></a>void QGestureEvent::setAccepted ( bool <i>accepted</i> )</h3>
+<p>Sets or clears the event's internal flag that determines whether it should be delivered to other objects.</p>
+<p>Calling this function with a value of true for <i>accepted</i> indicates that the caller has accepted the event and that it should not be propagated further. Calling this function with a value of false indicates that the caller has ignored the event and that it should be delivered to other objects.</p>
+<p>For convenience, the accept flag can also be set with <a href="qgestureevent.html#accept">accept</a>(), and cleared with <a href="qgestureevent.html#ignore">ignore</a>().</p>
+<p>See also <a href="qgestureevent.html#isAccepted">isAccepted</a>() and <a href="qevent.html#accepted-prop">QEvent::accepted</a>.</p>
+<h3 class="fn"><a name="setAccepted-2"></a>void QGestureEvent::setAccepted ( <a href="qgesture.html">QGesture</a> * <i>gesture</i>, bool <i>value</i> )</h3>
+<p>Sets the accept flag of the given <i>gesture</i> object to the specified <i>value</i>.</p>
+<p>Setting the accept flag indicates that the event receiver wants the <i>gesture</i>. Unwanted gestures may be propagated to the parent widget.</p>
+<p>By default, gestures in events of type <a href="qevent.html#Type-enum">QEvent::Gesture</a> are accepted, and gestures in <a href="qevent.html#Type-enum">QEvent::GestureOverride</a> events are ignored.</p>
+<p>For convenience, the accept flag can also be set with <a href="qgestureevent.html#accept">accept</a>(gesture), and cleared with <a href="qgestureevent.html#ignore">ignore</a>(gesture).</p>
+<h3 class="fn"><a name="setAccepted-3"></a>void QGestureEvent::setAccepted ( <a href="qt.html#GestureType-enum">Qt::GestureType</a> <i>gestureType</i>, bool <i>value</i> )</h3>
+<p>Sets the accept flag of the given <i>gestureType</i> object to the specified <i>value</i>.</p>
+<p>Setting the accept flag indicates that the event receiver wants to receive gestures of the specified type, <i>gestureType</i>. Unwanted gestures may be propagated to the parent widget.</p>
+<p>By default, gestures in events of type <a href="qevent.html#Type-enum">QEvent::Gesture</a> are accepted, and gestures in <a href="qevent.html#Type-enum">QEvent::GestureOverride</a> events are ignored.</p>
+<p>For convenience, the accept flag can also be set with <a href="qgestureevent.html#accept">accept</a>(gestureType), and cleared with <a href="qgestureevent.html#ignore">ignore</a>(gestureType).</p>
+<a name="//apple_ref/cpp/instm/QGestureEvent/widget" />
+<h3 class="fn"><a name="widget"></a><a href="qwidget.html">QWidget</a> * QGestureEvent::widget () const</h3>
+<p>Returns the widget on which the event occurred.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

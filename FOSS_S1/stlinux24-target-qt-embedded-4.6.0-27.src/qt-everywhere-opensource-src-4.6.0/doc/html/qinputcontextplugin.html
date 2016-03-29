@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qinputcontextplugin.cpp -->
+<head>
+  <title>Qt 4.6: QInputContextPlugin Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QInputContextPlugin" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QInputContextPlugin Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QInputContextPlugin class provides an abstract base for custom <a href="qinputcontext.html">QInputContext</a> plugins. <a href="#details">More...</a></p>
+<pre> #include &lt;QInputContextPlugin&gt;</pre><p>Inherits <a href="qobject.html">QObject</a>.</p>
+<p><b>Note:</b> All functions in this class are <a href="threads-reentrancy.html#reentrant">reentrant</a>.</p>
+<ul>
+<li><a href="qinputcontextplugin-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qinputcontextplugin.html#QInputContextPlugin">QInputContextPlugin</a></b> ( QObject * <i>parent</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qinputcontextplugin.html#dtor.QInputContextPlugin">~QInputContextPlugin</a></b> ()</td></tr>
+</table>
+<hr />
+<a name="reimplemented-public-functions"></a>
+<h2>Reimplemented Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual QInputContext * </td><td class="memItemRight" valign="bottom"><b><a href="qinputcontextplugin.html#create">create</a></b> ( const QString &amp; <i>key</i> ) = 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QString </td><td class="memItemRight" valign="bottom"><b><a href="qinputcontextplugin.html#description">description</a></b> ( const QString &amp; <i>key</i> ) = 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QString </td><td class="memItemRight" valign="bottom"><b><a href="qinputcontextplugin.html#displayName">displayName</a></b> ( const QString &amp; <i>key</i> ) = 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QStringList </td><td class="memItemRight" valign="bottom"><b><a href="qinputcontextplugin.html#keys">keys</a></b> () const = 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QStringList </td><td class="memItemRight" valign="bottom"><b><a href="qinputcontextplugin.html#languages">languages</a></b> ( const QString &amp; <i>key</i> ) = 0</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>29 public functions inherited from <a href="qobject.html#public-functions">QObject</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li><div class="fn"></div>1 property inherited from <a href="qobject.html#properties">QObject</a></li>
+<li><div class="fn"></div>1 public slot inherited from <a href="qobject.html#public-slots">QObject</a></li>
+<li><div class="fn"></div>1 signal inherited from <a href="qobject.html#signals">QObject</a></li>
+<li><div class="fn"></div>5 static public members inherited from <a href="qobject.html#static-public-members">QObject</a></li>
+<li><div class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QInputContextPlugin class provides an abstract base for custom <a href="qinputcontext.html">QInputContext</a> plugins.</p>
+<p>The input context plugin is a simple plugin interface that makes it easy to create custom input contexts that can be loaded dynamically into applications.</p>
+<p>To create an input context plugin you subclass this base class, reimplement the pure virtual functions <a href="qinputcontextplugin.html#keys">keys</a>(), <a href="qinputcontextplugin.html#create">create</a>(), <a href="qinputcontextplugin.html#languages">languages</a>(), <a href="qinputcontextplugin.html#displayName">displayName</a>(), and <a href="qinputcontextplugin.html#description">description</a>(), and export the class with the <a href="qtplugin.html#Q_EXPORT_PLUGIN2">Q_EXPORT_PLUGIN2</a>() macro.</p>
+<div style="padding: 0.5em; background: #e0e0e0; color: black"><p>Copyright (C) 2003-2004 immodule for Qt Project. All rights reserved.</p>
+<p>This file is written to contribute to Nokia Corporation and/or its subsidiary(-ies) under their own license. You may use this file under your Qt license. Following description is copied from their original file headers. Contact immodule-qt@freedesktop.org if any conditions of this licensing are not clear to you.</p>
+</div><p>See also <a href="qinputcontext.html">QInputContext</a> and <a href="plugins-howto.html">How to Create Qt Plugins</a>.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QInputContextPlugin/QInputContextPlugin" />
+<h3 class="fn"><a name="QInputContextPlugin"></a>QInputContextPlugin::QInputContextPlugin ( <a href="qobject.html">QObject</a> * <i>parent</i> = 0 )</h3>
+<p>Constructs a input context plugin with the given <i>parent</i>. This is invoked automatically by the <a href="qtplugin.html#Q_EXPORT_PLUGIN2">Q_EXPORT_PLUGIN2</a>() macro.</p>
+<a name="//apple_ref/cpp/instm/QInputContextPlugin/~QInputContextPlugin" />
+<h3 class="fn"><a name="dtor.QInputContextPlugin"></a>QInputContextPlugin::~QInputContextPlugin ()</h3>
+<p>Destroys the input context plugin.</p>
+<p>You never have to call this explicitly. Qt destroys a plugin automatically when it's no longer used.</p>
+<a name="//apple_ref/cpp/instm/QInputContextPlugin/create" />
+<h3 class="fn"><a name="create"></a><a href="qinputcontext.html">QInputContext</a> * QInputContextPlugin::create ( const <a href="qstring.html">QString</a> &amp; <i>key</i> )&nbsp;&nbsp;<tt> [pure virtual]</tt></h3>
+<p>Creates and returns a <a href="qinputcontext.html">QInputContext</a> object for the input context key <i>key</i>. The input context key is usually the class name of the required input method.</p>
+<p>See also <a href="qinputcontextplugin.html#keys">keys</a>().</p>
+<a name="//apple_ref/cpp/instm/QInputContextPlugin/description" />
+<h3 class="fn"><a name="description"></a><a href="qstring.html">QString</a> QInputContextPlugin::description ( const <a href="qstring.html">QString</a> &amp; <i>key</i> )&nbsp;&nbsp;<tt> [pure virtual]</tt></h3>
+<p>Returns an internationalized brief description of the <a href="qinputcontext.html">QInputContext</a> object specified by <i>key</i>. You can, for example, use this description in a user interface.</p>
+<p>See also <a href="qinputcontextplugin.html#keys">keys</a>() and <a href="qinputcontextplugin.html#displayName">displayName</a>().</p>
+<a name="//apple_ref/cpp/instm/QInputContextPlugin/displayName" />
+<h3 class="fn"><a name="displayName"></a><a href="qstring.html">QString</a> QInputContextPlugin::displayName ( const <a href="qstring.html">QString</a> &amp; <i>key</i> )&nbsp;&nbsp;<tt> [pure virtual]</tt></h3>
+<p>Returns a user friendly internationalized name of the <a href="qinputcontext.html">QInputContext</a> object specified by <i>key</i>. You can, for example, use this name in a menu.</p>
+<p>See also <a href="qinputcontextplugin.html#keys">keys</a>() and <a href="qinputcontext.html#identifierName">QInputContext::identifierName</a>().</p>
+<a name="//apple_ref/cpp/instm/QInputContextPlugin/keys" />
+<h3 class="fn"><a name="keys"></a><a href="qstringlist.html">QStringList</a> QInputContextPlugin::keys () const&nbsp;&nbsp;<tt> [pure virtual]</tt></h3>
+<p>Returns the list of <a href="qinputcontext.html">QInputContext</a> keys this plugin provides.</p>
+<p>These keys are usually the class names of the custom input context that are implemented in the plugin. The names are used, for example, to identify and specify input methods for the input method switching mechanism. They have to be consistent with <a href="qinputcontext.html#identifierName">QInputContext::identifierName</a>(), and may only contain ASCII characters.</p>
+<p>See also <a href="qinputcontextplugin.html#create">create</a>(), <a href="qinputcontextplugin.html#displayName">displayName</a>(), and <a href="qinputcontext.html#identifierName">QInputContext::identifierName</a>().</p>
+<a name="//apple_ref/cpp/instm/QInputContextPlugin/languages" />
+<h3 class="fn"><a name="languages"></a><a href="qstringlist.html">QStringList</a> QInputContextPlugin::languages ( const <a href="qstring.html">QString</a> &amp; <i>key</i> )&nbsp;&nbsp;<tt> [pure virtual]</tt></h3>
+<p>Returns the languages supported by the <a href="qinputcontext.html">QInputContext</a> object specified by <i>key</i>.</p>
+<p>The languages are expressed as language code (e.g&#x2e; &quot;zh_CN&quot;, &quot;zh_TW&quot;, &quot;zh_HK&quot;, &quot;ja&quot;, &quot;ko&quot;, ..&#x2e;)&#x2e; An input context that supports multiple languages can return all supported languages as <a href="qstringlist.html">QStringList</a>. The name has to be consistent with <a href="qinputcontext.html#language">QInputContext::language</a>().</p>
+<p>This information may be used to optimize user interface.</p>
+<p>See also <a href="qinputcontextplugin.html#keys">keys</a>(), <a href="qinputcontext.html#language">QInputContext::language</a>(), and <a href="qlocale.html">QLocale</a>.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

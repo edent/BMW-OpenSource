@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- customtypesending.qdoc -->
+<head>
+  <title>Qt 4.6: Custom Type Sending Example</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">Custom Type Sending Example<br /><span class="subtitle"></span>
+</h1>
+<p>Files:</p>
+<ul>
+<li><a href="tools-customtypesending-message-cpp.html">tools/customtypesending/message.cpp</a></li>
+<li><a href="tools-customtypesending-message-h.html">tools/customtypesending/message.h</a></li>
+<li><a href="tools-customtypesending-window-cpp.html">tools/customtypesending/window.cpp</a></li>
+<li><a href="tools-customtypesending-window-h.html">tools/customtypesending/window.h</a></li>
+<li><a href="tools-customtypesending-main-cpp.html">tools/customtypesending/main.cpp</a></li>
+<li><a href="tools-customtypesending-customtypesending-pro.html">tools/customtypesending/customtypesending.pro</a></li>
+</ul>
+<p>The Custom Type Sending example shows how to use a custom type with signals and slots.</p>
+<p align="center"><img src="images/customtypesending-example.png" /></p><p>Contents:</p>
+<ul><li><a href="#overview">Overview</a></li>
+<li><a href="#the-window-class-definition">The Window Class Definition</a></li>
+<li><a href="#the-window-class-implementation">The Window Class Implementation</a></li>
+<li><a href="#making-the-connection">Making the Connection</a></li>
+<li><a href="#further-reading">Further Reading</a></li>
+</ul>
+<a name="overview"></a>
+<h2>Overview</h2>
+<p>In the <a href="tools-customtype.html">Custom Type Example</a>, we showed how to integrate custom types with the meta-object system, enabling them to be stored in <a href="qvariant.html">QVariant</a> objects, written out in debugging information and used in signal-slot communication.</p>
+<p>In this example, we demonstrate that the preparations made to the <tt>Message</tt> class and its declaration with <a href="qmetatype.html#Q_DECLARE_METATYPE">Q_DECLARE_METATYPE</a>() enable it to be used with direct signal-slot connections. We do this by creating a <tt>Window</tt> class containing signals and slots whose signatures include <tt>Message</tt> arguments.</p>
+<a name="the-window-class-definition"></a>
+<h2>The Window Class Definition</h2>
+<p>We define a simple <tt>Window</tt> class with a signal and public slot that allow a <tt>Message</tt> object to be sent via a signal-slot connection:</p>
+<pre> class Window : public QWidget
+ {
+     Q_OBJECT
+
+ public:
+     Window();
+
+ signals:
+     void messageSent(const Message &amp;message);
+
+ public slots:
+     void setMessage(const Message &amp;message);
+
+ private slots:
+     void sendMessage();
+
+ private:
+     Message thisMessage;
+     QTextEdit *editor;
+ };</pre>
+<p>The window will contain a text editor to show the contents of a message and a push button that the user can click to send a message. To facilitate this, we also define the <tt>sendMessage()</tt> slot. We also keep a <tt>Message</tt> instance in the <tt>thisMessage</tt> private variable which holds the actual message to be sent.</p>
+<a name="the-window-class-implementation"></a>
+<h2>The Window Class Implementation</h2>
+<p>The <tt>Window</tt> constructor sets up a user interface containing a text editor and a push button.</p>
+<pre> Window::Window()
+ {
+     editor = new QTextEdit();
+     QPushButton *sendButton = new QPushButton(tr(&quot;&amp;Send message&quot;));
+
+     connect(sendButton, SIGNAL(clicked()), this, SLOT(sendMessage()));
+
+     QHBoxLayout *buttonLayout = new QHBoxLayout();
+     buttonLayout-&gt;addStretch();
+     buttonLayout-&gt;addWidget(sendButton);
+     buttonLayout-&gt;addStretch();
+
+     QVBoxLayout *layout = new QVBoxLayout(this);
+     layout-&gt;addWidget(editor);
+     layout-&gt;addLayout(buttonLayout);
+
+     setWindowTitle(tr(&quot;Custom Type Sending&quot;));
+ }</pre>
+<p>The button's <a href="qabstractbutton.html#clicked">clicked()</a> signal is connected to the window's <tt>sendMessage()</tt> slot, which emits the <tt>messageSent(Message)</tt> signal with the <tt>Message</tt> held by the <tt>thisMessage</tt> variable:</p>
+<pre> void Window::sendMessage()
+ {
+     thisMessage = Message(editor-&gt;toPlainText(), thisMessage.headers());
+     emit messageSent(thisMessage);
+ }</pre>
+<p>We implement a slot to allow the message to be received, and this also lets us set the message in the window programatically:</p>
+<pre> void Window::setMessage(const Message &amp;message)
+ {
+     thisMessage = message;
+     editor-&gt;setPlainText(thisMessage.body());
+ }</pre>
+<p>In this function, we simply assign the new message to <tt>thisMessage</tt> and update the text in the editor.</p>
+<a name="making-the-connection"></a>
+<h2>Making the Connection</h2>
+<p>In the example's <tt>main()</tt> function, we perform the connection between two instances of the <tt>Window</tt> class:</p>
+<pre> int main(int argc, char *argv[])
+ {
+     QApplication app(argc, argv);
+
+     Window window1;
+     QStringList headers;
+     headers &lt;&lt; &quot;Subject: Hello World&quot;
+             &lt;&lt; &quot;From: qt-info@nokia.com&quot;;
+     QString body = &quot;This is a test.\r\n&quot;;
+     Message message(body, headers);
+     window1.setMessage(message);
+
+     Window window2;
+     QObject::connect(&amp;window1, SIGNAL(messageSent(Message)),
+                      &amp;window2, SLOT(setMessage(Message)));
+     QObject::connect(&amp;window2, SIGNAL(messageSent(Message)),
+                      &amp;window1, SLOT(setMessage(Message)));
+     window1.show();
+     window2.show();
+     return app.exec();
+ }</pre>
+<p>We set the message for the first window and connect the <tt>messageSent(Message)</tt> signal from each window to the other's <tt>setMessage(Message)</tt> slot. Since the signals and slots mechanism is only concerned with the type, we can simplify the signatures of both the signal and slot when we make the connection.</p>
+<p>When the user clicks on the <b>Send message</b> button in either window, the message shown will be emitted in a signal that the other window will receive and display.</p>
+<a name="further-reading"></a>
+<h2>Further Reading</h2>
+<p>Although the custom <tt>Message</tt> type can be used with direct signals and slots, an additional registration step needs to be performed if you want to use it with queued signal-slot connections. See the <a href="threads-queuedcustomtype.html">Queued Custom Type Example</a> for details.</p>
+<p>More information on using custom types with Qt can be found in the <a href="custom-types.html">Creating Custom Qt Types</a> document.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

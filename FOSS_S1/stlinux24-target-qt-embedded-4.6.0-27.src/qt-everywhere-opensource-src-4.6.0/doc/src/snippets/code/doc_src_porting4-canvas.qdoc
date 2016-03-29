@@ -1,0 +1,157 @@
+/****************************************************************************
+**
+** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+** All rights reserved.
+** Contact: Nokia Corporation (qt-info@nokia.com)
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:LGPL$
+** Commercial Usage
+** Licensees holding valid Qt Commercial licenses may use this file in
+** accordance with the Qt Commercial License Agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and Nokia.
+**
+** GNU Lesser General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU Lesser
+** General Public License version 2.1 as published by the Free Software
+** Foundation and appearing in the file LICENSE.LGPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU Lesser General Public License version 2.1 requirements
+** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+**
+** In addition, as a special exception, Nokia gives you certain additional
+** rights.  These rights are described in the Nokia Qt LGPL Exception
+** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+**
+** GNU General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU
+** General Public License version 3.0 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU General Public License version 3.0 requirements will be
+** met: http://www.gnu.org/copyleft/gpl.html.
+**
+** If you have questions regarding the use of this file, please contact
+** Nokia at qt-info@nokia.com.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+//! [0]
+item->scene().sceneRect().intersects(item->sceneBoundingRect());
+//! [0]
+
+
+//! [1]
+class TileScene : public QGraphicsScene
+{
+public:
+    ...
+
+    void setTiles(const QPixmap &pixmap, int h, int v,
+                  int tileHeight, int tileWidth);
+    void setTile(int x, int y, int tilenum);
+
+private:
+    QRect tileRect(int x, int y) const;
+    QRect tileRect(int tileNum) const;
+
+    QVector<QVector<int> > tiles;
+    QPixmap tilePixmap;
+    int tileW, tileH;
+    int hTiles, vTiles;
+};
+//! [1]
+
+
+//! [2]
+void TileScene::setTiles(const QPixmap &pixmap, int h, int v,
+                         int tileHeight, int tileWidth)
+{
+    tilePixmap = pixmap;
+    tileW = tileWidth;
+    tileH = tileHeight;
+    hTiles = h;
+    vTiles = v;
+
+    tiles.resize(v);
+    for (int y = 0; y < v; ++y)
+        tiles[y].resize(h);
+}
+//! [2]
+
+
+//! [3]
+void TileScene::setTile(int x, int y, int tilenum)
+{
+    tiles[y][x] = tilenum;
+    update(tileRect(x, y));
+}
+//! [3]
+
+
+//! [4]
+QRect TileScene::tileRect(int x, int y) const
+{
+    return QRect(x * tileW, y * tileH, tileW, tileH);
+}
+//! [4]
+
+
+//! [5]
+QRect TileScene::tileRect(int tileNum) const
+{
+    int numHTiles = tilePixmap.width() / tileW;
+    int numVTiles = tilePixmap.height() / tileH;
+    return tileRect(tileNum % numHTiles, tileNum / numHTiles);
+}
+//! [5]
+
+
+//! [6]
+void drawBackground(QPainter *painter, const QRectF &exposed)
+{
+    for (int y = 0; y < vTiles; ++y) {
+        for (int x = 0; x < hTiles; ++x) {
+            QRect destRect = tileRect(x, y);
+            if (exposed.intersects(destRect)) {
+                painter->drawPixmap(destRect, tilePixmap,
+                                    tileRect(tiles[y][x]));
+            }
+        }
+    }
+}
+//! [6]
+
+
+//! [7]
+    // Before
+    Q3CanvasEllipse ellipse(10, 10);
+
+    // After
+    QGraphicsEllipseItem ellipse(-5, -5, 10, 10);
+//! [7]
+
+
+//! [8]
+static QPainterPath fromControlPoints(const Q3PointArray &pa)
+{
+    QPainterPath path;
+    path.moveTo(pa[0]);
+    for (int i = 1; i < pa.size(); i += 3)
+        path.cubicTo(pa[i], pa[(i + 1) % pa.size()], pa[(i + 2) % pa.size()]);
+    return path;
+}
+//! [8]
+
+
+//! [9]
+wildcardPath.replace("%1", "*");
+QFileInfo fi(wildcardPath);
+
+QList<QPixmap> frames;
+foreach (QString entry, QDir(fi.path(), fi.fileName()).entryList())
+    frames << QPixmap(fi.path() + "/" + entry);
+//! [9]

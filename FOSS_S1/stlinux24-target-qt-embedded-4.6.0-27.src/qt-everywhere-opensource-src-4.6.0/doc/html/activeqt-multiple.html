@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- multiple.qdoc -->
+<head>
+  <title>Qt 4.6: Multiple Example (ActiveQt)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">Multiple Example (ActiveQt)<br /><span class="subtitle"></span>
+</h1>
+<p>Files:</p>
+<ul>
+<li><a href="activeqt-multiple-ax1-h.html">activeqt/multiple/ax1.h</a></li>
+<li><a href="activeqt-multiple-ax2-h.html">activeqt/multiple/ax2.h</a></li>
+<li><a href="activeqt-multiple-main-cpp.html">activeqt/multiple/main.cpp</a></li>
+<li><a href="activeqt-multiple-multiple-pro.html">activeqt/multiple/multiple.pro</a></li>
+</ul>
+<p>The Multiple example demonstrates the implementation of a <a href="qaxfactory.html">QAxFactory</a> to provide multiple ActiveX controls in a single in process ActiveX server using the <tt>QAXFACTORY_EXPORT()</tt> macro. The ActiveX controls in this example are simple <a href="qwidget.html">QWidget</a> subclasses that reimplement <a href="qwidget.html#paintEvent">QWidget::paintEvent</a>().</p>
+<pre> class QAxWidget1 : public QWidget
+ {
+     Q_OBJECT
+     Q_CLASSINFO(&quot;ClassID&quot;, &quot;{1D9928BD-4453-4bdd-903D-E525ED17FDE5}&quot;)
+     Q_CLASSINFO(&quot;InterfaceID&quot;, &quot;{99F6860E-2C5A-42ec-87F2-43396F4BE389}&quot;)
+     Q_CLASSINFO(&quot;EventsID&quot;, &quot;{0A3E9F27-E4F1-45bb-9E47-63099BCCD0E3}&quot;)
+
+     Q_PROPERTY(QColor fillColor READ fillColor WRITE setFillColor)
+ public:
+     QAxWidget1(QWidget *parent = 0)
+         : QWidget(parent), fill_color(Qt::red)
+     {
+     }
+
+     QColor fillColor() const
+     {
+         return fill_color;
+     }
+     void setFillColor(const QColor &amp;fc)
+     {
+         fill_color = fc;
+         repaint();
+     }
+
+ protected:
+     void paintEvent(QPaintEvent *e)
+     {
+         QPainter paint(this);
+         QRect r = rect();
+         r.adjust(10, 10, -10, -10);
+         paint.fillRect(r, fill_color);
+     }
+
+ private:
+     QColor fill_color;
+ };</pre>
+<p>The first control draws a filled rectangle. The fill color is exposed as a property. <tt>Q_CLASSINFO()</tt> is used to specify the COM identifiers.</p>
+<pre> class QAxWidget2 : public QWidget
+ {
+     Q_OBJECT
+     Q_CLASSINFO(&quot;ClassID&quot;, &quot;{58139D56-6BE9-4b17-937D-1B1EDEDD5B71}&quot;)
+     Q_CLASSINFO(&quot;InterfaceID&quot;, &quot;{B66280AB-08CC-4dcc-924F-58E6D7975B7D}&quot;)
+     Q_CLASSINFO(&quot;EventsID&quot;, &quot;{D72BACBA-03C4-4480-B4BB-DE4FE3AA14A0}&quot;)
+     Q_CLASSINFO(&quot;ToSuperClass&quot;, &quot;QAxWidget2&quot;)
+     Q_CLASSINFO(&quot;StockEvents&quot;, &quot;yes&quot;)
+     Q_CLASSINFO(&quot;Insertable&quot;, &quot;yes&quot;)
+
+     Q_PROPERTY( int lineWidth READ lineWidth WRITE setLineWidth )
+ public:
+     QAxWidget2(QWidget *parent = 0)
+         : QWidget(parent), line_width( 1 )
+     {
+     }
+
+     int lineWidth() const
+     {
+         return line_width;
+     }
+     void setLineWidth( int lw )
+     {
+         line_width = lw;
+         repaint();
+     }
+
+ protected:
+     void paintEvent( QPaintEvent *e )
+     {
+         QPainter paint( this );
+         QPen pen = paint.pen();
+         pen.setWidth( line_width );
+         paint.setPen( pen );
+
+         QRect r = rect();
+         r.adjust( 10, 10, -10, -10 );
+         paint.drawEllipse( r );
+     }
+
+ private:
+     int line_width;
+ };</pre>
+<p>The second control draws a circle. The linewith is exposed as a property. <tt>Q_CLASSINFO()</tt> is used to specify the COM identifiers, and to set the attributes <i>ToSuperClass</i> and <i>StockEvents</i> to expose only the API of the class itself, and to add COM stock events to the ActiveX control.</p>
+<pre> #include &quot;ax1.h&quot;
+ #include &quot;ax2.h&quot;
+ #include &lt;QAxFactory&gt;
+
+ QT_USE_NAMESPACE
+
+ QAXFACTORY_BEGIN(&quot;{98DE28B6-6CD3-4e08-B9FA-3D1DB43F1D2F}&quot;, &quot;{05828915-AD1C-47ab-AB96-D6AD1E25F0E2}&quot;)
+     QAXCLASS(QAxWidget1)
+     QAXCLASS(QAxWidget2)
+ QAXFACTORY_END()</pre>
+<p>The classes are exported from the server using the <a href="qaxfactory.html">QAxFactory</a> macros.</p>
+<p>To build the example you must first build the <a href="qaxserver.html">QAxServer</a> library. Then run <tt>qmake</tt> and your make tool in <tt>examples/activeqt/multiple</tt>.</p>
+<p>The <a href="qaxserver-demo-multiple.html">demonstration</a> requires your WebBrowser to support ActiveX controls, and scripting to be enabled.</p>
+<pre> &lt;script language=&quot;javascript&quot;&gt;
+ function setColor( form )
+ {
+     Ax1.fillColor = form.colorEdit.value;
+ }
+
+ function setWidth( form )
+ {
+     Ax2.lineWidth = form.widthEdit.value;
+ }
+ &lt;/script&gt;
+
+ &lt;p /&gt;
+ This is one QWidget subclass:&lt;br /&gt;
+ &lt;object ID=&quot;Ax1&quot; CLASSID=&quot;CLSID:1D9928BD-4453-4bdd-903D-E525ED17FDE5&quot;
+ CODEBASE=&quot;http://qt.nokia.com/demos/multipleax.cab&quot;&gt;
+ [Object not available! Did you forget to build and register the server?]
+ &lt;/object&gt;&lt;br /&gt;
+ &lt;form&gt;
+ Fill Color: &lt;input type=&quot;edit&quot; ID=&quot;colorEdit&quot; value = &quot;red&quot; /&gt;
+ &lt;input type=&quot;button&quot; value = &quot;Set&quot; onClick=&quot;setColor(this.form)&quot; /&gt;
+ &lt;input type=&quot;button&quot; value = &quot;Hide&quot; onClick=&quot;Ax1.hide()&quot; /&gt;
+ &lt;input type=&quot;button&quot; value = &quot;Show&quot; onClick=&quot;Ax1.show()&quot; /&gt;
+ &lt;/form&gt;
+
+ &lt;p /&gt;
+ This is another QWidget subclass:&lt;br /&gt;
+ &lt;object ID=&quot;Ax2&quot; CLASSID=&quot;CLSID:58139D56-6BE9-4b17-937D-1B1EDEDD5B71&quot;
+ CODEBASE=&quot;http://qt.nokia.com/demos/multipleax.cab&quot;&gt;
+ [Object not available! Did you forget to build and register the server?]
+ &lt;/object&gt;&lt;br /&gt;
+ &lt;form&gt;
+ Line width: &lt;input type=&quot;edit&quot; ID=&quot;widthEdit&quot; value = &quot;1&quot; /&gt;
+ &lt;input type=&quot;button&quot; value = &quot;Set&quot; onClick=&quot;setWidth(this.form)&quot; /&gt;
+ &lt;/form&gt;</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

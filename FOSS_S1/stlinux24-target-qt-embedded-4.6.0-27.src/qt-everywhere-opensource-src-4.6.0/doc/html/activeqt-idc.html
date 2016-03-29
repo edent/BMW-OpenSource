@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- activeqt-idc.qdoc -->
+<head>
+  <title>Qt 4.6: IDC - The Interface Description Compiler (ActiveQt)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">IDC - The Interface Description Compiler (ActiveQt)<br /><span class="subtitle"></span>
+</h1>
+<a name="idc"></a><p>The IDC tool is part of the <a href="activeqt.html#activeqt">ActiveQt</a> build system and makes it possible to turn any Qt binary into a full COM object server with only a few lines of code.</p>
+<p>IDC understands the following command line parameters:</p>
+<p><table class="generic" align="center" cellpadding="2" cellspacing="1" border="0">
+<thead><tr valign="top" class="qt-style"><th>Option</th><th>Result</th></tr></thead>
+<tr valign="top" class="odd"><td>dll -idl idl -version x.y</td><td>Writes the IDL of the server <i>dll</i> to the file <i>idl</i>. The type library wll have version x.y&#x2e;</td></tr>
+<tr valign="top" class="even"><td>dll -tlb tlb</td><td>Replaces the type library in <i>dll</i> with <i>tlb</i></td></tr>
+<tr valign="top" class="odd"><td>-v</td><td>Print version information</td></tr>
+<tr valign="top" class="even"><td>-regserver dll</td><td>Register the COM server <i>dll</i></td></tr>
+<tr valign="top" class="odd"><td>-unregserver</td><td>Unregister the COM server <i>dll</i></td></tr>
+</table></p>
+<p>It is usually never necessary to invoke IDC manually, as the <tt>qmake</tt> build system takes care of adding the required post processing steps to the build process. See the <a href="activeqt.html#activeqt">ActiveQt</a> documentation for details.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

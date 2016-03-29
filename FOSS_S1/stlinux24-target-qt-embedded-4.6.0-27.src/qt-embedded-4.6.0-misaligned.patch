@@ -1,0 +1,47 @@
+Refactors some code to remove unaligned acceses for ARM, SH, and ST200.
+Misaligned accesses are a real performance drag on these systems.
+
+Signed-off-by: David McKay <david.mckay@st.com>
+
+Index: qt-everywhere-opensource-src-4.6.0/src/3rdparty/webkit/WebCore/platform/text/AtomicString.cpp
+===================================================================
+--- qt-everywhere-opensource-src-4.6.0.orig/src/3rdparty/webkit/WebCore/platform/text/AtomicString.cpp
++++ qt-everywhere-opensource-src-4.6.0/src/3rdparty/webkit/WebCore/platform/text/AtomicString.cpp
+@@ -103,7 +103,7 @@ static inline bool equal(StringImpl* str
+     if (string->length() != length)
+         return false;
+ 
+-#if PLATFORM(ARM) || PLATFORM(SH4)
++#if PLATFORM(ARM) || PLATFORM(SH4) || PLATFORM(ST200)
+     const UChar* stringCharacters = string->characters();
+     for (unsigned i = 0; i != length; ++i) {
+         if (*stringCharacters++ != *characters++)
+Index: qt-everywhere-opensource-src-4.6.0/src/3rdparty/webkit/WebCore/platform/text/StringHash.h
+===================================================================
+--- qt-everywhere-opensource-src-4.6.0.orig/src/3rdparty/webkit/WebCore/platform/text/StringHash.h
++++ qt-everywhere-opensource-src-4.6.0/src/3rdparty/webkit/WebCore/platform/text/StringHash.h
+@@ -47,6 +47,16 @@ namespace WebCore {
+             if (aLength != bLength)
+                 return false;
+ 
++#if PLATFORM(ARM) || PLATFORM(SH) || PLATFORM(ST200)
++            const UChar* aChars = a->characters();
++            const UChar* bChars = b->characters();
++            for (unsigned i = 0; i != aLength; ++i)
++                if (*aChars++ != *bChars++)
++                    return false;
++
++            return true;
++#else
++
+             const uint32_t* aChars = reinterpret_cast<const uint32_t*>(a->characters());
+             const uint32_t* bChars = reinterpret_cast<const uint32_t*>(b->characters());
+ 
+@@ -59,6 +69,7 @@ namespace WebCore {
+                 return false;
+ 
+             return true;
++#endif
+         }
+ 
+         static unsigned hash(const RefPtr<StringImpl>& key) { return key->hash(); }

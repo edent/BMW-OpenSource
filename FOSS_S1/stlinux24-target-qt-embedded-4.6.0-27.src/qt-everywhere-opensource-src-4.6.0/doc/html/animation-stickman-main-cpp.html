@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: main.cpp Example File (animation/stickman/main.cpp)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">main.cpp Example File<br /><span class="small-subtitle">animation/stickman/main.cpp</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the QtCore module of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+
+ #include &quot;animation.h&quot;
+ #include &quot;node.h&quot;
+ #include &quot;lifecycle.h&quot;
+ #include &quot;stickman.h&quot;
+ #include &quot;graphicsview.h&quot;
+
+ #include &lt;QtCore&gt;
+ #include &lt;QtGui&gt;
+
+ int main(int argc, char **argv)
+ {
+     Q_INIT_RESOURCE(stickman);
+     QApplication app(argc, argv);
+
+     StickMan *stickMan = new StickMan;
+     stickMan-&gt;setDrawSticks(false);
+
+     QGraphicsTextItem *textItem = new QGraphicsTextItem();
+     textItem-&gt;setHtml(&quot;&lt;font color=\&quot;white\&quot;&gt;&lt;b&gt;Stickman&lt;/b&gt;&quot;
+         &quot;&lt;p&gt;&quot;
+         &quot;Tell the stickman what to do!&quot;
+         &quot;&lt;/p&gt;&quot;
+         &quot;&lt;p&gt;&lt;i&gt;&quot;
+         &quot;&lt;li&gt;Press &lt;font color=\&quot;purple\&quot;&gt;J&lt;/font&gt; to make the stickman jump.&lt;/li&gt;&quot;
+         &quot;&lt;li&gt;Press &lt;font color=\&quot;purple\&quot;&gt;D&lt;/font&gt; to make the stickman dance.&lt;/li&gt;&quot;
+         &quot;&lt;li&gt;Press &lt;font color=\&quot;purple\&quot;&gt;C&lt;/font&gt; to make him chill out.&lt;/li&gt;&quot;
+         &quot;&lt;li&gt;When you are done, press &lt;font color=\&quot;purple\&quot;&gt;Escape&lt;/font&gt;.&lt;/li&gt;&quot;
+         &quot;&lt;/i&gt;&lt;/p&gt;&quot;
+         &quot;&lt;p&gt;If he is unlucky, the stickman will get struck by lightning, and never jump, dance or chill out again.&quot;
+         &quot;&lt;/p&gt;&lt;/font&gt;&quot;);
+     qreal w = textItem-&gt;boundingRect().width();
+     QRectF stickManBoundingRect = stickMan-&gt;mapToScene(stickMan-&gt;boundingRect()).boundingRect();
+     textItem-&gt;setPos(-w / 2.0, stickManBoundingRect.bottom() + 25.0);
+
+     QGraphicsScene scene;
+     scene.addItem(stickMan);
+     scene.addItem(textItem);
+     scene.setBackgroundBrush(Qt::black);
+
+     GraphicsView view;
+     view.setRenderHints(QPainter::Antialiasing);
+     view.setTransformationAnchor(QGraphicsView::NoAnchor);
+     view.setScene(&amp;scene);
+     view.show();
+     view.setFocus();
+
+     QRectF sceneRect = scene.sceneRect();
+     <span class="comment">// making enough room in the scene for stickman to jump and die</span>
+     view.resize(sceneRect.width() + 100, sceneRect.height() + 100);
+     view.setSceneRect(sceneRect);
+
+     LifeCycle cycle(stickMan, &amp;view);
+     cycle.setDeathAnimation(&quot;:/animations/dead&quot;);
+
+     cycle.addActivity(&quot;:/animations/jumping&quot;, Qt::Key_J);
+     cycle.addActivity(&quot;:/animations/dancing&quot;, Qt::Key_D);
+     cycle.addActivity(&quot;:/animations/chilling&quot;, Qt::Key_C);
+     cycle.start();
+
+     return app.exec();
+ }</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

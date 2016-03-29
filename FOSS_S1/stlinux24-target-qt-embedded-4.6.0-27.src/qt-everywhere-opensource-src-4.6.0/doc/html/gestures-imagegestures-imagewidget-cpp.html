@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: imagewidget.cpp Example File (gestures/imagegestures/imagewidget.cpp)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">imagewidget.cpp Example File<br /><span class="small-subtitle">gestures/imagegestures/imagewidget.cpp</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the examples of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+
+ #include &quot;imagewidget.h&quot;
+
+ #include &lt;QtGui&gt;
+
+ ImageWidget::ImageWidget(QWidget *parent)
+     : QWidget(parent),
+     position(0),
+     horizontalOffset(0),
+     verticalOffset(0),
+     rotationAngle(0),
+     scaleFactor(1),
+     currentStepScaleFactor(1)
+
+ {
+     setMinimumSize(QSize(100,100));
+
+     grabGesture(Qt::PanGesture);
+     grabGesture(Qt::PinchGesture);
+     grabGesture(Qt::SwipeGesture);
+ }
+
+ bool ImageWidget::event(QEvent *event)
+ {
+     if (event-&gt;type() == QEvent::Gesture)
+         return gestureEvent(static_cast&lt;QGestureEvent*&gt;(event));
+     return QWidget::event(event);
+ }
+
+ void ImageWidget::paintEvent(QPaintEvent*)
+ {
+     QPainter p(this);
+
+     float iw = currentImage.width();
+     float ih = currentImage.height();
+     float wh = height();
+     float ww = width();
+
+     p.translate(ww/2, wh/2);
+     p.translate(horizontalOffset, verticalOffset);
+     p.rotate(rotationAngle);
+     p.scale(currentStepScaleFactor * scaleFactor, currentStepScaleFactor * scaleFactor);
+     p.translate(-iw/2, -ih/2);
+     p.drawImage(0, 0, currentImage);
+ }
+
+ void ImageWidget::mouseDoubleClickEvent(QMouseEvent *)
+ {
+     rotationAngle = 0;
+     scaleFactor = 1;
+     currentStepScaleFactor = 1;
+     verticalOffset = 0;
+     horizontalOffset = 0;
+     update();
+ }
+
+ bool ImageWidget::gestureEvent(QGestureEvent *event)
+ {
+     if (QGesture *swipe = event-&gt;gesture(Qt::SwipeGesture))
+         swipeTriggered(static_cast&lt;QSwipeGesture *&gt;(swipe));
+     else if (QGesture *pan = event-&gt;gesture(Qt::PanGesture))
+         panTriggered(static_cast&lt;QPanGesture *&gt;(pan));
+     if (QGesture *pinch = event-&gt;gesture(Qt::PinchGesture))
+         pinchTriggered(static_cast&lt;QPinchGesture *&gt;(pinch));
+     return true;
+ }
+
+ void ImageWidget::panTriggered(QPanGesture *gesture)
+ {
+ #ifndef QT_NO_CURSOR
+     switch (gesture-&gt;state()) {
+         case Qt::GestureStarted:
+         case Qt::GestureUpdated:
+             setCursor(Qt::SizeAllCursor);
+             break;
+         default:
+             setCursor(Qt::ArrowCursor);
+     }
+ #endif
+     QPointF delta = gesture-&gt;delta();
+     horizontalOffset += delta.x();
+     verticalOffset += delta.y();
+     update();
+ }
+
+ void ImageWidget::pinchTriggered(QPinchGesture *gesture)
+ {
+     QPinchGesture::ChangeFlags changeFlags = gesture-&gt;changeFlags();
+     if (changeFlags &amp; QPinchGesture::RotationAngleChanged) {
+         qreal value = gesture-&gt;property(&quot;rotationAngle&quot;).toReal();
+         qreal lastValue = gesture-&gt;property(&quot;lastRotationAngle&quot;).toReal();
+         rotationAngle += value - lastValue;
+     }
+     if (changeFlags &amp; QPinchGesture::ScaleFactorChanged) {
+         qreal value = gesture-&gt;property(&quot;scaleFactor&quot;).toReal();
+         currentStepScaleFactor = value;
+     }
+     if (gesture-&gt;state() == Qt::GestureFinished) {
+         scaleFactor *= currentStepScaleFactor;
+         currentStepScaleFactor = 1;
+     }
+     update();
+ }
+
+ void ImageWidget::swipeTriggered(QSwipeGesture *gesture)
+ {
+     if (gesture-&gt;state() == Qt::GestureFinished) {
+         if (gesture-&gt;horizontalDirection() == QSwipeGesture::Left
+             || gesture-&gt;verticalDirection() == QSwipeGesture::Up)
+             goPrevImage();
+         else
+             goNextImage();
+         update();
+     }
+ }
+
+ void ImageWidget::resizeEvent(QResizeEvent*)
+ {
+     update();
+ }
+
+ void ImageWidget::openDirectory(const QString &amp;path)
+ {
+     this-&gt;path = path;
+     QDir dir(path);
+     QStringList nameFilters;
+     nameFilters &lt;&lt; &quot;*.jpg&quot; &lt;&lt; &quot;*.png&quot;;
+     files = dir.entryList(nameFilters, QDir::Files|QDir::Readable, QDir::Name);
+
+     position = 0;
+     goToImage(0);
+     update();
+ }
+
+ QImage ImageWidget::loadImage(const QString &amp;fileName)
+ {
+     QImageReader reader(fileName);
+     if (!reader.canRead()) {
+         qDebug() &lt;&lt; fileName &lt;&lt; &quot;: can't load image&quot;;
+         return QImage();
+     }
+
+     QImage image;
+     if (!reader.read(&amp;image)) {
+         qDebug() &lt;&lt; fileName &lt;&lt; &quot;: corrupted image&quot;;
+         return QImage();
+     }
+     return image;
+ }
+
+ void ImageWidget::goNextImage()
+ {
+     if (files.isEmpty())
+         return;
+
+     if (position &lt; files.size()-1) {
+         ++position;
+         prevImage = currentImage;
+         currentImage = nextImage;
+         if (position+1 &lt; files.size())
+             nextImage = loadImage(path+QLatin1String(&quot;/&quot;)+files.at(position+1));
+         else
+             nextImage = QImage();
+     }
+     update();
+ }
+
+ void ImageWidget::goPrevImage()
+ {
+     if (files.isEmpty())
+         return;
+
+     if (position &gt; 0) {
+         --position;
+         nextImage = currentImage;
+         currentImage = prevImage;
+         if (position &gt; 0)
+             prevImage = loadImage(path+QLatin1String(&quot;/&quot;)+files.at(position-1));
+         else
+             prevImage = QImage();
+     }
+     update();
+ }
+
+ void ImageWidget::goToImage(int index)
+ {
+     if (files.isEmpty())
+         return;
+
+     if (index &lt; 0 || index &gt;= files.size()) {
+         qDebug() &lt;&lt; &quot;goToImage: invalid index: &quot; &lt;&lt; index;
+         return;
+     }
+
+     if (index == position+1) {
+         goNextImage();
+         return;
+     }
+
+     if (position &gt; 0 &amp;&amp; index == position-1) {
+         goPrevImage();
+         return;
+     }
+
+     position = index;
+
+     if (index &gt; 0)
+         prevImage = loadImage(path+QLatin1String(&quot;/&quot;)+files.at(position-1));
+     else
+         prevImage = QImage();
+     currentImage = loadImage(path+QLatin1String(&quot;/&quot;)+files.at(position));
+     if (position+1 &lt; files.size())
+         nextImage = loadImage(path+QLatin1String(&quot;/&quot;)+files.at(position+1));
+     else
+         nextImage = QImage();
+     update();
+ }</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

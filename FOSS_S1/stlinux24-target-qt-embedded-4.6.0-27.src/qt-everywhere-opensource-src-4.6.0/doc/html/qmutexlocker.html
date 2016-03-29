@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qmutex.cpp -->
+<head>
+  <title>Qt 4.6: QMutexLocker Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QMutexLocker" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QMutexLocker Class Reference<br /><span class="small-subtitle">[<a href="qtcore.html">QtCore</a> module]</span>
+</h1>
+<p>The QMutexLocker class is a convenience class that simplifies locking and unlocking mutexes. <a href="#details">More...</a></p>
+<pre> #include &lt;QMutexLocker&gt;</pre><p><b>Note:</b> All functions in this class are <a href="threads-reentrancy.html#thread-safe">thread-safe</a>.</p>
+<ul>
+<li><a href="qmutexlocker-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qmutexlocker.html#QMutexLocker">QMutexLocker</a></b> ( QMutex * <i>mutex</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qmutexlocker.html#dtor.QMutexLocker">~QMutexLocker</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QMutex * </td><td class="memItemRight" valign="bottom"><b><a href="qmutexlocker.html#mutex">mutex</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qmutexlocker.html#relock">relock</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qmutexlocker.html#unlock">unlock</a></b> ()</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QMutexLocker class is a convenience class that simplifies locking and unlocking mutexes.</p>
+<p>Locking and unlocking a <a href="qmutex.html">QMutex</a> in complex functions and statements or in exception handling code is error-prone and difficult to debug. QMutexLocker can be used in such situations to ensure that the state of the mutex is always well-defined.</p>
+<p>QMutexLocker should be created within a function where a <a href="qmutex.html">QMutex</a> needs to be locked. The mutex is locked when QMutexLocker is created. You can unlock and relock the mutex with <tt>unlock()</tt> and <tt>relock()</tt>. If locked, the mutex will be unlocked when the QMutexLocker is destroyed.</p>
+<p>For example, this complex function locks a <a href="qmutex.html">QMutex</a> upon entering the function and unlocks the mutex at all the exit points:</p>
+<pre> int complexFunction(int flag)
+ {
+     mutex.lock();
+
+     int retVal = 0;
+
+     switch (flag) {
+     case 0:
+     case 1:
+         mutex.unlock();
+         return moreComplexFunction(flag);
+     case 2:
+         {
+             int status = anotherFunction();
+             if (status &lt; 0) {
+                 mutex.unlock();
+                 return -2;
+             }
+             retVal = status + flag;
+         }
+         break;
+     default:
+         if (flag &gt; 10) {
+             mutex.unlock();
+             return -1;
+         }
+         break;
+     }
+
+     mutex.unlock();
+     return retVal;
+ }</pre>
+<p>This example function will get more complicated as it is developed, which increases the likelihood that errors will occur.</p>
+<p>Using QMutexLocker greatly simplifies the code, and makes it more readable:</p>
+<pre> int complexFunction(int flag)
+ {
+     QMutexLocker locker(&amp;mutex);
+
+     int retVal = 0;
+
+     switch (flag) {
+     case 0:
+     case 1:
+         return moreComplexFunction(flag);
+     case 2:
+         {
+             int status = anotherFunction();
+             if (status &lt; 0)
+                 return -2;
+             retVal = status + flag;
+         }
+         break;
+     default:
+         if (flag &gt; 10)
+             return -1;
+         break;
+     }
+
+     return retVal;
+ }</pre>
+<p>Now, the mutex will always be unlocked when the QMutexLocker object is destroyed (when the function returns since <tt>locker</tt> is an auto variable).</p>
+<p>The same principle applies to code that throws and catches exceptions. An exception that is not caught in the function that has locked the mutex has no way of unlocking the mutex before the exception is passed up the stack to the calling function.</p>
+<p>QMutexLocker also provides a <tt>mutex()</tt> member function that returns the mutex on which the QMutexLocker is operating. This is useful for code that needs access to the mutex, such as <a href="qwaitcondition.html#wait">QWaitCondition::wait</a>(). For example:</p>
+<pre> class SignalWaiter
+ {
+ private:
+     QMutexLocker locker;
+
+ public:
+     SignalWaiter(QMutex *mutex)
+         : locker(mutex)
+     {
+     }
+
+     void waitForSignal()
+     {
+         ...
+         while (!signalled)
+             waitCondition.wait(locker.mutex());
+         ...
+     }
+ };</pre>
+<p>See also <a href="qreadlocker.html">QReadLocker</a>, <a href="qwritelocker.html">QWriteLocker</a>, and <a href="qmutex.html">QMutex</a>.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QMutexLocker/QMutexLocker" />
+<h3 class="fn"><a name="QMutexLocker"></a>QMutexLocker::QMutexLocker ( <a href="qmutex.html">QMutex</a> * <i>mutex</i> )</h3>
+<p>Constructs a <a href="qmutexlocker.html">QMutexLocker</a> and locks <i>mutex</i>. The mutex will be unlocked when the <a href="qmutexlocker.html">QMutexLocker</a> is destroyed. If <i>mutex</i> is zero, <a href="qmutexlocker.html">QMutexLocker</a> does nothing.</p>
+<p>See also <a href="qmutex.html#lock">QMutex::lock</a>().</p>
+<a name="//apple_ref/cpp/instm/QMutexLocker/~QMutexLocker" />
+<h3 class="fn"><a name="dtor.QMutexLocker"></a>QMutexLocker::~QMutexLocker ()</h3>
+<p>Destroys the <a href="qmutexlocker.html">QMutexLocker</a> and unlocks the mutex that was locked in the constructor.</p>
+<p>See also <a href="qmutex.html#unlock">QMutex::unlock</a>().</p>
+<a name="//apple_ref/cpp/instm/QMutexLocker/mutex" />
+<h3 class="fn"><a name="mutex"></a><a href="qmutex.html">QMutex</a> * QMutexLocker::mutex () const</h3>
+<p>Returns a pointer to the mutex that was locked in the constructor.</p>
+<a name="//apple_ref/cpp/instm/QMutexLocker/relock" />
+<h3 class="fn"><a name="relock"></a>void QMutexLocker::relock ()</h3>
+<p>Relocks an unlocked mutex locker.</p>
+<p>See also <a href="qmutexlocker.html#unlock">unlock</a>().</p>
+<a name="//apple_ref/cpp/instm/QMutexLocker/unlock" />
+<h3 class="fn"><a name="unlock"></a>void QMutexLocker::unlock ()</h3>
+<p>Unlocks this mutex locker. You can use <tt>relock()</tt> to lock it again. It does not need to be locked when destroyed.</p>
+<p>See also <a href="qmutexlocker.html#relock">relock</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

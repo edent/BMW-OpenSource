@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- sql-programming.qdoc -->
+<head>
+  <title>Qt 4.6: SQL Programming</title>
+  <link rel="next" href="sql-connecting.html" />
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><p>
+[Next: <a href="sql-connecting.html">Connecting to Databases</a>]
+</p>
+<h1 class="title">SQL Programming<br /><span class="subtitle"></span>
+</h1>
+<p>This overview assumes that you have at least a basic knowledge of SQL. You should be able to understand simple <tt>SELECT</tt>, <tt>INSERT</tt>, <tt>UPDATE</tt>, and <tt>DELETE</tt> statements. Although the <a href="qsqltablemodel.html">QSqlTableModel</a> class provides an interface to database browsing and editing that does not require a knowledge of SQL, a basic understanding of SQL is highly recommended. A standard text covering SQL databases is <i>An Introduction to Database Systems</i> (7th Ed.) by C. J. Date, ISBN 0201385902.</p>
+<a name="topics"></a>
+<h3>Topics:</h3>
+<ul>
+<li><a href="database.html">Database Classes</a></li>
+<li><a href="sql-connecting.html">Connecting to Databases</a><ul>
+<li><a href="sql-driver.html">SQL Database Drivers</a></li>
+</ul>
+</li>
+<li><a href="sql-sqlstatements.html">Executing SQL Statements</a><ul>
+<li><a href="sql-types.html">Recommended Use of Data Types in Databases</a></li>
+</ul>
+</li>
+<li><a href="sql-model.html">Using the SQL Model Classes</a></li>
+<li><a href="sql-presenting.html">Presenting Data in a Table View</a></li>
+<li><a href="sql-forms.html">Creating Data-Aware Forms</a></li>
+</ul>
+<a name="database-classes"></a>
+<h3>Database Classes</h3>
+<p>These classes provide access to SQL databases.</p>
+<p><table width="100%" class="annotated" cellpadding="2" cellspacing="1" border="0">
+<tr valign="top" class="odd"><th><a href="qsql.html">QSql</a></th><td>Contains miscellaneous identifiers used throughout the Qt SQL library</td></tr>
+<tr valign="top" class="even"><th><a href="qsqldatabase.html">QSqlDatabase</a></th><td>Represents a connection to a database</td></tr>
+<tr valign="top" class="odd"><th><a href="qsqldriver.html">QSqlDriver</a></th><td>Abstract base class for accessing specific SQL databases</td></tr>
+<tr valign="top" class="even"><th><a href="qsqldrivercreator.html">QSqlDriverCreator</a></th><td>Template class that provides a SQL driver factory for a specific driver type</td></tr>
+<tr valign="top" class="odd"><th><a href="qsqldrivercreatorbase.html">QSqlDriverCreatorBase</a></th><td>The base class for SQL driver factories</td></tr>
+<tr valign="top" class="even"><th><a href="qsqlerror.html">QSqlError</a></th><td>SQL database error information</td></tr>
+<tr valign="top" class="odd"><th><a href="qsqlfield.html">QSqlField</a></th><td>Manipulates the fields in SQL database tables and views</td></tr>
+<tr valign="top" class="even"><th><a href="qsqlindex.html">QSqlIndex</a></th><td>Functions to manipulate and describe database indexes</td></tr>
+<tr valign="top" class="odd"><th><a href="qsqlquery.html">QSqlQuery</a></th><td>Means of executing and manipulating SQL statements</td></tr>
+<tr valign="top" class="even"><th><a href="qsqlquerymodel.html">QSqlQueryModel</a></th><td>Read-only data model for SQL result sets</td></tr>
+<tr valign="top" class="odd"><th><a href="qsqlrecord.html">QSqlRecord</a></th><td>Encapsulates a database record</td></tr>
+<tr valign="top" class="even"><th><a href="qsqlrelationaltablemodel.html">QSqlRelationalTableModel</a></th><td>Editable data model for a single database table, with foreign key support</td></tr>
+<tr valign="top" class="odd"><th><a href="qsqlresult.html">QSqlResult</a></th><td>Abstract interface for accessing data from specific SQL databases</td></tr>
+<tr valign="top" class="even"><th><a href="qsqltablemodel.html">QSqlTableModel</a></th><td>Editable data model for a single database table</td></tr>
+</table></p>
+<p>The SQL classes are divided into three layers:</p>
+<a name="driver-layer"></a>
+<h4>Driver Layer</h4>
+<p>This comprises the classes <a href="qsqldriver.html">QSqlDriver</a>, <a href="qsqldrivercreator.html">QSqlDriverCreator</a>&lt;T&gt;, <a href="qsqldrivercreatorbase.html">QSqlDriverCreatorBase</a>, <a href="qsqldriverplugin.html">QSqlDriverPlugin</a>, and <a href="qsqlresult.html">QSqlResult</a>.</p>
+<p>This layer provides the low-level bridge between the specific databases and the SQL API layer. See <a href="sql-driver.html">SQL Database Drivers</a> for more information.</p>
+<a name="sql-api-layer"></a>
+<h4>SQL API Layer</h4>
+<p>These classes provide access to databases. Connections are made using the <a href="qsqldatabase.html">QSqlDatabase</a> class. Database interaction is achieved by using the <a href="qsqlquery.html">QSqlQuery</a> class. In addition to <a href="qsqldatabase.html">QSqlDatabase</a> and <a href="qsqlquery.html">QSqlQuery</a>, the SQL API layer is supported by <a href="qsqlerror.html">QSqlError</a>, <a href="qsqlfield.html">QSqlField</a>, <a href="qsqlindex.html">QSqlIndex</a>, and <a href="qsqlrecord.html">QSqlRecord</a>.</p>
+<a name="user-interface-layer"></a>
+<h4>User Interface Layer</h4>
+<p>These classes link the data from a database to data-aware widgets. They include <a href="qsqlquerymodel.html">QSqlQueryModel</a>, <a href="qsqltablemodel.html">QSqlTableModel</a>, and <a href="qsqlrelationaltablemodel.html">QSqlRelationalTableModel</a>. These classes are designed to work with Qt's <a href="model-view-programming.html">model/view framework</a>.</p>
+<p>Note that to use any of these classes, a <a href="qcoreapplication.html">QCoreApplication</a> object must have been instantiated first.</p>
+<p>
+[Next: <a href="sql-connecting.html">Connecting to Databases</a>]
+</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

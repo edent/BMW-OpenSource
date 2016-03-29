@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qevent.cpp -->
+<head>
+  <title>Qt 4.6: QMoveEvent Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QMoveEvent" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QMoveEvent Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QMoveEvent class contains event parameters for move events. <a href="#details">More...</a></p>
+<pre> #include &lt;QMoveEvent&gt;</pre><p>Inherits <a href="qevent.html">QEvent</a>.</p>
+<ul>
+<li><a href="qmoveevent-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qmoveevent.html#QMoveEvent">QMoveEvent</a></b> ( const QPoint &amp; <i>pos</i>, const QPoint &amp; <i>oldPos</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const QPoint &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qmoveevent.html#oldPos">oldPos</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const QPoint &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qmoveevent.html#pos">pos</a></b> () const</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>6 public functions inherited from <a href="qevent.html#public-functions">QEvent</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li><div class="fn"></div>1 property inherited from <a href="qevent.html#properties">QEvent</a></li>
+<li><div class="fn"></div>1 static public member inherited from <a href="qevent.html#static-public-members">QEvent</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QMoveEvent class contains event parameters for move events.</p>
+<p>Move events are sent to widgets that have been moved to a new position relative to their parent.</p>
+<p>The event handler <a href="qwidget.html#moveEvent">QWidget::moveEvent</a>() receives move events.</p>
+<p>See also <a href="qwidget.html#pos-prop">QWidget::move</a>() and <a href="qwidget.html#geometry-prop">QWidget::setGeometry</a>().</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QMoveEvent/QMoveEvent" />
+<h3 class="fn"><a name="QMoveEvent"></a>QMoveEvent::QMoveEvent ( const <a href="qpoint.html">QPoint</a> &amp; <i>pos</i>, const <a href="qpoint.html">QPoint</a> &amp; <i>oldPos</i> )</h3>
+<p>Constructs a move event with the new and old widget positions, <i>pos</i> and <i>oldPos</i> respectively.</p>
+<a name="//apple_ref/cpp/instm/QMoveEvent/oldPos" />
+<h3 class="fn"><a name="oldPos"></a>const <a href="qpoint.html">QPoint</a> &amp; QMoveEvent::oldPos () const</h3>
+<p>Returns the old position of the widget.</p>
+<a name="//apple_ref/cpp/instm/QMoveEvent/pos" />
+<h3 class="fn"><a name="pos"></a>const <a href="qpoint.html">QPoint</a> &amp; QMoveEvent::pos () const</h3>
+<p>Returns the new position of the widget. This excludes the window frame for top level widgets.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

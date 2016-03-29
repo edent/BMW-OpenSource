@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qgraphicsanchorlayout.cpp -->
+<head>
+  <title>Qt 4.6: QGraphicsAnchorLayout Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QGraphicsAnchorLayout" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QGraphicsAnchorLayout Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QGraphicsAnchorLayout class provides a layout where one can anchor widgets together in Graphics View. <a href="#details">More...</a></p>
+<pre> #include &lt;QGraphicsAnchorLayout&gt;</pre><p>Inherits <a href="qgraphicslayout.html">QGraphicsLayout</a>.</p>
+<p>This class was introduced in Qt 4.6.</p>
+<ul>
+<li><a href="qgraphicsanchorlayout-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qgraphicsanchorlayout.html#QGraphicsAnchorLayout">QGraphicsAnchorLayout</a></b> ( QGraphicsLayoutItem * <i>parent</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicsanchorlayout.html#dtor.QGraphicsAnchorLayout">~QGraphicsAnchorLayout</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QGraphicsAnchor * </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicsanchorlayout.html#addAnchor">addAnchor</a></b> ( QGraphicsLayoutItem * <i>firstItem</i>, Qt::AnchorPoint <i>firstEdge</i>, QGraphicsLayoutItem * <i>secondItem</i>, Qt::AnchorPoint <i>secondEdge</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicsanchorlayout.html#addAnchors">addAnchors</a></b> ( QGraphicsLayoutItem * <i>firstItem</i>, QGraphicsLayoutItem * <i>secondItem</i>, Qt::Orientations <i>orientations</i> = Qt::Horizontal | Qt::Vertical )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicsanchorlayout.html#addCornerAnchors">addCornerAnchors</a></b> ( QGraphicsLayoutItem * <i>firstItem</i>, Qt::Corner <i>firstCorner</i>, QGraphicsLayoutItem * <i>secondItem</i>, Qt::Corner <i>secondCorner</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QGraphicsAnchor * </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicsanchorlayout.html#anchor">anchor</a></b> ( QGraphicsLayoutItem * <i>firstItem</i>, Qt::AnchorPoint <i>firstEdge</i>, QGraphicsLayoutItem * <i>secondItem</i>, Qt::AnchorPoint <i>secondEdge</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">qreal </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicsanchorlayout.html#horizontalSpacing">horizontalSpacing</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicsanchorlayout.html#setHorizontalSpacing">setHorizontalSpacing</a></b> ( qreal <i>spacing</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicsanchorlayout.html#setSpacing">setSpacing</a></b> ( qreal <i>spacing</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicsanchorlayout.html#setVerticalSpacing">setVerticalSpacing</a></b> ( qreal <i>spacing</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">qreal </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicsanchorlayout.html#verticalSpacing">verticalSpacing</a></b> () const</td></tr>
+</table>
+<hr />
+<a name="reimplemented-public-functions"></a>
+<h2>Reimplemented Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual int </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicsanchorlayout.html#count">count</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicsanchorlayout.html#invalidate">invalidate</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QGraphicsLayoutItem * </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicsanchorlayout.html#itemAt">itemAt</a></b> ( int <i>index</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicsanchorlayout.html#removeAt">removeAt</a></b> ( int <i>index</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicsanchorlayout.html#setGeometry">setGeometry</a></b> ( const QRectF &amp; <i>geom</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>10 public functions inherited from <a href="qgraphicslayout.html#public-functions">QGraphicsLayout</a></li>
+<li><div bar="2" class="fn"></div>35 public functions inherited from <a href="qgraphicslayoutitem.html#public-functions">QGraphicsLayoutItem</a></li>
+</ul>
+<hr />
+<a name="reimplemented-protected-functions"></a>
+<h2>Reimplemented Protected Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual QSizeF </td><td class="memItemRight" valign="bottom"><b><a href="qgraphicsanchorlayout.html#sizeHint">sizeHint</a></b> ( Qt::SizeHint <i>which</i>, const QSizeF &amp; <i>constraint</i> = QSizeF() ) const</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>1 protected function inherited from <a href="qgraphicslayout.html#protected-functions">QGraphicsLayout</a></li>
+<li><div bar="2" class="fn"></div>3 protected functions inherited from <a href="qgraphicslayoutitem.html#protected-functions">QGraphicsLayoutItem</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QGraphicsAnchorLayout class provides a layout where one can anchor widgets together in Graphics View.</p>
+<p>The anchor layout allows developers to specify how widgets should be placed relative to each other, and to the layout itself. The specification is made by adding anchors to the layout by calling <a href="qgraphicsanchorlayout.html#addAnchor">addAnchor</a>(), <a href="qgraphicsanchorlayout.html#addAnchors">addAnchors</a>() or <a href="qgraphicsanchorlayout.html#addCornerAnchors">addCornerAnchors</a>().</p>
+<p>Existing anchors in the layout can be accessed with the <a href="qgraphicsanchorlayout.html#anchor">anchor</a>() function. Items that are anchored are automatically added to the layout, and if items are removed, all their anchors will be automatically removed.</p>
+<div style="float: left; margin-right: 2em"><p><img src="images/simpleanchorlayout-example.png" alt="Using an anchor layout to align simple colored widgets." /> </div></p>
+<p>Anchors are always set up between edges of an item, where the &quot;center&quot; is also considered to be an edge. Consider the following example:</p>
+<pre>     layout-&gt;addAnchor(b, Qt::AnchorLeft, a, Qt::AnchorRight);
+     layout-&gt;addAnchor(b, Qt::AnchorTop, a, Qt::AnchorBottom);</pre>
+<p>Here, the right edge of item <tt>a</tt> is anchored to the left edge of item <tt>b</tt> and the bottom edge of item <tt>a</tt> is anchored to the top edge of item <tt>b</tt>, with the result that item <tt>b</tt> will be placed diagonally to the right and below item <tt>b</tt>.</p>
+<p>The <a href="qgraphicsanchorlayout.html#addCornerAnchors">addCornerAnchors</a>() function provides a simpler way of anchoring the corners of two widgets than the two individual calls to <a href="qgraphicsanchorlayout.html#addAnchor">addAnchor</a>() shown in the code above. Here, we see how a widget can be anchored to the top-left corner of the enclosing layout:</p>
+<pre>     layout-&gt;addCornerAnchors(a, Qt::TopLeftCorner, layout, Qt::TopLeftCorner);</pre>
+<p>In cases where anchors are used to match the widths or heights of widgets, it is convenient to use the <a href="qgraphicsanchorlayout.html#addAnchors">addAnchors</a>() function. As with the other functions for specifying anchors, it can also be used to anchor a widget to a layout.</p>
+<div style="clear: both"><a name="size-hints-and-size-policies-in-an-anchor-layout"></a>
+<h3>Size Hints and Size Policies in an Anchor Layout</h3>
+<p>QGraphicsAnchorLayout respects each item's size hints and size policies. Note that there are some properties of <a href="qsizepolicy.html">QSizePolicy</a> that are <a href="#known-issues">not respected</a>.</p>
+<a name="spacing-within-an-anchor-layout"></a>
+<h3>Spacing within an Anchor Layout</h3>
+<p>The layout may distribute some space between the items. If the spacing has not been explicitly specified, the actual amount of space will usually be 0.</p>
+<p>However, if the first edge is the <i>opposite</i> of the second edge (e.g&#x2e;, the right edge of the first widget is anchored to the left edge of the second widget), the size of the anchor will be queried from the style through a pixel metric: <a href="qstyle.html#PixelMetric-enum">PM_LayoutHorizontalSpacing</a> for horizontal anchors and <a href="qstyle.html#PixelMetric-enum">PM_LayoutVerticalSpacing</a> for vertical anchors.</p>
+<p>If the spacing is negative, the items will overlap to some extent.</p>
+<a name="known-issues"></a>
+<h3>Known issues</h3>
+<p>There are some features that QGraphicsAnchorLayout currently does not support. This might change in the future, so avoid using these features if you want to avoid any future regressions in behaviour:</p>
+<ul>
+<li>Stretch factors are not respected.</li>
+<li><a href="qsizepolicy.html#PolicyFlag-enum">QSizePolicy::ExpandFlag</a> is not respected.</li>
+<li>Height for width is not respected.</li>
+</ul>
+<p>See also <a href="qgraphicslinearlayout.html">QGraphicsLinearLayout</a>, <a href="qgraphicsgridlayout.html">QGraphicsGridLayout</a>, and <a href="qgraphicslayout.html">QGraphicsLayout</a>.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QGraphicsAnchorLayout/QGraphicsAnchorLayout" />
+<h3 class="fn"><a name="QGraphicsAnchorLayout"></a>QGraphicsAnchorLayout::QGraphicsAnchorLayout ( <a href="qgraphicslayoutitem.html">QGraphicsLayoutItem</a> * <i>parent</i> = 0 )</h3>
+<p>Constructs a <a href="qgraphicsanchorlayout.html">QGraphicsAnchorLayout</a> instance. <i>parent</i> is passed to <a href="qgraphicslayout.html">QGraphicsLayout</a>'s constructor.</p>
+<a name="//apple_ref/cpp/instm/QGraphicsAnchorLayout/~QGraphicsAnchorLayout" />
+<h3 class="fn"><a name="dtor.QGraphicsAnchorLayout"></a>QGraphicsAnchorLayout::~QGraphicsAnchorLayout ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Destroys the <a href="qgraphicsanchorlayout.html">QGraphicsAnchorLayout</a> object.</p>
+<a name="//apple_ref/cpp/instm/QGraphicsAnchorLayout/addAnchor" />
+<h3 class="fn"><a name="addAnchor"></a><a href="qgraphicsanchor.html">QGraphicsAnchor</a> * QGraphicsAnchorLayout::addAnchor ( <a href="qgraphicslayoutitem.html">QGraphicsLayoutItem</a> * <i>firstItem</i>, <a href="qt.html#AnchorPoint-enum">Qt::AnchorPoint</a> <i>firstEdge</i>, <a href="qgraphicslayoutitem.html">QGraphicsLayoutItem</a> * <i>secondItem</i>, <a href="qt.html#AnchorPoint-enum">Qt::AnchorPoint</a> <i>secondEdge</i> )</h3>
+<p>Creates an anchor between the edge <i>firstEdge</i> of item <i>firstItem</i> and the edge <i>secondEdge</i> of item <i>secondItem</i>. The magnitude of the anchor is picked up from the style. Anchors between a layout edge and an item edge will have a size of 0. If there is already an anchor between the edges, the the new anchor will replace the old one.</p>
+<p><i>firstItem</i> and <i>secondItem</i> are automatically added to the layout if they are not part of the layout. This means that <a href="qgraphicsanchorlayout.html#count">count</a>() can increase by up to 2.</p>
+<p>The spacing an anchor will get depends on the type of anchor. For instance, anchors from the Right edge of one item to the Left edge of another (or vice versa) will use the default horizontal spacing. The same behaviour applies to Bottom to Top anchors, (but they will use the default vertical spacing). For all other anchor combinations, the spacing will be 0. All anchoring functions will follow this rule.</p>
+<p>The spacing can also be set manually by using <a href="qgraphicsanchor.html#spacing-prop">QGraphicsAnchor::setSpacing</a>() method.</p>
+<p>Calling this function where <i>firstItem</i> or <i>secondItem</i> are ancestors of the layout have undefined behaviour.</p>
+<p>See also <a href="qgraphicsanchorlayout.html#addAnchors">addAnchors</a>() and <a href="qgraphicsanchorlayout.html#addCornerAnchors">addCornerAnchors</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsAnchorLayout/addAnchors" />
+<h3 class="fn"><a name="addAnchors"></a>void QGraphicsAnchorLayout::addAnchors ( <a href="qgraphicslayoutitem.html">QGraphicsLayoutItem</a> * <i>firstItem</i>, <a href="qgraphicslayoutitem.html">QGraphicsLayoutItem</a> * <i>secondItem</i>, <a href="qt.html#Orientation-enum">Qt::Orientations</a> <i>orientations</i> = Qt::Horizontal | Qt::Vertical )</h3>
+<p>Anchors two or four edges of <i>firstItem</i> with the corresponding edges of <i>secondItem</i>, so that <i>firstItem</i> has the same size as <i>secondItem</i> in the dimensions specified by <i>orientations</i>.</p>
+<p>For example, the following example anchors the left and right edges of two items to match their widths:</p>
+<pre>     layout-&gt;addAnchor(b, Qt::AnchorLeft, c, Qt::AnchorLeft);
+     layout-&gt;addAnchor(b, Qt::AnchorRight, c, Qt::AnchorRight);</pre>
+<p>This can also be achieved using the following line of code:</p>
+<pre>     layout-&gt;addAnchors(b, c, Qt::Horizontal);</pre>
+<p>See also <a href="qgraphicsanchorlayout.html#addAnchor">addAnchor</a>() and <a href="qgraphicsanchorlayout.html#addCornerAnchors">addCornerAnchors</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsAnchorLayout/addCornerAnchors" />
+<h3 class="fn"><a name="addCornerAnchors"></a>void QGraphicsAnchorLayout::addCornerAnchors ( <a href="qgraphicslayoutitem.html">QGraphicsLayoutItem</a> * <i>firstItem</i>, <a href="qt.html#Corner-enum">Qt::Corner</a> <i>firstCorner</i>, <a href="qgraphicslayoutitem.html">QGraphicsLayoutItem</a> * <i>secondItem</i>, <a href="qt.html#Corner-enum">Qt::Corner</a> <i>secondCorner</i> )</h3>
+<p>Creates two anchors between <i>firstItem</i> and <i>secondItem</i> specified by the corners, <i>firstCorner</i> and <i>secondCorner</i>, where one is for the horizontal edge and another one for the vertical edge.</p>
+<p>This is a convenience function, since anchoring corners can be expressed as anchoring two edges. For instance:</p>
+<pre>     layout-&gt;addAnchor(a, Qt::AnchorTop, layout, Qt::AnchorTop);
+     layout-&gt;addAnchor(a, Qt::AnchorLeft, layout, Qt::AnchorLeft);</pre>
+<p>This can also be achieved with the following line of code:</p>
+<pre>     layout-&gt;addCornerAnchors(a, Qt::TopLeftCorner, layout, Qt::TopLeftCorner);</pre>
+<p>If there is already an anchor between the edge pairs, it will be replaced by the anchors that this function specifies.</p>
+<p><i>firstItem</i> and <i>secondItem</i> are automatically added to the layout if they are not part of the layout. This means that <a href="qgraphicsanchorlayout.html#count">count</a>() can increase by up to 2.</p>
+<p>See also <a href="qgraphicsanchorlayout.html#addAnchor">addAnchor</a>() and <a href="qgraphicsanchorlayout.html#addAnchors">addAnchors</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsAnchorLayout/anchor" />
+<h3 class="fn"><a name="anchor"></a><a href="qgraphicsanchor.html">QGraphicsAnchor</a> * QGraphicsAnchorLayout::anchor ( <a href="qgraphicslayoutitem.html">QGraphicsLayoutItem</a> * <i>firstItem</i>, <a href="qt.html#AnchorPoint-enum">Qt::AnchorPoint</a> <i>firstEdge</i>, <a href="qgraphicslayoutitem.html">QGraphicsLayoutItem</a> * <i>secondItem</i>, <a href="qt.html#AnchorPoint-enum">Qt::AnchorPoint</a> <i>secondEdge</i> )</h3>
+<p>Returns the anchor between the anchor points defined by <i>firstItem</i> and <i>firstEdge</i> and <i>secondItem</i> and <i>secondEdge</i>. If there is no such anchor, the function will return 0.</p>
+<a name="//apple_ref/cpp/instm/QGraphicsAnchorLayout/count" />
+<h3 class="fn"><a name="count"></a>int QGraphicsAnchorLayout::count () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qgraphicslayout.html#count">QGraphicsLayout::count</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsAnchorLayout/horizontalSpacing" />
+<h3 class="fn"><a name="horizontalSpacing"></a><a href="qtglobal.html#qreal-typedef">qreal</a> QGraphicsAnchorLayout::horizontalSpacing () const</h3>
+<p>Returns the default horizontal spacing for the anchor layout.</p>
+<p>See also <a href="qgraphicsanchorlayout.html#verticalSpacing">verticalSpacing</a>() and <a href="qgraphicsanchorlayout.html#setHorizontalSpacing">setHorizontalSpacing</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsAnchorLayout/invalidate" />
+<h3 class="fn"><a name="invalidate"></a>void QGraphicsAnchorLayout::invalidate ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qgraphicslayout.html#invalidate">QGraphicsLayout::invalidate</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsAnchorLayout/itemAt" />
+<h3 class="fn"><a name="itemAt"></a><a href="qgraphicslayoutitem.html">QGraphicsLayoutItem</a> * QGraphicsAnchorLayout::itemAt ( int <i>index</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qgraphicslayout.html#itemAt">QGraphicsLayout::itemAt</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsAnchorLayout/removeAt" />
+<h3 class="fn"><a name="removeAt"></a>void QGraphicsAnchorLayout::removeAt ( int <i>index</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qgraphicslayout.html#removeAt">QGraphicsLayout::removeAt</a>().</p>
+<p>Removes the layout item at <i>index</i> without destroying it. Ownership of the item is transferred to the caller.</p>
+<p>Removing an item will also remove any of the anchors associated with it.</p>
+<p>See also <a href="qgraphicsanchorlayout.html#itemAt">itemAt</a>() and <a href="qgraphicsanchorlayout.html#count">count</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsAnchorLayout/setGeometry" />
+<h3 class="fn"><a name="setGeometry"></a>void QGraphicsAnchorLayout::setGeometry ( const <a href="qrectf.html">QRectF</a> &amp; <i>geom</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qgraphicslayoutitem.html#setGeometry">QGraphicsLayoutItem::setGeometry</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsAnchorLayout/setHorizontalSpacing" />
+<h3 class="fn"><a name="setHorizontalSpacing"></a>void QGraphicsAnchorLayout::setHorizontalSpacing ( <a href="qtglobal.html#qreal-typedef">qreal</a> <i>spacing</i> )</h3>
+<p>Sets the default horizontal spacing for the anchor layout to <i>spacing</i>.</p>
+<p>See also <a href="qgraphicsanchorlayout.html#horizontalSpacing">horizontalSpacing</a>(), <a href="qgraphicsanchorlayout.html#setVerticalSpacing">setVerticalSpacing</a>(), and <a href="qgraphicsanchorlayout.html#setSpacing">setSpacing</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsAnchorLayout/setSpacing" />
+<h3 class="fn"><a name="setSpacing"></a>void QGraphicsAnchorLayout::setSpacing ( <a href="qtglobal.html#qreal-typedef">qreal</a> <i>spacing</i> )</h3>
+<p>Sets the default horizontal and the default vertical spacing for the anchor layout to <i>spacing</i>.</p>
+<p>If an item is anchored with no spacing associated with the anchor, it will use the default spacing.</p>
+<p>Currently <a href="qgraphicsanchorlayout.html">QGraphicsAnchorLayout</a> does not support negative default spacings.</p>
+<p>See also <a href="qgraphicsanchorlayout.html#setHorizontalSpacing">setHorizontalSpacing</a>() and <a href="qgraphicsanchorlayout.html#setVerticalSpacing">setVerticalSpacing</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsAnchorLayout/setVerticalSpacing" />
+<h3 class="fn"><a name="setVerticalSpacing"></a>void QGraphicsAnchorLayout::setVerticalSpacing ( <a href="qtglobal.html#qreal-typedef">qreal</a> <i>spacing</i> )</h3>
+<p>Sets the default vertical spacing for the anchor layout to <i>spacing</i>.</p>
+<p>See also <a href="qgraphicsanchorlayout.html#verticalSpacing">verticalSpacing</a>(), <a href="qgraphicsanchorlayout.html#setHorizontalSpacing">setHorizontalSpacing</a>(), and <a href="qgraphicsanchorlayout.html#setSpacing">setSpacing</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsAnchorLayout/sizeHint" />
+<h3 class="fn"><a name="sizeHint"></a><a href="qsizef.html">QSizeF</a> QGraphicsAnchorLayout::sizeHint ( <a href="qt.html#SizeHint-enum">Qt::SizeHint</a> <i>which</i>, const <a href="qsizef.html">QSizeF</a> &amp; <i>constraint</i> = QSizeF() ) const&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Reimplemented from <a href="qgraphicslayoutitem.html#sizeHint">QGraphicsLayoutItem::sizeHint</a>().</p>
+<a name="//apple_ref/cpp/instm/QGraphicsAnchorLayout/verticalSpacing" />
+<h3 class="fn"><a name="verticalSpacing"></a><a href="qtglobal.html#qreal-typedef">qreal</a> QGraphicsAnchorLayout::verticalSpacing () const</h3>
+<p>Returns the default vertical spacing for the anchor layout.</p>
+<p>See also <a href="qgraphicsanchorlayout.html#horizontalSpacing">horizontalSpacing</a>() and <a href="qgraphicsanchorlayout.html#setVerticalSpacing">setVerticalSpacing</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

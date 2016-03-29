@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- contiguouscache.qdoc -->
+<head>
+  <title>Qt 4.6: Contiguous Cache Example</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">Contiguous Cache Example<br /><span class="subtitle"></span>
+</h1>
+<p>Files:</p>
+<ul>
+<li><a href="tools-contiguouscache-randomlistmodel-cpp.html">tools/contiguouscache/randomlistmodel.cpp</a></li>
+<li><a href="tools-contiguouscache-randomlistmodel-h.html">tools/contiguouscache/randomlistmodel.h</a></li>
+<li><a href="tools-contiguouscache-main-cpp.html">tools/contiguouscache/main.cpp</a></li>
+<li><a href="tools-contiguouscache-contiguouscache-pro.html">tools/contiguouscache/contiguouscache.pro</a></li>
+</ul>
+<p>The Contiguous Cache example shows how to use <a href="qcontiguouscache.html">QContiguousCache</a> to manage memory usage for very large models. In some environments memory is limited and, even when it isn't, users still dislike an application using excessive memory. Using <a href="qcontiguouscache.html">QContiguousCache</a> to manage a list, rather than loading the entire list into memory, allows the application to limit the amount of memory it uses, regardless of the size of the data set it accesses</p>
+<p>The simplest way to use <a href="qcontiguouscache.html">QContiguousCache</a> is to cache as items are requested. When a view requests an item at row N it is also likely to ask for items at rows near to N.</p>
+<pre> QVariant RandomListModel::data(const QModelIndex &amp;index, int role) const
+ {
+     if (role != Qt::DisplayRole)
+         return QVariant();
+
+     int row = index.row();
+
+     if (row &gt; m_rows.lastIndex()) {
+         if (row - m_rows.lastIndex() &gt; lookAhead)
+             cacheRows(row-halfLookAhead, qMin(m_count, row+halfLookAhead));
+         else while (row &gt; m_rows.lastIndex())
+             m_rows.append(fetchRow(m_rows.lastIndex()+1));
+     } else if (row &lt; m_rows.firstIndex()) {
+         if (m_rows.firstIndex() - row &gt; lookAhead)
+             cacheRows(qMax(0, row-halfLookAhead), row+halfLookAhead);
+         else while (row &lt; m_rows.firstIndex())
+             m_rows.prepend(fetchRow(m_rows.firstIndex()-1));
+     }
+
+     return m_rows.at(row);
+ }
+
+ void RandomListModel::cacheRows(int from, int to) const
+ {
+     for (int i = from; i &lt;= to; ++i)
+         m_rows.insert(i, fetchRow(i));
+ }</pre>
+<p>After getting the row, the class determines if the row is in the bounds of the contiguous cache's current range. It would have been equally valid to simply have the following code instead.</p>
+<pre> while (row &gt; m_rows.lastIndex())
+     m_rows.append(fetchWord(m_rows.lastIndex()+1);
+ while (row &lt; m_rows.firstIndex())
+     m_rows.prepend(fetchWord(m_rows.firstIndex()-1);</pre>
+<p>However a list will often jump rows if the scroll bar is used directly, resulting in the code above causing every row between the old and new rows to be fetched.</p>
+<p>Using <a href="qcontiguouscache.html#lastIndex">QContiguousCache::lastIndex</a>() and <a href="qcontiguouscache.html#firstIndex">QContiguousCache::firstIndex</a>() allows the example to determine what part of the list the cache is currently caching. These values don't represent the indexes into the cache's own memory, but rather a virtual infinite array that the cache represents.</p>
+<p>By using <a href="qcontiguouscache.html#append">QContiguousCache::append</a>() and <a href="qcontiguouscache.html#prepend">QContiguousCache::prepend</a>() the code ensures that items that may be still on the screen are not lost when the requested row has not moved far from the current cache range. <a href="qcontiguouscache.html#insert">QContiguousCache::insert</a>() can potentially remove more than one item from the cache as <a href="qcontiguouscache.html">QContiguousCache</a> does not allow for gaps. If your cache needs to quickly jump back and forth between rows with significant gaps between them consider using <a href="qcache.html">QCache</a> instead.</p>
+<p>And thats it. A perfectly reasonable cache, using minimal memory for a very large list. In this case the accessor for getting the words into the cache generates random information rather than fixed information. This allows you to see how the cache range is kept for a local number of rows when running the example.</p>
+<pre> QString RandomListModel::fetchRow(int position) const
+ {
+     return QString::number(rand() % ++position);
+ }</pre>
+<p>It is also worth considering pre-fetching items into the cache outside of the application's paint routine. This can be done either with a separate thread or using a <a href="qtimer.html">QTimer</a> to incrementally expand the range of the cache prior to rows being requested out of the current cache range.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

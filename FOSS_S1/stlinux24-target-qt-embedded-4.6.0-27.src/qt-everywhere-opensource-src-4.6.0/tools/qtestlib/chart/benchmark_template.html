@@ -1,0 +1,202 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>Title</title>
+        <! Javascript Here>
+	
+        	<script type="text/javascript">
+
+function offsetLabels(labels, offset)
+{
+    var copy = new Array();
+    for (key in labels) {
+        copy[key] = new Array(labels[key][0] + 0.25, labels[key][1]);
+    }
+    return copy;
+}
+
+function createLogDataSet(inDataSet)
+{
+    var logDataSet  = {};
+    logDataSet.label = inDataSet.label;
+    logDataSet.data = [];
+
+    if (!inDataSet.data)
+        return logDataSet;
+
+    var length = inDataSet.data.length;
+    
+    for (var i = 0; i < length; i++) {
+        logDataSet.data[i] = [];
+        logDataSet.data[i][0] = inDataSet.data[i][0];
+        logDataSet.data[i][1] = Math.log(inDataSet.data[i][1]);
+    }
+    return logDataSet;
+}
+
+
+function createLogData(inData)
+{
+    var logData  = [];
+
+    // foreach data set;
+    var length = inData.length;
+    for (var i = 0; i < length; ++i) {
+        logData[i] = createLogDataSet(inData[i]);
+    }
+    return logData;
+}
+
+function createChart() {
+//    alert("create chart" + this.chartId)
+
+    var dataSet;
+
+    if (this.useLinearScale)
+        dataSet = this.selectedDataset;
+    else 
+        dataSet = createLogData(this.selectedDataset);
+
+    if (this.useLineChart) {
+        var f = Flotr.draw($(this.chartId), 
+            dataSet,
+            { legend:{ backgroundColor: '#D2E8FF' } 
+            , xaxis: { ticks: this.labels, noTicks : 10 }
+             , mouse: { 
+                 track: true,
+                 lineColor: 'purple',
+                 sensibility: 1, 
+                 trackDecimals: 2,
+                 trackFormatter: function(obj){ return 'x = ' + obj.x +', y = ' + obj.y; }
+	         }
+            });
+        
+    } else {
+        var f = Flotr.draw($(this.chartId), 
+            dataSet,
+            { legend:{ backgroundColor: '#D2E8FF'}
+            ,  bars: { show: true, lineWidth: 1, barWidth: this.barWidth } 
+            , xaxis: { ticks: offsetLabels(this.labels, chartOptions.tickOffset), noTicks : 10 }
+            });
+    }
+}
+
+function checkform()
+{
+//    alert("check form " + this.form.id + " " + this.chartId);    
+    var field = this.form.list
+
+    // Apparently list of lenght one is not a list...
+    // Display the entire chart if there is only one data series.
+    if (!field.length) {
+        this.createChart();    
+        return;
+    }
+
+    this.selectedDataset = [];
+    var data = [];
+    var index = 0;
+
+    for (i = 0; i < field.length; i++) {
+        if (field[i].checked == true) {
+            this.selectedDataset[index++] = this.dataset[i];
+        } else {
+            this.selectedDataset[index++] = [];
+        }
+    }
+    this.createChart();
+}
+
+function createElement(nodeName, name) {
+  var node;
+  try {
+    node = document.createElement("<"+nodeName+" name="+name+">");
+  } catch (e) {
+    node = document.createElement(nodeName);
+    node.name = name;
+  }
+  return node;
+}
+
+function createFormSelector(form, value, text, type)
+{
+  var selector = createElement('input', 'list');
+  selector.type = type;
+  selector.defaultChecked = true;
+  selector.value = value;
+
+  form.appendChild(selector);
+  form.appendChild(document.createTextNode(text));
+  form.appendChild(document.createElement("BR"));
+}
+
+function createCheckBox(form, value, text)
+{
+    createFormSelector(form, value, text, "checkbox");
+}
+
+function createRadioButton(form, value, text)
+{
+    createFormSelector(form, value, text, "radio");
+}
+
+function buildSeriesSelector(form, chartOptions)
+{
+//    alert("form" + form.id + " " + chartOptions.chartId);
+    var series = chartOptions.seriesLabels;
+    form.onclick = function() { /*alert("fn " + chartOptions.chartId);*/ chartOptions.checkform() };
+    for (s = 0; s < series.length; ++s) {
+        createCheckBox(form, s, series[s]);
+    }
+}
+
+function buildChartTypeSelector()
+{
+    createRadioButton(this.chartTypeForm, 0, "Bar Chart");
+    createRadioButton(this.chartTypeForm, 1, "Line Chart");
+    
+    var field = this.chartTypeForm.list;
+    if (this.useLineChart)
+        field[1].checked = true;
+    else
+        field[0].checked = true;
+
+    var chartOptions = this;
+    this.chartTypeForm.onclick = function() { 
+        var field = chartOptions.chartTypeForm.list;
+
+        chartOptions.useLineChart = (field[1].checked == true);
+        chartOptions.checkform();
+    };
+}
+
+function buildScaleSelector()
+{
+    createRadioButton(this.scaleForm, 0, "Linear Scale");
+    createRadioButton(this.scaleForm, 1, "Logarithmic  Scale");
+    
+    var field = this.scaleForm.list;
+    field[0].checked = true;
+    field[1].checked = false;
+
+    var chartOptions = this;
+    this.scaleForm.onclick = function() { 
+        var field = chartOptions.scaleForm.list;
+
+        chartOptions.useLinearScale = (field[0].checked == true);
+        chartOptions.checkform();
+    };
+}
+
+
+		</script>
+	</head>
+	<body>
+        <h2>
+        <! Title Here>
+        </h2>
+        <! Description Here>
+        <! Chart Here>
+	</body>
+</html>

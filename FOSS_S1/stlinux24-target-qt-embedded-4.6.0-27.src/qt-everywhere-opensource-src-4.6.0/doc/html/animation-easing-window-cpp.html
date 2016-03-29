@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: window.cpp Example File (animation/easing/window.cpp)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">window.cpp Example File<br /><span class="small-subtitle">animation/easing/window.cpp</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the QtCore module of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+
+ #include &quot;window.h&quot;
+
+ Window::Window(QWidget *parent)
+     : QWidget(parent), m_iconSize(64, 64)
+ {
+     m_ui.setupUi(this);
+     QButtonGroup *buttonGroup = qFindChild&lt;QButtonGroup *&gt;(this);     <span class="comment">// ### workaround for uic in 4.4</span>
+     m_ui.easingCurvePicker-&gt;setIconSize(m_iconSize);
+     m_ui.easingCurvePicker-&gt;setMinimumHeight(m_iconSize.height() + 50);
+     buttonGroup-&gt;setId(m_ui.lineRadio, 0);
+     buttonGroup-&gt;setId(m_ui.circleRadio, 1);
+
+     QEasingCurve dummy;
+     m_ui.periodSpinBox-&gt;setValue(dummy.period());
+     m_ui.amplitudeSpinBox-&gt;setValue(dummy.amplitude());
+     m_ui.overshootSpinBox-&gt;setValue(dummy.overshoot());
+
+     connect(m_ui.easingCurvePicker, SIGNAL(currentRowChanged(int)), this, SLOT(curveChanged(int)));
+     connect(buttonGroup, SIGNAL(buttonClicked(int)), this, SLOT(pathChanged(int)));
+     connect(m_ui.periodSpinBox, SIGNAL(valueChanged(double)), this, SLOT(periodChanged(double)));
+     connect(m_ui.amplitudeSpinBox, SIGNAL(valueChanged(double)), this, SLOT(amplitudeChanged(double)));
+     connect(m_ui.overshootSpinBox, SIGNAL(valueChanged(double)), this, SLOT(overshootChanged(double)));
+     createCurveIcons();
+
+     QPixmap pix(QLatin1String(&quot;:/images/qt-logo.png&quot;));
+     m_item = new PixmapItem(pix);
+     m_scene.addItem(m_item);
+     m_ui.graphicsView-&gt;setScene(&amp;m_scene);
+
+     m_anim = new Animation(m_item, &quot;pos&quot;);
+     m_anim-&gt;setEasingCurve(QEasingCurve::OutBounce);
+     m_ui.easingCurvePicker-&gt;setCurrentRow(int(QEasingCurve::OutBounce));
+
+     startAnimation();
+ }
+
+ void Window::createCurveIcons()
+ {
+     QPixmap pix(m_iconSize);
+     QPainter painter(&amp;pix);
+     QLinearGradient gradient(0,0, 0, m_iconSize.height());
+     gradient.setColorAt(0.0, QColor(240, 240, 240));
+     gradient.setColorAt(1.0, QColor(224, 224, 224));
+     QBrush brush(gradient);
+     const QMetaObject &amp;mo = QEasingCurve::staticMetaObject;
+     QMetaEnum metaEnum = mo.enumerator(mo.indexOfEnumerator(&quot;Type&quot;));
+     <span class="comment">// Skip QEasingCurve::Custom</span>
+     for (int i = 0; i &lt; QEasingCurve::NCurveTypes - 1; ++i) {
+         painter.fillRect(QRect(QPoint(0, 0), m_iconSize), brush);
+         QEasingCurve curve((QEasingCurve::Type)i);
+         painter.setPen(QColor(0, 0, 255, 64));
+         qreal xAxis = m_iconSize.height()/1.5;
+         qreal yAxis = m_iconSize.width()/3;
+         painter.drawLine(0, xAxis, m_iconSize.width(),  xAxis);
+         painter.drawLine(yAxis, 0, yAxis, m_iconSize.height());
+
+         qreal curveScale = m_iconSize.height()/2;
+
+         painter.setPen(Qt::NoPen);
+
+         <span class="comment">// start point</span>
+         painter.setBrush(Qt::red);
+         QPoint start(yAxis, xAxis - curveScale * curve.valueForProgress(0));
+         painter.drawRect(start.x() - 1, start.y() - 1, 3, 3);
+
+         <span class="comment">// end point</span>
+         painter.setBrush(Qt::blue);
+         QPoint end(yAxis + curveScale, xAxis - curveScale * curve.valueForProgress(1));
+         painter.drawRect(end.x() - 1, end.y() - 1, 3, 3);
+
+         QPainterPath curvePath;
+         curvePath.moveTo(start);
+         for (qreal t = 0; t &lt;= 1.0; t+=1.0/curveScale) {
+             QPoint to;
+             to.setX(yAxis + curveScale * t);
+             to.setY(xAxis - curveScale * curve.valueForProgress(t));
+             curvePath.lineTo(to);
+         }
+         painter.setRenderHint(QPainter::Antialiasing, true);
+         painter.strokePath(curvePath, QColor(32, 32, 32));
+         painter.setRenderHint(QPainter::Antialiasing, false);
+         QListWidgetItem *item = new QListWidgetItem;
+         item-&gt;setIcon(QIcon(pix));
+         item-&gt;setText(metaEnum.key(i));
+         m_ui.easingCurvePicker-&gt;addItem(item);
+     }
+ }
+
+ void Window::startAnimation()
+ {
+     m_anim-&gt;setStartValue(QPointF(0, 0));
+     m_anim-&gt;setEndValue(QPointF(100, 100));
+     m_anim-&gt;setDuration(2000);
+     m_anim-&gt;setLoopCount(-1); <span class="comment">// forever</span>
+     m_anim-&gt;start();
+ }
+
+ void Window::curveChanged(int row)
+ {
+     QEasingCurve::Type curveType = (QEasingCurve::Type)row;
+     m_anim-&gt;setEasingCurve(curveType);
+     m_anim-&gt;setCurrentTime(0);
+
+     bool isElastic = curveType &gt;= QEasingCurve::InElastic &amp;&amp; curveType &lt;= QEasingCurve::OutInElastic;
+     bool isBounce = curveType &gt;= QEasingCurve::InBounce &amp;&amp; curveType &lt;= QEasingCurve::OutInBounce;
+     m_ui.periodSpinBox-&gt;setEnabled(isElastic);
+     m_ui.amplitudeSpinBox-&gt;setEnabled(isElastic || isBounce);
+     m_ui.overshootSpinBox-&gt;setEnabled(curveType &gt;= QEasingCurve::InBack &amp;&amp; curveType &lt;= QEasingCurve::OutInBack);
+ }
+
+ void Window::pathChanged(int index)
+ {
+     m_anim-&gt;setPathType((Animation::PathType)index);
+ }
+
+ void Window::periodChanged(double value)
+ {
+     QEasingCurve curve = m_anim-&gt;easingCurve();
+     curve.setPeriod(value);
+     m_anim-&gt;setEasingCurve(curve);
+ }
+
+ void Window::amplitudeChanged(double value)
+ {
+     QEasingCurve curve = m_anim-&gt;easingCurve();
+     curve.setAmplitude(value);
+     m_anim-&gt;setEasingCurve(curve);
+ }
+
+ void Window::overshootChanged(double value)
+ {
+     QEasingCurve curve = m_anim-&gt;easingCurve();
+     curve.setOvershoot(value);
+     m_anim-&gt;setEasingCurve(curve);
+ }</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qaxscript.cpp -->
+<head>
+  <title>Qt 4.6: QAxScript Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QAxScript" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QAxScript Class Reference<br /><span class="small-subtitle">[<a href="qaxcontainer.html">QAxContainer</a> module]</span>
+</h1>
+<p>The QAxScript class provides a wrapper around script code. <a href="#details">More...</a></p>
+<pre> #include &lt;QAxScript&gt;</pre><p><b>This class is not part of the Qt GUI Framework Edition.</b></p>
+<p>Inherits <a href="qobject.html">QObject</a>.</p>
+<ul>
+<li><a href="qaxscript-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-types"></a>
+<h2>Public Types</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qaxscript.html#FunctionFlags-enum">FunctionFlags</a></b> { FunctionNames, FunctionSignatures }</td></tr>
+</table>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qaxscript.html#QAxScript">QAxScript</a></b> ( const QString &amp; <i>name</i>, QAxScriptManager * <i>manager</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qaxscript.html#dtor.QAxScript">~QAxScript</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QVariant </td><td class="memItemRight" valign="bottom"><b><a href="qaxscript.html#call">call</a></b> ( const QString &amp; <i>function</i>, const QVariant &amp; <i>var1</i> = QVariant(), const QVariant &amp; <i>var2</i> = QVariant(), const QVariant &amp; <i>var3</i> = QVariant(), const QVariant &amp; <i>var4</i> = QVariant(), const QVariant &amp; <i>var5</i> = QVariant(), const QVariant &amp; <i>var6</i> = QVariant(), const QVariant &amp; <i>var7</i> = QVariant(), const QVariant &amp; <i>var8</i> = QVariant() )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QVariant </td><td class="memItemRight" valign="bottom"><b><a href="qaxscript.html#call-2">call</a></b> ( const QString &amp; <i>function</i>, QList&lt;QVariant&gt; &amp; <i>arguments</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QStringList </td><td class="memItemRight" valign="bottom"><b><a href="qaxscript.html#functions">functions</a></b> ( FunctionFlags <i>flags</i> = FunctionNames ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qaxscript.html#load">load</a></b> ( const QString &amp; <i>code</i>, const QString &amp; <i>language</i> = QString() )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qaxscript.html#scriptCode">scriptCode</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QAxScriptEngine * </td><td class="memItemRight" valign="bottom"><b><a href="qaxscript.html#scriptEngine">scriptEngine</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qaxscript.html#scriptName">scriptName</a></b> () const</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>29 public functions inherited from <a href="qobject.html#public-functions">QObject</a></li>
+</ul>
+<hr />
+<a name="signals"></a>
+<h2>Signals</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qaxscript.html#entered">entered</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qaxscript.html#error">error</a></b> ( int <i>code</i>, const QString &amp; <i>description</i>, int <i>sourcePosition</i>, const QString &amp; <i>sourceText</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qaxscript.html#finished">finished</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qaxscript.html#finished-2">finished</a></b> ( const QVariant &amp; <i>result</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qaxscript.html#finished-3">finished</a></b> ( int <i>code</i>, const QString &amp; <i>source</i>, const QString &amp; <i>description</i>, const QString &amp; <i>help</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qaxscript.html#stateChanged">stateChanged</a></b> ( int <i>state</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>1 signal inherited from <a href="qobject.html#signals">QObject</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li><div class="fn"></div>1 property inherited from <a href="qobject.html#properties">QObject</a></li>
+<li><div class="fn"></div>1 public slot inherited from <a href="qobject.html#public-slots">QObject</a></li>
+<li><div class="fn"></div>5 static public members inherited from <a href="qobject.html#static-public-members">QObject</a></li>
+<li><div class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QAxScript class provides a wrapper around script code.</p>
+<p>Every instance of the QAxScript class represents a piece of scripting code in a particular scripting language. The code is loaded into the script engine using <a href="qaxscript.html#load">load</a>(). Functions declared in the code can be called using <a href="qaxscript.html#call">call</a>().</p>
+<p>The script provides <a href="qaxscript.html#scriptEngine">scriptEngine</a>() provides feedback to the application through signals. The most important signal is the <a href="qaxscript.html#error">error</a>() signal. Direct access to the <a href="qaxscriptengine.html">QAxScriptEngine</a> is provided through the <a href="qaxscript.html#scriptEngine">scriptEngine</a>() function.</p>
+<p><b>Warning:</b> This class is not available with the bcc5.5 and MingW compilers.</p>
+<p>See also <a href="qaxscriptengine.html">QAxScriptEngine</a>, <a href="qaxscriptmanager.html">QAxScriptManager</a>, <a href="qaxbase.html">QAxBase</a>, and <a href="activeqt.html">ActiveQt Framework</a>.</p>
+<hr />
+<h2>Member Type Documentation</h2>
+<a name="//apple_ref/cpp/tag/QAxScript/FunctionFlags" />
+<a name="//apple_ref/cpp/econst/QAxScript/FunctionNames" />
+<a name="//apple_ref/cpp/econst/QAxScript/FunctionSignatures" />
+<h3 class="fn"><a name="FunctionFlags-enum"></a>enum QAxScript::FunctionFlags</h3>
+<p>This FunctionFlags enum describes formatting for function introspection.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QAxScript::FunctionNames</tt></td><td align="center" valign="top"><tt>0</tt></td><td valign="top">Only function names are returned.</td></tr>
+<tr><td valign="top"><tt>QAxScript::FunctionSignatures</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">Returns the functions with signatures.</td></tr>
+</table></p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QAxScript/QAxScript" />
+<h3 class="fn"><a name="QAxScript"></a>QAxScript::QAxScript ( const <a href="qstring.html">QString</a> &amp; <i>name</i>, <a href="qaxscriptmanager.html">QAxScriptManager</a> * <i>manager</i> )</h3>
+<p>Constructs a <a href="qaxscript.html">QAxScript</a> object called <i>name</i> and registers it with the <a href="qaxscriptmanager.html">QAxScriptManager</a> <i>manager</i>. This is usually done by the <a href="qaxscriptmanager.html">QAxScriptManager</a> class when <a href="qaxscriptmanager.html#load">loading a script</a>.</p>
+<p>A script should always have a name. A manager is necessary to allow the script code to reference objects in the application. The <i>manager</i> takes ownership of the object.</p>
+<a name="//apple_ref/cpp/instm/QAxScript/~QAxScript" />
+<h3 class="fn"><a name="dtor.QAxScript"></a>QAxScript::~QAxScript ()</h3>
+<p>Destroys the object, releasing all allocated resources.</p>
+<a name="//apple_ref/cpp/instm/QAxScript/call" />
+<h3 class="fn"><a name="call"></a><a href="qvariant.html">QVariant</a> QAxScript::call ( const <a href="qstring.html">QString</a> &amp; <i>function</i>, const <a href="qvariant.html">QVariant</a> &amp; <i>var1</i> = QVariant(), const <a href="qvariant.html">QVariant</a> &amp; <i>var2</i> = QVariant(), const <a href="qvariant.html">QVariant</a> &amp; <i>var3</i> = QVariant(), const <a href="qvariant.html">QVariant</a> &amp; <i>var4</i> = QVariant(), const <a href="qvariant.html">QVariant</a> &amp; <i>var5</i> = QVariant(), const <a href="qvariant.html">QVariant</a> &amp; <i>var6</i> = QVariant(), const <a href="qvariant.html">QVariant</a> &amp; <i>var7</i> = QVariant(), const <a href="qvariant.html">QVariant</a> &amp; <i>var8</i> = QVariant() )</h3>
+<p>Calls <i>function</i>, passing the parameters <i>var1</i>, <i>var1</i>, <i>var2</i>, <i>var3</i>, <i>var4</i>, <i>var5</i>, <i>var6</i>, <i>var7</i> and <i>var8</i> as arguments and returns the value returned by the function, or an invalid <a href="qvariant.html">QVariant</a> if the function does not return a value or when the function call failed.</p>
+<p>See <a href="qaxscriptmanager.html#call">QAxScriptManager::call</a>() for more information about how to call script functions.</p>
+<h3 class="fn"><a name="call-2"></a><a href="qvariant.html">QVariant</a> QAxScript::call ( const <a href="qstring.html">QString</a> &amp; <i>function</i>, <a href="qlist.html">QList</a>&lt;<a href="qvariant.html">QVariant</a>&gt; &amp; <i>arguments</i> )</h3>
+<p>This is an overloaded function.</p>
+<p>Calls <i>function</i> passing <i>arguments</i> as parameters, and returns the result. Returns when the script's execution has finished.</p>
+<p>See <a href="qaxscriptmanager.html#call">QAxScriptManager::call</a>() for more information about how to call script functions.</p>
+<a name="//apple_ref/cpp/instm/QAxScript/entered" />
+<h3 class="fn"><a name="entered"></a>void QAxScript::entered ()&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted when a script engine has started executing code.</p>
+<a name="//apple_ref/cpp/instm/QAxScript/error" />
+<h3 class="fn"><a name="error"></a>void QAxScript::error ( int <i>code</i>, const <a href="qstring.html">QString</a> &amp; <i>description</i>, int <i>sourcePosition</i>, const <a href="qstring.html">QString</a> &amp; <i>sourceText</i> )&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted when an execution error occurred while running a script.</p>
+<p><i>code</i>, <i>description</i>, <i>sourcePosition</i> and <i>sourceText</i> contain information about the execution error.</p>
+<a name="//apple_ref/cpp/instm/QAxScript/finished" />
+<h3 class="fn"><a name="finished"></a>void QAxScript::finished ()&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted when a script engine has finished executing code.</p>
+<h3 class="fn"><a name="finished-2"></a>void QAxScript::finished ( const <a href="qvariant.html">QVariant</a> &amp; <i>result</i> )&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This is an overloaded function.</p>
+<p><i>result</i> contains the script's result. This will be an invalid <a href="qvariant.html">QVariant</a> if the script has no return value.</p>
+<h3 class="fn"><a name="finished-3"></a>void QAxScript::finished ( int <i>code</i>, const <a href="qstring.html">QString</a> &amp; <i>source</i>, const <a href="qstring.html">QString</a> &amp; <i>description</i>, const <a href="qstring.html">QString</a> &amp; <i>help</i> )&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This is an overloaded function.</p>
+<p><i>code</i>, <i>source</i>, <i>description</i> and <i>help</i> contain exception information when the script terminated.</p>
+<a name="//apple_ref/cpp/instm/QAxScript/functions" />
+<h3 class="fn"><a name="functions"></a><a href="qstringlist.html">QStringList</a> QAxScript::functions ( <a href="qaxscript.html#FunctionFlags-enum">FunctionFlags</a> <i>flags</i> = FunctionNames ) const</h3>
+<p>Returns a list of all the functions in this script if the respective script engine supports introspection; otherwise returns an empty list. The functions are either provided with full prototypes or only as names, depending on the value of <i>flags</i>.</p>
+<p>See also <a href="qaxscriptengine.html#hasIntrospection">QAxScriptEngine::hasIntrospection</a>().</p>
+<a name="//apple_ref/cpp/instm/QAxScript/load" />
+<h3 class="fn"><a name="load"></a>bool QAxScript::load ( const <a href="qstring.html">QString</a> &amp; <i>code</i>, const <a href="qstring.html">QString</a> &amp; <i>language</i> = QString() )</h3>
+<p>Loads the script source <i>code</i> written in language <i>language</i> into the script engine. Returns true if <i>code</i> was successfully entered into the script engine; otherwise returns false.</p>
+<p>If <i>language</i> is empty (the default) it will be determined heuristically. If <i>code</i> contains the string <tt>End Sub</tt> it will be interpreted as VBScript, otherwise as JScript. Additional scripting languages can be registered using QAxScript::registerEngine().</p>
+<p>This function can only be called once for each <a href="qaxscript.html">QAxScript</a> object, which is done automatically when using <a href="qaxscriptmanager.html#load">QAxScriptManager::load</a>().</p>
+<a name="//apple_ref/cpp/instm/QAxScript/scriptCode" />
+<h3 class="fn"><a name="scriptCode"></a><a href="qstring.html">QString</a> QAxScript::scriptCode () const</h3>
+<p>Returns the script's code, or the null-string if no code has been loaded yet.</p>
+<p>See also <a href="qaxscript.html#load">load</a>().</p>
+<a name="//apple_ref/cpp/instm/QAxScript/scriptEngine" />
+<h3 class="fn"><a name="scriptEngine"></a><a href="qaxscriptengine.html">QAxScriptEngine</a> * QAxScript::scriptEngine () const</h3>
+<p>Returns a pointer to the script engine.</p>
+<p>You can use the object returned to connect signals to the script functions, or to access the script engine directly.</p>
+<a name="//apple_ref/cpp/instm/QAxScript/scriptName" />
+<h3 class="fn"><a name="scriptName"></a><a href="qstring.html">QString</a> QAxScript::scriptName () const</h3>
+<p>Returns the name of the script.</p>
+<a name="//apple_ref/cpp/instm/QAxScript/stateChanged" />
+<h3 class="fn"><a name="stateChanged"></a>void QAxScript::stateChanged ( int <i>state</i> )&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted when a script engine changes state. <i>state</i> can be any value in the QAxScriptEngineState enumeration.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

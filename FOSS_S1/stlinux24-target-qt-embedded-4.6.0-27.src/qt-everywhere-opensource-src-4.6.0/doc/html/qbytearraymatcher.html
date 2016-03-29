@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qbytearraymatcher.cpp -->
+<head>
+  <title>Qt 4.6: QByteArrayMatcher Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QByteArrayMatcher" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QByteArrayMatcher Class Reference<br /><span class="small-subtitle">[<a href="qtcore.html">QtCore</a> module]</span>
+</h1>
+<p>The QByteArrayMatcher class holds a sequence of bytes that can be quickly matched in a byte array. <a href="#details">More...</a></p>
+<pre> #include &lt;QByteArrayMatcher&gt;</pre><ul>
+<li><a href="qbytearraymatcher-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qbytearraymatcher.html#QByteArrayMatcher">QByteArrayMatcher</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qbytearraymatcher.html#QByteArrayMatcher-2">QByteArrayMatcher</a></b> ( const QByteArray &amp; <i>pattern</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qbytearraymatcher.html#QByteArrayMatcher-3">QByteArrayMatcher</a></b> ( const char * <i>pattern</i>, int <i>length</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qbytearraymatcher.html#QByteArrayMatcher-4">QByteArrayMatcher</a></b> ( const QByteArrayMatcher &amp; <i>other</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qbytearraymatcher.html#dtor.QByteArrayMatcher">~QByteArrayMatcher</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qbytearraymatcher.html#indexIn">indexIn</a></b> ( const QByteArray &amp; <i>ba</i>, int <i>from</i> = 0 ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qbytearraymatcher.html#indexIn-2">indexIn</a></b> ( const char * <i>str</i>, int <i>len</i>, int <i>from</i> = 0 ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QByteArray </td><td class="memItemRight" valign="bottom"><b><a href="qbytearraymatcher.html#pattern">pattern</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qbytearraymatcher.html#setPattern">setPattern</a></b> ( const QByteArray &amp; <i>pattern</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QByteArrayMatcher &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qbytearraymatcher.html#operator-eq">operator=</a></b> ( const QByteArrayMatcher &amp; <i>other</i> )</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QByteArrayMatcher class holds a sequence of bytes that can be quickly matched in a byte array.</p>
+<p>This class is useful when you have a sequence of bytes that you want to repeatedly match against some byte arrays (perhaps in a loop), or when you want to search for the same sequence of bytes multiple times in the same byte array. Using a matcher object and <a href="qbytearraymatcher.html#indexIn">indexIn</a>() is faster than matching a plain <a href="qbytearray.html">QByteArray</a> with <a href="qbytearray.html#indexOf">QByteArray::indexOf</a>() if repeated matching takes place. This class offers no benefit if you are doing one-off byte array matches.</p>
+<p>Create the QByteArrayMatcher with the <a href="qbytearray.html">QByteArray</a> you want to search for. Then call <a href="qbytearraymatcher.html#indexIn">indexIn</a>() on the <a href="qbytearray.html">QByteArray</a> that you want to search.</p>
+<p>See also <a href="qbytearray.html">QByteArray</a> and <a href="qstringmatcher.html">QStringMatcher</a>.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QByteArrayMatcher/QByteArrayMatcher" />
+<h3 class="fn"><a name="QByteArrayMatcher"></a>QByteArrayMatcher::QByteArrayMatcher ()</h3>
+<p>Constructs an empty byte array matcher that won't match anything. Call <a href="qbytearraymatcher.html#setPattern">setPattern</a>() to give it a pattern to match.</p>
+<h3 class="fn"><a name="QByteArrayMatcher-2"></a>QByteArrayMatcher::QByteArrayMatcher ( const <a href="qbytearray.html">QByteArray</a> &amp; <i>pattern</i> )</h3>
+<p>Constructs a byte array matcher that will search for <i>pattern</i>. Call <a href="qbytearraymatcher.html#indexIn">indexIn</a>() to perform a search.</p>
+<h3 class="fn"><a name="QByteArrayMatcher-3"></a>QByteArrayMatcher::QByteArrayMatcher ( const char * <i>pattern</i>, int <i>length</i> )</h3>
+<p>Constructs a byte array matcher from <i>pattern</i>. <i>pattern</i> has the given <i>length</i>. <i>pattern</i> must remain in scope, but the destructor does not delete <i>pattern</i>.</p>
+<h3 class="fn"><a name="QByteArrayMatcher-4"></a>QByteArrayMatcher::QByteArrayMatcher ( const QByteArrayMatcher &amp; <i>other</i> )</h3>
+<p>Copies the <i>other</i> byte array matcher to this byte array matcher.</p>
+<a name="//apple_ref/cpp/instm/QByteArrayMatcher/~QByteArrayMatcher" />
+<h3 class="fn"><a name="dtor.QByteArrayMatcher"></a>QByteArrayMatcher::~QByteArrayMatcher ()</h3>
+<p>Destroys the byte array matcher.</p>
+<a name="//apple_ref/cpp/instm/QByteArrayMatcher/indexIn" />
+<h3 class="fn"><a name="indexIn"></a>int QByteArrayMatcher::indexIn ( const <a href="qbytearray.html">QByteArray</a> &amp; <i>ba</i>, int <i>from</i> = 0 ) const</h3>
+<p>Searches the byte array <i>ba</i>, from byte position <i>from</i> (default 0, i.e&#x2e; from the first byte), for the byte array <a href="qbytearraymatcher.html#pattern">pattern</a>() that was set in the constructor or in the most recent call to <a href="qbytearraymatcher.html#setPattern">setPattern</a>(). Returns the position where the <a href="qbytearraymatcher.html#pattern">pattern</a>() matched in <i>ba</i>, or -1 if no match was found.</p>
+<h3 class="fn"><a name="indexIn-2"></a>int QByteArrayMatcher::indexIn ( const char * <i>str</i>, int <i>len</i>, int <i>from</i> = 0 ) const</h3>
+<p>Searches the char string <i>str</i>, which has length <i>len</i>, from byte position <i>from</i> (default 0, i.e&#x2e; from the first byte), for the byte array <a href="qbytearraymatcher.html#pattern">pattern</a>() that was set in the constructor or in the most recent call to <a href="qbytearraymatcher.html#setPattern">setPattern</a>(). Returns the position where the <a href="qbytearraymatcher.html#pattern">pattern</a>() matched in <i>str</i>, or -1 if no match was found.</p>
+<a name="//apple_ref/cpp/instm/QByteArrayMatcher/pattern" />
+<h3 class="fn"><a name="pattern"></a><a href="qbytearray.html">QByteArray</a> QByteArrayMatcher::pattern () const</h3>
+<p>Returns the byte array pattern that this byte array matcher will search for.</p>
+<p>See also <a href="qbytearraymatcher.html#setPattern">setPattern</a>().</p>
+<a name="//apple_ref/cpp/instm/QByteArrayMatcher/setPattern" />
+<h3 class="fn"><a name="setPattern"></a>void QByteArrayMatcher::setPattern ( const <a href="qbytearray.html">QByteArray</a> &amp; <i>pattern</i> )</h3>
+<p>Sets the byte array that this byte array matcher will search for to <i>pattern</i>.</p>
+<p>See also <a href="qbytearraymatcher.html#pattern">pattern</a>() and <a href="qbytearraymatcher.html#indexIn">indexIn</a>().</p>
+<a name="//apple_ref/cpp/instm/QByteArrayMatcher/operator=" />
+<h3 class="fn"><a name="operator-eq"></a>QByteArrayMatcher &amp; QByteArrayMatcher::operator= ( const QByteArrayMatcher &amp; <i>other</i> )</h3>
+<p>Assigns the <i>other</i> byte array matcher to this byte array matcher.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

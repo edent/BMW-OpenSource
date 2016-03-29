@@ -1,0 +1,140 @@
+/*
+ * Copyright (C) 2007, 2008 Apple Inc. All rights reserved.
+ * Copyright (C) 2008 Matt Lilek <webkit@mattlilek.com>
+ * Copyright (C) 2009 Google Inc. All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are
+ * met:
+ *
+ *     * Redistributions of source code must retain the above copyright
+ * notice, this list of conditions and the following disclaimer.
+ *     * Redistributions in binary form must reproduce the above
+ * copyright notice, this list of conditions and the following disclaimer
+ * in the documentation and/or other materials provided with the
+ * distribution.
+ *     * Neither the name of Google Inc. nor the names of its
+ * contributors may be used to endorse or promote products derived from
+ * this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+module core {
+    interface [
+        GenerateConstructor
+    ] InspectorBackend {
+        void hideDOMNodeHighlight();
+        [Custom] void highlightDOMNode(in long nodeId);
+        void loaded();
+        void windowUnloading();
+        void attach();
+        void detach();
+
+        void closeWindow();
+        void clearMessages(in boolean clearUI);
+        void toggleNodeSearch();
+
+        boolean isWindowVisible();
+        boolean searchingForNode();
+
+        void addResourceSourceToFrame(in long identifier, in Node frame);
+        boolean addSourceToFrame(in DOMString mimeType, in DOMString sourceValue, in Node frame);
+        [Custom] void search(in Node node, in DOMString query);
+#if defined(ENABLE_DATABASE) && ENABLE_DATABASE
+        void getDatabaseTableNames(in long callId, in long databaseId);
+#endif
+
+        [Custom] DOMObject setting(in DOMString key);
+        [Custom] void setSetting(in DOMString key, in DOMObject  value);
+        [Custom] DOMWindow inspectedWindow();
+        DOMString localizedStringsURL();
+        DOMString hiddenPanels();
+        DOMString platform();
+        DOMString port();
+        void startTimelineProfiler();
+        void stopTimelineProfiler();
+        boolean timelineProfilerEnabled();
+        [ImplementationFunction=moveWindowBy] void moveByUnrestricted(in float x, in float y);
+        void setAttachedWindowHeight(in unsigned long height);
+        [Custom] DOMObject wrapCallback(in DOMObject callback);
+        boolean resourceTrackingEnabled();
+        void enableResourceTracking(in boolean always);
+        void disableResourceTracking(in boolean always);
+        void storeLastActivePanel(in DOMString panelName);
+
+#if defined(ENABLE_JAVASCRIPT_DEBUGGER) && ENABLE_JAVASCRIPT_DEBUGGER
+        boolean debuggerEnabled();
+        void enableDebugger(in boolean always);
+        void disableDebugger(in boolean always);
+
+        void addBreakpoint(in DOMString sourceID, in unsigned long lineNumber, in DOMString condition);
+        void updateBreakpoint(in DOMString sourceID, in unsigned long lineNumber, in DOMString condition);
+        void removeBreakpoint(in DOMString sourceID, in unsigned long lineNumber);
+
+        void pauseInDebugger();
+        void resumeDebugger();
+
+        void stepOverStatementInDebugger();
+        void stepIntoStatementInDebugger();
+        void stepOutOfFunctionInDebugger();
+
+        [Custom] DOMObject currentCallFrame();
+
+        boolean pauseOnExceptions();
+        void setPauseOnExceptions(in boolean pauseOnExceptions);
+
+        boolean profilerEnabled();
+        void enableProfiler(in boolean always);
+        void disableProfiler(in boolean always);
+
+        void startProfiling();
+        void stopProfiling();
+
+        void getProfileHeaders(in long callId);
+        void getProfile(in long callId, in unsigned long uid);
+#endif
+        void dispatchOnInjectedScript(in long callId, in DOMString methodName, in DOMString arguments, in boolean async);
+        void getChildNodes(in long callId, in long nodeId);
+        void setAttribute(in long callId, in long elementId, in DOMString name, in DOMString value);
+        void removeAttribute(in long callId, in long elementId, in DOMString name);
+        void setTextNodeValue(in long callId, in long nodeId, in DOMString value);
+        void getEventListenersForNode(in long callId, in long nodeId);
+        void copyNode(in long nodeId);
+        void removeNode(in long callId, in long nodeId);
+
+        void getCookies(in long callId, in DOMString domain);
+        void deleteCookie(in DOMString cookieName, in DOMString domain);
+
+        // Called from InjectedScript.
+        // TODO: extract into a separate IDL.
+        [Custom] DOMObject nodeForId(in long nodeId);
+        [Custom] long wrapObject(in DOMObject object, in DOMString objectGroup);
+        [Custom] DOMObject unwrapObject(in long objectId);
+        void releaseWrapperObjectGroup(in DOMString objectGroup);
+        [Custom] int pushNodePathToFrontend(in DOMObject node, in boolean selectInUI);
+        void addNodesToSearchResult(in DOMString nodeIds);
+#if defined(ENABLE_DATABASE) && ENABLE_DATABASE
+        [Custom] void selectDatabase(in DOMObject database);
+        [Custom] DOMObject databaseForId(in long databaseId);
+#endif
+#if defined(ENABLE_DOM_STORAGE) && ENABLE_DOM_STORAGE
+        [Custom] void selectDOMStorage(in DOMObject storage);
+        void getDOMStorageEntries(in long callId, in long storageId);
+        void setDOMStorageItem(in long callId, in long storageId, in DOMString key, in DOMString value);
+        void removeDOMStorageItem(in long callId, in long storageId, in DOMString key);
+#endif
+        void reportDidDispatchOnInjectedScript(in long callId, in DOMString result, in boolean isException);
+        void didEvaluateForTestInFrontend(in long callId, in DOMString jsonResult);
+    };
+}

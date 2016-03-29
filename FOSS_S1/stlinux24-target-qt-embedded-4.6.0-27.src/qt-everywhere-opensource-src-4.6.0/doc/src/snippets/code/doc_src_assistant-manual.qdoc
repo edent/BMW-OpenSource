@@ -1,0 +1,151 @@
+/****************************************************************************
+**
+** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+** All rights reserved.
+** Contact: Nokia Corporation (qt-info@nokia.com)
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:LGPL$
+** Commercial Usage
+** Licensees holding valid Qt Commercial licenses may use this file in
+** accordance with the Qt Commercial License Agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and Nokia.
+**
+** GNU Lesser General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU Lesser
+** General Public License version 2.1 as published by the Free Software
+** Foundation and appearing in the file LICENSE.LGPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU Lesser General Public License version 2.1 requirements
+** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+**
+** In addition, as a special exception, Nokia gives you certain additional
+** rights.  These rights are described in the Nokia Qt LGPL Exception
+** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+**
+** GNU General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU
+** General Public License version 3.0 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU General Public License version 3.0 requirements will be
+** met: http://www.gnu.org/copyleft/gpl.html.
+**
+** If you have questions regarding the use of this file, please contact
+** Nokia at qt-info@nokia.com.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+//! [0]
+assistant -collectionFile file
+//! [0]
+
+
+//! [1]
+<?xml version="1.0" encoding="utf-8" ?>
+<QHelpCollectionProject version="1.0">
+    <assistant>
+        <title>My Application Help</title>
+        <startPage>qthelp://com.mycompany.1_0_0/doc/index.html</startPage>
+        <currentFilter>myfilter</currentFilter>
+        <applicationIcon>application.png</applicationIcon>
+        <enableFilterFunctionality>false</enableFilterFunctionality>
+        <enableDocumentationManager>false</enableDocumentationManager>
+        <enableAddressBar visible="true">true</enableAddressBar>
+        <cacheDirectory>mycompany/myapplication</cacheDirectory>
+        <aboutMenuText>
+            <text>About My Application</text>
+            <text language="de">Über meine Applikation...</text>
+        </aboutMenuText>
+        <aboutDialog>
+            <file>about.txt</file>
+            <file language="de">ueber.txt</file>
+            <icon>about.png</icon>
+        </aboutDialog>
+    </assistant>
+    <docFiles>
+        <generate>
+            <file>
+                <input>myapplication-manual.qhp</input>
+                <output>myapplication-manual.qch</output>
+            </file>
+        </generate>
+        <register>
+            <file>myapplication-manual.qch</file>
+        </register>
+    </docFiles>
+</QHelpCollectionProject>
+//! [1]
+
+
+//! [2]
+QProcess *process = new QProcess;
+QStringList args;
+args << QLatin1String("-collectionFile")
+    << QLatin1String("mycollection.qhc")
+    << QLatin1String("-enableRemoteControl");
+process->start(QLatin1String("assistant"), args);
+if (!process->waitForStarted())
+    return;
+//! [2]
+
+
+//! [3]
+QByteArray ba;
+ba.append("setSource qthelp://com.mycompany.1_0_0/doc/index.html");
+ba.append('\0');
+process->write(ba);
+//! [3]
+
+
+//! [4]
+QByteArray ba;
+ba.append("hide bookmarks;");
+ba.append("hide index;");
+ba.append("setSource qthelp://com.mycompany.1_0_0/doc/index.html");
+ba.append('\0');
+process->write(ba);
+//! [4]
+
+//! [5]
+<?xml version="1.0" encoding="utf-8" ?>
+<QHelpCollectionProject version="1.0">
+    ...
+    <docFiles>
+        <register>
+            <file>myapplication-manual.qch</file>
+            <file>another-manual.qch</file>
+        </register>
+    </docFiles>
+</QHelpCollectionProject>
+//! [5]
+
+//! [6]
+assistant -collectionFile mycollection.qhc -register myapplication-manual.qch
+//! [6]
+
+//! [7]
+<?xml version="1.0" encoding="utf-8" ?>
+<QHelpCollectionProject version="1.0">
+    <assistant>
+        <title>My Application Help</title>
+        <cacheDirectory>mycompany/myapplication</cacheDirectory>
+        ...
+    </assistant>
+</QHelpCollectionProject>
+//! [7]
+
+//! [8]
+assistant -collectionFile mycollection.qhc
+//! [8]
+
+//! [9]
+%QDesktopServices::DataLocation%/mycompany/myapplication/mycollection.qhc
+//! [9]
+
+//! [10]
+qcollectiongenerator mycollection.qhcp -o mycollection.qhc
+//! [10]

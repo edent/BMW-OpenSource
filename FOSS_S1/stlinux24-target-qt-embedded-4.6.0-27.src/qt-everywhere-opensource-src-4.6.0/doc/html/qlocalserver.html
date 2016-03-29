@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qlocalserver.cpp -->
+<head>
+  <title>Qt 4.6: QLocalServer Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QLocalServer" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QLocalServer Class Reference<br /><span class="small-subtitle">[<a href="qtnetwork.html">QtNetwork</a> module]</span>
+</h1>
+<p>The QLocalServer class provides a local socket based server. <a href="#details">More...</a></p>
+<pre> #include &lt;QLocalServer&gt;</pre><p><b>This class is not part of the Qt GUI Framework Edition.</b></p>
+<p>Inherits <a href="qobject.html">QObject</a>.</p>
+<p>This class was introduced in Qt 4.4.</p>
+<ul>
+<li><a href="qlocalserver-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qlocalserver.html#QLocalServer">QLocalServer</a></b> ( QObject * <i>parent</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qlocalserver.html#dtor.QLocalServer">~QLocalServer</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qlocalserver.html#close">close</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qlocalserver.html#errorString">errorString</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qlocalserver.html#fullServerName">fullServerName</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qlocalserver.html#hasPendingConnections">hasPendingConnections</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qlocalserver.html#isListening">isListening</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qlocalserver.html#listen">listen</a></b> ( const QString &amp; <i>name</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qlocalserver.html#maxPendingConnections">maxPendingConnections</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QLocalSocket * </td><td class="memItemRight" valign="bottom"><b><a href="qlocalserver.html#nextPendingConnection">nextPendingConnection</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QAbstractSocket::SocketError </td><td class="memItemRight" valign="bottom"><b><a href="qlocalserver.html#serverError">serverError</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qlocalserver.html#serverName">serverName</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qlocalserver.html#setMaxPendingConnections">setMaxPendingConnections</a></b> ( int <i>numConnections</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qlocalserver.html#waitForNewConnection">waitForNewConnection</a></b> ( int <i>msec</i> = 0, bool * <i>timedOut</i> = 0 )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>29 public functions inherited from <a href="qobject.html#public-functions">QObject</a></li>
+</ul>
+<hr />
+<a name="signals"></a>
+<h2>Signals</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qlocalserver.html#newConnection">newConnection</a></b> ()</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>1 signal inherited from <a href="qobject.html#signals">QObject</a></li>
+</ul>
+<hr />
+<a name="static-public-members"></a>
+<h2>Static Public Members</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qlocalserver.html#removeServer">removeServer</a></b> ( const QString &amp; <i>name</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>5 static public members inherited from <a href="qobject.html#static-public-members">QObject</a></li>
+</ul>
+<hr />
+<a name="protected-functions"></a>
+<h2>Protected Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qlocalserver.html#incomingConnection">incomingConnection</a></b> ( quintptr <i>socketDescriptor</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li><div class="fn"></div>1 property inherited from <a href="qobject.html#properties">QObject</a></li>
+<li><div class="fn"></div>1 public slot inherited from <a href="qobject.html#public-slots">QObject</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QLocalServer class provides a local socket based server.</p>
+<p>This class makes it possible to accept incoming local socket connections.</p>
+<p>Call <a href="qlocalserver.html#listen">listen</a>() to have the server start listening for incoming connections on a specified key. The <a href="qlocalserver.html#newConnection">newConnection</a>() signal is then emitted each time a client connects to the server.</p>
+<p>Call <a href="qlocalserver.html#nextPendingConnection">nextPendingConnection</a>() to accept the pending connection as a connected <a href="qlocalsocket.html">QLocalSocket</a>. The function returns a pointer to a <a href="qlocalsocket.html">QLocalSocket</a> that can be used for communicating with the client.</p>
+<p>If an error occurs, <a href="qlocalserver.html#serverError">serverError</a>() returns the type of error, and <a href="qlocalserver.html#errorString">errorString</a>() can be called to get a human readable description of what happened.</p>
+<p>When listening for connections, the name which the server is listening on is available through <a href="qlocalserver.html#serverName">serverName</a>().</p>
+<p>Calling <a href="qlocalserver.html#close">close</a>() makes QLocalServer stop listening for incoming connections.</p>
+<p>Although QLocalServer is designed for use with an event loop, it's possible to use it without one. In that case, you must use <a href="qlocalserver.html#waitForNewConnection">waitForNewConnection</a>(), which blocks until either a connection is available or a timeout expires.</p>
+<p>See also <a href="qlocalsocket.html">QLocalSocket</a> and <a href="qtcpserver.html">QTcpServer</a>.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QLocalServer/QLocalServer" />
+<h3 class="fn"><a name="QLocalServer"></a>QLocalServer::QLocalServer ( <a href="qobject.html">QObject</a> * <i>parent</i> = 0 )</h3>
+<p>Create a new local socket server with the given <i>parent</i>.</p>
+<p>See also <a href="qlocalserver.html#listen">listen</a>().</p>
+<a name="//apple_ref/cpp/instm/QLocalServer/~QLocalServer" />
+<h3 class="fn"><a name="dtor.QLocalServer"></a>QLocalServer::~QLocalServer ()</h3>
+<p>Destroys the <a href="qlocalserver.html">QLocalServer</a> object. If the server is listening for connections, it is automatically closed.</p>
+<p>Any client QLocalSockets that are still connected must either disconnect or be reparented before the server is deleted.</p>
+<p>See also <a href="qlocalserver.html#close">close</a>().</p>
+<a name="//apple_ref/cpp/instm/QLocalServer/close" />
+<h3 class="fn"><a name="close"></a>void QLocalServer::close ()</h3>
+<p>Stop listening for incoming connections. Existing connections are not effected, but any new connections will be refused.</p>
+<p>See also <a href="qlocalserver.html#isListening">isListening</a>() and <a href="qlocalserver.html#listen">listen</a>().</p>
+<a name="//apple_ref/cpp/instm/QLocalServer/errorString" />
+<h3 class="fn"><a name="errorString"></a><a href="qstring.html">QString</a> QLocalServer::errorString () const</h3>
+<p>Returns the human-readable message appropriate to the current error reported by <a href="qlocalserver.html#serverError">serverError</a>(). If no suitable string is available, an empty string is returned.</p>
+<p>See also <a href="qlocalserver.html#serverError">serverError</a>().</p>
+<a name="//apple_ref/cpp/instm/QLocalServer/fullServerName" />
+<h3 class="fn"><a name="fullServerName"></a><a href="qstring.html">QString</a> QLocalServer::fullServerName () const</h3>
+<p>Returns the full path that the server is listening on.</p>
+<p>Note: This is platform specific</p>
+<p>See also <a href="qlocalserver.html#listen">listen</a>() and <a href="qlocalserver.html#serverName">serverName</a>().</p>
+<a name="//apple_ref/cpp/instm/QLocalServer/hasPendingConnections" />
+<h3 class="fn"><a name="hasPendingConnections"></a>bool QLocalServer::hasPendingConnections () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Returns true if the server has a pending connection; otherwise returns false.</p>
+<p>See also <a href="qlocalserver.html#nextPendingConnection">nextPendingConnection</a>() and <a href="qlocalserver.html#setMaxPendingConnections">setMaxPendingConnections</a>().</p>
+<a name="//apple_ref/cpp/instm/QLocalServer/incomingConnection" />
+<h3 class="fn"><a name="incomingConnection"></a>void QLocalServer::incomingConnection ( <a href="qtglobal.html#quintptr-typedef">quintptr</a> <i>socketDescriptor</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>This virtual function is called by <a href="qlocalserver.html">QLocalServer</a> when a new connection is available. <i>socketDescriptor</i> is the native socket descriptor for the accepted connection.</p>
+<p>The base implementation creates a <a href="qlocalsocket.html">QLocalSocket</a>, sets the socket descriptor and then stores the <a href="qlocalsocket.html">QLocalSocket</a> in an internal list of pending connections. Finally <a href="qlocalserver.html#newConnection">newConnection</a>() is emitted.</p>
+<p>Reimplement this function to alter the server's behavior when a connection is available.</p>
+<p>See also <a href="qlocalserver.html#newConnection">newConnection</a>(), <a href="qlocalserver.html#nextPendingConnection">nextPendingConnection</a>(), and <a href="qlocalsocket.html#setSocketDescriptor">QLocalSocket::setSocketDescriptor</a>().</p>
+<a name="//apple_ref/cpp/instm/QLocalServer/isListening" />
+<h3 class="fn"><a name="isListening"></a>bool QLocalServer::isListening () const</h3>
+<p>Returns true if the server is listening for incoming connections otherwise false.</p>
+<p>See also <a href="qlocalserver.html#listen">listen</a>() and <a href="qlocalserver.html#close">close</a>().</p>
+<a name="//apple_ref/cpp/instm/QLocalServer/listen" />
+<h3 class="fn"><a name="listen"></a>bool QLocalServer::listen ( const <a href="qstring.html">QString</a> &amp; <i>name</i> )</h3>
+<p>Tells the server to listen for incoming connections on <i>name</i>. If the server is currently listening then it will return false. Return true on success otherwise false.</p>
+<p><i>name</i> can be a single name and <a href="qlocalserver.html">QLocalServer</a> will determine the correct platform specific path. <a href="qlocalserver.html#serverName">serverName</a>() will return the name that is passed into listen.</p>
+<p>Usually you would just pass in a name like &quot;foo&quot;, but on Unix this could also be a path such as &quot;/tmp/foo&quot; and on Windows this could be a pipe path such as &quot;\\.\pipe\foo&quot;</p>
+<p>Note: On Unix if the server crashes without closing listen will fail with AddressInUseError. To create a new server the file should be removed. On Windows two local servers can listen to the same pipe at the same time, but any connections will go to one of the server.</p>
+<p>See also <a href="qlocalserver.html#serverName">serverName</a>(), <a href="qlocalserver.html#isListening">isListening</a>(), and <a href="qlocalserver.html#close">close</a>().</p>
+<a name="//apple_ref/cpp/instm/QLocalServer/maxPendingConnections" />
+<h3 class="fn"><a name="maxPendingConnections"></a>int QLocalServer::maxPendingConnections () const</h3>
+<p>Returns the maximum number of pending accepted connections. The default is 30.</p>
+<p>See also <a href="qlocalserver.html#setMaxPendingConnections">setMaxPendingConnections</a>() and <a href="qlocalserver.html#hasPendingConnections">hasPendingConnections</a>().</p>
+<a name="//apple_ref/cpp/instm/QLocalServer/newConnection" />
+<h3 class="fn"><a name="newConnection"></a>void QLocalServer::newConnection ()&nbsp;&nbsp;<tt> [signal]</tt></h3>
+<p>This signal is emitted every time a new connection is available.</p>
+<p>See also <a href="qlocalserver.html#hasPendingConnections">hasPendingConnections</a>() and <a href="qlocalserver.html#nextPendingConnection">nextPendingConnection</a>().</p>
+<a name="//apple_ref/cpp/instm/QLocalServer/nextPendingConnection" />
+<h3 class="fn"><a name="nextPendingConnection"></a><a href="qlocalsocket.html">QLocalSocket</a> * QLocalServer::nextPendingConnection ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Returns the next pending connection as a connected <a href="qlocalsocket.html">QLocalSocket</a> object.</p>
+<p>The socket is created as a child of the server, which means that it is automatically deleted when the <a href="qlocalserver.html">QLocalServer</a> object is destroyed. It is still a good idea to delete the object explicitly when you are done with it, to avoid wasting memory.</p>
+<p>0 is returned if this function is called when there are no pending connections.</p>
+<p>See also <a href="qlocalserver.html#hasPendingConnections">hasPendingConnections</a>(), <a href="qlocalserver.html#newConnection">newConnection</a>(), and <a href="qlocalserver.html#incomingConnection">incomingConnection</a>().</p>
+<a name="//apple_ref/cpp/clm/QLocalServer/removeServer" />
+<h3 class="fn"><a name="removeServer"></a>bool QLocalServer::removeServer ( const <a href="qstring.html">QString</a> &amp; <i>name</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Removes any server instance that might cause a call to <a href="qlocalserver.html#listen">listen</a>() to fail and returns true if successful; otherwise returns false. This function is meant to recover from a crash, when the previous server instance has not been cleaned up.</p>
+<p>On Windows, this function does nothing; on Unix, it removes the socket file given by <i>name</i>.</p>
+<p><b>Warning:</b> Be careful to avoid removing sockets of running instances.</p>
+<p>This function was introduced in Qt 4.5.</p>
+<a name="//apple_ref/cpp/instm/QLocalServer/serverError" />
+<h3 class="fn"><a name="serverError"></a><a href="qabstractsocket.html#SocketError-enum">QAbstractSocket::SocketError</a> QLocalServer::serverError () const</h3>
+<p>Returns the type of error that occurred last or NoError.</p>
+<p>See also <a href="qlocalserver.html#errorString">errorString</a>().</p>
+<a name="//apple_ref/cpp/instm/QLocalServer/serverName" />
+<h3 class="fn"><a name="serverName"></a><a href="qstring.html">QString</a> QLocalServer::serverName () const</h3>
+<p>Returns the server name if the server is listening for connections; otherwise returns QString()</p>
+<p>See also <a href="qlocalserver.html#listen">listen</a>() and <a href="qlocalserver.html#fullServerName">fullServerName</a>().</p>
+<a name="//apple_ref/cpp/instm/QLocalServer/setMaxPendingConnections" />
+<h3 class="fn"><a name="setMaxPendingConnections"></a>void QLocalServer::setMaxPendingConnections ( int <i>numConnections</i> )</h3>
+<p>Sets the maximum number of pending accepted connections to <i>numConnections</i>. <a href="qlocalserver.html">QLocalServer</a> will accept no more than <i>numConnections</i> incoming connections before <a href="qlocalserver.html#nextPendingConnection">nextPendingConnection</a>() is called.</p>
+<p>Note: Even though <a href="qlocalserver.html">QLocalServer</a> will stop accepting new connections after it has reached its maximum number of pending connections, the operating system may still keep them in queue which will result in clients signaling that it is connected.</p>
+<p>See also <a href="qlocalserver.html#maxPendingConnections">maxPendingConnections</a>() and <a href="qlocalserver.html#hasPendingConnections">hasPendingConnections</a>().</p>
+<a name="//apple_ref/cpp/instm/QLocalServer/waitForNewConnection" />
+<h3 class="fn"><a name="waitForNewConnection"></a>bool QLocalServer::waitForNewConnection ( int <i>msec</i> = 0, bool * <i>timedOut</i> = 0 )</h3>
+<p>Waits for at most <i>msec</i> milliseconds or until an incoming connection is available. Returns true if a connection is available; otherwise returns false. If the operation timed out and <i>timedOut</i> is not 0, *timedOut will be set to true.</p>
+<p>This is a blocking function call. Its use is ill-advised in a single-threaded GUI application, since the whole application will stop responding until the function returns. waitForNewConnection() is mostly useful when there is no event loop available.</p>
+<p>The non-blocking alternative is to connect to the <a href="qlocalserver.html#newConnection">newConnection</a>() signal.</p>
+<p>If msec is -1, this function will not time out.</p>
+<p>See also <a href="qlocalserver.html#hasPendingConnections">hasPendingConnections</a>() and <a href="qlocalserver.html#nextPendingConnection">nextPendingConnection</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

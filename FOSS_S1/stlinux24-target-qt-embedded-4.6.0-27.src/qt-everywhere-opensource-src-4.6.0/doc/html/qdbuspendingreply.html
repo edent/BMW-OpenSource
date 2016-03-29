@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qdbuspendingreply.cpp -->
+<head>
+  <title>Qt 4.6: QDBusPendingReply Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QDBusPendingReply" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QDBusPendingReply Class Reference<br /><span class="small-subtitle">[<a href="qtdbus.html">QtDBus</a> module]</span>
+</h1>
+<p>The QDBusPendingReply class contains the reply to an asynchronous method call <a href="#details">More...</a></p>
+<pre> #include &lt;QDBusPendingReply&gt;</pre><p>Inherits <a href="qdbuspendingcall.html">QDBusPendingCall</a>.</p>
+<p>This class was introduced in Qt 4.5.</p>
+<ul>
+<li><a href="qdbuspendingreply-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qdbuspendingreply.html#QDBusPendingReply">QDBusPendingReply</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qdbuspendingreply.html#QDBusPendingReply-2">QDBusPendingReply</a></b> ( const QDBusPendingReply &amp; <i>other</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qdbuspendingreply.html#QDBusPendingReply-3">QDBusPendingReply</a></b> ( const QDBusPendingCall &amp; <i>call</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qdbuspendingreply.html#QDBusPendingReply-4">QDBusPendingReply</a></b> ( const QDBusMessage &amp; <i>message</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QVariant </td><td class="memItemRight" valign="bottom"><b><a href="qdbuspendingreply.html#argumentAt">argumentAt</a></b> ( int <i>index</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Type </td><td class="memItemRight" valign="bottom"><b><a href="qdbuspendingreply.html#argumentAt-2">argumentAt</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qdbuspendingreply.html#count">count</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QDBusError </td><td class="memItemRight" valign="bottom"><b><a href="qdbuspendingreply.html#error">error</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qdbuspendingreply.html#isError">isError</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qdbuspendingreply.html#isFinished">isFinished</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qdbuspendingreply.html#isValid">isValid</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QDBusMessage </td><td class="memItemRight" valign="bottom"><b><a href="qdbuspendingreply.html#reply">reply</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T1 </td><td class="memItemRight" valign="bottom"><b><a href="qdbuspendingreply.html#value">value</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qdbuspendingreply.html#waitForFinished">waitForFinished</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qdbuspendingreply.html#operator-T1">operator T1</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QDBusPendingReply &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qdbuspendingreply.html#operator-eq">operator=</a></b> ( const QDBusPendingReply &amp; <i>other</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QDBusPendingReply &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qdbuspendingreply.html#operator-eq-2">operator=</a></b> ( const QDBusPendingCall &amp; <i>call</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QDBusPendingReply &amp; </td><td class="memItemRight" valign="bottom"><b><a href="qdbuspendingreply.html#operator-eq-3">operator=</a></b> ( const QDBusMessage &amp; <i>message</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>1 public function inherited from <a href="qdbuspendingcall.html#public-functions">QDBusPendingCall</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li><div class="fn"></div>2 static public members inherited from <a href="qdbuspendingcall.html#static-public-members">QDBusPendingCall</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QDBusPendingReply class contains the reply to an asynchronous method call</p>
+<p>The QDBusPendingReply is a template class with up to 8 template parameters. Those parameters are the types that will be used to extract the contents of the reply's data.</p>
+<p>This class is similar in functionality to <a href="qdbusreply.html">QDBusReply</a>, but with two important differences:</p>
+<ul>
+<li><a href="qdbusreply.html">QDBusReply</a> accepts exactly one return type, whereas QDBusPendingReply can have from 1 to 8 types</li>
+<li><a href="qdbusreply.html">QDBusReply</a> only works on already completed replies, whereas QDBusPendingReply allows one to wait for replies from pending calls</li>
+</ul>
+<p>Where with <a href="qdbusreply.html">QDBusReply</a> you would write:</p>
+<pre> QDBusReply&lt;QString&gt; reply = interface-&gt;call(&quot;RemoteMethod&quot;);
+ if (reply.isValid())
+     <span class="comment">// use the returned value</span>
+     useValue(reply.value());
+ else
+     <span class="comment">// call failed. Show an error condition.</span>
+     showError(reply.error());</pre>
+<p>with QDBusPendingReply, the equivalent code (including the blocking wait for the reply) would be:</p>
+<pre>     QDBusPendingReply&lt;QString&gt; reply = interface-&gt;asyncCall(&quot;RemoteMethod&quot;);
+     reply.waitForFinished();
+     if (reply.isError())
+         <span class="comment">// call failed. Show an error condition.</span>
+         showError(reply.error());
+     else
+         <span class="comment">// use the returned value</span>
+         useValue(reply.value());</pre>
+<p>For method calls that have more than one output argument, with <a href="qdbusreply.html">QDBusReply</a>, you would write:</p>
+<pre> QString reply = interface-&gt;call(&quot;RemoteMethod&quot;);</pre>
+<p>whereas with QDBusPendingReply, all of the output arguments should be template parameters:</p>
+<pre>     QDBusPendingReply&lt;bool, QString&gt; reply = interface-&gt;asyncCall(&quot;RemoteMethod&quot;);
+     reply.waitForFinished();
+     if (!reply.isError()) {
+         if (reply.argumentAt&lt;0&gt;())
+             showSuccess(reply.argumentAt&lt;1&gt;());
+         else
+             showFailure(reply.argumentAt&lt;1&gt;());
+     }</pre>
+<p>QDBusPendingReply objects can be associated with <a href="qdbuspendingcallwatcher.html">QDBusPendingCallWatcher</a> objects, which emit signals when the reply arrives.</p>
+<p>See also <a href="qdbuspendingcallwatcher.html">QDBusPendingCallWatcher</a>, <a href="qdbusreply.html">QDBusReply</a>, and <a href="qdbusabstractinterface.html#asyncCall">QDBusAbstractInterface::asyncCall</a>().</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QDBusPendingReply/QDBusPendingReply" />
+<h3 class="fn"><a name="QDBusPendingReply"></a>QDBusPendingReply::QDBusPendingReply ()</h3>
+<p>Creates an empty <a href="qdbuspendingreply.html">QDBusPendingReply</a> object. Without assigning a <a href="qdbuspendingcall.html">QDBusPendingCall</a> object to this reply, <a href="qdbuspendingreply.html">QDBusPendingReply</a> cannot do anything. All functions return their failure values.</p>
+<h3 class="fn"><a name="QDBusPendingReply-2"></a>QDBusPendingReply::QDBusPendingReply ( const QDBusPendingReply &amp; <i>other</i> )</h3>
+<p>Creates a copy of the <i>other</i> <a href="qdbuspendingreply.html">QDBusPendingReply</a> object. Just like <a href="qdbuspendingcall.html">QDBusPendingCall</a> and <a href="qdbuspendingcallwatcher.html">QDBusPendingCallWatcher</a>, this <a href="qdbuspendingreply.html">QDBusPendingReply</a> object will share the same pending call reference. All copies share the same return values.</p>
+<h3 class="fn"><a name="QDBusPendingReply-3"></a>QDBusPendingReply::QDBusPendingReply ( const <a href="qdbuspendingcall.html">QDBusPendingCall</a> &amp; <i>call</i> )</h3>
+<p>Creates a <a href="qdbuspendingreply.html">QDBusPendingReply</a> object that will take its contents from the <i>call</i> pending asynchronous call. This <a href="qdbuspendingreply.html">QDBusPendingReply</a> object will share the same pending call reference as <i>call</i>.</p>
+<h3 class="fn"><a name="QDBusPendingReply-4"></a>QDBusPendingReply::QDBusPendingReply ( const <a href="qdbusmessage.html">QDBusMessage</a> &amp; <i>message</i> )</h3>
+<p>Creates a <a href="qdbuspendingreply.html">QDBusPendingReply</a> object that will take its contents from the message <i>message</i>. In this case, this object will be already in its finished state and the reply's contents will be accessible.</p>
+<p>See also <a href="qdbuspendingreply.html#isFinished">isFinished</a>().</p>
+<a name="//apple_ref/cpp/instm/QDBusPendingReply/argumentAt" />
+<h3 class="fn"><a name="argumentAt"></a><a href="qvariant.html">QVariant</a> QDBusPendingReply::argumentAt ( int <i>index</i> ) const</h3>
+<p>Returns the argument at position <i>index</i> in the reply's contents. If the reply doesn't have that many elements, this function's return value is undefined (will probably cause an assertion failure), so it is important to verify that the processing is finished and the reply is valid.</p>
+<h3 class="fn"><a name="argumentAt-2"></a>Type QDBusPendingReply::argumentAt () const</h3>
+<p>Returns the argument at position <tt>Index</tt> (which is a template parameter) cast to type <tt>Type</tt>. This function uses template code to determine the proper <tt>Type</tt> type, according to the type list used in the construction of this object.</p>
+<p>Note that, if the reply hasn't arrived, this function causes the calling thread to block until the reply is processed.</p>
+<a name="//apple_ref/cpp/instm/QDBusPendingReply/count" />
+<h3 class="fn"><a name="count"></a>int QDBusPendingReply::count () const</h3>
+<p>Return the number of arguments the reply is supposed to have. This number matches the number of non-void template parameters in this class.</p>
+<p>If the reply arrives with a different number of arguments (or with different types), it will be transformed into an error reply indicating a bad signature.</p>
+<a name="//apple_ref/cpp/instm/QDBusPendingReply/error" />
+<h3 class="fn"><a name="error"></a><a href="qdbuserror.html">QDBusError</a> QDBusPendingReply::error () const</h3>
+<p>Retrieves the error content of the reply message, if it has finished processing. If the reply message has not finished processing or if it contains a normal reply message (non-error), this function returns an invalid <a href="qdbuserror.html">QDBusError</a>.</p>
+<a name="//apple_ref/cpp/instm/QDBusPendingReply/isError" />
+<h3 class="fn"><a name="isError"></a>bool QDBusPendingReply::isError () const</h3>
+<p>Returns true if the reply contains an error message, false if it contains a normal method reply.</p>
+<p>If the pending call has not finished processing, this function also returns true.</p>
+<a name="//apple_ref/cpp/instm/QDBusPendingReply/isFinished" />
+<h3 class="fn"><a name="isFinished"></a>bool QDBusPendingReply::isFinished () const</h3>
+<p>Returns true if the pending call has finished processing and the reply has been received. If this function returns true, the <a href="qdbuspendingreply.html#isError">isError</a>(), <a href="qdbuspendingreply.html#error">error</a>() and <a href="qdbuspendingreply.html#reply">reply</a>() methods should return valid information.</p>
+<p>Note that this function only changes state if you call <a href="qdbuspendingreply.html#waitForFinished">waitForFinished</a>() or if an external D-Bus event happens, which in general only happens if you return to the event loop execution.</p>
+<p>See also <a href="qdbuspendingcallwatcher.html#isFinished">QDBusPendingCallWatcher::isFinished</a>().</p>
+<a name="//apple_ref/cpp/instm/QDBusPendingReply/isValid" />
+<h3 class="fn"><a name="isValid"></a>bool QDBusPendingReply::isValid () const</h3>
+<p>Returns true if the reply contains a normal reply message, false if it contains anything else.</p>
+<p>If the pending call has not finished processing, this function return false.</p>
+<a name="//apple_ref/cpp/instm/QDBusPendingReply/reply" />
+<h3 class="fn"><a name="reply"></a><a href="qdbusmessage.html">QDBusMessage</a> QDBusPendingReply::reply () const</h3>
+<p>Retrieves the reply message received for the asynchronous call that was sent, if it has finished processing. If the pending call is not finished, this function returns a <a href="qdbusmessage.html">QDBusMessage</a> of type <a href="qdbusmessage.html#MessageType-enum">QDBusMessage::InvalidMessage</a>.</p>
+<p>After it has finished processing, the message type will either be an error message or a normal method reply message.</p>
+<a name="//apple_ref/cpp/instm/QDBusPendingReply/value" />
+<h3 class="fn"><a name="value"></a>T1 QDBusPendingReply::value () const</h3>
+<p>Returns the first argument in this reply, cast to type <tt>T1</tt> (the first template parameter of this class). This is equivalent to calling argumentAt&lt;0&gt;().</p>
+<p>This function is provided as a convenience, matching the <a href="qdbusreply.html#value">QDBusReply::value</a>() function.</p>
+<p>Note that, if the reply hasn't arrived, this function causes the calling thread to block until the reply is processed.</p>
+<a name="//apple_ref/cpp/instm/QDBusPendingReply/waitForFinished" />
+<h3 class="fn"><a name="waitForFinished"></a>void QDBusPendingReply::waitForFinished ()</h3>
+<p>Suspends the execution of the calling thread until the reply is received and processed. After this function returns, <a href="qdbuspendingreply.html#isFinished">isFinished</a>() should return true, indicating the reply's contents are ready to be processed.</p>
+<p>See also <a href="qdbuspendingcallwatcher.html#waitForFinished">QDBusPendingCallWatcher::waitForFinished</a>().</p>
+<a name="//apple_ref/cpp/instm/QDBusPendingReply/operator T1" />
+<h3 class="fn"><a name="operator-T1"></a>QDBusPendingReply::operator T1 () const</h3>
+<p>Returns the first argument in this reply, cast to type <tt>T1</tt> (the first template parameter of this class). This is equivalent to calling argumentAt&lt;0&gt;().</p>
+<p>This function is provided as a convenience, matching the <a href="qdbusreply.html#value">QDBusReply::value</a>() function.</p>
+<p>Note that, if the reply hasn't arrived, this function causes the calling thread to block until the reply is processed.</p>
+<a name="//apple_ref/cpp/instm/QDBusPendingReply/operator=" />
+<h3 class="fn"><a name="operator-eq"></a>QDBusPendingReply &amp; QDBusPendingReply::operator= ( const QDBusPendingReply &amp; <i>other</i> )</h3>
+<p>Makes a copy of <i>other</i> and drops the reference to the current pending call. If the current reference is to an unfinished pending call and this is the last reference, the pending call will be canceled and there will be no way of retrieving the reply's contents, when they arrive.</p>
+<h3 class="fn"><a name="operator-eq-2"></a>QDBusPendingReply &amp; QDBusPendingReply::operator= ( const <a href="qdbuspendingcall.html">QDBusPendingCall</a> &amp; <i>call</i> )</h3>
+<p>Makes this object take its contents from the <i>call</i> pending call and drops the reference to the current pending call. If the current reference is to an unfinished pending call and this is the last reference, the pending call will be canceled and there will be no way of retrieving the reply's contents, when they arrive.</p>
+<h3 class="fn"><a name="operator-eq-3"></a>QDBusPendingReply &amp; QDBusPendingReply::operator= ( const <a href="qdbusmessage.html">QDBusMessage</a> &amp; <i>message</i> )</h3>
+<p>Makes this object take its contents from the <i>message</i> message and drops the reference to the current pending call. If the current reference is to an unfinished pending call and this is the last reference, the pending call will be canceled and there will be no way of retrieving the reply's contents, when they arrive.</p>
+<p>After this function is finished, the <a href="qdbuspendingreply.html">QDBusPendingReply</a> object will be in its &quot;finished&quot; state and the <i>message</i> contents will be accessible.</p>
+<p>See also <a href="qdbuspendingreply.html#isFinished">isFinished</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

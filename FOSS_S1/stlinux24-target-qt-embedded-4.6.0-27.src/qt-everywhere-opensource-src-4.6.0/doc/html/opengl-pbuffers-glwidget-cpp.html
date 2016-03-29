@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: glwidget.cpp Example File (opengl/pbuffers/glwidget.cpp)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">glwidget.cpp Example File<br /><span class="small-subtitle">opengl/pbuffers/glwidget.cpp</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the examples of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+
+ #include &quot;glwidget.h&quot;
+ #include &lt;math.h&gt;
+
+ #include &quot;cube.h&quot;
+
+ #include &lt;QGLPixelBuffer&gt;
+
+ #ifndef GL_MULTISAMPLE
+ #define GL_MULTISAMPLE  0x809D
+ #endif
+
+ static GLfloat colorArray[][4] = {
+     {0.243f, 0.423f, 0.125f, 1.0f},
+     {0.176f, 0.31f, 0.09f, 1.0f},
+     {0.4f, 0.69f, 0.212f, 1.0f},
+     {0.317f, 0.553f, 0.161f, 1.0f}
+ };
+
+ GLWidget::GLWidget(QWidget *parent)
+     : QGLWidget(QGLFormat(QGL::SampleBuffers), parent)
+     , geom(0)
+     , cube(0)
+ {
+     <span class="comment">// create the pbuffer</span>
+     pbuffer = new QGLPixelBuffer(QSize(512, 512), format(), this);
+     setWindowTitle(tr(&quot;OpenGL pbuffers&quot;));
+     initializeGeometry();
+ }
+
+ GLWidget::~GLWidget()
+ {
+     pbuffer-&gt;releaseFromDynamicTexture();
+     glDeleteTextures(1, &amp;dynamicTexture);
+     delete pbuffer;
+
+     qDeleteAll(cubes);
+     qDeleteAll(tiles);
+     delete cube;
+ }
+
+ void GLWidget::initializeGL()
+ {
+     initCommon();
+     glShadeModel(GL_SMOOTH);
+     glEnable(GL_LIGHTING);
+     glEnable(GL_LIGHT0);
+     static GLfloat lightPosition[4] = { 0.5, 5.0, 7.0, 1.0 };
+     glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
+     initPbuffer();
+     cube-&gt;startAnimation();
+     connect(cube, SIGNAL(changed()), this, SLOT(update()));
+     for (int i = 0; i &lt; 3; ++i)
+     {
+         cubes[i]-&gt;startAnimation();
+         connect(cubes[i], SIGNAL(changed()), this, SLOT(update()));
+     }
+ }
+
+ void GLWidget::paintGL()
+ {
+     pbuffer-&gt;makeCurrent();
+     drawPbuffer();
+     <span class="comment">// On direct render platforms, drawing onto the pbuffer context above</span>
+     <span class="comment">// automatically updates the dynamic texture.  For cases where rendering</span>
+     <span class="comment">// directly to a texture is not supported, explicitly copy.</span>
+     if (!hasDynamicTextureUpdate)
+         pbuffer-&gt;updateDynamicTexture(dynamicTexture);
+     makeCurrent();
+
+     <span class="comment">// Use the pbuffer as a texture to render the scene</span>
+     glBindTexture(GL_TEXTURE_2D, dynamicTexture);
+
+     <span class="comment">// set up to render the scene</span>
+     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+     glLoadIdentity();
+     glTranslatef(0.0f, 0.0f, -10.0f);
+
+     <span class="comment">// draw the background</span>
+     glPushMatrix();
+     glScalef(aspect, 1.0f, 1.0f);
+     for (int i = 0; i &lt; tiles.count(); ++i)
+         tiles[i]-&gt;draw();
+     glPopMatrix();
+
+     <span class="comment">// draw the bouncing cubes</span>
+     for (int i = 0; i &lt; cubes.count(); ++i)
+         cubes[i]-&gt;draw();
+ }
+
+ void GLWidget::initializeGeometry()
+ {
+     geom = new Geometry();
+     CubeBuilder cBuilder(geom, 0.5);
+     cBuilder.setColor(QColor(255, 255, 255, 212));
+     <span class="comment">// build the 3 bouncing, spinning cubes</span>
+     for (int i = 0; i &lt; 3; ++i)
+         cubes.append(cBuilder.newCube(QVector3D((float)(i-1), -1.5f, 5 - i)));
+
+     <span class="comment">// build the spinning cube which goes in the dynamic texture</span>
+     cube = cBuilder.newCube();
+     cube-&gt;removeBounce();
+
+     <span class="comment">// build the background tiles</span>
+     TileBuilder tBuilder(geom);
+     tBuilder.setColor(QColor(Qt::white));
+     for (int c = -2; c &lt;= +2; ++c)
+         for (int r = -2; r &lt;= +2; ++r)
+             tiles.append(tBuilder.newTile(QVector3D(c, r, 0)));
+
+     <span class="comment">// graded backdrop for the pbuffer scene</span>
+     TileBuilder bBuilder(geom, 0.0f, 2.0f);
+     bBuilder.setColor(QColor(102, 176, 54, 210));
+     backdrop = bBuilder.newTile(QVector3D(0.0f, 0.0f, -1.5f));
+     backdrop-&gt;setColors(colorArray);
+ }
+
+ void GLWidget::initCommon()
+ {
+     qglClearColor(QColor(Qt::darkGray));
+
+     glEnable(GL_DEPTH_TEST);
+     glEnable(GL_CULL_FACE);
+     glEnable(GL_MULTISAMPLE);
+
+     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+     glEnable(GL_BLEND);
+
+     glEnable(GL_TEXTURE_2D);
+
+     geom-&gt;loadArrays();
+ }
+
+ void GLWidget::perspectiveProjection()
+ {
+     glMatrixMode(GL_PROJECTION);
+     glLoadIdentity();
+ #ifdef QT_OPENGL_ES
+     glFrustumf(-aspect, +aspect, -1.0, +1.0, 4.0, 15.0);
+ #else
+     glFrustum(-aspect, +aspect, -1.0, +1.0, 4.0, 15.0);
+ #endif
+     glMatrixMode(GL_MODELVIEW);
+ }
+
+ void GLWidget::orthographicProjection()
+ {
+     glMatrixMode(GL_PROJECTION);
+     glLoadIdentity();
+ #ifdef QT_OPENGL_ES
+     glOrthof(-1.0, +1.0, -1.0, +1.0, -90.0, +90.0);
+ #else
+     glOrtho(-1.0, +1.0, -1.0, +1.0, -90.0, +90.0);
+ #endif
+     glMatrixMode(GL_MODELVIEW);
+ }
+
+ void GLWidget::resizeGL(int width, int height)
+ {
+     glViewport(0, 0, width, height);
+     aspect = (qreal)width / (qreal)(height ? height : 1);
+     perspectiveProjection();
+ }
+
+ void GLWidget::drawPbuffer()
+ {
+     orthographicProjection();
+
+     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+     glDisable(GL_TEXTURE_2D);
+     backdrop-&gt;draw();
+     glEnable(GL_TEXTURE_2D);
+
+     glBindTexture(GL_TEXTURE_2D, cubeTexture);
+     glDisable(GL_CULL_FACE);
+     cube-&gt;draw();
+     glEnable(GL_CULL_FACE);
+
+     glFlush();
+ }
+
+ void GLWidget::initPbuffer()
+ {
+     pbuffer-&gt;makeCurrent();
+
+     cubeTexture = bindTexture(QImage(&quot;:res/cubelogo.png&quot;));
+
+     initCommon();
+
+     <span class="comment">// generate a texture that has the same size/format as the pbuffer</span>
+     dynamicTexture = pbuffer-&gt;generateDynamicTexture();
+
+     <span class="comment">// bind the dynamic texture to the pbuffer - this is a no-op under X11</span>
+     hasDynamicTextureUpdate = pbuffer-&gt;bindToDynamicTexture(dynamicTexture);
+     makeCurrent();
+ }
+
+ void GLWidget::setAnimationPaused(bool enable)
+ {
+     cube-&gt;setAnimationPaused(enable);
+     for (int i = 0; i &lt; 3; ++i)
+         cubes[i]-&gt;setAnimationPaused(enable);
+ }</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

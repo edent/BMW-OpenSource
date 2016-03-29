@@ -1,0 +1,152 @@
+/****************************************************************************
+**
+** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+** All rights reserved.
+** Contact: Nokia Corporation (qt-info@nokia.com)
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:LGPL$
+** Commercial Usage
+** Licensees holding valid Qt Commercial licenses may use this file in
+** accordance with the Qt Commercial License Agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and Nokia.
+**
+** GNU Lesser General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU Lesser
+** General Public License version 2.1 as published by the Free Software
+** Foundation and appearing in the file LICENSE.LGPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU Lesser General Public License version 2.1 requirements
+** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+**
+** In addition, as a special exception, Nokia gives you certain additional
+** rights.  These rights are described in the Nokia Qt LGPL Exception
+** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+**
+** GNU General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU
+** General Public License version 3.0 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU General Public License version 3.0 requirements will be
+** met: http://www.gnu.org/copyleft/gpl.html.
+**
+** If you have questions regarding the use of this file, please contact
+** Nokia at qt-info@nokia.com.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+   \example webkit/fancybrowser
+  \title Fancy Browser Example
+
+    The Fancy Browser example shows how to use jQuery with QtWebKit to
+    create a web browser with special effects and content
+    manipulation.
+
+    \image fancybrowser-example.png
+
+    The application makes use of QWebFrame::evaluateJavaScript to 
+    evaluate the jQuery JavaScript code. A QMainWindow with a QWebView
+    as central widget builds up the browser itself. 
+
+    \section1 MainWindow Class Definition
+
+    The \c MainWindow class inherits QMainWindow. It implements a number of 
+    slots to perform actions on both the application and on the web content. 
+
+    \snippet examples/webkit/fancybrowser/mainwindow.h 1
+
+    We also declare a QString that contains the jQuery, a QWebView
+    that displays the web content, and a QLineEdit that acts as the
+    address bar.
+
+    \section1 MainWindow Class Implementation
+
+    We start by implementing the constructor. 
+
+    \snippet examples/webkit/fancybrowser/mainwindow.cpp 1
+
+    The first part of the constructor sets the value of \c progress to
+    0. This value will be used later in the code to visualize the
+    loading of a webpage.
+
+    Next, the jQuery library is loaded using a QFile and reading the file 
+    content. The jQuery library is a JavaScript library that provides different 
+    functions for manipulating HTML. 
+
+    \snippet examples/webkit/fancybrowser/mainwindow.cpp 2
+
+    The second part of the constructor creates a QWebView and connects
+    slots to the views signals. Furthermore, we create a QLineEdit as
+    the browsers address bar. We then set the horizontal QSizePolicy
+    to fill the available area in the browser at all times. We add the
+    QLineEdit to a QToolbar together with a set of navigation actions
+    from QWebView::pageAction.  
+
+    \snippet examples/webkit/fancybrowser/mainwindow.cpp 3
+
+    The third and last part of the constructor implements two QMenus and assigns
+    a set of actions to them. The last line sets the QWebView as the central 
+    widget in the QMainWindow.
+
+    \snippet examples/webkit/fancybrowser/mainwindow.cpp 4
+
+    When the page is loaded, \c adjustLocation() updates the address
+    bar; \c adjustLocation() is triggered by the \c loadFinished()
+    signal in QWebView. In \c changeLocation() we create a QUrl
+    object, and then use it to load the page into the QWebView. When
+    the new web page has finished loading, \c adjustLocation() will be
+    run once more to update the address bar.
+
+    \snippet examples/webkit/fancybrowser/mainwindow.cpp 5
+
+    \c adjustTitle() sets the window title and displays the loading
+    progress. This slot is triggered by the \c titleChanged() signal
+    in QWebView. 
+
+    \snippet examples/webkit/fancybrowser/mainwindow.cpp 6
+
+    When a web page has loaded, \c finishLoading() is triggered by the 
+    \c loadFinished() signal in QWebView. \c finishLoading() then updates the 
+    progress in the title bar and calls \c evaluateJavaScript() to evaluate the
+    jQuery library. This evaluates the JavaScript against the current web page. 
+    What that means is that the JavaScript can be viewed as part of the content 
+    loaded into the QWebView, and therefore needs to be loaded every time a new 
+    page is loaded. Once the jQuery library is loaded, we can start executing 
+    the different jQuery functions in the browser.
+
+    The rotateImages() function is then called explicitely to make sure
+    that the images of the newly loaded page respect the state of the toggle
+    action.
+
+    \snippet examples/webkit/fancybrowser/mainwindow.cpp 7
+
+    The first jQuery-based function, \c highlightAllLinks(), is designed to  
+    highlight all links in the current webpage. The JavaScript code looks 
+    for web elements named \e {a}, which is the tag for a hyperlink. 
+    For each such element, the background color is set to be yellow by
+    using CSS. 
+
+    \snippet examples/webkit/fancybrowser/mainwindow.cpp 8
+    
+    The \c rotateImages() function rotates the images on the current
+    web page. Webkit supports CSS transforms and this JavaScript code 
+    looks up all \e {img} elements and rotates the images 180 degrees
+    and then back again. 
+
+    \snippet examples/webkit/fancybrowser/mainwindow.cpp 9
+
+    The remaining four methods remove different elements from the current web 
+    page. \c removeGifImages() removes all Gif images on the page by looking up 
+    the \e {src} attribute of all the elements on the web page. Any element with 
+    a \e {gif} file as its source is removed. \c removeInlineFrames() removes all 
+    \e {iframe} or inline elements. \c removeObjectElements() removes all 
+    \e {object} elements, and \c removeEmbeddedElements() removes any elements 
+    such as plugins embedded on the page using the \e {embed} tag.
+
+*/
+

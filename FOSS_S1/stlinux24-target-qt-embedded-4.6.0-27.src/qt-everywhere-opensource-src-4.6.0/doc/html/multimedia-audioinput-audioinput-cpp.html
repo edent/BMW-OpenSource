@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: audioinput.cpp Example File (multimedia/audioinput/audioinput.cpp)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">audioinput.cpp Example File<br /><span class="small-subtitle">multimedia/audioinput/audioinput.cpp</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the examples of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+
+ #include &lt;stdlib.h&gt;
+ #include &lt;math.h&gt;
+
+ #include &lt;QDebug&gt;
+ #include &lt;QPainter&gt;
+ #include &lt;QVBoxLayout&gt;
+
+ #include &lt;QAudioDeviceInfo&gt;
+ #include &lt;QAudioInput&gt;
+ #include &quot;audioinput.h&quot;
+
+ #define BUFFER_SIZE 4096
+
+ AudioInfo::AudioInfo(QObject* parent, QAudioInput* device)
+     :QIODevice( parent )
+ {
+     input = device;
+
+     m_maxValue = 0;
+ }
+
+ AudioInfo::~AudioInfo()
+ {
+ }
+
+ void AudioInfo::start()
+ {
+     open(QIODevice::WriteOnly);
+ }
+
+ void AudioInfo::stop()
+ {
+     close();
+ }
+
+ qint64 AudioInfo::readData(char *data, qint64 maxlen)
+ {
+     Q_UNUSED(data)
+     Q_UNUSED(maxlen)
+
+     return 0;
+ }
+
+ qint64 AudioInfo::writeData(const char *data, qint64 len)
+ {
+     int samples = len/2; <span class="comment">// 2 bytes per sample</span>
+     int maxAmp = 32768; <span class="comment">// max for S16 samples</span>
+     bool clipping = false;
+
+     m_maxValue = 0;
+
+     qint16* s = (qint16*)data;
+
+     <span class="comment">// sample format is S16LE, only</span>!
+
+     for(int i=0;i&lt;samples;i++) {
+         qint16 sample = *s;
+         s++;
+         if(abs(sample) &gt; m_maxValue) m_maxValue = abs(sample);
+     }
+     <span class="comment">// check for clipping</span>
+     if(m_maxValue&gt;=(maxAmp-1)) clipping = true;
+
+     float value = ((float)m_maxValue/(float)maxAmp);
+     if(clipping) m_maxValue = 100;
+     else m_maxValue = (int)(value*100);
+
+     emit update();
+
+     return len;
+ }
+
+ int AudioInfo::LinearMax()
+ {
+     return m_maxValue;
+ }
+
+ RenderArea::RenderArea(QWidget *parent)
+     : QWidget(parent)
+ {
+     setBackgroundRole(QPalette::Base);
+     setAutoFillBackground(true);
+
+     level = 0;
+     setMinimumHeight(30);
+     setMinimumWidth(200);
+ }
+
+ void RenderArea::paintEvent(QPaintEvent * <span class="comment">/* event */</span>)
+ {
+     QPainter painter(this);
+
+     painter.setPen(Qt::black);
+     painter.drawRect(QRect(painter.viewport().left()+10, painter.viewport().top()+10,
+                 painter.viewport().right()-20, painter.viewport().bottom()-20));
+
+     if(level == 0)
+         return;
+
+     painter.setPen(Qt::red);
+
+     int pos = ((painter.viewport().right()-20)-(painter.viewport().left()+11))*level/100;
+     int x1,y1,x2,y2;
+     for(int i=0;i&lt;10;i++) {
+         x1 = painter.viewport().left()+11;
+         y1 = painter.viewport().top()+10+i;
+         x2 = painter.viewport().left()+20+pos;
+         y2 = painter.viewport().top()+10+i;
+         if(x2 &lt; painter.viewport().left()+10)
+             x2 = painter.viewport().left()+10;
+
+         painter.drawLine(QPoint(x1,y1),QPoint(x2,y2));
+     }
+ }
+
+ void RenderArea::setLevel(int value)
+ {
+     level = value;
+     repaint();
+ }
+
+ InputTest::InputTest()
+ {
+     QWidget *window = new QWidget;
+     QVBoxLayout* layout = new QVBoxLayout;
+
+     canvas = new RenderArea;
+     layout-&gt;addWidget(canvas);
+
+     deviceBox = new QComboBox(this);
+     QList&lt;QAudioDeviceInfo&gt; devices = QAudioDeviceInfo::availableDevices(QAudio::AudioInput);
+     for(int i = 0; i &lt; devices.size(); ++i) {
+         deviceBox-&gt;addItem(devices.at(i).deviceName(), qVariantFromValue(devices.at(i)));
+     }
+     connect(deviceBox,SIGNAL(activated(int)),SLOT(deviceChanged(int)));
+     layout-&gt;addWidget(deviceBox);
+
+     button = new QPushButton(this);
+     button-&gt;setText(tr(&quot;Click for Push Mode&quot;));
+     connect(button,SIGNAL(clicked()),SLOT(toggleMode()));
+     layout-&gt;addWidget(button);
+
+     button2 = new QPushButton(this);
+     button2-&gt;setText(tr(&quot;Click To Suspend&quot;));
+     connect(button2,SIGNAL(clicked()),SLOT(toggleSuspend()));
+     layout-&gt;addWidget(button2);
+
+     window-&gt;setLayout(layout);
+     setCentralWidget(window);
+     window-&gt;show();
+
+     buffer = new char[BUFFER_SIZE];
+
+     pullMode = true;
+
+     <span class="comment">// AudioInfo class only supports mono S16LE samples</span>!
+     format.setFrequency(8000);
+     format.setChannels(1);
+     format.setSampleSize(16);
+     format.setSampleType(QAudioFormat::SignedInt);
+     format.setByteOrder(QAudioFormat::LittleEndian);
+     format.setCodec(&quot;audio/pcm&quot;);
+
+     audioInput = new QAudioInput(format,this);
+     connect(audioInput,SIGNAL(notify()),SLOT(status()));
+     connect(audioInput,SIGNAL(stateChanged(QAudio::State)),SLOT(state(QAudio::State)));
+     audioinfo  = new AudioInfo(this,audioInput);
+     connect(audioinfo,SIGNAL(update()),SLOT(refreshDisplay()));
+     audioinfo-&gt;start();
+     audioInput-&gt;start(audioinfo);
+ }
+
+ InputTest::~InputTest() {}
+
+ void InputTest::status()
+ {
+     qWarning()&lt;&lt;&quot;bytesReady = &quot;&lt;&lt;audioInput-&gt;bytesReady()&lt;&lt;&quot; bytes, elapsedUSecs = &quot;&lt;&lt;audioInput-&gt;elapsedUSecs()&lt;&lt;&quot;, processedUSecs = &quot;&lt;&lt;audioInput-&gt;processedUSecs();
+ }
+
+ void InputTest::readMore()
+ {
+     if(!audioInput)
+         return;
+     qint64 len = audioInput-&gt;bytesReady();
+     if(len &gt; 4096)
+         len = 4096;
+     qint64 l = input-&gt;read(buffer,len);
+     if(l &gt; 0) {
+         audioinfo-&gt;write(buffer,l);
+     }
+ }
+
+ void InputTest::toggleMode()
+ {
+     <span class="comment">// Change bewteen pull and push modes</span>
+     audioInput-&gt;stop();
+
+     if (pullMode) {
+         button-&gt;setText(tr(&quot;Click for Pull Mode&quot;));
+         input = audioInput-&gt;start();
+         connect(input,SIGNAL(readyRead()),SLOT(readMore()));
+         pullMode = false;
+     } else {
+         button-&gt;setText(tr(&quot;Click for Push Mode&quot;));
+         pullMode = true;
+         audioInput-&gt;start(audioinfo);
+     }
+ }
+
+ void InputTest::toggleSuspend()
+ {
+     <span class="comment">// toggle suspend/resume</span>
+     if(audioInput-&gt;state() == QAudio::SuspendedState) {
+         qWarning()&lt;&lt;&quot;status: Suspended, resume()&quot;;
+         audioInput-&gt;resume();
+         button2-&gt;setText(&quot;Click To Suspend&quot;);
+     } else if (audioInput-&gt;state() == QAudio::ActiveState) {
+         qWarning()&lt;&lt;&quot;status: Active, suspend()&quot;;
+         audioInput-&gt;suspend();
+         button2-&gt;setText(&quot;Click To Resume&quot;);
+     } else if (audioInput-&gt;state() == QAudio::StoppedState) {
+         qWarning()&lt;&lt;&quot;status: Stopped, resume()&quot;;
+         audioInput-&gt;resume();
+         button2-&gt;setText(&quot;Click To Suspend&quot;);
+     } else if (audioInput-&gt;state() == QAudio::IdleState) {
+         qWarning()&lt;&lt;&quot;status: IdleState&quot;;
+     }
+ }
+
+ void InputTest::state(QAudio::State state)
+ {
+     qWarning()&lt;&lt;&quot; state=&quot;&lt;&lt;state;
+ }
+
+ void InputTest::refreshDisplay()
+ {
+     canvas-&gt;setLevel(audioinfo-&gt;LinearMax());
+     canvas-&gt;repaint();
+ }
+
+ void InputTest::deviceChanged(int idx)
+ {
+     audioinfo-&gt;stop();
+     audioInput-&gt;stop();
+     audioInput-&gt;disconnect(this);
+     delete audioInput;
+
+     device = deviceBox-&gt;itemData(idx).value&lt;QAudioDeviceInfo&gt;();
+     audioInput = new QAudioInput(device, format, this);
+     connect(audioInput,SIGNAL(notify()),SLOT(status()));
+     connect(audioInput,SIGNAL(stateChanged(QAudio::State)),SLOT(state(QAudio::State)));
+     audioinfo-&gt;start();
+     audioInput-&gt;start(audioinfo);
+ }</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

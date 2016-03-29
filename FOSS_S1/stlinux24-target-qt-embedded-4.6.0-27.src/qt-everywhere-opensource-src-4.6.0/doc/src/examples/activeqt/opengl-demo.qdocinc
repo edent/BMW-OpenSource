@@ -1,0 +1,27 @@
+\raw HTML
+//! [0]
+<SCRIPT LANGUAGE="JavaScript">
+function setRot( form )
+{
+    GLBox.setXRotation( form.XEdit.value );
+    GLBox.setYRotation( form.YEdit.value );
+    GLBox.setZRotation( form.ZEdit.value );
+}
+</SCRIPT>
+
+<p />
+An OpenGL scene:<br />
+<object ID="GLBox" CLASSID="CLSID:5fd9c22e-ed45-43fa-ba13-1530bb6b03e0"
+CODEBASE="http://qt.nokia.com/demos/openglax.cab">
+[Object not available! Did you forget to build and register the server?]
+</object><br />
+
+<form>
+Rotate the scene:<br />
+X:<input type="edit" ID="XEdit" value="0" /><br />
+Y:<input type="edit" name="YEdit" value="0" /><br />
+Z:<input type="edit" name="ZEdit" value="0" /><br />
+<input type="button" value="Set" onClick="setRot(this.form)" />
+</form>
+//! [0]
+\endraw

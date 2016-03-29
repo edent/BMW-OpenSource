@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qxmlschema.cpp -->
+<head>
+  <title>Qt 4.6: QXmlSchema Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QXmlSchema" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QXmlSchema Class Reference<br /><span class="small-subtitle">[<a href="qtxmlpatterns.html">QtXmlPatterns</a> module]</span>
+</h1>
+<p>The QXmlSchema class provides loading and validation of a W3C XML Schema. <a href="#details">More...</a></p>
+<pre> #include &lt;QXmlSchema&gt;</pre><p><b>This class is not part of the Qt GUI Framework Edition.</b></p>
+<p><b>Note:</b> All functions in this class are <a href="threads-reentrancy.html#reentrant">reentrant</a>.</p>
+<p>This class was introduced in Qt 4.6.</p>
+<ul>
+<li><a href="qxmlschema-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qxmlschema.html#QXmlSchema">QXmlSchema</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qxmlschema.html#QXmlSchema-2">QXmlSchema</a></b> ( const QXmlSchema &amp; <i>other</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qxmlschema.html#dtor.QXmlSchema">~QXmlSchema</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QUrl </td><td class="memItemRight" valign="bottom"><b><a href="qxmlschema.html#documentUri">documentUri</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qxmlschema.html#isValid">isValid</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qxmlschema.html#load">load</a></b> ( const QUrl &amp; <i>source</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qxmlschema.html#load-2">load</a></b> ( QIODevice * <i>source</i>, const QUrl &amp; <i>documentUri</i> = QUrl() )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qxmlschema.html#load-3">load</a></b> ( const QByteArray &amp; <i>data</i>, const QUrl &amp; <i>documentUri</i> = QUrl() )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QAbstractMessageHandler * </td><td class="memItemRight" valign="bottom"><b><a href="qxmlschema.html#messageHandler">messageHandler</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QXmlNamePool </td><td class="memItemRight" valign="bottom"><b><a href="qxmlschema.html#namePool">namePool</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QNetworkAccessManager * </td><td class="memItemRight" valign="bottom"><b><a href="qxmlschema.html#networkAccessManager">networkAccessManager</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qxmlschema.html#setMessageHandler">setMessageHandler</a></b> ( QAbstractMessageHandler * <i>handler</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qxmlschema.html#setNetworkAccessManager">setNetworkAccessManager</a></b> ( QNetworkAccessManager * <i>manager</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qxmlschema.html#setUriResolver">setUriResolver</a></b> ( const QAbstractUriResolver * <i>resolver</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const QAbstractUriResolver * </td><td class="memItemRight" valign="bottom"><b><a href="qxmlschema.html#uriResolver">uriResolver</a></b> () const</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QXmlSchema class provides loading and validation of a W3C XML Schema.</p>
+<p>The QXmlSchema class loads, compiles and validates W3C XML Schema files that can be used further for validation of XML instance documents via <a href="qxmlschemavalidator.html">QXmlSchemaValidator</a>.</p>
+<p>The following example shows how to load a XML Schema file from the network and test whether it is a valid schema document:</p>
+<pre>     QUrl url(&quot;http:<span class="comment">//www.schema-example.org/myschema.xsd&quot;);</span>
+
+     QXmlSchema schema;
+     if (schema.load(url) == true)
+         qDebug() &lt;&lt; &quot;schema is valid&quot;;
+     else
+         qDebug() &lt;&lt; &quot;schema is invalid&quot;;</pre>
+<p>See also <a href="qxmlschemavalidator.html">QXmlSchemaValidator</a> and <a href="xmlpatterns-schema.html">XML Schema Validation Example</a>.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QXmlSchema/QXmlSchema" />
+<h3 class="fn"><a name="QXmlSchema"></a>QXmlSchema::QXmlSchema ()</h3>
+<p>Constructs an invalid, empty schema that cannot be used until <a href="qxmlschema.html#load">load</a>() is called.</p>
+<h3 class="fn"><a name="QXmlSchema-2"></a>QXmlSchema::QXmlSchema ( const QXmlSchema &amp; <i>other</i> )</h3>
+<p>Constructs a <a href="qxmlschema.html">QXmlSchema</a> that is a copy of <i>other</i>. The new instance will share resources with the existing schema to the extent possible.</p>
+<a name="//apple_ref/cpp/instm/QXmlSchema/~QXmlSchema" />
+<h3 class="fn"><a name="dtor.QXmlSchema"></a>QXmlSchema::~QXmlSchema ()</h3>
+<p>Destroys this <a href="qxmlschema.html">QXmlSchema</a>.</p>
+<a name="//apple_ref/cpp/instm/QXmlSchema/documentUri" />
+<h3 class="fn"><a name="documentUri"></a><a href="qurl.html">QUrl</a> QXmlSchema::documentUri () const</h3>
+<p>Returns the document URI of the schema or an empty URI if no schema has been set.</p>
+<a name="//apple_ref/cpp/instm/QXmlSchema/isValid" />
+<h3 class="fn"><a name="isValid"></a>bool QXmlSchema::isValid () const</h3>
+<p>Returns true if this schema is valid. Examples of invalid schemas are ones that contain syntax errors or that do not conform the W3C XML Schema specification.</p>
+<a name="//apple_ref/cpp/instm/QXmlSchema/load" />
+<h3 class="fn"><a name="load"></a>bool QXmlSchema::load ( const <a href="qurl.html">QUrl</a> &amp; <i>source</i> )</h3>
+<p>Sets this <a href="qxmlschema.html">QXmlSchema</a> to a schema loaded from the <i>source</i> URI.</p>
+<p>If the schema <a href="qxmlschema.html#isValid">is invalid</a>, <tt>false</tt> is returned and the behavior is undefined.</p>
+<p>Example:</p>
+<pre>     QUrl url(&quot;http:<span class="comment">//www.schema-example.org/myschema.xsd&quot;);</span>
+
+     QXmlSchema schema;
+     if (schema.load(url) == true)
+         qDebug() &lt;&lt; &quot;schema is valid&quot;;
+     else
+         qDebug() &lt;&lt; &quot;schema is invalid&quot;;</pre>
+<p>See also <a href="qxmlschema.html#isValid">isValid</a>().</p>
+<h3 class="fn"><a name="load-2"></a>bool QXmlSchema::load ( <a href="qiodevice.html">QIODevice</a> * <i>source</i>, const <a href="qurl.html">QUrl</a> &amp; <i>documentUri</i> = QUrl() )</h3>
+<p>Sets this <a href="qxmlschema.html">QXmlSchema</a> to a schema read from the <i>source</i> device. The device must have been opened with at least <a href="qiodevice.html#OpenModeFlag-enum">QIODevice::ReadOnly</a>.</p>
+<p><i>documentUri</i> represents the schema obtained from the <i>source</i> device. It is the base URI of the schema, that is used internally to resolve relative URIs that appear in the schema, and for message reporting.</p>
+<p>If <i>source</i> is <tt>null</tt> or not readable, or if <i>documentUri</i> is not a valid URI, behavior is undefined.</p>
+<p>If the schema <a href="qxmlschema.html#isValid">is invalid</a>, <tt>false</tt> is returned and the behavior is undefined.</p>
+<p>Example:</p>
+<pre>     QFile file(&quot;myschema.xsd&quot;);
+     file.open(QIODevice::ReadOnly);
+
+     QXmlSchema schema;
+     schema.load(&amp;file, QUrl::fromLocalFile(file.fileName()));
+
+     if (schema.isValid())
+         qDebug() &lt;&lt; &quot;schema is valid&quot;;
+     else
+         qDebug() &lt;&lt; &quot;schema is invalid&quot;;</pre>
+<p>See also <a href="qxmlschema.html#isValid">isValid</a>().</p>
+<h3 class="fn"><a name="load-3"></a>bool QXmlSchema::load ( const <a href="qbytearray.html">QByteArray</a> &amp; <i>data</i>, const <a href="qurl.html">QUrl</a> &amp; <i>documentUri</i> = QUrl() )</h3>
+<p>Sets this <a href="qxmlschema.html">QXmlSchema</a> to a schema read from the <i>data</i></p>
+<p><i>documentUri</i> represents the schema obtained from the <i>data</i>. It is the base URI of the schema, that is used internally to resolve relative URIs that appear in the schema, and for message reporting.</p>
+<p>If <i>documentUri</i> is not a valid URI, behavior is undefined.</p>
+<p>If the schema <a href="qxmlschema.html#isValid">is invalid</a>, <tt>false</tt> is returned and the behavior is undefined.</p>
+<p>Example:</p>
+<pre>     QByteArray data( &quot;&lt;?xml version=\&quot;1.0\&quot; encoding=\&quot;UTF-8\&quot;?&gt;&quot;
+                      &quot;&lt;xsd:schema&quot;
+                      &quot;        xmlns:xsd=\&quot;http:<span class="comment">//www.w3.org/2001/XMLSchema\&quot;&quot;</span>
+                      &quot;        xmlns=\&quot;http:<span class="comment">//qt.nokia.com/xmlschematest\&quot;&quot;</span>
+                      &quot;        targetNamespace=\&quot;http:<span class="comment">//qt.nokia.com/xmlschematest\&quot;&quot;</span>
+                      &quot;        version=\&quot;1.0\&quot;&quot;
+                      &quot;        elementFormDefault=\&quot;qualified\&quot;&gt;&quot;
+                      &quot;&lt;/xsd:schema&gt;&quot; );
+
+     QBuffer buffer(&amp;data);
+     buffer.open(QIODevice::ReadOnly);
+
+     QXmlSchema schema;
+     schema.load(&amp;buffer);
+
+     if (schema.isValid())
+         qDebug() &lt;&lt; &quot;schema is valid&quot;;
+     else
+         qDebug() &lt;&lt; &quot;schema is invalid&quot;;</pre>
+<p>See also <a href="qxmlschema.html#isValid">isValid</a>() and <a href="qxmlschema.html#isValid">isValid</a>().</p>
+<a name="//apple_ref/cpp/instm/QXmlSchema/messageHandler" />
+<h3 class="fn"><a name="messageHandler"></a><a href="qabstractmessagehandler.html">QAbstractMessageHandler</a> * QXmlSchema::messageHandler () const</h3>
+<p>Returns the message handler that handles compile and validation messages for this <a href="qxmlschema.html">QXmlSchema</a>.</p>
+<p>See also <a href="qxmlschema.html#setMessageHandler">setMessageHandler</a>().</p>
+<a name="//apple_ref/cpp/instm/QXmlSchema/namePool" />
+<h3 class="fn"><a name="namePool"></a><a href="qxmlnamepool.html">QXmlNamePool</a> QXmlSchema::namePool () const</h3>
+<p>Returns the name pool used by this <a href="qxmlschema.html">QXmlSchema</a> for constructing <a href="qxmlname.html">names</a>. There is no setter for the name pool, because mixing name pools causes errors due to name confusion.</p>
+<a name="//apple_ref/cpp/instm/QXmlSchema/networkAccessManager" />
+<h3 class="fn"><a name="networkAccessManager"></a><a href="qnetworkaccessmanager.html">QNetworkAccessManager</a> * QXmlSchema::networkAccessManager () const</h3>
+<p>Returns the network manager, or 0 if it has not been set.</p>
+<p>See also <a href="qxmlschema.html#setNetworkAccessManager">setNetworkAccessManager</a>().</p>
+<a name="//apple_ref/cpp/instm/QXmlSchema/setMessageHandler" />
+<h3 class="fn"><a name="setMessageHandler"></a>void QXmlSchema::setMessageHandler ( <a href="qabstractmessagehandler.html">QAbstractMessageHandler</a> * <i>handler</i> )</h3>
+<p>Changes the <a href="qabstractmessagehandler.html">message handler</a> for this <a href="qxmlschema.html">QXmlSchema</a> to <i>handler</i>. The schema sends all compile and validation messages to this message handler. <a href="qxmlschema.html">QXmlSchema</a> does not take ownership of <i>handler</i>.</p>
+<p>Normally, the default message handler is sufficient. It writes compile and validation messages to <i>stderr</i>. The default message handler includes color codes if <i>stderr</i> can render colors.</p>
+<p>When <a href="qxmlschema.html">QXmlSchema</a> calls <a href="qabstractmessagehandler.html#message">QAbstractMessageHandler::message</a>(), the arguments are as follows:</p>
+<p><table class="generic" align="center" cellpadding="2" cellspacing="1" border="0">
+<thead><tr valign="top" class="qt-style"><th>message() argument</th><th>Semantics</th></tr></thead>
+<tr valign="top" class="odd"><td><a href="qtglobal.html#QtMsgType-enum">QtMsgType</a> type</td><td>Only <a href="qtglobal.html#QtMsgType-enum">QtWarningMsg</a> and <a href="qtglobal.html#QtMsgType-enum">QtFatalMsg</a> are used. The former identifies a warning, while the latter identifies an error.</td></tr>
+<tr valign="top" class="even"><td>const <a href="qstring.html">QString</a> &amp; description</td><td>An XHTML document which is the actual message. It is translated into the current language.</td></tr>
+<tr valign="top" class="odd"><td>const <a href="qurl.html">QUrl</a> &amp;identifier</td><td>Identifies the error with a URI, where the fragment is the error code, and the rest of the URI is the error namespace.</td></tr>
+<tr valign="top" class="even"><td>const <a href="qsourcelocation.html">QSourceLocation</a> &amp; sourceLocation</td><td>Identifies where the error occurred.</td></tr>
+</table></p>
+<p>See also <a href="qxmlschema.html#messageHandler">messageHandler</a>().</p>
+<a name="//apple_ref/cpp/instm/QXmlSchema/setNetworkAccessManager" />
+<h3 class="fn"><a name="setNetworkAccessManager"></a>void QXmlSchema::setNetworkAccessManager ( <a href="qnetworkaccessmanager.html">QNetworkAccessManager</a> * <i>manager</i> )</h3>
+<p>Sets the network manager to <i>manager</i>. <a href="qxmlschema.html">QXmlSchema</a> does not take ownership of <i>manager</i>.</p>
+<p>See also <a href="qxmlschema.html#networkAccessManager">networkAccessManager</a>().</p>
+<a name="//apple_ref/cpp/instm/QXmlSchema/setUriResolver" />
+<h3 class="fn"><a name="setUriResolver"></a>void QXmlSchema::setUriResolver ( const <a href="qabstracturiresolver.html">QAbstractUriResolver</a> * <i>resolver</i> )</h3>
+<p>Sets the URI resolver to <i>resolver</i>. <a href="qxmlschema.html">QXmlSchema</a> does not take ownership of <i>resolver</i>.</p>
+<p>See also <a href="qxmlschema.html#uriResolver">uriResolver</a>().</p>
+<a name="//apple_ref/cpp/instm/QXmlSchema/uriResolver" />
+<h3 class="fn"><a name="uriResolver"></a>const <a href="qabstracturiresolver.html">QAbstractUriResolver</a> * QXmlSchema::uriResolver () const</h3>
+<p>Returns the schema's URI resolver. If no URI resolver has been set, <a href="qtxmlpatterns.html">QtXmlPatterns</a> will use the URIs in schemas as they are.</p>
+<p>The URI resolver provides a level of abstraction, or <i>polymorphic URIs</i>. A resolver can rewrite <i>logical</i> URIs to physical ones, or it can translate obsolete or invalid URIs to valid ones.</p>
+<p>When <a href="qtxmlpatterns.html">QtXmlPatterns</a> calls <a href="qabstracturiresolver.html#resolve">QAbstractUriResolver::resolve</a>() the absolute URI is the URI mandated by the schema specification, and the relative URI is the URI specified by the user.</p>
+<p>See also <a href="qxmlschema.html#setUriResolver">setUriResolver</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

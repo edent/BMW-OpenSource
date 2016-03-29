@@ -1,0 +1,25 @@
+CONFIG -= stl_off
+
+# STL usage in S60 requires the "OPTION CW -wchar_t on" mmp statement to be used.
+# This statement is added via $$STLLIB_USAGE_CW_FLAGS variable below.
+# S60 STL documentation instructs to use also "MACRO  _WCHAR_T_DECLARED" statement,
+# but QtS60 will not compile if that statement is set.
+
+QMAKE_CXXFLAGS.CW *= $$STLLIB_USAGE_CW_FLAGS 
+
+# Path to stlport headers
+INCLUDEPATH += $$OS_LAYER_STDCPP_SYSTEMINCLUDE 
+
+# Remove mkspecs/common/symbian/stl-off from beginning of includepath 
+# in order to use new and delete operators from STL
+INCLUDEPATH -= $$[QT_INSTALL_PREFIX]/mkspecs/common/symbian/stl-off
+
+# libstdcppv5 is preferred over libstdcpp as it has/uses the throwing version of operator new
+exists($${EPOCROOT}epoc32/release/armv5/urel/libstdcppv5.dll)|exists($${EPOCROOT}epoc32/release/winscw/udeb/libstdcppv5.dll) {
+    LIBS *= -llibstdcppv5.dll
+
+    # STDCPP turns on standard C++ new behaviour (ie. throwing new)
+    MMP_RULES += "STDCPP"
+} else {
+    LIBS *= -llibstdcpp.dll
+}

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- delayedencoding.qdoc -->
+<head>
+  <title>Qt 4.6: Delayed Encoding Example</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">Delayed Encoding Example<br /><span class="subtitle"></span>
+</h1>
+<p>Files:</p>
+<ul>
+<li><a href="draganddrop-delayedencoding-mimedata-cpp.html">draganddrop/delayedencoding/mimedata.cpp</a></li>
+<li><a href="draganddrop-delayedencoding-mimedata-h.html">draganddrop/delayedencoding/mimedata.h</a></li>
+<li><a href="draganddrop-delayedencoding-sourcewidget-cpp.html">draganddrop/delayedencoding/sourcewidget.cpp</a></li>
+<li><a href="draganddrop-delayedencoding-sourcewidget-h.html">draganddrop/delayedencoding/sourcewidget.h</a></li>
+<li><a href="draganddrop-delayedencoding-images-example-svg.html">draganddrop/delayedencoding/images/example.svg</a></li>
+<li><a href="draganddrop-delayedencoding-main-cpp.html">draganddrop/delayedencoding/main.cpp</a></li>
+<li><a href="draganddrop-delayedencoding-delayedencoding-pro.html">draganddrop/delayedencoding/delayedencoding.pro</a></li>
+<li><a href="draganddrop-delayedencoding-delayedencoding-qrc.html">draganddrop/delayedencoding/delayedencoding.qrc</a></li>
+</ul>
+<p>The Delayed Encoding example shows how to delay preparing of data for drag and drop operations until a drop target is found.</p>
+<p align="center"><img src="images/delayedecoding-example.png" /></p><p>The <b>Export</b> push button is pressed down to start the drag. The data for the drag and drop operation is not processed until the user of the application has found a valid drop target. This removes redundant processing if the operation is aborted. In our case, we have an SVG image that we wish to send as the <tt>&quot;image/png&quot;</tt> MIME type. It is the conversion from SVG to PNG we wish to delay - it can be quite expensive.</p>
+<p>The example is implemented in two classes: <tt>SourceWidget</tt> and <tt>MimeData</tt>. The <tt>SourceWidget</tt> class sets up the GUI and starts the drag operation on request. The <tt>MimeData</tt> class, which inherits <a href="qmimedata.html">QMimeData</a>, sends a signal when a drop target is found. This signal is connected to a slot in <tt>SourceWidget</tt>, which does the conversion from SVG to PNG.</p>
+<a name="sourcewidget-class-definition"></a>
+<h2>SourceWidget Class Definition</h2>
+<p>The <tt>SourceWidget</tt> class starts drag and drop operations and also does the image conversion.</p>
+<pre> public slots:
+     void createData(const QString &amp;mimetype);
+     void startDrag();
+
+ private:
+     QByteArray imageData;
+     QSvgWidget *imageLabel;
+     MimeData *mimeData;</pre>
+<p>The <b>Export</b> push button is connected to the <tt>startDrag()</tt> slot. The <tt>createData()</tt> slot will be invoked when data for the drag and drop operation is to be created.</p>
+<a name="sourcewidget-class-implementation"></a>
+<h2>SourceWidget Class Implementation</h2>
+<p>Let's start our code tour with a look at the <tt>startDrag()</tt> slot.</p>
+<pre> void SourceWidget::startDrag()
+ {
+     mimeData = new MimeData;
+
+     connect(mimeData, SIGNAL(dataRequested(const QString &amp;)),
+             this, SLOT(createData(const QString &amp;)), Qt::DirectConnection);
+
+     QDrag *drag = new QDrag(this);
+     drag-&gt;setMimeData(mimeData);
+     drag-&gt;setPixmap(QPixmap(&quot;:/images/drag.png&quot;));
+
+     drag-&gt;exec(Qt::CopyAction);
+ }</pre>
+<p>We emit <tt>dataRequested()</tt> from <tt>MimeData</tt> when the operation has found a valid drop target.</p>
+<p>We gallop along to <tt>createData()</tt>:</p>
+<pre> void SourceWidget::createData(const QString &amp;mimeType)
+ {
+     if (mimeType != &quot;image/png&quot;)
+         return;
+
+     QImage image(imageLabel-&gt;size(), QImage::Format_RGB32);
+     QPainter painter;
+     painter.begin(&amp;image);
+     imageLabel-&gt;renderer()-&gt;render(&amp;painter);
+     painter.end();
+
+     QByteArray data;
+     QBuffer buffer(&amp;data);
+     buffer.open(QIODevice::WriteOnly);
+     image.save(&amp;buffer, &quot;PNG&quot;);
+     buffer.close();
+
+     mimeData-&gt;setData(&quot;image/png&quot;, data);
+ }</pre>
+<p>Fortunately, Qt provides <a href="qsvgrenderer.html">QSvgRenderer</a>, which can render the SVG image to any <a href="qpaintdevice.html">QPaintDevice</a>. Also, <a href="qimage.html">QImage</a> has no problems saving to the PNG format.</p>
+<p>Finally, we can give the data to <tt>MimeData</tt>.</p>
+<a name="mimedata-class-definition"></a>
+<h2>MimeData Class Definition</h2>
+<p>The <tt>MimeData</tt> class inherits <a href="qmimedata.html">QMimeData</a> and makes it possible to delay preparing of the data for a drag and drop operation.</p>
+<pre> class MimeData : public QMimeData
+ {
+     Q_OBJECT
+
+ public:
+     MimeData();
+     QStringList formats() const;
+
+ signals:
+     void dataRequested(const QString &amp;mimeType) const;
+
+ protected:
+     QVariant retrieveData(const QString &amp;mimetype, QVariant::Type type) const;
+ };</pre>
+<p>We will look closer at <tt>retrieveData()</tt> and <tt>formats()</tt> in the next section.</p>
+<a name="mimedata-class-implementation"></a>
+<h2>MimeData Class Implementation</h2>
+<pre> QStringList MimeData::formats() const
+ {
+     return QMimeData::formats() &lt;&lt; &quot;image/png&quot;;
+ }</pre>
+<p>In the <tt>formats()</tt> function, we return the format of the data we provide. This is the <tt>image/png</tt> MIME type.</p>
+<pre> QVariant MimeData::retrieveData(const QString &amp;mimeType, QVariant::Type type)
+          const
+ {
+     emit dataRequested(mimeType);
+
+     return QMimeData::retrieveData(mimeType, type);
+ }</pre>
+<p><tt>retrieveData()</tt> is reimplemented from <a href="qmimedata.html">QMimeData</a> and is called when the data is requested by the drag and drop operation. Fortunately for us, this happens when the operation is finishing, i.e&#x2e;, when a drop target has been found.</p>
+<p>We emit the <tt>dataRequested()</tt> signal, which is picked up by <tt>SourceWidget</tt>. The <tt>SourceWidget</tt> (as already explained) sets the data on <tt>MimeData</tt> with <a href="qmimedata.html#setData">setData()</a>.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

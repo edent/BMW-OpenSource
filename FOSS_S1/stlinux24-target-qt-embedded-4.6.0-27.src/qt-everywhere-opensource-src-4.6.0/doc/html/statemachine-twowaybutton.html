@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- twowaybutton.qdoc -->
+<head>
+  <title>Qt 4.6: Two-way Button Example</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">Two-way Button Example<br /><span class="subtitle"></span>
+</h1>
+<p>Files:</p>
+<ul>
+<li><a href="statemachine-twowaybutton-main-cpp.html">statemachine/twowaybutton/main.cpp</a></li>
+<li><a href="statemachine-twowaybutton-twowaybutton-pro.html">statemachine/twowaybutton/twowaybutton.pro</a></li>
+</ul>
+<p>The Two-way button example shows how to use <a href="statemachine-api.html">The State Machine Framework</a> to implement a simple state machine that toggles the current state when a button is clicked.</p>
+<pre> int main(int argc, char **argv)
+ {
+     QApplication app(argc, argv);
+     QPushButton button;
+     QStateMachine machine;</pre>
+<p>The application's main() function begins by constructing the application object, a button and a state machine.</p>
+<pre>     QState *off = new QState();
+     off-&gt;assignProperty(&amp;button, &quot;text&quot;, &quot;Off&quot;);
+     off-&gt;setObjectName(&quot;off&quot;);
+
+     QState *on = new QState();
+     on-&gt;setObjectName(&quot;on&quot;);
+     on-&gt;assignProperty(&amp;button, &quot;text&quot;, &quot;On&quot;);</pre>
+<p>The state machine has two states; <tt>on</tt> and <tt>off</tt>. When either state is entered, the text of the button will be set accordingly.</p>
+<pre>     off-&gt;addTransition(&amp;button, SIGNAL(clicked()), on);
+     on-&gt;addTransition(&amp;button, SIGNAL(clicked()), off);</pre>
+<p>When the state machine is in the <tt>off</tt> state and the button is clicked, it will transition to the <tt>on</tt> state; when the state machine is in the <tt>on</tt> state and the button is clicked, it will transition to the <tt>off</tt> state.</p>
+<pre>     machine.addState(off);
+     machine.addState(on);</pre>
+<p>The states are added to the state machine; they become top-level (sibling) states.</p>
+<pre>     machine.setInitialState(off);
+     machine.start();</pre>
+<p>The initial state is <tt>off</tt>; this is the state the state machine will immediately transition to once the state machine is started.</p>
+<pre>     button.resize(100, 50);
+     button.show();
+     return app.exec();
+ }</pre>
+<p>Finally, the button is resized and made visible, and the application event loop is entered.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

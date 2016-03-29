@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qdecoration_qws.cpp -->
+<head>
+  <title>Qt 4.6: QDecoration Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QDecoration" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QDecoration Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QDecoration class is a base class for window decorations in Qt for Embedded Linux <a href="#details">More...</a></p>
+<pre> #include &lt;QDecoration&gt;</pre><p>Inherited by <a href="qdecorationdefault.html">QDecorationDefault</a>.</p>
+<ul>
+<li><a href="qdecoration-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-types"></a>
+<h2>Public Types</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qdecoration.html#DecorationRegion-enum">DecorationRegion</a></b> { All, Top, Bottom, Left, ..., None }</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qdecoration.html#DecorationState-enum">DecorationState</a></b> { Normal, Disabled, Hover, Pressed }</td></tr>
+</table>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qdecoration.html#QDecoration">QDecoration</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual </td><td class="memItemRight" valign="bottom"><b><a href="qdecoration.html#dtor.QDecoration">~QDecoration</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qdecoration.html#buildSysMenu">buildSysMenu</a></b> ( QWidget * <i>widget</i>, QMenu * <i>menu</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qdecoration.html#menuTriggered">menuTriggered</a></b> ( QWidget * <i>widget</i>, QAction * <i>action</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qdecoration.html#paint">paint</a></b> ( QPainter * <i>painter</i>, const QWidget * <i>widget</i>, int <i>decorationRegion</i> = All, DecorationState <i>state</i> = Normal ) = 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QRegion </td><td class="memItemRight" valign="bottom"><b><a href="qdecoration.html#region">region</a></b> ( const QWidget * <i>widget</i>, const QRect &amp; <i>rectangle</i>, int <i>decorationRegion</i> = All ) = 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QRegion </td><td class="memItemRight" valign="bottom"><b><a href="qdecoration.html#region-2">region</a></b> ( const QWidget * <i>widget</i>, int <i>decorationRegion</i> = All )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual int </td><td class="memItemRight" valign="bottom"><b><a href="qdecoration.html#regionAt">regionAt</a></b> ( const QWidget * <i>widget</i>, const QPoint &amp; <i>point</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qdecoration.html#regionClicked">regionClicked</a></b> ( QWidget * <i>widget</i>, int <i>region</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qdecoration.html#regionDoubleClicked">regionDoubleClicked</a></b> ( QWidget * <i>widget</i>, int <i>region</i> )</td></tr>
+</table>
+<hr />
+<a name="static-public-members"></a>
+<h2>Static Public Members</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qdecoration.html#startMove">startMove</a></b> ( QWidget * <i>widget</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qdecoration.html#startResize">startResize</a></b> ( QWidget * <i>widget</i> )</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QDecoration class is a base class for window decorations in Qt for Embedded Linux</p>
+<p>Note that this class is non-portable and only available in <a href="qt-embedded-linux.html">Qt for Embedded Linux</a>.</p>
+<p><a href="qt-embedded-linux.html">Qt for Embedded Linux</a> provides window management of top level windows and several ready made decorations (i.e&#x2e;, <tt>Default</tt>, <tt>Styled</tt> and <tt>Windows</tt>). Custom decorations can be implemented by subclassing the QDecoration class and creating a decoration plugin (derived from <a href="qdecorationplugin.html">QDecorationPlugin</a>). The default implementation of the <a href="qdecorationfactory.html">QDecorationFactory</a> class will automatically detect the plugin, and load the decoration into the application at run-time using Qt's <a href="plugins-howto.html">plugin system</a>. To actually apply a decoration, use the <a href="qapplication.html#qwsSetDecoration">QApplication::qwsSetDecoration</a>() function.</p>
+<p>When creating a custom decoration, implement the <a href="qdecoration.html#paint">paint</a>() function to paint the border and title decoration, and the <a href="qdecoration.html#region">region</a>() function to return the regions the decoration occupies. Reimplement the <a href="qdecoration.html#regionClicked">regionClicked</a>() and <a href="qdecoration.html#regionDoubleClicked">regionDoubleClicked</a>() functions to respond to mouse clicks (the default implementations responds to (single) clicks on items in a widget's system menu and double clicks on a widget's title).</p>
+<p>QDecoration provides the <a href="qdecoration.html#DecorationRegion-enum">DecorationRegion</a> enum that describes the various regions of the window decoration, and the <a href="qdecoration.html#regionAt">regionAt</a>() function to determine the region containing a given point. The QDecoration class also provides the <a href="qdecoration.html#DecorationState-enum">DecorationState</a> enum describing the state of a given region, e.g&#x2e; whether it is active or not.</p>
+<p>In addition, it is possible to build the system menu for a given top level widget using the <a href="qdecoration.html#buildSysMenu">buildSysMenu</a>() function; whenever an action in this menu is triggered, the <a href="qdecoration.html#menuTriggered">menuTriggered</a>() function is called automatically.</p>
+<p>Finally, the QDecoration class provides a couple of static functions, <a href="qdecoration.html#startMove">startMove</a>() and <a href="qdecoration.html#startResize">startResize</a>(), which start a move or resize action by making the appropriate decoration region active and grabbing the mouse input.</p>
+<p>See also <a href="qdecorationfactory.html">QDecorationFactory</a>, <a href="qdecorationplugin.html">QDecorationPlugin</a>, and <a href="qt-embedded-architecture.html">Qt for Embedded Linux Architecture</a>.</p>
+<hr />
+<h2>Member Type Documentation</h2>
+<a name="//apple_ref/cpp/tag/QDecoration/DecorationRegion" />
+<a name="//apple_ref/cpp/econst/QDecoration/All" />
+<a name="//apple_ref/cpp/econst/QDecoration/Top" />
+<a name="//apple_ref/cpp/econst/QDecoration/Bottom" />
+<a name="//apple_ref/cpp/econst/QDecoration/Left" />
+<a name="//apple_ref/cpp/econst/QDecoration/Right" />
+<a name="//apple_ref/cpp/econst/QDecoration/TopLeft" />
+<a name="//apple_ref/cpp/econst/QDecoration/TopRight" />
+<a name="//apple_ref/cpp/econst/QDecoration/BottomLeft" />
+<a name="//apple_ref/cpp/econst/QDecoration/BottomRight" />
+<a name="//apple_ref/cpp/econst/QDecoration/Borders" />
+<a name="//apple_ref/cpp/econst/QDecoration/Title" />
+<a name="//apple_ref/cpp/econst/QDecoration/Close" />
+<a name="//apple_ref/cpp/econst/QDecoration/Minimize" />
+<a name="//apple_ref/cpp/econst/QDecoration/Maximize" />
+<a name="//apple_ref/cpp/econst/QDecoration/Normalize" />
+<a name="//apple_ref/cpp/econst/QDecoration/Menu" />
+<a name="//apple_ref/cpp/econst/QDecoration/Help" />
+<a name="//apple_ref/cpp/econst/QDecoration/Resize" />
+<a name="//apple_ref/cpp/econst/QDecoration/Move" />
+<a name="//apple_ref/cpp/econst/QDecoration/None" />
+<h3 class="fn"><a name="DecorationRegion-enum"></a>enum QDecoration::DecorationRegion</h3>
+<p>This enum describes the various regions of the window decoration.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QDecoration::All</tt></td><td align="center" valign="top"><tt>0x7fffffff</tt></td><td valign="top">The entire region used by the window decoration.</td></tr>
+<tr><td valign="top"><tt>QDecoration::Top</tt></td><td align="center" valign="top"><tt>0x0000000002</tt></td><td valign="top">The top border used to vertically resize the window.</td></tr>
+<tr><td valign="top"><tt>QDecoration::Bottom</tt></td><td align="center" valign="top"><tt>0x0000000040</tt></td><td valign="top">The bottom border used to vertically resize the window.</td></tr>
+<tr><td valign="top"><tt>QDecoration::Left</tt></td><td align="center" valign="top"><tt>0x0000000008</tt></td><td valign="top">The left border used to horizontally resize the window.</td></tr>
+<tr><td valign="top"><tt>QDecoration::Right</tt></td><td align="center" valign="top"><tt>0x0000000010</tt></td><td valign="top">The right border used to horizontally resize the window.</td></tr>
+<tr><td valign="top"><tt>QDecoration::TopLeft</tt></td><td align="center" valign="top"><tt>0x0000000001</tt></td><td valign="top">The top-left corner of the window used to resize the window both horizontally and vertically.</td></tr>
+<tr><td valign="top"><tt>QDecoration::TopRight</tt></td><td align="center" valign="top"><tt>0x0000000004</tt></td><td valign="top">The top-right corner of the window used to resize the window both horizontally and vertically.</td></tr>
+<tr><td valign="top"><tt>QDecoration::BottomLeft</tt></td><td align="center" valign="top"><tt>0x0000000020</tt></td><td valign="top">The bottom-left corner of the window used to resize the window both horizontally and vertically.</td></tr>
+<tr><td valign="top"><tt>QDecoration::BottomRight</tt></td><td align="center" valign="top"><tt>0x0000000080</tt></td><td valign="top">The bottom-right corner of the window used to resize the window both horizontally and vertically.</td></tr>
+<tr><td valign="top"><tt>QDecoration::Borders</tt></td><td align="center" valign="top"><tt>0x00000000ff</tt></td><td valign="top">All the regions used to describe the window's borders.</td></tr>
+<tr><td valign="top"><tt>QDecoration::Title</tt></td><td align="center" valign="top"><tt>0x0000000200</tt></td><td valign="top">The region containing the window title, used to move the window by dragging with the mouse cursor.</td></tr>
+<tr><td valign="top"><tt>QDecoration::Close</tt></td><td align="center" valign="top"><tt>0x0000004000</tt></td><td valign="top">The region occupied by the close button. Clicking in this region closes the window.</td></tr>
+<tr><td valign="top"><tt>QDecoration::Minimize</tt></td><td align="center" valign="top"><tt>0x0000000800</tt></td><td valign="top">The region occupied by the minimize button. Clicking in this region minimizes the window.</td></tr>
+<tr><td valign="top"><tt>QDecoration::Maximize</tt></td><td align="center" valign="top"><tt>0x0000001000</tt></td><td valign="top">The region occupied by the maximize button. Clicking in this region maximizes the window.</td></tr>
+<tr><td valign="top"><tt>QDecoration::Normalize</tt></td><td align="center" valign="top"><tt>0x0000002000</tt></td><td valign="top">The region occupied by a button used to restore a window's normal size. Clicking in this region restores a maximized window to its previous size. The region used for this button is often also the Maximize region.</td></tr>
+<tr><td valign="top"><tt>QDecoration::Menu</tt></td><td align="center" valign="top"><tt>0x0000000100</tt></td><td valign="top">The region occupied by the window's menu button. Clicking in this region opens the window operations (system) menu.</td></tr>
+<tr><td valign="top"><tt>QDecoration::Help</tt></td><td align="center" valign="top"><tt>0x0000000400</tt></td><td valign="top">The region occupied by the window's help button. Clicking in this region causes the context-sensitive help function to be enabled.</td></tr>
+<tr><td valign="top"><tt>QDecoration::Resize</tt></td><td align="center" valign="top"><tt>0x0000010000</tt></td><td valign="top">The region used to resize the window.</td></tr>
+<tr><td valign="top"><tt>QDecoration::Move</tt></td><td align="center" valign="top"><tt>0x0000008000</tt></td><td valign="top">The region used to move the window.</td></tr>
+<tr><td valign="top"><tt>QDecoration::None</tt></td><td align="center" valign="top"><tt>0x0000000000</tt></td><td valign="top">No region.</td></tr>
+</table></p>
+<p>See also <a href="qdecoration.html#region">region</a>(), <a href="qdecoration.html#regionAt">regionAt</a>(), and <a href="qdecoration.html#DecorationState-enum">DecorationState</a>.</p>
+<a name="//apple_ref/cpp/tag/QDecoration/DecorationState" />
+<a name="//apple_ref/cpp/econst/QDecoration/Normal" />
+<a name="//apple_ref/cpp/econst/QDecoration/Disabled" />
+<a name="//apple_ref/cpp/econst/QDecoration/Hover" />
+<a name="//apple_ref/cpp/econst/QDecoration/Pressed" />
+<h3 class="fn"><a name="DecorationState-enum"></a>enum QDecoration::DecorationState</h3>
+<p>This enum describes the various states of a decoration region.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QDecoration::Normal</tt></td><td align="center" valign="top"><tt>0x04</tt></td><td valign="top">The region is active</td></tr>
+<tr><td valign="top"><tt>QDecoration::Disabled</tt></td><td align="center" valign="top"><tt>0x08</tt></td><td valign="top">The region is inactive.</td></tr>
+<tr><td valign="top"><tt>QDecoration::Hover</tt></td><td align="center" valign="top"><tt>0x01</tt></td><td valign="top">The cursor is hovering over the region.</td></tr>
+<tr><td valign="top"><tt>QDecoration::Pressed</tt></td><td align="center" valign="top"><tt>0x02</tt></td><td valign="top">The region is pressed.</td></tr>
+</table></p>
+<p>See also <a href="qdecoration.html#paint">paint</a>() and <a href="qdecoration.html#DecorationRegion-enum">DecorationRegion</a>.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QDecoration/QDecoration" />
+<h3 class="fn"><a name="QDecoration"></a>QDecoration::QDecoration ()</h3>
+<p>Constructs a decoration object.</p>
+<a name="//apple_ref/cpp/instm/QDecoration/~QDecoration" />
+<h3 class="fn"><a name="dtor.QDecoration"></a>QDecoration::~QDecoration ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Destroys this decoration object.</p>
+<a name="//apple_ref/cpp/instm/QDecoration/buildSysMenu" />
+<h3 class="fn"><a name="buildSysMenu"></a>void QDecoration::buildSysMenu ( <a href="qwidget.html">QWidget</a> * <i>widget</i>, <a href="qmenu.html">QMenu</a> * <i>menu</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Builds the system menu for the given top level <i>widget</i>, adding <b>Restore</b>, <b>Move</b>, <b>Size</b>, <b>Minimize</b>, <b>Maximize</b> and <b>Close</b> actions to the given <i>menu</i>.</p>
+<p>See also <a href="qdecoration.html#menuTriggered">menuTriggered</a>().</p>
+<a name="//apple_ref/cpp/instm/QDecoration/menuTriggered" />
+<h3 class="fn"><a name="menuTriggered"></a>void QDecoration::menuTriggered ( <a href="qwidget.html">QWidget</a> * <i>widget</i>, <a href="qaction.html">QAction</a> * <i>action</i> )</h3>
+<p>This function is called whenever an action in a top level widget's menu is triggered, and simply calls the <a href="qdecoration.html#regionClicked">regionClicked</a>() function passing the <i>widget</i> and <i>action</i> parameters as arguments.</p>
+<p>See also <a href="qdecoration.html#buildSysMenu">buildSysMenu</a>().</p>
+<a name="//apple_ref/cpp/instm/QDecoration/paint" />
+<h3 class="fn"><a name="paint"></a>bool QDecoration::paint ( <a href="qpainter.html">QPainter</a> * <i>painter</i>, const <a href="qwidget.html">QWidget</a> * <i>widget</i>, int <i>decorationRegion</i> = All, <a href="qdecoration.html#DecorationState-enum">DecorationState</a> <i>state</i> = Normal )&nbsp;&nbsp;<tt> [pure virtual]</tt></h3>
+<p>Implement this function to paint the border and title decoration for the specified top level <i>widget</i> using the given <i>painter</i> and decoration <i>state</i>. The specified <i>decorationRegion</i> is a bitmask of the values described by the <a href="qdecoration.html#DecorationRegion-enum">DecorationRegion</a> enum.</p>
+<p>Note that <a href="qt-embedded-linux.html">Qt for Embedded Linux</a> expects this function to return true if any of the widget's decorations are repainted; otherwise it should return false.</p>
+<p>See also <a href="qdecoration.html#region">region</a>().</p>
+<a name="//apple_ref/cpp/instm/QDecoration/region" />
+<h3 class="fn"><a name="region"></a><a href="qregion.html">QRegion</a> QDecoration::region ( const <a href="qwidget.html">QWidget</a> * <i>widget</i>, const <a href="qrect.html">QRect</a> &amp; <i>rectangle</i>, int <i>decorationRegion</i> = All )&nbsp;&nbsp;<tt> [pure virtual]</tt></h3>
+<p>Implement this function to return the region specified by <i>decorationRegion</i> for the given top level <i>widget</i>.</p>
+<p>The <i>rectangle</i> parameter specifies the rectangle the decoration is wrapped around. The <i>decorationRegion</i> is a bitmask of the values described by the <a href="qdecoration.html#DecorationRegion-enum">DecorationRegion</a> enum.</p>
+<p>See also <a href="qdecoration.html#regionAt">regionAt</a>() and <a href="qdecoration.html#paint">paint</a>().</p>
+<h3 class="fn"><a name="region-2"></a><a href="qregion.html">QRegion</a> QDecoration::region ( const <a href="qwidget.html">QWidget</a> * <i>widget</i>, int <i>decorationRegion</i> = All )</h3>
+<p>This is an overloaded function.</p>
+<a name="//apple_ref/cpp/instm/QDecoration/regionAt" />
+<h3 class="fn"><a name="regionAt"></a>int QDecoration::regionAt ( const <a href="qwidget.html">QWidget</a> * <i>widget</i>, const <a href="qpoint.html">QPoint</a> &amp; <i>point</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Returns the type of the first region of the specified top level <i>widget</i> containing the given <i>point</i>.</p>
+<p>The return value is one of the <a href="qdecoration.html#DecorationRegion-enum">DecorationRegion</a> enum's values. Use the <a href="qdecoration.html#region">region</a>() function to retrieve the actual region. If none of the widget's regions contain the point, this function returns <a href="qdecoration.html#DecorationRegion-enum">None</a>.</p>
+<p>See also <a href="qdecoration.html#region">region</a>().</p>
+<a name="//apple_ref/cpp/instm/QDecoration/regionClicked" />
+<h3 class="fn"><a name="regionClicked"></a>void QDecoration::regionClicked ( <a href="qwidget.html">QWidget</a> * <i>widget</i>, int <i>region</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Handles the event that the specified <i>region</i> in the given top level <i>widget</i> is activated by a single click (the <i>region</i> parameter is described using the <a href="qdecoration.html#DecorationRegion-enum">DecorationRegion</a> enum).</p>
+<p>This function is called whenever a region in a top level widget is clicked; the default implementation responds to clicks on items in the system menu, performing the requested actions.</p>
+<p>See also <a href="qdecoration.html#regionDoubleClicked">regionDoubleClicked</a>() and <a href="qdecoration.html#region">region</a>().</p>
+<a name="//apple_ref/cpp/instm/QDecoration/regionDoubleClicked" />
+<h3 class="fn"><a name="regionDoubleClicked"></a>void QDecoration::regionDoubleClicked ( <a href="qwidget.html">QWidget</a> * <i>widget</i>, int <i>region</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Handles the event that the specified <i>region</i> in the given top level <i>widget</i> is activated by a double click (the region parameter is described using the <a href="qdecoration.html#DecorationRegion-enum">DecorationRegion</a> enum).</p>
+<p>This function is called whenever a region in a top level widget is double clicked; the default implementation responds to a double click on the widget's title, toggling its size between the maximum and its normal size.</p>
+<p>See also <a href="qdecoration.html#regionClicked">regionClicked</a>() and <a href="qdecoration.html#region">region</a>().</p>
+<a name="//apple_ref/cpp/clm/QDecoration/startMove" />
+<h3 class="fn"><a name="startMove"></a>void QDecoration::startMove ( <a href="qwidget.html">QWidget</a> * <i>widget</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Starts to move the given top level <i>widget</i> by making its <a href="qdecoration.html#DecorationRegion-enum">Title</a> region active and grabbing the mouse input.</p>
+<p>See also <a href="qdecoration.html#startResize">startResize</a>().</p>
+<a name="//apple_ref/cpp/clm/QDecoration/startResize" />
+<h3 class="fn"><a name="startResize"></a>void QDecoration::startResize ( <a href="qwidget.html">QWidget</a> * <i>widget</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Starts to resize the given top level <i>widget</i> by making its <a href="qdecoration.html#DecorationRegion-enum">BottomRight</a> region active and grabbing the mouse input.</p>
+<p>See also <a href="qdecoration.html#startMove">startMove</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

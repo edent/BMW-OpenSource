@@ -1,0 +1,461 @@
+/****************************************************************************
+**
+** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+** All rights reserved.
+** Contact: Nokia Corporation (qt-info@nokia.com)
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:LGPL$
+** Commercial Usage
+** Licensees holding valid Qt Commercial licenses may use this file in
+** accordance with the Qt Commercial License Agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and Nokia.
+**
+** GNU Lesser General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU Lesser
+** General Public License version 2.1 as published by the Free Software
+** Foundation and appearing in the file LICENSE.LGPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU Lesser General Public License version 2.1 requirements
+** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+**
+** In addition, as a special exception, Nokia gives you certain additional
+** rights.  These rights are described in the Nokia Qt LGPL Exception
+** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+**
+** GNU General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU
+** General Public License version 3.0 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU General Public License version 3.0 requirements will be
+** met: http://www.gnu.org/copyleft/gpl.html.
+**
+** If you have questions regarding the use of this file, please contact
+** Nokia at qt-info@nokia.com.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \example help/simpletextviewer
+    \title Simple Text Viewer Example
+
+    The Simple Text Viewer example shows how to use \QA as a customized
+    help viewer for your application.
+
+    This is done in two stages. Firstly, documentation is created and \QA
+    is customized; secondly, the functionality to launch and control
+    \QA is added to the application.
+
+    \image simpletextviewer-example.png
+
+    The Simple Text Viewer application lets the user select and view
+    existing files.
+
+    The application provides its own custom documentation that is
+    available from the \gui Help menu in the main window's menu bar
+    or by clicking the \gui Help button in the application's find file
+    dialog.
+
+    The example consists of four classes:
+
+    \list
+        \o \c Assistant provides functionality to launch \QA.
+        \o \c MainWindow is the main application window.
+        \o \c FindFileDialog allows the user to search for
+           files using wildcard matching.
+        \o \c TextEdit provides a rich text browser that makes
+           sure that images referenced in HTML documents are
+           displayed properly.
+    \endlist
+
+    Note that we will only comment on the parts of the implementation
+    that are relevant to the main issue, that is making Qt Assistant
+    act as a customized help viewer for our Simple Text Viewer
+    application.
+
+    \section1 Creating Documentation and Customizing \QA
+
+    How to create the actual documentation in the form of HTML pages is
+    not in the scope of this example. In general, HTML pages can either
+    be written by hand or generated with the help of documentation tools
+    like qdoc or Doxygen. For the purposes of this example we assume that
+    the HTML files have already been created. So, the only thing that
+    remains to be done is to tell \QA how to structure and display the
+    help information.
+
+    \section2 Organizing Documentation for \QA
+
+    Plain HTML files only contain text or documentation about specific topics,
+    but they usually include no information about how several HTML documents
+    relate to each other or in which order they are supposed to be read.
+    What is missing is a table of contents along with an index to access
+    certain help contents quickly, without having to browse through a lot
+    of documents in order to find a piece of information.
+
+    To organize the documentation and make it available for \QA, we have
+    to create a Qt help project (.qhp) file. The first and most important
+    part of the project file is the definition of the namespace. The namespace
+    has to be unique and will be the first part of the page URL in \QA.
+    In addition, we have to set a virtual folder which acts as a common
+    folder for documentation sets. This means, that two documentation sets
+    identified by two different namespaces can cross reference HTML files
+    since those files are in one big virtual folder. However, for this
+    example, we'll only have one documentation set available, so the
+    virtual folder name and functionality are not important.
+
+    \code
+    <?xml version="1.0" encoding="UTF-8"?>
+    <QtHelpProject version="1.0">
+      <namespace>com.trolltech.examples.simpletextviewer</namespace>
+      <virtualFolder>doc</virtualFolder>
+    \endcode
+
+    The next step is to define the filter section. A filter section
+    contains the table of contents, indices and a complete list of
+    all documentation files, and can have any number of filter attributes
+    assigned to it. A filter attribute is an ordinary string which can
+    be freely chosen. Later in \QA, users can then define a custom
+    filter referencing those attributes. If the attributes of a filter
+    section match the attributes of the custom filter the documentation
+    will be shown, otherwise \QA will hide the documentation.
+
+    Again, since we'll only have one documentation set, we do not need
+    the filtering functionality of \QA and can therefore skip the
+    filter attributes.
+
+    Now, we build up the table of contents. An item in the table is
+    defined by the \c section tag which contains the attributes for the
+    item title as well as link to the actual page. Section tags can be
+    nested infinitely, but for practical reasons it is not recommended
+    to nest them deeper than three or four levels. For our example we
+    want to use the following outline for the table of contents:
+
+    \list
+    \o Simple Text Viewer
+      \list
+      \o Find File
+        \list
+        \o File Dialog
+        \o Wildcard Matching
+        \o Browse
+        \endlist
+      \o Open File      
+      \endlist
+    \endlist
+
+    In the help project file, the outline is represented by:
+
+    \code
+     <filterSection>
+       <toc>
+         <section title="Simple Text Viewer" ref="index.html">
+           <section title="Find File" ref="./findfile.html">
+             <section title="File Dialog" ref="./filedialog.html"></section>
+             <section title="Wildcard Matching" ref="./wildcardmatching.html"></section>
+             <section title="Browse" ref="./browse.html"></section>
+           </section>
+           <section title="Open File" ref="./openfile.html"></section>
+         </section>
+       </toc>
+    \endcode
+
+    After the table of contents is defined, we will list all index keywords:      
+
+    \code
+        <keywords>
+          <keyword name="Display" ref="./index.html"/>
+          <keyword name="Rich text" ref="./index.html"/>
+          <keyword name="Plain text" ref="./index.html"/>
+          <keyword name="Find" ref="./findfile.html"/>
+          <keyword name="File menu" ref="./findfile.html"/>
+          <keyword name="File name" ref="./filedialog.html"/>
+          <keyword name="File dialog" ref="./filedialog.html"/>
+          <keyword name="File globbing" ref="./wildcardmatching.html"/>
+          <keyword name="Wildcard matching" ref="./wildcardmatching.html"/>
+          <keyword name="Wildcard syntax" ref="./wildcardmatching.html"/>
+          <keyword name="Browse" ref="./browse.html"/>
+          <keyword name="Directory" ref="./browse.html"/>
+          <keyword name="Open" ref="./openfile.html"/>
+          <keyword name="Select" ref="./openfile.html"/>
+        </keywords>
+    \endcode
+
+    As the last step, we have to list all files making up the documentation.
+    An important point to note here is that all files have to listed, including
+    image files, and even stylesheets if they are used.
+
+    \code
+        <files>
+          <file>browse.html</file>
+          <file>filedialog.html</file>
+          <file>findfile.html</file>
+          <file>index.html</file>
+          <file>intro.html</file>
+          <file>openfile.html</file>
+          <file>wildcardmatching.html</file>
+          <file>images/browse.png</file>
+          <file>images/*.png</file>
+        </files>
+      </filterSection>
+    </QtHelpProject>
+    \endcode
+
+    The help project file is now finished. If you want to see the resulting
+    documentation in \QA, you have to generate a Qt compressed help file
+    out of it and register it with the default help collection of \QA.
+
+    \code
+    qhelpgenerator simpletextviewer.qhp -o simpletextviewer.qch
+    assistant -register simpletextviewer.qch
+    \endcode
+
+    If you start \QA now, you'll see the Simple Text Viewer documentation
+    beside the Qt documentation. This is OK for testing purposes, but
+    for the final version we want to only have the Simple Text Viewer
+    documentation in \QA.
+
+    \section2 Customizing \QA
+
+    The easiest way to make \QA only display the Simple Text Viewer
+    documentation is to create our own help collection file. A collection
+    file is stored in a binary format, similar to the compressed help file,
+    and generated from a help collection project file (*.qhcp). With
+    the help of a collection file, we can customize the appearance and even
+    some functionality offered by \QA.
+
+    At first, we change the window title and icon. Instead of showing "\QA"
+    it will show "Simple Text Viewer", so it is much clearer for the user
+    that the help viewer actually belongs to our application.    
+
+    \code
+    <?xml version="1.0" encoding="UTF-8"?>
+    <QHelpCollectionProject version="1.0">
+    <assistant>
+        <title>Simple Text Viewer</title>
+        <applicationIcon>images/handbook.png</applicationIcon>        
+        <cacheDirectory>Trolltech/SimpleTextViewer</cacheDirectory>
+    \endcode
+
+    The \c cacheDirectory tag specifies a subdirectory of the users
+    data directory (see the
+    \l{Using Qt Assistant as a Custom Help Viewer#Qt Help Collection Files}{Qt Help Collection Files})
+    where the cache file for the full text search or the settings file will
+    be stored.
+
+    After this, we set the page displayed by \QA when launched for the very
+    first time in its new configuration. The URL consists of the namespace
+    and virtual folder defined in the Qt help project file, followed by the
+    actual page file name.
+
+    \code
+        <startPage>qthelp://com.trolltech.examples.simpletextviewer/doc/index.html</startPage>
+    \endcode
+
+    Next, we alter the name of the "About" menu item to "About Simple
+    Text Viewer". The contents of the \gui{About} dialog are also changed
+    by specifying a file where the about text or icon is taken from.
+
+    \code
+        <aboutMenuText>
+            <text>About Simple Text Viewer</text>
+        </aboutMenuText>
+        <aboutDialog>
+            <file>about.txt</file>
+            <icon>images/icon.png</icon>
+        </aboutDialog>
+    \endcode
+
+    \QA offers the possibility to add or remove documentation via its
+    preferences dialog. This functionality is helpful when using \QA
+    as the central help viewer for more applications, but in our case
+    we want to actually prevent the user from removing the documentation.
+    So, we disable the documentation manager.
+
+    Since the address bar is not really relevant in such a small
+    documentation set we switch it off as well. By having just one filter
+    section, without any filter attributes, we can also disable the filter
+    functionality of \QA, which means that the filter page and the filter
+    toolbar will not be available.
+
+    \code
+        <enableDocumentationManager>false</enableDocumentationManager>
+        <enableAddressBar>false</enableAddressBar>
+        <enableFilterFunctionality>false</enableFilterFunctionality>
+    </assistant>
+    \endcode
+
+    For testing purposes, we already generated the compressed help file
+    and registered it with \QA's default help collection. With the
+    following lines we achieve the same result. The only and important
+    difference is that we register the compressed help file, not in
+    the default collection, but in our own collection file.
+
+    \code
+      <docFiles>
+        <generate>
+            <file>
+                <input>simpletextviewer.qhp</input>
+                <output>simpletextviewer.qch</output>
+                </file>
+            </generate>
+        <register>
+            <file>simpletextviewer.qch</file>
+            </register>
+        </docFiles>
+    </QHelpCollectionProject>
+    \endcode
+
+    As the last step, we have to generate the binary collection file
+    out of the help collection project file. This is done by running the
+    \c qcollectiongenerator tool.
+
+    \code
+    qcollectiongenerator simpletextviewer.qhcp -o simpletextviewer.qhc
+    \endcode
+
+    To test all our customizations made to \QA, we add the collection
+    file name to the command line:
+
+    \code
+    assistant -collectionFile simpletextviewer.qhc
+    \endcode
+
+    \section1 Controlling \QA via the Assistant Class
+
+    We will first take a look at how to start and operate \QA from a
+    remote application. For that purpose, we create a class called
+    \c Assistant.
+
+    This class provides a public function that is used to show pages
+    of the documentation, and one private helper function to make sure
+    that \QA is up and running.
+
+    Launching \QA is done in the function \c startAssistant() by simply
+    creating and starting a QProcess. If the process is already running,
+    the function returns immediately. Otherwise, the process has
+    to be set up and started.
+
+    \snippet examples/help/simpletextviewer/assistant.cpp 2
+
+    To start the process we need the executable name of \QA as well as the
+    command line arguments for running \QA in a customized mode. The
+    executable name is a little bit tricky since it depends on the
+    platform, but fortunately it is only different on Mac OS X.
+
+    The displayed documentation can be altered using the \c -collectionFile
+    command line argument when launching \QA. When started without any options,
+    \QA displays a default set of documentation. When Qt is installed,
+    the default documentation set in \QA contains the Qt reference
+    documentation as well as the tools that come with Qt, such as Qt
+    Designer and \c qmake.
+
+    In our example, we replace the default documentation set with our
+    custom documentation by passing our application-specific collection
+    file to the process's command line options.
+
+    As the last argument, we add \c -enableRemoteControl, which makes \QA
+    listen to its \c stdin channel for commands, such as those to display
+    a certain page in the documentation.
+    Then we start the process and wait until it is actually running. If,
+    for some reason \QA cannot be started, \c startAssistant() will return
+    false.
+
+    The implementation for \c showDocumentation() is now straightforward.
+    Firstly, we ensure that \QA is running, then we send the request to
+    display the \a page via the \c stdin channel of the process. It is very
+    important here that the command is terminated by the '\\0' character
+    followed by an end of line token to flush the channel.
+
+    \snippet examples/help/simpletextviewer/assistant.cpp 1
+
+    Finally, we make sure that \QA is terminated properly in the case that
+    the application is shut down. The destructor of QProcess kills the
+    process, meaning that the application has no possibility to do things
+    like save user settings, which would result in corrupted settings files.
+    To avoid this, we ask \QA to terminate in the destructor of the
+    \c Assistant class.
+
+    \snippet examples/help/simpletextviewer/assistant.cpp 0
+
+    \section1 MainWindow Class 
+
+    \image simpletextviewer-mainwindow.png
+
+    The \c MainWindow class provides the main application window with
+    two menus: the \gui File menu lets the user open and view an
+    existing file, while the \gui Help menu provides information about
+    the application and about Qt, and lets the user open \QA to
+    display the application's documentation.
+
+    To be able to access the help functionality, we initialize the
+    \c Assistant object in the \c MainWindow's constructor.
+
+    \snippet examples/help/simpletextviewer/mainwindow.cpp 0
+    \dots
+    \snippet examples/help/simpletextviewer/mainwindow.cpp 1
+
+    Then we create all the actions for the Simple Text Viewer application.
+    Of special interest is the \c assistantAct action accessible
+    via the \key{F1} shortcut or the \menu{Help|Help Contents} menu item.
+    This action is connected to the \c showDocumentation() slot of
+    the \c MainWindow class.
+
+    \snippet examples/help/simpletextviewer/mainwindow.cpp 4
+    \dots
+    \snippet examples/help/simpletextviewer/mainwindow.cpp 5
+
+    In the \c showDocumentation() slot, we call the \c showDocumentation()
+    function of the \c Assistant class with the URL of home page of the
+    documentation.
+
+    \snippet examples/help/simpletextviewer/mainwindow.cpp 3
+
+    Finally, we must reimplement the protected QWidget::closeEvent()
+    event handler to ensure that the application's \QA instance is
+    properly closed before we terminate the application.
+
+    \snippet examples/help/simpletextviewer/mainwindow.cpp 2
+
+    \section1 FindFileDialog Class
+
+    \image simpletextviewer-findfiledialog.png
+
+    The Simple Text Viewer application provides a find file dialog
+    allowing the user to search for files using wildcard matching. The
+    search is performed within the specified directory, and the user
+    is given an option to browse the existing file system to find the
+    relevant directory.
+
+    In the constructor we save the references to the \c Assistant
+    and \c QTextEdit objects passed as arguments. The \c Assistant
+    object will be used in the \c FindFileDialog's \c help() slot,
+    as we will see shortly, while the QTextEdit will be used in the
+    dialog's \c openFile() slot to display the chosen file.
+
+    \snippet examples/help/simpletextviewer/findfiledialog.cpp 0
+    \dots
+    \snippet examples/help/simpletextviewer/findfiledialog.cpp 1
+
+    The most relevant member to observe in the \c FindFileDialog
+    class is the private \c help() slot. The slot is connected to the
+    dialog's \gui Help button, and brings the current \QA instance
+    to the foreground with the documentation for the dialog by
+    calling \c Assistant's \c showDocumentation() function.
+
+    \snippet examples/help/simpletextviewer/findfiledialog.cpp 2
+
+    \section1 Summary
+
+    In order to make \QA act as a customized help tool for
+    your application, you must provide your application with a
+    process that controls \QA in addition to a custom help collection
+    file including Qt compressed help files.
+
+    The \l{Using Qt Assistant as a Custom Help Viewer} document contains
+    more information about the options and settings available to
+    applications that use \QA as a custom help viewer.
+*/

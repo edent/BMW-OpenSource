@@ -1,0 +1,54 @@
+Adds a continuous loop mode to the Qt embedded mediaplayer demo. 
+If a file to play is specified on the command line, the mediaplayer
+will then loop the video. This is very useful for profiling.
+
+Signed-off-by: David McKay <david.mckay@st.com>
+
+Index: qt-everywhere-opensource-src-4.6.0/demos/qmediaplayer/mediaplayer.cpp
+===================================================================
+--- qt-everywhere-opensource-src-4.6.0.orig/demos/qmediaplayer/mediaplayer.cpp
++++ qt-everywhere-opensource-src-4.6.0/demos/qmediaplayer/mediaplayer.cpp
+@@ -149,7 +149,7 @@ private:
+ 
+ MediaPlayer::MediaPlayer(const QString &filePath,
+                          const bool hasSmallScreen) :
+-        playButton(0), nextEffect(0), settingsDialog(0), ui(0), 
++        playButton(0), nextEffect(0), settingsDialog(0), ui(0), loop_video(false),
+             m_AudioOutput(Phonon::VideoCategory),
+             m_videoWidget(new MediaVideoWidget(this)),
+             m_hasSmallScreen(hasSmallScreen)
+@@ -330,8 +330,10 @@ MediaPlayer::MediaPlayer(const QString &
+     m_audioOutputPath = Phonon::createPath(&m_MediaObject, &m_AudioOutput);
+     Phonon::createPath(&m_MediaObject, m_videoWidget);
+ 
+-    if (!filePath.isEmpty())
++    if (!filePath.isEmpty()) {
++        loop_video = true;
+         setFile(filePath);
++    }
+     resize(minimumSizeHint());
+ }
+ 
+@@ -818,6 +820,10 @@ void MediaPlayer::openUrl()
+ 
+ void MediaPlayer::finished()
+ {
++	if(loop_video) {
++		m_MediaObject.seek(0);
++		m_MediaObject.play();
++	}
+ }
+ 
+ void MediaPlayer::showContextMenu(const QPoint &p)
+Index: qt-everywhere-opensource-src-4.6.0/demos/qmediaplayer/mediaplayer.h
+===================================================================
+--- qt-everywhere-opensource-src-4.6.0.orig/demos/qmediaplayer/mediaplayer.h
++++ qt-everywhere-opensource-src-4.6.0/demos/qmediaplayer/mediaplayer.h
+@@ -128,6 +128,7 @@ private:
+     Phonon::Effect *nextEffect;
+     QDialog *settingsDialog;
+     Ui_settings *ui;
++    bool loop_video;
+         
+     QWidget m_videoWindow;
+     Phonon::MediaObject m_MediaObject;

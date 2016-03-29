@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qtextlayout.cpp -->
+<head>
+  <title>Qt 4.6: QTextInlineObject Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QTextInlineObject" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QTextInlineObject Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QTextInlineObject class represents an inline object in a <a href="qtextlayout.html">QTextLayout</a>. <a href="#details">More...</a></p>
+<pre> #include &lt;QTextInlineObject&gt;</pre><p><b>Note:</b> All functions in this class are <a href="threads-reentrancy.html#reentrant">reentrant</a>.</p>
+<ul>
+<li><a href="qtextinlineobject-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qtextinlineobject.html#QTextInlineObject">QTextInlineObject</a></b> ( int <i>i</i>, QTextEngine * <i>e</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">qreal </td><td class="memItemRight" valign="bottom"><b><a href="qtextinlineobject.html#ascent">ascent</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">qreal </td><td class="memItemRight" valign="bottom"><b><a href="qtextinlineobject.html#descent">descent</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QTextFormat </td><td class="memItemRight" valign="bottom"><b><a href="qtextinlineobject.html#format">format</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qtextinlineobject.html#formatIndex">formatIndex</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">qreal </td><td class="memItemRight" valign="bottom"><b><a href="qtextinlineobject.html#height">height</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qtextinlineobject.html#isValid">isValid</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QRectF </td><td class="memItemRight" valign="bottom"><b><a href="qtextinlineobject.html#rect">rect</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qtextinlineobject.html#setAscent">setAscent</a></b> ( qreal <i>a</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qtextinlineobject.html#setDescent">setDescent</a></b> ( qreal <i>d</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qtextinlineobject.html#setWidth">setWidth</a></b> ( qreal <i>w</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Qt::LayoutDirection </td><td class="memItemRight" valign="bottom"><b><a href="qtextinlineobject.html#textDirection">textDirection</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qtextinlineobject.html#textPosition">textPosition</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">qreal </td><td class="memItemRight" valign="bottom"><b><a href="qtextinlineobject.html#width">width</a></b> () const</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QTextInlineObject class represents an inline object in a <a href="qtextlayout.html">QTextLayout</a>.</p>
+<p>This class is only used if the text layout is used to lay out parts of a <a href="qtextdocument.html">QTextDocument</a>.</p>
+<p>The inline object has various attributes that can be set, for example using, <a href="qtextinlineobject.html#setWidth">setWidth</a>(), <a href="qtextinlineobject.html#setAscent">setAscent</a>(), and <a href="qtextinlineobject.html#setDescent">setDescent</a>(). The rectangle it occupies is given by <a href="qtextinlineobject.html#rect">rect</a>(), and its direction by isRightToLeft(). Its position in the text layout is given by at(), and its format is given by <a href="qtextinlineobject.html#format">format</a>().</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QTextInlineObject/QTextInlineObject" />
+<h3 class="fn"><a name="QTextInlineObject"></a>QTextInlineObject::QTextInlineObject ( int <i>i</i>, QTextEngine * <i>e</i> )</h3>
+<p>Creates a new inline object for the item at position <i>i</i> in the text engine <i>e</i>.</p>
+<a name="//apple_ref/cpp/instm/QTextInlineObject/ascent" />
+<h3 class="fn"><a name="ascent"></a><a href="qtglobal.html#qreal-typedef">qreal</a> QTextInlineObject::ascent () const</h3>
+<p>Returns the inline object's ascent.</p>
+<p>See also <a href="qtextinlineobject.html#setAscent">setAscent</a>(), <a href="qtextinlineobject.html#descent">descent</a>(), <a href="qtextinlineobject.html#width">width</a>(), and <a href="qtextinlineobject.html#rect">rect</a>().</p>
+<a name="//apple_ref/cpp/instm/QTextInlineObject/descent" />
+<h3 class="fn"><a name="descent"></a><a href="qtglobal.html#qreal-typedef">qreal</a> QTextInlineObject::descent () const</h3>
+<p>Returns the inline object's descent.</p>
+<p>See also <a href="qtextinlineobject.html#setDescent">setDescent</a>(), <a href="qtextinlineobject.html#ascent">ascent</a>(), <a href="qtextinlineobject.html#width">width</a>(), and <a href="qtextinlineobject.html#rect">rect</a>().</p>
+<a name="//apple_ref/cpp/instm/QTextInlineObject/format" />
+<h3 class="fn"><a name="format"></a><a href="qtextformat.html">QTextFormat</a> QTextInlineObject::format () const</h3>
+<p>Returns format of the inline object within the text layout.</p>
+<a name="//apple_ref/cpp/instm/QTextInlineObject/formatIndex" />
+<h3 class="fn"><a name="formatIndex"></a>int QTextInlineObject::formatIndex () const</h3>
+<p>Returns an integer describing the format of the inline object within the text layout.</p>
+<a name="//apple_ref/cpp/instm/QTextInlineObject/height" />
+<h3 class="fn"><a name="height"></a><a href="qtglobal.html#qreal-typedef">qreal</a> QTextInlineObject::height () const</h3>
+<p>Returns the inline object's total height. This is equal to <a href="qtextinlineobject.html#ascent">ascent</a>() + <a href="qtextinlineobject.html#descent">descent</a>() + 1.</p>
+<p>See also <a href="qtextinlineobject.html#ascent">ascent</a>(), <a href="qtextinlineobject.html#descent">descent</a>(), <a href="qtextinlineobject.html#width">width</a>(), and <a href="qtextinlineobject.html#rect">rect</a>().</p>
+<a name="//apple_ref/cpp/instm/QTextInlineObject/isValid" />
+<h3 class="fn"><a name="isValid"></a>bool QTextInlineObject::isValid () const</h3>
+<p>Returns true if this inline object is valid; otherwise returns false.</p>
+<a name="//apple_ref/cpp/instm/QTextInlineObject/rect" />
+<h3 class="fn"><a name="rect"></a><a href="qrectf.html">QRectF</a> QTextInlineObject::rect () const</h3>
+<p>Returns the inline object's rectangle.</p>
+<p>See also <a href="qtextinlineobject.html#ascent">ascent</a>(), <a href="qtextinlineobject.html#descent">descent</a>(), and <a href="qtextinlineobject.html#width">width</a>().</p>
+<a name="//apple_ref/cpp/instm/QTextInlineObject/setAscent" />
+<h3 class="fn"><a name="setAscent"></a>void QTextInlineObject::setAscent ( <a href="qtglobal.html#qreal-typedef">qreal</a> <i>a</i> )</h3>
+<p>Sets the inline object's ascent to <i>a</i>.</p>
+<p>See also <a href="qtextinlineobject.html#ascent">ascent</a>(), <a href="qtextinlineobject.html#setDescent">setDescent</a>(), <a href="qtextinlineobject.html#width">width</a>(), and <a href="qtextinlineobject.html#rect">rect</a>().</p>
+<a name="//apple_ref/cpp/instm/QTextInlineObject/setDescent" />
+<h3 class="fn"><a name="setDescent"></a>void QTextInlineObject::setDescent ( <a href="qtglobal.html#qreal-typedef">qreal</a> <i>d</i> )</h3>
+<p>Sets the inline object's decent to <i>d</i>.</p>
+<p>See also <a href="qtextinlineobject.html#descent">descent</a>(), <a href="qtextinlineobject.html#setAscent">setAscent</a>(), <a href="qtextinlineobject.html#width">width</a>(), and <a href="qtextinlineobject.html#rect">rect</a>().</p>
+<a name="//apple_ref/cpp/instm/QTextInlineObject/setWidth" />
+<h3 class="fn"><a name="setWidth"></a>void QTextInlineObject::setWidth ( <a href="qtglobal.html#qreal-typedef">qreal</a> <i>w</i> )</h3>
+<p>Sets the inline object's width to <i>w</i>.</p>
+<p>See also <a href="qtextinlineobject.html#width">width</a>(), <a href="qtextinlineobject.html#ascent">ascent</a>(), <a href="qtextinlineobject.html#descent">descent</a>(), and <a href="qtextinlineobject.html#rect">rect</a>().</p>
+<a name="//apple_ref/cpp/instm/QTextInlineObject/textDirection" />
+<h3 class="fn"><a name="textDirection"></a><a href="qt.html#LayoutDirection-enum">Qt::LayoutDirection</a> QTextInlineObject::textDirection () const</h3>
+<p>Returns if the object should be laid out right-to-left or left-to-right.</p>
+<a name="//apple_ref/cpp/instm/QTextInlineObject/textPosition" />
+<h3 class="fn"><a name="textPosition"></a>int QTextInlineObject::textPosition () const</h3>
+<p>The position of the inline object within the text layout.</p>
+<a name="//apple_ref/cpp/instm/QTextInlineObject/width" />
+<h3 class="fn"><a name="width"></a><a href="qtglobal.html#qreal-typedef">qreal</a> QTextInlineObject::width () const</h3>
+<p>Returns the inline object's width.</p>
+<p>See also <a href="qtextinlineobject.html#setWidth">setWidth</a>(), <a href="qtextinlineobject.html#ascent">ascent</a>(), <a href="qtextinlineobject.html#descent">descent</a>(), and <a href="qtextinlineobject.html#rect">rect</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

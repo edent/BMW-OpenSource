@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qsound.cpp -->
+<head>
+  <title>Qt 4.6: Qt 3 Support Members for QSound</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">Qt 3 Support Members for QSound</h1>
+<p><b>The following class members are part of the <a href="qt3support.html">Qt 3 support layer</a>.</b> They are provided to help you port old code to Qt 4. We advise against using them in new code.</p>
+<p><ul><li><a href="qsound.html">QSound class reference</a></li></ul></p>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qsound-qt3.html#QSound-2">QSound</a></b> ( const QString &amp; <i>filename</i>, QObject * <i>parent</i>, const char * <i>name</i> )</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>8 public functions inherited from <a href="qobject.html#public-functions">QObject</a></li>
+</ul>
+<h2>Static Public Members</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qsound-qt3.html#available">available</a></b> ()</td></tr>
+</table>
+<hr />
+<h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="QSound-2"></a>QSound::QSound ( const <a href="qstring.html">QString</a> &amp; <i>filename</i>, <a href="qobject.html">QObject</a> * <i>parent</i>, const char * <i>name</i> )</h3>
+<p>Constructs a <a href="qsound.html">QSound</a> object from the file specified by the given <i>filename</i> and with the given <i>parent</i> and <i>name</i>. Use the <a href="qsound.html#QSound">QSound</a>() construcor and <a href="qobject.html#objectName-prop">QObject::setObjectName</a>() instead.</p>
+<p>For example, if you have code like</p>
+<pre><font color="#404040"> QSound *mySound = new QSound(filename, parent, name);</font></pre>
+<p>you can rewrite it as</p>
+<pre> QSounc *mySound = new QSound(filename, parent);
+ mySound-&gt;setObjectName(name);</pre>
+<a name="//apple_ref/cpp/clm/QSound/available" />
+<h3 class="fn"><a name="available"></a>bool QSound::available ()&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Use the <a href="qsound.html#isAvailable">isAvailable</a>() function instead.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

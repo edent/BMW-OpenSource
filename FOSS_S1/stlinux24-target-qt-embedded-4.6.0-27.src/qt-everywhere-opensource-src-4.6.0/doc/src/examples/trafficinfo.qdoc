@@ -1,0 +1,163 @@
+/****************************************************************************
+**
+** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+** All rights reserved.
+** Contact: Nokia Corporation (qt-info@nokia.com)
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:LGPL$
+** Commercial Usage
+** Licensees holding valid Qt Commercial licenses may use this file in
+** accordance with the Qt Commercial License Agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and Nokia.
+**
+** GNU Lesser General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU Lesser
+** General Public License version 2.1 as published by the Free Software
+** Foundation and appearing in the file LICENSE.LGPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU Lesser General Public License version 2.1 requirements
+** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+**
+** In addition, as a special exception, Nokia gives you certain additional
+** rights.  These rights are described in the Nokia Qt LGPL Exception
+** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+**
+** GNU General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU
+** General Public License version 3.0 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU General Public License version 3.0 requirements will be
+** met: http://www.gnu.org/copyleft/gpl.html.
+**
+** If you have questions regarding the use of this file, please contact
+** Nokia at qt-info@nokia.com.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \example xmlpatterns/trafficinfo
+    \title TrafficInfo Example
+
+    Shows how XQuery can be used extract information from WML documents provided by a WAP service.
+
+    \section1 Overview
+
+    The WAP service used in this example is \l{Trafikanten}{wap.trafikanten.no}
+    that is run by the Norwegian governmental agency for public transport in
+    Oslo. The service provides real time information about the departure of
+    busses, trams and undergrounds for every station in the city area.
+
+    This example application displays the departure information for a specific
+    station and provides the feature to filter for a special bus or tram line.
+
+    \image trafficinfo-example.png
+
+    \section1 Retrieving the Data
+
+    Without the knowledge of XQuery, one would use QNetworkAccessManager to
+    query the WML document from the WAP service and then using the QDom
+    classes or QXmlStreamReader classes to iterate over the document and
+    extract the needed information.
+    However this approach results in a lot of glue code and consumes valuable
+    developer time, so we are looking for something that can access XML
+    documents locally or over the network and extract data according to given
+    filter rules. That's the point where XQuery enters the stage!
+
+    If we want to know when the underground number 6 in direction
+    \Aring\c{}sjordet is passing the underground station in Nydalen on November
+    14th 2008 after 1pm, we use the following URL:
+
+    \c{http://wap.trafikanten.no/F.asp?f=03012130&t=13&m=00&d=14.11.2008&start=1}
+
+    The parameters have the following meanings:
+    \list
+        \o \e{f} The unique station ID of Nydalen.
+        \o \e{t} The hour in 0-23 format.
+        \o \e{m} The minute in 0-59 format.
+        \o \e{d} The date in dd.mm.yyyy format.
+        \o \e{start} Not interesting for our use but should be passed.
+    \endlist
+
+    As a result we get the following document:
+
+    \quotefile examples/xmlpatterns/trafficinfo/time_example.wml
+
+    So for every departure we have a \c <a> tag that contains the time as a
+    text element, and the following text element contains the line number
+    and direction.
+
+    To encapsulate the XQuery code in the example application, we create a
+    custom \c TimeQuery class. This provides the \c queryInternal() function
+    that takes a station ID and date/time as input and returns the list of
+    times and directions:
+
+    \snippet examples/xmlpatterns/trafficinfo/timequery.cpp 1
+
+    The first lines of this function synthesize the XQuery strings that fetch
+    the document and extract the data.
+    For better readability, two separated queries are used here: the first one
+    fetches the times and the second fetches the line numbers and directions.
+
+    The \c doc() XQuery method opens a local or remote XML document and returns
+    it, so the \c{/wml/card/p/small/} statement behind it selects all XML nodes
+    that can be reached by the path, \c wml \rarrow \c card \rarrow \c p \rarrow
+    \c small.
+    Now we are on the node that contains all the XML nodes we are interested in.
+
+    In the first query we select all \c a nodes that have a \c href attribute
+    starting with the string "Rute" and return the text of these nodes.
+
+    In the second query we select all text nodes that are children of the
+    \c small node which start with a number.
+    These two queries are passed to the QXmlQuery instance and are evaluated
+    to string lists. After some sanity checking, we have collected all the
+    information we need.
+
+    In the section above we have seen that an unique station ID must be passed
+    as an argument to the URL for retrieving the time, so how to find out which
+    is the right station ID to use? The WAP service provides a page for that
+    as well, so the URL
+
+    \c{http://wap.trafikanten.no/FromLink1.asp?fra=Nydalen}
+
+    will return the following document:
+
+    \snippet examples/xmlpatterns/trafficinfo/station_example.wml 0
+
+    The names of the available stations are listed as separate text elements
+    and the station ID is part of the \c href attribute of the parent \c a
+    (anchor) element. In our example, the \c StationQuery class encapsulates
+    the action of querying the stations that match the given name pattern with
+    the following code:
+
+    \snippet examples/xmlpatterns/trafficinfo/stationquery.cpp 0
+
+    Just as in the \c TimeQuery implementation, the first step is to
+    synthesize the XQuery strings for selecting the station names and the
+    station IDs. As the station name that we pass in the URL will be input
+    from the user, we should protect the XQuery from code injection by using
+    the QXmlQuery::bindVariable() method to do proper quoting of the variable
+    content for us instead of concatenating the two strings manually.
+
+    So, we define a XQuery \c $station variable that is bound to the user
+    input. This variable is concatenated inside the XQuery code with the
+    \c concat method. To extract the station IDs, we select all \c a elements
+    that have an \c title attribute with the content "Velg", and from these
+    elements we take the substring of the \c href attribute that starts at the
+    18th character.
+
+    The station name can be extracted a bit more easily by just taking the
+    text elements of the selected \a elements.
+
+    After some sanity checks we have all the station IDs and the corresponding
+    names available.
+
+    The rest of the code in this example is just for representing the time and
+    station information to the user, and uses techniques described in the
+    \l{Widgets Examples}.
+*/

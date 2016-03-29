@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qlayoutitem.cpp -->
+<head>
+  <title>Qt 4.6: QWidgetItem Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QWidgetItem" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QWidgetItem Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QWidgetItem class is a layout item that represents a widget. <a href="#details">More...</a></p>
+<pre> #include &lt;QWidgetItem&gt;</pre><p>Inherits <a href="qlayoutitem.html">QLayoutItem</a>.</p>
+<ul>
+<li><a href="qwidgetitem-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qwidgetitem.html#QWidgetItem">QWidgetItem</a></b> ( QWidget * <i>widget</i> )</td></tr>
+</table>
+<hr />
+<a name="reimplemented-public-functions"></a>
+<h2>Reimplemented Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual Qt::Orientations </td><td class="memItemRight" valign="bottom"><b><a href="qwidgetitem.html#expandingDirections">expandingDirections</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QRect </td><td class="memItemRight" valign="bottom"><b><a href="qwidgetitem.html#geometry">geometry</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qwidgetitem.html#hasHeightForWidth">hasHeightForWidth</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual int </td><td class="memItemRight" valign="bottom"><b><a href="qwidgetitem.html#heightForWidth">heightForWidth</a></b> ( int <i>w</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool </td><td class="memItemRight" valign="bottom"><b><a href="qwidgetitem.html#isEmpty">isEmpty</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QSize </td><td class="memItemRight" valign="bottom"><b><a href="qwidgetitem.html#maximumSize">maximumSize</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QSize </td><td class="memItemRight" valign="bottom"><b><a href="qwidgetitem.html#minimumSize">minimumSize</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qwidgetitem.html#setGeometry">setGeometry</a></b> ( const QRect &amp; <i>rect</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QSize </td><td class="memItemRight" valign="bottom"><b><a href="qwidgetitem.html#sizeHint">sizeHint</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QWidget * </td><td class="memItemRight" valign="bottom"><b><a href="qwidgetitem.html#widget">widget</a></b> ()</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>17 public functions inherited from <a href="qlayoutitem.html#public-functions">QLayoutItem</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QWidgetItem class is a layout item that represents a widget.</p>
+<p>Normally, you don't need to use this class directly. Qt's built-in layout managers provide the following functions for manipulating widgets in layouts:</p>
+<p><table class="generic" align="center" cellpadding="2" cellspacing="1" border="0">
+<thead><tr valign="top" class="qt-style"><th>Class</th><th>Functions</th></tr></thead>
+<tr valign="top" class="odd"><td><a href="qboxlayout.html">QBoxLayout</a></td><td><a href="qboxlayout.html#addWidget">addWidget()</a>, <a href="qboxlayout.html#insertWidget">insertWidget()</a>, <a href="qboxlayout.html#setStretchFactor">setStretchFactor()</a></td></tr>
+<tr valign="top" class="even"><td><a href="qgridlayout.html">QGridLayout</a></td><td><a href="qgridlayout.html#addWidget">addWidget()</a></td></tr>
+<tr valign="top" class="odd"><td><a href="qstackedlayout.html">QStackedLayout</a></td><td><a href="qstackedlayout.html#addWidget">addWidget()</a>, <a href="qstackedlayout.html#insertWidget">insertWidget()</a>, <a href="qstackedlayout.html#currentWidget">currentWidget()</a>, <a href="qstackedlayout.html#setCurrentWidget">setCurrentWidget()</a>, <a href="qstackedlayout.html#widget">widget()</a></td></tr>
+</table></p>
+<p>See also <a href="qlayout.html">QLayout</a>, <a href="qspaceritem.html">QSpacerItem</a>, and <a href="qlayoutitem.html#widget">QLayoutItem::widget</a>().</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QWidgetItem/QWidgetItem" />
+<h3 class="fn"><a name="QWidgetItem"></a>QWidgetItem::QWidgetItem ( <a href="qwidget.html">QWidget</a> * <i>widget</i> )</h3>
+<p>Creates an item containing the given <i>widget</i>.</p>
+<a name="//apple_ref/cpp/instm/QWidgetItem/expandingDirections" />
+<h3 class="fn"><a name="expandingDirections"></a><a href="qt.html#Orientation-enum">Qt::Orientations</a> QWidgetItem::expandingDirections () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qlayoutitem.html#expandingDirections">QLayoutItem::expandingDirections</a>().</p>
+<a name="//apple_ref/cpp/instm/QWidgetItem/geometry" />
+<h3 class="fn"><a name="geometry"></a><a href="qrect.html">QRect</a> QWidgetItem::geometry () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qlayoutitem.html#geometry">QLayoutItem::geometry</a>().</p>
+<p>See also <a href="qwidgetitem.html#setGeometry">setGeometry</a>().</p>
+<a name="//apple_ref/cpp/instm/QWidgetItem/hasHeightForWidth" />
+<h3 class="fn"><a name="hasHeightForWidth"></a>bool QWidgetItem::hasHeightForWidth () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qlayoutitem.html#hasHeightForWidth">QLayoutItem::hasHeightForWidth</a>().</p>
+<a name="//apple_ref/cpp/instm/QWidgetItem/heightForWidth" />
+<h3 class="fn"><a name="heightForWidth"></a>int QWidgetItem::heightForWidth ( int <i>w</i> ) const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qlayoutitem.html#heightForWidth">QLayoutItem::heightForWidth</a>().</p>
+<a name="//apple_ref/cpp/instm/QWidgetItem/isEmpty" />
+<h3 class="fn"><a name="isEmpty"></a>bool QWidgetItem::isEmpty () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qlayoutitem.html#isEmpty">QLayoutItem::isEmpty</a>().</p>
+<p>Returns true if the widget is hidden; otherwise returns false.</p>
+<p>See also <a href="qwidget.html#isHidden">QWidget::isHidden</a>().</p>
+<a name="//apple_ref/cpp/instm/QWidgetItem/maximumSize" />
+<h3 class="fn"><a name="maximumSize"></a><a href="qsize.html">QSize</a> QWidgetItem::maximumSize () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qlayoutitem.html#maximumSize">QLayoutItem::maximumSize</a>().</p>
+<a name="//apple_ref/cpp/instm/QWidgetItem/minimumSize" />
+<h3 class="fn"><a name="minimumSize"></a><a href="qsize.html">QSize</a> QWidgetItem::minimumSize () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qlayoutitem.html#minimumSize">QLayoutItem::minimumSize</a>().</p>
+<a name="//apple_ref/cpp/instm/QWidgetItem/setGeometry" />
+<h3 class="fn"><a name="setGeometry"></a>void QWidgetItem::setGeometry ( const <a href="qrect.html">QRect</a> &amp; <i>rect</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qlayoutitem.html#setGeometry">QLayoutItem::setGeometry</a>().</p>
+<p>See also <a href="qwidgetitem.html#geometry">geometry</a>().</p>
+<a name="//apple_ref/cpp/instm/QWidgetItem/sizeHint" />
+<h3 class="fn"><a name="sizeHint"></a><a href="qsize.html">QSize</a> QWidgetItem::sizeHint () const&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qlayoutitem.html#sizeHint">QLayoutItem::sizeHint</a>().</p>
+<a name="//apple_ref/cpp/instm/QWidgetItem/widget" />
+<h3 class="fn"><a name="widget"></a><a href="qwidget.html">QWidget</a> * QWidgetItem::widget ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplemented from <a href="qlayoutitem.html#widget">QLayoutItem::widget</a>().</p>
+<p>Returns the widget managed by this item.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

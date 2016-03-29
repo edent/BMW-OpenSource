@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qs60mainappui.cpp -->
+<head>
+  <title>Qt 4.6: QS60MainAppUi Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QS60MainAppUi" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QS60MainAppUi Class Reference<br /><span class="small-subtitle">[<a href="qtgui.html">QtGui</a> module]</span>
+</h1>
+<p>The QS60MainAppUi class is a helper class for S60 migration. <a href="#details">More...</a></p>
+<pre> #include &lt;QS60MainAppUi&gt;</pre><p>This class was introduced in Qt 4.6.</p>
+<ul>
+<li><a href="qs60mainappui-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qs60mainappui.html#QS60MainAppUi">QS60MainAppUi</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual </td><td class="memItemRight" valign="bottom"><b><a href="qs60mainappui.html#dtor.QS60MainAppUi">~QS60MainAppUi</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qs60mainappui.html#ConstructL">ConstructL</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qs60mainappui.html#DynInitMenuBarL">DynInitMenuBarL</a></b> ( TInt <i>resourceId</i>, CEikMenuBar * <i>menuBar</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qs60mainappui.html#DynInitMenuPaneL">DynInitMenuPaneL</a></b> ( TInt <i>resourceId</i>, CEikMenuPane * <i>menuPane</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qs60mainappui.html#HandleCommandL">HandleCommandL</a></b> ( TInt <i>command</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qs60mainappui.html#HandleResourceChangeL">HandleResourceChangeL</a></b> ( TInt <i>type</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qs60mainappui.html#HandleStatusPaneSizeChange">HandleStatusPaneSizeChange</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qs60mainappui.html#RestoreMenuL">RestoreMenuL</a></b> ( CCoeControl * <i>menuWindow</i>, TInt <i>resourceId</i>, TMenuType <i>menuType</i> )</td></tr>
+</table>
+<hr />
+<a name="protected-functions"></a>
+<h2>Protected Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">virtual void </td><td class="memItemRight" valign="bottom"><b><a href="qs60mainappui.html#HandleWsEventL">HandleWsEventL</a></b> ( const TWsEvent &amp; <i>wsEvent</i>, CCoeControl * <i>destination</i> )</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QS60MainAppUi class is a helper class for S60 migration.</p>
+<p><b>Warning:</b> This class is provided only to get access to S60 specific functionality in the application framework classes. It is not portable. We strongly recommend against using it in new applications.</p>
+<p>The QS60MainAppUi provides a helper class for use in migrating from existing S60 based applications to Qt based applications. It is used in the exact same way as the <tt>CAknAppUi</tt> class from Symbian, but internally provides extensions used by Qt.</p>
+<p>When modifying old S60 applications that rely on implementing functions in <tt>CAknAppUi</tt>, the class should be modified to inherit from this class instead of <tt>CAknAppUi</tt>. Then the application can choose to override only certain functions.</p>
+<p>For more information on <tt>CAknAppUi</tt>, please see the S60 documentation.</p>
+<p>Unlike other Qt classes, QS60MainAppUi behaves like an S60 class, and can throw Symbian leaves.</p>
+<p>See also <a href="qs60maindocument.html">QS60MainDocument</a> and <a href="qs60mainapplication.html">QS60MainApplication</a>.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QS60MainAppUi/QS60MainAppUi" />
+<h3 class="fn"><a name="QS60MainAppUi"></a>QS60MainAppUi::QS60MainAppUi ()</h3>
+<p>Contructs an instance of <a href="qs60mainappui.html">QS60MainAppUi</a>.</p>
+<a name="//apple_ref/cpp/instm/QS60MainAppUi/~QS60MainAppUi" />
+<h3 class="fn"><a name="dtor.QS60MainAppUi"></a>QS60MainAppUi::~QS60MainAppUi ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Destroys the <a href="qs60mainappui.html">QS60MainAppUi</a>.</p>
+<a name="//apple_ref/cpp/instm/QS60MainAppUi/ConstructL" />
+<h3 class="fn"><a name="ConstructL"></a>void QS60MainAppUi::ConstructL ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Second phase Symbian constructor.</p>
+<p>Constructs all the elements of the class that can cause a leave to happen.</p>
+<p>If you override this function, you should call the base class implementation as well.</p>
+<a name="//apple_ref/cpp/instm/QS60MainAppUi/DynInitMenuBarL" />
+<h3 class="fn"><a name="DynInitMenuBarL"></a>void QS60MainAppUi::DynInitMenuBarL ( TInt <i>resourceId</i>, CEikMenuBar * <i>menuBar</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Dynamically initializes a menu bar.</p>
+<p>The resource associated with the menu is given in <i>resourceId</i>, and the actual menu bar is passed in <i>menuBar</i>.</p>
+<p>If you override this function, you should call the base class implementation as well.</p>
+<a name="//apple_ref/cpp/instm/QS60MainAppUi/DynInitMenuPaneL" />
+<h3 class="fn"><a name="DynInitMenuPaneL"></a>void QS60MainAppUi::DynInitMenuPaneL ( TInt <i>resourceId</i>, CEikMenuPane * <i>menuPane</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Dynamically initializes a menu pane.</p>
+<p>The resource associated with the menu is given in <i>resourceId</i>, and the actual menu pane is passed in <i>menuPane</i>.</p>
+<p>If you override this function, you should call the base class implementation as well.</p>
+<a name="//apple_ref/cpp/instm/QS60MainAppUi/HandleCommandL" />
+<h3 class="fn"><a name="HandleCommandL"></a>void QS60MainAppUi::HandleCommandL ( TInt <i>command</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Handles commands produced by the S60 framework.</p>
+<p><i>command</i> holds the ID of the command to handle, and is S60 specific.</p>
+<p>If you override this function, you should call the base class implementation if you do not handle the command.</p>
+<a name="//apple_ref/cpp/instm/QS60MainAppUi/HandleResourceChangeL" />
+<h3 class="fn"><a name="HandleResourceChangeL"></a>void QS60MainAppUi::HandleResourceChangeL ( TInt <i>type</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Handles a resource change in the S60 framework.</p>
+<p>Resource changes include layout switches. <i>type</i> holds the type of resource change that occurred.</p>
+<p>If you override this function, you should call the base class implementation if you do not handle the resource change.</p>
+<a name="//apple_ref/cpp/instm/QS60MainAppUi/HandleStatusPaneSizeChange" />
+<h3 class="fn"><a name="HandleStatusPaneSizeChange"></a>void QS60MainAppUi::HandleStatusPaneSizeChange ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Handles changes to the status pane size.</p>
+<p>Called by the framework when the application status pane size is changed.</p>
+<p>If you override this function, you should call the base class implementation if you do not handle the size change.</p>
+<a name="//apple_ref/cpp/instm/QS60MainAppUi/HandleWsEventL" />
+<h3 class="fn"><a name="HandleWsEventL"></a>void QS60MainAppUi::HandleWsEventL ( const TWsEvent &amp; <i>wsEvent</i>, CCoeControl * <i>destination</i> )&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Handles raw window server events.</p>
+<p>The event type and information is passed in <i>wsEvent</i>, while the receiving control is passed in <i>destination</i>.</p>
+<p>If you override this function, you should call the base class implementation if you do not handle the event.</p>
+<a name="//apple_ref/cpp/instm/QS60MainAppUi/RestoreMenuL" />
+<h3 class="fn"><a name="RestoreMenuL"></a>void QS60MainAppUi::RestoreMenuL ( CCoeControl * <i>menuWindow</i>, TInt <i>resourceId</i>, TMenuType <i>menuType</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Restores a menu window.</p>
+<p>The menu window to restore is given in <i>menuWindow</i>. The resource ID and type of menu is given in <i>resourceId</i> and <i>menuType</i>, respectively.</p>
+<p>If you override this function, you should call the base class implementation as well.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

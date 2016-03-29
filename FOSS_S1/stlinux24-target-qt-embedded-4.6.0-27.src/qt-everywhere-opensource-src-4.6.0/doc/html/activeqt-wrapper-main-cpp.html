@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.6: main.cpp Example File (activeqt/wrapper/main.cpp)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">main.cpp Example File<br /><span class="small-subtitle">activeqt/wrapper/main.cpp</span>
+</h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+ ** All rights reserved.
+ ** Contact: Nokia Corporation (qt-info@nokia.com)
+ **
+ ** This file is part of the examples of the Qt Toolkit.
+ **
+ ** $QT_BEGIN_LICENSE:LGPL$
+ ** Commercial Usage
+ ** Licensees holding valid Qt Commercial licenses may use this file in
+ ** accordance with the Qt Commercial License Agreement provided with the
+ ** Software or, alternatively, in accordance with the terms contained in
+ ** a written agreement between you and Nokia.
+ **
+ ** GNU Lesser General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU Lesser
+ ** General Public License version 2.1 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.LGPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU Lesser General Public License version 2.1 requirements
+ ** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+ **
+ ** In addition, as a special exception, Nokia gives you certain additional
+ ** rights.  These rights are described in the Nokia Qt LGPL Exception
+ ** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+ **
+ ** GNU General Public License Usage
+ ** Alternatively, this file may be used under the terms of the GNU
+ ** General Public License version 3.0 as published by the Free Software
+ ** Foundation and appearing in the file LICENSE.GPL included in the
+ ** packaging of this file.  Please review the following information to
+ ** ensure the GNU General Public License version 3.0 requirements will be
+ ** met: http://www.gnu.org/copyleft/gpl.html.
+ **
+ ** If you have questions regarding the use of this file, please contact
+ ** Nokia at qt-info@nokia.com.
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/</span>
+
+ #include &lt;QAxFactory&gt;
+ #include &lt;QCheckBox&gt;
+ #include &lt;QRadioButton&gt;
+ #include &lt;QPushButton&gt;
+ #include &lt;QToolButton&gt;
+ #include &lt;QPixmap&gt;
+
+<span class="comment"> /* XPM */</span>
+ static const char *fileopen[] = {
+ &quot;    16    13        5            1&quot;,
+ &quot;. c #040404&quot;,
+ &quot;# c #808304&quot;,
+ &quot;a c None&quot;,
+ &quot;b c #f3f704&quot;,
+ &quot;c c #f3f7f3&quot;,
+ &quot;aaaaaaaaa...aaaa&quot;,
+ &quot;aaaaaaaa.aaa.a.a&quot;,
+ &quot;aaaaaaaaaaaaa..a&quot;,
+ &quot;a...aaaaaaaa...a&quot;,
+ &quot;.bcb.......aaaaa&quot;,
+ &quot;.cbcbcbcbc.aaaaa&quot;,
+ &quot;.bcbcbcbcb.aaaaa&quot;,
+ &quot;.cbcb...........&quot;,
+ &quot;.bcb.#########.a&quot;,
+ &quot;.cb.#########.aa&quot;,
+ &quot;.b.#########.aaa&quot;,
+ &quot;..#########.aaaa&quot;,
+ &quot;...........aaaaa&quot;
+ };
+
+ class ActiveQtFactory : public QAxFactory
+ {
+ public:
+     ActiveQtFactory( const QUuid &amp;lib, const QUuid &amp;app )
+         : QAxFactory( lib, app )
+     {}
+     QStringList featureList() const
+     {
+         QStringList list;
+         list &lt;&lt; &quot;QCheckBox&quot;;
+         list &lt;&lt; &quot;QRadioButton&quot;;
+         list &lt;&lt; &quot;QPushButton&quot;;
+         list &lt;&lt; &quot;QToolButton&quot;;
+         return list;
+     }
+     QObject *createObject(const QString &amp;key)
+     {
+         if ( key == &quot;QCheckBox&quot; )
+             return new QCheckBox(0);
+         if ( key == &quot;QRadioButton&quot; )
+             return new QRadioButton(0);
+         if ( key == &quot;QPushButton&quot; )
+             return new QPushButton(0 );
+         if ( key == &quot;QToolButton&quot; ) {
+             QToolButton *tb = new QToolButton(0);
+<span class="comment"> //          tb-&gt;setIcon( QPixmap(fileopen) );</span>
+             return tb;
+         }
+
+         return 0;
+     }
+     const QMetaObject *metaObject( const QString &amp;key ) const
+     {
+         if ( key == &quot;QCheckBox&quot; )
+             return &amp;QCheckBox::staticMetaObject;
+         if ( key == &quot;QRadioButton&quot; )
+             return &amp;QRadioButton::staticMetaObject;
+         if ( key == &quot;QPushButton&quot; )
+             return &amp;QPushButton::staticMetaObject;
+         if ( key == &quot;QToolButton&quot; )
+             return &amp;QToolButton::staticMetaObject;
+
+         return 0;
+     }
+     QUuid classID( const QString &amp;key ) const
+     {
+         if ( key == &quot;QCheckBox&quot; )
+             return &quot;{6E795DE9-872D-43CF-A831-496EF9D86C68}&quot;;
+         if ( key == &quot;QRadioButton&quot; )
+             return &quot;{AFCF78C8-446C-409A-93B3-BA2959039189}&quot;;
+         if ( key == &quot;QPushButton&quot; )
+             return &quot;{2B262458-A4B6-468B-B7D4-CF5FEE0A7092}&quot;;
+         if ( key == &quot;QToolButton&quot; )
+             return &quot;{7c0ffe7a-60c3-4666-bde2-5cf2b54390a1}&quot;;
+
+         return QUuid();
+     }
+     QUuid interfaceID( const QString &amp;key ) const
+     {
+         if ( key == &quot;QCheckBox&quot; )
+             return &quot;{4FD39DD7-2DE0-43C1-A8C2-27C51A052810}&quot;;
+         if ( key == &quot;QRadioButton&quot; )
+             return &quot;{7CC8AE30-206C-48A3-A009-B0A088026C2F}&quot;;
+         if ( key == &quot;QPushButton&quot; )
+             return &quot;{06831CC9-59B6-436A-9578-6D53E5AD03D3}&quot;;
+         if ( key == &quot;QToolButton&quot; )
+             return &quot;{6726080f-d63d-4950-a366-9bf33e5cdf84}&quot;;
+
+         return QUuid();
+     }
+     QUuid eventsID( const QString &amp;key ) const
+     {
+         if ( key == &quot;QCheckBox&quot; )
+             return &quot;{FDB6FFBE-56A3-4E90-8F4D-198488418B3A}&quot;;
+         if ( key == &quot;QRadioButton&quot; )
+             return &quot;{73EE4860-684C-4A66-BF63-9B9EFFA0CBE5}&quot;;
+         if ( key == &quot;QPushButton&quot; )
+             return &quot;{3CC3F17F-EA59-4B58-BBD3-842D467131DD}&quot;;
+         if ( key == &quot;QToolButton&quot; )
+             return &quot;{f4d421fd-4ead-4fd9-8a25-440766939639}&quot;;
+
+         return QUuid();
+     }
+ };
+
+ QAXFACTORY_EXPORT( ActiveQtFactory, &quot;{3B756301-0075-4E40-8BE8-5A81DE2426B7}&quot;, &quot;{AB068077-4924-406a-BBAF-42D91C8727DD}&quot; )</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

@@ -1,0 +1,16 @@
+Index: qt-everywhere-opensource-src-4.6.0/src/corelib/io/qfilesystemwatcher_inotify.cpp
+===================================================================
+--- qt-everywhere-opensource-src-4.6.0.orig/src/corelib/io/qfilesystemwatcher_inotify.cpp
++++ qt-everywhere-opensource-src-4.6.0/src/corelib/io/qfilesystemwatcher_inotify.cpp
+@@ -130,6 +130,11 @@
+ # define __NR_inotify_add_watch 285
+ # define __NR_inotify_rm_watch  286
+ # define __NR_inotify_init1     328
++#elif defined (__st200__)
++# define __NR_inotify_init    	240
++# define __NR_inotify_add_watch	241
++# define __NR_inotify_rm_watch	242
++# define __NR_inotify_init1     243
+ #else
+ # error "This architecture is not supported. Please talk to qt-bugs@trolltech.com"
+ #endif

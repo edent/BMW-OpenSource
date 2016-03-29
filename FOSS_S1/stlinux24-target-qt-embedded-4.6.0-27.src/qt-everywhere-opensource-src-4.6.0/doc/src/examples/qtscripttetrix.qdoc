@@ -1,0 +1,92 @@
+/****************************************************************************
+**
+** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+** All rights reserved.
+** Contact: Nokia Corporation (qt-info@nokia.com)
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:LGPL$
+** Commercial Usage
+** Licensees holding valid Qt Commercial licenses may use this file in
+** accordance with the Qt Commercial License Agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and Nokia.
+**
+** GNU Lesser General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU Lesser
+** General Public License version 2.1 as published by the Free Software
+** Foundation and appearing in the file LICENSE.LGPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU Lesser General Public License version 2.1 requirements
+** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+**
+** In addition, as a special exception, Nokia gives you certain additional
+** rights.  These rights are described in the Nokia Qt LGPL Exception
+** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+**
+** GNU General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU
+** General Public License version 3.0 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU General Public License version 3.0 requirements will be
+** met: http://www.gnu.org/copyleft/gpl.html.
+**
+** If you have questions regarding the use of this file, please contact
+** Nokia at qt-info@nokia.com.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \example script/qstetrix
+    \title Qt Script Tetrix Example
+
+    The QSTetrix example is a Qt Script version of the classic Tetrix game.
+
+    \image tetrix-example.png
+
+    \section1 Overview
+
+    The program logic in this example is a fairly straight port of the
+    logic in the C++ \l{Tetrix Example}. You may find it useful to compare
+    the implementations of the \c TetrixBoard, \c TetrixPiece and
+    \c TetrixWindow classes to see how Qt Script is used to implement
+    methods, call Qt functions, and emit signals.
+
+    \section1 Setting up the GUI
+
+    The graphical user interface is defined in a UI file, created
+    using Qt Designer, and is set up in the example's C++ \c{main.cpp} file.
+
+    \snippet examples/script/qstetrix/main.cpp 0
+
+    We define a custom UI loader that handles our \c TetrixBoard widget; this
+    is the main component of the UI (where the pieces are drawn).
+
+    \snippet examples/script/qstetrix/main.cpp 1
+
+    We initialize the script engine to have the Qt namespace, so that
+    e.g., \l{Qt::Key_Left}{Qt.Key_Left} will be available to script code.
+    We also make the application object available (for the
+    \l{QApplication::}{quit()} slot).
+
+    \snippet examples/script/qstetrix/main.cpp 2
+
+    Several scripts are evaluated as part of the engine setup process.
+    The \c{tetrixpiece.js} file contains the definition of the \c TetrixPiece
+    class, which is used to populate the play field. The \c{tetrixboard.js}
+    file contains the definition of the \c TetrixBoard class, which contains
+    the main game logic. Finally, \c{tetrixwindow.js} contains the definition
+    of the \c TetrixWindow class, which wires up the top-level widget.
+
+    \snippet examples/script/qstetrix/main.cpp 3
+
+    A form is created from the UI file. A new \c TetrixWindow script object
+    is then constructed, passing the form as its argument.
+
+    \snippet examples/script/qstetrix/main.cpp 4
+
+    The form is shown, and the event loop is entered.
+*/

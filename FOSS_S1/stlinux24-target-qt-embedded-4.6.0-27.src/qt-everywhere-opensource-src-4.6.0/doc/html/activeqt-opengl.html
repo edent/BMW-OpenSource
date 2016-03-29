@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- opengl.qdoc -->
+<head>
+  <title>Qt 4.6: OpenGL Example (ActiveQt)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">OpenGL Example (ActiveQt)<br /><span class="subtitle"></span>
+</h1>
+<p>Files:</p>
+<ul>
+<li><a href="activeqt-opengl-glbox-cpp.html">activeqt/opengl/glbox.cpp</a></li>
+<li><a href="activeqt-opengl-glbox-h.html">activeqt/opengl/glbox.h</a></li>
+<li><a href="activeqt-opengl-globjwin-cpp.html">activeqt/opengl/globjwin.cpp</a></li>
+<li><a href="activeqt-opengl-globjwin-h.html">activeqt/opengl/globjwin.h</a></li>
+<li><a href="activeqt-opengl-main-cpp.html">activeqt/opengl/main.cpp</a></li>
+<li><a href="activeqt-opengl-opengl-pro.html">activeqt/opengl/opengl.pro</a></li>
+</ul>
+<p>The OpenGL example demonstrates the use of the default factory and <a href="qaxfactory.html#isServer">QAxFactory::isServer</a>(), and the implementation of an additional COM interface using <a href="qaxbindable.html">QAxBindable</a> and <a href="qaxaggregated.html">QAxAggregated</a>. The server executable can run both as an ActiveX server and as a stand-alone application.</p>
+<p>The ActiveX control in this example uses the QGlWidget class in Qt to render an OpenGL scene in an ActiveX. The control exposes a few methods to change the scene.</p>
+<p>The application uses the default factory as provided by the QAXFACTORY_DEFAULT macro to expose the <tt>GLBox</tt> widget as an ActiveX control.</p>
+<pre> #include &lt;QAxFactory&gt;
+
+ QAXFACTORY_DEFAULT( GLBox,
+                     &quot;{5fd9c22e-ed45-43fa-ba13-1530bb6b03e0}&quot;,
+                     &quot;{33b051af-bb25-47cf-a390-5cfd2987d26a}&quot;,
+                     &quot;{8c996c29-eafa-46ac-a6f9-901951e765b5}&quot;,
+                     &quot;{2c3c183a-eeda-41a4-896e-3d9c12c3577d}&quot;,
+                     &quot;{83e16271-6480-45d5-aaf1-3f40b7661ae4}&quot;
+                   )</pre>
+<p>The implementation of <tt>main</tt> initializes the <a href="qapplication.html">QApplication</a> object, and uses <tt>QAxFactory::isServer()</tt> to determine whether or not it is appropriate to create and show the application interface.</p>
+<pre><span class="comment"> /*
+   The main program is here.
+ */</span>
+
+ int main( int argc, char **argv )
+ {
+     QApplication::setColorSpec( QApplication::CustomColor );
+     QApplication a(argc,argv);
+
+     if ( !QGLFormat::hasOpenGL() ) {
+         qWarning( &quot;This system has no OpenGL support. Exiting.&quot; );
+         return -1;
+     }
+
+     if ( !QAxFactory::isServer() ) {
+         GLObjectWindow w;
+         w.resize( 400, 350 );
+         w.show();
+         return a.exec();
+     }
+     return a.exec();
+ }</pre>
+<p>The <tt>GLBox</tt> class inherits from both the <a href="qglwidget.html">QGLWidget</a> class to be able to render OpenGL, and from <a href="qaxbindable.html">QAxBindable</a>.</p>
+<pre> #include &lt;QAxBindable&gt;
+
+ class GLBox : public QGLWidget,
+               public QAxBindable
+ {
+     Q_OBJECT</pre>
+<p>The class reimplements the <a href="qaxbindable.html#createAggregate">QAxBindable::createAggregate</a>() function from <a href="qaxbindable.html">QAxBindable</a> to return the pointer to a <a href="qaxaggregated.html">QAxAggregated</a> object.</p>
+<pre> public:
+
+     GLBox( QWidget* parent, const char* name = 0 );
+     ~GLBox();
+
+     QAxAggregated *createAggregate();
+
+ public slots:
+
+     void                setXRotation( int degrees );</pre>
+<p>The rest of the class declaration and the implementation of the OpenGL rendering is identical to the original &quot;box&quot; example.</p>
+<p>The implementation file of the <tt>GLBox</tt> class includes the <tt>objsafe.h</tt> system header, in which the <tt>IObjectSafety</tt> COM interface is defined.</p>
+<pre> #include &lt;objsafe.h&gt;</pre>
+<p>A class <tt>ObjectSafetyImpl</tt> is declared using multiple inheritance to subclass the <a href="qaxaggregated.html">QAxAggregated</a> class, and to implement the IObjectSafety interface.</p>
+<pre> class ObjectSafetyImpl : public QAxAggregated,
+                          public IObjectSafety
+ {
+ public:</pre>
+<p>The class declares a default constructor, and implements the queryInterface function to support the IObjectSafety interface.</p>
+<pre>     ObjectSafetyImpl() {}
+
+     long queryInterface( const QUuid &amp;iid, void **iface )
+     {
+         *iface = 0;
+         if ( iid == IID_IObjectSafety )
+             *iface = (IObjectSafety*)this;
+         else
+             return E_NOINTERFACE;
+
+         AddRef();
+         return S_OK;
+     }</pre>
+<p>Since every COM interface inherits <tt>IUnknown</tt> the <tt>QAXAGG_IUNKNOWN</tt> macro is used to provide the default implementation of the <tt>IUnknown</tt> interface. The macro is defined to delegate all calls to <tt>QueryInterface</tt>, <tt>AddRef</tt> and <tt>Release</tt> to the interface returned by the controllingUnknown() function.</p>
+<pre>     QAXAGG_IUNKNOWN;</pre>
+<p>The implementation of the <tt>IObjectSafety</tt> interface provides the caller with information about supported and enabled safety options, and returns <tt>S_OK</tt> for all calls to indicate that the ActiveX control is safe.</p>
+<pre>     HRESULT WINAPI GetInterfaceSafetyOptions( REFIID riid, DWORD *pdwSupportedOptions, DWORD *pdwEnabledOptions )
+     {
+         *pdwSupportedOptions = INTERFACESAFE_FOR_UNTRUSTED_DATA | INTERFACESAFE_FOR_UNTRUSTED_CALLER;
+         *pdwEnabledOptions = INTERFACESAFE_FOR_UNTRUSTED_DATA | INTERFACESAFE_FOR_UNTRUSTED_CALLER;
+         return S_OK;
+     }
+     HRESULT WINAPI SetInterfaceSafetyOptions( REFIID riid, DWORD pdwSupportedOptions, DWORD pdwEnabledOptions )
+     {
+         return S_OK;
+     }
+ };</pre>
+<p>The implementation of the <tt>createAggregate()</tt> function just returns a new <tt>ObjectSafetyImpl</tt> object.</p>
+<pre> QAxAggregated *GLBox::createAggregate()
+ {
+     return new ObjectSafetyImpl();
+ }</pre>
+<p>To build the example you must first build the <a href="qaxserver.html">QAxServer</a> library. Then run <tt>qmake</tt> and your make tool in <tt>examples/activeqt/wrapper</tt>.</p>
+<p>The <a href="qaxserver-demo-opengl.html">demonstration</a> requires your WebBrowser to support ActiveX controls, and scripting to be enabled.</p>
+<p>In contrast to the other <a href="qaxserver.html">QAxServer</a> examples Internet Explorer will not open a dialog box to ask the user whether or not the scripting of the GLBox control should be allowed (the exact browser behaviour depends on the security settings in the Internet Options dialog).</p>
+<pre> &lt;SCRIPT LANGUAGE=&quot;JavaScript&quot;&gt;
+ function setRot( form )
+ {
+     GLBox.setXRotation( form.XEdit.value );
+     GLBox.setYRotation( form.YEdit.value );
+     GLBox.setZRotation( form.ZEdit.value );
+ }
+ &lt;/SCRIPT&gt;
+
+ &lt;p /&gt;
+ An OpenGL scene:&lt;br /&gt;
+ &lt;object ID=&quot;GLBox&quot; CLASSID=&quot;CLSID:5fd9c22e-ed45-43fa-ba13-1530bb6b03e0&quot;
+ CODEBASE=&quot;http://qt.nokia.com/demos/openglax.cab&quot;&gt;
+ [Object not available! Did you forget to build and register the server?]
+ &lt;/object&gt;&lt;br /&gt;
+
+ &lt;form&gt;
+ Rotate the scene:&lt;br /&gt;
+ X:&lt;input type=&quot;edit&quot; ID=&quot;XEdit&quot; value=&quot;0&quot; /&gt;&lt;br /&gt;
+ Y:&lt;input type=&quot;edit&quot; name=&quot;YEdit&quot; value=&quot;0&quot; /&gt;&lt;br /&gt;
+ Z:&lt;input type=&quot;edit&quot; name=&quot;ZEdit&quot; value=&quot;0&quot; /&gt;&lt;br /&gt;
+ &lt;input type=&quot;button&quot; value=&quot;Set&quot; onClick=&quot;setRot(this.form)&quot; /&gt;
+ &lt;/form&gt;</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

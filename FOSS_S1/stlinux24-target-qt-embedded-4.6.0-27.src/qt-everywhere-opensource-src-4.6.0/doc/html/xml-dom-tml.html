@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- xml-processing.qdoc -->
+<head>
+  <title>Qt 4.6: Working with the DOM Tree</title>
+  <link rel="prev" href="xml-sax.html" />
+  <link rel="contents" href="xml-processing.html" />
+  <link rel="next" href="xmlprocessing.html" />
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><p>
+[Previous: <a href="xml-sax.html">The SAX interface</a>]
+[<a href="xml-processing.html">XML Processing</a>]
+[Next: <a href="xmlprocessing.html">XQuery/XPath and XML Schema</a>]
+</p>
+<h1 class="title">Working with the DOM Tree<br /><span class="subtitle"></span>
+</h1>
+<a name="dom"></a><p>DOM Level 2 is a W3C Recommendation for XML interfaces that maps the constituents of an XML document to a tree structure. The specification of DOM Level 2 can be found at <a href="http://www.w3.org/DOM/">http://www.w3.org/DOM/</a>.</p>
+<a name="domintro"></a><a name="introduction-to-dom"></a>
+<h2>Introduction to DOM</h2>
+<p>DOM provides an interface to access and change the content and structure of an XML file. It makes a hierarchical view of the document (a tree view). Thus -- in contrast to the SAX2 interface -- an object model of the document is resident in memory after parsing which makes manipulation easy.</p>
+<p>All DOM nodes in the document tree are subclasses of <a href="qdomnode.html">QDomNode</a>. The document itself is represented as a <a href="qdomdocument.html">QDomDocument</a> object.</p>
+<p>Here are the available node classes and their potential child classes:</p>
+<ul>
+<li><a href="qdomdocument.html">QDomDocument</a>: Possible children are<ul>
+<li><a href="qdomelement.html">QDomElement</a> (at most one)</li>
+<li><a href="qdomprocessinginstruction.html">QDomProcessingInstruction</a></li>
+<li><a href="qdomcomment.html">QDomComment</a></li>
+<li><a href="qdomdocumenttype.html">QDomDocumentType</a></li>
+</ul>
+</li>
+<li><a href="qdomdocumentfragment.html">QDomDocumentFragment</a>: Possible children are<ul>
+<li><a href="qdomelement.html">QDomElement</a></li>
+<li><a href="qdomprocessinginstruction.html">QDomProcessingInstruction</a></li>
+<li><a href="qdomcomment.html">QDomComment</a></li>
+<li><a href="qdomtext.html">QDomText</a></li>
+<li><a href="qdomcdatasection.html">QDomCDATASection</a></li>
+<li><a href="qdomentityreference.html">QDomEntityReference</a></li>
+</ul>
+</li>
+<li><a href="qdomdocumenttype.html">QDomDocumentType</a>: No children</li>
+<li><a href="qdomentityreference.html">QDomEntityReference</a>: Possible children are<ul>
+<li><a href="qdomelement.html">QDomElement</a></li>
+<li><a href="qdomprocessinginstruction.html">QDomProcessingInstruction</a></li>
+<li><a href="qdomcomment.html">QDomComment</a></li>
+<li><a href="qdomtext.html">QDomText</a></li>
+<li><a href="qdomcdatasection.html">QDomCDATASection</a></li>
+<li><a href="qdomentityreference.html">QDomEntityReference</a></li>
+</ul>
+</li>
+<li><a href="qdomelement.html">QDomElement</a>: Possible children are<ul>
+<li><a href="qdomelement.html">QDomElement</a></li>
+<li><a href="qdomtext.html">QDomText</a></li>
+<li><a href="qdomcomment.html">QDomComment</a></li>
+<li><a href="qdomprocessinginstruction.html">QDomProcessingInstruction</a></li>
+<li><a href="qdomcdatasection.html">QDomCDATASection</a></li>
+<li><a href="qdomentityreference.html">QDomEntityReference</a></li>
+</ul>
+</li>
+<li><a href="qdomattr.html">QDomAttr</a>: Possible children are<ul>
+<li><a href="qdomtext.html">QDomText</a></li>
+<li><a href="qdomentityreference.html">QDomEntityReference</a></li>
+</ul>
+</li>
+<li><a href="qdomprocessinginstruction.html">QDomProcessingInstruction</a>: No children</li>
+<li><a href="qdomcomment.html">QDomComment</a>: No children</li>
+<li><a href="qdomtext.html">QDomText</a>: No children</li>
+<li><a href="qdomcdatasection.html">QDomCDATASection</a>: No children</li>
+<li><a href="qdomentity.html">QDomEntity</a>: Possible children are<ul>
+<li><a href="qdomelement.html">QDomElement</a></li>
+<li><a href="qdomprocessinginstruction.html">QDomProcessingInstruction</a></li>
+<li><a href="qdomcomment.html">QDomComment</a></li>
+<li><a href="qdomtext.html">QDomText</a></li>
+<li><a href="qdomcdatasection.html">QDomCDATASection</a></li>
+<li><a href="qdomentityreference.html">QDomEntityReference</a></li>
+</ul>
+</li>
+<li><a href="qdomnotation.html">QDomNotation</a>: No children</li>
+</ul>
+<p>With <a href="qdomnodelist.html">QDomNodeList</a> and <a href="qdomnamednodemap.html">QDomNamedNodeMap</a> two collection classes are provided: <a href="qdomnodelist.html">QDomNodeList</a> is a list of nodes, and <a href="qdomnamednodemap.html">QDomNamedNodeMap</a> is used to handle unordered sets of nodes (often used for attributes).</p>
+<p>The <a href="qdomimplementation.html">QDomImplementation</a> class allows the user to query features of the DOM implementation.</p>
+<p>To get started please refer to the <a href="qdomdocument.html">QDomDocument</a> documentation. You might also want to take a look at the <a href="xml-dombookmarks.html">DOM Bookmarks example</a>, which illustrates how to read and write an XML bookmark file (XBEL) using DOM.</p>
+<p>
+[Previous: <a href="xml-sax.html">The SAX interface</a>]
+[<a href="xml-processing.html">XML Processing</a>]
+[Next: <a href="xmlprocessing.html">XQuery/XPath and XML Schema</a>]
+</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

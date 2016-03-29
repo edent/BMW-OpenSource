@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qwebsettings.cpp -->
+<head>
+  <title>Qt 4.6: QWebSettings Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QWebSettings" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QWebSettings Class Reference<br /><span class="small-subtitle">[<a href="qtwebkit.html">QtWebKit</a> module]</span>
+</h1>
+<p>The QWebSettings class provides an object to store the settings used by <a href="qwebpage.html">QWebPage</a> and <a href="qwebframe.html">QWebFrame</a>. <a href="#details">More...</a></p>
+<pre> #include &lt;QWebSettings&gt;</pre><p><b>This class is not part of the Qt GUI Framework Edition.</b></p>
+<p>This class was introduced in Qt 4.4.</p>
+<ul>
+<li><a href="qwebsettings-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-types"></a>
+<h2>Public Types</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qwebsettings.html#FontFamily-enum">FontFamily</a></b> { StandardFont, FixedFont, SerifFont, SansSerifFont, CursiveFont, FantasyFont }</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qwebsettings.html#FontSize-enum">FontSize</a></b> { MinimumFontSize, MinimumLogicalFontSize, DefaultFontSize, DefaultFixedFontSize }</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qwebsettings.html#WebAttribute-enum">WebAttribute</a></b> { AutoLoadImages, DnsPrefetchEnabled, JavascriptEnabled, JavaEnabled, ..., LocalContentCanAccessRemoteUrls }</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qwebsettings.html#WebGraphic-enum">WebGraphic</a></b> { MissingImageGraphic, MissingPluginGraphic, DefaultFrameIconGraphic, TextAreaSizeGripCornerGraphic }</td></tr>
+</table>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qwebsettings.html#defaultTextEncoding">defaultTextEncoding</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qwebsettings.html#fontFamily">fontFamily</a></b> ( FontFamily <i>which</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qwebsettings.html#fontSize">fontSize</a></b> ( FontSize <i>type</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qwebsettings.html#localStoragePath">localStoragePath</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qwebsettings.html#resetAttribute">resetAttribute</a></b> ( WebAttribute <i>attribute</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qwebsettings.html#resetFontFamily">resetFontFamily</a></b> ( FontFamily <i>which</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qwebsettings.html#resetFontSize">resetFontSize</a></b> ( FontSize <i>type</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qwebsettings.html#setAttribute">setAttribute</a></b> ( WebAttribute <i>attribute</i>, bool <i>on</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qwebsettings.html#setDefaultTextEncoding">setDefaultTextEncoding</a></b> ( const QString &amp; <i>encoding</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qwebsettings.html#setFontFamily">setFontFamily</a></b> ( FontFamily <i>which</i>, const QString &amp; <i>family</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qwebsettings.html#setFontSize">setFontSize</a></b> ( FontSize <i>type</i>, int <i>size</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qwebsettings.html#setLocalStoragePath">setLocalStoragePath</a></b> ( const QString &amp; <i>path</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qwebsettings.html#setUserStyleSheetUrl">setUserStyleSheetUrl</a></b> ( const QUrl &amp; <i>location</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qwebsettings.html#testAttribute">testAttribute</a></b> ( WebAttribute <i>attribute</i> ) const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QUrl </td><td class="memItemRight" valign="bottom"><b><a href="qwebsettings.html#userStyleSheetUrl">userStyleSheetUrl</a></b> () const</td></tr>
+</table>
+<hr />
+<a name="static-public-members"></a>
+<h2>Static Public Members</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qwebsettings.html#clearIconDatabase">clearIconDatabase</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qwebsettings.html#clearMemoryCaches">clearMemoryCaches</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qwebsettings.html#enablePersistentStorage">enablePersistentStorage</a></b> ( const QString &amp; <i>path</i> = QString() )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QWebSettings * </td><td class="memItemRight" valign="bottom"><b><a href="qwebsettings.html#globalSettings">globalSettings</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qwebsettings.html#iconDatabasePath">iconDatabasePath</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QIcon </td><td class="memItemRight" valign="bottom"><b><a href="qwebsettings.html#iconForUrl">iconForUrl</a></b> ( const QUrl &amp; <i>url</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int </td><td class="memItemRight" valign="bottom"><b><a href="qwebsettings.html#maximumPagesInCache">maximumPagesInCache</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">qint64 </td><td class="memItemRight" valign="bottom"><b><a href="qwebsettings.html#offlineStorageDefaultQuota">offlineStorageDefaultQuota</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qwebsettings.html#offlineStoragePath">offlineStoragePath</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qwebsettings.html#offlineWebApplicationCachePath">offlineWebApplicationCachePath</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">qint64 </td><td class="memItemRight" valign="bottom"><b><a href="qwebsettings.html#offlineWebApplicationCacheQuota">offlineWebApplicationCacheQuota</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qwebsettings.html#setIconDatabasePath">setIconDatabasePath</a></b> ( const QString &amp; <i>path</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qwebsettings.html#setMaximumPagesInCache">setMaximumPagesInCache</a></b> ( int <i>pages</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qwebsettings.html#setObjectCacheCapacities">setObjectCacheCapacities</a></b> ( int <i>cacheMinDeadCapacity</i>, int <i>cacheMaxDead</i>, int <i>totalCapacity</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qwebsettings.html#setOfflineStorageDefaultQuota">setOfflineStorageDefaultQuota</a></b> ( qint64 <i>maximumSize</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qwebsettings.html#setOfflineStoragePath">setOfflineStoragePath</a></b> ( const QString &amp; <i>path</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qwebsettings.html#setOfflineWebApplicationCachePath">setOfflineWebApplicationCachePath</a></b> ( const QString &amp; <i>path</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qwebsettings.html#setOfflineWebApplicationCacheQuota">setOfflineWebApplicationCacheQuota</a></b> ( qint64 <i>maximumSize</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qwebsettings.html#setWebGraphic">setWebGraphic</a></b> ( WebGraphic <i>type</i>, const QPixmap &amp; <i>graphic</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QPixmap </td><td class="memItemRight" valign="bottom"><b><a href="qwebsettings.html#webGraphic">webGraphic</a></b> ( WebGraphic <i>type</i> )</td></tr>
+</table>
+<hr />
+<a name="related-non-members"></a>
+<h2>Related Non-Members</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qwebsettings.html#enablePersistentStorage">enablePersistentStorage</a></b> ( const QString &amp; <i>path</i> = QString() )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qwebsettings.html#localStoragePath">localStoragePath</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qwebsettings.html#offlineWebApplicationCachePath">offlineWebApplicationCachePath</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qwebsettings.html#setLocalStoragePath">setLocalStoragePath</a></b> ( const QString &amp; <i>path</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void </td><td class="memItemRight" valign="bottom"><b><a href="qwebsettings.html#setOfflineWebApplicationCachePath">setOfflineWebApplicationCachePath</a></b> ( const QString &amp; <i>path</i> )</td></tr>
+</table>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QWebSettings class provides an object to store the settings used by <a href="qwebpage.html">QWebPage</a> and <a href="qwebframe.html">QWebFrame</a>.</p>
+<p>Each <a href="qwebpage.html">QWebPage</a> object has its own QWebSettings object, which configures the settings for that page. If a setting is not configured, then it is looked up in the global settings object, which can be accessed using <a href="qwebsettings.html#globalSettings">globalSettings</a>().</p>
+<p>QWebSettings allows configuration of browser properties, such as font sizes and families, the location of a custom style sheet, and generic attributes like JavaScript and plugins. Individual attributes are set using the <a href="qwebsettings.html#setAttribute">setAttribute</a>() function. The <a href="qwebsettings.html#WebAttribute-enum">WebAttribute</a> enum further describes each attribute.</p>
+<p>QWebSettings also configures global properties such as the Web page memory cache and the Web page icon database, local database storage and offline applications storage.</p>
+<a name="enabling-plugins"></a>
+<h3>Enabling Plugins</h3>
+<p>Support for browser plugins can enabled by setting the <a href="qwebsettings.html#WebAttribute-enum">PluginsEnabled</a> attribute. For many applications, this attribute is enabled for all pages by setting it on the <a href="qwebsettings.html#globalSettings">global settings object</a>.</p>
+<a name="web-application-support"></a>
+<h3>Web Application Support</h3>
+<p>WebKit provides support for features specified in <a href="http://www.w3.org/TR/html5/">HTML 5</a> that improve the performance and capabilities of Web applications. These include client-side (offline) storage and the use of a Web application cache.</p>
+<p>Client-side (offline) storage is an improvement over the use of cookies to store persistent data in Web applications. Applications can configure and enable the use of an offline storage database by calling the <a href="qwebsettings.html#setOfflineStoragePath">setOfflineStoragePath</a>() with an appropriate file path, and can limit the quota for each application by calling <a href="qwebsettings.html#setOfflineStorageDefaultQuota">setOfflineStorageDefaultQuota</a>().</p>
+<p>See also <a href="qwebpage.html#settings">QWebPage::settings</a>(), <a href="qwebview.html#settings">QWebView::settings</a>(), and <a href="demos-browser.html">Web Browser</a>.</p>
+<hr />
+<h2>Member Type Documentation</h2>
+<a name="//apple_ref/cpp/tag/QWebSettings/FontFamily" />
+<a name="//apple_ref/cpp/econst/QWebSettings/StandardFont" />
+<a name="//apple_ref/cpp/econst/QWebSettings/FixedFont" />
+<a name="//apple_ref/cpp/econst/QWebSettings/SerifFont" />
+<a name="//apple_ref/cpp/econst/QWebSettings/SansSerifFont" />
+<a name="//apple_ref/cpp/econst/QWebSettings/CursiveFont" />
+<a name="//apple_ref/cpp/econst/QWebSettings/FantasyFont" />
+<h3 class="fn"><a name="FontFamily-enum"></a>enum QWebSettings::FontFamily</h3>
+<p>This enum describes the generic font families defined by CSS 2. For more information see the <a href="http://www.w3.org/TR/REC-CSS2/fonts.html#generic-font-families">CSS standard</a>.</p>
+<p><table  class="valuelist" border="1" cellpadding="2" cellspacing="1" width="40%">
+<tr><th width="60%">Constant</th><th width="40%">Value</th></tr>
+<tr><td valign="top"><tt>QWebSettings::StandardFont</tt></td><td align="center" valign="top"><tt>0</tt></td></tr>
+<tr><td valign="top"><tt>QWebSettings::FixedFont</tt></td><td align="center" valign="top"><tt>1</tt></td></tr>
+<tr><td valign="top"><tt>QWebSettings::SerifFont</tt></td><td align="center" valign="top"><tt>2</tt></td></tr>
+<tr><td valign="top"><tt>QWebSettings::SansSerifFont</tt></td><td align="center" valign="top"><tt>3</tt></td></tr>
+<tr><td valign="top"><tt>QWebSettings::CursiveFont</tt></td><td align="center" valign="top"><tt>4</tt></td></tr>
+<tr><td valign="top"><tt>QWebSettings::FantasyFont</tt></td><td align="center" valign="top"><tt>5</tt></td></tr>
+</table></p>
+<a name="//apple_ref/cpp/tag/QWebSettings/FontSize" />
+<a name="//apple_ref/cpp/econst/QWebSettings/MinimumFontSize" />
+<a name="//apple_ref/cpp/econst/QWebSettings/MinimumLogicalFontSize" />
+<a name="//apple_ref/cpp/econst/QWebSettings/DefaultFontSize" />
+<a name="//apple_ref/cpp/econst/QWebSettings/DefaultFixedFontSize" />
+<h3 class="fn"><a name="FontSize-enum"></a>enum QWebSettings::FontSize</h3>
+<p>This enum describes the font sizes configurable through <a href="qwebsettings.html">QWebSettings</a>.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QWebSettings::MinimumFontSize</tt></td><td align="center" valign="top"><tt>0</tt></td><td valign="top">The hard minimum font size.</td></tr>
+<tr><td valign="top"><tt>QWebSettings::MinimumLogicalFontSize</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">The minimum logical font size that is applied after zooming with <a href="qwebframe.html">QWebFrame</a>'s textSizeMultiplier().</td></tr>
+<tr><td valign="top"><tt>QWebSettings::DefaultFontSize</tt></td><td align="center" valign="top"><tt>2</tt></td><td valign="top">The default font size for regular text.</td></tr>
+<tr><td valign="top"><tt>QWebSettings::DefaultFixedFontSize</tt></td><td align="center" valign="top"><tt>3</tt></td><td valign="top">The default font size for fixed-pitch text.</td></tr>
+</table></p>
+<a name="//apple_ref/cpp/tag/QWebSettings/WebAttribute" />
+<a name="//apple_ref/cpp/econst/QWebSettings/AutoLoadImages" />
+<a name="//apple_ref/cpp/econst/QWebSettings/DnsPrefetchEnabled" />
+<a name="//apple_ref/cpp/econst/QWebSettings/JavascriptEnabled" />
+<a name="//apple_ref/cpp/econst/QWebSettings/JavaEnabled" />
+<a name="//apple_ref/cpp/econst/QWebSettings/PluginsEnabled" />
+<a name="//apple_ref/cpp/econst/QWebSettings/PrivateBrowsingEnabled" />
+<a name="//apple_ref/cpp/econst/QWebSettings/JavascriptCanOpenWindows" />
+<a name="//apple_ref/cpp/econst/QWebSettings/JavascriptCanAccessClipboard" />
+<a name="//apple_ref/cpp/econst/QWebSettings/DeveloperExtrasEnabled" />
+<a name="//apple_ref/cpp/econst/QWebSettings/LinksIncludedInFocusChain" />
+<a name="//apple_ref/cpp/econst/QWebSettings/ZoomTextOnly" />
+<a name="//apple_ref/cpp/econst/QWebSettings/PrintElementBackgrounds" />
+<a name="//apple_ref/cpp/econst/QWebSettings/OfflineStorageDatabaseEnabled" />
+<a name="//apple_ref/cpp/econst/QWebSettings/OfflineWebApplicationCacheEnabled" />
+<a name="//apple_ref/cpp/econst/QWebSettings/LocalStorageEnabled" />
+<a name="//apple_ref/cpp/econst/QWebSettings/LocalStorageDatabaseEnabled" />
+<a name="//apple_ref/cpp/econst/QWebSettings/LocalContentCanAccessRemoteUrls" />
+<h3 class="fn"><a name="WebAttribute-enum"></a>enum QWebSettings::WebAttribute</h3>
+<p>This enum describes various attributes that are configurable through <a href="qwebsettings.html">QWebSettings</a>.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QWebSettings::AutoLoadImages</tt></td><td align="center" valign="top"><tt>0</tt></td><td valign="top">Specifies whether images are automatically loaded in web pages.</td></tr>
+<tr><td valign="top"><tt>QWebSettings::DnsPrefetchEnabled</tt></td><td align="center" valign="top">?</td><td valign="top">Specifies whether <a href="demos.html#qtwebkit">QtWebkit</a> will try to pre-fetch DNS entries to speed up browsing. This only works as a global attribute. Only for Qt 4.6 and later.</td></tr>
+<tr><td valign="top"><tt>QWebSettings::JavascriptEnabled</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">Enables or disables the running of JavaScript programs.</td></tr>
+<tr><td valign="top"><tt>QWebSettings::JavaEnabled</tt></td><td align="center" valign="top"><tt>2</tt></td><td valign="top">Enables or disables Java applets. Currently Java applets are not supported.</td></tr>
+<tr><td valign="top"><tt>QWebSettings::PluginsEnabled</tt></td><td align="center" valign="top"><tt>3</tt></td><td valign="top">Enables or disables plugins in Web pages.</td></tr>
+<tr><td valign="top"><tt>QWebSettings::PrivateBrowsingEnabled</tt></td><td align="center" valign="top"><tt>4</tt></td><td valign="top">Private browsing prevents WebKit from recording visited pages in the history and storing web page icons.</td></tr>
+<tr><td valign="top"><tt>QWebSettings::JavascriptCanOpenWindows</tt></td><td align="center" valign="top"><tt>5</tt></td><td valign="top">Specifies whether JavaScript programs can open new windows.</td></tr>
+<tr><td valign="top"><tt>QWebSettings::JavascriptCanAccessClipboard</tt></td><td align="center" valign="top"><tt>6</tt></td><td valign="top">Specifies whether JavaScript programs can read or write to the clipboard.</td></tr>
+<tr><td valign="top"><tt>QWebSettings::DeveloperExtrasEnabled</tt></td><td align="center" valign="top"><tt>7</tt></td><td valign="top">Enables extra tools for Web developers. Currently this enables the &quot;Inspect&quot; element in the context menu as well as the use of <a href="qwebinspector.html">QWebInspector</a> which controls the WebKit WebInspector for web site debugging.</td></tr>
+<tr><td valign="top"><tt>QWebSettings::LinksIncludedInFocusChain</tt></td><td align="center" valign="top"><tt>8</tt></td><td valign="top">Specifies whether hyperlinks should be included in the keyboard focus chain.</td></tr>
+<tr><td valign="top"><tt>QWebSettings::ZoomTextOnly</tt></td><td align="center" valign="top"><tt>9</tt></td><td valign="top">Specifies whether the zoom factor on a frame applies to only the text or all content.</td></tr>
+<tr><td valign="top"><tt>QWebSettings::PrintElementBackgrounds</tt></td><td align="center" valign="top"><tt>10</tt></td><td valign="top">Specifies whether the background color and images are also drawn when the page is printed.</td></tr>
+<tr><td valign="top"><tt>QWebSettings::OfflineStorageDatabaseEnabled</tt></td><td align="center" valign="top"><tt>11</tt></td><td valign="top">Specifies whether support for the HTML 5 offline storage feature is enabled or not. Disabled by default.</td></tr>
+<tr><td valign="top"><tt>QWebSettings::OfflineWebApplicationCacheEnabled</tt></td><td align="center" valign="top"><tt>12</tt></td><td valign="top">Specifies whether support for the HTML 5 web application cache feature is enabled or not. Disabled by default.</td></tr>
+<tr><td valign="top"><tt>QWebSettings::LocalStorageEnabled</tt></td><td align="center" valign="top"><tt>13</tt></td><td valign="top">Specifies whether support for the HTML 5 local storage feature is enabled or not. Disabled by default.</td></tr>
+<tr><td valign="top"><tt>QWebSettings::LocalStorageDatabaseEnabled</tt></td><td align="center" valign="top"><tt>LocalStorageEnabled</tt></td><td valign="top"><i>This enum value is deprecated.</i> Use QWebSettings::LocalStorageEnabled instead.</td></tr>
+<tr><td valign="top"><tt>QWebSettings::LocalContentCanAccessRemoteUrls</tt></td><td align="center" valign="top">?</td><td valign="top">Specifies whether locally loaded documents are allowed to access remote urls.</td></tr>
+</table></p>
+<a name="//apple_ref/cpp/tag/QWebSettings/WebGraphic" />
+<a name="//apple_ref/cpp/econst/QWebSettings/MissingImageGraphic" />
+<a name="//apple_ref/cpp/econst/QWebSettings/MissingPluginGraphic" />
+<a name="//apple_ref/cpp/econst/QWebSettings/DefaultFrameIconGraphic" />
+<a name="//apple_ref/cpp/econst/QWebSettings/TextAreaSizeGripCornerGraphic" />
+<h3 class="fn"><a name="WebGraphic-enum"></a>enum QWebSettings::WebGraphic</h3>
+<p>This enums describes the standard graphical elements used in webpages.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QWebSettings::MissingImageGraphic</tt></td><td align="center" valign="top"><tt>0</tt></td><td valign="top">The replacement graphic shown when an image could not be loaded.</td></tr>
+<tr><td valign="top"><tt>QWebSettings::MissingPluginGraphic</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">The replacement graphic shown when a plugin could not be loaded.</td></tr>
+<tr><td valign="top"><tt>QWebSettings::DefaultFrameIconGraphic</tt></td><td align="center" valign="top"><tt>2</tt></td><td valign="top">The default icon for <a href="qwebframe.html#icon-prop">QWebFrame::icon</a>().</td></tr>
+<tr><td valign="top"><tt>QWebSettings::TextAreaSizeGripCornerGraphic</tt></td><td align="center" valign="top"><tt>3</tt></td><td valign="top">The graphic shown for the size grip of text areas.</td></tr>
+</table></p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/clm/QWebSettings/clearIconDatabase" />
+<h3 class="fn"><a name="clearIconDatabase"></a>void QWebSettings::clearIconDatabase ()&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Clears the icon database.</p>
+<a name="//apple_ref/cpp/clm/QWebSettings/clearMemoryCaches" />
+<h3 class="fn"><a name="clearMemoryCaches"></a>void QWebSettings::clearMemoryCaches ()&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Frees up as much memory as possible by cleaning all memory caches such as page, object and font cache.</p>
+<p>This function was introduced in Qt 4.6.</p>
+<a name="//apple_ref/cpp/instm/QWebSettings/defaultTextEncoding" />
+<h3 class="fn"><a name="defaultTextEncoding"></a><a href="qstring.html">QString</a> QWebSettings::defaultTextEncoding () const</h3>
+<p>Returns the default text encoding.</p>
+<p>This function was introduced in Qt 4.6.</p>
+<p>See also <a href="qwebsettings.html#setDefaultTextEncoding">setDefaultTextEncoding</a>().</p>
+<a name="//apple_ref/cpp/clm/QWebSettings/enablePersistentStorage" />
+<h3 class="fn"><a name="enablePersistentStorage"></a>void QWebSettings::enablePersistentStorage ( const <a href="qstring.html">QString</a> &amp; <i>path</i> = QString() )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Enables WebKit persistent data and sets the path to <i>path</i>. If the <i>path</i> is empty the path for persistent data is set to the user-specific data location specified by <a href="qdesktopservices.html#StandardLocation-enum">DataLocation</a>.</p>
+<p>This function was introduced in Qt 4.6.</p>
+<p>See also <a href="qwebsettings.html#localStoragePath">localStoragePath</a>().</p>
+<a name="//apple_ref/cpp/instm/QWebSettings/fontFamily" />
+<h3 class="fn"><a name="fontFamily"></a><a href="qstring.html">QString</a> QWebSettings::fontFamily ( <a href="qwebsettings.html#FontFamily-enum">FontFamily</a> <i>which</i> ) const</h3>
+<p>Returns the actual font family for the specified generic font family, <i>which</i>.</p>
+<p>See also <a href="qwebsettings.html#setFontFamily">setFontFamily</a>().</p>
+<a name="//apple_ref/cpp/instm/QWebSettings/fontSize" />
+<h3 class="fn"><a name="fontSize"></a>int QWebSettings::fontSize ( <a href="qwebsettings.html#FontSize-enum">FontSize</a> <i>type</i> ) const</h3>
+<p>Returns the default font size for <i>type</i>.</p>
+<p>See also <a href="qwebsettings.html#setFontSize">setFontSize</a>().</p>
+<a name="//apple_ref/cpp/clm/QWebSettings/globalSettings" />
+<h3 class="fn"><a name="globalSettings"></a>QWebSettings * QWebSettings::globalSettings ()&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Returns the global settings object.</p>
+<p>Any setting changed on the default object is automatically applied to all <a href="qwebpage.html">QWebPage</a> instances where the particular setting is not overriden already.</p>
+<a name="//apple_ref/cpp/clm/QWebSettings/iconDatabasePath" />
+<h3 class="fn"><a name="iconDatabasePath"></a><a href="qstring.html">QString</a> QWebSettings::iconDatabasePath ()&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Returns the path of the icon database or an empty string if the icon database is disabled.</p>
+<p>See also <a href="qwebsettings.html#setIconDatabasePath">setIconDatabasePath</a>() and <a href="qwebsettings.html#clearIconDatabase">clearIconDatabase</a>().</p>
+<a name="//apple_ref/cpp/clm/QWebSettings/iconForUrl" />
+<h3 class="fn"><a name="iconForUrl"></a><a href="qicon.html">QIcon</a> QWebSettings::iconForUrl ( const <a href="qurl.html">QUrl</a> &amp; <i>url</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Returns the web site's icon for <i>url</i>.</p>
+<p>If the web site does not specify an icon, or the icon is not in the database, a null <a href="qicon.html">QIcon</a> is returned.</p>
+<p><b>Note:</b> The returned icon's size is arbitrary.</p>
+<p>See also <a href="qwebsettings.html#setIconDatabasePath">setIconDatabasePath</a>().</p>
+<a name="//apple_ref/cpp/instm/QWebSettings/localStoragePath" />
+<h3 class="fn"><a name="localStoragePath"></a><a href="qstring.html">QString</a> QWebSettings::localStoragePath () const</h3>
+<p>Returns the path for HTML5 local storage.</p>
+<p>This function was introduced in Qt 4.6.</p>
+<p>See also <a href="qwebsettings.html#setLocalStoragePath">setLocalStoragePath</a>().</p>
+<a name="//apple_ref/cpp/clm/QWebSettings/maximumPagesInCache" />
+<h3 class="fn"><a name="maximumPagesInCache"></a>int QWebSettings::maximumPagesInCache ()&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Returns the maximum number of web pages that are kept in the memory cache.</p>
+<p>See also <a href="qwebsettings.html#setMaximumPagesInCache">setMaximumPagesInCache</a>().</p>
+<a name="//apple_ref/cpp/clm/QWebSettings/offlineStorageDefaultQuota" />
+<h3 class="fn"><a name="offlineStorageDefaultQuota"></a><a href="qtglobal.html#qint64-typedef">qint64</a> QWebSettings::offlineStorageDefaultQuota ()&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Returns the value of the default quota for new offline storage databases.</p>
+<p>This function was introduced in Qt 4.5.</p>
+<p>See also <a href="qwebsettings.html#setOfflineStorageDefaultQuota">setOfflineStorageDefaultQuota</a>().</p>
+<a name="//apple_ref/cpp/clm/QWebSettings/offlineStoragePath" />
+<h3 class="fn"><a name="offlineStoragePath"></a><a href="qstring.html">QString</a> QWebSettings::offlineStoragePath ()&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Returns the path of the HTML5 offline storage or an empty string if the feature is disabled.</p>
+<p>This function was introduced in Qt 4.5.</p>
+<p>See also <a href="qwebsettings.html#setOfflineStoragePath">setOfflineStoragePath</a>().</p>
+<a name="//apple_ref/cpp/clm/QWebSettings/offlineWebApplicationCachePath" />
+<h3 class="fn"><a name="offlineWebApplicationCachePath"></a><a href="qstring.html">QString</a> QWebSettings::offlineWebApplicationCachePath ()&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Returns the path of the HTML5 offline web application cache storage or an empty string if the feature is disabled.</p>
+<p>This function was introduced in Qt 4.6.</p>
+<p>See also <a href="qwebsettings.html#setOfflineWebApplicationCachePath">setOfflineWebApplicationCachePath</a>().</p>
+<a name="//apple_ref/cpp/clm/QWebSettings/offlineWebApplicationCacheQuota" />
+<h3 class="fn"><a name="offlineWebApplicationCacheQuota"></a><a href="qtglobal.html#qint64-typedef">qint64</a> QWebSettings::offlineWebApplicationCacheQuota ()&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Returns the value of the quota for the offline web application cache.</p>
+<p>This function was introduced in Qt 4.6.</p>
+<p>See also <a href="qwebsettings.html#setOfflineWebApplicationCacheQuota">setOfflineWebApplicationCacheQuota</a>().</p>
+<a name="//apple_ref/cpp/instm/QWebSettings/resetAttribute" />
+<h3 class="fn"><a name="resetAttribute"></a>void QWebSettings::resetAttribute ( <a href="qwebsettings.html#WebAttribute-enum">WebAttribute</a> <i>attribute</i> )</h3>
+<p>Resets the setting of <i>attribute</i>. This function has no effect on the global <a href="qwebsettings.html">QWebSettings</a> instance.</p>
+<p>See also <a href="qwebsettings.html#globalSettings">globalSettings</a>().</p>
+<a name="//apple_ref/cpp/instm/QWebSettings/resetFontFamily" />
+<h3 class="fn"><a name="resetFontFamily"></a>void QWebSettings::resetFontFamily ( <a href="qwebsettings.html#FontFamily-enum">FontFamily</a> <i>which</i> )</h3>
+<p>Resets the actual font family to the default font family, specified by <i>which</i>.</p>
+<p>This function has no effect on the global <a href="qwebsettings.html">QWebSettings</a> instance.</p>
+<a name="//apple_ref/cpp/instm/QWebSettings/resetFontSize" />
+<h3 class="fn"><a name="resetFontSize"></a>void QWebSettings::resetFontSize ( <a href="qwebsettings.html#FontSize-enum">FontSize</a> <i>type</i> )</h3>
+<p>Resets the font size for <i>type</i> to the size specified in the global settings object.</p>
+<p>This function has no effect on the global <a href="qwebsettings.html">QWebSettings</a> instance.</p>
+<a name="//apple_ref/cpp/instm/QWebSettings/setAttribute" />
+<h3 class="fn"><a name="setAttribute"></a>void QWebSettings::setAttribute ( <a href="qwebsettings.html#WebAttribute-enum">WebAttribute</a> <i>attribute</i>, bool <i>on</i> )</h3>
+<p>Enables or disables the specified <i>attribute</i> feature depending on the value of <i>on</i>.</p>
+<a name="//apple_ref/cpp/instm/QWebSettings/setDefaultTextEncoding" />
+<h3 class="fn"><a name="setDefaultTextEncoding"></a>void QWebSettings::setDefaultTextEncoding ( const <a href="qstring.html">QString</a> &amp; <i>encoding</i> )</h3>
+<p>Specifies the default text encoding system.</p>
+<p>The <i>encoding</i>, must be a string describing an encoding such as &quot;utf-8&quot;, &quot;iso-8859-1&quot;, etc. If left empty a default value will be used. For a more extensive list of encoding names see <a href="qtextcodec.html">QTextCodec</a></p>
+<p>This function was introduced in Qt 4.6.</p>
+<p>See also <a href="qwebsettings.html#defaultTextEncoding">defaultTextEncoding</a>().</p>
+<a name="//apple_ref/cpp/instm/QWebSettings/setFontFamily" />
+<h3 class="fn"><a name="setFontFamily"></a>void QWebSettings::setFontFamily ( <a href="qwebsettings.html#FontFamily-enum">FontFamily</a> <i>which</i>, const <a href="qstring.html">QString</a> &amp; <i>family</i> )</h3>
+<p>Sets the actual font family to <i>family</i> for the specified generic family, <i>which</i>.</p>
+<p>See also <a href="qwebsettings.html#fontFamily">fontFamily</a>().</p>
+<a name="//apple_ref/cpp/instm/QWebSettings/setFontSize" />
+<h3 class="fn"><a name="setFontSize"></a>void QWebSettings::setFontSize ( <a href="qwebsettings.html#FontSize-enum">FontSize</a> <i>type</i>, int <i>size</i> )</h3>
+<p>Sets the font size for <i>type</i> to <i>size</i>.</p>
+<p>See also <a href="qwebsettings.html#fontSize">fontSize</a>().</p>
+<a name="//apple_ref/cpp/clm/QWebSettings/setIconDatabasePath" />
+<h3 class="fn"><a name="setIconDatabasePath"></a>void QWebSettings::setIconDatabasePath ( const <a href="qstring.html">QString</a> &amp; <i>path</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Sets the path of the icon database to <i>path</i>. The icon database is used to store &quot;favicons&quot; associated with web sites.</p>
+<p><i>path</i> must point to an existing directory where the icons are stored.</p>
+<p>Setting an empty path disables the icon database.</p>
+<p>See also <a href="qwebsettings.html#iconDatabasePath">iconDatabasePath</a>().</p>
+<a name="//apple_ref/cpp/instm/QWebSettings/setLocalStoragePath" />
+<h3 class="fn"><a name="setLocalStoragePath"></a>void QWebSettings::setLocalStoragePath ( const <a href="qstring.html">QString</a> &amp; <i>path</i> )</h3>
+<p>Sets the path for HTML5 local storage to <i>path</i>.</p>
+<p>For more information on HTML5 local storage see the <a href="http://www.w3.org/TR/webstorage/#the-localstorage-attribute">Web Storage standard</a>.</p>
+<p>Support for local storage can enabled by setting the <a href="qwebsettings.html#WebAttribute-enum">LocalStorageEnabled</a> attribute.</p>
+<p>This function was introduced in Qt 4.6.</p>
+<p>See also <a href="qwebsettings.html#localStoragePath">localStoragePath</a>().</p>
+<a name="//apple_ref/cpp/clm/QWebSettings/setMaximumPagesInCache" />
+<h3 class="fn"><a name="setMaximumPagesInCache"></a>void QWebSettings::setMaximumPagesInCache ( int <i>pages</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Sets the maximum number of pages to hold in the memory page cache to <i>pages</i>.</p>
+<p>The Page Cache allows for a nicer user experience when navigating forth or back to pages in the forward/back history, by pausing and resuming up to <i>pages</i> per page group.</p>
+<p>For more information about the feature, please refer to:</p>
+<p>http://webkit.org/blog/427/webkit-page-cache-i-the-basics/</p>
+<p>See also <a href="qwebsettings.html#maximumPagesInCache">maximumPagesInCache</a>().</p>
+<a name="//apple_ref/cpp/clm/QWebSettings/setObjectCacheCapacities" />
+<h3 class="fn"><a name="setObjectCacheCapacities"></a>void QWebSettings::setObjectCacheCapacities ( int <i>cacheMinDeadCapacity</i>, int <i>cacheMaxDead</i>, int <i>totalCapacity</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Specifies the capacities for the memory cache for dead objects such as stylesheets or scripts.</p>
+<p>The <i>cacheMinDeadCapacity</i> specifies the <i>minimum</i> number of bytes that dead objects should consume when the cache is under pressure.</p>
+<p><i>cacheMaxDead</i> is the <i>maximum</i> number of bytes that dead objects should consume when the cache is <b>not</b> under pressure.</p>
+<p><i>totalCapacity</i> specifies the <i>maximum</i> number of bytes that the cache should consume <b>overall</b>.</p>
+<p>The cache is enabled by default. Calling setObjectCacheCapacities(0, 0, 0) will disable the cache. Calling it with one non-zero enables it again.</p>
+<a name="//apple_ref/cpp/clm/QWebSettings/setOfflineStorageDefaultQuota" />
+<h3 class="fn"><a name="setOfflineStorageDefaultQuota"></a>void QWebSettings::setOfflineStorageDefaultQuota ( <a href="qtglobal.html#qint64-typedef">qint64</a> <i>maximumSize</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Sets the value of the default quota for new offline storage databases to <i>maximumSize</i>.</p>
+<p>This function was introduced in Qt 4.5.</p>
+<p>See also <a href="qwebsettings.html#offlineStorageDefaultQuota">offlineStorageDefaultQuota</a>().</p>
+<a name="//apple_ref/cpp/clm/QWebSettings/setOfflineStoragePath" />
+<h3 class="fn"><a name="setOfflineStoragePath"></a>void QWebSettings::setOfflineStoragePath ( const <a href="qstring.html">QString</a> &amp; <i>path</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Sets the path for HTML5 offline storage to <i>path</i>.</p>
+<p><i>path</i> must point to an existing directory where the databases are stored.</p>
+<p>Setting an empty path disables the feature.</p>
+<p>This function was introduced in Qt 4.5.</p>
+<p>See also <a href="qwebsettings.html#offlineStoragePath">offlineStoragePath</a>().</p>
+<a name="//apple_ref/cpp/clm/QWebSettings/setOfflineWebApplicationCachePath" />
+<h3 class="fn"><a name="setOfflineWebApplicationCachePath"></a>void QWebSettings::setOfflineWebApplicationCachePath ( const <a href="qstring.html">QString</a> &amp; <i>path</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Sets the path for HTML5 offline web application cache storage to <i>path</i>.</p>
+<p>An application cache acts like an HTTP cache in some sense. For documents that use the application cache via JavaScript, the loader mechinery will first ask the application cache for the contents, before hitting the network.</p>
+<p>The feature is described in details at: http://dev.w3.org/html5/spec/Overview.html#appcache</p>
+<p><i>path</i> must point to an existing directory where the cache is stored.</p>
+<p>Setting an empty path disables the feature.</p>
+<p>This function was introduced in Qt 4.6.</p>
+<p>See also <a href="qwebsettings.html#offlineWebApplicationCachePath">offlineWebApplicationCachePath</a>().</p>
+<a name="//apple_ref/cpp/clm/QWebSettings/setOfflineWebApplicationCacheQuota" />
+<h3 class="fn"><a name="setOfflineWebApplicationCacheQuota"></a>void QWebSettings::setOfflineWebApplicationCacheQuota ( <a href="qtglobal.html#qint64-typedef">qint64</a> <i>maximumSize</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Sets the value of the quota for the offline web application cache to <i>maximumSize</i>.</p>
+<p>This function was introduced in Qt 4.6.</p>
+<p>See also <a href="qwebsettings.html#offlineWebApplicationCacheQuota">offlineWebApplicationCacheQuota</a>().</p>
+<a name="//apple_ref/cpp/instm/QWebSettings/setUserStyleSheetUrl" />
+<h3 class="fn"><a name="setUserStyleSheetUrl"></a>void QWebSettings::setUserStyleSheetUrl ( const <a href="qurl.html">QUrl</a> &amp; <i>location</i> )</h3>
+<p>Specifies the location of a user stylesheet to load with every web page.</p>
+<p>The <i>location</i> must be either a path on the local filesystem, or a data URL with UTF-8 and Base64 encoded data, such as:</p>
+<p>&quot;data:text/css;charset=utf-8;base64,cCB7IGJhY2tncm91bmQtY29sb3I6IHJlZCB9Ow==;&quot;</p>
+<p>See also <a href="qwebsettings.html#userStyleSheetUrl">userStyleSheetUrl</a>().</p>
+<a name="//apple_ref/cpp/clm/QWebSettings/setWebGraphic" />
+<h3 class="fn"><a name="setWebGraphic"></a>void QWebSettings::setWebGraphic ( <a href="qwebsettings.html#WebGraphic-enum">WebGraphic</a> <i>type</i>, const <a href="qpixmap.html">QPixmap</a> &amp; <i>graphic</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Sets <i>graphic</i> to be drawn when <a href="qtwebkit.html">QtWebKit</a> needs to draw an image of the given <i>type</i>.</p>
+<p>For example, when an image cannot be loaded the pixmap specified by <a href="qwebsettings.html#WebGraphic-enum">MissingImageGraphic</a> is drawn instead.</p>
+<p>See also <a href="qwebsettings.html#webGraphic">webGraphic</a>().</p>
+<a name="//apple_ref/cpp/instm/QWebSettings/testAttribute" />
+<h3 class="fn"><a name="testAttribute"></a>bool QWebSettings::testAttribute ( <a href="qwebsettings.html#WebAttribute-enum">WebAttribute</a> <i>attribute</i> ) const</h3>
+<p>Returns true if <i>attribute</i> is enabled; otherwise returns false.</p>
+<a name="//apple_ref/cpp/instm/QWebSettings/userStyleSheetUrl" />
+<h3 class="fn"><a name="userStyleSheetUrl"></a><a href="qurl.html">QUrl</a> QWebSettings::userStyleSheetUrl () const</h3>
+<p>Returns the location of the user stylesheet.</p>
+<p>See also <a href="qwebsettings.html#setUserStyleSheetUrl">setUserStyleSheetUrl</a>().</p>
+<a name="//apple_ref/cpp/clm/QWebSettings/webGraphic" />
+<h3 class="fn"><a name="webGraphic"></a><a href="qpixmap.html">QPixmap</a> QWebSettings::webGraphic ( <a href="qwebsettings.html#WebGraphic-enum">WebGraphic</a> <i>type</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Returns a previously set pixmap used to draw replacement graphics of the specified <i>type</i>.</p>
+<p>For example, when an image cannot be loaded the pixmap specified by <a href="qwebsettings.html#WebGraphic-enum">MissingImageGraphic</a> is drawn instead.</p>
+<p>See also <a href="qwebsettings.html#setWebGraphic">setWebGraphic</a>().</p>
+<hr />
+<h2>Related Non-Members</h2>
+<a name="//apple_ref/cpp/clm/QWebSettings/enablePersistentStorage" />
+<h3 class="fn"><a name="enablePersistentStorage"></a>void QWebSettings::enablePersistentStorage ( const <a href="qstring.html">QString</a> &amp; <i>path</i> = QString() )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Enables WebKit persistent data and sets the path to <i>path</i>. If the <i>path</i> is empty the path for persistent data is set to the user-specific data location specified by <a href="qdesktopservices.html#StandardLocation-enum">DataLocation</a>.</p>
+<p>This function was introduced in Qt 4.6.</p>
+<p>See also <a href="qwebsettings.html#localStoragePath">localStoragePath</a>().</p>
+<a name="//apple_ref/cpp/instm/QWebSettings/localStoragePath" />
+<h3 class="fn"><a name="localStoragePath"></a><a href="qstring.html">QString</a> QWebSettings::localStoragePath () const</h3>
+<p>Returns the path for HTML5 local storage.</p>
+<p>This function was introduced in Qt 4.6.</p>
+<p>See also <a href="qwebsettings.html#setLocalStoragePath">setLocalStoragePath</a>().</p>
+<a name="//apple_ref/cpp/clm/QWebSettings/offlineWebApplicationCachePath" />
+<h3 class="fn"><a name="offlineWebApplicationCachePath"></a><a href="qstring.html">QString</a> QWebSettings::offlineWebApplicationCachePath ()&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Returns the path of the HTML5 offline web application cache storage or an empty string if the feature is disabled.</p>
+<p>This function was introduced in Qt 4.6.</p>
+<p>See also <a href="qwebsettings.html#setOfflineWebApplicationCachePath">setOfflineWebApplicationCachePath</a>().</p>
+<a name="//apple_ref/cpp/instm/QWebSettings/setLocalStoragePath" />
+<h3 class="fn"><a name="setLocalStoragePath"></a>void QWebSettings::setLocalStoragePath ( const <a href="qstring.html">QString</a> &amp; <i>path</i> )</h3>
+<p>Sets the path for HTML5 local storage to <i>path</i>.</p>
+<p>For more information on HTML5 local storage see the <a href="http://www.w3.org/TR/webstorage/#the-localstorage-attribute">Web Storage standard</a>.</p>
+<p>Support for local storage can enabled by setting the <a href="qwebsettings.html#WebAttribute-enum">LocalStorageEnabled</a> attribute.</p>
+<p>This function was introduced in Qt 4.6.</p>
+<p>See also <a href="qwebsettings.html#localStoragePath">localStoragePath</a>().</p>
+<a name="//apple_ref/cpp/clm/QWebSettings/setOfflineWebApplicationCachePath" />
+<h3 class="fn"><a name="setOfflineWebApplicationCachePath"></a>void QWebSettings::setOfflineWebApplicationCachePath ( const <a href="qstring.html">QString</a> &amp; <i>path</i> )&nbsp;&nbsp;<tt> [static]</tt></h3>
+<p>Sets the path for HTML5 offline web application cache storage to <i>path</i>.</p>
+<p>An application cache acts like an HTTP cache in some sense. For documents that use the application cache via JavaScript, the loader mechinery will first ask the application cache for the contents, before hitting the network.</p>
+<p>The feature is described in details at: http://dev.w3.org/html5/spec/Overview.html#appcache</p>
+<p><i>path</i> must point to an existing directory where the cache is stored.</p>
+<p>Setting an empty path disables the feature.</p>
+<p>This function was introduced in Qt 4.6.</p>
+<p>See also <a href="qwebsettings.html#offlineWebApplicationCachePath">offlineWebApplicationCachePath</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

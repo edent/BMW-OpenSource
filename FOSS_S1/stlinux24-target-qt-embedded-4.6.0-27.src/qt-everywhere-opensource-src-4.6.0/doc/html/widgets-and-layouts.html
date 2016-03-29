@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- widgets.qdoc -->
+<head>
+  <title>Qt 4.6: Widgets and Layouts</title>
+  <link rel="next" href="widget-classes.html" />
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><p>
+[Next: <a href="widget-classes.html">Widget Classes</a>]
+</p>
+<h1 class="title">Widgets and Layouts<br /><span class="subtitle"></span>
+</h1>
+<p>The primary elements for designing user interfaces in Qt are widgets and layouts.</p>
+<a name="widgets"></a>
+<h2>Widgets</h2>
+<p><a href="widget-classes.html">Widgets</a> can display data and status information, receive user input, and provide a container for other widgets that should be grouped together. A widget that is not embedded in a parent widget is called a <a href="application-windows.html">window</a>.</p>
+<p align="center"><img src="images/parent-child-widgets.png" alt="A parent widget containing various child widgets." /></p><p>The <a href="qwidget.html">QWidget</a> class provides the basic capability to render to the screen, and to handle user input events. All UI elements that Qt provides are either subclasses of <a href="qwidget.html">QWidget</a>, or are used in connection with a <a href="qwidget.html">QWidget</a> subclass. Creating custom widgets is done by subclassing <a href="qwidget.html">QWidget</a> or a suitable subclass and reimplementing the virtual event handlers.</p>
+<a name="layouts"></a>
+<h2>Layouts</h2>
+<p><a href="layout.html">Layouts</a> are an elegant and flexible way to automatically arrange child widgets within their container. Each widget reports its size requirements to the layout through the <a href="qwidget.html#sizeHint-prop">sizeHint</a> and <a href="qwidget.html#sizePolicy-prop">sizePolicy</a> properties, and the layout distributes the available space accordingly.</p>
+<p><table class="generic" align="center" cellpadding="2" cellspacing="1" border="0">
+<tr valign="top" class="odd"><td><p align="center"><img src="images/qgridlayout-with-5-children.png" /></p></td><td><p align="center"><img src="images/qformlayout-with-6-children.png" /></p></td></tr>
+</table></p>
+<p><a href="designer-manual.html"><i>Qt Designer</i></a> is a powerful tool for interactively creating and arranging widgets in layouts.</p>
+<a name="widget-styles"></a>
+<h2>Widget Styles</h2>
+<p><a href="style-reference.html">Styles</a> draw on behalf of widgets and encapsulate the look and feel of a GUI. Qt's built-in widgets use the <a href="qstyle.html">QStyle</a> class to perform nearly all of their drawing, ensuring that they look exactly like the equivalent native widgets.</p>
+<p><table class="generic" align="center" cellpadding="2" cellspacing="1" border="0">
+<tr valign="top" class="odd"><td><p align="center"><img src="images/windowsxp-tabwidget.png" /></p></td><td><p align="center"><img src="images/plastique-tabwidget.png" /></p></td><td><p align="center"><img src="images/macintosh-tabwidget.png" /></p></td></tr>
+</table></p>
+<p><a href="stylesheet.html">Qt Style Sheets</a> are a powerful mechanism that allows you to customize the appearance of widgets, in addition to what is already possible by subclassing <a href="qstyle.html">QStyle</a>.</p>
+<p>
+[Next: <a href="widget-classes.html">Widget Classes</a>]
+</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- qglshaderprogram.cpp -->
+<head>
+  <title>Qt 4.6: QGLShader Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<a name="//apple_ref/cpp/cl//QGLShader" />
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">QGLShader Class Reference<br /><span class="small-subtitle">[<a href="qtopengl.html">QtOpenGL</a> module]</span>
+</h1>
+<p>The QGLShader class allows OpenGL shaders to be compiled. <a href="#details">More...</a></p>
+<pre> #include &lt;QGLShader&gt;</pre><p><b>This class is not part of the Qt GUI Framework Edition.</b></p>
+<p>Inherits <a href="qobject.html">QObject</a>.</p>
+<p>This class was introduced in Qt 4.6.</p>
+<ul>
+<li><a href="qglshader-members.html">List of all members, including inherited members</a></li>
+</ul>
+<hr />
+<a name="public-types"></a>
+<h2>Public Types</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top">flags </td><td class="memItemRight" valign="bottom"><b><a href="qglshader.html#ShaderTypeBit-enum">ShaderType</a></b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum </td><td class="memItemRight" valign="bottom"><b><a href="qglshader.html#ShaderTypeBit-enum">ShaderTypeBit</a></b> { Vertex, Fragment }</td></tr>
+</table>
+<hr />
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qglshader.html#QGLShader">QGLShader</a></b> ( QGLShader::ShaderType <i>type</i>, QObject * <i>parent</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"></td><td class="memItemRight" valign="bottom"><b><a href="qglshader.html#QGLShader-2">QGLShader</a></b> ( QGLShader::ShaderType <i>type</i>, const QGLContext * <i>context</i>, QObject * <i>parent</i> = 0 )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual </td><td class="memItemRight" valign="bottom"><b><a href="qglshader.html#dtor.QGLShader">~QGLShader</a></b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qglshader.html#compileSourceCode">compileSourceCode</a></b> ( const char * <i>source</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qglshader.html#compileSourceCode-2">compileSourceCode</a></b> ( const QByteArray &amp; <i>source</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qglshader.html#compileSourceCode-3">compileSourceCode</a></b> ( const QString &amp; <i>source</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qglshader.html#compileSourceFile">compileSourceFile</a></b> ( const QString &amp; <i>fileName</i> )</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool </td><td class="memItemRight" valign="bottom"><b><a href="qglshader.html#isCompiled">isCompiled</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString </td><td class="memItemRight" valign="bottom"><b><a href="qglshader.html#log">log</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">GLuint </td><td class="memItemRight" valign="bottom"><b><a href="qglshader.html#shaderId">shaderId</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QGLShader::ShaderType </td><td class="memItemRight" valign="bottom"><b><a href="qglshader.html#shaderType">shaderType</a></b> () const</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QByteArray </td><td class="memItemRight" valign="bottom"><b><a href="qglshader.html#sourceCode">sourceCode</a></b> () const</td></tr>
+</table>
+<ul>
+<li><div bar="2" class="fn"></div>29 public functions inherited from <a href="qobject.html#public-functions">QObject</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li><div class="fn"></div>1 property inherited from <a href="qobject.html#properties">QObject</a></li>
+<li><div class="fn"></div>1 public slot inherited from <a href="qobject.html#public-slots">QObject</a></li>
+<li><div class="fn"></div>1 signal inherited from <a href="qobject.html#signals">QObject</a></li>
+<li><div class="fn"></div>5 static public members inherited from <a href="qobject.html#static-public-members">QObject</a></li>
+<li><div class="fn"></div>7 protected functions inherited from <a href="qobject.html#protected-functions">QObject</a></li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QGLShader class allows OpenGL shaders to be compiled.</p>
+<p>This class supports shaders written in the OpenGL Shading Language (GLSL) and in the OpenGL/ES Shading Language (GLSL/ES).</p>
+<p>QGLShader and <a href="qglshaderprogram.html">QGLShaderProgram</a> shelter the programmer from the details of compiling and linking vertex and fragment shaders.</p>
+<p>See also <a href="qglshaderprogram.html">QGLShaderProgram</a>.</p>
+<hr />
+<h2>Member Type Documentation</h2>
+<a name="//apple_ref/cpp/tag/QGLShader/ShaderTypeBit" />
+<a name="//apple_ref/cpp/econst/QGLShader/Vertex" />
+<a name="//apple_ref/cpp/econst/QGLShader/Fragment" />
+<a name="//apple_ref/cpp/tdef/QGLShader/ShaderType" />
+<h3 class="flags"><a name="ShaderTypeBit-enum"></a>enum QGLShader::ShaderTypeBit<br />flags QGLShader::ShaderType</h3>
+<p>This enum specifies the type of <a href="qglshader.html">QGLShader</a> that is being created.</p>
+<p><table class="valuelist" border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QGLShader::Vertex</tt></td><td align="center" valign="top"><tt>0x0001</tt></td><td valign="top">Vertex shader written in the OpenGL Shading Language (GLSL).</td></tr>
+<tr><td valign="top"><tt>QGLShader::Fragment</tt></td><td align="center" valign="top"><tt>0x0002</tt></td><td valign="top">Fragment shader written in the OpenGL Shading Language (GLSL).</td></tr>
+</table></p>
+<p>The ShaderType type is a typedef for <a href="qflags.html">QFlags</a>&lt;ShaderTypeBit&gt;. It stores an OR combination of ShaderTypeBit values.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<a name="//apple_ref/cpp/instm/QGLShader/QGLShader" />
+<h3 class="fn"><a name="QGLShader"></a>QGLShader::QGLShader ( <a href="qglshader.html#ShaderTypeBit-enum">QGLShader::ShaderType</a> <i>type</i>, <a href="qobject.html">QObject</a> * <i>parent</i> = 0 )</h3>
+<p>Constructs a new <a href="qglshader.html">QGLShader</a> object of the specified <i>type</i> and attaches it to <i>parent</i>. If shader programs are not supported, <a href="qglshaderprogram.html#hasOpenGLShaderPrograms">QGLShaderProgram::hasOpenGLShaderPrograms</a>() will return false.</p>
+<p>This constructor is normally followed by a call to <a href="qglshader.html#compileSourceCode">compileSourceCode</a>() or <a href="qglshader.html#compileSourceFile">compileSourceFile</a>().</p>
+<p>The shader will be associated with the current <a href="qglcontext.html">QGLContext</a>.</p>
+<p>See also <a href="qglshader.html#compileSourceCode">compileSourceCode</a>() and <a href="qglshader.html#compileSourceFile">compileSourceFile</a>().</p>
+<h3 class="fn"><a name="QGLShader-2"></a>QGLShader::QGLShader ( <a href="qglshader.html#ShaderTypeBit-enum">QGLShader::ShaderType</a> <i>type</i>, const <a href="qglcontext.html">QGLContext</a> * <i>context</i>, <a href="qobject.html">QObject</a> * <i>parent</i> = 0 )</h3>
+<p>Constructs a new <a href="qglshader.html">QGLShader</a> object of the specified <i>type</i> and attaches it to <i>parent</i>. If shader programs are not supported, then <a href="qglshaderprogram.html#hasOpenGLShaderPrograms">QGLShaderProgram::hasOpenGLShaderPrograms</a>() will return false.</p>
+<p>This constructor is normally followed by a call to <a href="qglshader.html#compileSourceCode">compileSourceCode</a>() or <a href="qglshader.html#compileSourceFile">compileSourceFile</a>().</p>
+<p>The shader will be associated with <i>context</i>.</p>
+<p>See also <a href="qglshader.html#compileSourceCode">compileSourceCode</a>() and <a href="qglshader.html#compileSourceFile">compileSourceFile</a>().</p>
+<a name="//apple_ref/cpp/instm/QGLShader/~QGLShader" />
+<h3 class="fn"><a name="dtor.QGLShader"></a>QGLShader::~QGLShader ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Deletes this shader. If the shader has been attached to a <a href="qglshaderprogram.html">QGLShaderProgram</a> object, then the actual shader will stay around until the <a href="qglshaderprogram.html">QGLShaderProgram</a> is destroyed.</p>
+<a name="//apple_ref/cpp/instm/QGLShader/compileSourceCode" />
+<h3 class="fn"><a name="compileSourceCode"></a>bool QGLShader::compileSourceCode ( const char * <i>source</i> )</h3>
+<p>Sets the <i>source</i> code for this shader and compiles it. Returns true if the source was successfully compiled, false otherwise.</p>
+<p>See also <a href="qglshader.html#compileSourceFile">compileSourceFile</a>().</p>
+<h3 class="fn"><a name="compileSourceCode-2"></a>bool QGLShader::compileSourceCode ( const <a href="qbytearray.html">QByteArray</a> &amp; <i>source</i> )</h3>
+<p>This is an overloaded function.</p>
+<p>Sets the <i>source</i> code for this shader and compiles it. Returns true if the source was successfully compiled, false otherwise.</p>
+<p>See also <a href="qglshader.html#compileSourceFile">compileSourceFile</a>().</p>
+<h3 class="fn"><a name="compileSourceCode-3"></a>bool QGLShader::compileSourceCode ( const <a href="qstring.html">QString</a> &amp; <i>source</i> )</h3>
+<p>This is an overloaded function.</p>
+<p>Sets the <i>source</i> code for this shader and compiles it. Returns true if the source was successfully compiled, false otherwise.</p>
+<p>See also <a href="qglshader.html#compileSourceFile">compileSourceFile</a>().</p>
+<a name="//apple_ref/cpp/instm/QGLShader/compileSourceFile" />
+<h3 class="fn"><a name="compileSourceFile"></a>bool QGLShader::compileSourceFile ( const <a href="qstring.html">QString</a> &amp; <i>fileName</i> )</h3>
+<p>Sets the source code for this shader to the contents of <i>fileName</i> and compiles it. Returns true if the file could be opened and the source compiled, false otherwise.</p>
+<p>See also <a href="qglshader.html#compileSourceCode">compileSourceCode</a>().</p>
+<a name="//apple_ref/cpp/instm/QGLShader/isCompiled" />
+<h3 class="fn"><a name="isCompiled"></a>bool QGLShader::isCompiled () const</h3>
+<p>Returns true if this shader has been compiled; false otherwise.</p>
+<p>See also <a href="qglshader.html#compileSourceCode">compileSourceCode</a>() and <a href="qglshader.html#compileSourceFile">compileSourceFile</a>().</p>
+<a name="//apple_ref/cpp/instm/QGLShader/log" />
+<h3 class="fn"><a name="log"></a><a href="qstring.html">QString</a> QGLShader::log () const</h3>
+<p>Returns the errors and warnings that occurred during the last compile.</p>
+<p>See also <a href="qglshader.html#compileSourceCode">compileSourceCode</a>() and <a href="qglshader.html#compileSourceFile">compileSourceFile</a>().</p>
+<a name="//apple_ref/cpp/instm/QGLShader/shaderId" />
+<h3 class="fn"><a name="shaderId"></a>GLuint QGLShader::shaderId () const</h3>
+<p>Returns the OpenGL identifier associated with this shader.</p>
+<p>See also <a href="qglshaderprogram.html#programId">QGLShaderProgram::programId</a>().</p>
+<a name="//apple_ref/cpp/instm/QGLShader/shaderType" />
+<h3 class="fn"><a name="shaderType"></a><a href="qglshader.html#ShaderTypeBit-enum">QGLShader::ShaderType</a> QGLShader::shaderType () const</h3>
+<p>Returns the type of this shader.</p>
+<a name="//apple_ref/cpp/instm/QGLShader/sourceCode" />
+<h3 class="fn"><a name="sourceCode"></a><a href="qbytearray.html">QByteArray</a> QGLShader::sourceCode () const</h3>
+<p>Returns the source code for this shader.</p>
+<p>See also <a href="qglshader.html#compileSourceCode">compileSourceCode</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>

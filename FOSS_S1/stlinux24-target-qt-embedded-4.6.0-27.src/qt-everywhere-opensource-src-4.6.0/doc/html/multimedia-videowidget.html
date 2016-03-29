@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- videowidget.qdoc -->
+<head>
+  <title>Qt 4.6: Video Widget Example</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://qt.nokia.com/"><img src="images/qt-logo.png" align="left" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">All&nbsp;Functions</font></a>&nbsp;&middot; <a href="overviews.html"><font color="#004faf">Overviews</font></a></td></tr></table><h1 class="title">Video Widget Example<br /><span class="subtitle"></span>
+</h1>
+<p>Files:</p>
+<ul>
+<li><a href="multimedia-videowidget-videoplayer-cpp.html">multimedia/videowidget/videoplayer.cpp</a></li>
+<li><a href="multimedia-videowidget-videoplayer-h.html">multimedia/videowidget/videoplayer.h</a></li>
+<li><a href="multimedia-videowidget-videowidget-cpp.html">multimedia/videowidget/videowidget.cpp</a></li>
+<li><a href="multimedia-videowidget-videowidget-h.html">multimedia/videowidget/videowidget.h</a></li>
+<li><a href="multimedia-videowidget-videowidgetsurface-cpp.html">multimedia/videowidget/videowidgetsurface.cpp</a></li>
+<li><a href="multimedia-videowidget-videowidgetsurface-h.html">multimedia/videowidget/videowidgetsurface.h</a></li>
+<li><a href="multimedia-videowidget-main-cpp.html">multimedia/videowidget/main.cpp</a></li>
+<li><a href="multimedia-videowidget-videowidget-pro.html">multimedia/videowidget/videowidget.pro</a></li>
+</ul>
+<p>The Video Widget example shows how to implement a video widget using <a href="qtmultimedia.html">QtMultimedia</a>'s <a href="qabstractvideosurface.html">QAbstractVideoSurface</a></p>
+<p align="center"><img src="images/video-videowidget.png" /></p><a name="videowidgetsurface-class-definition"></a>
+<h2>VideoWidgetSurface Class Definition</h2>
+<pre> class VideoWidgetSurface : public QAbstractVideoSurface
+ {
+     Q_OBJECT
+ public:
+     VideoWidgetSurface(QWidget *widget, QObject *parent = 0);
+
+     QList&lt;QVideoFrame::PixelFormat&gt; supportedPixelFormats(
+             QAbstractVideoBuffer::HandleType handleType = QAbstractVideoBuffer::NoHandle) const;
+     bool isFormatSupported(const QVideoSurfaceFormat &amp;format, QVideoSurfaceFormat *similar) const;
+
+     bool start(const QVideoSurfaceFormat &amp;format);
+     void stop();
+
+     bool present(const QVideoFrame &amp;frame);
+
+     QRect videoRect() const { return targetRect; }
+     void updateVideoRect();
+
+     void paint(QPainter *painter);
+
+ private:
+     QWidget *widget;
+     QImage::Format imageFormat;
+     QRect targetRect;
+     QSize imageSize;
+     QRect sourceRect;
+     QVideoFrame currentFrame;
+ };</pre>
+<p>The VideoWidgetSurface class inherits <a href="qabstractvideosurface.html">QAbstractVideoSurface</a> and paints video frames on a <a href="qwidget.html">QWidget</a>. This is a separate class to VideoWidget as both <a href="qabstractvideosurface.html">QAbstractVideoSurface</a> and <a href="qwidget.html">QWidget</a> inherit <a href="qobject.html">QObject</a>.</p>
+<p>In addition to the functions from <a href="qabstractvideosurface.html">QAbstractVideoSurface</a>, VideoWidgetSurface has functions for determining the video display rectangle, and painting the video.</p>
+<a name="videowidgetsurface-class-implementation"></a>
+<h2>VideoWidgetSurface Class Implementation</h2>
+<pre> QList&lt;QVideoFrame::PixelFormat&gt; VideoWidgetSurface::supportedPixelFormats(
+         QAbstractVideoBuffer::HandleType handleType) const
+ {
+     if (handleType == QAbstractVideoBuffer::NoHandle) {
+         return QList&lt;QVideoFrame::PixelFormat&gt;()
+                 &lt;&lt; QVideoFrame::Format_RGB32
+                 &lt;&lt; QVideoFrame::Format_ARGB32
+                 &lt;&lt; QVideoFrame::Format_ARGB32_Premultiplied
+                 &lt;&lt; QVideoFrame::Format_RGB565
+                 &lt;&lt; QVideoFrame::Format_RGB555;
+     } else {
+         return QList&lt;QVideoFrame::PixelFormat&gt;();
+     }
+ }</pre>
+<p>From the supportedPixelFormats() function we return a list of pixel formats the surface can paint. The order of the list hints at which formats are preferred by the surface. Assuming a 32-bit RGB backbuffer, we'd expect that a 32-bit RGB type with no alpha to be fastest to paint so QVideoFrame::Image_RGB32 is first in the list.</p>
+<p>Since we don't support rendering using any special frame handles we don't return any pixel formats if handleType is not <a href="qabstractvideobuffer.html#HandleType-enum">QAbstractVideoBuffer::NoHandle</a>.</p>
+<pre> bool VideoWidgetSurface::isFormatSupported(
+         const QVideoSurfaceFormat &amp;format, QVideoSurfaceFormat *similar) const
+ {
+     Q_UNUSED(similar);
+
+     const QImage::Format imageFormat = QVideoFrame::imageFormatFromPixelFormat(format.pixelFormat());
+     const QSize size = format.frameSize();
+
+     return imageFormat != QImage::Format_Invalid
+             &amp;&amp; !size.isEmpty()
+             &amp;&amp; format.handleType() == QAbstractVideoBuffer::NoHandle;
+ }</pre>
+<p>In isFormatSupported() we test if the frame type of a surface format maps to a valid <a href="qimage.html">QImage</a> format, that the frame size is not empty, and the handle type is <a href="qabstractvideobuffer.html#HandleType-enum">QAbstractVideoBuffer::NoHandle</a>. Note that the <a href="qabstractvideosurface.html">QAbstractVideoSurface</a> implementation of isFormatSupported() will verify that the list of supported pixel formats returned by <tt>supportedPixelFormats(format.handleType())</tt> contains the pixel format and that the size is not empty so a reimplementation wasn't strictly necessary in this case.</p>
+<pre> bool VideoWidgetSurface::start(const QVideoSurfaceFormat &amp;format)
+ {
+     const QImage::Format imageFormat = QVideoFrame::imageFormatFromPixelFormat(format.pixelFormat());
+     const QSize size = format.frameSize();
+
+     if (imageFormat != QImage::Format_Invalid &amp;&amp; !size.isEmpty()) {
+         this-&gt;imageFormat = imageFormat;
+         imageSize = size;
+         sourceRect = format.viewport();
+
+         QAbstractVideoSurface::start(format);
+
+         widget-&gt;updateGeometry();
+         updateVideoRect();
+
+         return true;
+     } else {
+         return false;
+     }
+ }</pre>
+<p>To start our surface we'll extract the image format and size from the selected video format and save it for use in the paint() function. If the image format, or size are invalid then we'll set an error and return false. Otherwise we'll save the format and confirm the surface has been started, by calling <a href="qabstractvideosurface.html#start">QAbstractVideoSurface::start</a>(). Finally since the video size may have changed we'll trigger an update of the widget, and video geometry.</p>
+<pre> void VideoWidgetSurface::updateVideoRect()
+ {
+     QSize size = surfaceFormat().sizeHint();
+     size.scale(widget-&gt;size().boundedTo(size), Qt::KeepAspectRatio);
+
+     targetRect = QRect(QPoint(0, 0), size);
+     targetRect.moveCenter(widget-&gt;rect().center());
+ }</pre>
+<p>The updateVideoRect() function calculates the region within the widget the video occupies. The <a href="qvideosurfaceformat.html#sizeHint">size hint</a> of the video format gives a suggested size for the video calculated from the <a href="qvideosurfaceformat.html#viewport">viewport</a> and <a href="qvideosurfaceformat.html#pixelAspectRatio">pixel aspect ratio</a>. If the suggested size fits within the widget then we create a new rect of that size in the center of the widget. Otherwise we shrink the size maintaining the aspect ratio so that it does fit.</p>
+<pre> bool VideoWidgetSurface::present(const QVideoFrame &amp;frame)
+ {
+     if (surfaceFormat().pixelFormat() != frame.pixelFormat()
+             || surfaceFormat().frameSize() != frame.size()) {
+         setError(IncorrectFormatError);
+         stop();
+
+         return false;
+     } else {
+         currentFrame = frame;
+
+         widget-&gt;repaint(targetRect);
+
+         return true;
+     }
+ }</pre>
+<p>We can't paint from outside a paint event, so when a new frame is received in present() we save a reference to it and force an immediate repaint of the video region. We retain the saved reference to the frame after the repaint so that the widget can be repainted between frame changes if necessary.</p>
+<p>If the format of the frame doesn't match the surface format we can't paint it or very likely any future frames. So we set an <a href="qabstractvideosurface.html#Error-enum">UnsupportedFormatError</a> on our surface and stop it immediately.</p>
+<pre> void VideoWidgetSurface::paint(QPainter *painter)
+ {
+     if (currentFrame.map(QAbstractVideoBuffer::ReadOnly)) {
+         const QTransform oldTransform = painter-&gt;transform();
+
+         if (surfaceFormat().scanLineDirection() == QVideoSurfaceFormat::BottomToTop) {
+            painter-&gt;scale(1, -1);
+            painter-&gt;translate(0, -widget-&gt;height());
+         }
+
+         QImage image(
+                 currentFrame.bits(),
+                 currentFrame.width(),
+                 currentFrame.height(),
+                 currentFrame.bytesPerLine(),
+                 imageFormat);
+
+         painter-&gt;drawImage(targetRect, image, sourceRect);
+
+         painter-&gt;setTransform(oldTransform);
+
+         currentFrame.unmap();
+     }
+ }</pre>
+<p>The paint() function is called by the video widget to paint the current video frame. Before we draw the frame first we'll check the format for the scan line direction and if the scan lines are arranged from bottom to top we'll flip the painter so the frame isn't drawn upside down. Then using the image format information saved in the start() function we'll construct a new <a href="qimage.html">QImage</a> from the current video frame, and draw it to the the widget.</p>
+<pre> void VideoWidgetSurface::stop()
+ {
+     currentFrame = QVideoFrame();
+     targetRect = QRect();
+
+     QAbstractVideoSurface::stop();
+
+     widget-&gt;update();
+ }</pre>
+<p>When the surface is stopped we need to release the current frame and invalidate the video region. Then we confirm the surface has been stopped by calling <a href="qabstractvideosurface.html#stop">QAbstractVideoSurface::stop</a>() which sets the started state to false and finally we update so the video widget so paints over the last frame.</p>
+<a name="videowidget-class-definition"></a>
+<h2>VideoWidget Class Definition</h2>
+<p>The VideoWidget class uses the VideoWidgetSurface class to implement a video widget.</p>
+<pre> class VideoWidget : public QWidget
+ {
+     Q_OBJECT
+ public:
+     VideoWidget(QWidget *parent = 0);
+     ~VideoWidget();
+
+     QAbstractVideoSurface *videoSurface() const { return surface; }
+
+     QSize sizeHint() const;
+
+ protected:
+     void paintEvent(QPaintEvent *event);
+     void resizeEvent(QResizeEvent *event);
+
+ private:
+     VideoWidgetSurface *surface;
+ };</pre>
+<p>The VideoWidget <a href="qwidget.html">QWidget</a> implementation is minimal with just the sizeHint(), paintEvent(), and resizeEvent() functions in addition to the constructor, destructor and an instance of VideoWidgetSurface.</p>
+<a name="videowidget-class-implementation"></a>
+<h2>VideoWidget Class Implementation</h2>
+<pre> VideoWidget::VideoWidget(QWidget *parent)
+     : QWidget(parent)
+     , surface(0)
+ {
+     setAutoFillBackground(false);
+     setAttribute(Qt::WA_NoSystemBackground, true);
+     setAttribute(Qt::WA_PaintOnScreen, true);
+
+     QPalette palette = this-&gt;palette();
+     palette.setColor(QPalette::Background, Qt::black);
+     setPalette(palette);
+
+     setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
+
+     surface = new VideoWidgetSurface(this);
+ }</pre>
+<p>In the VideoWidget constructor we set some flags to speed up re-paints a little. Setting the <a href="qt.html#WidgetAttribute-enum">Qt::WA_NoSystemBackground</a> flag and disabling automatic background fills will stop Qt from a painting a background that'll be completely obscured by the video. The <a href="qt.html#WidgetAttribute-enum">Qt::WA_PaintOnScreen</a> flag will allow us to paint to the screen instead of the back buffer where supported.</p>
+<p>Next we set the background color to black, so that any borders around the video are filled in black rather the default background color.</p>
+<p>Finally we construct an instance of the VideoWidgetSurface class.</p>
+<pre> VideoWidget::~VideoWidget()
+ {
+     delete surface;
+ }</pre>
+<p>In the destructor we simply delete the VideoWidgetSurface instance.</p>
+<pre> QSize VideoWidget::sizeHint() const
+ {
+     return surface-&gt;surfaceFormat().sizeHint();
+ }</pre>
+<p>We get the size hint for the widget from the video format of the surface which is calculated from viewport and pixel aspect ratio of the video format.</p>
+<pre> void VideoWidget::paintEvent(QPaintEvent *event)
+ {
+     QPainter painter(this);
+
+     if (surface-&gt;isActive()) {
+         const QRect videoRect = surface-&gt;videoRect();
+
+         if (!videoRect.contains(event-&gt;rect())) {
+             QRegion region = event-&gt;region();
+             region.subtract(videoRect);
+
+             QBrush brush = palette().background();
+
+             foreach (const QRect &amp;rect, region.rects())
+                 painter.fillRect(rect, brush);
+         }
+
+         surface-&gt;paint(&amp;painter);
+     } else {
+         painter.fillRect(event-&gt;rect(), palette().background());
+     }
+ }</pre>
+<p>When the video widget receives a paint event we first check if the surface is started, if not then we simply fill the widget with the background color. If it is then we draw a border around the video region clipped by the paint region, before calling paint on the video surface to draw the current frame.</p>
+<pre> void VideoWidget::resizeEvent(QResizeEvent *event)
+ {
+     QWidget::resizeEvent(event);
+
+     surface-&gt;updateVideoRect();
+ }</pre>
+<p>The resizeEvent() function is reimplemented to trigger an update of the video region when the widget is resized.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="40%" align="left">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies)</td>
+<td width="20%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="40%" align="right"><div align="right">Qt 4.6.0</div></td>
+</tr></table></div></address></body>
+</html>
